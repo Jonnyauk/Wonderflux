@@ -1,6 +1,5 @@
 <div class="wrap">
 
-
 <?php
 if ( is_multisite() && current_user_can('edit_themes') ) {
 	?><div id="message0" class="updated"><p><?php printf( __('Administrator: new themes must be activated in the <a href="%s">Network Themes</a> screen before they appear here.'), admin_url( 'ms-themes.php') ); ?></p></div><?php
@@ -41,10 +40,6 @@ unset($themes[$ct->name]);
 <?php } else { ?>
 	<p><?php printf(__('All of this theme&#8217;s files are located in <code>%2$s</code>.'), $ct->title, str_replace( WP_CONTENT_DIR, '', $ct->template_dir ), str_replace( WP_CONTENT_DIR, '', $ct->stylesheet_dir ) ); ?></p>
 <?php } ?>
-<?php if ( $ct->tags ) : ?>
-<p><?php _e('Tags:'); ?> <?php echo join(', ', $ct->tags); ?></p>
-<?php endif; ?>
-<?php theme_update_available($ct); ?>
 
 </div>
 
@@ -58,14 +53,12 @@ unset($themes[$ct->name]);
 <h3>Need more control?</h3>
 <p>Advanced theme designers may choose to use their functions.php file to configure and manipulate this seperately - allowing conditional location includes for optimisation. You can still use all the core Wonderflux extra display functions in wp-content/themes/wonderflux/wf-includes/wf-display-extras.php</p>
 
-<p>Options to follow!</p>
+<h2>Options to follow - this is why we are in beta, sorry!</h2>
 
 <?php
 
 $output_tech = '<h3>Wonderflux technical information</h3>';
-$output_tech .= '<p>Your running Wonderflux version: ' . WF_VERSION . '</p>';
-$output_tech .= '<p>Requires at-least WordPress v' . WF_WORDPRESS_MIN . '</p>';
-$output_tech .= '<p>Optimised for WordPress v' . WF_WORDPRESS_OPTI . '</p>';
+$output_tech .= '<p>Your running Wonderflux version: ' . WF_VERSION . ', requires at-least WordPress v' . WF_WORDPRESS_MIN . ', optimised for WordPress v' . WF_WORDPRESS_OPTI . '</p>';
 $output_tech .= '<p>Your current Wonderflux server path: ' . WF_MAIN_DIR . '</p>';
 $output_tech .= '<p>Your current Wonderflux URL path : ' . WF_MAIN_URL . '</p>';
 

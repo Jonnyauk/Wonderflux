@@ -161,9 +161,12 @@ class wflux_admin {
 
 		require('admin-pages/wf-page-'.$include.'.php');
 
+		$this->wf_latest_version_notice();
+
 		$wf_current_theme = get_current_theme();
 
 		if ($wf_current_theme == 'Wonderflux Framework') {
+
 			$output = '<div id="message2" class="updated">';
 			$output .= '<h3>Ooops, you could be doing so much more with Wonderflux!</h3>';
 			$output .= '<p>Wonderflux is designed to be used with Wonderflux child themes, not activated directly.</p>';
@@ -207,6 +210,111 @@ class wflux_admin {
 		add_settings_field('columns_w', 'Desired width of column', array($myadminforms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
 	}
 
+	/**
+	*
+	* @since 0.911
+	* @updated 0.911
+	*
+	* Checks in the nicest way possible what the latest version of Wonderflux is against installed version
+	* No nasty business here or anywhere in Wonderflux, move on with a warm glow in your heart!
+	*
+	*/
+	function wf_latest_version_fetch() {
+
+		// Get WP feed functionality
+		include_once(ABSPATH . WPINC . '/feed.php');
+
+		// Every 2 hours
+		$update = 7200;
+
+		add_filter( 'wp_feed_cache_transient_lifetime', create_function( '$update', 'return '.$update.';' ) );
+
+		// Fetch feed
+		$rss = fetch_feed( esc_url('http://feeds.feedburner.com/WonderfluxVersion') );
+
+		if ( is_wp_error($rss) ) {
+
+			echo '<p>' . esc_attr__('Sorry, update feed currently not available', 'Wonderflux') . '</p>';
+
+		} else {
+
+			// How many?
+			$items = 1;
+			$rss_items = $rss->get_items( 0, $rss->get_item_quantity($items) );
+
+			foreach ( $rss_items as $item ) {
+				$this_update = $item->get_title();
+				$this_update_out = esc_html( $this_update );
+				return esc_attr($this_update_out);
+			}// End foreach
+
+		}
+
+	}
+
+	/**
+	*
+	* @since 0.911
+	* @updated 0.911
+	*
+	* Compares installed Wonderflux version with latest release available
+	*
+	*/
+	function wf_latest_version_compare() {
+
+		$this_version = WF_VERSION;
+		$latest_version = $this->wf_latest_version_fetch();
+
+		if ($latest_version >= $this_version) {
+			return 'update';
+		} elseif ($latest_version <= $this_version) {
+			return 'development';
+		} else {
+			// Silence is golden
+		}
+
+	}
+
+
+	/**
+	*
+	* @since 0.911
+	* @updated 0.911
+	*
+	* Creates update notice if required
+	*
+	*/
+	function wf_latest_version_notice() {
+
+		$check = wflux_admin::wf_latest_version_compare();
+
+		if ($check == 'update') {
+
+			$output = '<div id="message1" class="error">';
+			$output .= '<h3>Wonderflux framework update available!</h3>';
+			$output .= '<p>You are running v'.WF_VERSION.', the current latest release is v'.$this->wf_latest_version_fetch().'</p>';
+			$output .= '<p>There is an update available to Wonderflux. Please read the update notes to check-up on how this may effect your theme BEFORE updating!</p>';
+			$output .= '<p>You can <a href="http://code.google.com/p/wonderflux-framework/downloads/" title="Download the latest Wonderflux update here">download the latest Wonderflux update here</a>.</p>';
+			$output .= '</div>';
+
+			echo $output;
+
+		} elseif ($check == 'development') {
+
+			$output = '<div id="message1" class="error">';
+			$output .= '<h3>Development version installed</h3>';
+			$output .= '<p>You are running a development version of Wonderflux, cool! <strong>You should probably NOT be using this on live sites.</strong></p>';
+			$output .= '<p>It probably contains stuff thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme.</p>';
+			$output .= '<p><strong>If you are not a developer, advanced designer or tester</strong> you will probably be better off using <a href="http://code.google.com/p/wonderflux-framework/downloads/" title="Download the latest stable Wonderflux release here">the latest stable version of Wonderflux</a>.</p>';
+			$output .= '</div>';
+
+			echo $output;
+
+		} else {
+			// Silence is golden - user running current version!
+		}
+
+	}
 
 
 //END wflux_admin class

@@ -329,54 +329,55 @@ class wflux_admin_forms {
 
 	/**
 	*
-	* @since 0.912
-	* @updated 0.912
+	* @since 0.912 r18
+	* @updated 0.912 r19
 	*
 	* IMPORTANT - Validates and cleans any data saved from layout options before saving to database
-	* Accepts array, return cleaned items in original array.
+	* Accepts array, return cleaned items in new array.
 	*
 	*/
 	function validate_opts_layout($input) {
 
-		$input['container_p'] =  wp_filter_nohtml_kses($input['container_p']);
+		// This will hold just the data we want and no nasty stuff
+		$cleaninput = array();
+
+		settype( $input['container_p'], "string" );
 		$container_p_whitelist = array('left','middle','right');
-		if (in_array($input['container_p'],$container_p_whitelist)) { $input['container_p'] = $input['container_p'];
+		if (in_array($input['container_p'],$container_p_whitelist)) { $cleaninput['container_p'] = $input['container_p'];
 		} else {
-			$input['container_p'] = 'middle'; // No cheatin thanks, set sensible value
+			$cleaninput['container_p'] = 'middle'; // No cheatin thanks, set sensible value
 		}
 
-		$input['sidebar_p'] =  wp_filter_nohtml_kses($input['sidebar_p']);
+		settype( $input['container_w'], "string" );
 		$sidebar_p_whitelist = array('left','right');
-		if (in_array($input['sidebar_p'],$sidebar_p_whitelist)) { $input['sidebar_p'] = $input['sidebar_p'];
+		if (in_array($input['sidebar_p'],$sidebar_p_whitelist)) { $cleaninput['sidebar_p'] = $input['sidebar_p'];
 		} else {
-			$input['sidebar_p'] = 'left'; // No cheatin thanks, set sensible value
+			$cleaninput['sidebar_p'] = 'left'; // No cheatin thanks, set sensible value
 		}
 
-		$input['container_w'] =  wp_filter_nohtml_kses($input['container_w']);
 		settype( $input['container_w'], "integer" );
 		$container_w_whitelist = range(400,2000,10);
-		if (in_array($input['container_w'],$container_w_whitelist)) { $input['container_w'] = $input['container_w'];
+		if (in_array($input['container_w'],$container_w_whitelist)) { $cleaninput['container_w'] = $input['container_w'];
 		} else {
-			$input['container_w'] = '950'; // No cheatin thanks, set sensible value
+			$cleaninput['container_w'] = 950; // No cheatin thanks, set sensible value
 		}
 
-		$input['columns_num'] =  wp_filter_nohtml_kses($input['columns_num']);
 		settype( $input['columns_num'], "integer" );
 		$columns_num_whitelist = range(4,80,1);
-		if (in_array($input['columns_num'],$columns_num_whitelist)) { $input['columns_num'] = $input['columns_num'];
+		if (in_array($input['columns_num'],$columns_num_whitelist)) { $cleaninput['columns_num'] = $input['columns_num'];
 		} else {
-			$input['columns_num'] = '24'; // No cheatin thanks, set sensible value
+			$cleaninput['columns_num'] = 24; // No cheatin thanks, set sensible value
 		}
 
-		$input['columns_w'] =  wp_filter_nohtml_kses($input['columns_w']);
 		settype( $input['columns_w'], "integer" );
 		$columns_w_whitelist = range(10,300,1);
-		if (in_array($input['columns_w'],$columns_w_whitelist)) { $input['columns_w'] = $input['columns_w'];
+		if (in_array($input['columns_w'],$columns_w_whitelist)) { $cleaninput['columns_w'] = $input['columns_w'];
 		} else {
-			$input['columns_w'] = '30'; // No cheatin thanks, set sensible value
+			$cleaninput['columns_w'] = 30; // No cheatin thanks, set sensible value
 		}
 
-		return $input;
+		// Return safe array of values to write to database
+		return $cleaninput;
 	}
 
 	//////// STYLE LAB FORM ITEMS START

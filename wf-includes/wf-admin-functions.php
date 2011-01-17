@@ -265,9 +265,9 @@ class wflux_admin {
 		$this_version = WF_VERSION;
 		$latest_version = $this->wf_latest_version_fetch();
 
-		if ($latest_version >= $this_version) {
+		if ($latest_version > $this_version) {
 			return 'update';
-		} elseif ($latest_version <= $this_version) {
+		} elseif ($latest_version < $this_version) {
 			return 'development';
 		} else {
 			// Silence is golden

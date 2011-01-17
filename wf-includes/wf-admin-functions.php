@@ -193,10 +193,10 @@ class wflux_admin {
 	*
 	*/
 	function wf_register_settings(){
-		register_setting('wf_settings_display', 'wonderflux_display' );
-		//register_setting('wf-settings-display', 'wonderflux_display', 'plugin_options_validate' );
 
 		$myadminforms = new wflux_admin_forms;
+
+		register_setting('wf_settings_display', 'wonderflux_display', array($myadminforms, 'validate_opts_layout') );
 
 		add_settings_section('style_lab', '', array($myadminforms, 'wf_form_intro_main'), 'wonderflux_stylelab');
 
@@ -326,6 +326,58 @@ class wflux_admin {
 *
 */
 class wflux_admin_forms {
+
+	/**
+	*
+	* @since 0.912
+	* @updated 0.912
+	*
+	* IMPORTANT - Validates and cleans any data saved from layout options before saving to database
+	* Accepts array, return cleaned items in original array.
+	*
+	*/
+	function validate_opts_layout($input) {
+
+		$input['container_p'] =  wp_filter_nohtml_kses($input['container_p']);
+		$container_p_whitelist = array('left','middle','right');
+		if (in_array($input['container_p'],$container_p_whitelist)) { $input['container_p'] = $input['container_p'];
+		} else {
+			$input['container_p'] = 'middle'; // No cheatin thanks, set sensible value
+		}
+
+		$input['sidebar_p'] =  wp_filter_nohtml_kses($input['sidebar_p']);
+		$sidebar_p_whitelist = array('left','right');
+		if (in_array($input['sidebar_p'],$sidebar_p_whitelist)) { $input['sidebar_p'] = $input['sidebar_p'];
+		} else {
+			$input['sidebar_p'] = 'left'; // No cheatin thanks, set sensible value
+		}
+
+		$input['container_w'] =  wp_filter_nohtml_kses($input['container_w']);
+		settype( $input['container_w'], "integer" );
+		$container_w_whitelist = range(400,2000,10);
+		if (in_array($input['container_w'],$container_w_whitelist)) { $input['container_w'] = $input['container_w'];
+		} else {
+			$input['container_w'] = '950'; // No cheatin thanks, set sensible value
+		}
+
+		$input['columns_num'] =  wp_filter_nohtml_kses($input['columns_num']);
+		settype( $input['columns_num'], "integer" );
+		$columns_num_whitelist = range(4,80,1);
+		if (in_array($input['columns_num'],$columns_num_whitelist)) { $input['columns_num'] = $input['columns_num'];
+		} else {
+			$input['columns_num'] = '24'; // No cheatin thanks, set sensible value
+		}
+
+		$input['columns_w'] =  wp_filter_nohtml_kses($input['columns_w']);
+		settype( $input['columns_w'], "integer" );
+		$columns_w_whitelist = range(10,300,1);
+		if (in_array($input['columns_w'],$columns_w_whitelist)) { $input['columns_w'] = $input['columns_w'];
+		} else {
+			$input['columns_w'] = '30'; // No cheatin thanks, set sensible value
+		}
+
+		return $input;
+	}
 
 	//////// STYLE LAB FORM ITEMS START
 

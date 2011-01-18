@@ -1,24 +1,11 @@
 <?php
-
 //Include things in one place to include core stuff when we need it
+load_template(TEMPLATEPATH . '/wf-config.php');
+load_template(WF_INCLUDES_DIR . '/wf-version.php');
+load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
+load_template(WF_INCLUDES_DIR . '/wf-display-hooks.php');
 
-// require_once?
-
-require(TEMPLATEPATH.'/wf-config.php');
-require( WF_INCLUDES_DIR .'/wf-version.php');
-require( WF_INCLUDES_DIR .'/wf-helper-functions.php');
-require( WF_INCLUDES_DIR .'/wf-display-hooks.php');
-
-require( WF_INCLUDES_DIR .'/wf-display-extras.php');
-
-
-// Just include all the xtra display functions in the front-end, not everywhere!
-/*
-function wf_engine_template() {
-require( WF_INCLUDES_DIR .'/wf-display-extras.php');
-}
-
-add_action('get_header', 'wf_engine_template');
-*/
-
+// Advanced theme functionality
+load_template(WF_INCLUDES_DIR . '/wf-display-extras.php');
+load_template(WF_INCLUDES_DIR . '/wf-theme-core.php');
 ?>

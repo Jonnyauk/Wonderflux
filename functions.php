@@ -1,27 +1,47 @@
 <?php
 /**
- * Core Wonderflux functions
+ * Core Wonderflux theme framework functions
+ * For more information, including license please view README.txt file or visit http://www.wonderflux.com
  *
- * DON'T HACK ME!! You have lots of ways to manipulate this from your child theme
- * 1) Use remove_action('wf_hook_name','wf_function_name',postitionnumber); in your child theme functions file
- * 2) Create a function with the same name as a core display function in your child theme - that will override the one below
- * 3) Add a filter to a display function - there are lots you can use in your child themes!
+ * DON'T HACK ME!! You should not modify the Wonderflux theme framework to avoid issues with updates in the future
+ * You have lots of ways to manipulate this from your child theme! http://codex.wordpress.org/Child_Themes
+ *
+ * 1) Create a function with the same name as a core display function in your child theme. This will override the ones in this file
+ *
+ * 2) Remove a core Wonderflux action in your child theme functions file with the code:
+ *    remove_action('wf_hook_name','wf_function_name',postitionnumber);
+ *
+ * 3) Add a filter a display function (documentation to come)
+ *
+ * 4) Use over 100 location-aware hooks (documentation to come)
+ *
+ * If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
+ *
+ * Get involved at http://wonderflux-framework.googlecode.com - full open source SVN project
+ * THIS IS THE ONLY PLACE to download the official distribution code (during beta) and is where all issues and updates are tracked
+ * Developers also have full SVN access to trunk where the latest non-released development version is held (NOT advised for live sites!)
+ *
+ * If thats too techie (SVN is not much fun!), submit a suggestion at http://wonderflux.com
+ *
+ * Thanks for trying Wonderflux, WordPress is a world-class publishing platform,
+ * lets make a world-class theme framework for everyone to use, for free, for ever!
+ *
+ * Follow us on Twitter @Wonderflux for updates and news
  *
  * @package Wonderflux
  */
 
-//////// ADMIN FUNCTIONS ////////
+// ADMIN FUNCTIONS //
 
 // Start your engine
-require(TEMPLATEPATH.'/wf-includes/wf-engine.php');
+load_template(TEMPLATEPATH . '/wf-includes/wf-engine.php');
 $wflux_core = new wflux_core;
 
 // Only build admin stuff if the user is an administrator level user
-
 if ($wflux_core->wf_userrole('var') == 'administrator') {
 
 	// Include admin functions
-	require("wf-includes/wf-admin-functions.php");
+	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');
 
 	// Build admin menus
 	$wflux_admin_doit = new wflux_admin;
@@ -30,8 +50,8 @@ if ($wflux_core->wf_userrole('var') == 'administrator') {
 	add_action( 'admin_init', array($wflux_admin_doit, 'wf_register_settings'));
 }
 
-//////// DISPLAY FUNCTIONS ////////
 
+// Core framework functions that you can over-ride //
 add_action('get_header', 'wf_display_functions', 1); // !!IMPORTANT!! Dont remove this one - it includes stuff we need for templates
 add_action('wf_head_meta', 'wf_display_head_top', 1);
 add_action('wf_head_meta', 'wf_display_head_title', 3);
@@ -62,87 +82,10 @@ add_action('init', 'wf_display_default_widgets'); // !!IMPORTANT!! Dont remove t
 *
 */
 if ( ! function_exists( 'wf_display_functions' ) ) :
-function wf_display_functions() {
-	include(WF_INCLUDES_DIR . '/wf-display-functions.php');
-}
+	function wf_display_functions() {
+		load_template(WF_INCLUDES_DIR . '/wf-display-functions.php');
+	}
 endif;
-
-
-/**
-*
-* @since 0.902
-* @updated 0.902
-*
-* IMPORTANT! if Wonderflux activated directly this hooks into get_header on template display and includes the Wonderflux display functions
-* Wonderflux is designed to be used with child themes, but people are still gonna activate it directly
-* So lets make sure it works ok!
-*
-*/
-function wf_display_default_layout() {
-	if (get_current_theme() == 'Wonderflux Framework') {
-
-		//Insert some basic layout CSS styles using hooks
-		wflux_display::wf_display_default_layout();
-
-	}
-}
-
-
-/**
-*
-* @since 0.902
-* @updated 0.902
-*
-* IMPORTANT! if Wonderflux activated directly this hooks into get_header on template display and includes the Wonderflux display functions
-* Wonderflux is designed to be used with child themes, but people are still gonna activate it directly
-* So lets make sure it works ok!
-*
-*/
-function wf_display_default_widgets() {
-	if (get_current_theme() == 'Wonderflux Framework') {
-
-		//Include theme core so we can setup some widget areas
-		include ''.WF_INCLUDES_DIR.'/wf-theme-core.php';
-
-		//Setup widgets using Wonderflux - define AND insert on any hook quickly and easily, cool!
-		wflux_theme_core::wf_widgets(
-			array (
-
-				/* All parameters - example NOT ACTIVE
-				array (
-						"name" => "Above Sidebar",
-						"description" => "Drag widgets into here to include them above the sidebar on all pages.",
-						"location" => "wfsidebar_before_all_content",
-						"container" => "div",
-						"containerclass" => "custom-widget-block",
-						"containerid" => "widget1",
-						"titlestyle" => "h4",
-						"titleclass" => "custom-widget-title",
-						"titleid" => "custom-widget-title",
-						"before" => "",
-						"after" => ""
-				),
-				*/
-
-				/* Simple example */
-				array (
-						"name" => "Above sidebar",
-						"description" => "Drag widgets into here to include them above the sidebar on your site.",
-						"location" => "wfsidebar_before_all",
-						"titleclass" => "primary-widget-title"
-				),
-
-				/* Even simpler example! */
-				array (
-						"location" => "wfsidebar_after_all",
-						"name" => "Below sidebar"
-				)
-
-			)
-		);
-
-	}
-}
 
 
 /**
@@ -165,7 +108,7 @@ endif;
 * @since 0.71
 * @updated 0.71
 *
-* IMPORTANT Builds the head of the document, including setting up wp_head after wf_head stuff has executed
+* IMPORTANT Builds the title of the document
 *
 */
 if ( ! function_exists( 'wf_display_head_title' ) ) :
@@ -177,26 +120,10 @@ endif;
 
 /**
 *
-* @since 0.71
-* @updated 0.71
-*
-* IMPORTANT Builds the head of the document, including setting up wp_head after wf_head stuff has executed
-* TODO: Split this up fully for all core Wonderflux css
-*
-*/
-if ( ! function_exists( 'wf_display_head_css' ) ) :
-function wf_display_head_css() {
-    wflux_display::wf_head_css();
-}
-endif;
-
-
-/**
-*
 * @since 0.72
 * @updated 0.72
 *
-* Inserts the core typography CSS
+* Inserts the core framework structure CSS
 *
 */
 if ( ! function_exists( 'wf_display_head_css_structure' ) ) :
@@ -286,7 +213,7 @@ endif;
 * @since 0.71
 * @updated 0.71
 *
-* IMPORTANT - Runs last on wf_head_meta to close head section
+* VERY IMPORTANT - Runs last on wf_head_meta to close head section
 * IMPORTANT - Inserts standard WordPress wp_head()
 *
 */
@@ -344,4 +271,79 @@ function wf_display_credit_footer_code() {
 	wflux_display::wf_credit_footer_code();
 }
 endif;
+
+
+//// WONDERFLUX CORE DISPLAY ////
+// Wonderflux is designed to be used with child themes, but people are still gonna activate it directly.
+// If Wonderflux is activated, lets make sure that we get some Wonderflux action!
+
+
+/**
+*
+* @since 0.902
+* @updated 0.902
+*
+* If Wonderflux activated, hooks into get_header on template display and includes the core Wonderflux display functions
+* TODO: This generates some interesting errors with the theme checker plugin, TEST
+*
+*/
+function wf_display_default_layout() {
+	if (get_current_theme() == 'Wonderflux Framework') {
+
+		//Insert some basic layout CSS styles using hooks
+		wflux_display::wf_display_default_layout();
+
+	}
+}
+
+
+/**
+*
+* @since 0.902
+* @updated 0.912
+*
+* Runs wf_widgets just like any good Wonderflux theme should - define AND insert on any hook quickly and easily.
+*
+*/
+function wf_display_default_widgets() {
+	if (get_current_theme() == 'Wonderflux Framework') {
+
+		wflux_theme_core::wf_widgets(
+			array (
+
+				/* All parameters - example NOT ACTIVE
+				array (
+						"name" => "Above Sidebar",
+						"description" => "Drag widgets into here to include them above the sidebar on all pages.",
+						"location" => "wfsidebar_before_all",
+						"container" => "div",
+						"containerclass" => "custom-widget-block",
+						"containerid" => "widget1",
+						"titlestyle" => "h4",
+						"titleclass" => "custom-widget-title",
+						"titleid" => "custom-widget-title",
+						"before" => "",
+						"after" => ""
+				),
+				*/
+
+				/* Simple example */
+				array (
+						"name" => "Above sidebar",
+						"description" => "Drag widgets into here to include them above the sidebar on your site.",
+						"location" => "wfsidebar_before_all",
+						"titleclass" => "primary-widget-title"
+				),
+
+				/* Even simpler example! */
+				array (
+						"location" => "wfsidebar_after_all",
+						"name" => "Below sidebar"
+				)
+
+			)
+		);
+
+	}
+}
 ?>

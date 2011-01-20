@@ -78,7 +78,7 @@ class wflux_display_ex {
 	 * @param dateclass - CSS span class on date [twitter-stream-date]
 	 *
 	 * @since 0.85
-	 * @updated 0.892
+	 * @updated 0.912
 	 */
 	function wf_twitter_feed($args) {
 
@@ -170,7 +170,7 @@ class wflux_display_ex {
 					$fulldays = floor($timediff/(60*60*24));
 
 					if ($fulldays == '0') {
-						echo esc_attr($seperator) . '<span class="' . esc_attr($dateclass) . '">' . esc_attr__('Recently', 'Wonderflux') . '</span></' . esc_attr($contentstyle) . '>';
+						echo esc_attr($seperator) . '<span class="' . esc_attr($dateclass) . '">' . esc_attr__('Recently', 'Wonderflux') . '</span>';
 					} else {
 						// Sort out formatting
 						if ($fulldays == '1') {
@@ -180,17 +180,21 @@ class wflux_display_ex {
 							$dayappend = 's';
 						}
 						//TODO: Internationalisation for day/days (single/plural)
-						echo esc_attr($seperator) . '<span class="' . esc_attr($dateclass) . '">' . $fulldays . esc_attr__('day', 'Wonderflux') . $dayappend . ' ' . esc_attr__('ago', 'Wonderflux') . '</span></' . esc_attr($contentstyle) . '>';
+						echo esc_attr($seperator) . '<span class="' . esc_attr($dateclass) . '">' . $fulldays . ' ' . esc_attr__('day', 'Wonderflux') . $dayappend . ' ' . esc_attr__('ago', 'Wonderflux') . '</span>';
 					}
 
 					} else {
-						echo esc_attr($seperator) . '<span class="' . esc_attr($dateclass) . '">' . $item->get_date('') . '</span></' . esc_attr($contentstyle) . '>';
+						echo esc_attr($seperator) . '<span class="' . esc_attr($dateclass) . '">' . $item->get_date('') . '</span>';
 					}
 				}
+
+				//Close off tweet
+				echo '</' . esc_attr($contentstyle) . '>';
 
 			}
 
 		}// End foreach
+
 	}
 
 

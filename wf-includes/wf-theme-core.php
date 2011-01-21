@@ -5,7 +5,7 @@
 /**
 *
 * @since 0.891
-* @updated 0.891
+* @updated 0.912
 *
 * Core template functions
 *
@@ -17,13 +17,17 @@ class wflux_theme_core {
 	*
 	* Sets up WordPress widgets and optionally inserts into template using Wonderflux hook system
 	*
-	* @param $name The name of the widget
-	* @param $description The description of the widget area (used in admin area
-	* @param $location Inserts the widget using Wonderflux display hooks - supply value "my_custom_theme_code" to turn this off
-	* @param $container What do you want the Widget to be contained in - eg "div", "li"
-	* @param $containerclass Container CSS class
-	* @param $titlestyle The title styling, eg "h2"
-	* @param $titleclass Title CSS class
+	* @param $name - The name of the widget (shows in admin widget editor area) [Incremental number]
+	* @param $description - Description of widget (shows in admin widget editor area) [Drag widgets into here to include them in your site]
+	* @param $location - Inserts the widget using Wonderflux display hooks - supply value "my_custom_theme_code" to turn this off [wfsidebar_after_all]
+	* @param $container - What do you want the Widget to be contained in - eg "div", "li" [div]
+	* @param $containerclass - Container CSS class [widget-box]
+	* @param $containerid - ADVANCED USE ONLY - Sets CSS ID (Only use this if your widget area has one widget - otherwise the ID's are repeated, which is not good and breaks validation for obvious reasons!) [NONE]
+	* @param $titlestyle - Title CSS [h3]
+	* @param $titleclass - Title CSS class [widget-title]
+	* @param $titleid - ADVANCED USE ONLY - Sets CSS ID (Only use this if your widget area has one widget - otherwise the ID's are repeated, which is not good and breaks validation for obvious reasons!) [NONE]
+	* @param $before - Anything you want before the widget [NONE]
+	* @param $after - Anything you want after the widget [NONE]
 	*
 	* NOTE:
 	* Easiest way to hardcode a widget into your theme rather than use a Wonderflux hook is:
@@ -39,7 +43,7 @@ class wflux_theme_core {
 	* //endif;
 	*
 	* @since 0.891
-	* @updated 0.891
+	* @updated 0.912
 	*
 	*
 	*/
@@ -58,9 +62,9 @@ class wflux_theme_core {
 			$defaults = array (
 			"name" => "Widget area " . $wf_widget_num,
 			"description" => "Drag widgets into here to include them in your site.",
-			"location" => "wfsidebar_after_all_content",
+			"location" => "wfsidebar_after_all",
 			"container" => "div",
-			"containerclass" => "wf-widget-area",
+			"containerclass" => "widget-box",
 			"containerid" => "",
 			"titlestyle" => "h3",
 			"titleclass" => "widget-title",
@@ -75,21 +79,21 @@ class wflux_theme_core {
 			// If a specific container or title ID has been supplied, set it up ready to show
 			//If none supplied, it doesnt put an ID in at all
 			if ($containerid !="") {
-				$containerid = ' id="' . $containerid . '"';
+				$containerid = ' id="' . esc_attr($containerid) . '"';
 			}
 
 			if ($titleid !="") {
-				$titleid = ' id="' . $titleid . '"';
+				$titleid = ' id="' . esc_attr($titleid) . '"';
 			}
 
 			// Setup this widget using our options WordPress stylee
 			register_sidebar(array(
 				'name'=> __($name),
 				'description' => __($description),
-				'before_widget' => $before . '<' . $container . ' class="'. $containerclass .'"' . $containerid . '>',
-				'after_widget' => '</' . $container . '>' . $after,
-				'before_title' => '<' . $titlestyle . ' class="'. $titleclass .'"' . $titleid . '>',
-				'after_title' => '</' . $titlestyle . '>',
+				'before_widget' => esc_attr($before) . '<' . esc_attr($container) . ' class="'. esc_attr($containerclass) .'"' . esc_attr($containerid) . '>',
+				'after_widget' => '</' . esc_attr($container) . '>' . esc_attr($after),
+				'before_title' => '<' . esc_attr($titlestyle) . ' class="'. esc_attr($titleclass) .'"' . esc_attr($titleid) . '>',
+				'after_title' => '</' . esc_attr($titlestyle) . '>',
 			));
 
 			// Insert the widget area using Wonderflux display hooks

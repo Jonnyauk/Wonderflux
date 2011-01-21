@@ -1,18 +1,18 @@
 !! WARNING !!
 
-You have downloaded a development version of the working source code - this may not be stable!
+You have downloaded an Alpha development version of the working source code - this may not be stable!
 
 Zip packages of stable release versions of Wonderflux are available from:
 http://code.google.com/p/wonderflux-framework/downloads/
 
 THIS IS FOR TESTING AND FEEDBACK ONLY,
 AND ALTHOUGH EVERYTHING WILL PROBABLY BE FINE
-YOU PROBABLY SHOULD NOT BE RUN ON LIVE SITES
+YOU PROBABLY SHOULD NOT RUN THIS ON LIVE SITES!
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 WONDERFLUX WORDPRESS THEME FRAMEWORK PUBLIC BETA
-VERSION 0.912 SVN TRUNK DEVELOPMENT BETA
+VERSION 0.912 DEVELOPMENT ALPHA
 
 Copyright (C) 2011 Jonny Allbut - Jonnya Freelance Creative www.jonnya.net
 

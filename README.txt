@@ -1,17 +1,34 @@
 !! WARNING !!
 
-You have downloaded an Alpha development version of the working source code - this may not be stable!
+You have downloaded an Alpha development version of the working source code 
+from the trunk of the development code! THIS MAY NOT BE 100% STABLE!!
 
-Zip packages of stable release versions of Wonderflux are available from:
+If you are using this for development purposes, You should probably make sure 
+you have the latest version available from:
+
+http://code.google.com/p/wonderflux-girder-theme/source/checkout
+
+The 3 directories are:
+
+branches - Holds any advanced development and experiments
+tags - Holds the released versions (same as zip files)
+trunk - Holds the latest development version that is being worked on
+
+Zip packages of stable release beta versions of Wonderflux are available from:
 http://code.google.com/p/wonderflux-framework/downloads/
 
-THIS IS FOR TESTING AND FEEDBACK ONLY,
-AND ALTHOUGH EVERYTHING WILL PROBABLY BE FINE
-YOU PROBABLY SHOULD NOT RUN THIS ON LIVE SITES!
+THIS VERSION IS FOR TESTING AND FEEDBACK ONLY, AND ALTHOUGH EVERYTHING
+WILL PROBABLY BE FINE YOU PROBABLY SHOULD NOT RUN THIS VERSION ON LIVE SITES!
+
+There may also be problems with child themes, for testing compatibility we run
+the trunk version of WFX Girder theme, which is developed to use the latest 
+code, structure and functionality in development.
+
+http://wonderflux-girder-theme.googlecode.com
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-WONDERFLUX WORDPRESS THEME FRAMEWORK PUBLIC BETA
+WONDERFLUX WORDPRESS THEME FRAMEWORK
 VERSION 0.912 DEVELOPMENT ALPHA
 
 Copyright (C) 2011 Jonny Allbut - Jonnya Freelance Creative www.jonnya.net
@@ -23,10 +40,10 @@ of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
+You may have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
@@ -34,61 +51,107 @@ You may also view the license online at http://www.gnu.org/licenses/gpl-2.0.html
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-WELCOME!
+Welcome to the beta testing phase of Wonderflux
+An advanced creative Open Source theme framework for WordPress.
 
-Welcome to the beta testing phase of Wonderflux, the new theme framework for WordPress.
-Thank you for your kind offer of participating - we really appreciate it!
-
-We would love to keep you informed on Wonderflux development and continue to let you know when new betas are released for testing.
-
-Drop by www.wonderflux.com for more information
+Keep informed on Wonderflux development:
+- Following @Wonderflux on Twitter
+- Subscribing to the beta RSS feed: http://feeds.feedburner.com/wonderflux-beta-testing
+- Subscribing to beta mailing list at: http://feedburner.google.com/fb/a/mailverify?uri=wonderflux-beta-testing
+- Drop by http://www.wonderflux.com
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-GET INVOLVED!
+GET INVOLVED
 
-Wonderflux is distributed under the GPL license - just like WordPress (yes - that means FREE basically!).
+Wonderflux is distributed under the GPL v2 license just like WordPress
+(yes - that means FREE basically!). There are no plans to ever charge
+for Wonderflux, it will always remain GPL v2 license.
 
-As we move towards the next beta, we'd really appreciate ANY feedback, contributions or suggestions on things you would like to see.
+Just to clarify then - YES, you can use Wonderflux on as many commercial,
+non-commercial, personal WordPress sites as you wish, without any fee
+or subscription required.
 
-We are building this for everyone to use - so tell us what you want!
+Any developers are welcome to offer code contributions - we are open to
+any ideas and improvements;) The goal is to develop a framework for
+everyone to use, for free, to make amazing WordPress sites!
 
-Drop by www.wonderflux.com for more information
+Drop by:
+http://wonderflux-framework.googlecode.com/
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 !! WARNING !!
 
-THIS IS A PRE-RELEASE BETA - we still have a-lot of work to complete and although it functions correctly it currently lacks some elements.
-IT IS NOT RECOMMENDED FOR ANY SORT OF MISSION CRITICAL LIVE PRODUCTION WEBSITES and is provided purely for your feedback and hopefully development contributions.
+THIS IS A PRE-RELEASE BETA - there is still a-lot of cool stuff to build!
+Although Wonderflux functions correctly, it currently lacks some
+elements and refinements that can easily be added just like any other
+WordPress theme - for instance menus, custom post thumbnails.
 
-Although we have big plans for Wonderflux options and controls for less experienced theme designers and WordPress users, the current functionality is mostly contained in the child themes functions file and style.css file. This structure will remain in future versions for developers (and to improve efficiency with less database activity), but almost everything will move to simple options panels within WordPress admin area.
-Also, in the next version of Wonderflux we know that there is going to be a fairly major change in the PHP class/function structure, along with full support and optimisation for WordPress 3.1 (beta now out by the way!) - so some things are going to change.
+IT IS NOT RECOMMENDED FOR ANY SORT OF MISSION CRITICAL LIVE
+PRODUCTION WEBSITES, and is provided purely for your feedback
+and hopefully development contributions.
+
+Although there are big plans for Wonderflux options and controls
+for less experienced theme designers and users, the current
+functionality is mostly contained in the child themes functions
+functions.php file and style.css file. This structure will remain
+in future versions for developers, but almost everything will move
+to simple options panels within WordPress admin area.
+
+Also, at version 0.92 there is likely to be a change in the PHP
+class/function structure, along with full support and optimisation
+for WordPress 3.1. So some things are going to change... it is a
+beta after-all! This should be just a simple search and replace
+on your source code for reference to display function calls
+and will be fully documented.
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 QUICK START REFERENCE
 
-Wonderflux is a theme framework that works with 'child themes'
+Wonderflux is a theme framework that works with 'child themes'.
 
-IMPORTANT - WFX Girder is a child theme designed for Wonderflux that can be downloaded from http://code.google.com/p/wonderflux-girder-theme/
+Although Wonderflux will function if activated directly,
+the best way to use Wonderflux is by activating a child theme.
 
-Although Wonderflux will function if activated directly, the best way to use Wonderflux is by activating a child theme.
+DEMO CHILD THEME DOWNLOAD
+WFX Girder is a child theme designed for Wonderflux that can be downloaded from:
+http://wonderflux-girder-theme.googlecode.com
 
-Wonderflux is amazingly flexible, with many filters hooks and functions you can over-ride through your child theme functions file.
+This simply means that you can create a theme with just a small
+handful of files and everything else is provided by Wonderflux!
 
-It also heavily uses the principle of 'template parts' - please see the WFX Girder theme structure for more on this.
+Wonderflux is amazingly flexible, with many filters hooks and
+functions you can over-ride through your child theme functions file.
 
-> Start of with using the template parts as shown in the WF Girder child theme. Anything that has '-content' in the name is a template part, ie:
+It also heavily uses the principle of 'template parts' - please see
+the WFX Girder theme structure for more on this.
+
+Only advanced developers will need to actually override the standard WordPress
+template file structure in their Wonderflux child theme (ie footer.php or header.php)
+IF YOU OVERRIDE THESE YOU WOULD BE STRONGLY ADVISED TO USE THE CORE FILES
+FROM WONDERFLUX TO RETAIN THE HOOK AND FORMATTING STRUCTURE.footer.php
+
+> Start of with using the template parts as shown in the WF Girder
+child theme. Anything that has '-content' in the name is a template part, ie:
 
 footer-content.php
 header-content-php
 loop-content-page.php (page loop content - only used on pages)
 loop-content.php (general loop content - used everywhere else)
 
-You now have a complete location aware get_template_part function, allowing unique content to be easily used when viewing different kinds of content:
+These files just contain very simple content - just what you want displayed within
+the given area. All of the rest of the site code, structure and CSS is dealt
+with for you by Wonderflux. If you have not worked with theme frameworks,
+child themes and get_template_part() before - welcome to the future of
+WordPress theme development!
+
+An important feature in Wonderflux is the location aware get_template_part() function,
+allowing unique content to be easily used when using different views in your theme
+for the following areas in your site:
 
 home
 category
@@ -102,59 +165,79 @@ attachment
 single (single post)
 page
 
-So you would create the file footer-content-page.php in your child theme to hold unique content for when you are viewing a page, and footer-content.php that is used in all circumstances - cool!
+So to show unique content in the footer when viewing a 'page' in WordPress,
+simply create the file:
 
-This will work for:
+footer-content-page.php
+
+in your child theme folder and this content will display only on this condition.
+IF THE FILE DOESN'T EXIST FOR THE LOCATION, it rolls back to footer-content.php
+
+This location aware functionality will also work for the following areas in your theme:
 header-content.php
 sidebar-content.php
 footer-content.php
 loop-content.php
 
-> IMPORTANT!! Remember the principle of child themes - if the template file exists in your child theme directory with the same name as Wonderflux - it replaces it!
+!! DON'T HACK WONDERFLUX !!
 
-1) Once you have activated WF Girder theme, you will see a new menu at the bottom of your sidebar in the admin area called 'Wonderflux' with various options
+You should not modify the Wonderflux theme framework to avoid issues with updates in the future.
+You have lots of ways to manipulate this from your child theme! http://codex.wordpress.org/Child_Themes
 
-2) In this beta version, the only options active are under 'Style Lab'. This is where you can change the CSS dimensions and grid configuration of your Wonderflux installation.
+1) Create a function with the same name as a core Wonderflux display function in your child theme.
 
-3) IMPORTANT!! Currently there is no calculation performed on combinations of numbers, so it is possible to get fractional widths which may end-up with very odd display! For testing purposes, try out the following valid combinations - these all add up correctly:
+2) Remove a core Wonderflux action in your child theme functions file with the code:
+remove_action('wf_hook_name','wf_function_name',postitionnumber);
 
-* width=960 x cols=16 x colwidth=45
-* width=960 x cols=36 x colwidth=15
-* width=950 x cols=20 x colwidth=38
-* width=950 x cols=24 x colwidth=30
-* width=950 x cols=48 x colwidth=10
-* width=760 x cols=24 x colwidth=24
-* width=760 x cols=20 x colwidth=19
+3) Add a filter to a display function (documentation to come).
 
-NOTE: Left and Right container padding are active, but currently don't effect the layout.
+4) Use over 100 location-aware hooks (documentation to come).
 
-OTHER REFERENCE
-
-> Note the use of PHP layout display functions to setup CSS layout divs in WFX Girder - They use a special definitions such as 'half' and 'quarter' to make layout easier.
-
-> You will find reference to all hooks in themes/wonderflux/wf-includes/wf-display-hooks.php
-
-> You will find a number of more interesting display functions for you to use in your themes in themes/wonderflux/wf-includes/wf-display-extras.php
-
-> You will see a reference guide in the head of your document if you view source. It is currently working in a very similar way to the Blueprint CSS framework - the same rules and references apply - http://www.blueprintcss.org/ - NOTE this is likely to change!
-
-> There are a-lot of transparent PNG images in wf-content/backgrounds ready for you to use in your CSS
+If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
+Get involved at http://wonderflux-framework.googlecode.com
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-CHANGE NOTES - We just show the last two versions now, all previous reference can be found at http://code.google.com/p/wonderflux-framework/updates/list
+OTHER REFERENCE
 
-0.912 - SVN TRUNK DEVELOPMENT BETA CHANGE NOTES
+Note the use of PHP layout display functions to setup CSS layout divs in WFX Girder.
+They use a special definitions such as 'half' and 'quarter' to make layout easier.
 
-0.911 - PUBLIC BETA RELEASE CHANGE NOTES
+You will find reference to all hooks in themes/wonderflux/wf-includes/wf-display-hooks.php
 
-- r8 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=8
-- Missed the screenshot file when the tag as created, doh!
+You will find a number of more interesting display functions for you to use in your
+themes in themes/wonderflux/wf-includes/wf-display-extras.php
 
-- r11 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=11
+You will see a reference guide in the head of your document if you view source.
+It is currently working in a very similar way to the Blueprint CSS framework, the same
+rules and references apply - http://www.blueprintcss.org/ - NOTE this is likely to change!
+
+There are a-lot of transparent PNG images in wf-content/backgrounds
+ready for you to use in your CSS - see WFX Girder style.css for image path demo of these.
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
+CHANGE NOTES
+
+We just show the last two versions, all previous reference can be found at
+http://code.google.com/p/wonderflux-framework/updates/list
+
+WONDERFLUX VERSION 0.912 - Jan 2011
+
+//
+
+WONDERFLUX VERSION 0.911 - Jan 16 2010
+
+r13 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=13
+- Update checker functions, fetches simple version feed from feedburner, no personal data gathered.
+- Its the cleanest off-server solution (that I can think of for the moment!)
+- Will be used later on for release update info/changes for developers and designers.
+
+r12 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=12
+- Small formatting changes to core Wonderflux options page.
+
+r11 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=11
 - Various data validation fixes and bug fix for sidebar position.
 
-- r13 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=13
-- Update checker functions, fetches simple version feed from feedburner, no personal data gathered. 
-- Its the cleanest off-server solution (that I can think of for the moment!) 
-- Will be used later on for release update info/changes for developers and designers.
+r8 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=8
+- Missed the screenshot file when the tag as created, doh!

@@ -4,6 +4,8 @@ header("Content-type: text/css");
 
 //TODO: This needs building into functions
 
+$wf_grid_columnwidth_outeach = 0;
+
 // Site width - min 400 max 2000
 $wf_grid_sitewidth = $_GET['w'];
 settype( $wf_grid_sitewidth, "integer" );
@@ -223,6 +225,7 @@ if ($sidebar_p_out =='left') {
 	$wf_grid_layout .= '#content { float: right; margin-right: 0; }';
 	$wf_grid_layout .= "\n";
 }else {
+	$wf_grid_layout = '';
 	// Silence is golden... until we have a second sidebar option
 }
 echo $wf_grid_layout;

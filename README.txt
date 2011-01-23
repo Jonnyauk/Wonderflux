@@ -117,8 +117,8 @@ Wonderflux is a theme framework that works with 'child themes'.
 Although Wonderflux will function if activated directly,
 the best way to use Wonderflux is by activating a child theme.
 
-You have BOTH the Wonderflux child theme and Wonderflux installed 
-in your theme directory, then simply activate the Wonderflux child theme.
+You should have BOTH the Wonderflux child theme (like WFX Girder) and Wonderflux 
+installed in your theme directory, then simply activate the Wonderflux child theme.
 
 DEMO CHILD THEME DOWNLOAD
 WFX Girder is a child theme designed for Wonderflux that can be downloaded from:

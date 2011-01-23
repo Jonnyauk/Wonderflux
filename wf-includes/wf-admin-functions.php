@@ -94,7 +94,7 @@ class wflux_admin {
 	/**
 	*
 	* @since 0.1
-	* @updated 0.884
+	* @updated 0.913
 	*
 	* Builds Wonderflux admin pages
 	*
@@ -143,16 +143,16 @@ class wflux_admin {
 		echo '<h2>';
 		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux" class="nav-tab';
 		if (isset($tab1)) { echo $thistab_highlight; };
-		echo'">' . esc_html_x('Wonderflux Home', 'wonderflux') . '</a>';
+		echo'">' . esc_attr('Wonderflux Home', 'wonderflux') . '</a>';
 		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_stylelab" class="nav-tab';
 		if (isset($tab2)) { echo $thistab_highlight; };
-		echo'">' . esc_html_x('Stylelab', 'wonderflux') . '</a>';
+		echo'">' . esc_attr('Stylelab', 'wonderflux') . '</a>';
 		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_seo" class="nav-tab';
 		if (isset($tab3)) { echo $thistab_highlight; };
-		echo'">' . esc_html_x('SEO', 'wonderflux') . '</a>';
+		echo'">' . esc_attr('SEO', 'wonderflux') . '</a>';
 		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_cms" class="nav-tab';
 		if (isset($tab4)) { echo $thistab_highlight; };
-		echo'">' . esc_html_x('CMS', 'wonderflux') . '</a>';
+		echo'">' . esc_attr('CMS', 'wonderflux') . '</a>';
 		echo '</h2>';
 
 		echo '</div>';
@@ -176,7 +176,7 @@ class wflux_admin {
 			echo $output;
 
 		} else {
-			echo '<p>You are currently using '.get_current_theme().' Wonderflux child theme</p>';
+			echo '<p>You are currently using '.esc_attr(get_current_theme()).' Wonderflux child theme</p>';
 		}
 
 		echo '</div>';
@@ -208,6 +208,7 @@ class wflux_admin {
 		//add_settings_field('padding_r', 'Right site container padding', array($myadminforms, 'wf_form_padding_r'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('columns_num', 'Number of vertical columns (inside container+padding)', array($myadminforms, 'wf_form_columns_num'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('columns_w', 'Desired width of column', array($myadminforms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_w', 'Desired width of sidebar', array($myadminforms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
 	}
 
 	/**
@@ -292,7 +293,7 @@ class wflux_admin {
 
 			$output = '<div id="message1" class="error">';
 			$output .= '<h3>Wonderflux framework update available!</h3>';
-			$output .= '<p>You are running v'.WF_VERSION.', the current latest release is v'.$this->wf_latest_version_fetch().'</p>';
+			$output .= '<p>You are running v'.esc_attr(WF_VERSION).', the current latest release is v'.esc_attr($this->wf_latest_version_fetch()).'</p>';
 			$output .= '<p>There is an update available to Wonderflux. Please read the update notes to check-up on how this may effect your theme BEFORE updating!</p>';
 			$output .= '<p>You can <a href="http://code.google.com/p/wonderflux-framework/downloads/" title="Download the latest Wonderflux update here">download the latest Wonderflux update here</a>.</p>';
 			$output .= '</div>';

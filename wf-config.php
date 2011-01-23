@@ -7,7 +7,7 @@
  */
 
 define( 'WF_MAIN_DIR', TEMPLATEPATH );
-define( 'WF_MAIN_URL', get_bloginfo('template_directory')); // Recommended get_template_directory_uri()
+define( 'WF_MAIN_URL', get_template_directory_uri());
 
 define( 'WF_CONTENT_DIR', WF_MAIN_DIR . '/wf-content');
 define( 'WF_CONTENT_URL', WF_MAIN_URL . '/wf-content');

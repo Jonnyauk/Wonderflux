@@ -117,6 +117,9 @@ Wonderflux is a theme framework that works with 'child themes'.
 Although Wonderflux will function if activated directly,
 the best way to use Wonderflux is by activating a child theme.
 
+You have BOTH the Wonderflux child theme and Wonderflux installed 
+in your theme directory, then simply activate the Wonderflux child theme.
+
 DEMO CHILD THEME DOWNLOAD
 WFX Girder is a child theme designed for Wonderflux that can be downloaded from:
 http://wonderflux-girder-theme.googlecode.com
@@ -132,8 +135,9 @@ the WFX Girder theme structure for more on this.
 
 Only advanced developers will need to actually override the standard WordPress
 template file structure in their Wonderflux child theme (ie footer.php or header.php)
-IF YOU OVERRIDE THESE YOU WOULD BE STRONGLY ADVISED TO USE THE CORE FILES
-FROM WONDERFLUX TO RETAIN THE HOOK AND FORMATTING STRUCTURE.footer.php
+IF YOU OVERRIDE THESE YOU WOULD BE STRONGLY ADVISED TO DUPLICATE THE CORE FILES 
+FROM WONDERFLUX INTO YOUR CHILD THEME DIRECTORY to retain the Wonderflux 
+structure and hook system.
 
 > Start of with using the template parts as shown in the WF Girder
 child theme. Anything that has '-content' in the name is a template part, ie:
@@ -144,12 +148,12 @@ loop-content-page.php (page loop content - only used on pages)
 loop-content.php (general loop content - used everywhere else)
 
 These files just contain very simple content - just what you want displayed within
-the given area. All of the rest of the site code, structure and CSS is dealt
-with for you by Wonderflux. If you have not worked with theme frameworks,
+the given area of your site. All of the rest of the site code, structure and CSS is dealt
+with for you by Wonderflux for you. If you have not worked with theme frameworks,
 child themes and get_template_part() before - welcome to the future of
 WordPress theme development!
 
-An important feature in Wonderflux is the location aware get_template_part() function,
+AN IMPORTANT FEATURE of Wonderflux is the location aware get_template_part() function,
 allowing unique content to be easily used when using different views in your theme
 for the following areas in your site:
 

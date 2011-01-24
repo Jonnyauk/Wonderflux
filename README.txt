@@ -1,35 +1,5 @@
-!! WARNING !!
-
-You have downloaded an Alpha development version of the working source code 
-from the trunk of the development code! THIS MAY NOT BE 100% STABLE!!
-
-If you are using this for development purposes, You should probably make sure 
-you have the latest version available from:
-
-http://code.google.com/p/wonderflux-girder-theme/source/checkout
-
-The 3 directories are:
-
-branches - Holds any advanced development and experiments
-tags - Holds the released versions (same as zip files)
-trunk - Holds the latest development version that is being worked on
-
-Zip packages of stable release beta versions of Wonderflux are available from:
-http://code.google.com/p/wonderflux-framework/downloads/
-
-THIS VERSION IS FOR TESTING AND FEEDBACK ONLY, AND ALTHOUGH EVERYTHING
-WILL PROBABLY BE FINE YOU PROBABLY SHOULD NOT RUN THIS VERSION ON LIVE SITES!
-
-There may also be problems with child themes, for testing compatibility we run
-the trunk version of WFX Girder theme, which is developed to use the latest 
-code, structure and functionality in development.
-
-http://wonderflux-girder-theme.googlecode.com
-
-= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION 0.913 DEVELOPMENT ALPHA
+VERSION 0.912 BETA
 
 Copyright (C) 2011 Jonny Allbut - Jonnya Freelance Creative www.jonnya.net
 
@@ -226,22 +196,47 @@ CHANGE NOTES
 We just show the last two versions, all previous reference can be found at
 http://code.google.com/p/wonderflux-framework/updates/list
 
-WONDERFLUX VERSION 0.912 - Jan 2011
+WONDERFLUX VERSION 0.913 - < DATE HERE > 2011
 
-//
+< 0.913 REVISIONS HERE >
 
-WONDERFLUX VERSION 0.911 - Jan 16 2010
+WONDERFLUX VERSION 0.912 - Jan 23th 2011
 
-r13 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=13
-- Update checker functions, fetches simple version feed from feedburner, no personal data gathered.
-- Its the cleanest off-server solution (that I can think of for the moment!)
-- Will be used later on for release update info/changes for developers and designers.
+r26-r28 - readme.txt updates.
 
-r12 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=12
-- Small formatting changes to core Wonderflux options page.
+r25 (submitted by Lee Willis) http://code.google.com/p/wonderflux-framework/source/detail?r=25
+- Fix errors from uninitialised variables
 
-r11 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=11
-- Various data validation fixes and bug fix for sidebar position.
+r24 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=24
+- Escape output in widget building function.
+- Complete parameter documentation on function.
 
-r8 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=8
-- Missed the screenshot file when the tag as created, doh!
+r23 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=23
+- Versioning update for trunk alpha and small typos.
+
+r22 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=22
+- Fixed bug in Twitter display function - incorrect position of closing tag.
+
+r21 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=21
+- Move wf-theme-core.php call here so can be removed from child themes.
+- Replace require() with core WordPress load_template()
+
+r20 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=20
+- Tidy core functions.
+- Remove redundant code.
+- Improve comments at top.
+- Replace require() with core WordPress load_template()
+
+r19 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=19
+- Improve the data sanitisation function by only saving specific values in layout.
+options array and not allow any other junk.
+
+r18 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=18
+- New validation function when saving core Wonderflux layout options which was
+temporarily removed during beta testing. Uses whitelist technique - more fiddly
+to maintain but stops any funny business!
+
+r17 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=17
+- Fixes bug in version check.
+
+r14-r16 - trunk version number updates

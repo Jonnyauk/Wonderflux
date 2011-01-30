@@ -1,6 +1,6 @@
 <?php
 /**
- * The core get_template_part header content
+ * The core get_template_part footer content
  * This will be over-ridden if you create a file of the same name in your child theme
  *
  * @package Wonderflux

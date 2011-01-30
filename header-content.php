@@ -6,8 +6,9 @@
  * @package Wonderflux
  * @since Wonderflux 0.6
  */
+global $wfx;
 ?>
-<div <?php wflux_display::wf_css('size=full&id=header-content'); ?> >
+<div <?php $wfx->css('size=full&id=header-content'); ?>>
 
 	<div class="box-header">
 		<h1><a href="<?php echo home_url(); ?>/" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?></a></h1>

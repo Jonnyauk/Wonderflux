@@ -208,7 +208,6 @@ class wflux_admin {
 		//add_settings_field('padding_r', 'Right site container padding', array($myadminforms, 'wf_form_padding_r'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('columns_num', 'Number of vertical columns (inside container+padding)', array($myadminforms, 'wf_form_columns_num'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('columns_w', 'Desired width of column', array($myadminforms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('sidebar_w', 'Desired width of sidebar', array($myadminforms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
 	}
 
 	/**

@@ -1,5 +1,5 @@
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION 0.912 BETA
+VERSION 0.913 BETA
 
 Copyright (C) 2011 Jonny Allbut - Jonnya Freelance Creative www.jonnya.net
 
@@ -87,7 +87,7 @@ Wonderflux is a theme framework that works with 'child themes'.
 Although Wonderflux will function if activated directly,
 the best way to use Wonderflux is by activating a child theme.
 
-You should have BOTH the Wonderflux child theme (like WFX Girder) and Wonderflux 
+You should have BOTH the Wonderflux child theme (like WFX Girder) and Wonderflux
 installed in your theme directory, then simply activate the Wonderflux child theme.
 
 DEMO CHILD THEME DOWNLOAD
@@ -105,8 +105,8 @@ the WFX Girder theme structure for more on this.
 
 Only advanced developers will need to actually override the standard WordPress
 template file structure in their Wonderflux child theme (ie footer.php or header.php)
-IF YOU OVERRIDE THESE YOU WOULD BE STRONGLY ADVISED TO DUPLICATE THE CORE FILES 
-FROM WONDERFLUX INTO YOUR CHILD THEME DIRECTORY to retain the Wonderflux 
+IF YOU OVERRIDE THESE YOU WOULD BE STRONGLY ADVISED TO DUPLICATE THE CORE FILES
+FROM WONDERFLUX INTO YOUR CHILD THEME DIRECTORY to retain the Wonderflux
 structure and hook system.
 
 > Start of with using the template parts as shown in the WF Girder
@@ -180,14 +180,11 @@ They use a special definitions such as 'half' and 'quarter' to make layout easie
 You will find reference to all hooks in themes/wonderflux/wf-includes/wf-display-hooks.php
 
 You will find a number of more interesting display functions for you to use in your
-themes in themes/wonderflux/wf-includes/wf-display-extras.php
+themes in themes/wonderflux/wf-includes/wf_engine.php in the wflux_functions class
 
 You will see a reference guide in the head of your document if you view source.
 It is currently working in a very similar way to the Blueprint CSS framework, the same
 rules and references apply - http://www.blueprintcss.org/ - NOTE this is likely to change!
-
-There are a-lot of transparent PNG images in wf-content/backgrounds
-ready for you to use in your CSS - see WFX Girder style.css for image path demo of these.
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 

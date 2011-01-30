@@ -1,11 +1,11 @@
 <?php
 
-//// The Wonderflux core theme functionality that need to be loaded right at the start ////
+//// The Wonderflux core theme functionality that need to be loaded right at the start
 
 /**
 *
 * @since 0.891
-* @updated 0.912
+* @updated 0.913
 *
 * Core template functions
 *
@@ -119,6 +119,22 @@ class wflux_theme_core {
 		}
 
 	}
+
+
+	/**
+	* Sets up WordPress for language packs
+	* EXPERIMENTAL FIRST PASS - needs testing and filters!
+	* @since 0.913
+	* @updated 0.913
+	*/
+	function wf_language_pack($args) {
+		load_theme_textdomain( 'wonderflux', TEMPLATEPATH . '/wf-content/languages' );
+		$locale = get_locale();
+		$locale_file = TEMPLATEPATH . "/wf-content/languages/$locale.php";
+		if ( is_readable( $locale_file ) )
+		require_once( $locale_file );
+	}
+
 
 }
 ?>

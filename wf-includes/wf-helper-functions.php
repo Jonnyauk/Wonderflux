@@ -1,8 +1,69 @@
 <?php
 /**
+* Load the options
+*/
+class wflux_data {
+
+	//Size vars
+	protected $wfx_db_display; // Array of core Wonderflux display options
+	protected $wfx_width;		 // Width of main site container
+	protected $wfx_position; // Position of main site container
+	protected $wfx_columns; // Number of columns
+	protected $wfx_columns_width; // Width of columns
+	protected $wfx_sidebar_primary_position; // Primary sidebar position
+
+	function __construct() {
+
+		$this->wfx_db_display = get_option('wonderflux_display');
+		// Setup and clean variables ready to use
+
+		// CONTAINER SIZE - 400 to 2000
+		$this->wfx_width = $this->wfx_db_display['container_w'];
+		// Validate
+		$wfx_width_out = 950;
+		if (is_numeric ($this->wfx_width) ) { if ($this->wfx_width >= 400 && $this->wfx_width <= 2000) {$wfx_width_out = $this->wfx_width;} }
+		$this->wfx_width = $wfx_width_out;
+
+		// SITE CONTAINER POSITION - left, middle, right
+		$this->wfx_position = $this->wfx_db_display['container_p'];
+		// Validate
+		$wfx_container_p_out = 'middle';
+		$wfx_container_p_accept = array('left','middle','right');
+		if ( in_array($this->wfx_position,$wfx_container_p_accept) ) { $wfx_container_p_out = $this->wfx_position; }
+		$this->wfx_position = $wfx_container_p_out;
+
+		// NUMBER OF COLUMNS - min 1, max 80
+		$this->wfx_columns = $this->wfx_db_display['columns_num'];
+		// Validate
+		$wfx_columns_out = 24;
+		if (is_numeric ($this->wfx_columns) ) { if ($this->wfx_columns >= 1 && $this->wfx_columns <= 80) {$wfx_columns_out = $this->wfx_columns;} }
+		$this->wfx_columns = $wfx_columns_out;
+
+		// COLUMN WIDTH - min 10, max 1000
+		$this->wfx_columns_width = $this->wfx_db_display['columns_w']; // Width of columns
+		// Validate
+		$wfx_columns_width_out = 30;
+		if (is_numeric ($this->wfx_columns_width) ) { if ($this->wfx_columns_width >= 10 && $this->wfx_columns_width <= 1000) {$wfx_columns_width_out = $this->wfx_columns_width;} }
+		$this->wfx_columns_width = $wfx_columns_width_out;
+
+
+		// SIDEBAR PRIMARY POSITION - left, right
+		$this->wfx_sidebar_primary_position = $this->wfx_db_display['sidebar_p']; // Primary sidebar position
+		// Validate
+		$wfx_sidebar_pp_out = 'left';
+		$wfx_sidebar_pp_accept = array('left','right');
+		if ( in_array($this->wfx_sidebar_primary_position,$wfx_sidebar_pp_accept) ) { $wfx_sidebar_pp_out = $this->wfx_sidebar_primary_position; }
+		$this->wfx_sidebar_primary_position = $wfx_sidebar_pp_out;
+
+	}
+}
+
+
+/**
 *
 * Core Wonderflux helper functions
 * Used internally by Wonderflux and can be used by advanced theme developers to cut down code in their advanced child themes!
+* IMPORTANT - If any info is being grabbed in a function, it probably wants go go in here!
 *
 */
 class wflux_core {
@@ -176,12 +237,6 @@ class wflux_core {
 
 		}
 
-	}
-
-
-	function wf_testing($cat) {
-		//Testing
-		echo 'YAY!';
 	}
 
 }

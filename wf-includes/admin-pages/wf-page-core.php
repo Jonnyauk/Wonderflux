@@ -51,8 +51,6 @@ unset($themes[$ct->name]);
 <p>Theme designers can use these functions to configure Wonderflux child theme functions and effects. Once enabled, the function/script is setup automatically in every page of your site and ready to use.</p>
 <p>NOTE: Some Wonderflux child themes use advanced display functions to achieve certain effects. If the option is greyed out and not changeable, it means that <strong>this function is REQUIRED</strong> for the <?php echo get_current_theme();?> Wonderflux child theme, which you currently using on for this site.</p>
 <h3>Need more control?</h3>
-<p>Advanced theme designers may choose to use their functions.php file to configure and manipulate this seperately - allowing conditional location includes for optimisation. You can still use all the core Wonderflux extra display functions in wp-content/themes/wonderflux/wf-includes/wf-display-extras.php</p>
-
 <h2>Options to follow - this is why we are in beta, sorry!</h2>
 
 <?php

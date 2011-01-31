@@ -46,9 +46,7 @@ class wflux_theme {
 		$this->wflux_theme_core = new wflux_theme_core;
 	}
 
-	// Widgets
 	function widgets($args){ $this->wflux_theme_core->wf_widgets($args); }
-	// Language pack
 	function language_pack($args){ $this->wflux_theme_core->wf_language_pack($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
 
 }

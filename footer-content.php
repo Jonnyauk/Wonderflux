@@ -6,9 +6,8 @@
  * @package Wonderflux
  * @since Wonderflux 0.6
  */
-global $wfx;
 ?>
-<div <?php $wfx->css('size=full&id=footer-content'); ?>>
+<div <?php wfx_css('size=full&id=footer-content'); ?>>
 
 	<div class="box-footer">
 		<h3><?php echo esc_attr( get_bloginfo( 'description', 'display' ) ); ?></h3>

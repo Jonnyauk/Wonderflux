@@ -767,10 +767,7 @@ class wflux_display {
 			echo apply_filters( 'wflux_footer_credit_div', $footer_credit_div );
 			echo '" id="wf-footer-credit">';
 		} else {
-			echo '<div ';
-			//TODO: Insert proper CSS function here
-			//wflux_display::wf_css('full', 'last');
-			echo ' id="wf-footer-credit">';
+			wfx_css('size=full&id=footer-wfx-credit&divoutput=TRUE');
 		}
 
 		$footer_credit = '<' . $footer_credit_format . '>';

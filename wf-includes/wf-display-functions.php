@@ -1056,10 +1056,12 @@ class wflux_display_extras {
 	 * @param logoutlink - Show WordPress logout link [N]
 	 * @param ulclass - Containing ul CSS class [wf-edit-meta-main]
 	 * @param liclass - Individual li CSS class [wf-edit-meta-links]
-	 * @output <ul><li>list items of various admin links
+	 * @param div - Insert div around output [N]
+	 * @output divclass - CSS class of div [wf-edit-meta-box]
+	 * @output <ul><li>list items of various admin links inside optional CSS DIV
 	 *
 	 * @since 0.85
-	 * @updated 0.901
+	 * @updated 0.913
 	 */
 	function wf_edit_meta($args) {
 
@@ -1074,7 +1076,9 @@ class wflux_display_extras {
 			'wfcontrols' => "N",
 			'logoutlink' => "N",
 			'ulclass' => 'wf-edit-meta',
-			'liclass' => 'wf-edit-meta-links'
+			'liclass' => 'wf-edit-meta-links',
+			'div' => "N",
+			'divclass' => 'wf-edit-meta-box'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1088,9 +1092,14 @@ class wflux_display_extras {
 			$userintro = wp_kses_data($userintro);
 			$ulclass = wp_kses_data($ulclass);
 			$liclass = wp_kses_data($liclass);
+			$divclass = wp_kses_data($divclass);
 			$this_admin = admin_url();
 
-			$output = '<ul class="' . esc_attr($ulclass) . '">';
+			$output = '';
+
+			if ( $div == "Y") { $output .= '<div class="'.esc_attr($divclass).'">'; }
+
+			$output .= '<ul class="' . esc_attr($ulclass) . '">';
 
 			if ( $username == "Y" && $intro == "Y" ) {
 
@@ -1150,6 +1159,8 @@ class wflux_display_extras {
 			/*$output .= '<p class="wp-meta"><a href="' . wp_sanitize_redirect($this_admin) . 'edit-comments.php" title="Edit comments">Edit comments</a></p>';*/
 
 			$output .= '</ul>';
+
+			if ( $div == 'Y') { $output .= '</div>'; }
 
 			echo $output;
 

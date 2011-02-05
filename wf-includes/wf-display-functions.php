@@ -183,12 +183,12 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.72
-	* @updated 0.72
+	* @updated 0.913
 	* Core structure CSS
 	*/
 	function wf_head_css_structure($args) {
 		// Default
-		$structure_path = WF_INCLUDES_URL . '/css/wf-css-core-structure.css';
+		$structure_path = WF_CONTENT_URL . '/css/wf-css-core-structure.css';
 		// Allow filtering
 		$structure_path = apply_filters( 'wflux_head_css_structure_path', $structure_path );
 
@@ -203,12 +203,12 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.72
-	* @updated 0.72
+	* @updated 0.913
 	* Core typography CSS
 	*/
 	function wf_head_css_typography($args) {
 		// Default
-		$typography_path = WF_INCLUDES_URL . '/css/wf-css-core-typography.css';
+		$typography_path = WF_CONTENT_URL . '/css/wf-css-core-typography.css';
 		// Allow filtering
 		$typography_path = apply_filters( 'wflux_head_css_typography_path', $typography_path );
 
@@ -258,7 +258,7 @@ class wflux_display_code extends wflux_data {
 		$columns_w = $this->wfx_columns_width;	// Width of column
 
 		// Default
-		$columns_path = WF_INCLUDES_URL . '/css/wf-css-dynamic-columns.php?w='.$container_w;
+		$columns_path = WF_CONTENT_URL . '/css/wf-css-dynamic-columns.php?w='.$container_w;
 		$columns_path .= '&amp;p='.$container_p;
 		$columns_path .= '&amp;sbp='.$sidebar_p;
 		$columns_path .= '&amp;cw='.$columns_w;
@@ -291,7 +291,7 @@ class wflux_display_code extends wflux_data {
 		$columns_w = $this->wfx_columns_width;	// Width of column
 
 		// Default
-		$ie_path = WF_INCLUDES_URL . '/css/wf-css-dynamic-core-ie.php?w='.$container_w.
+		$ie_path = WF_CONTENT_URL . '/css/wf-css-dynamic-core-ie.php?w='.$container_w.
 		'&amp;p='.$container_p.
 		'&amp;sbp='.$sidebar_p.
 		'&amp;cw='.$columns_w.
@@ -793,7 +793,7 @@ class wflux_display {
 * @updated 0.913
 * Extra core display functions that are for theme designers
 */
-class wflux_display_ex {
+class wflux_display_extras {
 
 
 	/**
@@ -1262,8 +1262,6 @@ class wflux_display_ex {
 	}
 
 
-
-
 	/**
 	 * Creates a standalone link (unstyled) that does login/logout with redirect on each
 	 * TODO: Hook up redirect parameters!
@@ -1466,68 +1464,6 @@ class wflux_display_ex {
 
 	}
 
-
-}
-
-
-/**
-*
-* @since 0.86
-* @updated 0.892
-*
-* Extra display support elements for Internet Explorer, in particular IE6 - the party pooper at the web designers party!
-*
-*/
-class wflux_display_ex_ie {
-
-	/**
-	* Inserts the Javascript PNG transparecy fix
-	* TODO: Finish advanced implementation with correct path config
-	* TODO: Convert this to core WF display function?
-	*
-	* @param type - 'Simple' or 'advanced' - Simple is faster rendering, advanced does repeating backgrounds properly [simple]
-	* @param path - Custom path to your own png fix file. Defaults to root child theme dir (including '/'). If starts with 'http' it removes this path [WF_INCLUDES_URL.'/js/png-fix-basic.js]
-	*
-	* Notes on PNG fixes available:
-	* Basic is faster rendering, doesn't require a blank image, but DOESNT DO BACKGROUNDS
-	* Advanced renders repeating background pngs, but bit slower rendering if loads of PNGs to deal with (already in wf-includes/js) - so watch it if you are using lots and lots of images. It does function correctly though!
-	*
-	*
-	* @since 0.86
-	* @updated 0.892
-	*/
-	function wf_png_ie6($args) {
-
-		$defaults = array (
-			'type' => 'simple',
-			'path' => WF_INCLUDES_URL.'/js/png-fix-basic.js'
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-		extract( $args, EXTR_SKIP );
-
-		//Use default Wonderflux PNG fix includes
-		if ($type == 'advanced') {
-			$path_output = WF_INCLUDES_URL.'/js/png-fix-advanced/iepngfix.htc';
-		} elseif ($path == WF_INCLUDES_URL.'/js/png-fix-basic.js') {
-			$path_output = $path;
-		} else {
-			//Ignore type and use custom path from user
-			$first = substr($path, 0, 4);
-			if ($first == 'http') {
-				$path_output = $path;
-			} else {
-				$path_output = dirname( get_bloginfo('stylesheet_url') ) . '/' . $path;
-			}
-		}
-
-		$png_simple_path_output = '<!--[if IE 6]><script type="text/javascript" src="';
-		$png_simple_path_output .= esc_url($path_output);
-		$png_simple_path_output .= '"></script><![endif]-->';
-		$png_simple_path_output .= "\n";
-		echo $png_simple_path_output;
-
-	}
 
 }
 ?>

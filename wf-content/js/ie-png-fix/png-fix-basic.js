@@ -1,4 +1,3 @@
-
 // PNG Fix
 
 function addEvent( obj, type, fn ) {

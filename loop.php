@@ -11,9 +11,6 @@
  *
  */
 
-// Setup Core Wonderflux helper class
-$wf_core = new wflux_core;
-
 wfloop_before(); //WF display hook
 
 if ($wp_query->max_num_pages > 1) : ?>
@@ -29,7 +26,7 @@ endif;
 
 while (have_posts()) : the_post();
 
-	$wf_core->wf_get_template_part('part=loop-content'); // Setup all location aware template parts
+	wfx_get_template_part('part=loop-content'); // Setup all location aware template parts
 
 endwhile;
 

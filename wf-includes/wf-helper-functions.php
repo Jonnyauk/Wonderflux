@@ -6,7 +6,7 @@ class wflux_data {
 
 	//Size vars
 	protected $wfx_db_display; // Array of core Wonderflux display options
-	protected $wfx_width;		 // Width of main site container
+	protected $wfx_width; // Width of main site container
 	protected $wfx_position; // Position of main site container
 	protected $wfx_columns; // Number of columns
 	protected $wfx_columns_width; // Width of columns
@@ -60,44 +60,11 @@ class wflux_data {
 
 
 /**
-*
 * Core Wonderflux helper functions
 * Used internally by Wonderflux and can be used by advanced theme developers to cut down code in their advanced child themes!
 * IMPORTANT - If any info is being grabbed in a function, it probably wants go go in here!
-*
 */
-class wflux_core {
-
-
-	/**
-	* Returns user role of logged in user
-	*
-	* @since 0.62
-	* @lastupdate 0.62
-	* @params $echo = 'echo'=>echos role, 'var'=>returns value to be used in PHP
-	* @return text string of user role: 'administrator', 'editor', 'author', 'contributor', subscriber'
-	*/
-	function wf_userrole($echo) {
-	global $current_user;
-	get_currentuserinfo();
-	$theuser = new WP_User( $current_user->ID );
-
-	if ( !empty( $theuser->roles ) && is_array( $theuser->roles ) ) {
-		foreach ( $theuser->roles as $role )
-		$theuserrole = $role;
-
-		if ($echo == 'echo') {
-			echo $theuserrole;
-		} elseif ($echo == 'var') {
-			return $theuserrole;
-		} else {
-			// Fallback - just return, same as 'var'
-			return $theuserrole;
-		}
-
-		}
-
-	}
+class wflux_helper {
 
 
 	/**
@@ -151,8 +118,8 @@ class wflux_core {
 	* Could also be used by theme developers anywhere where they want a location specific additional template part of their own naming and design.
 	*
 	* @since 0.881
-	* @lastupdate 0.881
-	* @params part_name (MANDITORY TO WORK AS EXPECTED!) = string. Name of bottom level tempalte part
+	* @lastupdate 0.913
+	* @params part_name (MANDITORY TO WORK AS EXPECTED!) = string. Name of bottom level template part
 	*/
 	function wf_get_template_part($args) {
 
@@ -166,7 +133,7 @@ class wflux_core {
 		$this_location = $this->wf_info_location('');
 		$this_location_condition = 'is_'.$this_location.'()';
 
-		// wf_info_location function wont work for multiple test required here, so put in manually
+		// wf_info_location function wont work for multiple test required here, so check now
 		if (is_home() || is_front_page()) :
 		get_template_part($part, $this_location);
 
@@ -183,61 +150,82 @@ class wflux_core {
 
 
 	/**
-	* Returns page depth
+	* Returns user role of logged in user
 	*
-	* @since 0.86
-	* @lastupdate 0.86
-	* @params none
-	* @return number representing page depth (NOTE: begins at '1' for top level, not 0)
+	* @since 0.62
+	* @lastupdate 0.913
+	* @params $echo = 'echo'=>echos role, 'var'=>returns value to be used in PHP
+	* @return text string of user role: 'administrator', 'editor', 'author', 'contributor', subscriber'
 	*/
-	function wf_this_page_depth() {
-		global $wp_query;
-		$object = $wp_query->get_queried_object();
-		$parent_id  = $object->post_parent;
-		$depth = 0;
-		while ($parent_id > 0) {
-			$page = get_page($parent_id);
-			$parent_id = $page->post_parent;
-			$depth++;
+
+
+	function wf_user_role($args) {
+
+	$defaults = array (
+		'echo' => 'N'
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	global $current_user;
+	get_currentuserinfo();
+	$theuser = new WP_User( $current_user->ID );
+
+	if ( !empty( $theuser->roles ) && is_array( $theuser->roles ) ) {
+		foreach ( $theuser->roles as $role )
+		$theuserrole = $role;
+
+		if ($echo == 'Y') {
+			echo $theuserrole;
+		} elseif ($echo == 'var') {
+			return $theuserrole;
+		} else {
+			// Fallback - just return, same as 'var', so no parameters supplied RETURNS the value as default as this is the way it will be used most of the time
+			return $theuserrole;
 		}
-	return $depth+1;
+
+		}
+
 	}
 
 
 	/**
+	* Gets current page depth
 	*
-	* Detects if child category of supplied category ID
-	*
-	* @since 0.884
-	* @updated 0.884
-	*
-	* @param $cat (integer) : Parent category ID : '1' (default), USER INPUT
-	* @return TRUE
-	*
-	* USAGE
-	* Child theme functions.php file
-	* Child theme file
-	* Child theme template part
-	*
+	* @since 0.86
+	* @lastupdate 0.913
+	* @params echo (Y/N)
+	* @return integer representing page depth (NOTE: begins at '1' for top level, not 0 - because its logical)
 	*/
-	function wf_in_cat_parent($cat) {
+	function wf_page_depth($args) {
 
-		//TODO: Set default to cat ID 1
-		//TODO: Input check
-		//TODO: Filters?
+		$defaults = array (
+			'echo' => 'N'
+		);
 
-		// Detect current child categories of supplied category ID
-		$categories = get_categories('child_of='.$cat.'');
+		// Stops errors when this is run in invalid location
+		if (is_page() && (!is_home() || !is_front_page()) ) {
 
-		foreach ($categories as $category) {
+			$args = wp_parse_args( $args, $defaults );
+			extract( $args, EXTR_SKIP );
 
-			if (is_category($category->cat_ID)) {
-				return TRUE;
+			global $wp_query;
+			$object = $wp_query->get_queried_object();
+			$parent_id  = $object->post_parent;
+			$depth = 0;
+			while ($parent_id > 0) {
+				$page = get_page($parent_id);
+				$parent_id = $page->post_parent;
+				$depth++;
 			}
+			if ($echo =='Y') { echo $depth+1; }
+			else { return $depth+1; }
 
 		}
 
 	}
+
 
 }
 ?>

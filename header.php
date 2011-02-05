@@ -11,9 +11,6 @@ wf_head_meta();
 //NOTE: wf_head calls wp_head (after executing wf_head functions) - no need to call them both in a template!
 //This builds the whole head section, no need to even put it in header.php - just concentrate on the design friends!
 // It's all taken care of (and filterable or even overidden in your functions file!)
-
-// Setup Core Wonderflux helper class
-$wf_core = new wflux_core;
 ?>
 
 <?php wfbody_before_wrapper(); //WF display hook ?>
@@ -37,7 +34,7 @@ $wf_core = new wflux_core;
 
 							<?php wfheader_before_content(); //WF display hook ?>
 
-							<?php $wf_core->wf_get_template_part('part=header-content'); // Setup all location aware template parts ?>
+							<?php wfx_get_template_part('part=header-content'); // Setup all location aware template parts ?>
 
 							<?php wfheader_after_content(); //WF display hook ?>
 

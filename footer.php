@@ -9,7 +9,6 @@
  */
 
 // Setup Core Wonderflux helper class
-$wf_core = new wflux_core;
 ?>
 
 			<?php wffooter_before_wrapper(); //WF display hook ?>
@@ -26,7 +25,7 @@ $wf_core = new wflux_core;
 
 							<?php wffooter_before_content(); //WF display hook ?>
 
-							<?php $wf_core->wf_get_template_part('part=footer-content'); // Setup all location aware template parts ?>
+							<?php wfx_get_template_part('part=footer-content'); // Setup all location aware template parts ?>
 
 							<?php wffooter_after_content(); //WF display hook ?>
 

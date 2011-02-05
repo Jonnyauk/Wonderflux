@@ -137,4 +137,59 @@ class wflux_theme_core {
 
 
 }
+
+
+/**
+*
+* @since 0.913
+* @updated 0.913
+*
+* Extra display support elements for Internet Explorer, in particular IE6 - the party pooper at the web designers party!
+*
+*/
+class wflux_theme_ie {
+
+	function wf_ie6_png($args) {
+
+		$defaults = array (
+			'type' => 'simple',
+			'location' => 'footer'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		//TODO: Setup for advanced PNG fix display too - need to create new function!
+		if ($type == 'simple') { $type_out = 'wf_ie6_png_simple_print'; } else { $type_out = 'wf_ie6_png_simple_print'; }
+		if ($location == 'footer') { $location_out = 'wf_footer'; } else { $location_out = 'wf_head_meta'; }
+
+		add_action($location_out, array($this, $type_out));
+
+	}
+
+	/**
+	* Inserts the Javascript PNG transparency fix
+	*
+	* @param type - 'Simple' or 'advanced' - Simple is faster rendering, advanced does repeating backgrounds properly [simple]
+	*
+	* Notes on PNG fixes available:
+	* Basic is faster rendering, doesn't require a blank image, but DOESNT DO BACKGROUNDS
+	* Advanced renders repeating background pngs, but bit slower rendering if loads of PNGs to deal with (already in wf-includes/js) - so watch it if you are using lots and lots of images. It does function correctly though!
+	*
+	*
+	* @since 0.86
+	* @updated 0.913
+	*/
+	function wf_ie6_png_simple_print() {
+
+		//Empty argument 1 - No script dependincies
+		wp_register_script('wfx_script_simple_png', esc_url(WF_CONTENT_URL.'/js/ie-png-fix/png-fix-basic.js'), '', WF_VERSION, true);
+		// Insert the conditional code for IE
+		echo '<!--[if IE 6]>';
+		wp_print_scripts('wfx_script_simple_png');
+		echo '<![endif]-->'."\n";
+
+	}
+
+}
 ?>

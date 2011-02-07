@@ -999,10 +999,10 @@ class wflux_display_extras {
 
 		$defaults = array (
 			'intro' => 'Read about',
-			'showtitle' => 'Y',
+			'title' => 'Y',
 			'seperator' => ' - ',
-			'imgclass' => 'button-more',
-			'imgpath' => 'images',
+			'class' => 'button-more',
+			'path' => 'images',
 			'img' => 'button-read-more.png',
 			'width' => 150,
 			'height' => 30
@@ -1013,19 +1013,19 @@ class wflux_display_extras {
 
 		// Tidy up ready for use
 		$intro = wp_kses_data($intro, '');
-		if ( $showtitle == 'Y' ) { $intro .= wp_kses_data($seperator, '') . get_the_title(); }
-		$imgclass = wp_kses_data($imgclass, '');
-		$imgpath = wp_kses_data($imgpath, '');
+		if ( $title == 'Y' ) { $intro .= wp_kses_data($seperator, '') . get_the_title(); }
+		$class = wp_kses_data($class, '');
+		$path = wp_kses_data($path, '');
 		$img = wp_kses_data($img, '');
 		if (!is_numeric($width)) { $width = 150; } // Checking if a number is light weight
 		if (!is_numeric($height)) { $height = 30; } // Checking if a number is light weight
 
 		$output = '<a href="' . get_permalink() . '" title="' . $intro . '">';
 		$output .= '<img class="';
-		$output .= esc_attr($imgclass);
+		$output .= esc_attr($class);
 		$output .= '" src="';
 		$output .= dirname( get_bloginfo('stylesheet_url') );
-		$output .= '/' . esc_attr($imgpath) . '/';
+		$output .= '/' . esc_attr($path) . '/';
 		$output .= esc_attr($img);
 		$output .= '" alt="';
 		$output .= esc_attr($intro);

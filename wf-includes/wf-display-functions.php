@@ -993,7 +993,7 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 0.892
+	 * @updated 0.913
 	 */
 	function wf_perma_img($args) {
 
@@ -1003,9 +1003,9 @@ class wflux_display_extras {
 			'seperator' => ' - ',
 			'imgclass' => 'button-more',
 			'imgpath' => 'images',
-			'imgname' => 'button-read-more.png',
-			'imgwidth' => 150,
-			'imgheight' => 30
+			'img' => 'button-read-more.png',
+			'width' => 150,
+			'height' => 30
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1016,9 +1016,9 @@ class wflux_display_extras {
 		if ( $showtitle == 'Y' ) { $intro .= wp_kses_data($seperator, '') . get_the_title(); }
 		$imgclass = wp_kses_data($imgclass, '');
 		$imgpath = wp_kses_data($imgpath, '');
-		$imgname = wp_kses_data($imgname, '');
-		if (!is_numeric($imgwidth)) { $imgwidth = 150; } // Checking if a number is light weight
-		if (!is_numeric($imgheight)) { $imgheight = 30; } // Checking if a number is light weight
+		$img = wp_kses_data($img, '');
+		if (!is_numeric($width)) { $width = 150; } // Checking if a number is light weight
+		if (!is_numeric($height)) { $height = 30; } // Checking if a number is light weight
 
 		$output = '<a href="' . get_permalink() . '" title="' . $intro . '">';
 		$output .= '<img class="';
@@ -1026,13 +1026,13 @@ class wflux_display_extras {
 		$output .= '" src="';
 		$output .= dirname( get_bloginfo('stylesheet_url') );
 		$output .= '/' . esc_attr($imgpath) . '/';
-		$output .= esc_attr($imgname);
+		$output .= esc_attr($img);
 		$output .= '" alt="';
 		$output .= esc_attr($intro);
 		$output .= '" width="';
-		$output .= $imgwidth; //Already checked
-		$output .= '" height="'; //Already checked
-		$output .= $imgheight;
+		$output .= $width;
+		$output .= '" height="';
+		$output .= $height;
 		$output .= '"/></a>';
 
 		echo $output;

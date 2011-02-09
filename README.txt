@@ -29,7 +29,7 @@ http://wonderflux-girder-theme.googlecode.com
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION 0.913 ALPHA
+VERSION 0.92 ALPHA
 
 Copyright (C) 2011 Jonny Allbut - Jonnya Freelance Creative www.jonnya.net
 

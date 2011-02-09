@@ -15,7 +15,7 @@ load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
 */
 function wflux_capacitor_helper() {
 	global $wfx_helper;
-	$wfx_helper = new wflux_helper_all();
+	$wfx_helper = new wflux_helper_all;
 }
 add_action('init','wflux_capacitor_helper', 1);
 
@@ -55,7 +55,7 @@ function wflux_capacitor_theme() {
 	//wfcode_before_theme_config(); //WF code hook
 	load_template(WF_INCLUDES_DIR . '/wf-theme-core.php');
 	global $wfx_theme;
-	$wfx_theme = new wflux_theme_all();
+	$wfx_theme = new wflux_theme_all;
 	//EXPERIMENTAL
 	//wfcode_after_theme_config(); //WF code hook
 }
@@ -102,7 +102,7 @@ function wflux_capacitor_display() {
 	// It also means that DB options can be read once and used throughout class, which is MUCH more efficient!
 	// TODO: Debug - Look at alternative options and test
 	global $wfx;
-	$wfx = new wflux_display_all();
+	$wfx = new wflux_display_all;
 
 }
 add_action('get_header','wflux_capacitor_display', 1);

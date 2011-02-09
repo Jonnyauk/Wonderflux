@@ -17,7 +17,7 @@ define( 'WF_WORDPRESS_MIN', '3.0' );
  *
  * @global string $wp_version
  */
-define( 'WF_WORDPRESS_OPTI', '3.0.4' );
+define( 'WF_WORDPRESS_OPTI', '3.0.5' );
 
 /**
  * The Wonderflux version string

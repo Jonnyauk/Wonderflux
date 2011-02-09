@@ -11,36 +11,17 @@ class wflux_display_code extends wflux_data {
 	* Builds the start of the head with doc type declaration
 	*
 	* @since 0.63
-	* @updated 0.884
+	* @updated 0.913
 	*
 	* @param $doctype (limited variable string) : Document type : 'transitional' (default), 'strict', 'frameset', '1.1', '1.1basic', 'html5'
 	* @param $lang (user variable string) : Alphabetic International language code : 'en' (default), USER INPUT
 	* @param $content (user variable string) : Document content : 'html' (default), USER INPUT
 	* @param $charset (user variable string) : Character encoding : 'utf8' (default), USER INPUT
-	*
-	* FILTERING
-	* Can override/replace parameters in your child theme functions.php file by using add_filter
-	* - TODO: SHOW PARAMETERS HERE ONCE FILTERS SETUP!
-	*
-	* OVERRIDE
-	* Can override/replace entire function in your child theme functions.php file
-	* - Create a function called 'wf_display_head_top', with your desired functionality
-	* - NOTE: Replacing the function DOES NOT REQUIRE YOU TO remove_action - by creating a function with the name wf_display_head_top
-	*
-	* ADVANCED
-	* Can be removed completely in your child theme functions.php file
-	* NOTE: NOT ADVISED AS THIS IS AN ESSENTIAL DISPLAY FUNCTION FOR VALID WEBPAGE CODE OUTPUT
-	* - Remove action wf_display_head_top (core Wonderflux display function that facilitates this function)
-	*
-	* USING DIRECTLY
-	* You can then use this function directly with your own parameters in your child theme functions file
-	*   - TODO: SHOW PARAMETERS HERE!
-	*
 	*/
 	function wf_head_top($args) {
 
 		$defaults = array (
-			'doctype' => 'transitional',
+			'doctype' => 'strict',
 			'lang' => 'en',
 			'content' => 'html',
 			'charset' => 'UTF-8'
@@ -132,16 +113,9 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* Builds the title in the head of the template
+	*
 	* @since 0.1
 	* @updated 0.881
-	* OVERRIDE
-	* Can override/replace entire function in your child theme functions.php file
-	* - Create a function called 'wf_display_head_title', with your desired functionality
-	* - NOTE: Replacing the function DOES NOT REQUIRE YOU TO remove_action - by creating a function with the name wf_display_head_top
-	* ADVANCED
-	* Can be removed completely in your child theme functions.php file
-	* NOTE: NOT ADVISED AS THIS IS AN ESSENTIAL DISPLAY FUNCTION FOR VALID WEBPAGE CODE OUTPUT
-	* - Remove action wf_display_head_title (core Wonderflux display function that facilitates this function)
 	*/
 	function wf_head_title($args) {
 
@@ -182,9 +156,10 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
+	* Inserts structure CSS
+	*
 	* @since 0.72
 	* @updated 0.913
-	* Core structure CSS
 	*/
 	function wf_head_css_structure($args) {
 		// Default
@@ -202,9 +177,10 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
+	* Inserts typography CSS
+	*
 	* @since 0.72
 	* @updated 0.913
-	* Core typography CSS
 	*/
 	function wf_head_css_typography($args) {
 		// Default
@@ -222,9 +198,10 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
+	* Inserts theme CSS
+	*
 	* @since 0.72
 	* @updated 0.72
-	* Core theme CSS
 	*/
 	function wf_head_css_theme($args) {
 		// Default
@@ -247,7 +224,7 @@ class wflux_display_code extends wflux_data {
 	* Dynamic grid builder
 	* TODO: Allow filtering on figures
 	*/
-	function wf_head_css_columns() {
+	function wf_head_css_columns($args) {
 
 		$container_w = $this->wfx_width; //Overall container width
 		$container_p = $this->wfx_position; //Site container position
@@ -282,7 +259,7 @@ class wflux_display_code extends wflux_data {
 	* @updated 0.913
 	* Core layout grid CSS
 	*/
-	function wf_head_css_ie() {
+	function wf_head_css_ie($args) {
 
 		$container_w = $this->wfx_width; //Overall container width
 		$container_p = $this->wfx_position; //Site container position
@@ -321,7 +298,7 @@ class wflux_display_code extends wflux_data {
 	* Close the head of the document after everything has run
 	* Opens body tag using dynamic WordPress body class
 	*/
-	function wf_head_close() {
+	function wf_head_close($args) {
 
 		$this_body_class = get_body_class();
 		$output = '</head>' . "\n";
@@ -341,7 +318,7 @@ class wflux_display_code extends wflux_data {
 	* TODO: Switch for normal display or code comment
 	*
 	*/
-	function wf_performance() {
+	function wf_performance($args) {
 		echo '<!-- ';
 		$debug_text = get_num_queries();
 		echo $debug_text.' queries in ';
@@ -359,7 +336,7 @@ class wflux_display_code extends wflux_data {
 	* Footer code comment credit
 	*
 	*/
-	function wf_code_credit() {
+	function wf_code_credit($args) {
 
 		// Default
 		$footer_credit = 'Powered by WordPress and the Wonderflux theme framework';
@@ -741,7 +718,7 @@ class wflux_display {
 	* Footer credit
 	*
 	*/
-	function wf_credit() {
+	function wf_credit($args) {
 
 		// Defaults
 		$footer_credit_format = 'p';
@@ -1316,7 +1293,8 @@ class wflux_display_extras {
 	 * If you really need to hard-code your site page or category navigation,
 	 * this function adds 'current_page_item' CSS class when page/category is viewed
 	 *
-	 * You really should use wp_list_pages() and wp_list_categories() wherever possible!
+	 * You really should use wp_list_pages() and wp_list_categories() wherever possible
+	 * Check the WordPress Codex pages on these
 	 *
 	 * TODO: Tidy up!
 	 *
@@ -1324,22 +1302,27 @@ class wflux_display_extras {
 	 * @param catid - Category ID [NONE]
 	 *
 	 * @since 0.901
-	 * @updated 0.901
+	 * @updated 0.913
 	 */
-	function wf_static_highlight($thisid) {
+	function wf_static_highlight($args) {
+
+		$defaults = array (
+			'id' => "2"
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
 
 		global $post;
 
-		if ($thisid !=''):
+		if ($id !=''):
 
 			//Style if on actual page on top level navigation
-			if ($post->ID == $thisid):
-				echo ' current_page_item';
+			if ($post->ID == $id):
+				echo 'current_page_item';
 			endif;
 
 		endif;
-
-		//echo $post->ID;
 
 		/*
 		// TODO: Debug this - pretty much works!
@@ -1410,7 +1393,8 @@ class wflux_display_extras {
 			'type' => "image",
 			'number' => 1,
 			'order' => "ASC",
-			'output' => "file_url"
+			'output' => "file_url",
+			'echo' => "Y"
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1436,45 +1420,18 @@ class wflux_display_extras {
 		foreach($files as $file) {
 
 			switch ($output) {
-
-				case 'file_url' :
-					$this_output = wp_get_attachment_url($file->ID);
-				break;
-
-				case 'parent_url' :
-					$this_output = get_permalink($file->post_parent);
-				break;
-
-				case 'page_url' :
-					$this_output = get_attachment_link($file->ID);
-				break;
-
-				default :
-					$this_output = wp_get_attachment_url($file->ID);
-				break;
-
+				case 'file_url' : $this_output = wp_get_attachment_url($file->ID); break;
+				case 'parent_url' : $this_output = get_permalink($file->post_parent); break;
+				case 'page_url' : $this_output = get_attachment_link($file->ID); break;
+				default : $this_output = wp_get_attachment_url($file->ID); break;
 			}
 
-			return $this_output;
+			if ($echo == "Y") { echo $this_output; }
+			else { return $this_output; }
 
-			//DEBUG TESTING
-
-			//$attlink  = get_attachment_link($audio_file->ID);
-			//$postlink = get_permalink($audio_file->post_parent);
-			//$atttitle = apply_filters('the_title',$audio_file->post_title);
-
-			//echo '<p><strong>wp_get_attachment_image()</strong><br />'.$attimg.'</p>';
-			//echo 'Ians path:'.$atturl.'</p>';
-			//echo '<p><strong>get_attachment_link()</strong><br />'.$attlink.'</p>';
-			//echo '<p><strong>get_permalink()</strong><br />'.$postlink.'</p>';
-			//echo '<p><strong>Title of attachment</strong><br />'.$atttitle.'</p>';
-			//echo '<p><strong>Image link to attachment page</strong><br /><a href="'.$attlink.'">'.$attimg.'</a></p>';
-			//echo '<p><strong>Image link to attachment post</strong><br /><a href="'.$postlink.'">'.$attimg.'</a></p>';
-			//echo '<p><strong>Image link to attachment file</strong><br /><a href="'.$atturl.'">'.$attimg.'</a></p>';
 		}
 
 	}
-
 
 }
 ?>

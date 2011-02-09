@@ -95,56 +95,56 @@ add_action('wf_footer', 'wfx_display_code_credit', 3);
 * @updated 0.913
 * IMPORTANT Sets up Wonderflux for translation
 */
-if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language() { global $wfx_theme; $wfx_theme->language_pack(''); } endif;
+if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language($args) { global $wfx_theme; $wfx_theme->language_pack($args); } endif;
 
 /**
 * @since 0.71
 * @updated 0.913
 * IMPORTANT Builds the head of the document, including setting up wp_head after wf_head stuff has executed
 */
-if ( !function_exists( 'wfx_display_head_top' ) ) : function wfx_display_head_top() { global $wfx; $wfx->head_top('doctype=strict'); } endif;
+if ( !function_exists( 'wfx_display_head_top' ) ) : function wfx_display_head_top($args) { global $wfx; $wfx->head_top($args); } endif;
 
 /**
 * @since 0.71
 * @updated 0.913
 * IMPORTANT Builds the title of the document
 */
-if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_title() { global $wfx; $wfx->head_title(''); } endif;
+if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_title($args) { global $wfx; $wfx->head_title($args); } endif;
 
 /**
 * @since 0.72
 * @updated 0.913
 * Inserts the core framework structure CSS
 */
-if ( !function_exists( 'wfx_display_head_css_structure' ) ) : function wfx_display_head_css_structure() { global $wfx; $wfx->head_css_structure(''); } endif;
+if ( !function_exists( 'wfx_display_head_css_structure' ) ) : function wfx_display_head_css_structure($args) { global $wfx; $wfx->head_css_structure($args); } endif;
 
 /**
 * @since 0.72
 * @updated 0.913
 * Inserts the core typography CSS
 */
-if ( !function_exists( 'wfx_display_head_css_typography' ) ) : function wfx_display_head_css_typography() { global $wfx; $wfx->head_css_typography(''); } endif;
+if ( !function_exists( 'wfx_display_head_css_typography' ) ) : function wfx_display_head_css_typography($args) { global $wfx; $wfx->head_css_typography($args); } endif;
 
 /**
 * @since 0.72
 * @updated 0.913
 * Inserts the core theme CSS
 */
-if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_head_css_theme() { global $wfx; $wfx->head_css_theme(''); } endif;
+if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_head_css_theme($args) { global $wfx; $wfx->head_css_theme($args); } endif;
 
 /**
 * @since 0.72
 * @updated 0.913
 * Inserts the dynamic column CSS builder
 */
-if ( !function_exists( 'wfx_display_head_css_columns' ) ) : function wfx_display_head_css_columns() { global $wfx; $wfx->head_css_columns(''); } endif;
+if ( !function_exists( 'wfx_display_head_css_columns' ) ) : function wfx_display_head_css_columns($args) { global $wfx; $wfx->head_css_columns($args); } endif;
 
 /**
 * @since 0.72
 * @updated 0.913
 * Inserts the core IE CSS
 */
-if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie() { global $wfx; $wfx->head_css_ie(''); } endif;
+if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie($args) { global $wfx; $wfx->head_css_ie($args); } endif;
 
 /**
 * @since 0.71
@@ -152,28 +152,28 @@ if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head
 * VERY IMPORTANT - Runs last on wf_head_meta to close head section
 * - Inserts standard WordPress wp_head()
 */
-if ( !function_exists( 'wfx_display_head_close' ) ) : function wfx_display_head_close() { global $wfx; $wfx->head_close(''); } endif;
+if ( !function_exists( 'wfx_display_head_close' ) ) : function wfx_display_head_close($args) { global $wfx; $wfx->head_close($args); } endif;
 
 /**
 * @since 0.72
 * @updated 0.913
 * Displays debug in code comment
 */
-if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performance() { global $wfx; $wfx->debug_performance(''); } endif;
+if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performance($args) { global $wfx; $wfx->debug_performance($args); } endif;
 
 /**
 * @since 0.71
 * @updated 0.913
 * Displays Wonderflux credit in source code of site
 */
-if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit() { global $wfx; $wfx->code_credit(''); } endif;
+if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit($args) { global $wfx; $wfx->code_credit($args); } endif;
 
 /**
 * @since 0.71
 * @updated 0.913
 * Displays a credit, show your support for Wonderflux!
 */
-if ( !function_exists( 'wf_display_credit' ) ) : function wf_display_credit() { global $wfx; $wfx->display_credit(''); } endif;
+if ( !function_exists( 'wf_display_credit' ) ) : function wf_display_credit($args) { global $wfx; $wfx->display_credit($args); } endif;
 
 
 ////////////// CSS FUNCTIONS
@@ -184,7 +184,7 @@ if ( !function_exists( 'wf_display_credit' ) ) : function wf_display_credit() { 
 * @updated 0.913
 * Displays CSS info for designers as a comment in the head source code
 */
-if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_info() { global $wfx; $wfx->css_info(''); } endif;
+if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_info($args) { global $wfx; $wfx->css_info($args); } endif;
 
 
 
@@ -330,10 +330,10 @@ if (get_current_theme() == 'Wonderflux Framework') {
 }
 
 
-////////////// ADMIN FUNCTIONS
+////////////// ADMIN FUNCTIONS - only in admin area thanks!
 
 
-if (current_user_can('manage_options')) {
+if (is_admin() && current_user_can('manage_options')) {
 
 	// Include admin functions
 	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');

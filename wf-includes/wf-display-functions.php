@@ -1165,7 +1165,7 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 0.892
+	 * @updated 0.92
 	 */
 	function wf_get_single_content($args) {
 
@@ -1206,7 +1206,7 @@ class wflux_display_extras {
 		if ($my_q_posts->have_posts()) : while ($my_q_posts->have_posts()) : $my_q_posts->the_post();
 
 		// Containing div open
-		echo '<div class="' . esc_attr($boxclass) . '" id="post-' . get_the_ID() . '">';
+		echo '<div class="' . esc_attr($boxclass) . ' get-post-'.get_the_ID().'">';
 
 			// Title
 			if ($title == 'Y') {

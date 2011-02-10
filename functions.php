@@ -305,14 +305,14 @@ function wfx_core_default_widgets() {
 	wfx_widgets(
 		array (
 			array (
-					"name" => "Above sidebar",
-					"description" => "Drag widgets into here to include them above the sidebar on your site.",
+					"name" => __( 'Above sidebar', 'wonderflux' ),
+					"description" => __( 'Drag widgets into here to include them above the sidebar on your site.', 'wonderflux' ),
 					"location" => "wfsidebar_before_all",
 					"titleclass" => "primary-widget-title"
 			),
 			array (
-					"name" => "Below sidebar",
-					"description" => "Drag widgets into here to include them below the sidebar on your site.",
+					"name" => __( 'Below sidebar', 'wonderflux' ),
+					"description" => __( 'Drag widgets into here to include them below the sidebar on your site.', 'wonderflux' ),
 					"location" => "wfsidebar_after_all",
 					"titleclass" => "primary-widget-title"
 			)

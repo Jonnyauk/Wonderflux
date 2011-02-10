@@ -334,15 +334,15 @@ if (get_current_theme() == 'Wonderflux Framework') {
 
 
 if (is_admin() && current_user_can('manage_options')) {
-
 	// Include admin functions
 	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');
-
 	// Build admin menus
 	$wflux_admin_do = new wflux_admin;
 	add_action('admin_menu', array($wflux_admin_do, 'wf_add_pages'));
-	//Setup options
+	// Setup options
 	add_action( 'admin_init', array($wflux_admin_do, 'wf_register_settings'));
+	// Setup help
+	add_filter('contextual_help', array($wflux_admin_do, 'wf_contextual_help'), 10, 3);
 
 }
 ?>

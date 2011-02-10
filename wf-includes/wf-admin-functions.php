@@ -1,104 +1,48 @@
 <?php
 
 /**
-*
 * Wonderflux admin functions
-*
 */
 class wflux_admin {
 
+
     // wf_page_build
 	var $icon;
-    var $title;
-    var $include;
-    var $paths;
+	var $title;
+	var $include;
+	var $paths;
+	var $this_help;
 
-    //var $superadmin;
 
 	/**
-	*
-	* @since 0.3
-	* @updated 0.3
-	*
 	* Build the admin menus
-	* TODO: Make this more dynamic and feed 1 array of options to build as many options pages as we need quickly!
-	*
+	* @since 0.3
+	* @updated 0.92
 	*/
 	function wf_add_pages(){
-
-		add_menu_page('Wonderflux main options', 'Wonderflux', 'administrator', 'wonderflux', array($this, 'wf_page_core'));
-		add_submenu_page( 'wonderflux', 'Wonderflux Style Lab', 'Style Lab', 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
-		add_submenu_page( 'wonderflux', 'Wonderflux SEO Optimisation', 'SEO optimise', 'administrator', 'wonderflux_seo', array($this, 'wf_page_seo'));
-		add_submenu_page( 'wonderflux', 'Wonderflux CMS', 'CMS control', 'administrator', 'wonderflux_cms', array($this, 'wf_page_cms'));
+		global $wflux_core_admin_page_main;
+		global $wflux_core_admin_page_style;
+		global $wflux_core_admin_page_seo;
+		global $wflux_core_admin_page_cms;
+		$wflux_core_admin_page_main = add_menu_page('Wonderflux main options', 'Wonderflux', 'administrator', 'wonderflux', array($this, 'wf_page_core'));
+		$wflux_core_admin_page_style = add_submenu_page( 'wonderflux', 'Wonderflux Style Lab', 'Style Lab', 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
+		$wflux_core_admin_page_seo = add_submenu_page( 'wonderflux', 'Wonderflux SEO Optimisation', 'SEO optimise', 'administrator', 'wonderflux_seo', array($this, 'wf_page_seo'));
+		$wflux_core_admin_page_cms = add_submenu_page( 'wonderflux', 'Wonderflux CMS', 'CMS control', 'administrator', 'wonderflux_cms', array($this, 'wf_page_cms'));
 		//TODO: If user is superadmin ID, reveal advanced config menu
 	}
 
 
-	/**
-	*
-	* @since 0.1
-	* @updated 0.1
-	*
-	* Adds core page content to admin area
-	*
-	*/
-	function wf_page_core() {
-
-		$this->wf_page_build('index', 'Wonderflux Home', 'core');
-
-	}
-
-	/**
-	*
-	* @since 0.1
-	* @updated 0.1
-	*
-	* Adds style page content to admin area
-	*
-	*/
-	function wf_page_stylelab() {
-
-		$this->wf_page_build('themes', 'Wonderflux Stylelab', 'style');
-
-	}
-
-	/**
-	*
-	* @since 0.1
-	* @updated 0.1
-	*
-	* Adds SEO page content to admin area
-	*
-	*/
-	function wf_page_seo() {
-
-		$this->wf_page_build('plugins', 'Wonderflux Search Engine Optimiser', 'seo');
-
-	}
-
-	/**
-	*
-	* @since 0.1
-	* @updated 0.1
-	*
-	* Adds CMS page content to admin area
-	*
-	*/
-	function wf_page_cms() {
-
-		$this->wf_page_build('options-general', 'Wonderflux Content Management Options', 'cms');
-
-	}
+	// Add content to admin areas
+	function wf_page_core() { $this->wf_page_build('index', 'Wonderflux Home', 'core'); }
+	function wf_page_stylelab() { $this->wf_page_build('themes', 'Wonderflux Stylelab', 'style'); }
+	function wf_page_seo() { $this->wf_page_build('plugins', 'Wonderflux Search Engine Optimiser', 'seo'); }
+	function wf_page_cms() { $this->wf_page_build('options-general', 'Wonderflux Content Management Options', 'cms'); }
 
 
 	/**
-	*
+	* Builds Wonderflux admin pages
 	* @since 0.1
 	* @updated 0.913
-	*
-	* Builds Wonderflux admin pages
-	*
-	* TODO: Extend with settings fields and form builder functions
 	*
 	*	@params
 	*
@@ -162,9 +106,7 @@ class wflux_admin {
 		require('admin-pages/wf-page-'.$include.'.php');
 
 		$this->wf_latest_version_notice();
-
 		$wf_current_theme = get_current_theme();
-
 		if ($wf_current_theme == 'Wonderflux Framework') {
 
 			$output = '<div id="message2" class="updated">';
@@ -175,9 +117,7 @@ class wflux_admin {
 
 			echo $output;
 
-		} else {
-			echo '<p>You are currently using '.esc_attr(get_current_theme()).' Wonderflux child theme</p>';
-		}
+		} else { echo '<p>You are currently using '.esc_attr(get_current_theme()).' Wonderflux child theme</p>'; }
 
 		echo '</div>';
 
@@ -185,12 +125,9 @@ class wflux_admin {
 
 
 	/**
-	*
+	* Sets up and configures options and form fields the neat way
 	* @since 0.81
 	* @updated 0.902
-	*
-	* IMPORTANT - Sets up and configures options and form fields the neat way
-	*
 	*/
 	function wf_register_settings(){
 
@@ -210,14 +147,12 @@ class wflux_admin {
 		add_settings_field('columns_w', 'Desired width of column', array($myadminforms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
 	}
 
+
 	/**
-	*
-	* @since 0.911
-	* @updated 0.911
-	*
 	* Checks in the nicest way possible what the latest version of Wonderflux is against installed version
 	* No nasty business here or anywhere in Wonderflux, move on with a warm glow in your heart!
-	*
+	* @since 0.911
+	* @updated 0.911
 	*/
 	function wf_latest_version_fetch() {
 
@@ -252,13 +187,11 @@ class wflux_admin {
 
 	}
 
+
 	/**
-	*
+	* Compares installed Wonderflux version with latest release available
 	* @since 0.911
 	* @updated 0.911
-	*
-	* Compares installed Wonderflux version with latest release available
-	*
 	*/
 	function wf_latest_version_compare() {
 
@@ -277,12 +210,9 @@ class wflux_admin {
 
 
 	/**
-	*
+	* Creates update notice if required
 	* @since 0.911
 	* @updated 0.911
-	*
-	* Creates update notice if required
-	*
 	*/
 	function wf_latest_version_notice() {
 
@@ -317,24 +247,54 @@ class wflux_admin {
 	}
 
 
+ 	/**
+	* Contextual help
+	* @since 0.92
+	* @updated 0.92
+	*/
+	function wf_contextual_help($contextual_help, $screen_id, $screen) {
+
+		global $wflux_core_admin_page_main;
+		global $wflux_core_admin_page_style;
+		global $wflux_core_admin_page_seo;
+		global $wflux_core_admin_page_cms;
+
+		$generic_help = '<p>';
+		$generic_help .= __( 'The Wonderflux Codex - the development reference to help you build Wonderflux child themes smarter and faster will be launching shortly!', 'wonderflux' );
+		$generic_help .= '</p>';
+		$generic_help .= '<h3>';
+		$generic_help .= __( 'In the meantime...', 'wonderflux' );
+		$generic_help .= '</h3>';
+		$generic_help .= '<p>';
+		$generic_help .= __( 'Get involved in the Google code project where you can suggest improvements, report bugs and help us make a really great theme framework for everyone to use!', 'wonderflux' );
+		$generic_help .= '</p>';
+
+		switch ($screen_id) {
+			case $wflux_core_admin_page_main : $this_help = '<h3>' . __( 'Wonderflux help - Main settings', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case $wflux_core_admin_page_style : $this_help = '<h3>' . __( 'Wonderflux help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case $wflux_core_admin_page_seo : $this_help = '<h3>' . __( 'Wonderflux help - Search Engine Optimisation', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case $wflux_core_admin_page_cms : $this_help = '<h3>' . __( 'Wonderflux help - Content Management System', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			default : $this_help = $generic_help; break;
+		}
+
+		return $this_help;
+	}
+
+
 //END wflux_admin class
 }
 
 /**
-*
 * Wonderflux admin form functions
-*
 */
 class wflux_admin_forms {
 
+
 	/**
-	*
-	* @since 0.912 r18
-	* @updated 0.912 r19
-	*
 	* IMPORTANT - Validates and cleans any data saved from layout options before saving to database
 	* Accepts array, return cleaned items in new array.
-	*
+	* @since 0.912
+	* @updated 0.912
 	*/
 	function validate_opts_layout($input) {
 
@@ -380,55 +340,24 @@ class wflux_admin_forms {
 		return $cleaninput;
 	}
 
-	//////// STYLE LAB FORM ITEMS START
-
+	//////// STYLE LAB FORM ITEMS
 	// Section HTML, displayed before the first option
-	function  wf_form_intro_main() {
-		echo '<p>Use these controls to setup the main dimensions used across all your Wonderflux template designs.</p>';
-	}
-
-	function wf_form_container_p() {
-		$this->wf_form_helper_ddown_std('container_p',array('left', 'middle', 'right'));
-	}
-
-	function wf_form_sidebar_p() {
-		$this->wf_form_helper_ddown_std('sidebar_p',array('left', 'right'));
-	}
-
-	function wf_form_container_w() {
-		$this->wf_form_helper_ddown_range('container_w',400,2000,10);
-	}
-
-	/*
-	// NOT ACTIVE AT MOMENT
-	function wf_form_padding_l() {
-		echo 'SAVES, BUT NOT ACTIVE ';
-		$this->wf_form_helper_ddown_range('padding_l',0,200,1);
-	}
-
-	function wf_form_padding_r() {
-		echo 'SAVES, BUT NOT ACTIVE ';
-		$this->wf_form_helper_ddown_range('padding_r',0,200,1);
-	}
+	function  wf_form_intro_main() { echo '<p>Use these controls to setup the main dimensions used across all your Wonderflux template designs.</p>'; }
+	function wf_form_container_p() { $this->wf_form_helper_ddown_std('container_p',array('left', 'middle', 'right')); }
+	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std('sidebar_p',array('left', 'right')); }
+	function wf_form_container_w() { $this->wf_form_helper_ddown_range('container_w',400,2000,10); }
+	/* NOT ACTIVE AT MOMENT
+	function wf_form_padding_l() { $this->wf_form_helper_ddown_range('padding_l',0,200,1); }
+	function wf_form_padding_r() { $this->wf_form_helper_ddown_range('padding_r',0,200,1); }
 	*/
+	function wf_form_columns_num() { $this->wf_form_helper_ddown_range('columns_num',4,80,4); }
+	function wf_form_columns_w() { $this->wf_form_helper_ddown_range('columns_w',10,200,1); }
 
-	function wf_form_columns_num() {
-		$this->wf_form_helper_ddown_range('columns_num',4,80,4);
-	}
-
-	function wf_form_columns_w() {
-		$this->wf_form_helper_ddown_range('columns_w',10,200,1);
-	}
-
-	//////// STYLE LAB FORM ITEMS END
 
 	/**
-	*
+	* Creates a dropdown for options page
 	* @since 0.81
 	* @updated 0.81
-	*
-	* Creates a dropdown for options page
-	*
 	*/
 	function wf_form_helper_ddown_std($definition,$items) {
 
@@ -444,12 +373,9 @@ class wflux_admin_forms {
 
 
 	/**
-	*
+	* Creates a dropdown for options page populated with range of numbers
 	* @since 0.81
 	* @updated 0.81
-	*
-	* Creates a dropdown for options page populated with range of numbers
-	*
 	*/
 	function wf_form_helper_ddown_range($definition,$low,$high,$step) {
 

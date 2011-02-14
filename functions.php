@@ -273,6 +273,14 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
 if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global $wfx_theme; $wfx_theme->widgets($args); } endif;
 
 
+/**
+* @since 0.92
+* @updated 0.92
+* IMPORTANT Sets up background divs
+*/
+if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs($args) { global $wfx_theme; $wfx_theme->background_divs($args); } endif;
+
+
 ////////////// PESKY INTERNET EXPLORER FUNCTIONS
 
 

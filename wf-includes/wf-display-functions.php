@@ -2,7 +2,7 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 0.92
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {

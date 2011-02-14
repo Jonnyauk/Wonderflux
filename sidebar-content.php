@@ -5,7 +5,6 @@
  * @package Wonderflux
  * @since Wonderflux 0.6
  */
-global $wfx;
 ?>
 <div class="sidebar-box">
 
@@ -18,6 +17,6 @@ global $wfx;
 	<h4 class="sidebar-title">Archives</h4>
 	<ul><?php wp_get_archives('type=monthly'); ?></ul>
 
-	<?php $wfx->edit_meta('userintro=Hello&wfcontrols=Y'); ?>
-
 </div>
+
+<?php wfx_edit_meta('wfcontrols=Y&div=Y&divclass=sidebar-box');?>

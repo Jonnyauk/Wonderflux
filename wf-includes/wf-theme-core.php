@@ -5,13 +5,16 @@
 /**
 *
 * @since 0.891
-* @updated 0.913
+* @updated 0.92
 *
 * Core template functions
 *
 */
 
 class wflux_theme_core {
+
+	static $wfx_count_bg_divs;
+	static $wfx_count_bg_divs_hook;
 
 	/**
 	*
@@ -135,6 +138,47 @@ class wflux_theme_core {
 		require_once( $locale_file );
 	}
 
+
+	/**
+	* @since 0.92
+	* @updated 0.92
+	* Sets up required background divs and inserts them using Wonderflux hooks
+	*/
+	function wf_background_divs($args) {
+
+		$defaults = array (
+			'depth' => 1,
+			'location' => 'site'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		// Tidy up ready for use
+		if (is_numeric($depth) && $depth >= 0 && $depth <= 10) { $depth_out = $depth; } else { $depth_out = 0; }
+		$location_accept = array('site','main','header','footer');
+		if ( in_array($location,$location_accept) ) {
+			switch ($location) {
+				case 'site' : $location_out = $location; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper'; break;
+				case 'main' : $location_out = $location; $open_hook = 'wfmain_before_wrapper'; $close_hook = 'wfmain_after_wrapper'; break;
+				case 'header' : $location_out = $location; $open_hook = 'wfheader_before_wrapper'; $close_hook = 'wfheader_after_wrapper'; break;
+				case 'footer' : $location_out = $location; $open_hook = 'wffooter_before_wrapper'; $close_hook = 'wffooter_after_wrapper'; break;
+				default : $location_out = 'site'; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper'; break;
+			}
+		} else {
+			$location_out = 'site'; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper';
+		}
+
+		// Do it
+		for ($this->wfx_count_bg_divs=1; $this->wfx_count_bg_divs<=$depth; $this->wfx_count_bg_divs++) {
+			$this->wfx_count_bg_divs_hook = $location_out;
+			add_action( $open_hook, create_function( '', "echo '<div class=\"wrapper\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 2);
+			$wf_bgdiv_close = create_function('', 'echo "</div>";');
+			add_action($close_hook, $wf_bgdiv_close, 11);
+		}
+
+
+	}
 
 }
 

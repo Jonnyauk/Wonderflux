@@ -80,7 +80,7 @@ add_action('wf_head_meta', 'wfx_display_head_css_ie', 3);
 add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
 add_action('wf_head_meta', 'wfx_display_css_info');
 add_action('wf_head_meta', 'wfx_display_head_close', 12); //IMPORTANT - Set priority to 12 on this action to ensure it runs after any other functions added to wf_head_meta
-add_action('wffooter_after_content', 'wf_display_credit', 1);
+add_action('wffooter_after_content', 'wfx_display_credit', 1);
 add_action('wf_footer', 'wfx_debug_performance', 12);
 add_action('wf_footer', 'wfx_display_code_credit', 3);
 
@@ -173,7 +173,7 @@ if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code
 * @updated 0.913
 * Displays a credit, show your support for Wonderflux!
 */
-if ( !function_exists( 'wf_display_credit' ) ) : function wf_display_credit($args) { global $wfx; $wfx->display_credit($args); } endif;
+if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($args) { global $wfx; $wfx->display_credit($args); } endif;
 
 
 ////////////// CSS FUNCTIONS

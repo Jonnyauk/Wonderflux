@@ -1098,15 +1098,23 @@ class wflux_display_extras {
 			wp_reset_query();
 			global $wp_query;
 
-			//Check for 404
-			if (!is_404()){
-				$this_post_id = $wp_query->post->ID;
-			}
+			switch (TRUE) {
 
-			//TODO: Build in extra checks for neatness to remove stuff
+				case (is_search()) || (is_404()) :
+					// Silence is golden
+				break;
 
-			if ( is_single() || is_page() && current_user_can('edit_post', $this_post_id) && !is_404() ) {
-				$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . 'post.php?action=edit&amp;post=' . $this_post_id . '" title="' . esc_attr__('Edit this', 'Wonderflux') . '">' . esc_attr__('Edit this content', 'Wonderflux') . '</a></li>';
+				case (is_single() || is_page()) :
+					$this_post_id = $wp_query->post->ID;
+					if ( current_user_can('edit_post', $this_post_id) ) {
+						$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . 'post.php?action=edit&amp;post=' . $this_post_id . '" title="' . esc_attr__('Edit this', 'Wonderflux') . '">' . esc_attr__('Edit this content', 'Wonderflux') . '</a></li>';
+					}
+				break;
+
+				default :
+					// Silence is golden
+				break;
+
 			}
 
 			if ( current_user_can('edit_posts') && $postcontrols == 'Y' ) {

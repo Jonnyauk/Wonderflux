@@ -15,4 +15,5 @@ define( 'WF_CONTENT_URL', WF_MAIN_URL . '/wf-content');
 define( 'WF_INCLUDES_DIR', WF_MAIN_DIR . '/wf-includes');
 define( 'WF_INCLUDES_URL', WF_MAIN_URL . '/wf-includes');
 
+define( 'WF_THEME', get_stylesheet_uri() );
 ?>

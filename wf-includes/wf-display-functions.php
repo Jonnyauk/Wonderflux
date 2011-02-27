@@ -1038,7 +1038,7 @@ class wflux_display_extras {
 	 * @output <ul><li>list items of various admin links inside optional CSS DIV
 	 *
 	 * @since 0.85
-	 * @updated 0.913
+	 * @updated 0.92
 	 */
 	function wf_edit_meta($args) {
 

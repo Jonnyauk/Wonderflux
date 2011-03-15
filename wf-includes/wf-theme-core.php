@@ -16,6 +16,21 @@ class wflux_theme_core {
 	static $wfx_count_bg_divs;
 	static $wfx_count_bg_divs_hook;
 
+	static $google_api_key;
+	static $js_jquery_host;
+	static $js_jquery_version;
+
+	function __construct() {
+
+		$this->wfx_count_bg_divs = 0;
+		$this->wfx_count_bg_divs_hook = 0;
+
+		$this->google_api_key = FALSE;
+		$this->js_jquery_host = 'wonderflux';
+		$this->js_jquery_version = '1.5.1';
+
+	}
+
 	/**
 	*
 	* Sets up WordPress widgets and optionally inserts into template using Wonderflux hook system
@@ -177,6 +192,114 @@ class wflux_theme_core {
 			add_action($close_hook, $wf_bgdiv_close, 11);
 		}
 
+
+	}
+
+
+	//TODO: Test and finish - Core and Wonderflux hosted code work fine, Google hosted code needs a bit more work
+	/**
+	* Sets up required Jquery
+	*
+	* @param $host Where your JQuery is hosted - Default = 'wonderflux' ['wonderflux','google','core']
+	* @param $version Which version of JQuery to use (Not controllable if using core WordPress JQuery) - Default = '1.5.1' [wonderflux='1.3.2','1.4.4','1.5.1' google='1.2.3','1.2.6','1.3.0','1.3.1','1.3.2','1.4.0','1.4.1','1.4.2','1.4.3','1.4.4','1.5.0','1.5.1']
+	* @param $key Google API key (Required if using Google) - [Your unique Google API key - generate here http://code.google.com/apis/loader/signup.html]
+	* @param $location Where you want your JQuery inserted in the code - Default = 'footer' ['header,'footer']
+	*
+	* @since 0.92
+	* @updated 0.92
+	*/
+	function wf_js_jquery($args) {
+
+		if ( !is_admin() ) {
+
+			$defaults = array (
+				'host' => $this->js_jquery_host,
+				'version' => $this->js_jquery_version,
+				'key' => $this->google_api_key,
+				'location' => 'footer'
+			);
+
+			$args = wp_parse_args( $args, $defaults );
+			extract( $args, EXTR_SKIP );
+
+			// SET OPTIONS ready to use
+			$this->js_jquery_host = wp_kses_data($host, '');
+			$this->js_jquery_version = wp_kses_data($version, '');
+			$this->google_api_key = wp_kses_data($key, '');
+
+			// Handle core JQuery and other inserts
+			if ($this->js_jquery_host != 'core') { wp_deregister_script( 'jquery' ); }
+
+			if ($location == 'footer') { $location_out = 'wf_footer'; } else { $location_out = 'wf_head_meta'; }
+			add_action($location_out, array($this, 'wf_js_jquery_enque'), 3);
+
+		}
+
+	}
+
+
+	/**
+	* Inserts JQuery
+	*
+	* @since 0.92
+	* @updated 0.92
+	*/
+	function wf_js_jquery_enque() {
+		//WordPress reference
+		//$handle, $src, $deps = array(), $ver = false, $in_footer = false
+
+		// Valid versions
+		$valid_wf_jquery = array('1.3', '1.4', '1.5');
+		$valid_gg_jquery = array('1.2.3', '1.2.6', '1.3.0', '1.3.1', '1.3.2', '1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.5.0', '1.5.1');
+		$valid_default = '1.5.1';
+
+		switch ($this->js_jquery_host) {
+
+			case 'wonderflux' :
+				if (in_array($this->js_jquery_version,$valid_wf_jquery)) {
+					if ($this->js_jquery_version == '1.3') { $version_out = '1.3.2'; }
+					if ($this->js_jquery_version == '1.4') { $version_out = '1.4.4'; }
+					if ($this->js_jquery_version == '1.5') { $version_out = '1.5.1'; }
+				} else {
+					$version_out = $valid_default;
+				}
+
+				$host_out = esc_url(WF_CONTENT_URL.'/js/jquery/'.$version_out.'/jquery.min.js');
+				wp_register_script('wfx_script_jquery', $host_out, '', NULL, FALSE);
+				wp_print_scripts('wfx_script_jquery');
+			break;
+
+			case 'google' :
+				// Catch API key user error if not set properly and roll back to Wonderflux
+				if ($this->google_api_key == FALSE) {
+					$version_out = $valid_default;
+					$host_out = esc_url(WF_CONTENT_URL.'/js/jquery/'.$version_out.'/jquery.min.js');
+					wp_register_script('wfx_script_jquery', $host_out, '', NULL, FALSE);
+					wp_print_scripts( 'wfx_script_jquery' );
+				} else {
+					$api_out = 'https://www.google.com/jsapi?key='.$this->google_api_key.'';
+					$host_out = 'https://ajax.googleapis.com/ajax/libs/jquery/'.$this->js_jquery_version.'/jquery.min.js';
+					wp_register_script('wfx_script_google_api', $api_out, '', NULL, FALSE);
+					wp_register_script('wfx_script_jquery', $host_out, '', NULL, FALSE);
+					wp_print_scripts('wfx_script_google_api');
+					wp_print_scripts('wfx_script_jquery');
+				}
+			break;
+
+			case 'core' :
+				wp_enqueue_script( 'jquery' );
+				wp_print_scripts( 'jquery' );
+			break;
+
+			default :
+			if (in_array($this->js_jquery_version,$valid_wf_jquery)) { $version_out = $this->js_jquery_version; }
+				else { $version_out = $valid_default; }
+				$host_out = esc_url(WF_CONTENT_URL.'/js/jquery/'.$version_out.'/jquery.min.js');
+				wp_register_script('wfx_script_jquery', $host_out, '', NULL, FALSE);
+				wp_print_scripts('wfx_script_jquery');
+			break;
+
+		}
 
 	}
 

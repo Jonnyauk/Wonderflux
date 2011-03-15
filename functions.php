@@ -3,6 +3,13 @@
  * Core Wonderflux theme framework functions
  * For more information, including license please view README.txt file or visit http://www.wonderflux.com
  *
+ * 1 - Helper functions
+ * 2 - Display functions
+ * 3 - Theme display functions
+ * 4 - Theme configuration functions
+ * 5 - Script support functions
+ * 6 - Wonderflux Core
+ *
  * DON'T HACK ME!! You should not modify the Wonderflux theme framework to avoid issues with updates in the future
  * You have lots of ways to manipulate this from your child theme! http://codex.wordpress.org/Child_Themes
  *
@@ -29,13 +36,14 @@
  * Follow us on Twitter @Wonderflux for updates and news
  *
  * @package Wonderflux
+ *
  */
 
 // Start your engine
 load_template(TEMPLATEPATH . '/wf-includes/wf-engine.php');
 
 
-////////////// HELPER FUNCTIONS
+////  1  //////////// HELPER FUNCTIONS
 
 
 /**
@@ -67,27 +75,7 @@ if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) { glo
 if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; $wfx_helper->page_depth($args); } endif;
 
 
-////////////// DO EVERYTHING REQUIRED FOR DISPLAY
-
-
-add_action('init', 'wfx_config_language'); //Need to test if this is ok to load on init
-add_action('wf_head_meta', 'wfx_display_head_top', 1);
-add_action('wf_head_meta', 'wfx_display_head_title', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_structure', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_typography', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_columns', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_ie', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
-add_action('wf_head_meta', 'wfx_display_css_info');
-add_action('wf_head_meta', 'wfx_display_head_close', 12); //IMPORTANT - Set priority to 12 on this action to ensure it runs after any other functions added to wf_head_meta
-add_action('wffooter_after_content', 'wfx_display_credit', 1);
-add_action('wf_footer', 'wfx_debug_performance', 12);
-add_action('wf_footer', 'wfx_display_code_credit', 3);
-
-
-////////////// DISPLAY FUNCTIONS
-// Pretty much every function below can be over-ridden in your child theme functions.php file
-// Wonderflux is a framework remember - strip it to barebones or let it do the heavy lifting for you...
+////  2  //////////// DISPLAY FUNCTIONS
 
 
 /**
@@ -175,10 +163,6 @@ if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code
 */
 if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($args) { global $wfx; $wfx->display_credit($args); } endif;
 
-
-////////////// CSS FUNCTIONS
-
-
 /**
 * @since 0.51
 * @updated 0.913
@@ -187,8 +171,7 @@ if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($a
 if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_info($args) { global $wfx; $wfx->css_info($args); } endif;
 
 
-
-////////////// EXTRA THEME FUNCTIONS
+////  3  //////////// THEME DISPLAY
 
 
 /**
@@ -262,7 +245,7 @@ if ( !function_exists( 'wfx_static_highlight' ) ) : function wfx_static_highligh
 if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments($args) { global $wfx; $wfx->get_attachments($args); } endif;
 
 
-////////////// THEME CREATION FUNCTIONS
+//  4  //////////// THEME CONFIGURATION
 
 
 /**
@@ -281,19 +264,29 @@ if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global 
 if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs($args) { global $wfx_theme; $wfx_theme->background_divs($args); } endif;
 
 
-////////////// PESKY INTERNET EXPLORER FUNCTIONS
-
-
 /**
 * @since 0.913
 * @updated 0.913
-* Setup IE6 PNG fix - yea, sometimes you still need it (pesky corporates!)
+* Setup IE6 PNG fix - yea, sometimes you still need it (pesky budgets!)
 */
 if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global $wfx_theme; $wfx_theme->ie6_png($args); } endif;
 
 
-////////////// FUNCTIONS THAT DONT NEED TO BE OVERRIDDEN - FOR WHEN WONDERFLUX GETS ACTIVATED DIRECTLY
+//  5  //////////// SCRIPT SUPPORT
 
+
+/**
+* @since 0.92
+* @updated 0.92
+* Setup JQuery how you want it
+*/
+if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args) { global $wfx_theme; $wfx_theme->jquery($args); } endif;
+
+
+//  6  //////////// WONDERFLUX CORE
+
+
+// For When Wonderflux gets activated directly
 
 /**
 * @since 0.902
@@ -330,17 +323,13 @@ function wfx_core_default_widgets() {
 
 }
 
-
-// Detect if Wonderflux activated directly and add basic theme functionality
+// If Wonderflux is activated directly, add basic theme functionality
 if (get_current_theme() == 'Wonderflux Framework') {
-	add_action('get_header', 'wfx_core_default_layout', 1); // !!IMPORTANT!! Dont remove this one - does stuff if Wonderflux activated directly
-	add_action('wp_loaded', 'wfx_core_default_widgets'); // !!IMPORTANT!! Dont remove this one - does stuff if Wonderflux activated directly
+	add_action('get_header', 'wfx_core_default_layout', 1);
+	add_action('wp_loaded', 'wfx_core_default_widgets');
 }
 
-
-////////////// ADMIN FUNCTIONS - only in admin area thanks!
-
-
+// Admin menus
 if (is_admin() && current_user_can('manage_options')) {
 	// Include admin functions
 	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');
@@ -353,4 +342,19 @@ if (is_admin() && current_user_can('manage_options')) {
 	add_filter('contextual_help', array($wflux_admin_do, 'wf_contextual_help'), 10, 3);
 
 }
+
+// Do Wonderflux
+add_action('init', 'wfx_config_language'); //Need to test if this is ok to load on init
+add_action('wf_head_meta', 'wfx_display_head_top', 1);
+add_action('wf_head_meta', 'wfx_display_head_title', 3);
+add_action('wf_head_meta', 'wfx_display_head_css_structure', 3);
+add_action('wf_head_meta', 'wfx_display_head_css_typography', 3);
+add_action('wf_head_meta', 'wfx_display_head_css_columns', 3);
+add_action('wf_head_meta', 'wfx_display_head_css_ie', 3);
+add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
+add_action('wf_head_meta', 'wfx_display_css_info');
+add_action('wf_head_meta', 'wfx_display_head_close', 12); //IMPORTANT - Set priority to 12 on this action to ensure it runs after any other functions added to wf_head_meta
+add_action('wffooter_after_content', 'wfx_display_credit', 1);
+add_action('wf_footer', 'wfx_debug_performance', 12);
+add_action('wf_footer', 'wfx_display_code_credit', 3);
 ?>

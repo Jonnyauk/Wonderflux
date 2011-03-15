@@ -64,7 +64,7 @@ add_action('init','wflux_capacitor_theme', 1);
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 0.92
 * Creates all Wonderflux theme building functions
 */
 class wflux_theme_all {
@@ -77,11 +77,15 @@ class wflux_theme_all {
 		$this->wflux_theme_ie_do = new wflux_theme_ie;
 	}
 
+	// Main theme config
 	function widgets($args){ $this->wflux_theme_core_do->wf_widgets($args); }
 	function language_pack($args){ $this->wflux_theme_core_do->wf_language_pack($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
 	function background_divs($args){ $this->wflux_theme_core_do->wf_background_divs($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
 
-	// Internet Explorer stuff
+	// Javascript goodness
+	function jquery($args){ $this->wflux_theme_core_do->wf_js_jquery($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
+
+	// Internet Explorer (Pesky IE!)
 	function ie6_png($args){ $this->wflux_theme_ie_do->wf_ie6_png($args); }
 
 }

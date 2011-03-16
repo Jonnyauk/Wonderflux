@@ -1034,7 +1034,8 @@ class wflux_display_extras {
 	 * @param ulclass - Containing ul CSS class [wf-edit-meta-main]
 	 * @param liclass - Individual li CSS class [wf-edit-meta-links]
 	 * @param div - Insert div around output [N]
-	 * @output divclass - CSS class of div [wf-edit-meta-box]
+	 * @param divclass - CSS class of div [wf-edit-meta-box]
+	 * @param wpadminbar - Show WordPress 3.1 admin bar [N]
 	 * @output <ul><li>list items of various admin links inside optional CSS DIV
 	 *
 	 * @since 0.85
@@ -1044,18 +1045,19 @@ class wflux_display_extras {
 
 		$defaults = array (
 			'userintro' => "Welcome",
-			'username' => "Y",
-			'intro' => "Y",
-			'postcontrols' => "Y",
-			'pagecontrols' => "Y",
-			'adminlink' => "Y",
-			'widgetslink' => "Y",
-			'wfcontrols' => "N",
-			'logoutlink' => "N",
+			'username' => 'Y',
+			'intro' => 'Y',
+			'postcontrols' => 'Y',
+			'pagecontrols' => 'Y',
+			'adminlink' => 'Y',
+			'widgetslink' => 'Y',
+			'wfcontrols' => 'N',
+			'logoutlink' => 'N',
 			'ulclass' => 'wf-edit-meta',
 			'liclass' => 'wf-edit-meta-links',
-			'div' => "N",
-			'divclass' => 'wf-edit-meta-box'
+			'div' => 'N',
+			'divclass' => 'wf-edit-meta-box',
+			'wpadminbar' => 'N'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1074,19 +1076,19 @@ class wflux_display_extras {
 
 			$output = '';
 
-			if ( $div == "Y") { $output .= '<div class="'.esc_attr($divclass).'">'; }
+			if ( $div == 'Y') { $output .= '<div class="'.esc_attr($divclass).'">'; }
 
 			$output .= '<ul class="' . esc_attr($ulclass) . '">';
 
-			if ( $username == "Y" && $intro == "Y" ) {
+			if ( $username == 'Y' && $intro == 'Y' ) {
 
 				$output .= '<li class="' . esc_attr($liclass) . '">';
 				$output .= esc_attr($userintro) . ' ';
 				$output .= $current_user->display_name . '</li>';
 
-			} elseif ( $username == "N") {
+			} elseif ( $username == 'N') {
 
-				if ( $intro == "Y") {
+				if ( $intro == 'Y') {
 
 					$output .= '<li class="' . esc_attr($liclass) . '">';
 					$output .= esc_attr($userintro) . ' ';
@@ -1129,15 +1131,15 @@ class wflux_display_extras {
 				$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . '" title="' . esc_attr__('Admin area', 'Wonderflux') . '">' . esc_attr__('Admin area', 'Wonderflux') . '</a></li>';
 			}
 
-			if ( current_user_can('edit_theme_options') && $widgetslink == "Y" ) {
+			if ( current_user_can('edit_theme_options') && $widgetslink == 'Y' ) {
 				$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . 'widgets.php" title="' . esc_attr__('Edit widgets', 'Wonderflux') . '">' . esc_attr__('Edit widgets', 'Wonderflux') . '</a></li>';
 			}
 
-			if ( current_user_can('edit_theme_options') && $wfcontrols == "Y" ) {
+			if ( current_user_can('edit_theme_options') && $wfcontrols == 'Y' ) {
 				$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . 'admin.php?page=wonderflux" title="Wonderflux ' . esc_attr__('design options', 'Wonderflux') . '">Wonderflux ' . esc_attr__('options', 'Wonderflux') . '</a></li>';
 			}
 
-			if ( $logoutlink == "Y" ) {
+			if ( $logoutlink == 'Y' ) {
 			$output .= '<li class="' . esc_attr($liclass) . '">' . '<a href="' . wp_logout_url( get_permalink() ) . '" title="' . esc_attr__('Log out of website CMS', 'Wonderflux') . '">' . esc_attr__('Log out of CMS', 'Wonderflux') . '</a></li>';
 			}
 
@@ -1148,6 +1150,13 @@ class wflux_display_extras {
 			if ( $div == 'Y') { $output .= '</div>'; }
 
 			echo $output;
+
+			// Configure WordPress 3.1+ admin bar
+			if ( $wpadminbar == 'N' ) {
+				global $wfx_wp_helper; $wfx_wp_helper->admin_bar_remove('');
+			} else {
+				// Still include the WordPress admin bar... how many admin menus do you need you crazy fool?!
+			}
 
 		endif;
 
@@ -1270,19 +1279,21 @@ class wflux_display_extras {
 	 * @param logouttip - The Logout tooltip [Logout of site]
 	 * @param loginredirect - Redirect to where on login [dashboard]
 	 * @param logoutredirect - Redirect to where on logout [current]
+	 * @param wpadminbar - Configure display of WordPress admin bar [N]
 	 *
 	 * @since 0.901
-	 * @updated 0.901
+	 * @updated 0.92
 	 */
 	function wf_login_logout($args) {
 
 		$defaults = array (
-			'login' => "Login",
-			'logintip' => "Login to site",
-			'logout' => "Logout",
-			'logouttip' => "Logout of site",
-			'loginredirect' => "dashboard",
-			'logoutredirect' => "current"
+			'login' => 'Login',
+			'logintip' => 'Login to site',
+			'logout' => 'Logout',
+			'logouttip' => 'Logout of site',
+			'loginredirect' => 'dashboard',
+			'logoutredirect' => 'current',
+			'wpadminbar' => 'N'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1292,6 +1303,13 @@ class wflux_display_extras {
 			echo '<a href="'.wp_logout_url( home_url() ).'" title="'.esc_attr($logouttip).'">'.esc_attr($logout).'</a>';
 		} else {
 			echo '<a href="'.wp_login_url().'" title="'.esc_attr($logintip).'">'.esc_attr($login).'</a>';
+		}
+
+		// Configure WordPress 3.1+ admin bar
+		if ( $wpadminbar == 'N' ) {
+			global $wfx_wp_helper; $wfx_wp_helper->admin_bar_remove('');
+		} else {
+			// Still include the WordPress admin bar... how many admin menus do you need you crazy fool?!
 		}
 
 	}
@@ -1442,4 +1460,6 @@ class wflux_display_extras {
 	}
 
 }
+
+
 ?>

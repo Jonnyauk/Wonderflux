@@ -283,6 +283,14 @@ if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global 
 if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args) { global $wfx_theme; $wfx_theme->jquery($args); } endif;
 
 
+/**
+* @since 0.92
+* @updated 0.92
+* Setup JQuery Cycle how you want it
+*/
+if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args) { global $wfx_theme; $wfx_theme->cycle($args); } endif;
+
+
 //  6  //////////// WONDERFLUX CORE
 
 

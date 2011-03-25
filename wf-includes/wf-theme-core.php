@@ -1,6 +1,6 @@
 <?php
 
-//// The Wonderflux core theme functionality that need to be loaded right at the start
+//// The Wonderflux core theme functionality
 
 /**
 *
@@ -20,14 +20,21 @@ class wflux_theme_core {
 	static $js_jquery_host;
 	static $js_jquery_version;
 
+	static $js_cycle_host;
+	static $js_cycle_version;
+
 	function __construct() {
 
 		$this->wfx_count_bg_divs = 0;
 		$this->wfx_count_bg_divs_hook = 0;
 
-		$this->google_api_key = FALSE;
+		$this->google_api_key = 'N';
 		$this->js_jquery_host = 'wonderflux';
-		$this->js_jquery_version = '1.5.1';
+		$this->js_jquery_version = '1.5';
+
+		$this->js_cycle_host = 'wonderflux';
+		$this->js_cycle_version = 'normal';
+		$this->js_cycle_config = 'wonderflux';
 
 	}
 
@@ -196,7 +203,6 @@ class wflux_theme_core {
 	}
 
 
-	//TODO: Test and finish - Core and Wonderflux hosted code work fine, Google hosted code needs a bit more work
 	/**
 	* Sets up required Jquery
 	*
@@ -295,13 +301,138 @@ class wflux_theme_core {
 			if (in_array($this->js_jquery_version,$valid_wf_jquery)) { $version_out = $this->js_jquery_version; }
 				else { $version_out = $valid_default; }
 				$host_out = esc_url(WF_CONTENT_URL.'/js/jquery/'.$version_out.'/jquery.min.js');
-				wp_register_script('wfx_script_jquery', $host_out, '', NULL, FALSE);
+				wp_register_script('wfx_script_jquery', $host_out, 'jquery', NULL, FALSE);
 				wp_print_scripts('wfx_script_jquery');
 			break;
 
 		}
 
 	}
+
+
+	//TODO: Build parameters for CDN host parameter
+	/**
+	* Sets up Cycle Jquery plugin
+	*
+	* @param $host Where your Cycle script is hosted - Default = 'wonderflux' ['wonderflux','cdn']
+	* @param $version Which version of Cycle to use - Default = 'normal' ['lite','normal','all']
+	* @param $location Where you want your JQuery inserted in the code - Default = 'footer' ['header,'footer']
+	*
+	* @since 0.92
+	* @updated 0.92
+	*/
+	function wf_js_cycle($args) {
+
+		if ( !is_admin() ) {
+
+			$defaults = array (
+				'host' => $this->js_cycle_host, /*wonderflux*/
+				'version' => $this->js_cycle_version, /*normal*/
+				'config' => $this->js_cycle_config, /*wonderflux*/
+				'jquery_host' => $this->js_jquery_host,
+				'jquery_version' => $this->js_jquery_version,
+				'jquery_key' => $this->google_api_key,
+				'location' => 'footer'
+			);
+
+			$args = wp_parse_args( $args, $defaults );
+			extract( $args, EXTR_SKIP );
+
+			// SET OPTIONS ready to use
+			$this->js_cycle_host = wp_kses_data($host, '');
+			$this->js_cycle_version = wp_kses_data($version, '');
+			$this->js_cycle_config = wp_kses_data($config, '');
+			$this->js_jquery_host = wp_kses_data($jquery_host, '');
+			$this->js_jquery_version = wp_kses_data($jquery_version, '');
+			$this->google_api_key = wp_kses_data($jquery_key, '');
+
+			//Enque and insert JQuery if required
+			$this->wf_js_jquery('host='.$this->js_jquery_host.'&version='.$this->js_jquery_version.'&key='.$this->google_api_key.'');
+
+			//Enque and insert Cycle
+			if ($location == 'footer') { $location_out = 'wf_footer'; } else { $location_out = 'wf_head_meta'; }
+			add_action($location_out, array($this, 'wf_js_cycle_enque'), 4); //4 - After JQuery for neatness
+
+		}
+
+	}
+
+
+	//TODO: Build CDN parameters
+	//TODO: Build in easing enque if required
+	/**
+	* Inserts JQuery Cycle
+	*
+	* @since 0.92
+	* @updated 0.92
+	*/
+	function wf_js_cycle_enque() {
+		// Valid versions
+		$valid_host = array('wonderflux', 'theme');
+		$valid_version = array('lite', 'normal', 'full');
+		$valid_config = array('wonderflux', 'theme');
+
+		// Check input
+		if (!in_array($this->js_cycle_host,$valid_host)) { $this->js_cycle_host = 'wonderflux'; }
+		if (!in_array($this->js_cycle_version,$valid_version)) { $this->js_cycle_version = 'normal'; }
+		if (!in_array($this->js_cycle_config,$valid_config)) { $this->js_cycle_config = 'wonderflux'; }
+
+		$cycle_file_out = 'cycle.min';
+		switch ($this->js_cycle_version) {
+			case 'lite' : $cycle_file_out = 'cycle.lite.min'; break;
+			case 'normal' : /*Silence is golden*/ break;
+			case 'all' : $cycle_file_out = 'cycle.all.min'; break;
+			default : /*Silence is golden*/ break;
+		}
+
+		$host_out = esc_url(WF_CONTENT_URL.'/js/cycle/jquery.'.$cycle_file_out.'.js');
+		switch ($this->js_cycle_host) {
+
+			case 'wonderflux' :
+				wp_register_script('wfx_script_cycle', $host_out, '', NULL, FALSE);
+				wp_print_scripts('wfx_script_cycle');
+			break;
+
+			case 'theme' :
+				$host_out = WF_THEME.'/js/cycle/jquery.'.$cycle_file_out.'.js';
+				wp_register_script('wfx_script_cycle', $host_out, '', NULL, FALSE);
+				wp_print_scripts('wfx_script_cycle');
+			break;
+
+			default :
+				wp_register_script('wfx_script_cycle', $host_out, '', NULL, FALSE);
+				wp_print_scripts('wfx_script_cycle');
+			break;
+
+		}
+
+		// Set default
+		$host_config_out = esc_url(WF_CONTENT_URL.'/js/cycle/jquery.cycle.config.js');
+		switch ($this->js_cycle_config) {
+
+			case 'wonderflux' :
+				wp_register_script('wfx_script_cycle_config', $host_config_out, '', NULL, FALSE);
+				wp_print_scripts('wfx_script_cycle_config');
+			break;
+
+			case 'theme' :
+				//$host_config_out = WF_THEME.'/js/cycle/jquery.cycle.config.js';
+				//wp_register_script('wfx_script_cycle_config', $host_config_out, '', NULL, FALSE);
+				//wp_print_scripts('wfx_script_cycle');
+				$host_config_out = WF_THEME.'/js/cycle/jquery.cycle.config.js';
+				wp_register_script('wfx_script_cycle_config', $host_config_out, '', NULL, FALSE);
+				wp_print_scripts('wfx_script_cycle_config');
+			break;
+
+			default :
+				wp_register_script('wfx_script_cycle_config', $host_config_out, '', NULL, FALSE);
+				wp_print_scripts('wfx_script_cycle_config');
+			break;
+
+		}
+
+	}
+
 
 }
 

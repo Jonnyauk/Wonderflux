@@ -114,6 +114,7 @@ class wflux_theme_all {
 
 	// Javascript goodness
 	function jquery($args){ $this->wflux_theme_core_do->wf_js_jquery($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
+	function cycle($args){ $this->wflux_theme_core_do->wf_js_cycle($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
 
 	// Internet Explorer (Pesky IE!)
 	function ie6_png($args){ $this->wflux_theme_ie_do->wf_ie6_png($args); }

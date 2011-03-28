@@ -339,8 +339,6 @@ if (get_current_theme() == 'Wonderflux Framework') {
 
 // Admin menus
 if (is_admin() && current_user_can('manage_options')) {
-	// Include admin functions
-	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');
 	// Build admin menus
 	$wflux_admin_do = new wflux_admin;
 	add_action('admin_menu', array($wflux_admin_do, 'wf_add_pages'));

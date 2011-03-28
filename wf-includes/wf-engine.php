@@ -4,6 +4,10 @@ load_template(TEMPLATEPATH . '/wf-config.php');
 load_template(WF_INCLUDES_DIR . '/wf-version.php');
 load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
 
+if (is_admin()) {
+	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');
+}
+
 
 //// HELPER FUNCTIONS
 

@@ -69,10 +69,10 @@ if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) { glo
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 0.92
 * Gets current page depth
 */
-if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; $wfx_helper->page_depth($args); } endif;
+if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; return $wfx_helper->page_depth($args); } endif;
 
 
 ////  2  //////////// DISPLAY FUNCTIONS

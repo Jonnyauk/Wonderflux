@@ -14,7 +14,7 @@ if (is_admin()) {
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 0.92
 * Sets up all Wonderflux helper functions
 */
 function wflux_capacitor_helper() {
@@ -40,7 +40,7 @@ class wflux_helper_all {
 	function info_location($args){ $this->wflux_helper_do->wf_info_location($args); }
 	function gt_part($args){ $this->wflux_helper_do->wf_get_template_part($args); }
 	function user_role($args){ $this->wflux_helper_do->wf_user_role($args); }
-	function page_depth($args){ $this->wflux_helper_do->wf_page_depth($args); }
+	function page_depth($args){ return $this->wflux_helper_do->wf_page_depth($args); }
 
 }
 

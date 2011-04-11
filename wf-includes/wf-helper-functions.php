@@ -194,34 +194,43 @@ class wflux_helper {
 	* Gets current page depth
 	*
 	* @since 0.86
-	* @lastupdate 0.913
-	* @params echo (Y/N)
-	* @return integer representing page depth (NOTE: begins at '1' for top level, not 0 - because its logical)
+	* @lastupdate 0.92
+	* @params start - (integer 0/1) - The starting figure (root level) - [0]
+	* @params show_all - (Y/N) - Return root level on homepage and search - [N]
+	* @return integer representing page depth
 	*/
 	function wf_page_depth($args) {
 
 		$defaults = array (
-			'echo' => 'N'
+			'start' => 0,
+			'show_all' => 'N'
 		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		$depth = ($start == 0) ? 0 : 1;
+		$show_all = ($show_all == 'N') ? 'N' : 'Y';
 
 		// Stops errors when this is run in invalid location
 		if (is_page() && (!is_home() || !is_front_page()) ) {
 
-			$args = wp_parse_args( $args, $defaults );
-			extract( $args, EXTR_SKIP );
-
 			global $wp_query;
 			$object = $wp_query->get_queried_object();
 			$parent_id  = $object->post_parent;
-			$depth = 0;
+
 			while ($parent_id > 0) {
 				$page = get_page($parent_id);
 				$parent_id = $page->post_parent;
 				$depth++;
 			}
-			if ($echo =='Y') { echo $depth+1; }
-			else { return $depth+1; }
+			//if ($echo =='Y') { echo $depth+1; }
+			//else { return $depth+1; }
 
+			return $depth;
+
+		} elseif ( $show_all == 'Y' ) {
+			if ( is_home() || is_front_page() || is_search() ) { return $depth; }
 		}
 
 	}

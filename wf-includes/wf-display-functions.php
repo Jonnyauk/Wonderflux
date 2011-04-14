@@ -367,7 +367,7 @@ class wflux_display_code extends wflux_data {
 	* @since 0.913
 	* @updated 0.913
 	*/
-	function wf_default_content() { global $wfx; $wfx->css('size=three_quarter&id=content&last=y&divoutput=TRUE'); }
+	function wf_default_content() { global $wfx; $wfx->css('size=three_quarter&id=content&last=y&divoutput=Y'); }
 
 
 	/**
@@ -375,7 +375,7 @@ class wflux_display_code extends wflux_data {
 	* @since 0.913
 	* @updated 0.913
 	*/
-	function wf_default_sidebar() { global $wfx; $wfx->css('size=quarter&id=sidebar&last=y&divoutput=TRUE'); }
+	function wf_default_sidebar() { global $wfx; $wfx->css('size=quarter&id=sidebar&last=y&divoutput=Y'); }
 
 
 	/**
@@ -424,7 +424,7 @@ class wflux_display_css extends wflux_data {
 			'id' => '',
 			'last' => '',
 			'move' => '',
-			'divoutput' => FALSE
+			'divoutput' => 'N'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -460,7 +460,7 @@ class wflux_display_css extends wflux_data {
 		// It encloses the dynamic size class in '<div' and '>' for you
 		// Sugest you dont use this at get_template_part xhtml code level as you want to see clearly where the divs open and close
 		// Could be used in get_template_part code blocks
-		if ($divoutput == TRUE) {
+		if ($divoutput == 'Y') {
 			$divout_open_clean = '<div ';
 			$divout_close_clean = '>';
 		} else {
@@ -744,7 +744,7 @@ class wflux_display {
 			echo apply_filters( 'wflux_footer_credit_div', $footer_credit_div );
 			echo '" id="wf-footer-credit">';
 		} else {
-			wfx_css('size=full&id=footer-wfx-credit&divoutput=TRUE');
+			wfx_css('size=full&id=footer-wfx-credit&divoutput=Y');
 		}
 
 		$footer_credit = '<' . $footer_credit_format . '>';

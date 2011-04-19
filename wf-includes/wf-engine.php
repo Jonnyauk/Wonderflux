@@ -39,7 +39,7 @@ class wflux_helper_all {
 
 	function info_location($args){ $this->wflux_helper_do->wf_info_location($args); }
 	function gt_part($args){ $this->wflux_helper_do->wf_get_template_part($args); }
-	function user_role($args){ $this->wflux_helper_do->wf_user_role($args); }
+	function user_role($args){ return $this->wflux_helper_do->wf_user_role($args); }
 	function page_depth($args){ return $this->wflux_helper_do->wf_page_depth($args); }
 
 }

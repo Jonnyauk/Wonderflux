@@ -62,15 +62,32 @@ if ( !function_exists( 'wfx_get_template_part' ) ) : function wfx_get_template_p
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 0.92
 * Gets user role (return or echo)
 */
-if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) { global $wfx_helper; $wfx_helper->user_role($args); } endif;
+if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
+
+	$defaults = array (
+		'echo' => 'N'
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	global $wfx_helper;
+
+	if ($echo == 'N') {
+		return $wfx_helper->user_role($args);
+	} else {
+		echo $wfx_helper->user_role($args);
+	}
+
+} endif;
 
 /**
 * @since 0.913
 * @updated 0.92
-* Gets current page depth
+* Returns current page depth
 */
 if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; return $wfx_helper->page_depth($args); } endif;
 

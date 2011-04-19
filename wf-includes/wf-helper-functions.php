@@ -152,39 +152,22 @@ class wflux_helper {
 	/**
 	* Returns user role of logged in user
 	*
+	* NOTE: Parameters, echo or return now controlled in core Wonderflux functions.php
+	*
 	* @since 0.62
-	* @lastupdate 0.913
-	* @params $echo = 'echo'=>echos role, 'var'=>returns value to be used in PHP
+	* @lastupdate 0.92
 	* @return text string of user role: 'administrator', 'editor', 'author', 'contributor', subscriber'
 	*/
+	function wf_user_role() {
 
+		global $current_user;
+		get_currentuserinfo();
+		$theuser = new WP_User( $current_user->ID );
 
-	function wf_user_role($args) {
-
-	$defaults = array (
-		'echo' => 'N'
-	);
-
-	$args = wp_parse_args( $args, $defaults );
-	extract( $args, EXTR_SKIP );
-
-	global $current_user;
-	get_currentuserinfo();
-	$theuser = new WP_User( $current_user->ID );
-
-	if ( !empty( $theuser->roles ) && is_array( $theuser->roles ) ) {
-		foreach ( $theuser->roles as $role )
-		$theuserrole = $role;
-
-		if ($echo == 'Y') {
-			echo $theuserrole;
-		} elseif ($echo == 'var') {
+		if ( !empty( $theuser->roles ) && is_array( $theuser->roles ) ) {
+			foreach ( $theuser->roles as $role )
+			$theuserrole = $role;
 			return $theuserrole;
-		} else {
-			// Fallback - just return, same as 'var', so no parameters supplied RETURNS the value as default as this is the way it will be used most of the time
-			return $theuserrole;
-		}
-
 		}
 
 	}
@@ -224,8 +207,6 @@ class wflux_helper {
 				$parent_id = $page->post_parent;
 				$depth++;
 			}
-			//if ($echo =='Y') { echo $depth+1; }
-			//else { return $depth+1; }
 
 			return $depth;
 

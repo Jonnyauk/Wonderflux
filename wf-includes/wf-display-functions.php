@@ -767,7 +767,7 @@ class wflux_display {
 
 /**
 * @since 0.85
-* @updated 0.992
+* @updated 0.92
 * Extra core display functions that are for theme designers
 */
 class wflux_display_extras {

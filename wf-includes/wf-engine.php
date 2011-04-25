@@ -150,7 +150,7 @@ add_action('get_header','wflux_capacitor_display', 1);
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 0.92
 * Creates all Wonderflux display functions
 */
 class wflux_display_all {
@@ -191,7 +191,7 @@ class wflux_display_all {
 	function default_layout($args){ $this->wflux_display_code_do->wf_default_layout($args); }
 
 	// EX Display functions - these are useful to theme designers
-	function excerpt($args){ $this->wflux_display_ex_do->wf_excerpt($args); } // TO TEST
+	function excerpt($args){ return $this->wflux_display_ex_do->wf_excerpt($args); } // TO TEST
 	function twitter_feed($args){ $this->wflux_display_ex_do->wf_twitter_feed($args); } // TEST PASSED
 	function perma_img($args){ $this->wflux_display_ex_do->wf_perma_img($args); } // TO TEST
 	function edit_meta($args){ $this->wflux_display_ex_do->wf_edit_meta($args); } // NEEDS MORE TESTING?

@@ -207,10 +207,27 @@ if ( !function_exists( 'wfx_css_close' ) ) : function wfx_css_close($args) { glo
 
 /**
 * @since 0.913
-* @updated 0.913
-* Creates an excerpt
+* @updated 0.92
+* Creates a clean excerpt
 */
-if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) { global $wfx; $wfx->excerpt($args); } endif;
+if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
+
+	$defaults = array (
+		'echo' => 'Y'
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	global $wfx;
+
+	if ($echo == 'Y') {
+		echo $wfx->excerpt($args);
+	} else {
+		return $wfx->excerpt($args);
+	}
+
+} endif;
 
 /**
 * @since 0.913

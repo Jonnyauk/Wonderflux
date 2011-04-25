@@ -767,7 +767,7 @@ class wflux_display {
 
 /**
 * @since 0.85
-* @updated 0.913
+* @updated 0.992
 * Extra core display functions that are for theme designers
 */
 class wflux_display_extras {
@@ -776,13 +776,14 @@ class wflux_display_extras {
 	/**
 	 * Function for displaying the excerpt with just a certain number of words
 	 * Can be used inside loop or custom wp_query
+	 * @return sanitised text string
 	 *
 	 * ARGUMENTS
 	 * $limit = Number of words. Default = '20'
 	 * $excerpt_end = String of characters after the end of the excerpt. Default '...'
 	 *
 	 * @since 0.85
-	 * @updated 0.893
+	 * @updated 0.92
 	 */
 	function wf_excerpt($args) {
 
@@ -796,8 +797,6 @@ class wflux_display_extras {
 
 		// Tidy up ready for use
 		$excerpt_end = wp_kses_data($excerpt_end, '');
-
-		// NOTE: No need for fail-safe if no excerpt, it pulls post content instead if there is no excerpt set.
 		$content = get_the_excerpt();
 
 		$excerpt = explode(' ', $content, ($limit+1));
@@ -810,10 +809,9 @@ class wflux_display_extras {
 		}
 		$excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
 
-		//Finally, check for any rogue spaces
-		$excerpt = trim($excerpt);
+		$excerpt = trim(wp_kses_data($excerpt, ''));
 
-		echo esc_attr($excerpt) . esc_attr($excerpt_end);
+		return esc_attr($excerpt) . esc_attr($excerpt_end);
 
 	}
 
@@ -1222,41 +1220,41 @@ class wflux_display_extras {
 		//$my_q_posts = new WP_Query(array('showposts' => '10'));
 		if ($my_q_posts->have_posts()) : while ($my_q_posts->have_posts()) : $my_q_posts->the_post();
 
-		// Containing div open
-		echo '<div class="' . esc_attr($boxclass) . ' get-post-'.get_the_ID().'">';
-
 			// Title
 			if ($title == 'Y') {
-				$titleoutput = '<div class="wf-mini-display-title">';
-				$titleoutput .= '<' . esc_attr($titlestyle) . '>';
-				if ($titlelink == 'Y') { $titleoutput .= '<a href="' . get_permalink() . '" title="'. get_the_title() .'">'; }
-				$titleoutput .= get_the_title();
-				if ($titlelink == 'Y') { $titleoutput .= '</a>'; }
-				$titleoutput .= '</' . esc_attr($titlestyle) . '>';
-				$titleoutput .= "\n";
-				$titleoutput .= '</div>';
-				echo $titleoutput;
+				$title_out = '<div class="wf-mini-display-title">';
+				$title_out .= '<' . esc_attr($titlestyle) . '>';
+				if ($titlelink == 'Y') { $title_out .= '<a href="' . get_permalink() . '" title="'. get_the_title() .'">'; }
+				$title_out .= get_the_title();
+				if ($titlelink == 'Y') { $title_out .= '</a>'; }
+				$title_out .= '</' . esc_attr($titlestyle) . '>';
+				$title_out .= "\n";
+				$title_out .= '</div>';
+			} else {
+				$title_out = '';
 			}
 
 			// Content
-			echo '<div class="' . esc_attr($contentclass) . '">';
-				echo "\n";
-				echo '<' . esc_attr($contentstyle) . '>';
-				$this->wf_excerpt('limit=' . $exerptlimit . '&excerpt_end=' . esc_attr($exerptend) . '');
-				echo '</' . esc_attr($contentstyle) . '>';
-				echo "\n";
-			echo '</div>';
+			$ex_out = '<div class="' . esc_attr($contentclass) . '">';
+			$ex_out .= "\n";
+			$ex_out .= '<' . esc_attr($contentstyle) . '>';
+			$ex_out .= $this->wf_excerpt('limit=' . $exerptlimit . '&excerpt_end=' . esc_attr($exerptend) . '');
+			$ex_out .= '</' . esc_attr($contentstyle) . '>';
+			$ex_out .= "\n";
+			$ex_out .= '</div>';
 
 			// More link
 			if ($morelink == 'Y') {
-				$morelinkoutput = '<p><a href="' . get_permalink() . '" title="' . esc_attr($morelinktext) . ' ' . get_the_title() . '" class="' . esc_attr($morelinkclass) . '">';
-				$morelinkoutput .= esc_attr($morelinktext);
-				$morelinkoutput .= '</a></p>';
-				echo $morelinkoutput;
+				$morelink_out = '<p><a href="' . get_permalink() . '" title="' . esc_attr($morelinktext) . ' ' . get_the_title() . '" class="' . esc_attr($morelinkclass) . '">';
+				$morelink_out .= esc_attr($morelinktext);
+				$morelink_out .= '</a></p>';
+			} else {
+				$morelink_out = '';
 			}
 
-		// Containing div close
-		echo '</div>';
+			echo '<div class="' . esc_attr($boxclass) . ' get-post-'.get_the_ID().'">';
+			echo $title_out . $ex_out . $morelink_out;
+			echo '</div>';
 
 		// LOOP END
 		endwhile; endif;

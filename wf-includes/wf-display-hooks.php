@@ -56,7 +56,7 @@ function wfmain_after_all_content() { do_action('wfmain_after_all_content'); }
 //////// After content and sidebars (inside main content div)
 // There is also a location specific one of these for each below
 // NOTE: If you want before the main content and remain inside the main content div, use wfmain_before_all_content() or wfmain_before_LOCATION_content()
-function wfmain_after_all_main_content() { do_action('wfmain_after_all_last_content'); }
+function wfmain_after_all_main_content() { do_action('wfmain_after_all_main_content'); }
 
 //////// LOCATION SPECIFIC MAIN CONTENT AREA HOOKS ////////
 

@@ -1082,7 +1082,7 @@ class wflux_display_extras {
 
 				$output .= '<li class="' . esc_attr($liclass) . '">';
 				$output .= esc_attr($userintro) . ' ';
-				$output .= $current_user->display_name . '</li>';
+				$output .= ucwords( $current_user->display_name ) . '</li>';
 
 			} elseif ( $username == 'N') {
 

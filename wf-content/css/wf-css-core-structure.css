@@ -1,10 +1,5 @@
 /* -- IMPORTANT - WONDERFLUX CSS -- */
 
-.container {
-
-/* Fixes bottom of containers so text doesn't screwup vertical spacing*/
-padding-bottom: 1px; margin-bottom: -1px; }
-
 /* Get rid of stupid outlines that ruin our design */
 
 a, a:active { outline: none; }

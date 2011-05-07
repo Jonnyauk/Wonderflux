@@ -178,23 +178,31 @@ class wflux_theme_core {
 
 		// Tidy up ready for use
 		if (is_numeric($depth) && $depth >= 0 && $depth <= 10) { $depth_out = $depth; } else { $depth_out = 0; }
-		$location_accept = array('site','main','header','footer');
+			$location_accept = array('site','main','header','footer','container-header','container-content','container-footer');
 		if ( in_array($location,$location_accept) ) {
 			switch ($location) {
 				case 'site' : $location_out = $location; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper'; break;
 				case 'main' : $location_out = $location; $open_hook = 'wfmain_before_wrapper'; $close_hook = 'wfmain_after_wrapper'; break;
 				case 'header' : $location_out = $location; $open_hook = 'wfheader_before_wrapper'; $close_hook = 'wfheader_after_wrapper'; break;
 				case 'footer' : $location_out = $location; $open_hook = 'wffooter_before_wrapper'; $close_hook = 'wffooter_after_wrapper'; break;
+				case 'container-header' : $location_out = $location; $open_hook = 'wfheader_before_content'; $close_hook = 'wfheader_after_content'; break;
+				case 'container-content' : $location_out = $location; $open_hook = 'wfmain_before_all_content'; $close_hook = 'wfmain_after_all_main_content'; break;
+				case 'container-footer' : $location_out = $location; $open_hook = 'wffooter_before_content'; $close_hook = 'wffooter_after_content'; break;
 				default : $location_out = 'site'; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper'; break;
 			}
 		} else {
+			// Fallback in all other cases
 			$location_out = 'site'; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper';
 		}
 
-		// Do it
 		for ($this->wfx_count_bg_divs=1; $this->wfx_count_bg_divs<=$depth; $this->wfx_count_bg_divs++) {
+
 			$this->wfx_count_bg_divs_hook = $location_out;
-			add_action( $open_hook, create_function( '', "echo '<div class=\"wrapper\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 2);
+
+			$wrapper_css = array('container-header','container-content','container-footer');
+			$css_class = in_array($location,$wrapper_css) ? 'container' : 'wrapper';
+
+			add_action( $open_hook, create_function( '', "echo '<div class=\"$css_class\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 2);
 			$wf_bgdiv_close = create_function('', 'echo "</div>";');
 			add_action($close_hook, $wf_bgdiv_close, 11);
 		}

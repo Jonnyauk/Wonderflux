@@ -216,6 +216,42 @@ class wflux_helper {
 
 	}
 
+	/**
+	* Get a custom field value for the main post being shown
+	*
+	* @params name - (string) - The name of the custom field - [NONE]
+	* @params empty - (string) - If there is no value in custom field, do you want an alternative value? - [NONE]
+	* @params escape - (Y/N) - Do you want the characters HTML escaped (so '<p>' becomes '&lt;p&gt;' - [N]
+	*
+	* @since 0.92
+	* @lastupdate 0.92
+	* @return custom field value, can be used inside and outside loop
+	*/
+	function wf_custom_field($args) {
+
+		$defaults = array (
+			'name' => '',
+			'empty' => '',
+			'escape' => 'N'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		wp_reset_query();
+		global $wp_query;
+		$this_postid = $wp_query->post->ID;
+
+		$name_clean = wp_kses_data($name, '');
+		$empty_clean = wp_kses_post($empty, '');
+		$value = get_post_meta($this_postid, $name_clean, true);
+
+		$output = ($value != '') ? $value : $empty_clean;
+
+		if ($escape == 'Y') { return esc_attr($output); } else { return $output; }
+
+	}
+
 
 }
 

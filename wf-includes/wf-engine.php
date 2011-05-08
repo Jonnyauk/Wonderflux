@@ -26,7 +26,7 @@ add_action('init','wflux_capacitor_helper', 1);
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 0.92
 * Creates all Wonderflux helper functions
 */
 class wflux_helper_all {
@@ -41,6 +41,7 @@ class wflux_helper_all {
 	function gt_part($args){ $this->wflux_helper_do->wf_get_template_part($args); }
 	function user_role($args){ return $this->wflux_helper_do->wf_user_role($args); }
 	function page_depth($args){ return $this->wflux_helper_do->wf_page_depth($args); }
+	function custom_field($args){ return $this->wflux_helper_do->wf_custom_field($args); }
 
 }
 

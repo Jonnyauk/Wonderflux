@@ -91,6 +91,30 @@ if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
 */
 if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; return $wfx_helper->page_depth($args); } endif;
 
+/**
+* @since 0.92
+* @updated 0.92
+* Returns custom field value
+*/
+if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args) {
+
+	$defaults = array (
+		'echo' => 'Y'
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	global $wfx_helper;
+
+	if ($echo == 'N') {
+		return $wfx_helper->custom_field($args);
+	} else {
+		echo $wfx_helper->custom_field($args);
+	}
+
+} endif;
+
 
 ////  2  //////////// DISPLAY FUNCTIONS
 

@@ -199,12 +199,13 @@ class wflux_theme_core {
 
 			$this->wfx_count_bg_divs_hook = $location_out;
 
-			$wrapper_css = array('container-header','container-content','container-footer');
-			$css_class = in_array($location,$wrapper_css) ? 'container' : 'wrapper';
+			$container_special = array('container-header','container-content','container-footer');
+			$container_type = in_array($location,$container_special) ? 'container' : 'wrapper';
 
-			add_action( $open_hook, create_function( '', "echo '<div class=\"$css_class\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 2);
+			add_action( $open_hook, create_function( '', "echo '<div class=\"$container_type\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 1);
+
 			$wf_bgdiv_close = create_function('', 'echo "</div>";');
-			add_action($close_hook, $wf_bgdiv_close, 11);
+			add_action($close_hook, $wf_bgdiv_close, 12);
 		}
 
 

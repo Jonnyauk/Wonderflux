@@ -222,7 +222,7 @@ class wflux_helper {
 	* @params name - (string) - The name of the custom field - [NONE]
 	* @params empty - (string) - If there is no value in custom field, do you want an alternative value? - [NONE]
 	* @params escape - (Y/N) - Do you want the characters HTML escaped (so '<p>' becomes '&lt;p&gt;' - [N]
-	*
+	* @params return_error - (Y/N) - Do you want something returned on search (is_wp_search) and 404 (is_wp_404) ? - [N]
 	* @since 0.92
 	* @lastupdate 0.92
 	* @return custom field value, can be used inside and outside loop

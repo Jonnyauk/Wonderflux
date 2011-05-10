@@ -232,23 +232,33 @@ class wflux_helper {
 		$defaults = array (
 			'name' => '',
 			'empty' => '',
-			'escape' => 'N'
+			'escape' => 'N',
+			'return_error' => 'N'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		wp_reset_query();
-		global $wp_query;
-		$this_postid = $wp_query->post->ID;
+		$return_error_valid = array('N','Y');
+		$return_error = in_array($return_error,$return_error_valid) ? 'N' : 'Y';
 
-		$name_clean = wp_kses_data($name, '');
-		$empty_clean = wp_kses_post($empty, '');
-		$value = get_post_meta($this_postid, $name_clean, true);
+		// Detect and optionally return useful value if no chance of custom field being here
+		if (is_search() && $return_error == 'N' ) {
+			return 'is_wp_search';
+		} elseif (is_404() && $return_error == 'N' ) {
+			return 'is_wp_404';
+		} else {
+			// We have something to query!
+			wp_reset_query();
+			global $wp_query;
+			$this_postid = $wp_query->post->ID;
+			$name_clean = wp_kses_data($name, '');
+			$empty_clean = wp_kses_post($empty, '');
+			$value = get_post_meta($this_postid, $name_clean, true);
+			$output = ($value != '') ? $value : $empty_clean;
 
-		$output = ($value != '') ? $value : $empty_clean;
-
-		if ($escape == 'Y') { return esc_attr($output); } else { return $output; }
+			if ($escape == 'Y') { return esc_attr($output); } else { return $output; }
+		}
 
 	}
 

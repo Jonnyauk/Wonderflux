@@ -129,7 +129,7 @@ if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language(
 /**
 * @since 0.71
 * @updated 0.913
-* IMPORTANT Builds the head of the document, including setting up wp_head after wf_head stuff has executed
+* IMPORTANT Builds the head of the document
 */
 if ( !function_exists( 'wfx_display_head_top' ) ) : function wfx_display_head_top($args) { global $wfx; $wfx->head_top($args); } endif;
 
@@ -178,8 +178,7 @@ if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head
 /**
 * @since 0.71
 * @updated 0.913
-* VERY IMPORTANT - Runs last on wf_head_meta to close head section
-* - Inserts standard WordPress wp_head()
+* VERY IMPORTANT - Runs last on wf_head_meta to close head section, inserts core WordPress wp_head() and WordPress dynamic body class (phyew!)
 */
 if ( !function_exists( 'wfx_display_head_close' ) ) : function wfx_display_head_close($args) { global $wfx; $wfx->head_close($args); } endif;
 

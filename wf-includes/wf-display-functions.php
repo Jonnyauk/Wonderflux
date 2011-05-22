@@ -1130,7 +1130,7 @@ class wflux_display_extras {
 			'liclass' => 'wf-edit-meta-links',
 			'div' => 'N',
 			'divclass' => 'wf-edit-meta-box',
-			'wpadminbar' => 'N'
+			'wpadminbar' => 'Y'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1366,7 +1366,7 @@ class wflux_display_extras {
 			'logouttip' => 'Logout of site',
 			'loginredirect' => 'dashboard',
 			'logoutredirect' => 'current',
-			'wpadminbar' => 'N'
+			'wpadminbar' => 'Y'
 		);
 
 		$args = wp_parse_args( $args, $defaults );

@@ -962,7 +962,7 @@ class wflux_display_extras {
 				$this_update = preg_replace('/'.$user.':/', '', $this_update, 1);
 			}
 
-			if ($tweet_links == 'Y') {
+			if ($active_urls == 'Y') {
 				// Parse and setup link URLs
 				$this_update = preg_replace( "/(([[:alnum:]]+:\/\/)|www\.)([^[:space:]]*)"."([[:alnum:]#?\/&=])/i", "<a href=\"\\1\\3\\4\">"."\\1\\3\\4</a>", $this_update);
 			}

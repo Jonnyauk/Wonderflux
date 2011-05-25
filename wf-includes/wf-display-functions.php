@@ -11,24 +11,33 @@ class wflux_display_code extends wflux_data {
 	* Builds the start of the head with doc type declaration
 	*
 	* @since 0.63
-	* @updated 0.913
+	* @updated 0.92
 	*
 	* @param $doctype (limited variable string) : Document type : 'transitional' (default), 'strict', 'frameset', '1.1', '1.1basic', 'html5'
 	* @param $lang (user variable string) : Alphabetic International language code : 'en' (default), USER INPUT
-	* @param $content (user variable string) : Document content : 'html' (default), USER INPUT
+	* @param $content : Document content : 'html' (default)
 	* @param $charset (user variable string) : Character encoding : 'utf8' (default), USER INPUT
 	*/
 	function wf_head_top($args) {
 
 		$defaults = array (
-			'doctype' => 'strict',
-			'lang' => 'en',
+			'doctype' => $this->wfx_doc_type,
+			'lang' => $this->wfx_doc_lang,
 			'content' => 'html',
-			'charset' => 'UTF-8'
+			'charset' => $this->wfx_doc_charset
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
+
+		// Language code
+		$lang_length = strlen( trim($lang) );
+		if ($lang_length < 6) {
+			$lang_output = strtolower(wp_kses($lang, ''));
+		} else {
+			//Invalid - set sensible default
+			$lang_output = 'en';
+		}
 
 		//TODO: SET FILTERS HERE READY FOR CLEANSING USING FUNCTIONS BELOW
 
@@ -66,34 +75,27 @@ class wflux_display_code extends wflux_data {
 			break;
 		}
 
-		// If its HTML 5 it's a simple output
+		// Character set
+		$charset_output = wp_kses($charset, '');
+
+		// If its HTML 5 it's simple output
 		if ($doctype == 'html5') {
 
-			echo '<!DOCTYPE HTML>' . "\n";
+			$output = '<!DOCTYPE html>' . "\n";
+			$output .= '<html lang="'.$lang_output.'">' . "\n";
+			$output .= '<head>' . "\n";
+			$output .= '<meta charset="'.$charset_output.'" />' . "\n";
 
 		} else {
 
-			// Language code
-			$lang_length = strlen($lang);
-			if ($lang_length == 2) {
-				$lang_output = strtolower(wp_kses($lang, ''));
-			} else {
-				//Invalid user input - set a sensible default
-				$lang_output = 'en';
-			}
-
 			// Content type
 			$content_length = strlen($content);
-			//TODO: R&D all different content types
 			if ($content_length <= 4) {
 				$content_output = strtolower(wp_kses($content, ''));
 			} else {
-				//Invalid user input - set a sensible default
+				//Invalid input - set a sensible default
 				$content_output = 'html';
 			}
-
-			// Character set
-			$charset_output = wp_kses($charset, '');
 
 			// Setup default strings not used in HTML 5 spec
 			$common_1 = 'html PUBLIC "-//W3C//DTD XHTML ';
@@ -106,8 +108,9 @@ class wflux_display_code extends wflux_data {
 			$output .="\n";
 			$output .= '<meta http-equiv="Content-Type" content="text/'.$content_output.'; charset='.$charset_output.'" />';
 			$output .="\n";
-			echo $output;
 		}
+
+		echo $output;
 	}
 
 
@@ -1533,6 +1536,5 @@ class wflux_display_extras {
 	}
 
 }
-
 
 ?>

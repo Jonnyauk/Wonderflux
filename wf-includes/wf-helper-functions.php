@@ -6,6 +6,9 @@ class wflux_data {
 
 	//Size vars
 	protected $wfx_db_display; // Array of core Wonderflux display options
+	protected $wfx_doc_type; // Document type
+	protected $wfx_doc_lang; // Document type
+	protected $wfx_doc_charset; // Document type
 	protected $wfx_width; // Width of main site container
 	protected $wfx_position; // Position of main site container
 	protected $wfx_columns; // Number of columns
@@ -14,8 +17,54 @@ class wflux_data {
 
 	function __construct() {
 
+		// Main Wonderflux display array
 		$this->wfx_db_display = get_option('wonderflux_display');
-		// Setup and clean variables ready to use
+
+		// DOCTYPE - 'transitional','strict','frameset','1.1','1.1basic'
+		$this->wfx_doc_type = $this->wfx_db_display['doc_type'];
+		// Validate
+		$wfx_doc_type_out = 'transitional';
+		$wfx_doc_type_accept = array('transitional','strict','frameset','1.1','1.1basic','html5');
+		if ( in_array($this->wfx_doc_type,$wfx_doc_type_accept) ) { $wfx_doc_type_out = $this->wfx_doc_type; }
+		$this->wfx_doc_type = $wfx_doc_type_out;
+
+		// LANGUAGE CODE
+		$this->wfx_doc_lang = $this->wfx_db_display['doc_lang'];
+		// Validate
+		$wfx_doc_lang_out = 'en';
+		// Too many language codes to validate against - lets just check for length
+		if ( $this->wfx_doc_lang != '' ) {
+			if (strlen(trim($this->wfx_doc_lang)) == 2 ) { $wfx_doc_lang_out = $this->wfx_doc_lang; }
+		}
+		$this->wfx_doc_lang = $wfx_doc_lang_out;
+
+		// CHARACTER SET
+		$this->wfx_doc_charset = $this->wfx_db_display['doc_charset'];
+		// Validate
+		$wfx_doc_charset_out = 'UTF-8';
+		if ($this->wfx_doc_charset !='') {
+
+			// Simple check - The W3C recommends the use of UTF-8 wherever possible
+			// UTF-8 can be used for all languages and is the recommended charset on the Internet.
+			if ($this->wfx_doc_charset == 'UTF-8') {
+				$wfx_doc_charset_out = $this->wfx_doc_charset;
+			} else {
+				// Deeper check
+				$pos_utf = strpos($this->wfx_doc_charset, 'UTF');
+				if ($pos_utf === false) {
+				    // Even deeper check
+				    $pos_iso = strpos($this->wfx_doc_charset, 'ISO');
+			    	if ($pos_iso === false) {
+			    		// Silence is golden
+			    	} else {
+			    		$wfx_doc_charset_out = $this->wfx_doc_charset;
+			    	}
+				} else {
+					$wfx_doc_charset_out = $this->wfx_doc_charset;
+				}
+			}
+		}
+		$this->wfx_doc_charset = $wfx_doc_charset_out;
 
 		// CONTAINER SIZE - 400 to 2000
 		$this->wfx_width = $this->wfx_db_display['container_w'];
@@ -45,7 +94,6 @@ class wflux_data {
 		$wfx_columns_width_out = 30;
 		if (is_numeric ($this->wfx_columns_width) ) { if ($this->wfx_columns_width >= 10 && $this->wfx_columns_width <= 1000) {$wfx_columns_width_out = $this->wfx_columns_width;} }
 		$this->wfx_columns_width = $wfx_columns_width_out;
-
 
 		// SIDEBAR PRIMARY POSITION - left, right
 		$this->wfx_sidebar_primary_position = $this->wfx_db_display['sidebar_p']; // Primary sidebar position

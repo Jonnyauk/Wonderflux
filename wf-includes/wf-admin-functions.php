@@ -267,11 +267,6 @@ class wflux_admin {
 	*/
 	function wf_contextual_help($contextual_help, $screen_id, $screen) {
 
-		global $wflux_core_admin_page_main;
-		global $wflux_core_admin_page_style;
-		global $wflux_core_admin_page_seo;
-		global $wflux_core_admin_page_cms;
-
 		$generic_help = '<p>';
 		$generic_help .= __( 'The Wonderflux Codex - the development reference to help you build Wonderflux child themes smarter and faster will be launching shortly!', 'wonderflux' );
 		$generic_help .= '</p>';
@@ -279,15 +274,16 @@ class wflux_admin {
 		$generic_help .= __( 'In the meantime...', 'wonderflux' );
 		$generic_help .= '</h3>';
 		$generic_help .= '<p>';
-		$generic_help .= __( 'Get involved in the Google code project where you can suggest improvements, report bugs and help us make a really great theme framework for everyone to use!', 'wonderflux' );
+		$generic_help .= __( 'Get involved in the ', 'wonderflux' );
+		$generic_help_dev_link = __( 'Google code project', 'wonderflux' );
+		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/" title="'.$generic_help_dev_link.'">'.$generic_help_dev_link.'</a>';
+		$generic_help .= __( ' where you can suggest improvements, report bugs and help make a really great theme framework for everyone to use!', 'wonderflux' );
 		$generic_help .= '</p>';
 
 		switch ($screen_id) {
-			case $wflux_core_admin_page_main : $this_help = '<h3>' . __( 'Wonderflux help - Main settings', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case $wflux_core_admin_page_style : $this_help = '<h3>' . __( 'Wonderflux help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case $wflux_core_admin_page_seo : $this_help = '<h3>' . __( 'Wonderflux help - Search Engine Optimisation', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case $wflux_core_admin_page_cms : $this_help = '<h3>' . __( 'Wonderflux help - Content Management System', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			default : $this_help = $generic_help; break;
+			case 'toplevel_page_wonderflux' : $this_help = '<h3>' . __( 'Wonderflux help - Main settings', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . __( 'Wonderflux help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_system' : $this_help = '<h3>' . __( 'Wonderflux help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
 		}
 
 		return $this_help;

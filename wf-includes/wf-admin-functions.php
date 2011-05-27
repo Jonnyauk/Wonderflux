@@ -22,13 +22,9 @@ class wflux_admin {
 	function wf_add_pages(){
 		global $wflux_core_admin_page_main;
 		global $wflux_core_admin_page_style;
-		//global $wflux_core_admin_page_seo;
-		//global $wflux_core_admin_page_cms;
 		global $wflux_core_admin_page_config;
 		$wflux_core_admin_page_main = add_menu_page('Wonderflux main options', 'Wonderflux', 'administrator', 'wonderflux', array($this, 'wf_page_core'));
 		$wflux_core_admin_page_style = add_submenu_page( 'wonderflux', 'Wonderflux Style Lab', 'Style Lab', 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
-		//$wflux_core_admin_page_seo = add_submenu_page( 'wonderflux', 'Wonderflux SEO Optimisation', 'SEO optimise', 'administrator', 'wonderflux_seo', array($this, 'wf_page_seo'));
-		//$wflux_core_admin_page_cms = add_submenu_page( 'wonderflux', 'Wonderflux CMS', 'CMS control', 'administrator', 'wonderflux_cms', array($this, 'wf_page_cms'));
 		$wflux_core_admin_page_cms = add_submenu_page( 'wonderflux', 'Wonderflux System Information', 'System Information', 'administrator', 'wonderflux_system', array($this, 'wf_page_system'));
 		//TODO: If user is superadmin ID, reveal advanced config menu
 	}
@@ -37,8 +33,6 @@ class wflux_admin {
 	// Add content to admin areas
 	function wf_page_core() { $this->wf_page_build('index', 'Wonderflux Home', 'core'); }
 	function wf_page_stylelab() { $this->wf_page_build('themes', 'Wonderflux Stylelab', 'style'); }
-	//function wf_page_seo() { $this->wf_page_build('plugins', 'Wonderflux Search Engine Optimiser', 'seo'); }
-	//function wf_page_cms() { $this->wf_page_build('options-general', 'Wonderflux Content Management Options', 'cms'); }
 	function wf_page_system() { $this->wf_page_build('options-general', 'Wonderflux System Information', 'system'); }
 
 
@@ -77,8 +71,6 @@ class wflux_admin {
 
 			case('Wonderflux Home'): $tab1=TRUE; break;
 			case('Wonderflux Stylelab'): $tab2=TRUE; break;
-			case('Wonderflux Search Engine Optimiser'): $tab3=TRUE; break;
-			case('Wonderflux Content Management Options'): $tab4=TRUE; break;
 			case('Wonderflux System Information'): $tab5=TRUE; break;
 			default: $tab1=TRUE; break;
 
@@ -95,12 +87,6 @@ class wflux_admin {
 		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_stylelab" class="nav-tab';
 		if (isset($tab2)) { echo $thistab_highlight; };
 		echo'">' . esc_attr('Stylelab', 'wonderflux') . '</a>';
-		/*echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_seo" class="nav-tab';
-		if (isset($tab3)) { echo $thistab_highlight; };
-		echo'">' . esc_attr('SEO', 'wonderflux') . '</a>';
-		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_cms" class="nav-tab';
-		if (isset($tab4)) { echo $thistab_highlight; };
-		echo'">' . esc_attr('CMS', 'wonderflux') . '</a>';*/
 		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_system" class="nav-tab';
 		if (isset($tab5)) { echo $thistab_highlight; };
 		echo'">' . esc_attr('System', 'wonderflux') . '</a>';

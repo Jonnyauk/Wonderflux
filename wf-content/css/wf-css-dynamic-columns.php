@@ -1,6 +1,14 @@
 <?php
-
 header("Content-type: text/css");
+$desc = '/**
+ * Wonderflux theme framework dynamic column core
+ * http://wonderflux.com
+ *
+ * @package Wonderflux
+ * @since Wonderflux 0.1
+ */
+'."\n";
+echo $desc;
 
 //TODO: This needs building into functions
 

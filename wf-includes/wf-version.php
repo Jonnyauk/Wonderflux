@@ -24,6 +24,6 @@ define( 'WF_WORDPRESS_OPTI', '3.0.5' );
  *
  * @global string $wp_version
  */
-define( 'WF_VERSION', '0.92 ALPHA' );
+define( 'WF_VERSION', '0.93 ALPHA' );
 
 ?>

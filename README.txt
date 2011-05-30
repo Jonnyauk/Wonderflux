@@ -1,9 +1,9 @@
 !! WARNING !!
 
-You have downloaded an Alpha development version of the working source code 
+You have downloaded an Alpha development version of the working source code
 from the trunk of the development code! THIS MAY NOT BE 100% STABLE!!
 
-If you are using this for development purposes, You should probably make sure 
+If you are using this for development purposes, You should probably make sure
 you have the latest version available from:
 
 http://code.google.com/p/wonderflux-girder-theme/source/checkout
@@ -21,7 +21,7 @@ THIS VERSION IS FOR TESTING AND FEEDBACK ONLY, AND ALTHOUGH EVERYTHING
 WILL PROBABLY BE FINE YOU PROBABLY SHOULD NOT RUN THIS VERSION ON LIVE SITES!
 
 There may also be problems with child themes, for testing compatibility we run
-the trunk version of WFX Girder theme, which is developed to use the latest 
+the trunk version of WFX Girder theme, which is developed to use the latest
 code, structure and functionality in development.
 
 http://wonderflux-girder-theme.googlecode.com
@@ -29,7 +29,7 @@ http://wonderflux-girder-theme.googlecode.com
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION 0.92 ALPHA
+VERSION 0.93 ALPHA DEVELOPMENT VERSION
 
 Copyright (C) 2011 Jonny Allbut - Jonnya Freelance Creative www.jonnya.net
 
@@ -54,11 +54,12 @@ You may also view the license online at http://www.gnu.org/licenses/gpl-2.0.html
 Welcome to the beta testing phase of Wonderflux
 An advanced creative Open Source theme framework for WordPress.
 
-Keep informed on Wonderflux development:
-- Following @Wonderflux on Twitter
-- Subscribing to the beta RSS feed: http://feeds.feedburner.com/wonderflux-beta-testing
-- Subscribing to beta mailing list at: http://feedburner.google.com/fb/a/mailverify?uri=wonderflux-beta-testing
-- Drop by http://www.wonderflux.com
+UPGRADE NOTES
+
+IMPORTANT - BEFORE YOU UPGRADE ensure you have properly checked over the
+change notes. some functionality has changed a-little and you should always
+make sure your custom Wonderflux child theme is compatible with the latest
+release on Wonderflux BEFORE upgrading any live site!
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -79,7 +80,12 @@ everyone to use, for free, to make amazing WordPress sites!
 Drop by:
 http://wonderflux-framework.googlecode.com/
 
-= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+Keep informed on Wonderflux development:
+- Following @Wonderflux on Twitter
+- Subscribing to the beta RSS feed: http://feeds.feedburner.com/wonderflux-beta-testing
+- Subscribing to beta mailing list at: http://feedburner.google.com/fb/a/mailverify?uri=wonderflux-beta-testing
+Drop by http://www.wonderflux.com
+
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 !! WARNING !!
@@ -87,11 +93,7 @@ http://wonderflux-framework.googlecode.com/
 THIS IS A PRE-RELEASE BETA - there is still a-lot of cool stuff to build!
 Although Wonderflux functions correctly, it currently lacks some
 elements and refinements that can easily be added just like any other
-WordPress theme - for instance menus, custom post thumbnails.
-
-IT IS NOT RECOMMENDED FOR ANY SORT OF MISSION CRITICAL LIVE
-PRODUCTION WEBSITES, and is provided purely for your feedback
-and hopefully development contributions.
+WordPress theme - for instance menus and custom post thumbnails.
 
 Although there are big plans for Wonderflux options and controls
 for less experienced theme designers and users, the current
@@ -100,14 +102,11 @@ functions.php file and style.css file. This structure will remain
 in future versions for developers, but almost everything will move
 to simple options panels within WordPress admin area.
 
-Also, at version 0.92 there is likely to be a change in the PHP
-class/function structure, along with full support and optimisation
-for WordPress 3.1. So some things are going to change... it is a
+In the next release some things are going to change... it is a
 beta after-all! This should be just a simple search and replace
 on your source code for reference to display function calls
 and will be fully documented.
 
-= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 QUICK START REFERENCE
@@ -206,6 +205,7 @@ OTHER REFERENCE
 
 Note the use of PHP layout display functions to setup CSS layout divs in WFX Girder.
 They use a special definitions such as 'half' and 'quarter' to make layout easier.
+By using these functions you are able to create layouts that dynamically resize.
 
 You will find reference to all hooks in themes/wonderflux/wf-includes/wf-display-hooks.php
 
@@ -218,52 +218,18 @@ rules and references apply - http://www.blueprintcss.org/ - NOTE this is likely 
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+v0.92 CHANGE NOTES
+
+43 patches have been applied to the previous release upto revision 91!
+
+Along with various bug fixes and internal code optimisation, some highlights of Wonderflux v0.92 include:
+
+- New controls for complete document output control (including full HTML5 support), including language, character type and encoding.
+- Much deeper background divs control for creative design effects, now inside containers for header, main content and footer background divs.
+- JQuery - advanced function for using JQuery, including CDN and custom hosting support.
+- JQuery Cycle - advanced configurable function to build rotating banners and other elements.
+- Moreganic Tabs - JQuery tab script.
+
 CHANGE NOTES
 
-We just show the last two versions, all previous reference can be found at
-http://code.google.com/p/wonderflux-framework/updates/list
-
-WONDERFLUX VERSION 0.913 - < DATE HERE > 2011
-
-< 0.913 REVISIONS HERE >
-
-WONDERFLUX VERSION 0.912 - Jan 23th 2011
-
-r26-r28 - readme.txt updates.
-
-r25 (submitted by Lee Willis) http://code.google.com/p/wonderflux-framework/source/detail?r=25
-- Fix errors from uninitialised variables
-
-r24 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=24
-- Escape output in widget building function.
-- Complete parameter documentation on function.
-
-r23 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=23
-- Versioning update for trunk alpha and small typos.
-
-r22 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=22
-- Fixed bug in Twitter display function - incorrect position of closing tag.
-
-r21 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=21
-- Move wf-theme-core.php call here so can be removed from child themes.
-- Replace require() with core WordPress load_template()
-
-r20 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=20
-- Tidy core functions.
-- Remove redundant code.
-- Improve comments at top.
-- Replace require() with core WordPress load_template()
-
-r19 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=19
-- Improve the data sanitisation function by only saving specific values in layout.
-options array and not allow any other junk.
-
-r18 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=18
-- New validation function when saving core Wonderflux layout options which was
-temporarily removed during beta testing. Uses whitelist technique - more fiddly
-to maintain but stops any funny business!
-
-r17 (committed by jonnya) http://code.google.com/p/wonderflux-framework/source/detail?r=17
-- Fixes bug in version check.
-
-r14-r16 - trunk version number updates
+Full development track can be found at http://code.google.com/p/wonderflux-framework/updates/list

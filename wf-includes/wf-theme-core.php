@@ -5,7 +5,7 @@
 /**
 *
 * @since 0.891
-* @updated 0.92
+* @updated 0.921
 *
 * Core template functions
 *
@@ -35,6 +35,7 @@ class wflux_theme_core {
 		$this->js_cycle_host = 'wonderflux';
 		$this->js_cycle_version = 'normal';
 		$this->js_cycle_config = 'wonderflux';
+		$this->js_cycle_location = 'footer';
 
 	}
 
@@ -328,7 +329,7 @@ class wflux_theme_core {
 	* @param $location Where you want your JQuery inserted in the code - Default = 'footer' ['header,'footer']
 	*
 	* @since 0.92
-	* @updated 0.92
+	* @updated 0.921
 	*/
 	function wf_js_cycle($args) {
 
@@ -341,7 +342,7 @@ class wflux_theme_core {
 				'jquery_host' => $this->js_jquery_host,
 				'jquery_version' => $this->js_jquery_version,
 				'jquery_key' => $this->google_api_key,
-				'location' => 'footer'
+				'location' => $this->js_cycle_location
 			);
 
 			$args = wp_parse_args( $args, $defaults );
@@ -354,9 +355,10 @@ class wflux_theme_core {
 			$this->js_jquery_host = wp_kses_data($jquery_host, '');
 			$this->js_jquery_version = wp_kses_data($jquery_version, '');
 			$this->google_api_key = wp_kses_data($jquery_key, '');
+			$this->js_cycle_location = wp_kses_data($location, '');
 
 			//Enque and insert JQuery if required
-			$this->wf_js_jquery('host='.$this->js_jquery_host.'&version='.$this->js_jquery_version.'&key='.$this->google_api_key.'');
+			$this->wf_js_jquery('host='.$this->js_jquery_host.'&version='.$this->js_jquery_version.'&key='.$this->google_api_key.'&location='.$this->js_cycle_location);
 
 			//Enque and insert Cycle
 			if ($location == 'footer') { $location_out = 'wf_footer'; } else { $location_out = 'wf_head_meta'; }

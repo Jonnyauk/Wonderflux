@@ -1542,9 +1542,13 @@ class wflux_display_extras {
 	 * @param element - The containing overall XHTML element, if blank, no containing element (setup your own in your theme) [p]
 	 * @param start - The opening text string [Page ]
 	 * @param seperator - The string that seperates the two numbers [ of ]
-	 * @param current_span - CSS span class around current page number [page_num_current]
-	 * @param total_span - CSS span class around total page number [page_num_total]
+	 * @param current_span - CSS span class around current page number (set to blank to remove span) [page_num_current]
+	 * @param total_span - CSS span class around total page number (set to blank to remove span) [page_num_total]
 	 * @param always_show - No output is shown if there is only 1 page of results, setting this to 'Y' will make the counter always show (ie page 1 of 1) [N]
+	 * @param navigation - Display next and previous navigation either side of the page display [N]
+	 * @param navigation_span - CSS span class around current page number (set to blank to remove span) [page_num_nav]
+	 * @param previous - The string that represents the previous link (and space) [&lt; ]
+	 * @param next - The string that represents the next link (and space) [ &gt;]
 	 *
 	 * @since 0.93
 	 * @updated 0.93
@@ -1557,7 +1561,11 @@ class wflux_display_extras {
 			'seperator' => ' of ',
 			'current_span' => 'page_num_current',
 			'total_span' => 'page_num_total',
-			'always_show' => 'N'
+			'always_show' => 'N',
+			'navigation' => 'N',
+			'navigation_span' => 'page_num_nav',
+			'previous' => '&lt; ',
+			'next' => ' &gt;'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1570,12 +1578,15 @@ class wflux_display_extras {
 		$current_span_clean = ($current_span == ' of ') ? $current_span : wp_kses_data($current_span, '');
 		$total_span_clean = ($total_span == ' of ') ? $total_span : wp_kses_data($total_span, '');
 		$always_show = ($always_show == 'N') ? $always_show : 'Y';
-
-		// If someone has removed the span CSS class definition, dont render to screen
+		$navigation_clean = ($total_span == 'N') ? $navigation : wp_kses_data($navigation, '');
+		$navigation_span_clean = ($total_span == 'page_num_nav') ? $navigation_span : wp_kses_data($navigation_span, '');
+		$previous_clean = ($previous == '&lt; ') ? $previous : wp_kses_data($previous, '');
+		$next_clean = ($next == ' &gt;') ? $next : wp_kses_data($next, '');
+		// If someone has removed the span CSS classes definition, dont render to screen
 		$current_span_clean = (!$current_span_clean == '') ? '<span class="'.$current_span_clean.'">' : '';
 		$current_span_clean_close = (!$current_span_clean == '') ? '</span>' : '';
-
-		// If someone has removed the span CSS class definition, dont render to screen
+		$navigation_span_clean = ($navigation_span_clean == '') ? '<span class="'.$navigation_span_clean.'">' : '';
+		$navigation_span_clean_close = (!$navigation_span_clean == '') ? '</span>' : '';
 		$total_span_clean = (!$total_span_clean == '') ? '<span class="'.$total_span_clean.'">' : '';
 		$total_span_clean_close = (!$current_span_clean == '') ? '</span>' : '';
 
@@ -1588,10 +1599,12 @@ class wflux_display_extras {
 		$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
 
 		$output = ($element_clean == '') ? '' : '<'.$element_clean.'>';
+		$output .= ($navigation == 'N') ? '' : $navigation_span_clean.get_previous_posts_link('&lt; ',0).$navigation_span_clean_close;
 		$output .= esc_html($start_clean);
 		$output .= $current_span_clean.$current.$current_span_clean_close;
 		$output .= esc_html($seperator_clean);
 		$output .= $total_span_clean.$total.$total_span_clean_close;
+		$output .= ($navigation == 'N') ? '' : get_next_posts_link(' &gt;',0);
 		$output .= ($element_clean == '') ? '' : '</'.$element_clean.'>';
 
 		// Always show results, even if just one page

@@ -26,5 +26,7 @@ define('WF_ADMIN_ACCESS', serialize(array('1','4')));
 define('WF_ADMIN_ACCESS', serialize(array('1')));
 - For a single WordPress role (can use custom defined roles too)
 define('WF_ADMIN_ACCESS', 'administrator');
+- To remove the menus for all users
+define('WF_ADMIN_ACCESS', 'none');
 */
 ?>

@@ -278,28 +278,16 @@ class wflux_admin {
 
 	function wf_admin_menus() {
 
-		$input = @unserialize(WF_ADMIN_ACCESS);
-
-		// Check against serialised data
-		if ($input === false) {
-
-			// Must be single user role supplied
-			if ( WF_ADMIN_ACCESS == wfx_user_role('') && current_user_can('manage_options') ) {
-				// Build admin menus
-				add_action('admin_menu', array($this, 'wf_add_pages'));
-				// Setup options
-				add_action( 'admin_init', array($this, 'wf_register_settings'));
-				// Setup help
-				add_filter('contextual_help', array($this, 'wf_contextual_help'), 10, 3);
-			}
-
+		if ( WF_ADMIN_ACCESS == 'none' ) {
+			// Silence is golden
 		} else {
 
-			// Must be array of user ID's supplied
-			global $current_user;
-			get_currentuserinfo();
-			foreach ($input as $key=>$user_id) {
-				if ( $user_id == $current_user->ID && current_user_can('manage_options') ) {
+			$input = @unserialize(WF_ADMIN_ACCESS);
+				// Check against serialised data
+			if ($input === false) {
+
+				// Must be single user role supplied
+				if ( WF_ADMIN_ACCESS == wfx_user_role('') && current_user_can('manage_options') ) {
 					// Build admin menus
 					add_action('admin_menu', array($this, 'wf_add_pages'));
 					// Setup options
@@ -307,8 +295,24 @@ class wflux_admin {
 					// Setup help
 					add_filter('contextual_help', array($this, 'wf_contextual_help'), 10, 3);
 				}
-			}
 
+			} else {
+
+				// Must be array of user ID's supplied
+				global $current_user;
+				get_currentuserinfo();
+				foreach ($input as $key=>$user_id) {
+					if ( $user_id == $current_user->ID && current_user_can('manage_options') ) {
+						// Build admin menus
+						add_action('admin_menu', array($this, 'wf_add_pages'));
+						// Setup options
+						add_action( 'admin_init', array($this, 'wf_register_settings'));
+						// Setup help
+						add_filter('contextual_help', array($this, 'wf_contextual_help'), 10, 3);
+					}
+				}
+
+			}
 		}
 
 	}

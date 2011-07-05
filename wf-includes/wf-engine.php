@@ -9,6 +9,39 @@ if (is_admin()) {
 }
 
 
+//// ADMIN FUNCTIONS
+
+
+/**
+* @since 0.93
+* @updated 0.93
+* Sets up all Wonderflux admin functions
+*/
+function wflux_capacitor_admin() {
+	global $wfx_admin;
+	$wfx_admin = new wflux_admin_all;
+}
+add_action('auth_redirect','wflux_capacitor_admin', 1);
+
+
+/**
+* @since 0.93
+* @updated 0.93
+* Creates relevant Wonderflux admin functions
+*/
+class wflux_admin_all {
+
+	static $wflux_admin_do;
+
+	function __construct(){
+		$this->wflux_admin_do = new wflux_admin;
+	}
+
+	function admin_menus(){ $this->wflux_admin_do->wf_admin_menus(); }
+
+}
+
+
 //// HELPER FUNCTIONS
 
 

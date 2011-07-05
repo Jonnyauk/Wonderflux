@@ -8,7 +8,8 @@
  * 3 - Theme display functions
  * 4 - Theme configuration functions
  * 5 - Script support functions
- * 6 - Wonderflux Core
+ * 6 - Admin functions
+ * 7 - Wonderflux Core
  *
  * DON'T HACK ME!! You should not modify the Wonderflux theme framework to avoid issues with updates in the future
  * You have lots of ways to manipulate this from your child theme! http://codex.wordpress.org/Child_Themes
@@ -323,6 +324,7 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
 
 } endif;
 
+
 //  4  //////////// THEME CONFIGURATION
 
 
@@ -369,7 +371,18 @@ if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args) { global $w
 if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args) { global $wfx_theme; $wfx_theme->cycle($args); } endif;
 
 
-//  6  //////////// WONDERFLUX CORE
+//  6  //////////// ADMIN FUNCTIONS
+
+
+/**
+* @since 0.93
+* @updated 0.93
+* Control the display of Wonderflux admin menus
+*/
+if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { global $wfx_admin; $wfx_admin->admin_menus(); } endif;
+
+
+//  7  //////////// WONDERFLUX CORE
 
 
 // For When Wonderflux gets activated directly
@@ -415,18 +428,6 @@ if (get_current_theme() == 'Wonderflux Framework') {
 	add_action('wp_loaded', 'wfx_core_default_widgets');
 }
 
-// Admin menus
-if (is_admin() && current_user_can('manage_options')) {
-	// Build admin menus
-	$wflux_admin_do = new wflux_admin;
-	add_action('admin_menu', array($wflux_admin_do, 'wf_add_pages'));
-	// Setup options
-	add_action( 'admin_init', array($wflux_admin_do, 'wf_register_settings'));
-	// Setup help
-	add_filter('contextual_help', array($wflux_admin_do, 'wf_contextual_help'), 10, 3);
-
-}
-
 // Do Wonderflux
 add_action('init', 'wfx_config_language'); //Need to test if this is ok to load on init
 add_action('wf_head_meta', 'wfx_display_head_top', 1);
@@ -441,4 +442,5 @@ add_action('wf_head_meta', 'wfx_display_head_close', 12); //IMPORTANT - Set prio
 add_action('wffooter_after_content', 'wfx_display_credit', 1);
 add_action('wf_footer', 'wfx_debug_performance', 12);
 add_action('wf_footer', 'wfx_display_code_credit', 3);
+add_action('auth_redirect', 'wfx_admin_menus'); //Need to test if this is ok to load on this hook - looking for an early enough admin only hook
 ?>

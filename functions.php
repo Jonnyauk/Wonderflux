@@ -301,6 +301,27 @@ if ( !function_exists( 'wfx_static_highlight' ) ) : function wfx_static_highligh
 */
 if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments($args) { global $wfx; $wfx->get_attachments($args); } endif;
 
+/**
+* @since 0.93
+* @updated 0.93
+* Creates 'page x of x' output for lists of results like category view and others
+*/
+if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args) {
+
+	$defaults = array ( 'echo' => 'Y' );
+
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	global $wfx;
+
+	if ($echo == 'Y') {
+		echo $wfx->page_counter($args);
+	} else {
+		return $wfx->page_counter($args);
+	}
+
+} endif;
 
 //  4  //////////// THEME CONFIGURATION
 

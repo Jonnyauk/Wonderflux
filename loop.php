@@ -10,15 +10,7 @@
  * If you dont have loop-content.php in your child theme, the standard Wonderflux ones gets used instead, cool!
  *
  */
-
 wfloop_before(); //WF display hook
-
-if ($wp_query->max_num_pages > 1) : ?>
-	<div class="pagination">
-		<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'wonderflux' ) ); ?></div>
-		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'wonderflux' ) ); ?></div>
-	</div>
-<?php endif;
 
 if (!have_posts() ) :
 	get_template_part('404-content', 'general');
@@ -32,11 +24,11 @@ endwhile;
 
 if ($wp_query->max_num_pages > 1 ) : ?>
 	<div class="pagination">
-		<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'wonderflux' ) ); ?></div>
-		<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'wonderflux' ) ); ?></div>
+		<div class="nav-previous"><p><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'wonderflux' ) ); ?></p></div>
+		<div class="nav-next"><p><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'wonderflux' ) ); ?></p></div>
 	</div>
 <?php endif;
-
+wfx_page_counter('');
 wfloop_after(); //WF display hook
 
 ?>

@@ -205,10 +205,10 @@ class wflux_display_all {
 	function head_top($args){ $this->wflux_display_code_do->wf_head_top($args); }
 	function head_title($args){ $this->wflux_display_code_do->wf_head_title($args); }
 	function head_css_structure($args){ $this->wflux_display_code_do->wf_head_css_structure($args); }
-	function head_css_typography($args){ $this->wflux_display_code_do->wf_head_css_typography($args); }
 	function head_css_theme($args){ $this->wflux_display_code_do->wf_head_css_theme($args); }
 	function head_css_columns($args){ $this->wflux_display_code_do->wf_head_css_columns($args); }
 	function head_css_ie($args){ $this->wflux_display_code_do->wf_head_css_ie($args); }
+	function head_css_replace($args){ $this->wflux_display_code_do->wf_head_css_replace($args); }
 	function head_close($args){ $this->wflux_display_code_do->wf_head_close($args); }
 	function debug_performance($args){ $this->wflux_display_code_do->wf_performance($args); }
 	function code_credit($args){ $this->wflux_display_code_do->wf_code_credit($args); }

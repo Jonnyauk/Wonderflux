@@ -103,6 +103,10 @@ class wflux_data {
 		if ( in_array($this->wfx_sidebar_primary_position,$wfx_sidebar_pp_accept) ) { $wfx_sidebar_pp_out = $this->wfx_sidebar_primary_position; }
 		$this->wfx_sidebar_primary_position = $wfx_sidebar_pp_out;
 
+		// CHILD FUNCTIONALITY
+		$this->wfx_wp_info = get_theme( get_current_theme() );
+		$this->wfx_mytheme_version = $this->wfx_wp_info['Version'];
+
 	}
 }
 

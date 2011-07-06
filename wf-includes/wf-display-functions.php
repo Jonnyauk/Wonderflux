@@ -2,7 +2,7 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 0.92
+* @updated 0.93
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {
@@ -155,6 +155,8 @@ class wflux_display_code extends wflux_data {
 			echo '</title>';
 		}
 
+		echo "\n";
+
 	}
 
 
@@ -162,141 +164,148 @@ class wflux_display_code extends wflux_data {
 	* Inserts structure CSS
 	*
 	* @since 0.72
-	* @updated 0.913
+	* @updated 0.93
 	*/
-	function wf_head_css_structure($args) {
-		// Default
-		$structure_path = WF_CONTENT_URL . '/css/wf-css-core-structure.css';
-		// Allow filtering
-		$structure_path = apply_filters( 'wflux_head_css_structure_path', $structure_path );
+	function wf_head_css_structure() {
+		if (WF_THEME_FRAMEWORK_REPLACE == false) {
+			$path = WF_CONTENT_URL . '/css/wf-css-core-structure.css';
+			$version = WF_VERSION;
+			$id = 'wfx-structure';
 
-		$structure_output = '<link rel="stylesheet" href="'. $structure_path .'" type="text/css" media="screen, projection"/>';
+			// Allow filtering
+			$path = apply_filters( 'wflux_css_structure_path', $path );
+			$version = apply_filters( 'wflux_css_structure_version', $version );
+			$id = apply_filters( 'wflux_css_structure_id', $id );
 
-		$structure_output = apply_filters( 'wflux_head_css_structure', $structure_output );
-		$structure_output .= "\n";
-
-		echo $structure_output;
-	}
-
-
-	/**
-	* Inserts typography CSS
-	*
-	* @since 0.72
-	* @updated 0.913
-	*/
-	function wf_head_css_typography($args) {
-		// Default
-		$typography_path = WF_CONTENT_URL . '/css/wf-css-core-typography.css';
-		// Allow filtering
-		$typography_path = apply_filters( 'wflux_head_css_typography_path', $typography_path );
-
-		$typography_output = '<link rel="stylesheet" href="'. $typography_path .'" type="text/css" media="screen, projection"/>';
-
-		$typography_output = apply_filters( 'wflux_head_css_typography', $typography_output );
-		$typography_output .= "\n";
-
-		echo $typography_output;
-	}
-
-
-	/**
-	* Inserts theme CSS
-	*
-	* @since 0.72
-	* @updated 0.72
-	*/
-	function wf_head_css_theme($args) {
-		// Default
-		$theme_path = get_bloginfo('stylesheet_url');
-		// Allow filtering
-		$theme_path = apply_filters( 'wflux_head_css_theme_path', $theme_path );
-
-		$theme_output = '<link rel="stylesheet" href="'. $theme_path .'" type="text/css" media="screen, projection"/>';
-
-		$theme_output = apply_filters( 'wflux_head_css_theme', $theme_output );
-		$theme_output .= "\n";
-
-		echo $theme_output;
+			wp_register_style( $id , $path,'',$version,'screen, projection' );
+			wp_enqueue_style( $id );
+		}
 	}
 
 
 	/**
 	* @since 0.72
-	* @updated 0.913
+	* @updated 0.93
 	* Dynamic grid builder
-	* TODO: Allow filtering on figures
 	*/
 	function wf_head_css_columns($args) {
+		if (WF_THEME_FRAMEWORK_REPLACE == false) {
+			$path = WF_CONTENT_URL . '/css/wf-css-dynamic-columns.php';
+			$version = 'wfx-dynamic';
+			$id = 'wfx-columns';
+			$media = 'screen, projection';
 
-		$container_w = $this->wfx_width; //Overall container width
-		$container_p = $this->wfx_position; //Site container position
-		$sidebar_p = $this->wfx_sidebar_primary_position; //Site container position
-		//$padding_l = $options['padding_l']; // Container padding left
-		//$padding_r = $options['padding_r']; // Container padding right
-		$columns_num = $this->wfx_columns; // Number of columns
-		$columns_w = $this->wfx_columns_width;	// Width of column
+			// Allow filtering
+			$path = apply_filters( 'wflux_css_columns_path', $path );
+			$version = apply_filters( 'wflux_css_columns_version', $version );
+			$id = apply_filters( 'wflux_css_columns_id', $id );
+			$media = apply_filters( 'wflux_css_columns_media', $media );
+			wp_register_style( $id, $path,'', $version, $media );
+			wp_enqueue_style( $id );
 
-		// Default
-		$columns_path = WF_CONTENT_URL . '/css/wf-css-dynamic-columns.php?w='.$container_w;
-		$columns_path .= '&amp;p='.$container_p;
-		$columns_path .= '&amp;sbp='.$sidebar_p;
-		$columns_path .= '&amp;cw='.$columns_w;
-		$columns_path .= '&amp;c='.$columns_num;
-		$columns_path .= '';
-
-		// Allow filtering
-		$columns_path = apply_filters( 'wflux_head_css_columns_path', $columns_path );
-
-		$columns_output = '<link rel="stylesheet" href="'. $columns_path .'" type="text/css" media="screen, projection"/>';
-
-		$columns_output = apply_filters( 'wflux_head_css_columns', $columns_output );
-		$columns_output .= "\n";
-
-		echo $columns_output;
+			// IMPORTANT - Append layout arguments to url
+			add_filter( 'style_loader_tag', array($this,'wf_head_css_add_args'));
+		}
 	}
 
 
 	/**
 	* @since 0.80
-	* @updated 0.913
+	* @updated 0.93
 	* Core layout grid CSS
 	*/
 	function wf_head_css_ie($args) {
+		if (WF_THEME_FRAMEWORK_REPLACE == false) {
+			$path = WF_CONTENT_URL . '/css/wf-css-dynamic-core-ie.php';
+			$version = 'wfx-dynamic';
+			$id = 'wfx-ie';
+			$media = 'screen, projection';
+			// Allow filtering
+			$path = apply_filters( 'wflux_css_ie_path', $path );
+			$id = apply_filters( 'wflux_css_ie_id', $id );
+			$media = apply_filters( 'wflux_css_ie_media', $media );
+			wp_register_style( $id, $path,'', $version, $media );
+			wp_enqueue_style( $id );
+			// IMPORTANT - Add conditional IE wrapper
+			$GLOBALS['wp_styles']->add_data( 'wfx-ie', 'conditional', 'lt IE 8' );
+		}
+	}
 
-		$container_w = $this->wfx_width; //Overall container width
-		$container_p = $this->wfx_position; //Site container position
-		$sidebar_p = $this->wfx_sidebar_primary_position; //Site container position
-		$columns_num = $this->wfx_columns; // Number of columns
-		$columns_w = $this->wfx_columns_width;	// Width of column
 
-		// Default
-		$ie_path = WF_CONTENT_URL . '/css/wf-css-dynamic-core-ie.php?w='.$container_w.
-		'&amp;p='.$container_p.
-		'&amp;sbp='.$sidebar_p.
-		'&amp;cw='.$columns_w.
-		'&amp;c='.$columns_num.'';
-
-		// Default
-		$ie_version = 'lt IE 8';
+	/**
+	* Inserts main theme CSS
+	*
+	* @since 0.72
+	* @updated 0.93
+	*/
+	function wf_head_css_theme() {
+		$path = WF_THEME.'/style.css';
+		$version = $this->wfx_mytheme_version;
+		$id = 'main-theme';
+		$media = 'screen, projection';
 
 		// Allow filtering
-		$ie_path = apply_filters( 'wflux_head_css_ie_path', $ie_path );
-		$ie_version = apply_filters( 'wflux_head_css_ie_version', $ie_version );
+		$path = apply_filters( 'wflux_css_theme_path', $path );
+		$id = apply_filters( 'wflux_css_theme_id', $id );
+		$media = apply_filters( 'wflux_css_theme_media', $media );
 
-		$ie_output = '<!--[if '. $ie_version .']><link rel="stylesheet" href="'. $ie_path .'" type="text/css" media="screen, projection"/><![endif]-->';
+		wp_register_style( $id, $path,'', $version, $media );
+		wp_enqueue_style( $id );
+	}
 
-		$ie_output = apply_filters( 'wflux_head_css_ie', $ie_output );
-		$ie_output .= "\n";
 
-		echo $ie_output;
+	/**
+	* Inserts theme CSS sizing parameters - used in filter if required
+	* Picks up on version set as 'ver=wfx-dynamic':
+	* wp_register_style( '', '','','wfx-dynamic','');
+	* Appends Wonderflux size URL params
+	* TODO: Investigate a cleaner way to do this!
+	*
+	* @since 0.93
+	* @updated 0.93
+	*/
+	function wf_head_css_add_args($input) {
+		$vars = '&amp;w='.$this->wfx_width.
+		'&amp;p='.$this->wfx_position.
+		'&amp;sbp='.$this->wfx_sidebar_primary_position.
+		'&amp;cw='.$this->wfx_columns_width.
+		'&amp;c='.$columns_num = $this->wfx_columns.'';
+		return str_replace(array('ver=wfx-dynamic'), array("$vars"), $input);
+	}
 
+
+	/**
+	* @since 0.93
+	* @updated 0.93
+	* VERY IMPORTANT!
+	* Removes functionality if child theme override file in place
+	* Requires at least 'style-framework.css' and optionally 'style-framework-ie,css' in your child theme directory
+	*/
+	function wf_head_css_replace() {
+		$path = WF_THEME.'/style-framework.css';
+		$path_ie = WF_THEME.'/style-framework-ie.css';
+		$version = $this->wfx_mytheme_version;
+		$id = 'framework';
+		$id_ie = 'framework-ie';
+		$media = 'screen, projection';
+
+		// Allow filtering
+		$media = apply_filters( 'wflux_css_theme_framework_media', $media );
+
+		wp_register_style( $id, $path,'', $version, $media );
+		wp_enqueue_style( $id );
+
+		wp_register_style( $id_ie, $path_ie,'', $version, $media );
+		wp_enqueue_style( $id_ie );
+
+		// IMPORTANT - Add conditional IE wrapper
+		$GLOBALS['wp_styles']->add_data( $id_ie, 'conditional', 'lt IE 8' );
 	}
 
 
 	/**
 	* @since 0.71
-	* @updated 0.92
+	* @updated 0.93
 	* VERY IMPORTANT!
 	* Close the head of the document after everything has run
 	* Opens body tag using dynamic WordPress body class
@@ -307,10 +316,9 @@ class wflux_display_code extends wflux_data {
 		wp_head();
 
 		// Setup core WordPress body class
-		$this_body_class = get_body_class();
 		$output = '</head>' . "\n";
 		$output .= '<body class="';
-		$output .= join( ' ', $this_body_class );
+		$output .= join( ' ', get_body_class() );
 		$output .= '">' . "\n";
 		echo $output;
 	}

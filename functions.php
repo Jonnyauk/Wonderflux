@@ -120,6 +120,41 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
 ////  2  //////////// DISPLAY FUNCTIONS
 
 
+// Only need functions if have child theme overrides
+if (WF_THEME_FRAMEWORK_REPLACE == false) {
+	/**
+	* @since 0.72
+	* @updated 0.913
+	* Inserts the core framework structure CSS
+	*/
+	if ( !function_exists( 'wfx_display_head_css_structure' ) ) : function wfx_display_head_css_structure($args) { global $wfx; $wfx->head_css_structure($args); } endif;
+
+
+	/**
+	* @since 0.72
+	* @updated 0.913
+	* Inserts the dynamic column CSS builder
+	*/
+	if ( !function_exists( 'wfx_display_head_css_columns' ) ) : function wfx_display_head_css_columns($args) { global $wfx; $wfx->head_css_columns($args); } endif;
+
+	/**
+	* @since 0.72
+	* @updated 0.913
+	* Inserts the core IE CSS
+	*/
+	if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie($args) { global $wfx; $wfx->head_css_ie($args); } endif;
+
+} elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
+
+	/**
+	* @since 0.93
+	* @updated 0.93
+	* Inserts the core IE CSS
+	*/
+	if ( !function_exists( 'wfx_head_css_replace' ) ) : function wfx_head_css_replace($args) { global $wfx; $wfx->head_css_replace($args); } endif;
+
+}
+
 /**
 * @since 0.913
 * @updated 0.913
@@ -144,37 +179,9 @@ if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_
 /**
 * @since 0.72
 * @updated 0.913
-* Inserts the core framework structure CSS
-*/
-if ( !function_exists( 'wfx_display_head_css_structure' ) ) : function wfx_display_head_css_structure($args) { global $wfx; $wfx->head_css_structure($args); } endif;
-
-/**
-* @since 0.72
-* @updated 0.913
-* Inserts the core typography CSS
-*/
-if ( !function_exists( 'wfx_display_head_css_typography' ) ) : function wfx_display_head_css_typography($args) { global $wfx; $wfx->head_css_typography($args); } endif;
-
-/**
-* @since 0.72
-* @updated 0.913
 * Inserts the core theme CSS
 */
 if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_head_css_theme($args) { global $wfx; $wfx->head_css_theme($args); } endif;
-
-/**
-* @since 0.72
-* @updated 0.913
-* Inserts the dynamic column CSS builder
-*/
-if ( !function_exists( 'wfx_display_head_css_columns' ) ) : function wfx_display_head_css_columns($args) { global $wfx; $wfx->head_css_columns($args); } endif;
-
-/**
-* @since 0.72
-* @updated 0.913
-* Inserts the core IE CSS
-*/
-if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie($args) { global $wfx; $wfx->head_css_ie($args); } endif;
 
 /**
 * @since 0.71
@@ -429,13 +436,16 @@ if (get_current_theme() == 'Wonderflux Framework') {
 }
 
 // Do Wonderflux
+if (WF_THEME_FRAMEWORK_REPLACE == false) {
+	add_action('wf_head_meta', 'wfx_display_head_css_structure', 3);
+	add_action('wf_head_meta', 'wfx_display_head_css_columns', 3);
+	add_action('wf_head_meta', 'wfx_display_head_css_ie', 3);
+} elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
+	add_action('wf_head_meta', 'wfx_head_css_replace', 2);
+}
 add_action('init', 'wfx_config_language'); //Need to test if this is ok to load on init
 add_action('wf_head_meta', 'wfx_display_head_top', 1);
 add_action('wf_head_meta', 'wfx_display_head_title', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_structure', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_typography', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_columns', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_ie', 3);
 add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
 add_action('wf_head_meta', 'wfx_display_css_info');
 add_action('wf_head_meta', 'wfx_display_head_close', 12); //IMPORTANT - Set priority to 12 on this action to ensure it runs after any other functions added to wf_head_meta

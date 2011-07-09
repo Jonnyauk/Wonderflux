@@ -1,9 +1,11 @@
 <?php
 /*
- * Core Wonderflux footer template include
- * This will be over-ridden if you create a file of the same name in your child theme
- * NOTE: Most people can use simple location aware template parts in your child theme to control whats actually being displayed
- * EG footer-content.php and/or footer-content-LOCATIONHERE.php
+ * Core Wonderflux footer template
+ *
+ * Customise this in your child theme by:
+ * - Using hooks and your own functions
+ * - Using the 'footer-content' template part 'footer-content-404.php' or 'footer-content.php' (fallback if location specific file not available)
+ * - Copying this file to your child theme and customising - it will over-ride this file
  *
  * @package Wonderflux
  */

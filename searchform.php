@@ -1,10 +1,11 @@
 <?php
-/**
- * The core search include
- * This will be over-ridden if you create a file of the same name in your child theme
+/*
+ * Core Wonderflux searchform content template
+ *
+ * Customise this in your child theme by:
+ * - Creating a file with the same name in your child theme - it will over-ride this file
  *
  * @package Wonderflux
- * @since Wonderflux 0.6
  */
 ?>
 <form action="<?php echo home_url(); ?>/" method="get" accept-charset="utf-8">

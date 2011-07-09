@@ -54,22 +54,22 @@ class wflux_theme_core {
 	* @param $titleid - ADVANCED USE ONLY - Sets CSS ID (Only use this if your widget area has one widget - otherwise the ID's are repeated, which is not good and breaks validation for obvious reasons!) [NONE]
 	* @param $before - Anything you want before the widget [NONE]
 	* @param $after - Anything you want after the widget [NONE]
+	* @param $priority - Insertion hook priority - NOTE default CSS container inserts trigger at priority 2 and 9 [3]
 	*
 	* NOTE:
-	* Easiest way to hardcode a widget into your theme rather than use a Wonderflux hook is:
-	*
-	* Example where widget name was set as 'Front Page Sidebar':
-	* //if ( !dynamic_sidebar('front-page-sidebar') ) : echo 'no widget content';
+	* Easiest way to insert a widget into your theme code rather than use a Wonderflux hook is:
+	* (where widget name was set as 'Front Page Sidebar')
+	* if ( !dynamic_sidebar('front-page-sidebar') ) : echo 'no widget content';
 	*
 	* Also of use is:
-	* //if ( is_active_sidebar('front-page-sidebar') ) :
-	* // echo 'has active widgets in widget area';
-	* //else :
-	* // echo 'no active widgets';
-	* //endif;
+	* if ( is_active_sidebar('front-page-sidebar') ) :
+	*   echo 'has active widgets in widget area';
+	* else :
+	*   echo 'no active widgets';
+	* endif;
 	*
 	* @since 0.891
-	* @updated 0.912
+	* @updated 0.93
 	*
 	*
 	*/
@@ -96,7 +96,8 @@ class wflux_theme_core {
 			"titleclass" => "widget-title",
 			"titleid" => "",
 			"before" => "",
-			"after" => ""
+			"after" => "",
+			"priority" => 3
 			);
 
 			$values = wp_parse_args( $values, $defaults );
@@ -126,7 +127,7 @@ class wflux_theme_core {
 			// IMPORTANT: If you wish to insert the widget area manually into your theme supply 'my_custom_theme_code' as the 'location' parameter.
 			// You will then need to insert your widget area using the name parameter into your theme manually using standard WordPress theme code.
 			if ($location != 'N') {
-				add_action( $location, create_function( '$name', "dynamic_sidebar( '$name' );" ) );
+				add_action( $location, create_function( '$name', "dynamic_sidebar( '$name' );" ), 3 );
 			}
 
 			// Unset ready for next
@@ -141,6 +142,7 @@ class wflux_theme_core {
 			unset($titleid);
 			unset($before);
 			unset($after);
+			unset($priority);
 
 		}
 

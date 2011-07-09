@@ -70,11 +70,13 @@ class wflux_helper_all {
 		$this->wflux_helper_do = new wflux_helper;
 	}
 
-	function info_location($args){ $this->wflux_helper_do->wf_info_location($args); }
+	function info_location(){ return $this->wflux_helper_do->wf_info_location(); }
 	function gt_part($args){ $this->wflux_helper_do->wf_get_template_part($args); }
 	function user_role($args){ return $this->wflux_helper_do->wf_user_role($args); }
 	function page_depth($args){ return $this->wflux_helper_do->wf_page_depth($args); }
 	function custom_field($args){ return $this->wflux_helper_do->wf_custom_field($args); }
+	function __Y(){ return $this->wflux_helper_do->wf__Y(); }
+	function __N(){ return $this->wflux_helper_do->wf__N(); }
 
 }
 
@@ -172,9 +174,6 @@ function wflux_capacitor_display() {
 
 	load_template(WF_INCLUDES_DIR . '/wf-display-functions.php');
 	load_template(WF_INCLUDES_DIR . '/wf-display-hooks.php');
-	// This is much better than creating instances of the core display class all over the place
-	// It also means that DB options can be read once and used throughout class, which is MUCH more efficient!
-	// TODO: Debug - Look at alternative options and test
 	global $wfx;
 	$wfx = new wflux_display_all;
 
@@ -184,7 +183,7 @@ add_action('get_header','wflux_capacitor_display', 1);
 
 /**
 * @since 0.913
-* @updated 0.92
+* @updated 0.93
 * Creates all Wonderflux display functions
 */
 class wflux_display_all {
@@ -217,8 +216,11 @@ class wflux_display_all {
 	function css($args){ $this->wflux_display_css_do->wf_css($args); }
 	function css_info($args){ $this->wflux_display_css_do->wf_css_info($args); }
 	function css_close($args){ $this->wflux_display_css_do->wf_css_close($args); }
+	function layout_build($args){ $this->wflux_display_css_do->wf_layout_build($args); }
+
 
 	// Display functions
+	function get_sidebar($args){ $this->wflux_display_do->wf_get_sidebar($args); }
 	function display_credit($args){ $this->wflux_display_do->wf_credit($args); }
 
 	// Wonderflux direct activation functions

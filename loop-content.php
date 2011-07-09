@@ -1,10 +1,13 @@
 <?php
-/**
- * The core get_template_part for the main loop content
- * This will be over-ridden if you create a file of the same name in your child theme
+/*
+ * Core Wonderflux loop content template part
+ *
+ * Customise this in your child theme by:
+ * - Using hooks and your own functions
+ * - Using the 'loop-content' template part 'loop-content-404.php' or 'loop-content.php' (fallback if location specific file not available)
+ * - Copying this file to your child theme and customising - it will over-ride this file
  *
  * @package Wonderflux
- * @since Wonderflux 0.4
  */
 ?>
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>

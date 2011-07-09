@@ -1,12 +1,15 @@
 <?php
 /*
-**IMPORTANT**
-** THIS FILE IT IS NOT DESIGNED TO BE EDITED **
+ * Core Wonderflux header template
+ *
+ * Customise this in your child theme by:
+ * - Using hooks and your own functions
+ * - Using the 'header-content' template part 'header-content-category.php' or 'loop-content.php' (fallback if location specific file not available)
+ * - Copying this file to your child theme and customising - it will over-ride this file
+ *
+ * @package Wonderflux
+ */
 
-- This is one of the core template files of the Wonderflux theme framework
-- You use Wonderflux by creating child themes and activating them
-- You child theme then uses the power of Wonderflux to make your site amazing!
-*/
 wf_head_meta();
 //NOTE: wf_head calls wp_head (after executing wf_head functions) - no need to call them both in a template!
 //This builds the whole head section, no need to even put it in header.php - just concentrate on the design friends!

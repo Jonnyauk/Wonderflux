@@ -1,14 +1,13 @@
 <?php
-/**
- * The core comments template include
- * This will be over-ridden if you create a file of the same name in your child theme
- * In most instances you should probably just use the template parts
- * Otherwise you will have to ensure that you implement all the display hooks used in the file below to retain Wonderflux functionality
+/*
+ * Core Wonderflux comments template
  *
- * This is pretty similar to the 2010 theme comments file, this is an area for future development!
+ * Customise this in your child theme by:
+ * - Using hooks and your own functions
+ * - Copying this file to your child theme and customising - it will over-ride this file
+ * - This is pretty similar to the 2010 theme comments file, this is an area for future development!
  *
  * @package Wonderflux
- * @since Wonderflux 0.85
  */
 ?>
 

@@ -1,9 +1,12 @@
 <?php
-/**
- * The core get_template_part sidebar content
- * This will be over-ridden if you create a file of the same name in your child theme
+/*
+ * Core Wonderflux sidebar content template
+ *
+ * Customise this in your child theme by:
+ * - Creating a file with the same name in your child theme - it will over-ride this file
+ * - Creating a 'sidebar-content' location aware template part file - 'sidebar-content-page.php' or 'sidebar-content-category.php' to be used only in those locations
+ *
  * @package Wonderflux
- * @since Wonderflux 0.6
  */
 ?>
 <div class="sidebar-box">

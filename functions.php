@@ -10,6 +10,7 @@
  * 5 - Script support functions
  * 6 - Admin functions
  * 7 - Wonderflux Core
+ * 8 - Add actions to hooks
  *
  * DON'T HACK ME!! You should not modify the Wonderflux theme framework to avoid issues with updates in the future
  * You have lots of ways to manipulate this from your child theme! http://codex.wordpress.org/Child_Themes
@@ -52,7 +53,7 @@ load_template(TEMPLATEPATH . '/wf-includes/wf-engine.php');
 * @updated 0.913
 * IMPORTANT - Gets type of view
 */
-if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location($args) { global $wfx_helper; $wfx_helper->info_location($args); } endif;
+if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { global $wfx_helper; return $wfx_helper->info_location(); } endif;
 
 /**
 * @since 0.913
@@ -116,6 +117,22 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
 
 } endif;
 
+
+/**
+* @since 0.93
+* @updated 0.93
+* Returns 'Y' - nothing more, nothing less
+* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__y' ) in your child theme
+*/
+if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; return $wfx_helper->__Y(); } endif;
+
+/**
+* @since 0.93
+* @updated 0.93
+* Returns 'N' - nothing more, nothing less
+* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__n' ) in your child theme
+*/
+if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; return $wfx_helper->__N(); } endif;
 
 ////  2  //////////// DISPLAY FUNCTIONS
 
@@ -223,6 +240,13 @@ if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_inf
 
 
 /**
+* @since 0.93
+* @updated 0.93
+* Gets the sidebar
+*/
+if ( !function_exists( 'wfx_get_sidebar' ) ) : function wfx_get_sidebar($args) { global $wfx; $wfx->get_sidebar($args); } endif;
+
+/**
 * @since 0.913
 * @updated 0.913
 * Creates dynamic CSS grid class definition
@@ -235,6 +259,13 @@ if ( !function_exists( 'wfx_css' ) ) : function wfx_css($args) { global $wfx; $w
 * Just echos </div> - nothing more nothing less!
 */
 if ( !function_exists( 'wfx_css_close' ) ) : function wfx_css_close($args) { global $wfx; $wfx->css_close($args); } endif;
+
+/**
+* @since 0.93
+* @updated 0.93
+* IMPORTANT - Creates and controls layout CSS
+*/
+if ( !function_exists( 'wfx_layout_build' ) ) : function wfx_layout_build($args) { global $wfx; $wfx->layout_build($args); } endif;
 
 /**
 * @since 0.913
@@ -392,14 +423,7 @@ if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { glob
 //  7  //////////// WONDERFLUX CORE
 
 
-// For When Wonderflux gets activated directly
-
-/**
-* @since 0.902
-* @updated 0.913
-* Insert some basic layout divs
-*/
-function wfx_core_default_layout() { global $wfx; $wfx->default_layout(''); }
+// For when Wonderflux gets activated directly
 
 /**
 * @since 0.902
@@ -429,13 +453,18 @@ function wfx_core_default_widgets() {
 
 }
 
-// If Wonderflux is activated directly, add basic theme functionality
-if (get_current_theme() == 'Wonderflux Framework') {
-	add_action('get_header', 'wfx_core_default_layout', 1);
-	add_action('wp_loaded', 'wfx_core_default_widgets');
-}
 
-// Do Wonderflux
+//  8  //////////// Add actions to hooks
+
+
+// Special child theme function
+// Create the function my_wfx_layout() in your child theme functions file
+// Use this to use and configure Wonderflux layout functions like wfx_background_divs()
+if ( function_exists( 'my_wfx_layout' ) ) { add_action('get_header', 'my_wfx_layout', 1); }
+
+// Core Wonderflux functionality
+
+// Allow full removal of the core CSS in one swoop
 if (WF_THEME_FRAMEWORK_REPLACE == false) {
 	add_action('wf_head_meta', 'wfx_display_head_css_structure', 3);
 	add_action('wf_head_meta', 'wfx_display_head_css_columns', 3);
@@ -443,7 +472,12 @@ if (WF_THEME_FRAMEWORK_REPLACE == false) {
 } elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
 	add_action('wf_head_meta', 'wfx_head_css_replace', 2);
 }
+
+// Core Wonderflux theme activation
+if (get_current_theme() == 'Wonderflux Framework') { add_action('wp_loaded', 'wfx_core_default_widgets'); }
+
 add_action('init', 'wfx_config_language'); //Need to test if this is ok to load on init
+add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
 add_action('wf_head_meta', 'wfx_display_head_top', 1);
 add_action('wf_head_meta', 'wfx_display_head_title', 3);
 add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);

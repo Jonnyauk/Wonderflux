@@ -1,6 +1,6 @@
 <?php
 /**
-* Load the options
+* Load and prepare the options
 */
 class wflux_data {
 
@@ -15,14 +15,27 @@ class wflux_data {
 	protected $wfx_columns_width; // Width of columns
 	protected $wfx_sidebar_primary_position; // Primary sidebar position
 
+	protected $wfx_content_1_display; // Sets display of main content - EXPERIMENTAL, needs extra coding in core
+	protected $wfx_content_1_size; // Sets relative 'size' of main content area eg 'three_quarter'
+	protected $wfx_content_1_id; // Sets CSS ID of main content container div
+	protected $wfx_content_1_size_columns; // Sets size in columns - NOTE over-rides _size varaiable if set
+
+	protected $wfx_sidebar_1_display; // Sets display of sidebar 1
+	protected $wfx_sidebar_1_size; // Sets relative 'size' of sidebar 1 eg 'quarter'
+	protected $wfx_sidebar_1_id; // Sets CSS ID of sidebar 1 container div
+	protected $wfx_sidebar_1_size_columns; // Optional sidebar size in columns - over-rides _size variable if set
+
 	function __construct() {
 
 		// Main Wonderflux display array
 		$this->wfx_db_display = get_option('wonderflux_display');
 
+		//// DOCUMENT CONFIGURATION ////
+
 		// DOCTYPE - 'transitional','strict','frameset','1.1','1.1basic'
 		$this->wfx_doc_type = $this->wfx_db_display['doc_type'];
 		// Validate
+
 		$wfx_doc_type_out = 'transitional';
 		$wfx_doc_type_accept = array('transitional','strict','frameset','1.1','1.1basic','html5');
 		if ( in_array($this->wfx_doc_type,$wfx_doc_type_accept) ) { $wfx_doc_type_out = $this->wfx_doc_type; }
@@ -66,6 +79,8 @@ class wflux_data {
 		}
 		$this->wfx_doc_charset = $wfx_doc_charset_out;
 
+		//// COLUMNS CONFIGURATION ////
+
 		// CONTAINER SIZE - 400 to 2000
 		$this->wfx_width = $this->wfx_db_display['container_w'];
 		// Validate
@@ -103,6 +118,58 @@ class wflux_data {
 		if ( in_array($this->wfx_sidebar_primary_position,$wfx_sidebar_pp_accept) ) { $wfx_sidebar_pp_out = $this->wfx_sidebar_primary_position; }
 		$this->wfx_sidebar_primary_position = $wfx_sidebar_pp_out;
 
+		//// CONTAINERS CONFIGURATION ////
+
+		// CONTENT 1 DISPLAY - Experimental! Need extra functionality to remove content
+		$this->wfx_content_1_display = 'Y';
+		$this->wfx_content_1_display = apply_filters( 'wflux_content_1_display', $this->wfx_content_1_display );
+		//if ( !has_filter('wflux_content_1_display') ) { $this->wfx_content_1_display = $this->wfx_db_display['content_d']; // DB ACTION!! }
+		$this->wfx_content_1_display = ( $this->wfx_content_1_display == 'Y' ) ? 'Y' : 'N';
+
+		// CONTENT 1 SIZE
+		$this->wfx_content_1_size = 'three_quarter';
+		$this->wfx_content_1_size = apply_filters( 'wflux_content_1_size', $this->wfx_content_1_size );
+		//if ( !has_filter('wflux_content_1_size') ) { $this->wfx_content_1_size = $this->wfx_db_display['content_s']; // DB ACTION!! }
+		$this->wfx_content_1_size = wp_kses_data($this->wfx_content_1_size, '');
+
+		// CONTENT 1 CSS ID
+		$this->wfx_content_1_id = 'content';
+		$this->wfx_content_1_id = apply_filters( 'wflux_content_1_id', $this->wfx_content_1_id );
+		//if ( !has_filter('wflux_content_1_id') ) { $this->wfx_content_1_id = $this->wfx_db_display['content_i']; // DB ACTION!! }
+		$this->wfx_content_1_id = wp_kses_data($this->wfx_content_1_id, '');
+
+		// CONTENT 1 COLUMNS
+		$this->wfx_content_1_size_columns = 0;
+		$this->wfx_content_1_size_columns = apply_filters( 'wflux_content_1_size_columns', $this->wfx_content_1_size_columns );
+		//if ( !has_filter('wflux_content_1_size_columns') ) { $this->wfx_content_1_size_columns = $this->wfx_db_display['sidebar_i']; // DB ACTION!! }
+		$this->wfx_content_1_size_columns = ( is_numeric($this->wfx_content_1_size_columns) ) ? $this->wfx_content_1_size_columns : 0;
+
+		// SIDEBAR 1 DISPLAY
+		$this->wfx_sidebar_1_display = 'Y';
+		$this->wfx_sidebar_1_display = apply_filters( 'wflux_sidebar_1_display', $this->wfx_sidebar_1_display );
+		//if ( !has_filter('wflux_sidebar_1_display') ) { $this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d']; // DB ACTION!! }
+		$this->wfx_sidebar_1_display = ( $this->wfx_sidebar_1_display == 'Y' ) ? 'Y' : 'N';
+
+		// SIDEBAR 1 SIZE
+		$this->wfx_sidebar_1_size = 'quarter';
+		$this->wfx_sidebar_1_size = apply_filters( 'wflux_sidebar_1_size', $this->wfx_sidebar_1_size );
+		//if ( !has_filter('wflux_sidebar_1_size') ) { $this->wfx_sidebar_1_size = $this->wfx_db_display['sidebar_s']; // DB ACTION!! }
+		$this->wfx_sidebar_1_size = wp_kses_data($this->wfx_sidebar_1_size, '');
+
+		// SIDEBAR 1 CSS ID
+		$this->wfx_sidebar_1_id = 'sidebar';
+		$this->wfx_sidebar_1_id = apply_filters( 'wflux_sidebar_1_id', $this->wfx_sidebar_1_id );
+		//if ( !has_filter('wflux_sidebar_1_id') ) { $this->wfx_sidebar_1_id = $this->wfx_db_display['sidebar_i']; // DB ACTION!! }
+		$this->wfx_sidebar_1_id = wp_kses_data($this->wfx_sidebar_1_id, '');
+
+		// SIDEBAR 1 COLUMNS
+		$this->wfx_sidebar_1_size_columns = 0;
+		$this->wfx_sidebar_1_size_columns = apply_filters( 'wflux_sidebar_1_size_columns', $this->wfx_sidebar_1_size_columns );
+		//if ( !has_filter('wflux_sidebar_1_size_columns') ) { $this->wfx_sidebar_1_size_columns = $this->wfx_db_display['sidebar_c']; // DB ACTION!! }
+		$this->wfx_sidebar_1_size_columns = ( is_numeric($this->wfx_sidebar_1_size_columns) ) ? $this->wfx_sidebar_1_size_columns : 0;
+
+		//// THEME INFORMATION ////
+
 		// CHILD FUNCTIONALITY
 		$this->wfx_wp_info = get_theme( get_current_theme() );
 		$this->wfx_mytheme_version = $this->wfx_wp_info['Version'];
@@ -118,23 +185,14 @@ class wflux_data {
 */
 class wflux_helper {
 
-
 	/**
 	* Detects what type of content you are currently viewing
 	*
 	* @since 0.881
-	* @lastupdate 0.901
-	* @params $echo (not manditory) = TRUE (default) | FALSE = echos role, 'var'=>returns value to be used in PHP
+	* @lastupdate 0.93
 	* @return text string of location: 'administrator', 'editor', 'author', 'contributor', subscriber'
 	*/
-	function wf_info_location($args) {
-
-		$defaults = array (
-			'echo' => FALSE
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-		extract( $args, EXTR_SKIP );
+	function wf_info_location() {
 
 		switch (TRUE) {
 
@@ -144,22 +202,17 @@ class wflux_helper {
 			case is_search() : $output = 'search'; break;
 			case is_date() : $output = 'date'; break;
 			case is_author() : $output = 'author'; break;
-			case is_tax() : $output = 'tax'; break;
+			case is_tax() : $output = 'taxonomy'; break;
 			case is_archive() : $output = 'archive'; break;
 			case is_attachment() : $output = 'attachment'; break;
 			case is_single() : $output = 'single'; break;
 			case is_page() : $output = 'page'; break;
 			case is_404() : $output = '404'; break;
-			default : $output = 'unknown-type'; break;
+			default : $output = 'index'; break;
 
 		}
 
-		// How would you like that?
-		if ($echo == FALSE) {
-			return $output;
-		} else {
-			echo $output;
-		}
+		return $output;
 
 	}
 
@@ -313,6 +366,28 @@ class wflux_helper {
 		}
 
 	}
+
+
+	/**
+	* Returns 'Y' - nothing more, nothing less
+	* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx_y' ) in your child theme
+	* @since 0.93
+	* @lastupdate 0.93
+	*
+	* @return Y
+	*/
+	function wf__Y() { return 'Y'; }
+
+
+	/**
+	* Returns 'N' - nothing more, nothing less
+	* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx_n' ) in your child theme
+	* @since 0.93
+	* @lastupdate 0.93
+	*
+	* @return Y
+	*/
+	function wf__N() { return 'N'; }
 
 
 }

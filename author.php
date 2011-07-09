@@ -1,15 +1,13 @@
 <?php
 /*
  * Core Wonderflux author template
- * NOTE: Most people can use simple template parts (see reference below) in their child theme instead of replacing this whole file
- * By using the Wonderflux hook system, you can insert any CSS styling/code before or after any content both globally or depending on view type
- *
- * @template-part loop-author.php
- * @fallback-template-part loop.php
- * @what-page is_author()
+ * Customise this in your child theme by:
+ * - Using hooks and your own functions
+ * - Using the 'loop' template part 'loop-author.php' (location specific) or 'loop.php' (fallback if location specific file not available)
+ * - Using the 'loop-content' template part 'loop-content-author.php' or 'loop-content.php' (fallback if location specific file not available)
+ * - Copying this file to your child theme and customising - it will over-ride this file
  * @package Wonderflux
  */
-
 get_header();
 wfmain_before_wrapper(); //WF display hook
 
@@ -28,14 +26,7 @@ wfmain_before_author_container(); //WF display hook
 	wfmain_after_author_content(); //WF display hook
 	wfmain_after_all_content(); //WF display hook
 
-	// Sidebar
-	wfsidebar_before_all(); //WF display hook
-	wfsidebar_before_author(); //WF display hook
-
-	get_sidebar();
-
-	wfsidebar_after_author(); //WF display hook
-	wfsidebar_after_all(); //WF display hook
+	wfx_get_sidebar(''); //WF WordPress get_sidebar function replacement
 
 	// Display hooks for after main content and sidebar
 	wfmain_after_author_main_content(); //WF display hook

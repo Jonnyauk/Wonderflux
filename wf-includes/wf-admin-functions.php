@@ -381,7 +381,7 @@ class wflux_admin_forms extends wflux_data {
 		}
 
 		settype( $input['columns_num'], "integer" );
-		$columns_num_whitelist = range(4,80,1);
+		$columns_num_whitelist = range(2,100,1);
 		if (in_array($input['columns_num'],$columns_num_whitelist)) { $cleaninput['columns_num'] = $input['columns_num'];
 		} else {
 			$cleaninput['columns_num'] = 24; // No cheatin thanks, set sensible value
@@ -409,7 +409,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_padding_l() { $this->wf_form_helper_ddown_range('padding_l',0,200,1); }
 	function wf_form_padding_r() { $this->wf_form_helper_ddown_range('padding_r',0,200,1); }
 	*/
-	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',4,80,4); }
+	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1); }
 
 	// Doc

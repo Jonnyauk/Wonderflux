@@ -96,11 +96,11 @@ class wflux_data {
 		if ( in_array($this->wfx_position,$wfx_container_p_accept) ) { $wfx_container_p_out = $this->wfx_position; }
 		$this->wfx_position = $wfx_container_p_out;
 
-		// NUMBER OF COLUMNS - min 1, max 80
+		// NUMBER OF COLUMNS - min 2, max 100
 		$this->wfx_columns = $this->wfx_db_display['columns_num'];
 		// Validate
 		$wfx_columns_out = 24;
-		if (is_numeric ($this->wfx_columns) ) { if ($this->wfx_columns >= 1 && $this->wfx_columns <= 80) {$wfx_columns_out = $this->wfx_columns;} }
+		if (is_numeric ($this->wfx_columns) ) { if ($this->wfx_columns >= 2 && $this->wfx_columns <= 100) {$wfx_columns_out = $this->wfx_columns;} }
 		$this->wfx_columns = $wfx_columns_out;
 
 		// COLUMN WIDTH - min 10, max 1000

@@ -151,7 +151,7 @@ class wflux_admin {
 	* Checks in the nicest way possible what the latest version of Wonderflux is against installed version
 	* No nasty business here or anywhere in Wonderflux, move on with a warm glow in your heart!
 	* @since 0.911
-	* @updated 0.911
+	* @updated 0.93
 	*/
 	function wf_latest_version_fetch() {
 
@@ -168,7 +168,7 @@ class wflux_admin {
 
 		if ( is_wp_error($rss) ) {
 
-			echo '<p>' . esc_attr__('Sorry, update check not currently not available', 'Wonderflux') . '</p>';
+			echo '<p>' . esc_attr__('Sorry, update check not currently available', 'Wonderflux') . '</p>';
 
 		} else {
 
@@ -270,6 +270,7 @@ class wflux_admin {
 			case 'toplevel_page_wonderflux' : $this_help = '<h3>' . __( 'Wonderflux help - Main settings', 'wonderflux' ) . '</h3>' . $generic_help; break;
 			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . __( 'Wonderflux help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
 			case 'wonderflux_page_wonderflux_system' : $this_help = '<h3>' . __( 'Wonderflux help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			default : return $contextual_help;
 		}
 
 		return $this_help;

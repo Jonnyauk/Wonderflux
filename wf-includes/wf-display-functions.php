@@ -320,7 +320,8 @@ class wflux_display_code extends wflux_data {
 		$output .= '<body class="';
 		$output .= join( ' ', get_body_class() );
 		$output .= ( $this->wfx_sidebar_1_display == 'Y' ) ? ' content-with-sidebar-1' : ' content-no-sidebar-1';
-		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? ' sidebar-1-left' : ' sidebar-1-right';
+		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? ' sidebar-1-left' : '';
+		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'right' ) ? ' sidebar-1-right' : '';
 		$output .= '">' . "\n";
 		echo $output;
 	}

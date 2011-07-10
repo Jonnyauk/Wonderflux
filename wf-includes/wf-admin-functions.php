@@ -3,7 +3,7 @@
 /**
 * Wonderflux admin functions
 */
-class wflux_admin {
+class wflux_admin extends wflux_data {
 
 
     // wf_page_build
@@ -119,7 +119,7 @@ class wflux_admin {
 	/**
 	* Sets up and configures options and form fields
 	* @since 0.81
-	* @updated 0.92
+	* @updated 0.93
 	*/
 	function wf_register_settings(){
 
@@ -132,7 +132,10 @@ class wflux_admin {
 
 		//1) Key 2) form label 3) Builder function 4)Page? 5)Section
 		add_settings_field('container_p', 'Site container position', array($myadminforms, 'wf_form_container_p'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('sidebar_p', 'Sidebar position', array($myadminforms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
+
+		add_settings_field('sidebar_d', 'Sidebar display', array($myadminforms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
+
+		if ($this->wfx_sidebar_1_display == 'Y') { add_settings_field('sidebar_p', 'Sidebar position', array($myadminforms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab'); }
 		add_settings_field('container_w', 'Site container width', array($myadminforms, 'wf_form_container_w'), 'wonderflux_stylelab', 'style_lab');
 		//add_settings_field('padding_l', 'Left site container padding', array($myadminforms, 'wf_form_padding_l'), 'wonderflux_stylelab', 'style_lab');
 		//add_settings_field('padding_r', 'Right site container padding', array($myadminforms, 'wf_form_padding_r'), 'wonderflux_stylelab', 'style_lab');
@@ -249,7 +252,7 @@ class wflux_admin {
  	/**
 	* Contextual help
 	* @since 0.92
-	* @updated 0.92
+	* @updated 0.93
 	*/
 	function wf_contextual_help($contextual_help, $screen_id, $screen) {
 
@@ -331,7 +334,7 @@ class wflux_admin_forms extends wflux_data {
 	* IMPORTANT - Validates and cleans any data saved from layout options before saving to database
 	* Accepts array, return cleaned items in new array.
 	* @since 0.912
-	* @updated 0.92
+	* @updated 0.93
 	*/
 	function validate_opts_layout($input) {
 
@@ -366,12 +369,20 @@ class wflux_admin_forms extends wflux_data {
 			$cleaninput['container_p'] = 'middle'; // No cheatin thanks, set sensible value
 		}
 
-		settype( $input['container_w'], "string" );
+		settype( $input['sidebar_p'], "string" );
 		$sidebar_p_whitelist = array('left','right');
 		if (in_array($input['sidebar_p'],$sidebar_p_whitelist)) { $cleaninput['sidebar_p'] = $input['sidebar_p'];
 		} else {
 			$cleaninput['sidebar_p'] = 'left'; // No cheatin thanks, set sensible value
 		}
+
+		settype( $input['sidebar_d'], "string" );
+		$sidebar_d_whitelist = array('Y','N');
+		if (in_array($input['sidebar_d'],$sidebar_d_whitelist)) { $cleaninput['sidebar_d'] = $input['sidebar_d'];
+		} else {
+			$cleaninput['sidebar_d'] = 'Y'; // No cheatin thanks, set sensible value
+		}
+
 
 		settype( $input['container_w'], "integer" );
 		$container_w_whitelist = range(400,2000,10);
@@ -403,6 +414,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_intro_main() { echo '<p>Use these controls to setup the main dimensions used across all your Wonderflux template designs.</p>'; }
 
 	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p',array('left', 'middle', 'right')); }
+	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N'))); }
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',array('left', 'right')); }
 	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10); }
 	/* NOT ACTIVE AT MOMENT
@@ -421,13 +433,20 @@ class wflux_admin_forms extends wflux_data {
 	/**
 	* Creates a dropdown for options page
 	* @since 0.81
-	* @updated 0.92
+	* @updated 0.93
 	*/
 	function wf_form_helper_ddown_std($data,$definition,$items) {
 		echo "<select id='columns_num' name='wonderflux_display[".$definition."]'>";
 		foreach($items as $key=>$value) {
-			$selected = ($value==$data) ? 'selected="selected"' : '';
-			echo "<option value='$value' $selected>$value</option>";
+			if (is_array($value)) {
+				foreach($value as $key=>$value) {
+					$selected = ($value==$data) ? 'selected="selected"' : '';
+					echo "<option value='$value' $selected>$key</option>";
+				}
+			} else {
+				$selected = ($value==$data) ? 'selected="selected"' : '';
+				echo "<option value='$value' $selected>$value</option>";
+			}
 		}
 		echo "</select>";
 		echo "\n";

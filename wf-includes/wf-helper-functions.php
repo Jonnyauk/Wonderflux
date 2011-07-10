@@ -145,10 +145,11 @@ class wflux_data {
 		$this->wfx_content_1_size_columns = ( is_numeric($this->wfx_content_1_size_columns) ) ? $this->wfx_content_1_size_columns : 0;
 
 		// SIDEBAR 1 DISPLAY
-		$this->wfx_sidebar_1_display = 'Y';
+		$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d'];
 		$this->wfx_sidebar_1_display = apply_filters( 'wflux_sidebar_1_display', $this->wfx_sidebar_1_display );
-		//if ( !has_filter('wflux_sidebar_1_display') ) { $this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d']; // DB ACTION!! }
-		$this->wfx_sidebar_1_display = ( $this->wfx_sidebar_1_display == 'Y' ) ? 'Y' : 'N';
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() ) { if (has_filter('wflux_sidebar_1_display') ) {$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d']; } }
+		$this->wfx_sidebar_1_display = ( $this->wfx_sidebar_1_display == '' || isset($this->wfx_sidebar_1_display) ) ? 'Y' : 'N';
 
 		// SIDEBAR 1 SIZE
 		$this->wfx_sidebar_1_size = 'quarter';

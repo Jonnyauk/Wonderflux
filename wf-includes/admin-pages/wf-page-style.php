@@ -2,6 +2,10 @@
 	<form action="options.php" method="post">
 	<div class="icon32" id="icon-options-general"><br></div><h2>Column size configuration</h2>
 
+	<p class="submit">
+		<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Template settings'); ?>" />
+	</p>
+
 	<div id="wfx_fields_display">
 		<?php settings_fields('wf_settings_display'); ?>
 		<?php do_settings_sections('wonderflux_stylelab'); ?>

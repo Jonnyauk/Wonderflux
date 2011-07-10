@@ -370,7 +370,7 @@ class wflux_helper {
 
 	/**
 	* Returns 'Y' - nothing more, nothing less
-	* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx_y' ) in your child theme
+	* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme, saves creating a function
 	* @since 0.93
 	* @lastupdate 0.93
 	*
@@ -381,7 +381,7 @@ class wflux_helper {
 
 	/**
 	* Returns 'N' - nothing more, nothing less
-	* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx_n' ) in your child theme
+	* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme, saves creating a function
 	* @since 0.93
 	* @lastupdate 0.93
 	*

@@ -308,7 +308,7 @@ class wflux_display_code extends wflux_data {
 	* @updated 0.93
 	* VERY IMPORTANT!
 	* Close the head of the document after everything has run
-	* Opens body tag using dynamic WordPress body class
+	* Opens body tag using dynamic WordPress body and sidebar/content definition classes
 	*/
 	function wf_head_close($args) {
 
@@ -695,8 +695,7 @@ class wflux_display_css extends wflux_display_code {
 	* Encloses the main site areas in specified layout divs, only when required
 	* NOTE: Inserted at hooks priority 2 or 9, to allow you to hook in with your own functions at:
 	* priority 1 for before everything
-	* priority 4-9 for after auto inserted widgets
-	* 4-10 for after
+	* priority 4+ if using Wonderflux widgets auto-inserted on a hook
 	*
 	*/
 	function wf_layout_build($args) {

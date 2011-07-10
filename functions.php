@@ -122,7 +122,7 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
 * @since 0.93
 * @updated 0.93
 * Returns 'Y' - nothing more, nothing less
-* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__y' ) in your child theme
+* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme
 */
 if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; return $wfx_helper->__Y(); } endif;
 
@@ -130,7 +130,7 @@ if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; re
 * @since 0.93
 * @updated 0.93
 * Returns 'N' - nothing more, nothing less
-* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__n' ) in your child theme
+* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__N' ) in your child theme
 */
 if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; return $wfx_helper->__N(); } endif;
 

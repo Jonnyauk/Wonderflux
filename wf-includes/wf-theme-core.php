@@ -5,7 +5,7 @@
 /**
 *
 * @since 0.891
-* @updated 0.921
+* @updated 0.93
 *
 * Core template functions
 *
@@ -45,7 +45,7 @@ class wflux_theme_core {
 	*
 	* @param $name - The name of the widget (shows in admin widget editor area) [Incremental number]
 	* @param $description - Description of widget (shows in admin widget editor area) [Drag widgets into here to include them in your site]
-	* @param $location - Inserts the widget using Wonderflux display hooks - supply value "my_custom_theme_code" to turn this off [wfsidebar_after_all]
+	* @param $location - Inserts the widget using Wonderflux display hooks - supply value "my_theme_code" to turn this off [wfsidebar_after_all]
 	* @param $container - What do you want the Widget to be contained in - eg "div", "li" [div]
 	* @param $containerclass - Container CSS class [widget-box]
 	* @param $containerid - ADVANCED USE ONLY - Sets CSS ID (Only use this if your widget area has one widget - otherwise the ID's are repeated, which is not good and breaks validation for obvious reasons!) [NONE]
@@ -54,7 +54,7 @@ class wflux_theme_core {
 	* @param $titleid - ADVANCED USE ONLY - Sets CSS ID (Only use this if your widget area has one widget - otherwise the ID's are repeated, which is not good and breaks validation for obvious reasons!) [NONE]
 	* @param $before - Anything you want before the widget [NONE]
 	* @param $after - Anything you want after the widget [NONE]
-	* @param $priority - Insertion hook priority - NOTE default CSS container inserts trigger at priority 2 and 9 [3]
+	* @param $priority - Insertion hook priority - NOTE default CSS containers insert at priority 2 and 9 [3]
 	*
 	* NOTE:
 	* Easiest way to insert a widget into your theme code rather than use a Wonderflux hook is:
@@ -113,21 +113,24 @@ class wflux_theme_core {
 				$titleid = ' id="' . esc_attr($titleid) . '"';
 			}
 
+			$clean_name = esc_attr( strtolower( str_replace(' ', '-', $name) ) );
+
 			// Setup this widget using our options WordPress stylee
 			register_sidebar(array(
 				'name'=> __($name),
 				'description' => __($description),
-				'before_widget' => esc_attr($before) . '<' . esc_attr($container) . ' class="'. esc_attr($containerclass) .'"' . esc_attr($containerid) . '>',
+				'before_widget' => esc_attr($before) . '<' . esc_attr($container) . ' class="'. esc_attr($containerclass) . ' widget-' . esc_attr($clean_name) .'"' . esc_attr($containerid) . '>',
 				'after_widget' => '</' . esc_attr($container) . '>' . esc_attr($after),
 				'before_title' => '<' . esc_attr($titlestyle) . ' class="'. esc_attr($titleclass) .'"' . esc_attr($titleid) . '>',
 				'after_title' => '</' . esc_attr($titlestyle) . '>',
 			));
 
 			// Insert the widget area using Wonderflux display hooks
-			// IMPORTANT: If you wish to insert the widget area manually into your theme supply 'my_custom_theme_code' as the 'location' parameter.
+			// IMPORTANT: If you wish to insert the widget area manually into your theme supply 'my_theme_code' as the 'location' parameter.
 			// You will then need to insert your widget area using the name parameter into your theme manually using standard WordPress theme code.
 			if ($location != 'N') {
-				add_action( $location, create_function( '$name', "dynamic_sidebar( '$name' );" ), 3 );
+				$priority = (is_numeric($priority)) ? $priority : 3;
+				add_action( $location, create_function( '$name', "dynamic_sidebar( '$name' );" ), $priority );
 			}
 
 			// Unset ready for next

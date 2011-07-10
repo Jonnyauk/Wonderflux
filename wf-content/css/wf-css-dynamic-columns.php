@@ -50,10 +50,10 @@ if (in_array($sidebar_p,$sidebar_p_accept)) {
 	$sidebar_p_out = 'right';
 }
 
-// Columns - max 80
+// Columns - max 100
 $wf_grid_columns = $_GET['c'];
 settype( $wf_grid_columns, "integer" );
-$wf_grid_columns_accept = range(4,80,1);
+$wf_grid_columns_accept = range(2,100,1);
 
 if (in_array($wf_grid_columns,$wf_grid_columns_accept)) {
 	$wf_grid_columns_out = $wf_grid_columns;

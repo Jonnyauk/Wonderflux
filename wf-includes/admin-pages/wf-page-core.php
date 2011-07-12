@@ -45,13 +45,9 @@ unset($themes[$ct->name]);
 
 <div class="clear"></div>
 
-
 <div class="icon32" id="icon-options-general"><br></div>
 <h2><?php echo get_current_theme();?> display functions</h2>
 <p>Theme designers can use these functions to configure Wonderflux child theme functions and effects. Once enabled, the function/script is setup automatically in every page of your site and ready to use.</p>
 <p>NOTE: Some Wonderflux child themes use advanced display functions to achieve certain effects. If the option is greyed out and not changeable, it means that <strong>this function is REQUIRED</strong> for the <?php echo get_current_theme();?> Wonderflux child theme, which you currently using on for this site.</p>
-<h3>Need more control?</h3>
-<h2>Options to follow - this is why we are in beta, sorry!</h2>
-
 
 </div>

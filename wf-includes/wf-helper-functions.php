@@ -148,8 +148,13 @@ class wflux_data {
 		$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d'];
 		$this->wfx_sidebar_1_display = apply_filters( 'wflux_sidebar_1_display', $this->wfx_sidebar_1_display );
 		// If filtered and in admin, just show original value saved to DB, not filtered values
-		if ( is_admin() ) { if (has_filter('wflux_sidebar_1_display') ) {$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d']; } }
-		$this->wfx_sidebar_1_display = ( $this->wfx_sidebar_1_display == '' || isset($this->wfx_sidebar_1_display) ) ? 'Y' : 'N';
+		if ( is_admin() ) {
+			if (has_filter('wflux_sidebar_1_display') ) {
+				$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d'];
+			}
+		} elseif  ( $this->wfx_sidebar_1_display == '' ) {
+			$this->wfx_sidebar_1_display = 'Y';
+		}
 
 		// SIDEBAR 1 SIZE
 		$this->wfx_sidebar_1_size = 'quarter';
@@ -410,5 +415,41 @@ class wflux_wp_core {
 		wp_deregister_style('admin-bar');
 		remove_action('wp_footer','wp_admin_bar_render',1000);
 	}
+
+
+	/**
+	* Adds Wonderflux links under Appearance on the WordPress admin bar
+	* @since 0.93
+	* @lastupdate 0.93
+	*/
+	function wf_admin_bar_links() {
+		global $wp_admin_bar, $wpdb;
+		if ( !is_admin_bar_showing() || WF_ADMIN_ACCESS == 'none' ) {
+			return;
+		} elseif ( WF_ADMIN_ACCESS !='' ) {
+
+			$input = @unserialize(WF_ADMIN_ACCESS);
+			if ($input === false) {
+				// Single user role supplied
+				if ( WF_ADMIN_ACCESS == wfx_user_role('') && current_user_can('manage_options') ) {
+					$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+				}
+			} else {
+				// Array of user ID's supplied
+				global $current_user;
+				get_currentuserinfo();
+				foreach ($input as $key=>$user_id) {
+					if ( $user_id == $current_user->ID && current_user_can('manage_options') ) {
+						$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+					}
+				}
+
+			}
+
+		} else {
+			// Silence is golden
+		}
+	}
+
 }
 ?>

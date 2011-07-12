@@ -95,7 +95,7 @@ add_action('init','wflux_capacitor_wp_helper', 1);
 
 /**
 * @since 0.92
-* @updated 0.92
+* @updated 0.93
 * Creates all Wonderflux WordPress core helper functions
 */
 class wflux_wp_helper_all {
@@ -107,6 +107,7 @@ class wflux_wp_helper_all {
 	}
 
 	function admin_bar_remove($args){ $this->wflux_helper_do->wf_admin_bar_remove($args); }
+	function admin_bar_links($args){ $this->wflux_helper_do->wf_admin_bar_links($args); }
 
 }
 

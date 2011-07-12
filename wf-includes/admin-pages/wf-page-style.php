@@ -26,8 +26,6 @@
 		</ul>
 	</div>
 
-	<div class="icon32" id="icon-options-general"><br></div><h2>Document configuration</h2>
-	<?php do_settings_sections('wonderflux_stylelab_doc'); ?>
 	<p class="submit">
 		<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save Template settings'); ?>" />
 	</p>

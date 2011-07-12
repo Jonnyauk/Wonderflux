@@ -365,6 +365,9 @@ class wflux_display_code extends wflux_data {
 		echo $output;
 	}
 
+
+//global $wfx_wp_helper; $wfx_wp_helper->admin_bar_links('');
+
 }
 
 

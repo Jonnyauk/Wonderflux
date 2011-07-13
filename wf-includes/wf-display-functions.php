@@ -1611,6 +1611,8 @@ class wflux_display_extras {
 	 * @param navigation_span - CSS span class around current page number (set to blank to remove span) [page_num_nav]
 	 * @param previous - The string that represents the previous link (and space) [&lt; ]
 	 * @param next - The string that represents the next link (and space) [ &gt;]
+	 * @param container - Puts the output inside a div [Y]
+	 * @param container_class - Container CSS class [page-counter-navigation]
 	 *
 	 * @since 0.93
 	 * @updated 0.93
@@ -1627,30 +1629,36 @@ class wflux_display_extras {
 			'navigation' => 'N',
 			'navigation_span' => 'page_num_nav',
 			'previous' => '&lt; ',
-			'next' => ' &gt;'
+			'next' => ' &gt;',
+			'container' => 'Y',
+			'container_class' => 'page-counter-navigation'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
 		// Clean up ready to use
-		$element_clean = ($element == 'p') ? $element : wp_kses_data($element, '');
-		$start_clean = ($start == 'Page ') ? $start : wp_kses_data($start, '');
-		$seperator_clean = ($seperator == ' of ') ? $seperator : wp_kses_data($seperator, '');
-		$current_span_clean = ($current_span == ' of ') ? $current_span : wp_kses_data($current_span, '');
-		$total_span_clean = ($total_span == ' of ') ? $total_span : wp_kses_data($total_span, '');
+		$element = ($element == 'p') ? $element : wp_kses_data($element, '');
+		$start = ($start == 'Page ') ? $start : wp_kses_data($start, '');
+		$seperator = ($seperator == ' of ') ? $seperator : wp_kses_data($seperator, '');
+		$current_span = ($current_span == ' of ') ? $current_span : wp_kses_data($current_span, '');
+		$total_span = ($total_span == ' of ') ? $total_span : wp_kses_data($total_span, '');
 		$always_show = ($always_show == 'N') ? $always_show : 'Y';
-		$navigation_clean = ($total_span == 'N') ? $navigation : wp_kses_data($navigation, '');
-		$navigation_span_clean = ($total_span == 'page_num_nav') ? $navigation_span : wp_kses_data($navigation_span, '');
-		$previous_clean = ($previous == '&lt; ') ? $previous : wp_kses_data($previous, '');
-		$next_clean = ($next == ' &gt;') ? $next : wp_kses_data($next, '');
+		$navigation = ($total_span == 'N') ? $navigation : wp_kses_data($navigation, '');
+		$navigation_span = ($total_span == 'page_num_nav') ? $navigation_span : wp_kses_data($navigation_span, '');
+		$previous = ($previous == '&lt; ') ? $previous : wp_kses_data($previous, '');
+		$next = ($next == ' &gt;') ? $next : wp_kses_data($next, '');
 		// If someone has removed the span CSS classes definition, dont render to screen
-		$current_span_clean = (!$current_span_clean == '') ? '<span class="'.$current_span_clean.'">' : '';
-		$current_span_clean_close = (!$current_span_clean == '') ? '</span>' : '';
-		$navigation_span_clean = ($navigation_span_clean == '') ? '<span class="'.$navigation_span_clean.'">' : '';
-		$navigation_span_clean_close = (!$navigation_span_clean == '') ? '</span>' : '';
-		$total_span_clean = (!$total_span_clean == '') ? '<span class="'.$total_span_clean.'">' : '';
-		$total_span_clean_close = (!$current_span_clean == '') ? '</span>' : '';
+		$current_span = (!$current_span == '') ? '<span class="'.$current_span.'">' : '';
+		$current_span_close = (!$current_span == '') ? '</span>' : '';
+		$navigation_span = ($navigation_span == '') ? '<span class="'.$navigation_span.'">' : '';
+		$navigation_span = (!$navigation_span == '') ? '</span>' : '';
+		$navigation_span_close = (!$navigation_span == '') ? '</span>' : '';
+		$total_span = (!$total_span == '') ? '<span class="'.$total_span.'">' : '';
+		$total_span_close = (!$current_span == '') ? '</span>' : '';
+		$container = ($container == 'Y') ? 'Y' : 'N';
+		$container_class = ($container_class == 'page-counter-navigation') ? $container_class : wp_kses_data($container_class, '');
+
 
 		// get total number of pages
 		global $wp_query;
@@ -1660,14 +1668,16 @@ class wflux_display_extras {
 		$current = 1;
 		$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
 
-		$output = ($element_clean == '') ? '' : '<'.$element_clean.'>';
-		$output .= ($navigation == 'N') ? '' : $navigation_span_clean.get_previous_posts_link('&lt; ',0).$navigation_span_clean_close;
-		$output .= esc_html($start_clean);
-		$output .= $current_span_clean.$current.$current_span_clean_close;
-		$output .= esc_html($seperator_clean);
-		$output .= $total_span_clean.$total.$total_span_clean_close;
+		$output = ($container == 'Y') ? '<div class="' . $container_class . '">' : '';
+		$output .= ($element == '') ? '' : '<'.$element.'>';
+		$output .= ($navigation == 'N') ? '' : $navigation_span . get_previous_posts_link('&lt; ',0) . $navigation_span_close;
+		$output .= esc_html( $start );
+		$output .= $current_span . $current.$current_span_close;
+		$output .= esc_html( $seperator );
+		$output .= $total_span . $total.$total_span_close;
 		$output .= ($navigation == 'N') ? '' : get_next_posts_link(' &gt;',0);
-		$output .= ($element_clean == '') ? '' : '</'.$element_clean.'>';
+		$output .= ($element == '') ? '' : '</'. $element .'>';
+		$output .= ($container == 'Y') ? '</div>' : '';
 
 		// Always show results, even if just one page
 		if ( $always_show == 'Y' ) {

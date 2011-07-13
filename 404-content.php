@@ -8,7 +8,7 @@
  * @package Wonderflux
  */
 ?>
-<div id="post-0" class="post error404 not-found">
+<div id="post-0" class="post-0 status-error format-standard hentry">
 
 	<h2><?php _e( 'Sorry', 'wonderflux' ); ?></h2>
 

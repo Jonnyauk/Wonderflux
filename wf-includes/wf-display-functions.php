@@ -1623,15 +1623,15 @@ class wflux_display_extras {
 			'element' => 'p',
 			'start' => 'Page ',
 			'seperator' => ' of ',
-			'current_span' => 'page_num_current',
-			'total_span' => 'page_num_total',
+			'current_span' => 'page-counter-current',
+			'total_span' => 'page-counter-total',
 			'always_show' => 'N',
 			'navigation' => 'N',
-			'navigation_span' => 'page_num_nav',
+			'navigation_span' => 'page-counter-navigation',
 			'previous' => '&lt; ',
 			'next' => ' &gt;',
 			'container' => 'Y',
-			'container_class' => 'page-counter-navigation'
+			'container_class' => 'page-counter'
 		);
 
 		$args = wp_parse_args( $args, $defaults );

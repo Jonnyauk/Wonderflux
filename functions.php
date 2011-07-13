@@ -481,11 +481,11 @@ if ( function_exists( 'my_wfx_layout' ) ) { add_action('get_header', 'my_wfx_lay
 
 // Allow full removal of the core CSS in one swoop
 if (WF_THEME_FRAMEWORK_REPLACE == false) {
-	add_action('wp_print_styles', 'wfx_display_head_css_structure', 2);
-	add_action('wp_print_styles', 'wfx_display_head_css_columns', 2);
-	add_action('wp_print_styles', 'wfx_display_head_css_ie', 2);
+	add_action('wf_head_meta', 'wfx_display_head_css_structure', 2);
+	add_action('wf_head_meta', 'wfx_display_head_css_columns', 2);
+	add_action('wf_head_meta', 'wfx_display_head_css_ie', 2);
 } elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
-	add_action('wp_print_styles', 'wfx_head_css_replace', 2);
+	add_action('wf_head_meta', 'wfx_head_css_replace', 2);
 }
 
 // Core Wonderflux theme activation
@@ -495,7 +495,7 @@ add_action('init', 'wfx_config_language'); //Need to test if this is ok to load 
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
 add_action('wf_head_meta', 'wfx_display_head_top', 1);
 add_action('wf_head_meta', 'wfx_display_head_title', 3);
-add_action('wp_print_styles', 'wfx_display_head_css_theme', 3);
+add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
 add_action('wf_head_meta', 'wfx_display_css_info');
 add_action('wf_head_meta', 'wfx_display_head_close', 12); //IMPORTANT - Set priority to 12 on this action to ensure it runs after any other functions added to wf_head_meta
 add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);

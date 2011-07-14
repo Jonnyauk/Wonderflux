@@ -314,14 +314,13 @@ class wflux_display_code extends wflux_data {
 
 		//wp_head() core WordPress function should always be inserted directly before the closing </head> tag
 		wp_head();
-
-		// Setup core WordPress body class
 		$output = '</head>' . "\n";
 		$output .= '<body class="';
 		$output .= join( ' ', get_body_class() );
 		$output .= ( $this->wfx_sidebar_1_display == 'Y' ) ? ' content-with-sidebar-1' : ' content-no-sidebar-1';
 		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? ' sidebar-1-left' : '';
 		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'right' ) ? ' sidebar-1-right' : '';
+		$output .= ' width-'.$this->wfx_width;
 		$output .= '">' . "\n";
 		echo $output;
 	}

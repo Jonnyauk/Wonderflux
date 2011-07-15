@@ -10,7 +10,7 @@
 ?>
 <div id="post-0" class="post-0 status-error format-standard hentry">
 
-	<h2><?php _e( 'Sorry', 'wonderflux' ); ?></h2>
+	<h2 class="entry-title"><?php _e( 'Sorry', 'wonderflux' ); ?></h2>
 
 	<div class="entry-content">
 

@@ -365,7 +365,23 @@ class wflux_display_code extends wflux_data {
 	}
 
 
-//global $wfx_wp_helper; $wfx_wp_helper->admin_bar_links('');
+	/**
+	* Returns values as set
+	* Useful when doing conditional layout functionality to test against conditions
+	* @since 0.93
+	* @lastupdate 0.93
+	* TODO: Build rest of elements for output
+	* @return string
+	*/
+	function wf_get_layout($size) {
+		switch ($size) {
+			case 'site-width': return $this->wfx_width;
+			case 'columns': return $this->wfx_columns;
+			case 'column-width': return $this->wfx_columns_width;
+			case 'sidebar-1-position': return $this->wfx_sidebar_primary_position;
+			default: return $this->wfx_width;
+		}
+	}
 
 }
 

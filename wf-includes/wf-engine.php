@@ -212,6 +212,7 @@ class wflux_display_all {
 	function head_close($args){ $this->wflux_display_code_do->wf_head_close($args); }
 	function debug_performance($args){ $this->wflux_display_code_do->wf_performance($args); }
 	function code_credit($args){ $this->wflux_display_code_do->wf_code_credit($args); }
+	function get_dimensions($args){ return $this->wflux_display_code_do->wf_get_dimensions($args); }
 
 	// CSS layout functions
 	function css($args){ $this->wflux_display_css_do->wf_css($args); }

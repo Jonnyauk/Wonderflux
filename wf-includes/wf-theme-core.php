@@ -128,7 +128,7 @@ class wflux_theme_core {
 			// Insert the widget area using Wonderflux display hooks
 			// IMPORTANT: If you wish to insert the widget area manually into your theme supply 'my_theme_code' as the 'location' parameter.
 			// You will then need to insert your widget area using the name parameter into your theme manually using standard WordPress theme code.
-			if ($location != 'N') {
+			if ($location != 'my_theme_code') {
 				$priority = (is_numeric($priority)) ? $priority : 3;
 				add_action( $location, create_function( '$name', "dynamic_sidebar( '$name' );" ), $priority );
 			}

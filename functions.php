@@ -1,10 +1,4 @@
 <?php
-
-
-//add_action('admin_bar_menu', 'theme_options_link', 1000);\\\
-
-
-
 /**
  * Core Wonderflux theme framework functions
  * For more information, including license please view README.txt file or visit http://www.wonderflux.com
@@ -241,6 +235,13 @@ if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($a
 * Displays CSS info for designers as a comment in the head source code
 */
 if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_info($args) { global $wfx; $wfx->css_info($args); } endif;
+
+/**
+* @since 0.93
+* @updated 0.93
+* Returns saved site dimensions
+*/
+if ( !function_exists( 'wfx_get_dimensions' ) ) : function wfx_get_dimensions($args) { global $wfx; return $wfx->get_dimensions($args); } endif;
 
 
 ////  3  //////////// THEME DISPLAY

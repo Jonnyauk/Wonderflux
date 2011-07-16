@@ -181,6 +181,7 @@ class wflux_data {
 		$this->wfx_mytheme_version = $this->wfx_wp_info['Version'];
 
 	}
+
 }
 
 

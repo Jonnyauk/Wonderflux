@@ -373,7 +373,7 @@ class wflux_display_code extends wflux_data {
 	* TODO: Build rest of elements for output
 	* @return string
 	*/
-	function wf_get_layout($size) {
+	function wf_get_dimensions($size) {
 		switch ($size) {
 			case 'site-width': return $this->wfx_width;
 			case 'columns': return $this->wfx_columns;

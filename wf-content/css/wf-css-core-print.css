@@ -1,0 +1,25 @@
+/**
+ * Wonderflux theme framework print core
+ * http://wonderflux.com
+ *
+ * @package Wonderflux
+ * @since Wonderflux 0.1
+ */
+
+body { line-height: 1.5; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; color: #000; background: none; font-size: 10pt; }
+h1,h2,h3,h4,h5,h6 { font-family: "Helvetica Neue", Arial, "Lucida Grande", sans-serif; }
+code { font: .9em "Courier New", Monaco, Courier, monospace; }
+blockquote { margin: 1.5em; padding: 1em; font-style: italic; font-size: .9em; }
+a:link, a:visited { background: transparent; font-weight: 700; text-decoration: underline; }
+a:link:after, a:visited:after { content: " (" attr(href) ")"; font-size: 90%; }
+a img { border: none; }
+p img.top { margin-top: 0; }
+
+.container { background: none; }
+.hide, .print-hide { display: none; }
+.small { font-size: .9em; }
+.large { font-size: 1.1em; }
+.quiet { color: #999; }
+
+hr { background: #ccc; color: #ccc; width: 100%; height: 2px; margin: 2em 0; padding: 0; border: none; }
+hr.space { background: #fff; color: #fff; visibility: hidden; }

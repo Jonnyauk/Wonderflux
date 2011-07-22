@@ -5,7 +5,6 @@
 //////// IMPORTANT CORE HOOKS
 
 function wf_head_meta() { do_action('wf_head_meta'); }
-function wf_head_after_all_css() { do_action('wf_head_after_all_css'); }
 function wf_footer() { do_action('wf_footer'); }
 
 //////// Before and after everything

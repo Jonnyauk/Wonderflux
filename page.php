@@ -29,7 +29,7 @@ endif;
 	get_template_part( 'loop', 'page' );
 
 	if (is_home() || is_front_page()) : wfmain_after_home_content(); //WF display hook
-		else: wfmain_after_page_content; //WF display hook
+		else: wfmain_after_page_content(); //WF display hook
 	endif;
 
 	wfmain_after_all_content(); //WF display hook

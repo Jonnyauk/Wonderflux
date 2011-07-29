@@ -28,7 +28,10 @@ endif;
 
 	get_template_part( 'loop', 'page' );
 
-	wfmain_after_page_content(); //WF display hook
+	if (is_home() || is_front_page()) : wfmain_after_home_content(); //WF display hook
+		else: wfmain_after_page_content; //WF display hook
+	endif;
+
 	wfmain_after_all_content(); //WF display hook
 
 	wfx_get_sidebar(''); //WF WordPress get_sidebar function replacement
@@ -43,7 +46,11 @@ endif;
 </div>
 
 <?php
-wfmain_after_page_container(); //WF display hook
+
+if (is_home() || is_front_page()) : wfmain_after_home_container(); //WF display hook
+	else: wfmain_after_page_container(); //WF display hook
+endif;
+
 wfmain_after_all_container(); //WF display hook
 
 wfmain_after_wrapper(); //WF display hook

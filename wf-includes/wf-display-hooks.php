@@ -4,7 +4,9 @@
 
 //////// IMPORTANT CORE HOOKS
 
+function wf_output_start() { do_action('wf_output_start'); }
 function wf_head_meta() { do_action('wf_head_meta'); }
+function wf_after_head() { do_action('wf_after_head'); }
 function wf_footer() { do_action('wf_footer'); }
 
 //////// Before and after everything

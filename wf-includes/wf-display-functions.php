@@ -2,7 +2,7 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 0.93
+* @updated 0.931
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {
@@ -10,15 +10,15 @@ class wflux_display_code extends wflux_data {
 	/**
 	* Builds the start of the head with doc type declaration
 	*
-	* @since 0.63
-	* @updated 0.92
+	* @since 0.931
+	* @updated 0.931
 	*
 	* @param $doctype (limited variable string) : Document type : 'transitional' (default), 'strict', 'frameset', '1.1', '1.1basic', 'html5'
 	* @param $lang (user variable string) : Alphabetic International language code : 'en' (default), USER INPUT
 	* @param $content : Document content : 'html' (default)
 	* @param $charset (user variable string) : Character encoding : 'utf8' (default), USER INPUT
 	*/
-	function wf_head_top($args) {
+	function wf_head_open($args) {
 
 		$defaults = array (
 			'doctype' => $this->wfx_doc_type,
@@ -83,8 +83,6 @@ class wflux_display_code extends wflux_data {
 
 			$output = '<!DOCTYPE html>' . "\n";
 			$output .= '<html lang="'.$lang_output.'">' . "\n";
-			$output .= '<head>' . "\n";
-			$output .= '<meta charset="'.$charset_output.'" />' . "\n";
 
 		} else {
 
@@ -104,8 +102,48 @@ class wflux_display_code extends wflux_data {
 			$output .="\n";
 			$output .='<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$lang_output.'" lang="'.$lang_output.'">';
 			$output .="\n";
-			$output .= '<head>';
-			$output .="\n";
+		}
+
+		echo $output;
+	}
+
+	/**
+	* Inserts the Content-Type/charset meta tag
+	*
+	* @since 0.931
+	* @updated 0.931
+	*
+	* @param $doctype (limited variable string) : Document type : 'transitional' (default), 'strict', 'frameset', '1.1', '1.1basic', 'html5'
+	* @param $content : Document content : 'html' (default)
+	* @param $charset (user variable string) : Character encoding : 'utf8' (default), USER INPUT
+	*/
+	function wf_head_char_set($args) {
+
+		$defaults = array (
+			'doctype' => $this->wfx_doc_type,
+			'content' => 'html',
+			'charset' => $this->wfx_doc_charset
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		// Character set
+		$charset_output = wp_kses($charset, '');
+
+		// If its HTML 5 it's simple output
+		if ($doctype == 'html5') {
+			$output = "\n".'<meta charset="'.$charset_output.'" />' . "\n";
+		} else {
+			// Content type
+			$content_length = strlen($content);
+			if ($content_length <= 4) {
+				$content_output = strtolower(wp_kses($content, ''));
+			} else {
+				//Invalid input - set a sensible default
+				$content_output = 'html';
+			}
+			$output ="\n";
 			$output .= '<meta http-equiv="Content-Type" content="text/'.$content_output.'; charset='.$charset_output.'" />';
 			$output .="\n";
 		}
@@ -304,17 +342,14 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* @since 0.71
-	* @updated 0.93
+	* @since 0.931
+	* @updated 0.931
 	* VERY IMPORTANT!
-	* Close the head of the document after everything has run
-	* Opens body tag using dynamic WordPress body and sidebar/content definition classes
+	* Opens <body> tag using dynamic WordPress body and sidebar/content CSS definition classes
 	*/
-	function wf_head_close($args) {
+	function wf_body_tag($args) {
 
-		//wp_head() core WordPress function should always be inserted directly before the closing </head> tag
-		wp_head();
-		$output = '</head>' . "\n";
+		$output = "\n";
 		$output .= '<body class="';
 		$output .= join( ' ', get_body_class() );
 		$output .= ( $this->wfx_sidebar_1_display == 'Y' ) ? ' content-with-sidebar-1' : ' content-no-sidebar-1';

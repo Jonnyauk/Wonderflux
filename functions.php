@@ -181,11 +181,19 @@ if (WF_THEME_FRAMEWORK_REPLACE == false) {
 if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language($args) { global $wfx_theme; $wfx_theme->language_pack($args); } endif;
 
 /**
-* @since 0.71
-* @updated 0.913
+* @since 0.931
+* @updated 0.931
 * IMPORTANT Builds the head of the document
 */
-if ( !function_exists( 'wfx_display_head_top' ) ) : function wfx_display_head_top($args) { global $wfx; $wfx->head_top($args); } endif;
+if ( !function_exists( 'wfx_display_head_open' ) ) : function wfx_display_head_open($args) { global $wfx; $wfx->head_open($args); } endif;
+
+
+/**
+* @since 0.931
+* @updated 0.931
+* IMPORTANT Builds the head of the document
+*/
+if ( !function_exists( 'wfx_display_head_char_set' ) ) : function wfx_display_head_char_set($args) { global $wfx; $wfx->head_char_set($args); } endif;
 
 /**
 * @since 0.71
@@ -202,11 +210,11 @@ if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_
 if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_head_css_theme($args) { global $wfx; $wfx->head_css_theme($args); } endif;
 
 /**
-* @since 0.71
-* @updated 0.913
-* VERY IMPORTANT - Runs last on wf_head_meta to close head section, inserts core WordPress wp_head() and WordPress dynamic body class (phyew!)
+* @since 0.931
+* @updated 0.931
+* Inserts opening dynamic body tag in output - adds Extra Wonderflux CSS classes
 */
-if ( !function_exists( 'wfx_display_head_close' ) ) : function wfx_display_head_close($args) { global $wfx; $wfx->head_close($args); } endif;
+if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag($args) { global $wfx; $wfx->body_tag($args); } endif;
 
 /**
 * @since 0.72
@@ -494,11 +502,11 @@ if (get_current_theme() == 'Wonderflux Framework') { add_action('wp_loaded', 'wf
 
 add_action('init', 'wfx_config_language'); //Need to test if this is ok to load on init
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
-add_action('wf_head_meta', 'wfx_display_head_top', 1);
+add_action('wf_output_start', 'wfx_display_head_open', 1);
+add_action('wf_head_meta', 'wfx_display_head_char_set', 1);
 add_action('wf_head_meta', 'wfx_display_head_title', 3);
 add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
 add_action('wf_head_meta', 'wfx_display_css_info');
-add_action('wf_head_meta', 'wfx_display_head_close', 12); //IMPORTANT - Set priority to 12 on this action to ensure it runs after any other functions added to wf_head_meta
 add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
 add_action('wffooter_after_content', 'wfx_display_credit', 1);
 add_action('wf_footer', 'wfx_debug_performance', 12);

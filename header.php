@@ -4,16 +4,21 @@
  *
  * Customise this in your child theme by:
  * - Using hooks and your own functions
- * - Using the 'header-content' template part 'header-content-category.php' or 'loop-content.php' (fallback if location specific file not available)
+ * - Using the 'header-content' template part
+ * - For example 'header-content-category.php' for category view or 'header-content.php' (fallback if location specific file not available)
  * - Copying this file to your child theme and customising - it will over-ride this file
  *
  * @package Wonderflux
  */
 
+wf_output_start(); //WF display hook
+echo '<head>';
 wf_head_meta();
-//NOTE: wf_head calls wp_head (after executing wf_head functions) - no need to call them both in a template!
-//This builds the whole head section, no need to even put it in header.php - just concentrate on the design friends!
-// It's all taken care of (and filterable or even overidden in your functions file!)
+wp_head();
+echo '</head>';
+wf_after_head(); //WF display hook
+
+wfx_display_body_tag(''); // IMPORTANT - Inserts dynamic <body> tag with extra Wonderflux CSS classes
 
 wfbody_before_wrapper(); //WF display hook
 wfheader_before_wrapper(); //WF display hook

@@ -202,14 +202,15 @@ class wflux_display_all {
 	}
 
 	// Code functions
-	function head_top($args){ $this->wflux_display_code_do->wf_head_top($args); }
+	function head_open($args){ $this->wflux_display_code_do->wf_head_open($args); }
+	function head_char_set($args){ $this->wflux_display_code_do->wf_head_char_set($args); }
 	function head_title($args){ $this->wflux_display_code_do->wf_head_title($args); }
 	function head_css_structure($args){ $this->wflux_display_code_do->wf_head_css_structure($args); }
 	function head_css_theme($args){ $this->wflux_display_code_do->wf_head_css_theme($args); }
 	function head_css_columns($args){ $this->wflux_display_code_do->wf_head_css_columns($args); }
 	function head_css_ie($args){ $this->wflux_display_code_do->wf_head_css_ie($args); }
 	function head_css_replace($args){ $this->wflux_display_code_do->wf_head_css_replace($args); }
-	function head_close($args){ $this->wflux_display_code_do->wf_head_close($args); }
+	function body_tag($args){ $this->wflux_display_code_do->wf_body_tag($args); }
 	function debug_performance($args){ $this->wflux_display_code_do->wf_performance($args); }
 	function code_credit($args){ $this->wflux_display_code_do->wf_code_credit($args); }
 	function get_dimensions($args){ return $this->wflux_display_code_do->wf_get_dimensions($args); }

@@ -237,7 +237,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Creates update notice if required
 	* @since 0.911
-	* @updated 0.911
+	* @updated 0.931
 	*/
 	function wf_latest_version_notice() {
 
@@ -259,7 +259,7 @@ class wflux_admin extends wflux_data {
 			$output = '<div id="message1" class="error">';
 			$output .= '<h3>Development version installed</h3>';
 			$output .= '<p>You are running a development version of Wonderflux, cool! <strong>You should probably NOT be using this on live sites.</strong></p>';
-			$output .= '<p>It probably contains stuff thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme.</p>';
+			$output .= '<p>It may contain code thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme.</p>';
 			$output .= '<p><strong>If you are not a developer, advanced designer or tester</strong> you will probably be better off using <a href="http://code.google.com/p/wonderflux-framework/downloads/" title="Download the latest stable Wonderflux release here">the latest stable version of Wonderflux</a>.</p>';
 			$output .= '</div>';
 
@@ -275,28 +275,52 @@ class wflux_admin extends wflux_data {
  	/**
 	* Contextual help
 	* @since 0.92
-	* @updated 0.93
+	* @updated 0.931
 	*/
 	function wf_contextual_help($contextual_help, $screen_id, $screen) {
 
+		$link_dev = __( 'Google code project', 'wonderflux' );
+		$link_dl = __( 'Latest release', 'wonderflux' );
+		$link_svn = __( 'Google code SVN', 'wonderflux' );
+		$link_lis = __( 'Google code issue tracking list', 'wonderflux' );
+		$link_doc = __( 'Wonderflux documentation', 'wonderflux' );
+		$doc = __( 'documentation', 'wonderflux' );
+
+		$adv_help = '<p>';
+		$adv_help .= '<a href="http://wonderflux.com/guide/constant/wf_theme_framework_replace/" title="WF_THEME_FRAMEWORK_REPLACE '. $doc . '" target="_blank">WF_THEME_FRAMEWORK_REPLACE</a> - ';
+		$adv_help .= 'WF_THEME_FRAMEWORK_REPLACE '. $doc;
+		$adv_help .= '</p>';
+
 		$generic_help = '<p>';
-		$generic_help .= __( 'The Wonderflux Codex - the development reference to help you build Wonderflux child themes smarter and faster will be launching shortly!', 'wonderflux' );
+		$generic_help .= '<a href="http://wonderflux.com/guide/" title="'. $link_doc . '"target="_blank">http://wonderflux.com/guide</a> - ';
+		$generic_help .= __( 'All Wonderflux documentation and user guides', 'wonderflux' );
 		$generic_help .= '</p>';
 		$generic_help .= '<h3>';
-		$generic_help .= __( 'In the meantime...', 'wonderflux' );
+		$generic_help .= __( 'Get involved!', 'wonderflux' );
 		$generic_help .= '</h3>';
 		$generic_help .= '<p>';
-		$generic_help .= __( 'Get involved in the ', 'wonderflux' );
-		$generic_help_dev_link = __( 'Google code project', 'wonderflux' );
-		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/" title="'.$generic_help_dev_link.'">'.$generic_help_dev_link.'</a>';
-		$generic_help .= __( ' where you can suggest improvements, report bugs and help make a really great theme framework for everyone to use!', 'wonderflux' );
+		$generic_help .= __( 'A huge amount of resource has been poured into this project since it began in January 2010. If you have ideas on how Wonderflux could improve, <strong>why not contribute to the development of Wonderflux?</strong>', 'wonderflux' );
+		$generic_help .= '</p>';
+		$generic_help .= '<p>';
+		$generic_help .= __( '<strong>Remember, Wonderflux is free, open source code just like WordPress</strong> - so your ideas can help make a great theme framework for the whole community to use. Some ideas on how you could help include bug hunting, documentation, javascript, optimisation - really any ideas you have would be more than welcome!', 'wonderflux' );
+		$generic_help .= '</p>';
+		$generic_help .= '<p>';
+		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/source/checkout/" title="' . $link_svn . '" target="_blank">' . $link_svn . '</a> ';
+		$generic_help .= __( '- SVN code repository - latest development version available for checkout (for developers and testers - NOT to be used on live sites!)', 'wonderflux' );
+		$generic_help .= '<br />';
+		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/issues/list/" title="' . $link_lis . '" target="_blank">' . $link_lis . '</a> ';
+		$generic_help .= __( '- Development list (for contributors, bug reports and feature requests)', 'wonderflux' );
+		$generic_help .= '<br />';
+		$generic_help .= '<a href="http://wonderflux.com/guide/" title="' . $link_doc . '" target="_blank">' . $link_doc . '</a> ';
+		$generic_help .= __( '- Documentation site', 'wonderflux' );
+
 		$generic_help .= '</p>';
 
 		switch ($screen_id) {
-			case 'toplevel_page_wonderflux' : $this_help = '<h3>' . __( 'Wonderflux help - Main settings', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . __( 'Wonderflux help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_system' : $this_help = '<h3>' . __( 'Wonderflux help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_advanced' : $this_help = '<h3>' . __( 'Wonderflux help - Advanced', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'toplevel_page_wonderflux' : $this_help = '<h3>' . __( 'Wonderflux Help - Main Options', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . __( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_system' : $this_help = '<h3>' . __( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_advanced' : $this_help = '<h3>' . __( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
 			default : return $contextual_help;
 		}
 

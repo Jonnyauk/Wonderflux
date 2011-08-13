@@ -14,7 +14,7 @@ wffooter_before_wrapper(); //WF display hook
 wffooter_before_container(); //WF display hook
 ?>
 
-<div class="container" id="footer-bg-content">
+<div class="container" id="footer-content">
 
 	<?php
 	wffooter_before_content(); //WF display hook

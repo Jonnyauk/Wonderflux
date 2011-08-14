@@ -122,7 +122,8 @@ class wflux_admin extends wflux_data {
 			$output .= esc_attr__('Read the Wonderflux overview guide','wonderflux');
 			$output .= '">';
 			$output .= esc_attr__('the Wonderflux introduction','wonderflux');
-			$output .= '</a>';
+			$output .= '</a> ';
+			$output .= esc_attr__('- also be sure to check out the documentation links below to learn about how to use the various aspects of Wonderflux.','wonderflux');
 			$output .= '</p>';
 			$output .= $this->wf_common_help();
 			$output .= '<p>';
@@ -133,13 +134,17 @@ class wflux_admin extends wflux_data {
 			$output .= esc_attr__('download the free example Wonderflux child theme call Girder','wonderflux');
 			$output .= '</a>';
 			$output .= esc_attr__(' - take a look at the layout code and especially the theme functions.php file for references on using Wonderflux.','wonderflux');
-			$output .= '</p>';
+			$output .= '</strong></p>';
 			$output .= '</div>';
 			echo $output;
 		} else {
 			echo '<p>' . esc_attr__('You are using the','wonderflux') . ' ' . esc_attr(get_current_theme()) . ' ' . esc_attr__('Wonderflux child theme','wonderflux') . '</p>';
 		}
-		$output = '<div id="icon-tools" class="icon32"></div>';
+
+
+		$output = '<div id="icon-options-general" class="icon32">';
+		$output .= '<br />';
+		$output .= '</div>';
 		$output .= '<h2>' . esc_attr__('Help and support','wonderflux') . '</h2>';
 		$output .= '<p>';
 		$output .= ' <a href="http://wonderflux.com/guide/" title="';

@@ -49,7 +49,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Builds Wonderflux admin pages
 	* @since 0.1
-	* @updated 0.93
+	* @updated 0.931
 	*
 	*	@params
 	*
@@ -74,21 +74,17 @@ class wflux_admin extends wflux_data {
 	function wf_page_build($icon, $title, $include) {
 
 		echo '<div class="themes-php wrap">';
-
 		echo '<div id="icon-'.$icon.'" class="icon32"><br /></div>';
 
 		switch ($title) {
-
 			case('Wonderflux Home'): $tab1=TRUE; break;
 			case('Wonderflux Stylelab'): $tab2=TRUE; break;
 			case('Wonderflux Advanced'): $tab3=TRUE; break;
 			case('Wonderflux System Information'): $tab4=TRUE; break;
 			default: $tab1=TRUE; break;
-
 		}
 
 		$thistab_highlight = ' nav-tab-active';
-
 		echo '<div class="nav-tab-wrapper">';
 
 		echo '<h2 class="nav-tab-wrapper">';
@@ -117,27 +113,44 @@ class wflux_admin extends wflux_data {
 
 		$wf_current_theme = get_current_theme();
 		if ($wf_current_theme == 'Wonderflux Framework') {
-
 			$output = '<div id="message2" class="updated">';
-			$output .= '<h3>' . esc_attr__("Ooops, you could be doing so much more with Wonderflux!","wonderflux") . '</h3>';
-			$output .= '<p>' . esc_attr__("Wonderflux is designed to be used with Wonderflux child themes, not activated directly.","wonderflux") . '</p>';
+			$output .= '<h3>' . esc_attr__('Ooops, you could be doing so much more with Wonderflux!','wonderflux') . '</h3>';
+			$output .= '<p>' . esc_attr__('Wonderflux is a theme framework. It can be directly activated like this and will work perfectly - but you are really missing out on all the cool stuff Wonderflux can do!','wonderflux') . '</p>';
 			$output .= '<p>';
-			$output .= esc_attr__("You can ","wonderflux");
-			$output .= '<a href="http://code.google.com/p/wonderflux-girder-theme/" title="';
-			$output .= esc_attr__("Download the free Girder Wonderflux child theme","wonderflux");
+			$output .= esc_attr__('To get the most out of Wonderflux, you should take a quick read over','wonderflux');
+			$output .= ' <a href="http://wonderflux.com/guide/doc/introduction/" title="';
+			$output .= esc_attr__('Read the Wonderflux overview guide','wonderflux');
 			$output .= '">';
-			$output .= 'download an example child theme call Girder';
+			$output .= esc_attr__('the Wonderflux introduction','wonderflux');
 			$output .= '</a>';
-			$output .= esc_attr__(" - please activate this instead and enjoy!","wonderflux");
+			$output .= '</p>';
+			$output .= $this->wf_common_help();
+			$output .= '<p>';
+			$output .= esc_attr__('You can also','wonderflux');
+			$output .= ' <a href="http://code.google.com/p/wonderflux-girder-theme/" title="';
+			$output .= esc_attr__('Download the free Girder Wonderflux child theme','wonderflux');
+			$output .= '">';
+			$output .= esc_attr__('download the free example Wonderflux child theme call Girder','wonderflux');
+			$output .= '</a>';
+			$output .= esc_attr__(' - take a look at the layout code and especially the theme functions.php file for references on using Wonderflux.','wonderflux');
 			$output .= '</p>';
 			$output .= '</div>';
-
 			echo $output;
-
-		} else { echo '<p>You are currently using '.esc_attr(get_current_theme()).' Wonderflux child theme</p>'; }
-
-		echo '</div>';
-
+		} else {
+			echo '<p>' . esc_attr__('You are using the','wonderflux') . ' ' . esc_attr(get_current_theme()) . ' ' . esc_attr__('Wonderflux child theme','wonderflux') . '</p>';
+		}
+		$output = '<div id="icon-tools" class="icon32"></div>';
+		$output .= '<h2>' . esc_attr__('Help and support','wonderflux') . '</h2>';
+		$output .= '<p>';
+		$output .= ' <a href="http://wonderflux.com/guide/" title="';
+		$output .= esc_attr__('visit the Wonderflux guide','wonderflux');
+		$output .= '">';
+		$output .= esc_attr__('The Wonderflux guide','wonderflux');
+		$output .= '</a> ';
+		$output .= esc_attr__('is the official documentation site for Wonderflux. Click on the direct links below to find relevant content.','wonderflux');
+		echo $output;
+		echo $this->wf_common_help();
+		echo '</div>'; // close themes-php wrap div
 	}
 
 
@@ -372,6 +385,39 @@ class wflux_admin extends wflux_data {
 			}
 		}
 
+	}
+
+
+	/**
+	* Builds common help links for Wonderflux
+	* @since 0.931
+	* @updated 0.931
+	*/
+	function wf_common_help() {
+		$items = array(
+			'doc'=>esc_attr__('Quick start guides','wonderflux'),
+			'hook'=>esc_attr__('Hook guides','wonderflux'),
+			'function'=>esc_attr__('Function guides','wonderflux'),
+			'filter'=>esc_attr__('Filter guides','wonderflux'),
+			'constant'=>esc_attr__('Constant guides','wonderflux'),
+			'file'=>esc_attr__('File guides','wonderflux')
+		);
+
+		$output = '<p><strong>';
+		$output .= esc_attr__('Wonderflux help and documentation','wonderflux');
+		foreach ($items as $key=>$value) {
+			$output .= esc_attr__(' | ','wonderflux');
+			$output .= '<a href="http://wonderflux.com/guide/' . $key . '/" title="' . esc_attr__('View all Wonderflux ','wonderflux');
+			//$output .= esc_attr__('functions','wonderflux');
+			$output .= $value;
+			$output .= esc_attr__(' (documented so far)','wonderflux');
+			$output .= '"> ';
+			//$output .= esc_attr__('Function reference','wonderflux');
+			$output .= $value;
+			$output .= '</a> ';
+		}
+		$output .= '</p>';
+		return $output;
 	}
 
 

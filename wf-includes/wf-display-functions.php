@@ -899,15 +899,17 @@ class wflux_display_extras {
 	 * ARGUMENTS
 	 * $limit = Number of words. Default = '20'
 	 * $excerpt_end = String of characters after the end of the excerpt. Default '...'
+	 * $trim = Trim off punctuation from end of excerpt - good when you don't want it to bump into your excerpt end. Default 'Y'
 	 *
 	 * @since 0.85
-	 * @updated 0.92
+	 * @updated 0.931
 	 */
 	function wf_excerpt($args) {
 
 		$defaults = array (
 			'limit' => 20,
-			'excerpt_end' => '...'
+			'excerpt_end' => '...',
+			'trim' => 'Y'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -926,8 +928,14 @@ class wflux_display_extras {
 		$excerpt = implode(" ",$excerpt);
 		}
 		$excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
-
 		$excerpt = trim(wp_kses_data($excerpt, ''));
+
+		// Remove punctuation
+		if ($trim == 'Y') {
+			$end_check = substr($excerpt, -1);
+			$punctuation = array('.',',','-','&minus;','&ndash;','&mdash;');
+			if (in_array($end_check,$punctuation)): $excerpt = substr($excerpt, 0, -1); endif;
+		}
 
 		return esc_attr($excerpt) . esc_attr($excerpt_end);
 

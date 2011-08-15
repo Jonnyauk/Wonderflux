@@ -637,7 +637,7 @@ class wflux_admin_forms extends wflux_data {
 	/**
 	* Creates the grid output
 	* @since 0.93
-	* @updated 0.93
+	* @updated 0.931
 	*/
 	function wf_css_framework_build() {
 
@@ -652,7 +652,7 @@ class wflux_admin_forms extends wflux_data {
 		$wf_grid_container .= "width: " . $this->wfx_width;
 		$wf_grid_container .= "px; ";
 
-		switch ($this->wfx_sidebar_primary_position) {
+		switch ($this->wfx_position) {
 			case 'left' : $wf_grid_container .= "margin: 0 auto 0 0; } "; break;
 			case 'right' : $wf_grid_container .= "margin: 0 0 0 auto; } "; break;
 			default : $wf_grid_container .= "margin: 0 auto; } "; break;
@@ -799,7 +799,7 @@ class wflux_admin_forms extends wflux_data {
 
 
 	/**
-	* Creates the grid output
+	* Creates the grid output for IE conditional support
 	* @since 0.93
 	* @updated 0.93
 	*/

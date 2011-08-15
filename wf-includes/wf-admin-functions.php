@@ -195,7 +195,7 @@ class wflux_admin extends wflux_data {
 	* Checks in the nicest way possible what the latest version of Wonderflux is against installed version
 	* No nasty business here or anywhere in Wonderflux, move on with a warm glow in your heart!
 	* @since 0.911
-	* @updated 0.93
+	* @updated 0.931
 	*/
 	function wf_latest_version_fetch() {
 
@@ -212,7 +212,7 @@ class wflux_admin extends wflux_data {
 
 		if ( is_wp_error($rss) ) {
 
-			echo '<p>' . esc_attr__('Sorry, update check not currently available', 'wonderflux') . '</p>';
+			echo '<p>' . esc_attr__('Sorry, update check not currently available.', 'wonderflux') . '</p>';
 
 		} else {
 

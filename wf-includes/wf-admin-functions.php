@@ -170,6 +170,7 @@ class wflux_admin extends wflux_data {
 
 		add_settings_section('style_lab', '', array($this->admin_forms, 'wf_form_intro_main'), 'wonderflux_stylelab');
 		add_settings_section('style_lab_doc', '', array($this->admin_forms, 'wf_form_intro_doc'), 'wonderflux_stylelab_doc');
+		add_settings_section('style_lab_fb', '', array($this->admin_forms, 'wf_form_intro_fb'), 'wonderflux_stylelab_fb');
 
 		//1) Key 2) form label 3) Builder function 4)Page? 5)Section
 		add_settings_field('container_p', 'Site container position', array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab', 'style_lab');
@@ -187,6 +188,8 @@ class wflux_admin extends wflux_data {
 		add_settings_field('doc_lang', 'Document language', array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_charset', 'Document character set', array($this->admin_forms, 'wf_form_doc_charset'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 
+		add_settings_field('fb_admins', 'Facebook ID(s)', array($this->admin_forms, 'wf_form_fb_admins'), 'wonderflux_stylelab_fb', 'style_lab_fb');
+		add_settings_field('fb_app', 'Facebook Application ID', array($this->admin_forms, 'wf_form_fb_app'), 'wonderflux_stylelab_fb', 'style_lab_fb');
 
 	}
 
@@ -448,7 +451,7 @@ class wflux_admin_forms extends wflux_data {
 		$cleaninput = array();
 
 		settype( $input['doc_type'], "string" );
-		$doc_type_whitelist = array('transitional','strict','frameset','1.1','1.1basic','html5');
+		$doc_type_whitelist = array('transitional','strict','frameset','1.1','1.1basic','html5','XHTML/RDFa');
 		if (in_array($input['doc_type'],$doc_type_whitelist)) { $cleaninput['doc_type'] = $input['doc_type'];
 		} else {
 			$cleaninput['doc_type'] = 'transitional'; // No cheatin thanks, set sensible value
@@ -489,7 +492,6 @@ class wflux_admin_forms extends wflux_data {
 			$cleaninput['sidebar_d'] = 'Y'; // No cheatin thanks, set sensible value
 		}
 
-
 		settype( $input['container_w'], "integer" );
 		$container_w_whitelist = range(400,2000,10);
 		if (in_array($input['container_w'],$container_w_whitelist)) { $cleaninput['container_w'] = $input['container_w'];
@@ -509,6 +511,17 @@ class wflux_admin_forms extends wflux_data {
 		if (in_array($input['columns_w'],$columns_w_whitelist)) { $cleaninput['columns_w'] = $input['columns_w'];
 		} else {
 			$cleaninput['columns_w'] = 30; // No cheatin thanks, set sensible value
+		}
+
+		settype( $input['fb_admins'], "string" );
+		$cleaninput['fb_admins'] = wp_kses($input['fb_admins'],'');
+
+		settype( $input['fb_app'], "string" );
+		$cleaninput['fb_app'] = wp_kses($input['fb_app'],'');
+
+		// Switch doctype if using Facebook stuff
+		if ( trim( $cleaninput['fb_admins'] ) != '' || trim( $cleaninput['fb_app'] ) != '' ) {
+			$cleaninput['doc_type'] = 'XHTML/RDFa';
 		}
 
 		// Return safe array of values to write to database
@@ -532,10 +545,45 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1); }
 
 	// Doc
-	function wf_form_intro_doc() { echo '<p>' . esc_attr__("Use these controls to set advanced document type and language attributes. ","wonderflux") . '<strong>' . esc_attr__("WARNING - ","wonderflux") . '</strong>' . esc_attr__("These settings should generally be left as default!","wonderflux") . '</p>'; }
-	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',array('transitional','strict','frameset','1.1','1.1basic','html5')); }
+	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',array('transitional','strict','frameset','1.1','1.1basic','html5','XHTML/RDFa')); }
 	function wf_form_doc_lang() { $this->wf_form_helper_ddown_std($this->wfx_doc_lang,'doc_lang',array('aa','ab','ae','af','ak','am','an','ar','as','av','ay','az','ba','be','bg','bh','bi','bm','bn','bo','bo','br','bs','ca','ce','ch','co','cr','cs','cs','cu','cv','cy','cy','da','de','de','dv','dz','ee','el','el','en','eo','es','et','eu','eu','fa','fa','ff','fi','fj','fo','fr','fr','fy','ga','gd','gl','gn','gu','gv','ha','he','hi','ho','hr','ht','hu','hy','hy','hz','ia','id','ie','ig','ii','ik','io','is','is','it','iu','ja','jv','ka','ka','kg','ki','kj','kk','kl','km','kn','ko','kr','ks','ku','kv','kw','ky','la','lb','lg','li','ln','lo','lt','lu','lv','mg','mh','mi','mi','mk','mk','ml','mn','mr','ms','ms','mt','my','my','na','nb','nd','ne','ng','nl','nl','nn','no','nr','nv','ny','oc','oj','om','or','os','pa','pi','pl','ps','pt','qu','rm','rn','ro','ro','ru','rw','sa','sc','sd','se','sg','si','sk','sk','sl','sm','sn','so','sq','sq','sr','ss','st','su','sv','sw','ta','te','tg','th','ti','tk','tl','tn','to','tr','ts','tt','tw','ty','ug','uk','ur','uz','ve','vi','vo','wa','wo','xh','yi','yo','za','zh','zh','zu')); }
 	function wf_form_doc_charset() { $this->wf_form_helper_ddown_std($this->wfx_doc_charset,'doc_charset',array('UTF-8','UTF-16','ISO-2022-JP','ISO-2022-JP-2','ISO-2022-KR','ISO-8859-1','ISO-8859-10','ISO-8859-15','ISO-8859-2','ISO-8859-3','ISO-8859-4','ISO-8859-5','ISO-8859-6','ISO-8859-7','ISO-8859-8','ISO-8859-9')); }
+
+	// Facebook
+	function wf_form_intro_doc() {
+		$output = '<div class="icon32" id="icon-options-general"><br></div><h2>' . esc_attr__( "Document output", "wonderflux" ) . '</h2>';
+		$output .= '<p>';
+		$output .= esc_attr__("Use these controls to set avanced document type and language attributes.","wonderflux");
+		$output .= '<br /><strong>' . esc_attr__("WARNING - ","wonderflux") . '</strong>';
+		$output .= esc_attr__("These settings should generally be left as default (transitional, en, UTF-8).","wonderflux") . '</p>';
+		$output .= '<p><strong>' . esc_attr__("If you are using the Facebook features, you must use document type XHTML/RDFa.","wonderflux") . '</strong></p>';
+		echo $output;
+	}
+	function wf_form_intro_fb() {
+		$output = '<div class="icon32" id="icon-options-general"><br></div><h2>' . esc_attr__( "Facebook connect", "wonderflux" ) . '</h2>';
+		$output .= '<p>' . esc_attr__("Connect your site with Facebook to allow advanced interaction and sharing. Required if you are using the Facebook share display function. ","wonderflux");
+		$output .= esc_attr__("You can assign multiple Facebook ID&rsquo;s by comma seperation (name1,name2) and a single (optional) application ID. ","wonderflux");
+		$output .= '<strong>' . esc_attr__("NOTE - You are required to fill-in at-least your Facebook ID to use the Facebook sharing features. ","wonderflux") . '</p></strong>';
+		$output .= '<p>' . esc_attr__("Get your Facebook ID number by logging into Facebook, and clicking on the 'profile' tab. If you look at the URL in the address bar, you will see something like: ","wonderflux");
+		$output .= '<br />' . esc_attr__("http://www.facebook.com/profile.php?id=123456789012345","wonderflux");
+		$output .= '<br />' . esc_attr__("The string of numbers after 'id=' is your Facebook ID number - copy and paste this into the filed below. ","wonderflux");
+		$output .= esc_attr__("Application ID is optional (advanced users). ","wonderflux");
+		$output .= '<a href="http://developers.facebook.com/setup/" title="' . esc_attr__("Login to Facebook to get your application ID if required.","wonderflux") . '">' . esc_attr__("Get your application ID if required","wonderflux") . '</a>. ';
+		$output .= '<p><strong>' . esc_attr__("IMPORTANT - When entering and using any of these details, your site document type is automatically switched to XHTML/RDFa. ","wonderflux") . '</strong>';
+		$output .= esc_attr__("Relevant Facebook and Open Graph meta tags are generated and XML namespace attributes are added. Whilst active, it is manditory to keep the document type as XHTML/RDFa. This ensures that your site will still produce valid code, enable XFBML and advanced loading, along with improved compatibility with Internet Explorer.","wonderflux") . '</strong></p>';
+		echo $output;
+	}
+	function wf_form_fb_admins() { $this->wf_form_helper_text($this->wfx_fb_admins,'fb_admins'); }
+	function wf_form_fb_app() { $this->wf_form_helper_text($this->wfx_fb_app,'fb_app'); }
+
+	/**
+	* Creates a dropdown for options page
+	* @since 0.931
+	* @updated 0.931
+	*/
+	function wf_form_helper_text( $data,$definition ){
+		echo "<input id='wonderflux_display[".esc_attr($definition)."]' name='wonderflux_display[".esc_attr($definition)."]' size='40' type='text' value='".esc_textarea($data)."' />";
+	}
 
 
 	/**

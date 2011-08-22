@@ -25,6 +25,9 @@ class wflux_data {
 	protected $wfx_sidebar_1_id; // Sets CSS ID of sidebar 1 container div
 	protected $wfx_sidebar_1_size_columns; // Optional sidebar size in columns - over-rides _size variable if set
 
+	protected $wfx_fb_admins; // Facebook admin owners, for meta data
+	protected $wfx_fb_app; // Facebook app ID, for meta data
+
 	function __construct() {
 
 		// Main Wonderflux display array
@@ -37,7 +40,7 @@ class wflux_data {
 		// Validate
 
 		$wfx_doc_type_out = 'transitional';
-		$wfx_doc_type_accept = array('transitional','strict','frameset','1.1','1.1basic','html5');
+		$wfx_doc_type_accept = array('transitional','strict','frameset','1.1','1.1basic','html5','XHTML/RDFa');
 		if ( in_array($this->wfx_doc_type,$wfx_doc_type_accept) ) { $wfx_doc_type_out = $this->wfx_doc_type; }
 		$this->wfx_doc_type = $wfx_doc_type_out;
 
@@ -78,6 +81,13 @@ class wflux_data {
 			}
 		}
 		$this->wfx_doc_charset = $wfx_doc_charset_out;
+
+		//// THIRD PARTY META
+
+		//Facebook
+
+		$this->wfx_fb_admins = ( isset($this->wfx_db_display['fb_admins'] ) ) ? wp_kses_data( $this->wfx_db_display['fb_admins'] ) : '';
+		$this->wfx_fb_app = ( isset($this->wfx_db_display['fb_app'] ) ) ? wp_kses_data( $this->wfx_db_display['fb_app'] ) : '';
 
 		//// COLUMNS CONFIGURATION ////
 

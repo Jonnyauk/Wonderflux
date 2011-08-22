@@ -7,13 +7,20 @@
 */
 class wflux_display_code extends wflux_data {
 
+	protected $xml_namespaces;
+
+	function __construct() {
+		parent::__construct();
+		$this->xml_namespaces = array(); // Holds all XML namespaces to build into head
+	}
+
 	/**
 	* Builds the start of the head with doc type declaration
 	*
 	* @since 0.931
 	* @updated 0.931
 	*
-	* @param $doctype (limited variable string) : Document type : 'transitional' (default), 'strict', 'frameset', '1.1', '1.1basic', 'html5'
+	* @param $doctype (limited variable string) : Document type : 'transitional' (default), 'strict', 'frameset', '1.1', '1.1basic', 'html5', 'XHTML/RDFa'
 	* @param $lang (user variable string) : Alphabetic International language code : 'en' (default), USER INPUT
 	* @param $content : Document content : 'html' (default)
 	* @param $charset (user variable string) : Character encoding : 'utf8' (default), USER INPUT
@@ -31,81 +38,64 @@ class wflux_display_code extends wflux_data {
 		extract( $args, EXTR_SKIP );
 
 		// Language code
-		$lang_length = strlen( trim($lang) );
-		if ($lang_length < 6) {
-			$lang_output = strtolower(wp_kses($lang, ''));
-		} else {
-			//Invalid - set sensible default
-			$lang_output = 'en';
-		}
-
-		//TODO: SET FILTERS HERE READY FOR CLEANSING USING FUNCTIONS BELOW
+		if ($lang !='en' || strlen( trim($lang) ) < 6): $lang_output = sanitize_key($lang);
+		else: $lang_output = 'en';
+		endif;
 
 		// Document type
 		switch ($doctype) {
-			case 'transitional':
-				$doctype_output = '1.0 Transitional';
-				$doctype_link_output = '1/DTD/xhtml1-transitional';
-			break;
-
-			case 'strict':
-				$doctype_output = '1.0 Strict';
-				$doctype_link_output = '1/DTD/xhtml1-strict';
-			break;
-
-			case 'frameset':
-				$doctype_output = '1.0 Frameset';
-				$doctype_link_output = '1/DTD/xhtml1-frameset';
-			break;
-
-			case '1.1':
-				$doctype_output = '1.1';
-				$doctype_link_output = '11/DTD/xhtml11';
-			break;
-
-			case '1.1basic':
-				$doctype_output = 'Basic 1.1';
-				$doctype_link_output = '-basic/xhtml-basic11';
-			break;
-
-			//Invalid user input - set a sensible default
-			default:
-				$doctype_output = '1.0 Transitional';
-				$doctype_link_output = '1/DTD/xhtml1-tansitional';
-			break;
+			case 'transitional': $doctype_output = 'XHTML 1.0 Transitional'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-transitional'; break;
+			case 'strict': $doctype_output = 'XHTML 1.0 Strict'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-strict'; break;
+			case 'frameset': $doctype_output = 'XHTML 1.0 Frameset'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-frameset'; break;
+			case '1.1': $doctype_output = 'XHTML 1.1'; $doctype_link_output = 'TR/xhtml11/DTD/xhtml11'; break;
+			case '1.1basic': $doctype_output = 'XHTML Basic 1.1'; $doctype_link_output = 'TR/xhtml-basic/xhtml-basic11'; break;
+			case 'XHTML/RDFa': $doctype_output = 'XHTML+RDFa 1.0'; $doctype_link_output = 'MarkUp/DTD/xhtml-rdfa-1'; break;
+			default: $doctype_output = '1.0 Transitional'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-tansitional'; break;
 		}
 
 		// Character set
 		$charset_output = wp_kses($charset, '');
 
-		// If its HTML 5 it's simple output
-		if ($doctype == 'html5') {
-
-			$output = '<!DOCTYPE html>' . "\n";
-			$output .= '<html lang="'.$lang_output.'">' . "\n";
-
-		} else {
-
+		// Output
+		if ($doctype == 'html5'): $output = '<!DOCTYPE html>' . "\n" . '<html lang="'.$lang_output.'">' . "\n";
+		else:
 			// Content type
-			$content_length = strlen($content);
-			if ($content_length <= 4) {
-				$content_output = strtolower(wp_kses($content, ''));
-			} else {
-				//Invalid input - set a sensible default
-				$content_output = 'html';
-			}
+			if ($content !='html' || strlen($content) <= 4) :
+				$content_output = sanitize_key($content, '');
+			else: $content_output = 'html'; endif;
 
-			// Setup default strings not used in HTML 5 spec
-			$common_1 = 'html PUBLIC "-//W3C//DTD XHTML ';
-			$common_2 = '" "http://www.w3.org/TR/xhtml';
-			$output = '<!DOCTYPE ' . $common_1 . $doctype_output . '//' . strtoupper($lang_output) . $common_2 . $doctype_link_output . '.dtd">';
-			$output .="\n";
-			$output .='<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="'.$lang_output.'" lang="'.$lang_output.'">';
-			$output .="\n";
-		}
+			$this->xml_namespace_build();
+			$namespaces = '';
+			foreach ( $this->xml_namespaces as $key=>$value ) { $namespaces .= $value . ' '; }
 
+			$lang_extra = ( $doctype == 'XHTML/RDFa' ) ? '' : 'lang="'.$lang_output.'" ';
+			$output = '<!DOCTYPE ' . 'html PUBLIC "-//W3C//DTD ' . $doctype_output . '//' . strtoupper($lang_output) . '" "http://www.w3.org/' . $doctype_link_output . '.dtd">';
+			$output .="\n";
+			$output .='<html ' . 'xml:lang="'.$lang_output.'" ' . $lang_extra . $namespaces . '>';
+			$output .="\n";
+		endif;
 		echo $output;
 	}
+
+
+	/**
+	* Builds array of XML namespace attributes to pass to wf_head_meta_xml_namespace
+	* @filter wf_head_meta_xml_namespace_main - Full output of default XML namespace definition.
+	*
+	* @since 0.931
+	* @updated 0.931
+	*/
+	function xml_namespace_build() {
+		//$this->xml_namespaces[] = wp_strip_all_tags($name);
+		// Default namespace
+		$this->xml_namespaces[] = apply_filters( 'wf_head_meta_xml_namespace_main', 'xmlns="http://www.w3.org/1999/xhtml"' );
+		// If using Facebook need Open Graph AND Facebook namespace definitions
+		if ( $this->wfx_doc_type == 'XHTML/RDFa' ):
+			$this->xml_namespaces[] = 'xmlns:og="http://ogp.me/ns#"';
+			$this->xml_namespaces[] = 'xmlns:fb="http://www.facebook.com/2008/fbml"';
+		endif;
+	}
+
 
 	/**
 	* Inserts the Content-Type/charset meta tag
@@ -132,21 +122,14 @@ class wflux_display_code extends wflux_data {
 		$charset_output = wp_kses($charset, '');
 
 		// If its HTML 5 it's simple output
-		if ($doctype == 'html5') {
+		if ($doctype == 'html5'):
 			$output = "\n".'<meta charset="'.$charset_output.'" />' . "\n";
-		} else {
-			// Content type
-			$content_length = strlen($content);
-			if ($content_length <= 4) {
-				$content_output = strtolower(wp_kses($content, ''));
-			} else {
-				//Invalid input - set a sensible default
-				$content_output = 'html';
-			}
+		else:
+			$content_output = ( strlen($content) <= 4 ) ? strtolower(wp_kses($content, '')) : 'html';
 			$output ="\n";
 			$output .= '<meta http-equiv="Content-Type" content="text/'.$content_output.'; charset='.$charset_output.'" />';
 			$output .="\n";
-		}
+		endif;
 
 		echo $output;
 	}
@@ -1748,4 +1731,368 @@ class wflux_display_extras {
 
 }
 
+
+/**
+* @since 0.931
+* @updated 0.931
+* Social networking functionality
+*/
+class wflux_display_social extends wflux_data {
+
+	protected $share_url; // Common sharing URL
+	protected $gplus_id; // Google Plus 1 ID - Increments as more plus one buttons called
+	protected $fb_like_id; // Facebook like ID - Increments as more like buttons called
+	protected $twit_like_id; // Facebook like ID - Increments as more tweet buttons called
+	protected $share_site_name; // Common site name
+	protected $share_title; // Common title
+	protected $share_description; // Common description
+
+	protected $og_image;
+
+	function __construct() {
+
+		parent::__construct();
+
+		global $post;
+		switch ( wfx_info_location('') ) {
+			case 'home':
+				$this->share_url = home_url();
+			break;
+			case 'single' || 'page':
+				$this->share_url = get_permalink($post->ID);
+			break;
+			default:
+				$this->share_url = home_url();
+			break;
+		}
+		$this->gplus_id = 0;
+		$this->fb_like_id = 0;
+		$this->twit_like_id = 0;
+		$this->share_site_name = wp_strip_all_tags( get_bloginfo( 'name', 'raw' ) );
+		$this->share_title = wp_strip_all_tags( get_the_title($post->ID) );
+		$this->share_description = wp_strip_all_tags( get_bloginfo( 'description', 'raw' ) );
+		$this->og_image = apply_filters( 'wfx_social_og_meta_image', WF_THEME.'/images/supporting/social_thumbnail.jpg' );
+	}
+
+
+	/**
+	 * Inserts associated social related meta tags in <head> if required.
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_social_meta() {
+		if ( $this->wfx_doc_type == 'XHTML/RDFa' ):
+			add_action( 'wp_head', array( $this, 'wf_og_meta' ), 4 );
+		endif;
+	}
+
+
+	/**
+	 * Builds Open Graph Meta data (used by Facebook and others)
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_og_meta() {
+		//TODO: build extra og:type support
+		//SUDO
+		echo '<meta property="og:title" content="' . esc_attr( $this->share_title ) . '"/>'."\n";
+		echo '<meta property="og:type" content="' . 'article' . '"/>'."\n";
+		echo '<meta property="og:image" content="' . esc_url( $this->og_image ). '"/>'."\n";
+		echo '<meta property="og:url" content="' . esc_url( $this->share_url ) . '"/>'."\n";
+		echo '<meta property="og:site_name" content="' . esc_attr( $this->share_site_name ) . '"/>'."\n";
+		echo '<meta property="og:description" content="' . esc_attr( $this->share_description ) . '"/>'."\n";
+		if ( trim( $this->wfx_fb_admins ) != '' ):
+			echo '<meta property="fb:admins" content="' . wp_kses( $this->wfx_fb_admins, '' ) . '"/>'."\n";
+		endif;
+		if ( trim( $this->wfx_fb_app ) != '' ):
+			echo '<meta property="fb:app_id" content="' . wp_kses( $this->wfx_fb_app, '' ) . '"/>'."\n";
+		endif;
+	}
+
+
+	/**
+	 * Displays a Facebook like button.
+	 * @param size - Size of share button. 'small', 'tall' [small]
+	 * @param send - Show additional send button. 'true', 'false' [false]
+	 * @param url - URL to like/share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_fb_like( $args ) {
+
+		$defaults = array (
+			'size' => 'small',
+			'send' => 'false',
+			'url' => false,
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		$this->fb_like_id++;
+
+		// Validate
+		$size = ( $size == 'small' ) ? 'button_count' : 'box_count';
+		$send = ( $send == 'true' ) ? 'true' : 'false';
+
+		if ( trim($url) == '' || !isset($url) ):
+			$url = $this->share_url;
+		elseif ( $url == 'home'):
+			$url = home_url();
+		endif;
+
+		// Build output
+		$this->wf_fb_like_render( $size, $send, $url );
+		// Add JS once
+		if ( $this->fb_like_id > 1 ) return;
+		add_action( 'wf_footer', array( $this, 'wf_fb_like_js' ) );
+	}
+
+
+	/**
+	 * Builds the Facebook like button
+	 * TODO: Extend functionality
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_fb_like_render( $size, $send, $url ){
+		$width = ( $size == 'button_count' ) ? 82 : 50;
+		echo '<fb:like href="' . esc_url( $url ) . '" send="' . $send . '" layout="' . $size . '" width="' . $width . '" show_faces="false" action="like"></fb:like>';
+
+	}
+
+
+	/**
+	 * Builds the Javascript that is used to connect to Facebook
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_fb_like_js() {
+		// REF: status > check login status, cookie > enable cookies to enable server to access session, xfbml > parse xfbml
+		?>
+
+		<!-- Facebook Connect -->
+		<div id="fb-root"></div>
+		<script type='text/javascript'>
+		  window.fbAsyncInit = function() {
+		    FB.init({
+		      appId  : '<?php echo wp_kses( $this->wfx_fb_app, '' );?>',
+		      status : true,
+		      cookie : true,
+		      xfbml  : true
+		    });
+		  };
+
+		  (function() {
+		    var e = document.createElement('script');
+		    e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+		    e.async = true;
+		    document.getElementById('fb-root').appendChild(e);
+		  }());
+		</script>
+		<?php
+	}
+
+
+	/**
+	 * Displays a Google Plus 1 button with fully valid XHTML rendering.
+	 * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
+	 * @param size - Size of plus 1 button. 'small', 'medium', 'standard', 'tall' [medium]
+	 * @param count - Show count or not. NOTE: Tall size always shows count. 'no_count', 'show_count' [show_count]
+	 * @param url - URL to plus 1 - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
+	 * @filter wfx_social_gplus_target - Sets the target name that's added to the start of the unique ID. Used in div ID and Javascript output. [social-link-gplus]
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_g_plus_1( $args ) {
+
+		$defaults = array (
+			'size' => 'medium',
+			'count' => 'show_count',
+			'url' => false,
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		$this->gplus_id++;
+
+		// Validate
+		$size_accept = array('small', 'medium', 'standard', 'tall');
+		$size = ( $size == 'medium' || in_array($size, $size_accept) ) ? $size : 'medium';
+
+		$count = ( $size == 'tall' || $count == 'no_count' ) ? 'false' : 'true';
+
+		if ( $url == '' || !isset($url) ):
+			$url = $this->share_url;
+		elseif ( $url == 'home'):
+			$url = home_url();
+		else: // Custom URL supplied
+		endif;
+		$url = ', \'href\': \'' . $url . '\' ';
+
+		$target = apply_filters( 'wfx_social_gplus_target', 'social-link-gplus' );
+
+		// Build output
+		// TODO: Switch for controlling different types of output here
+		$this->wf_gplus_div( $this->gplus_id, $target );
+		add_action('wf_social_gplus_js_params_1', create_function('','echo " gapi.plusone.render( \'' . sanitize_key($target) . '-' . $this->gplus_id . '\', { \'size\': \'' . $size . '\', \'count\': \'' . $count . '\' ' . $url . '} );";') );
+		add_action('wf_social_gplus_js_params_2', create_function('','echo "var div = getElementByIdUniversal( \'' . sanitize_key($target) . '-' . $this->gplus_id . '\' ); ";') );
+		// Add JS once
+		if ( $this->gplus_id > 1 ) return;
+		add_action( 'wf_footer', array( $this, 'wf_gplus_js' ) );
+
+	}
+
+
+	/**
+	 * Builds the Javascript that is used to render the Plus 1 button.
+	 * Used internally by wf_gplus.
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_gplus_js() {
+		?>
+		<!-- Google Plus-1 Buttons -->
+		<script type='text/javascript'>
+			function plusoneready() {<?php do_action( 'wf_social_gplus_js_params_1' ); ?>}
+
+			function getElementByIdUniversal( id ) { return ( document.getElementById ) ? document.getElementById( id ) : document.all[ id ]; }
+
+			(function() {
+				var gp = document.createElement( 'script' );
+				gp.type = 'text/javascript';
+				gp.async = true;
+				gp.src = 'https://apis.google.com/js/plusone.js';
+				gp.onload = plusoneready;
+				<?php do_action( 'wf_social_gplus_js_params_2' ); ?>
+
+				div.parentNode.insertBefore( gp, div );
+			})();
+
+		</script>
+		<?php
+	}
+
+
+	/**
+	 * Displays the DIV container that is used to render the Plus 1 button.
+	 * Used internally by wf_gplus to display an empty div - a lesser sin than invalid markup - naughty Google!
+	 * @param id - Unique ID, passed from wf_gplus
+	 * @param target - Passed from wf_gplus
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_gplus_div( $id, $target ){ echo '<div id="' . $target . '-' . $id . '"></div>' . "\n"; }
+
+
+	/**
+	 * Displays a Twitter button with counter.
+	 * @param size - Size of share button. 'small', 'tall' [small]
+	 * @param count - Show count or not. NOTE: Defaults to small - no count only available on small. 'no_count' [show_count]
+	 * @param url - URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_twit_share( $args ) {
+
+		$defaults = array (
+			'size' => 'small',
+			'count' => 'show_count',
+			'url' => false,
+			'tweet' => false,
+			'id' => false,
+			'recommend' => false,
+			'recommend_text' => false,
+		);
+		//echo 'found me!';
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		$this->twit_like_id++;
+
+		// Validate
+
+		if ( $size == 'small'):
+			$size = ($count != 'no_count') ? 'horizontal' : 'none';
+		elseif ( $size == 'tall'):
+			$size = ($count != 'no_count') ? 'vertical' : 'none';
+		else:
+			$size = 'none';
+		endif;
+
+		// Twitter button pulls URL dynamically if not set
+		if ( $url == '' || !isset($url) ):
+			$url = false;
+		elseif ( $url == 'home'):
+			$url = home_url();
+		endif;
+
+		// Build output
+		$this->wf_twit_share_render($url,$tweet,$size,$id,$recommend,$recommend_text);
+		//$this->wf_twit_share_render();
+		// Add JS once
+		if ( $this->twit_like_id > 1 ) return;
+		add_action( 'wf_footer', array( $this, 'wf_twit_share_js' ) );
+	}
+
+
+	/**
+	 * Builds the Javascript that is used to render the Twitter button.
+	 * Cant use wp_enqueue_script as it gets dynamically inserted in button(s) inserted
+	 *
+	 * @param size - Size of share button. 'small', 'tall' [small]
+	 * @param send - Show additional send button. 'true', 'false' [false]
+	 * @param url - URL to like/share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_twit_share_render($url,$tweet,$size,$id,$recommend,$recommend_text) {
+		echo '<a href="http://twitter.com/share?';
+		echo ( isset($url) ) ? 'url='. urlencode( esc_url($url) ) . '&amp;' : '';
+		echo ( isset($tweet) ) ? 'text='. $this->wf_urle( $tweet ) . '&amp;' : '';
+		echo 'count='. $size . '&amp;';
+		echo ( isset($id) ) ? 'via='. $this->wf_urle( $id ) . '&amp;' : '';
+		echo ( isset($recommend) && !isset($recommend_text) ) ? 'related='. $this->wf_urle( $recommend ) . '&amp;' : '';
+		echo ( !isset($recommend) && isset($recommend_text) ) ? 'related='. $this->wf_urle( $recommend_text ) . '&amp;' : '';
+		echo ( isset($recommend) && isset($recommend_text) ) ? 'related='. $this->wf_urle( $recommend ) . ':' . $this->wf_urle( $recommend_text ) . '&amp;' : '';
+		echo '" class="twitter-share-button" rel="nofollow">Tweet</a>';
+	}
+
+
+	/**
+	 * Builds the Javascript that is used to render the Twitter button.
+	 * Cant use wp_enqueue_script as it gets dynamically inserted if button(s) inserted in content and cant hook into WordPress early enough
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_twit_share_js() {
+		echo '<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>';
+	}
+
+
+	/**
+	 * Just like urlencode, but replaces + with %20 for URL encoded params
+	 *
+	 * @param $string - String of text
+	 *
+	 * @since 0.931
+	 * @updated 0.931
+	 */
+	function wf_urle($string) {
+		return str_replace('+', '%20', urlencode($string));
+	}
+}
 ?>

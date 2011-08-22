@@ -4,41 +4,39 @@ load_template(TEMPLATEPATH . '/wf-config.php');
 load_template(WF_INCLUDES_DIR . '/wf-version.php');
 load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
 
-if (is_admin()) {
-	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');
-}
-
-
 //// ADMIN FUNCTIONS
 
+if (is_admin()) {
+	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');
 
-/**
-* @since 0.93
-* @updated 0.93
-* Sets up all Wonderflux admin functions
-*/
-function wflux_capacitor_admin() {
-	global $wfx_admin;
-	$wfx_admin = new wflux_admin_all;
-}
-add_action('auth_redirect','wflux_capacitor_admin', 1);
-
-
-/**
-* @since 0.93
-* @updated 0.93
-* Creates relevant Wonderflux admin functions
-*/
-class wflux_admin_all {
-
-	static $wflux_admin_do;
-
-	function __construct(){
-		$this->wflux_admin_do = new wflux_admin;
+	/**
+	* @since 0.93
+	* @updated 0.93
+	* Sets up all Wonderflux admin functions
+	*/
+	function wflux_capacitor_admin() {
+		global $wfx_admin;
+		$wfx_admin = new wflux_admin_all;
 	}
+	add_action('auth_redirect','wflux_capacitor_admin', 1);
 
-	function admin_menus(){ $this->wflux_admin_do->wf_admin_menus(); }
 
+	/**
+	* @since 0.93
+	* @updated 0.93
+	* Creates relevant Wonderflux admin functions
+	*/
+	class wflux_admin_all {
+
+		static $wflux_admin_do;
+
+		function __construct(){
+			$this->wflux_admin_do = new wflux_admin;
+		}
+
+		function admin_menus(){ $this->wflux_admin_do->wf_admin_menus(); }
+
+	}
 }
 
 
@@ -193,12 +191,14 @@ class wflux_display_all {
 	static $wflux_display_css_do;
 	static $wflux_display_do;
 	static $wflux_display_ex_do;
+	static $wflux_display_social_do;
 
 	function __construct(){
 		$this->wflux_display_code_do = new wflux_display_code;
 		$this->wflux_display_css_do = new wflux_display_css;
 		$this->wflux_display_do = new wflux_display;
 		$this->wflux_display_ex_do = new wflux_display_extras;
+		$this->wflux_display_social_do = new wflux_display_social;
 	}
 
 	// Code functions
@@ -231,14 +231,20 @@ class wflux_display_all {
 
 	// EX Display functions - these are useful to theme designers
 	function excerpt($args){ return $this->wflux_display_ex_do->wf_excerpt($args); } // TO TEST
-	function twitter_feed($args){ $this->wflux_display_ex_do->wf_twitter_feed($args); } // TEST PASSED
+	function twitter_feed($args){ $this->wflux_display_ex_do->wf_twitter_feed($args); }
 	function perma_img($args){ $this->wflux_display_ex_do->wf_perma_img($args); } // TO TEST
 	function edit_meta($args){ $this->wflux_display_ex_do->wf_edit_meta($args); } // NEEDS MORE TESTING?
-	function get_single_content($args){ $this->wflux_display_ex_do->wf_get_single_content($args); } // TEST PASSED
-	function login_logout($args){ $this->wflux_display_ex_do->wf_login_logout($args); } // TEST PASSED
+	function get_single_content($args){ $this->wflux_display_ex_do->wf_get_single_content($args); }
+	function login_logout($args){ $this->wflux_display_ex_do->wf_login_logout($args); }
 	function static_highlight($args){ $this->wflux_display_ex_do->wf_static_highlight($args); }
 	function get_attachments($args){ $this->wflux_display_ex_do->wf_get_attachments($args); }
 	function page_counter($args){ return $this->wflux_display_ex_do->wf_page_counter($args); }
+
+	// Social functions
+	function g_plus_1($args){ return $this->wflux_display_social_do->wf_g_plus_1($args); }
+	function fb_like($args){ return $this->wflux_display_social_do->wf_fb_like($args); }
+	function twit_share($args){ return $this->wflux_display_social_do->wf_twit_share($args); }
+	function social_meta($args){ return $this->wflux_display_social_do->wf_social_meta($args); }
 
 }
 ?>

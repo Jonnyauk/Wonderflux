@@ -1,41 +1,50 @@
 <?php
 /**
- * Core Wonderflux theme framework functions
- * For more information, including license please view README.txt file or visit http://www.wonderflux.com
+ * Wonderflux is a free open source, GPLv2 licensed theme framework for professional WordPress theme design.
+ *
+ * Information and license:    README.txt
+ *
+ * Guide and documentation:    http://wonderflux.com/guide
+ * Introduction to Wonderflux: http://wonderflux.com/guide/doc/introduction/
+ * Wonderflux child themes:    http://wonderflux.com/guide/doc/child-theme-files/
+ *
+ * Bugs/improvements/feedback: http://code.google.com/p/wonderflux-framework/issues/list
+ * Official release downloads: http://code.google.com/p/wonderflux-framework/downloads/
+ * Development code:           http://code.google.com/p/wonderflux-framework/source/checkout
  *
  * 1 - Helper functions
  * 2 - Display functions
  * 3 - Theme display functions
- * 4 - Theme configuration functions
- * 5 - Script support functions
- * 6 - Admin functions
- * 7 - Wonderflux Core
- * 8 - Add actions to hooks
+ * 4 - Social functions
+ * 5 - Theme configuration functions
+ * 6 - Script support functions
+ * 7 - Admin functions
+ * 8 - Wonderflux Core
+ * 9 - Add actions to hooks
  *
- * DON'T HACK ME!! You should not modify the Wonderflux theme framework to avoid issues with updates in the future
- * You have lots of ways to manipulate this from your child theme! http://codex.wordpress.org/Child_Themes
+ * DON'T HACK ME!! You should NOT modify the Wonderflux theme framework to avoid issues with updates in the future.
+ * It's designed to offer cutting edge flexibility - with lots of ways to manipulate output from your child theme!
  *
- * 1) Create a function with the same name as a core display function in your child theme. This will override the ones in this file
+ * 1) Create a function with the same name as a Wonderflux display function below in your child theme.
+ *    This will override the ones in this file and be used instead.
  *
  * 2) Remove a core Wonderflux action in your child theme functions file with the code:
- *    remove_action('wf_hook_name','wf_function_name',postitionnumber);
+ *    remove_action('wf_hook_name','wf_function_name', $priority);
  *
- * 3) Add a filter a display function (documentation to come)
+ * 3) Add a filter - http://wonderflux.com/guide/filter/
  *
- * 4) Use over 120 location-aware hooks (documentation to come)
+ * 4) Use over 100 location-aware hooks http://wonderflux.com/guide/hook/
  *
  * If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
+ * http://code.google.com/p/wonderflux-framework/issues/list
  *
- * Get involved at http://wonderflux-framework.googlecode.com - full open source SVN project
- * THIS IS THE ONLY PLACE to download the official distribution code (during beta) and is where all issues and updates are tracked
- * Developers also have full SVN access to trunk where the latest non-released development version is held (NOT advised for live sites!)
+ * DEVELOPERS AND TESTERS
+ * Developers have full SVN checkout access to trunk where the latest non-released development code is held.
+ * Visit http://code.google.com/p/wonderflux-framework/source/checkout for access information.
+ * All development is tracked within the Google Code SVN system.
+ * The trunk version is for contributions, testing and development - NOT for live sites!!
  *
- * If thats too techie (SVN is not much fun!), submit a suggestion at http://wonderflux.com
- *
- * Thanks for trying Wonderflux, WordPress is a world-class publishing platform,
- * lets make a world-class theme framework for everyone to use, for free, for ever!
- *
- * Follow us on Twitter @Wonderflux for updates and news
+ * Thanks for using Wonderflux - follow us on Twitter @Wonderflux for updates and news.
  *
  * @package Wonderflux
  *
@@ -379,7 +388,43 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
 } endif;
 
 
-//  4  //////////// THEME CONFIGURATION
+
+////  4  //////////// SOCIAL FUNCTIONS
+
+
+/**
+* @since 0.931
+* @updated 0.931
+* Displays Google Plus 1 button
+*/
+if ( !function_exists( 'wfx_social_google_plus_1' ) ) : function wfx_social_google_plus_1($args='') { global $wfx; $wfx->g_plus_1($args); } endif;
+
+
+/**
+* @since 0.931
+* @updated 0.931
+* Displays Facebook Like button
+*/
+if ( !function_exists( 'wfx_social_facebook_like' ) ) : function wfx_social_facebook_like($args='') { global $wfx; $wfx->fb_like($args); } endif;
+
+
+/**
+* @since 0.931
+* @updated 0.931
+* Displays Twitter share button
+*/
+if ( !function_exists( 'wfx_social_twitter_share' ) ) : function wfx_social_twitter_share($args='') { global $wfx; $wfx->twit_share($args); } endif;
+
+
+/**
+* @since 0.931
+* @updated 0.931
+* Builds social associated meta tags (Facebook ect)
+*/
+if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args='') { global $wfx; $wfx->social_meta($args); } endif;
+
+
+//  5  //////////// THEME CONFIGURATION
 
 
 /**
@@ -406,7 +451,7 @@ if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs(
 if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global $wfx_theme; $wfx_theme->ie6_png($args); } endif;
 
 
-//  5  //////////// SCRIPT SUPPORT
+//  6  //////////// SCRIPT SUPPORT
 
 
 /**
@@ -425,7 +470,7 @@ if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args) { global $w
 if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args) { global $wfx_theme; $wfx_theme->cycle($args); } endif;
 
 
-//  6  //////////// ADMIN FUNCTIONS
+//  7  //////////// ADMIN FUNCTIONS
 
 
 /**
@@ -436,7 +481,7 @@ if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args) { globa
 if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { global $wfx_admin; $wfx_admin->admin_menus(); } endif;
 
 
-//  7  //////////// WONDERFLUX CORE
+//  8  //////////// WONDERFLUX CORE
 
 
 /**
@@ -478,8 +523,7 @@ function wfx_core_default_widgets() {
 }
 
 
-//  8  //////////// Add actions to hooks
-
+//  9  //////////// Add actions to hooks
 
 // Special child theme function
 // Create the function my_wfx_layout() in your child theme functions file
@@ -500,9 +544,10 @@ if (WF_THEME_FRAMEWORK_REPLACE == false) {
 // Core Wonderflux theme activation
 if (get_current_theme() == 'Wonderflux Framework') { add_action('wp_loaded', 'wfx_core_default_widgets'); }
 
-add_action('init', 'wfx_config_language'); //Need to test if this is ok to load on init
+add_action('init', 'wfx_config_language');
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
 add_action('wf_output_start', 'wfx_display_head_open', 1);
+add_action('get_header', 'wfx_social_meta');
 add_action('wf_head_meta', 'wfx_display_head_char_set', 1);
 add_action('wf_head_meta', 'wfx_display_head_title', 3);
 add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
@@ -511,5 +556,5 @@ add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
 add_action('wffooter_after_content', 'wfx_display_credit', 1);
 add_action('wf_footer', 'wfx_debug_performance', 12);
 add_action('wf_footer', 'wfx_display_code_credit', 3);
-add_action('auth_redirect', 'wfx_admin_menus'); //Need to test if this is ok to load on this hook - looking for an early enough admin only hook
+add_action('auth_redirect', 'wfx_admin_menus');
 ?>

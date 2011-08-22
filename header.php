@@ -26,7 +26,7 @@ wfheader_before_wrapper(); //WF display hook
 wfheader_before_container(); //WF display hook
 ?>
 
-<div class="container" id="header-content">
+<div class="container" id="header">
 
 	<?php
 	wfheader_before_content(); //WF display hook

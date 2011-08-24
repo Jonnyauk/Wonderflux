@@ -1754,22 +1754,24 @@ class wflux_display_social extends wflux_data {
 		parent::__construct();
 
 		global $post;
-		switch ( wfx_info_location('') ) {
-			case 'home':
-				$this->share_url = home_url();
-			break;
-			case 'single' || 'page':
-				$this->share_url = get_permalink($post->ID);
-			break;
-			default:
-				$this->share_url = home_url();
-			break;
+		if ( isset($post->ID) ):
+			switch ( wfx_info_location('') ) {
+				case 'home':
+					$this->share_url = home_url();
+				break;
+				case 'single' || 'page':
+					$this->share_url = ( isset($post->ID) ) ? get_permalink($post->ID) : home_url();
+				break;
+				default:
+					$this->share_url = home_url();
+				break;
 		}
+		endif;
 		$this->gplus_id = 0;
 		$this->fb_like_id = 0;
 		$this->twit_like_id = 0;
 		$this->share_site_name = wp_strip_all_tags( get_bloginfo( 'name', 'raw' ) );
-		$this->share_title = wp_strip_all_tags( get_the_title($post->ID) );
+		$this->share_title = ( isset($post->ID) ) ? wp_strip_all_tags( get_the_title($post->ID) ) : wp_strip_all_tags( get_bloginfo( 'name', 'raw' ) );
 		$this->share_description = wp_strip_all_tags( get_bloginfo( 'description', 'raw' ) );
 		$this->og_image = apply_filters( 'wfx_social_og_meta_image', WF_THEME.'/images/supporting/social_thumbnail.jpg' );
 	}
@@ -1796,9 +1798,11 @@ class wflux_display_social extends wflux_data {
 	 */
 	function wf_og_meta() {
 		//TODO: build extra og:type support
-		//SUDO
+
+		$type = ( is_home() || is_front_page() ) ? 'website' : 'article';
+
 		echo '<meta property="og:title" content="' . esc_attr( $this->share_title ) . '"/>'."\n";
-		echo '<meta property="og:type" content="' . 'article' . '"/>'."\n";
+		echo '<meta property="og:type" content="' . $type . '"/>'."\n";
 		echo '<meta property="og:image" content="' . esc_url( $this->og_image ). '"/>'."\n";
 		echo '<meta property="og:url" content="' . esc_url( $this->share_url ) . '"/>'."\n";
 		echo '<meta property="og:site_name" content="' . esc_attr( $this->share_site_name ) . '"/>'."\n";

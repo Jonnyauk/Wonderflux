@@ -107,6 +107,8 @@ class wflux_admin extends wflux_data {
 
 		echo '</div>';
 
+		if ( isset( $_GET['settings-updated'] ) ): echo '<div class="updated settings-error" id="setting-error-settings_updated"><p><strong>' . $title . ' ' . esc_attr__('settings updated successfully.', 'wonderflux') . '</strong></p></div>'; endif;
+
 		require('admin-pages/wf-page-'.$include.'.php');
 
 		if ($title == 'Wonderflux Advanced'): $this->admin_forms->wf_form_helper_file_css_combine('css/wf-css-core-structure.css','Y'); endif;
@@ -434,108 +436,69 @@ class wflux_admin extends wflux_data {
 
 /**
 * @since 0.81
-* @updated 0.93
 * Admin form functions
 */
 class wflux_admin_forms extends wflux_data {
 
+	private $valid; // Hold array of options with whitelists and default values
+
+	function __construct() {
+		parent::__construct();
+		// First value of each array is used as default value if no whitelisted value supplied
+		// If no value supplied, input is free text value and is deep cleaned instead!
+		$this->valid = array(
+			'doc_type'		=> array ('transitional','strict','frameset','1.1','1.1basic','html5','XHTML/RDFa'),
+			'doc_lang'		=> array ('aa','ab','ae','af','ak','am','an','ar','as','av','ay','az','ba','be','bg','bh','bi','bm','bn','bo','bo','br','bs','ca','ce','ch','co','cr','cs','cs','cu','cv','cy','cy','da','de','de','dv','dz','ee','el','el','en','eo','es','et','eu','eu','fa','fa','ff','fi','fj','fo','fr','fr','fy','ga','gd','gl','gn','gu','gv','ha','he','hi','ho','hr','ht','hu','hy','hy','hz','ia','id','ie','ig','ii','ik','io','is','is','it','iu','ja','jv','ka','ka','kg','ki','kj','kk','kl','km','kn','ko','kr','ks','ku','kv','kw','ky','la','lb','lg','li','ln','lo','lt','lu','lv','mg','mh','mi','mi','mk','mk','ml','mn','mr','ms','ms','mt','my','my','na','nb','nd','ne','ng','nl','nl','nn','no','nr','nv','ny','oc','oj','om','or','os','pa','pi','pl','ps','pt','qu','rm','rn','ro','ro','ru','rw','sa','sc','sd','se','sg','si','sk','sk','sl','sm','sn','so','sq','sq','sr','ss','st','su','sv','sw','ta','te','tg','th','ti','tk','tl','tn','to','tr','ts','tt','tw','ty','ug','uk','ur','uz','ve','vi','vo','wa','wo','xh','yi','yo','za','zh','zh','zu'),
+			'doc_charset'	=> array ('UTF-8','UTF-16','ISO-2022-JP','ISO-2022-JP-2','ISO-2022-KR','ISO-8859-1','ISO-8859-10','ISO-8859-15','ISO-8859-2','ISO-8859-3','ISO-8859-4','ISO-8859-5','ISO-8859-6','ISO-8859-7','ISO-8859-8','ISO-8859-9'),
+			'container_p'	=> array ('left','middle','right'),
+			'sidebar_p'		=> array ('left','right'),
+			'sidebar_d'		=> array ('Y','N'),
+			'container_w'	=> array ( 950, range(400,2000,10) ),
+			'columns_num'	=> array ( 24, range(2,100,1) ),
+			'columns_w'		=> array ( 30, range(10,200,1) ),
+			'fb_admins'		=> '',
+			'fb_app'		=> '',
+		);
+
+	}
+
+
 	/**
-	* IMPORTANT - Validates and cleans any data saved from layout options before saving to database
-	* Accepts array, return cleaned items in new array.
+	* Callback function for all option validation.
+	* @param $input - Array of options.
+	* @return - Array of safe options.
 	* @since 0.912
-	* @updated 0.93
+	* @updated 0.931
 	*/
 	function validate_opts_layout($input) {
 
-		// This will hold just the data we want and no nasty stuff
-		$cleaninput = array();
+		// One callback function for all - so load data to merge, not over-write
+		$db_ops = get_option('wonderflux_display');
+		$new_ops = array();
 
-		settype( $input['doc_type'], "string" );
-		$doc_type_whitelist = array('transitional','strict','frameset','1.1','1.1basic','html5','XHTML/RDFa');
-		if (in_array($input['doc_type'],$doc_type_whitelist)) { $cleaninput['doc_type'] = $input['doc_type'];
-		} else {
-			$cleaninput['doc_type'] = 'transitional'; // No cheatin thanks, set sensible value
+		foreach ( $this->valid as $op_type=>$values ) {
+			if ( isset($input[$op_type]) ):
+				if ( empty($values) ): $new_ops[$op_type] = wp_kses( $input[$op_type], '' );
+				else:
+					$whitelist = ( is_array($values[1]) ) ? $values[1] : $this->valid[$op_type];
+					if ( in_array($input[$op_type], $whitelist) ): $new_ops[$op_type] = $input[$op_type];
+					else: $new_ops[$op_type] = $values[0]; /* Cheatin huh - not this time buddy! */
+					endif;
+				endif;
+			endif;
 		}
 
-		settype( $input['doc_lang'], "string" );
-		$doc_lang_whitelist = array('aa','ab','ae','af','ak','am','an','ar','as','av','ay','az','ba','be','bg','bh','bi','bm','bn','bo','bo','br','bs','ca','ce','ch','co','cr','cs','cs','cu','cv','cy','cy','da','de','de','dv','dz','ee','el','el','en','eo','es','et','eu','eu','fa','fa','ff','fi','fj','fo','fr','fr','fy','ga','gd','gl','gn','gu','gv','ha','he','hi','ho','hr','ht','hu','hy','hy','hz','ia','id','ie','ig','ii','ik','io','is','is','it','iu','ja','jv','ka','ka','kg','ki','kj','kk','kl','km','kn','ko','kr','ks','ku','kv','kw','ky','la','lb','lg','li','ln','lo','lt','lu','lv','mg','mh','mi','mi','mk','mk','ml','mn','mr','ms','ms','mt','my','my','na','nb','nd','ne','ng','nl','nl','nn','no','nr','nv','ny','oc','oj','om','or','os','pa','pi','pl','ps','pt','qu','rm','rn','ro','ro','ru','rw','sa','sc','sd','se','sg','si','sk','sk','sl','sm','sn','so','sq','sq','sr','ss','st','su','sv','sw','ta','te','tg','th','ti','tk','tl','tn','to','tr','ts','tt','tw','ty','ug','uk','ur','uz','ve','vi','vo','wa','wo','xh','yi','yo','za','zh','zh','zu');
-		if (in_array($input['doc_lang'],$doc_lang_whitelist)) { $cleaninput['doc_lang'] = $input['doc_lang'];
-		} else {
-			$cleaninput['doc_lang'] = 'en'; // No cheatin thanks, set sensible value
-		}
+		return (!empty($db_opts)) ? array_merge($db_ops,$new_ops) : $new_ops;
 
-		settype( $input['doc_charset'], "string" );
-		$doc_charset_whitelist = array('UTF-8','UTF-16','ISO-2022-JP','ISO-2022-JP-2','ISO-2022-KR','ISO-8859-1','ISO-8859-10','ISO-8859-15','ISO-8859-2','ISO-8859-3','ISO-8859-4','ISO-8859-5','ISO-8859-6','ISO-8859-7','ISO-8859-8','ISO-8859-9');
-		if (in_array($input['doc_charset'],$doc_charset_whitelist)) { $cleaninput['doc_charset'] = $input['doc_charset'];
-		} else {
-			$cleaninput['doc_charset'] = 'UTF-8'; // No cheatin thanks, set sensible value
-		}
-
-		settype( $input['container_p'], "string" );
-		$container_p_whitelist = array('left','middle','right');
-		if (in_array($input['container_p'],$container_p_whitelist)) { $cleaninput['container_p'] = $input['container_p'];
-		} else {
-			$cleaninput['container_p'] = 'middle'; // No cheatin thanks, set sensible value
-		}
-
-		settype( $input['sidebar_p'], "string" );
-		$sidebar_p_whitelist = array('left','right');
-		if (in_array($input['sidebar_p'],$sidebar_p_whitelist)) { $cleaninput['sidebar_p'] = $input['sidebar_p'];
-		} else {
-			$cleaninput['sidebar_p'] = 'left'; // No cheatin thanks, set sensible value
-		}
-
-		settype( $input['sidebar_d'], "string" );
-		$sidebar_d_whitelist = array('Y','N');
-		if (in_array($input['sidebar_d'],$sidebar_d_whitelist)) { $cleaninput['sidebar_d'] = $input['sidebar_d'];
-		} else {
-			$cleaninput['sidebar_d'] = 'Y'; // No cheatin thanks, set sensible value
-		}
-
-		settype( $input['container_w'], "integer" );
-		$container_w_whitelist = range(400,2000,10);
-		if (in_array($input['container_w'],$container_w_whitelist)) { $cleaninput['container_w'] = $input['container_w'];
-		} else {
-			$cleaninput['container_w'] = 950; // No cheatin thanks, set sensible value
-		}
-
-		settype( $input['columns_num'], "integer" );
-		$columns_num_whitelist = range(2,100,1);
-		if (in_array($input['columns_num'],$columns_num_whitelist)) { $cleaninput['columns_num'] = $input['columns_num'];
-		} else {
-			$cleaninput['columns_num'] = 24; // No cheatin thanks, set sensible value
-		}
-
-		settype( $input['columns_w'], "integer" );
-		$columns_w_whitelist = range(10,300,1);
-		if (in_array($input['columns_w'],$columns_w_whitelist)) { $cleaninput['columns_w'] = $input['columns_w'];
-		} else {
-			$cleaninput['columns_w'] = 30; // No cheatin thanks, set sensible value
-		}
-
-		settype( $input['fb_admins'], "string" );
-		$cleaninput['fb_admins'] = wp_kses($input['fb_admins'],'');
-
-		settype( $input['fb_app'], "string" );
-		$cleaninput['fb_app'] = wp_kses($input['fb_app'],'');
-
-		// Switch doctype if using Facebook stuff
-		if ( trim( $cleaninput['fb_admins'] ) != '' || trim( $cleaninput['fb_app'] ) != '' ) {
-			$cleaninput['doc_type'] = 'XHTML/RDFa';
-		}
-
-		// Return safe array of values to write to database
-		return $cleaninput;
 	}
-
 
 	//////// STYLE LAB FORM ITEMS
 	// Section HTML, displayed before the first option
 	function wf_form_intro_main() { echo '<p>' . esc_attr__("Use these controls to setup the main dimensions used across all your Wonderflux template designs.","wonderflux") . '</p>'; }
 
-	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p',array('left', 'middle', 'right')); }
+	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p',$this->valid['container_p']); }
 	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N'))); }
-	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',array('left', 'right')); }
+	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p']); }
 	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10); }
 	/* NOT ACTIVE AT MOMENT
 	function wf_form_padding_l() { $this->wf_form_helper_ddown_range('padding_l',0,200,1); }
@@ -545,9 +508,9 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1); }
 
 	// Doc
-	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',array('transitional','strict','frameset','1.1','1.1basic','html5','XHTML/RDFa')); }
-	function wf_form_doc_lang() { $this->wf_form_helper_ddown_std($this->wfx_doc_lang,'doc_lang',array('aa','ab','ae','af','ak','am','an','ar','as','av','ay','az','ba','be','bg','bh','bi','bm','bn','bo','bo','br','bs','ca','ce','ch','co','cr','cs','cs','cu','cv','cy','cy','da','de','de','dv','dz','ee','el','el','en','eo','es','et','eu','eu','fa','fa','ff','fi','fj','fo','fr','fr','fy','ga','gd','gl','gn','gu','gv','ha','he','hi','ho','hr','ht','hu','hy','hy','hz','ia','id','ie','ig','ii','ik','io','is','is','it','iu','ja','jv','ka','ka','kg','ki','kj','kk','kl','km','kn','ko','kr','ks','ku','kv','kw','ky','la','lb','lg','li','ln','lo','lt','lu','lv','mg','mh','mi','mi','mk','mk','ml','mn','mr','ms','ms','mt','my','my','na','nb','nd','ne','ng','nl','nl','nn','no','nr','nv','ny','oc','oj','om','or','os','pa','pi','pl','ps','pt','qu','rm','rn','ro','ro','ru','rw','sa','sc','sd','se','sg','si','sk','sk','sl','sm','sn','so','sq','sq','sr','ss','st','su','sv','sw','ta','te','tg','th','ti','tk','tl','tn','to','tr','ts','tt','tw','ty','ug','uk','ur','uz','ve','vi','vo','wa','wo','xh','yi','yo','za','zh','zh','zu')); }
-	function wf_form_doc_charset() { $this->wf_form_helper_ddown_std($this->wfx_doc_charset,'doc_charset',array('UTF-8','UTF-16','ISO-2022-JP','ISO-2022-JP-2','ISO-2022-KR','ISO-8859-1','ISO-8859-10','ISO-8859-15','ISO-8859-2','ISO-8859-3','ISO-8859-4','ISO-8859-5','ISO-8859-6','ISO-8859-7','ISO-8859-8','ISO-8859-9')); }
+	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',$this->valid['doc_type']); }
+	function wf_form_doc_lang() { $this->wf_form_helper_ddown_std($this->wfx_doc_lang,'doc_lang',$this->valid['doc_lang']); }
+	function wf_form_doc_charset() { $this->wf_form_helper_ddown_std($this->wfx_doc_charset,'doc_charset',$this->valid['doc_charset']); }
 
 	// Facebook
 	function wf_form_intro_doc() {

@@ -456,18 +456,18 @@ if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global 
 
 /**
 * @since 0.92
-* @updated 0.92
-* Setup JQuery how you want it
+* @updated 0.931
+* Setup and insert JQuery how you want it
 */
-if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args) { global $wfx_theme; $wfx_theme->jquery($args); } endif;
+if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args='') { global $wfx_theme; $wfx_theme->jquery($args); } endif;
 
 
 /**
 * @since 0.92
-* @updated 0.92
+* @updated 0.931
 * Setup JQuery Cycle how you want it
 */
-if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args) { global $wfx_theme; $wfx_theme->cycle($args); } endif;
+if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { global $wfx_theme; $wfx_theme->cycle($args); } endif;
 
 
 //  7  //////////// ADMIN FUNCTIONS
@@ -527,8 +527,10 @@ function wfx_core_default_widgets() {
 
 // Special child theme function
 // Create the function my_wfx_layout() in your child theme functions file
-// Use this to use and configure Wonderflux layout functions like wfx_background_divs()
+// Use this to configure all your Wonderflux child theme layout functions like wfx_background_divs()
 if ( function_exists( 'my_wfx_layout' ) ) { add_action('get_header', 'my_wfx_layout', 1); }
+// Use this to configure all your Wonderflux child theme script functions like wfx_jquery()
+if ( function_exists( 'my_wfx_scripts' ) ) { if ( !is_admin() ) : add_action('init', 'my_wfx_scripts', 1); endif; }
 
 // Core Wonderflux functionality
 

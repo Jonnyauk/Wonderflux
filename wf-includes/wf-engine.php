@@ -149,11 +149,11 @@ class wflux_theme_all {
 	// Main theme config
 	function widgets($args){ $this->wflux_theme_core_do->wf_widgets($args); }
 	function language_pack($args){ $this->wflux_theme_core_do->wf_language_pack($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
-	function background_divs($args){ $this->wflux_theme_core_do->wf_background_divs($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
+	function background_divs($args){ $this->wflux_theme_core_do->wf_background_divs($args); }
 
 	// Javascript goodness
-	function jquery($args){ $this->wflux_theme_core_do->wf_js_jquery($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
-	function cycle($args){ $this->wflux_theme_core_do->wf_js_cycle($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
+	function jquery($args){ $this->wflux_theme_core_do->wf_js_jquery($args); }
+	function cycle($args){ $this->wflux_theme_core_do->wf_js_cycle($args); }
 
 	// Internet Explorer (Pesky IE!)
 	function ie6_png($args){ $this->wflux_theme_ie_do->wf_ie6_png($args); }

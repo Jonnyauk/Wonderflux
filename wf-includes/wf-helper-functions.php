@@ -36,29 +36,28 @@ class wflux_data {
 		//// DOCUMENT CONFIGURATION ////
 
 		// DOCTYPE - 'transitional','strict','frameset','1.1','1.1basic'
-		$this->wfx_doc_type = $this->wfx_db_display['doc_type'];
+		$this->wfx_doc_type = (isset($this->wfx_db_display['doc_type']) ) ? $this->wfx_db_display['doc_type'] : false;
 		// Validate
-
 		$wfx_doc_type_out = 'transitional';
 		$wfx_doc_type_accept = array('transitional','strict','frameset','1.1','1.1basic','html5','XHTML/RDFa');
 		if ( in_array($this->wfx_doc_type,$wfx_doc_type_accept) ) { $wfx_doc_type_out = $this->wfx_doc_type; }
 		$this->wfx_doc_type = $wfx_doc_type_out;
 
 		// LANGUAGE CODE
-		$this->wfx_doc_lang = $this->wfx_db_display['doc_lang'];
+		$this->wfx_doc_lang = (isset($this->wfx_db_display['doc_lang']) ) ? $this->wfx_db_display['doc_lang'] : false;
 		// Validate
 		$wfx_doc_lang_out = 'en';
 		// Too many language codes to validate against - lets just check for length
-		if ( $this->wfx_doc_lang != '' ) {
+		if ( $this->wfx_doc_lang != false ) {
 			if (strlen(trim($this->wfx_doc_lang)) == 2 ) { $wfx_doc_lang_out = $this->wfx_doc_lang; }
 		}
 		$this->wfx_doc_lang = $wfx_doc_lang_out;
 
 		// CHARACTER SET
-		$this->wfx_doc_charset = $this->wfx_db_display['doc_charset'];
+		$this->wfx_doc_charset = (isset($this->wfx_db_display['doc_charset']) ) ? $this->wfx_db_display['doc_charset'] : false;
 		// Validate
 		$wfx_doc_charset_out = 'UTF-8';
-		if ($this->wfx_doc_charset !='') {
+		if ($this->wfx_doc_charset != false) {
 
 			// Simple check - The W3C recommends the use of UTF-8 wherever possible
 			// UTF-8 can be used for all languages and is the recommended charset on the Internet.
@@ -92,14 +91,14 @@ class wflux_data {
 		//// COLUMNS CONFIGURATION ////
 
 		// CONTAINER SIZE - 400 to 2000
-		$this->wfx_width = $this->wfx_db_display['container_w'];
+		$this->wfx_width = (isset($this->wfx_db_display['container_w']) ) ? $this->wfx_db_display['container_w'] : false;
 		// Validate
 		$wfx_width_out = 950;
 		if (is_numeric ($this->wfx_width) ) { if ($this->wfx_width >= 400 && $this->wfx_width <= 2000) {$wfx_width_out = $this->wfx_width;} }
 		$this->wfx_width = $wfx_width_out;
 
 		// SITE CONTAINER POSITION - left, middle, right
-		$this->wfx_position = $this->wfx_db_display['container_p'];
+		$this->wfx_position = (isset($this->wfx_db_display['container_p']) ) ? $this->wfx_db_display['container_p'] : false;
 		// Validate
 		$wfx_container_p_out = 'middle';
 		$wfx_container_p_accept = array('left','middle','right');
@@ -107,21 +106,21 @@ class wflux_data {
 		$this->wfx_position = $wfx_container_p_out;
 
 		// NUMBER OF COLUMNS - min 2, max 100
-		$this->wfx_columns = $this->wfx_db_display['columns_num'];
+		$this->wfx_columns = (isset($this->wfx_db_display['columns_num']) ) ? $this->wfx_db_display['columns_num'] : false;
 		// Validate
 		$wfx_columns_out = 24;
 		if (is_numeric ($this->wfx_columns) ) { if ($this->wfx_columns >= 2 && $this->wfx_columns <= 100) {$wfx_columns_out = $this->wfx_columns;} }
 		$this->wfx_columns = $wfx_columns_out;
 
 		// COLUMN WIDTH - min 10, max 1000
-		$this->wfx_columns_width = $this->wfx_db_display['columns_w']; // Width of columns
+		$this->wfx_columns_width = (isset($this->wfx_db_display['columns_w']) ) ? $this->wfx_db_display['columns_w'] : false;
 		// Validate
 		$wfx_columns_width_out = 30;
 		if (is_numeric ($this->wfx_columns_width) ) { if ($this->wfx_columns_width >= 10 && $this->wfx_columns_width <= 1000) {$wfx_columns_width_out = $this->wfx_columns_width;} }
 		$this->wfx_columns_width = $wfx_columns_width_out;
 
 		// SIDEBAR PRIMARY POSITION - left, right
-		$this->wfx_sidebar_primary_position = $this->wfx_db_display['sidebar_p']; // Primary sidebar position
+		$this->wfx_sidebar_primary_position = (isset($this->wfx_db_display['sidebar_p']) ) ? $this->wfx_db_display['sidebar_p'] : false;
 		// Validate
 		$wfx_sidebar_pp_out = 'left';
 		$wfx_sidebar_pp_accept = array('left','right');
@@ -155,14 +154,14 @@ class wflux_data {
 		$this->wfx_content_1_size_columns = ( is_numeric($this->wfx_content_1_size_columns) ) ? $this->wfx_content_1_size_columns : 0;
 
 		// SIDEBAR 1 DISPLAY
-		$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d'];
+		$this->wfx_sidebar_1_display = (isset($this->wfx_db_display['sidebar_d']) ) ? $this->wfx_db_display['sidebar_d'] : false;
 		$this->wfx_sidebar_1_display = apply_filters( 'wflux_sidebar_1_display', $this->wfx_sidebar_1_display );
 		// If filtered and in admin, just show original value saved to DB, not filtered values
 		if ( is_admin() ) {
 			if (has_filter('wflux_sidebar_1_display') ) {
 				$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d'];
 			}
-		} elseif  ( $this->wfx_sidebar_1_display == '' ) {
+		} elseif ( $this->wfx_sidebar_1_display == false ) {
 			$this->wfx_sidebar_1_display = 'Y';
 		}
 

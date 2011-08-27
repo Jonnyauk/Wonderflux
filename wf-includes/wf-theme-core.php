@@ -10,33 +10,14 @@
 * Core template functions
 *
 */
-
 class wflux_theme_core {
 
 	static $wfx_count_bg_divs;
 	static $wfx_count_bg_divs_hook;
 
-	static $google_api_key;
-	static $js_jquery_host;
-	static $js_jquery_version;
-
-	static $js_cycle_host;
-	static $js_cycle_version;
-
 	function __construct() {
-
 		$this->wfx_count_bg_divs = 0;
 		$this->wfx_count_bg_divs_hook = 0;
-
-		$this->google_api_key = 'N';
-		$this->js_jquery_host = 'wonderflux';
-		$this->js_jquery_version = '1.5';
-
-		$this->js_cycle_host = 'wonderflux';
-		$this->js_cycle_version = 'normal';
-		$this->js_cycle_config = 'wonderflux';
-		$this->js_cycle_location = 'footer';
-
 	}
 
 	/**
@@ -214,241 +195,134 @@ class wflux_theme_core {
 			add_action($close_hook, $wf_bgdiv_close, 12);
 		}
 
-
 	}
 
 
 	/**
-	* Sets up required Jquery
+	* Sets up required JQuery
 	*
-	* @param $host Where your JQuery is hosted - Default = 'wonderflux' ['wonderflux','google','core']
-	* @param $version Which version of JQuery to use (Not controllable if using core WordPress JQuery) - Default = '1.5.1' [wonderflux='1.3.2','1.4.4','1.5.1' google='1.2.3','1.2.6','1.3.0','1.3.1','1.3.2','1.4.0','1.4.1','1.4.2','1.4.3','1.4.4','1.5.0','1.5.1']
-	* @param $key Google API key (Required if using Google) - [Your unique Google API key - generate here http://code.google.com/apis/loader/signup.html]
-	* @param $location Where you want your JQuery inserted in the code - Default = 'footer' ['header,'footer']
+	* @param $host Where your JQuery is hosted - Default = 'wonderflux' ['wonderflux','google','microsoft','wordpress']
+	* @param $version Which version of JQuery to use (Not controllable if using core WordPress JQuery) - Default = '1.5.1' [ Various versions available ]
+	* @param $location Where you want your JQuery inserted in the code/ WARNING - for advanced users only! - Default = 'header' ['header,'footer']
 	*
 	* @since 0.92
-	* @updated 0.92
+	* @updated 0.931
 	*/
 	function wf_js_jquery($args) {
 
-		if ( !is_admin() ) {
+		$defaults = array (
+			'host' => 'wordpress',
+			'version' => '1.5.1',
+			'location' => 'header',
+			'https' => false,
+		);
 
-			$defaults = array (
-				'host' => $this->js_jquery_host,
-				'version' => $this->js_jquery_version,
-				'key' => $this->google_api_key,
-				'location' => 'footer'
-			);
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
 
-			$args = wp_parse_args( $args, $defaults );
-			extract( $args, EXTR_SKIP );
+		$location = ( $location == 'footer' ) ? true : false;
 
-			// SET OPTIONS ready to use
-			$this->js_jquery_host = wp_kses_data($host, '');
-			$this->js_jquery_version = wp_kses_data($version, '');
-			$this->google_api_key = wp_kses_data($key, '');
+		// If using core its simple
+		if ( $host == 'wordpress' ):
+			// Core JQuery always wants to be in the header when called!
+			if ( $location == 'footer' ):
+				wp_deregister_script('jquery');
+				wp_register_script('jquery', home_url().'/wp-includes/js/jquery/jquery.js', false, '1.6.1', $location);
+			endif;
+			wp_enqueue_script( 'jquery' );
+		else:
+			switch ( $host ) {
 
-			// Handle core JQuery and other inserts
-			if ($this->js_jquery_host != 'core') { wp_deregister_script( 'jquery' ); }
+				case 'wonderflux':
+					$version = ( in_array($version, array('1.3', '1.4', '1.5')) ) ? $version : '1.5';
+					switch ($version) {
+						case '1.3': $version = '1.3.2'; break;
+						case '1.4': $version = '1.4.4'; break;
+						case '1.5': $version = '1.5.1'; break;
+					}
+					$host = WF_CONTENT_URL.'/js/jquery/' . $version . '/jquery.min.js';
+				break;
 
-			if ($location == 'footer') { $location_out = 'wf_footer'; } else { $location_out = 'wf_head_meta'; }
-			add_action($location_out, array($this, 'wf_js_jquery_enque'), 3);
+				case 'google':
+					$version = ( in_array($version, array('1.2.3', '1.2.6', '1.3.0', '1.3.1', '1.3.2', '1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.5.0', '1.5.1', '1.5.2', '1.6.0', '1.6.1', '1.6.2')) ) ? $version : '1.5.2';
+					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'ajax.googleapis.com/ajax/libs/jquery/'. $version .'/jquery.min.js';
+				break;
 
-		}
+				case 'microsoft':
+					$version = ( in_array($version, array('1.3.2', '1.4', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.5', '1.5.1', '1.5.2', '1.6', '1.6.1', '1.6.2')) ) ? $version : '1.5.2';
+					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'ajax.aspnetcdn.com/ajax/jQuery/jquery-' . $version . '.min.js';
+				break;
 
-	}
+				case 'jquery':
+					$version = ( in_array($version, array('1.2.3', '1.2.6', '1.3.0', '1.3.1', '1.3.2', '1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.5.0', '1.5.1', '1.5.2', '1.6.0', '1.6.1', '1.6.2')) ) ? $version : '1.5.2';
+					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'code.jquery.com/jquery-' . $version . '.min.js';
+				break;
 
-
-	/**
-	* Inserts JQuery
-	*
-	* @since 0.92
-	* @updated 0.92
-	*/
-	function wf_js_jquery_enque() {
-		//WordPress reference
-		//$handle, $src, $deps = array(), $ver = false, $in_footer = false
-
-		// Valid versions
-		$valid_wf_jquery = array('1.3', '1.4', '1.5');
-		$valid_gg_jquery = array('1.2.3', '1.2.6', '1.3.0', '1.3.1', '1.3.2', '1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.5.0', '1.5.1');
-		$valid_default = '1.5.1';
-
-		switch ($this->js_jquery_host) {
-
-			case 'wonderflux' :
-				if (in_array($this->js_jquery_version,$valid_wf_jquery)) {
-					if ($this->js_jquery_version == '1.3') { $version_out = '1.3.2'; }
-					if ($this->js_jquery_version == '1.4') { $version_out = '1.4.4'; }
-					if ($this->js_jquery_version == '1.5') { $version_out = '1.5.1'; }
-				} else {
-					$version_out = $valid_default;
-				}
-
-				$host_out = esc_url(WF_CONTENT_URL.'/js/jquery/'.$version_out.'/jquery.min.js');
-				wp_register_script('wfx_script_jquery', $host_out, '', NULL, FALSE);
-				wp_print_scripts('wfx_script_jquery');
-			break;
-
-			case 'google' :
-				// Catch API key user error if not set properly and roll back to Wonderflux
-				if ($this->google_api_key == FALSE) {
-					$version_out = $valid_default;
-					$host_out = esc_url(WF_CONTENT_URL.'/js/jquery/'.$version_out.'/jquery.min.js');
-					wp_register_script('wfx_script_jquery', $host_out, '', NULL, FALSE);
-					wp_print_scripts( 'wfx_script_jquery' );
-				} else {
-					$api_out = 'https://www.google.com/jsapi?key='.$this->google_api_key.'';
-					$host_out = 'https://ajax.googleapis.com/ajax/libs/jquery/'.$this->js_jquery_version.'/jquery.min.js';
-					wp_register_script('wfx_script_google_api', $api_out, '', NULL, FALSE);
-					wp_register_script('wfx_script_jquery', $host_out, '', NULL, FALSE);
-					wp_print_scripts('wfx_script_google_api');
-					wp_print_scripts('wfx_script_jquery');
-				}
-			break;
-
-			case 'core' :
-				wp_enqueue_script( 'jquery' );
-				wp_print_scripts( 'jquery' );
-			break;
-
-			default :
-			if (in_array($this->js_jquery_version,$valid_wf_jquery)) { $version_out = $this->js_jquery_version; }
-				else { $version_out = $valid_default; }
-				$host_out = esc_url(WF_CONTENT_URL.'/js/jquery/'.$version_out.'/jquery.min.js');
-				wp_register_script('wfx_script_jquery', $host_out, 'jquery', NULL, FALSE);
-				wp_print_scripts('wfx_script_jquery');
-			break;
-
-		}
+				default:
+					$host = WF_CONTENT_URL.'/js/jquery/1.5.1/jquery.min.js';
+				break;
+			}
+			wp_deregister_script( 'jquery' );
+			wp_register_script( 'jquery', esc_url($host), false, $version, $location );
+			wp_enqueue_script( 'jquery' );
+		endif;
 
 	}
 
 
-	//TODO: Build parameters for CDN host parameter
 	/**
 	* Sets up Cycle Jquery plugin
 	*
-	* @param $host Where your Cycle script is hosted - Default = 'wonderflux' ['wonderflux','cdn']
-	* @param $version Which version of Cycle to use - Default = 'normal' ['lite','normal','all']
-	* @param $location Where you want your JQuery inserted in the code - Default = 'footer' ['header,'footer']
+	* @param To document
 	*
 	* @since 0.92
-	* @updated 0.921
+	* @updated 0.931
 	*/
 	function wf_js_cycle($args) {
 
 		if ( !is_admin() ) {
 
 			$defaults = array (
-				'host' => $this->js_cycle_host, /*wonderflux*/
-				'version' => $this->js_cycle_version, /*normal*/
-				'config' => $this->js_cycle_config, /*wonderflux*/
-				'jquery_host' => $this->js_jquery_host,
-				'jquery_version' => $this->js_jquery_version,
-				'jquery_key' => $this->google_api_key,
-				'location' => $this->js_cycle_location
+				'host' => 'wonderflux',
+				'type' => 'normal',
+				'theme_dir' => '/js/cycle',
+				'location' => 'header',
+				'config' => 'wonderflux',
 			);
 
 			$args = wp_parse_args( $args, $defaults );
 			extract( $args, EXTR_SKIP );
 
-			// SET OPTIONS ready to use
-			$this->js_cycle_host = wp_kses_data($host, '');
-			$this->js_cycle_version = wp_kses_data($version, '');
-			$this->js_cycle_config = wp_kses_data($config, '');
-			$this->js_jquery_host = wp_kses_data($jquery_host, '');
-			$this->js_jquery_version = wp_kses_data($jquery_version, '');
-			$this->google_api_key = wp_kses_data($jquery_key, '');
-			$this->js_cycle_location = wp_kses_data($location, '');
+			$type_out = 'jquery.cycle.min'; /* Default to normal version */
+			if ( $type != 'normal' ):
+				switch ( $type ) {
+					case 'lite' : $type_out = 'jquery.cycle.lite.min'; break;
+					case 'all' : $type_out = 'jquery.cycle.all.min'; break;
+				}
+			endif;
 
-			//Enque and insert JQuery if required
-			$this->wf_js_jquery('host='.$this->js_jquery_host.'&version='.$this->js_jquery_version.'&key='.$this->google_api_key.'&location='.$this->js_cycle_location);
+			$host_out = WF_CONTENT_URL.'/js/cycle/'; /* Default Wonderflux version */
+			if ( $host != 'wonderflux' ):
+				switch ( $host ) {
+					case 'theme':
+						$theme_dir = ( $theme_dir == '/js/cycle' ) ? $theme_dir : wp_kses_data( $theme_dir );
+						$host_out = WF_THEME . $theme_dir . '/';
+					break;
+					case 'microsoft':
+						$host_out = 'http://ajax.aspnetcdn.com/ajax/jquery.cycle/2.99/';
+					break;
+				}
+			endif;
 
-			//Enque and insert Cycle
-			if ($location == 'footer') { $location_out = 'wf_footer'; } else { $location_out = 'wf_head_meta'; }
-			add_action($location_out, array($this, 'wf_js_cycle_enque'), 4); //4 - After JQuery for neatness
-
+			$config_out = ( $config == 'wonderflux' ) ? WF_CONTENT_URL.'/js/cycle/jquery.cycle.config.js' : WF_THEME . '/js/cycle/jquery.cycle.config.js';
+			$location = ( $location == 'footer' ) ? true : false;
+			wp_register_script( 'jquery_cycle', esc_url( $host_out . $type_out . '.js' ), array('jquery'), '2.99' , $location);
+			wp_enqueue_script( 'jquery_cycle' );
+			wp_register_script( 'jquery_cycle_config', esc_url( $config_out ), array('jquery'), '2.99' , $location);
+			wp_enqueue_script( 'jquery_cycle_config' );
 		}
 
 	}
-
-
-	//TODO: Build CDN parameters
-	//TODO: Build in easing enque if required
-	/**
-	* Inserts JQuery Cycle
-	*
-	* @since 0.92
-	* @updated 0.92
-	*/
-	function wf_js_cycle_enque() {
-		// Valid versions
-		$valid_host = array('wonderflux', 'theme');
-		$valid_version = array('lite', 'normal', 'full');
-		$valid_config = array('wonderflux', 'theme');
-
-		// Check input
-		if (!in_array($this->js_cycle_host,$valid_host)) { $this->js_cycle_host = 'wonderflux'; }
-		if (!in_array($this->js_cycle_version,$valid_version)) { $this->js_cycle_version = 'normal'; }
-		if (!in_array($this->js_cycle_config,$valid_config)) { $this->js_cycle_config = 'wonderflux'; }
-
-		$cycle_file_out = 'cycle.min';
-		switch ($this->js_cycle_version) {
-			case 'lite' : $cycle_file_out = 'cycle.lite.min'; break;
-			case 'normal' : /*Silence is golden*/ break;
-			case 'all' : $cycle_file_out = 'cycle.all.min'; break;
-			default : /*Silence is golden*/ break;
-		}
-
-		$host_out = esc_url(WF_CONTENT_URL.'/js/cycle/jquery.'.$cycle_file_out.'.js');
-		switch ($this->js_cycle_host) {
-
-			case 'wonderflux' :
-				wp_register_script('wfx_script_cycle', $host_out, '', NULL, FALSE);
-				wp_print_scripts('wfx_script_cycle');
-			break;
-
-			case 'theme' :
-				$host_out = WF_THEME.'/js/cycle/jquery.'.$cycle_file_out.'.js';
-				wp_register_script('wfx_script_cycle', $host_out, '', NULL, FALSE);
-				wp_print_scripts('wfx_script_cycle');
-			break;
-
-			default :
-				wp_register_script('wfx_script_cycle', $host_out, '', NULL, FALSE);
-				wp_print_scripts('wfx_script_cycle');
-			break;
-
-		}
-
-		// Set default
-		$host_config_out = esc_url(WF_CONTENT_URL.'/js/cycle/jquery.cycle.config.js');
-		switch ($this->js_cycle_config) {
-
-			case 'wonderflux' :
-				wp_register_script('wfx_script_cycle_config', $host_config_out, '', NULL, FALSE);
-				wp_print_scripts('wfx_script_cycle_config');
-			break;
-
-			case 'theme' :
-				//$host_config_out = WF_THEME.'/js/cycle/jquery.cycle.config.js';
-				//wp_register_script('wfx_script_cycle_config', $host_config_out, '', NULL, FALSE);
-				//wp_print_scripts('wfx_script_cycle');
-				$host_config_out = WF_THEME.'/js/cycle/jquery.cycle.config.js';
-				wp_register_script('wfx_script_cycle_config', $host_config_out, '', NULL, FALSE);
-				wp_print_scripts('wfx_script_cycle_config');
-			break;
-
-			default :
-				wp_register_script('wfx_script_cycle_config', $host_config_out, '', NULL, FALSE);
-				wp_print_scripts('wfx_script_cycle_config');
-			break;
-
-		}
-
-	}
-
 
 }
 

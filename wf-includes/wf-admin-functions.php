@@ -472,9 +472,10 @@ class wflux_admin_forms extends wflux_data {
 	*/
 	function validate_opts_layout($input) {
 
-		// One callback function for all - so load data to merge, not over-write
-		$db_ops = get_option('wonderflux_display');
+		// One callback function for all - so load data if exists to merge, not over-write
+		$db_ops = (is_array(get_option('wonderflux_display')) ) ? get_option('wonderflux_display') : array(false);
 		$new_ops = array();
+
 
 		foreach ( $this->valid as $op_type=>$values ) {
 			if ( isset($input[$op_type]) ):
@@ -482,13 +483,13 @@ class wflux_admin_forms extends wflux_data {
 				else:
 					$whitelist = ( is_array($values[1]) ) ? $values[1] : $this->valid[$op_type];
 					if ( in_array($input[$op_type], $whitelist) ): $new_ops[$op_type] = $input[$op_type];
-					else: $new_ops[$op_type] = $values[0]; /* Cheatin huh - not this time buddy! */
+					else: $new_ops[$op_type] = $values[0]; // Cheatin huh - not this time buddy!
 					endif;
 				endif;
 			endif;
 		}
 
-		return (!empty($db_opts)) ? array_merge($db_ops,$new_ops) : $new_ops;
+		return array_merge( (array)$db_ops, (array)$new_ops );
 
 	}
 

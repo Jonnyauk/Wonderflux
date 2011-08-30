@@ -1284,9 +1284,9 @@ class wflux_display_extras {
 					// Silence is golden
 				break;
 
-				case (is_single() || is_page()) :
-					$this_post_id = $wp_query->post->ID;
-					if ( current_user_can('edit_post', $this_post_id) ) {
+				case ( is_single() || is_page() || is_home() && get_option('show_on_front') == 'page' ) :
+					$this_post_id = ( isset($wp_query->post->ID) ) ? $wp_query->post->ID : '';
+					if ( $this_post_id !='' && current_user_can('edit_post', $this_post_id) ) {
 						$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . 'post.php?action=edit&amp;post=' . $this_post_id . '" title="' . esc_attr__('Edit this', 'Wonderflux') . '">' . esc_attr__('Edit this content', 'Wonderflux') . '</a></li>';
 					}
 				break;

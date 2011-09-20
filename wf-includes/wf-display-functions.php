@@ -868,8 +868,8 @@ class wflux_display extends wflux_display_css {
 
 /**
 * @since 0.85
-* @updated 0.92
-* Extra core display functions that are for theme designers
+* @updated 0.931
+* Extra core display functions for theme designers
 */
 class wflux_display_extras {
 
@@ -1196,9 +1196,11 @@ class wflux_display_extras {
 
 
 	/**
-	 * If user logged in, inserts relevant editor links into template
+	 * Inserts (Mostly) WordPress admin editor links
+	 *
 	 * TODO: Convert this to core WF core widget
 	 * TODO: Extend further to accomodate display functionality when a user is NOT logged in (like WordPress Meta widget stylee!)
+	 * TODO: Extend for user profiles, editing taxonomies etc
 	 *
 	 * @param userintro - Text string in first list item [Welcome]
 	 * @param username - Display username after intro (Within same list item) [Y]
@@ -1217,12 +1219,12 @@ class wflux_display_extras {
 	 * @output <ul><li>list items of various admin links inside optional CSS DIV
 	 *
 	 * @since 0.85
-	 * @updated 0.92
+	 * @updated 0.931
 	 */
 	function wf_edit_meta($args) {
 
 		$defaults = array (
-			'userintro' => "Welcome",
+			'userintro' => __('Welcome', 'Wonderflux'),
 			'username' => 'Y',
 			'intro' => 'Y',
 			'postcontrols' => 'Y',
@@ -1248,7 +1250,7 @@ class wflux_display_extras {
 			// Prepare user input for output
 			$userintro = wp_kses_data($userintro);
 			$ulclass = wp_kses_data($ulclass);
-			$liclass = wp_kses_data($liclass);
+			$liclass = '<li class="' . esc_attr(wp_kses_data($liclass)) . '">';
 			$divclass = wp_kses_data($divclass);
 			$this_admin = admin_url();
 
@@ -1259,19 +1261,14 @@ class wflux_display_extras {
 			$output .= '<ul class="' . esc_attr($ulclass) . '">';
 
 			if ( $username == 'Y' && $intro == 'Y' ) {
-
-				$output .= '<li class="' . esc_attr($liclass) . '">';
+				$output .= $liclass;
 				$output .= esc_attr($userintro) . ' ';
 				$output .= ucwords( $current_user->display_name ) . '</li>';
-
 			} elseif ( $username == 'N') {
-
 				if ( $intro == 'Y') {
-
-					$output .= '<li class="' . esc_attr($liclass) . '">';
+					$output .= $liclass;
 					$output .= esc_attr($userintro) . ' ';
 					$output .= '</li>';
-
 				}
 			}
 
@@ -1279,49 +1276,45 @@ class wflux_display_extras {
 			global $wp_query;
 
 			switch (TRUE) {
-
-				case (is_search()) || (is_404()) :
-					// Silence is golden
-				break;
-
-				case ( is_single() || is_page() || is_home() && get_option('show_on_front') == 'page' ) :
-					$this_post_id = ( isset($wp_query->post->ID) ) ? $wp_query->post->ID : '';
-					if ( $this_post_id !='' && current_user_can('edit_post', $this_post_id) ) {
-						$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . 'post.php?action=edit&amp;post=' . $this_post_id . '" title="' . esc_attr__('Edit this', 'Wonderflux') . '">' . esc_attr__('Edit this content', 'Wonderflux') . '</a></li>';
-					}
-				break;
-
+				case ( in_the_loop() ) : $edit_do = 'Y'; break;
+				case ( is_page() || is_single() ) : $edit_do = 'Y'; break;
+				case ( is_home() && get_option('show_on_front') == 'page' ) : $edit_do = 'Y'; break;
 				default :
-					// Silence is golden
+					$edit_do = false;
 				break;
 
+			}
+
+			if ( $edit_do == 'Y' ) {
+				$this_post_id = ( isset($wp_query->post->ID) ) ? $wp_query->post->ID : '';
+				if ( $this_post_id !='' && current_user_can('edit_post', $this_post_id) ) {
+					$output .= $liclass. '<a href="' . wp_sanitize_redirect($this_admin) . 'post.php?action=edit&amp;post=' . $this_post_id . '" title="' . esc_attr__('Edit this content', 'Wonderflux') . '">' . esc_attr__('Edit this content', 'Wonderflux') . '</a></li>';
+				}
 			}
 
 			if ( current_user_can('edit_posts') && $postcontrols == 'Y' ) {
-				$output .= '<li class="' . esc_attr($liclass) . '">' . esc_attr__('POSTS:', 'Wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php" title="' . esc_attr__('Create a new post', 'Wonderflux') . '">' . esc_attr__('New', 'Wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php" title="' . esc_attr__('Edit existing posts', 'Wonderflux') . '">' . esc_attr__('Edit', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . esc_attr__('POSTS:', 'Wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php" title="' . esc_attr__('Create a new post', 'Wonderflux') . '">' . esc_attr__('New', 'Wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php" title="' . esc_attr__('Edit existing posts', 'Wonderflux') . '">' . esc_attr__('Edit', 'Wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('edit_pages') && $pagecontrols == 'Y' ) {
-				$output .= '<li class="' . esc_attr($liclass) . '">' . esc_attr__('PAGES:', 'Wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php?post_type=page" title="' . esc_attr__('Create new page', 'Wonderflux') . '">' . esc_attr__('New', 'Wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php?post_type=page" title="' . esc_attr__('Edit existing pages', 'Wonderflux') . '">' . esc_attr__('Edit', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . esc_attr__('PAGES:', 'Wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php?post_type=page" title="' . esc_attr__('Create new page', 'Wonderflux') . '">' . esc_attr__('New', 'Wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php?post_type=page" title="' . esc_attr__('Edit existing pages', 'Wonderflux') . '">' . esc_attr__('Edit', 'Wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('publish_posts') && $adminlink == 'Y' ) {
-				$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . '" title="' . esc_attr__('Admin area', 'Wonderflux') . '">' . esc_attr__('Admin area', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . '" title="' . esc_attr__('Website admin area', 'Wonderflux') . '">' . esc_attr__('Admin area', 'Wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('edit_theme_options') && $widgetslink == 'Y' ) {
-				$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . 'widgets.php" title="' . esc_attr__('Edit widgets', 'Wonderflux') . '">' . esc_attr__('Edit widgets', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . 'widgets.php" title="' . esc_attr__('Edit website widget areas', 'Wonderflux') . '">' . esc_attr__('Edit widgets', 'Wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('edit_theme_options') && $wfcontrols == 'Y' ) {
-				$output .= '<li class="' . esc_attr($liclass) . '"><a href="' . wp_sanitize_redirect($this_admin) . 'admin.php?page=wonderflux" title="Wonderflux ' . esc_attr__('design options', 'Wonderflux') . '">Wonderflux ' . esc_attr__('options', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . 'admin.php?page=wonderflux" title="Wonderflux ' . esc_attr__('Wonderflux theme framework options', 'Wonderflux') . '">' . esc_attr__('Theme options', 'Wonderflux') . '</a></li>';
 			}
 
 			if ( $logoutlink == 'Y' ) {
-			$output .= '<li class="' . esc_attr($liclass) . '">' . '<a href="' . wp_logout_url( get_permalink() ) . '" title="' . esc_attr__('Log out of website CMS', 'Wonderflux') . '">' . esc_attr__('Log out of CMS', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . '<a href="' . wp_logout_url( get_permalink() ) . '" title="' . esc_attr__('Log out of website', 'Wonderflux') . '">' . esc_attr__('Log out', 'Wonderflux') . '</a></li>';
 			}
-
-			/*$output .= '<p class="wp-meta"><a href="' . wp_sanitize_redirect($this_admin) . 'edit-comments.php" title="Edit comments">Edit comments</a></p>';*/
 
 			$output .= '</ul>';
 

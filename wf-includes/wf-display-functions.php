@@ -1138,7 +1138,7 @@ class wflux_display_extras {
 	function wf_perma_img($args) {
 
 		$defaults = array (
-			'intro' =>  __('Read about', 'Wonderflux'),
+			'intro' =>  esc_attr__('Read about', 'Wonderflux'),
 			'title' => 'Y',
 			'seperator' => ' - ',
 			'class' => 'button-more',
@@ -1209,7 +1209,7 @@ class wflux_display_extras {
 	function wf_edit_meta($args) {
 
 		$defaults = array (
-			'userintro' => __('Welcome', 'Wonderflux'),
+			'userintro' => esc_attr__('Welcome', 'Wonderflux'),
 			'username' => 'Y',
 			'intro' => 'Y',
 			'postcontrols' => 'Y',
@@ -1351,7 +1351,7 @@ class wflux_display_extras {
 			'exerptlimit' => '25',
 			'exerptend' => '...',
 			'morelink' => 'N',
-			'morelinktext' => __('Read', 'Wonderflux'),
+			'morelinktext' => esc_attr__('Read', 'Wonderflux'),
 			'morelinkclass' => 'wfx-get-page-loop-more',
 			'boxclass' => 'wfx-get-page-loop',
 			'contentclass' => 'wfx-get-page-loop-content'
@@ -1443,10 +1443,10 @@ class wflux_display_extras {
 	function wf_login_logout($args) {
 
 		$defaults = array (
-			'login' => __('Login', 'Wonderflux'),
-			'logintip' => __('Login to site', 'Wonderflux'),
-			'logout' => __('Logout', 'Wonderflux'),
-			'logouttip' => __('Logout of site', 'Wonderflux'),
+			'login' => esc_attr__('Login', 'Wonderflux'),
+			'logintip' => esc_attr__('Login to site', 'Wonderflux'),
+			'logout' => esc_attr__('Logout', 'Wonderflux'),
+			'logouttip' => esc_attr__('Logout of site', 'Wonderflux'),
 			'loginredirect' => 'dashboard',
 			'logoutredirect' => 'current',
 			'wpadminbar' => 'Y'
@@ -1640,8 +1640,8 @@ class wflux_display_extras {
 
 		$defaults = array (
 			'element' => 'p',
-			'start' => __('Page ', 'Wonderflux'),
-			'seperator' => __(' of ', 'Wonderflux'),
+			'start' => esc_attr__('Page ', 'Wonderflux'),
+			'seperator' => esc_attr__(' of ', 'Wonderflux'),
 			'current_span' => 'page-counter-current',
 			'total_span' => 'page-counter-total',
 			'always_show' => 'N',

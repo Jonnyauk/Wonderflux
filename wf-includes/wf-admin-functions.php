@@ -2,7 +2,7 @@
 
 /**
 * @since 0.3
-* @updated 0.93
+* @updated 0.931
 * Admin form functions
 */
 class wflux_admin extends wflux_data {
@@ -24,26 +24,26 @@ class wflux_admin extends wflux_data {
 	/**
 	* Build the admin menus
 	* @since 0.3
-	* @updated 0.92
+	* @updated 0.931
 	*/
 	function wf_add_pages(){
 		global $wflux_core_admin_page_main;
 		global $wflux_core_admin_page_style;
 		global $wflux_core_admin_page_config;
 		global $wflux_core_admin_page_advanced;
-		$wflux_core_admin_page_main = add_menu_page('Wonderflux main options', 'Wonderflux', 'administrator', 'wonderflux', array($this, 'wf_page_core'));
-		$wflux_core_admin_page_style = add_submenu_page( 'wonderflux', 'Wonderflux Style Lab', 'Style Lab', 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
-		$wflux_core_admin_page_advanced = add_submenu_page( 'wonderflux', 'Wonderflux Advanced', 'Advanced', 'administrator', 'wonderflux_advanced', array($this, 'wf_page_advanced'));
-		$wflux_core_admin_page_cms = add_submenu_page( 'wonderflux', 'Wonderflux System Information', 'System Information', 'administrator', 'wonderflux_system', array($this, 'wf_page_system'));
+		$wflux_core_admin_page_main = add_menu_page( esc_attr__('Wonderflux main options','wonderflux'), esc_attr__('Wonderflux','wonderflux'), 'administrator', 'wonderflux', array($this, 'wf_page_core'));
+		$wflux_core_admin_page_style = add_submenu_page( 'wonderflux', esc_attr__('Wonderflux Style Lab','wonderflux'), esc_attr__('Style Lab','wonderflux'), 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
+		$wflux_core_admin_page_advanced = add_submenu_page( 'wonderflux', esc_attr__('Wonderflux Advanced','wonderflux'), esc_attr__('Advanced','wonderflux'), 'administrator', 'wonderflux_advanced', array($this, 'wf_page_advanced'));
+		$wflux_core_admin_page_cms = add_submenu_page( 'wonderflux', esc_attr__('Wonderflux System Information','wonderflux'), esc_attr__('System Information','wonderflux'), 'administrator', 'wonderflux_system', array($this, 'wf_page_system'));
 		//TODO: If user is superadmin ID, reveal advanced config menu
 	}
 
 
 	// Add content to admin areas
-	function wf_page_core() { $this->wf_page_build('index', 'Wonderflux Home', 'core'); }
-	function wf_page_stylelab() { $this->wf_page_build('themes', 'Wonderflux Stylelab', 'style'); }
-	function wf_page_advanced() { $this->wf_page_build('themes', 'Wonderflux Advanced', 'advanced'); }
-	function wf_page_system() { $this->wf_page_build('tools', 'Wonderflux System Information', 'system'); }
+	function wf_page_core() { $this->wf_page_build('index', esc_attr__('Wonderflux Home','wonderflux'), 'core'); }
+	function wf_page_stylelab() { $this->wf_page_build('themes', esc_attr__('Wonderflux Stylelab','wonderflux'), 'style'); }
+	function wf_page_advanced() { $this->wf_page_build('themes', esc_attr__('Wonderflux Advanced','wonderflux'), 'advanced'); }
+	function wf_page_system() { $this->wf_page_build('tools', esc_attr__('Wonderflux System Information','wonderflux'), 'system'); }
 
 
 	/**
@@ -76,11 +76,11 @@ class wflux_admin extends wflux_data {
 		echo '<div class="themes-php wrap">';
 		echo '<div id="icon-'.$icon.'" class="icon32"><br /></div>';
 
-		switch ($title) {
-			case('Wonderflux Home'): $tab1=TRUE; break;
-			case('Wonderflux Stylelab'): $tab2=TRUE; break;
-			case('Wonderflux Advanced'): $tab3=TRUE; break;
-			case('Wonderflux System Information'): $tab4=TRUE; break;
+		switch ($include) {
+			case('core'): $tab1=TRUE; break;
+			case('style'): $tab2=TRUE; break;
+			case('advanced'): $tab3=TRUE; break;
+			case('system'): $tab4=TRUE; break;
 			default: $tab1=TRUE; break;
 		}
 
@@ -107,11 +107,11 @@ class wflux_admin extends wflux_data {
 
 		echo '</div>';
 
-		if ( isset( $_GET['settings-updated'] ) ): echo '<div class="updated settings-error" id="setting-error-settings_updated"><p><strong>' . $title . ' ' . esc_attr__('settings updated successfully.', 'wonderflux') . '</strong></p></div>'; endif;
+		if ( isset( $_GET['settings-updated'] ) ): echo '<div class="updated settings-error" id="setting-error-settings_updated"><p><strong>' . $title . ' ' . esc_attr__('Settings updated successfully.', 'wonderflux') . '</strong></p></div>'; endif;
 
 		require('admin-pages/wf-page-'.$include.'.php');
 
-		if ($title == 'Wonderflux Advanced'): $this->admin_forms->wf_form_helper_file_css_combine('css/wf-css-core-structure.css','Y'); endif;
+		if ($include == 'advanced'): $this->admin_forms->wf_form_helper_file_css_combine('css/wf-css-core-structure.css','Y'); endif;
 
 		$wf_current_theme = get_current_theme();
 		if ($wf_current_theme == 'Wonderflux Framework') {
@@ -150,7 +150,7 @@ class wflux_admin extends wflux_data {
 		$output .= '<h2>' . esc_attr__('Help and support','wonderflux') . '</h2>';
 		$output .= '<p>';
 		$output .= ' <a href="http://wonderflux.com/guide/" title="';
-		$output .= esc_attr__('visit the Wonderflux guide','wonderflux');
+		$output .= esc_attr__('Visit the Wonderflux guide','wonderflux');
 		$output .= '">';
 		$output .= esc_attr__('The Wonderflux guide','wonderflux');
 		$output .= '</a> ';
@@ -174,24 +174,24 @@ class wflux_admin extends wflux_data {
 		add_settings_section('style_lab_doc', '', array($this->admin_forms, 'wf_form_intro_doc'), 'wonderflux_stylelab_doc');
 		add_settings_section('style_lab_fb', '', array($this->admin_forms, 'wf_form_intro_fb'), 'wonderflux_stylelab_fb');
 
-		//1) Key 2) form label 3) Builder function 4)Page? 5)Section
-		add_settings_field('container_p', 'Site container position', array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab', 'style_lab');
+		//1) Key 2) form label 3) Builder function 4)Page 5)Section
+		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab', 'style_lab');
 
-		add_settings_field('sidebar_d', 'Sidebar display', array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('sidebar_p', 'Sidebar position', array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
 
-		add_settings_field('container_w', 'Site container width', array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('container_w', esc_attr__('Site container width','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab', 'style_lab');
 		//add_settings_field('padding_l', 'Left site container padding', array($this->admin_forms, 'wf_form_padding_l'), 'wonderflux_stylelab', 'style_lab');
 		//add_settings_field('padding_r', 'Right site container padding', array($this->admin_forms, 'wf_form_padding_r'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('columns_num', 'Number of vertical columns (inside container+padding)', array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('columns_w', 'Desired width of column', array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('columns_num', esc_attr__('Number of vertical columns (inside container+padding)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('columns_w', esc_attr__('Desired width of column','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
 
-		add_settings_field('doc_type', 'Document type', array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
-		add_settings_field('doc_lang', 'Document language', array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');
-		add_settings_field('doc_charset', 'Document character set', array($this->admin_forms, 'wf_form_doc_charset'), 'wonderflux_stylelab_doc', 'style_lab_doc');
+		add_settings_field('doc_type', esc_attr__('Document type','wonderflux'), array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
+		add_settings_field('doc_lang', esc_attr__('Document language','wonderflux'), array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');
+		add_settings_field('doc_charset', esc_attr__('Document character set','wonderflux'), array($this->admin_forms, 'wf_form_doc_charset'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 
-		add_settings_field('fb_admins', 'Facebook ID(s)', array($this->admin_forms, 'wf_form_fb_admins'), 'wonderflux_stylelab_fb', 'style_lab_fb');
-		add_settings_field('fb_app', 'Facebook Application ID', array($this->admin_forms, 'wf_form_fb_app'), 'wonderflux_stylelab_fb', 'style_lab_fb');
+		add_settings_field('fb_admins', esc_attr__('Facebook ID(s)','wonderflux'), array($this->admin_forms, 'wf_form_fb_admins'), 'wonderflux_stylelab_fb', 'style_lab_fb');
+		add_settings_field('fb_app', esc_attr__('Facebook Application ID','wonderflux'), array($this->admin_forms, 'wf_form_fb_app'), 'wonderflux_stylelab_fb', 'style_lab_fb');
 
 	}
 
@@ -239,7 +239,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Compares installed Wonderflux version with latest release available
 	* @since 0.911
-	* @updated 0.911
+	* @updated 0.931
 	*/
 	function wf_latest_version_compare() {
 
@@ -247,9 +247,9 @@ class wflux_admin extends wflux_data {
 		$latest_version = $this->wf_latest_version_fetch();
 
 		if ($latest_version > $this_version) {
-			return 'update';
+			return esc_attr__('update', 'wonderflux');
 		} elseif ($latest_version < $this_version) {
-			return 'development';
+			return esc_attr__('development', 'wonderflux');
 		} else {
 			// Silence is golden
 		}
@@ -269,10 +269,11 @@ class wflux_admin extends wflux_data {
 		if ($check == 'update') {
 
 			$output = '<div id="message1" class="error">';
-			$output .= '<h3>Wonderflux framework update available!</h3>';
-			$output .= '<p>You are running v'.esc_attr(WF_VERSION).', the current latest release is v'.esc_attr($this->wf_latest_version_fetch()).'</p>';
-			$output .= '<p>There is an update available to Wonderflux. Please read the update notes to check-up on how this may effect your theme BEFORE updating!</p>';
-			$output .= '<p>You can <a href="http://code.google.com/p/wonderflux-framework/downloads/" title="Download the latest Wonderflux update here">download the latest Wonderflux update here</a>.</p>';
+			$output .= '<h3>' . esc_attr__('Wonderflux framework update available!', 'wonderflux') . '</h3>';
+			$output .= '<p>' . sprintf( __( 'You are running v%1$s, the current latest release is v%2$s', 'wonderflux' ), WF_VERSION, $this->wf_latest_version_fetch() ) . '</p>';
+
+			$output .= '<p>' . esc_attr__('There is an update available to Wonderflux. Please read the update notes to check-up on how this may effect your theme BEFORE updating!', 'wonderflux') . '</p>';
+			$output .= '<p>You can <a href="http://code.google.com/p/wonderflux-framework/downloads/" title="'. esc_attr__('Download the latest Wonderflux update here', 'wonderflux') . '">' . esc_attr__('download the latest Wonderflux update here', 'wonderflux') . '</a>.</p>';
 			$output .= '</div>';
 
 			echo $output;
@@ -280,10 +281,11 @@ class wflux_admin extends wflux_data {
 		} elseif ($check == 'development') {
 
 			$output = '<div id="message1" class="error">';
-			$output .= '<h3>Development version installed</h3>';
-			$output .= '<p>You are running a development version of Wonderflux, cool! <strong>You should probably NOT be using this on live sites.</strong></p>';
-			$output .= '<p>It may contain code thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme.</p>';
-			$output .= '<p><strong>If you are not a developer, advanced designer or tester</strong> you will probably be better off using <a href="http://code.google.com/p/wonderflux-framework/downloads/" title="Download the latest stable Wonderflux release here">the latest stable version of Wonderflux</a>.</p>';
+			$output .= '<h3>' . esc_attr__('Development version installed', 'wonderflux') . '</h3>';
+			$output .= '<p>' . esc_attr__('You are running a development version of Wonderflux, cool!', 'wonderflux') . ' <strong>' . esc_attr__('You should probably NOT be using this on live sites.', 'wonderflux') . '</strong></p>';
+			$output .= '<p>' . esc_attr__('It may contain code thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme.', 'wonderflux') . '</p>';
+			$output .= '<p><strong>' . esc_attr__('If you are not a developer, advanced designer or tester', 'wonderflux') . '</strong> ' . esc_attr__('If you are not a developer, advanced designer or tester', 'wonderflux');
+			$output .= sprintf( __( 'you will probably be better off using <a href="%1$s" title="%2$s">%3$s</a>', 'wonderflux' ), 'http://code.google.com/p/wonderflux-framework/downloads/' , __('Download the latest stable Wonderflux release here', 'wonderflux'), esc_attr__('the latest stable version of Wonderflux.', 'wonderflux') );
 			$output .= '</div>';
 
 			echo $output;
@@ -302,48 +304,43 @@ class wflux_admin extends wflux_data {
 	*/
 	function wf_contextual_help($contextual_help, $screen_id, $screen) {
 
-		$link_dev = __( 'Google code project', 'wonderflux' );
-		$link_dl = __( 'Latest release', 'wonderflux' );
-		$link_svn = __( 'Google code SVN', 'wonderflux' );
-		$link_lis = __( 'Google code issue tracking list', 'wonderflux' );
-		$link_doc = __( 'Wonderflux documentation', 'wonderflux' );
-		$doc = __( 'documentation', 'wonderflux' );
-
 		$adv_help = '<p>';
-		$adv_help .= '<a href="http://wonderflux.com/guide/constant/wf_theme_framework_replace/" title="WF_THEME_FRAMEWORK_REPLACE '. $doc . '" target="_blank">WF_THEME_FRAMEWORK_REPLACE</a> - ';
-		$adv_help .= 'WF_THEME_FRAMEWORK_REPLACE '. $doc;
+		$adv_help .= '<a href="http://wonderflux.com/guide/constant/wf_theme_framework_replace/" title="'. esc_attr__('WF_THEME_FRAMEWORK_REPLACE documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('WF_THEME_FRAMEWORK_REPLACE', 'wonderflux') . '</a>';
+		$adv_help .= esc_attr__(' - A Wonderflux theme constant that removes the core stylesheet CSS files.', 'wonderflux');
 		$adv_help .= '</p>';
 
 		$generic_help = '<p>';
-		$generic_help .= '<a href="http://wonderflux.com/guide/" title="'. $link_doc . '"target="_blank">http://wonderflux.com/guide</a> - ';
-		$generic_help .= __( 'All Wonderflux documentation and user guides', 'wonderflux' );
+		$generic_help .= '<a href="http://wonderflux.com/guide/" title="'. esc_attr__('Wonderflux documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('http://wonderflux.com/guide', 'wonderflux') . '</a>';
+		$generic_help .= esc_attr__(' - All Wonderflux documentation and user guides.', 'wonderflux');
 		$generic_help .= '</p>';
 		$generic_help .= '<h3>';
-		$generic_help .= __( 'Get involved!', 'wonderflux' );
+		$generic_help .= esc_attr__('Get involved!', 'wonderflux' );
 		$generic_help .= '</h3>';
 		$generic_help .= '<p>';
-		$generic_help .= __( 'A huge amount of resource has been poured into this project since it began in January 2010. If you have ideas on how Wonderflux could improve, <strong>why not contribute to the development of Wonderflux?</strong>', 'wonderflux' );
+		$generic_help .= esc_attr__( 'A huge amount of resource has been poured into this project since it began in January 2010. If you have ideas on how Wonderflux could improve, why not think about contributing to the development of Wonderflux?', 'wonderflux' );
+		$generic_help .= '</p>';
+		$generic_help .= '<p><strong>';
+		$generic_help .= esc_attr__( 'Remember, Wonderflux is free, open source code just like WordPress', 'wonderflux' );
+		$generic_help .= '</strong>';
+		$generic_help .= esc_attr__( ' - so your ideas can help make a great theme framework for the whole community to use. Some ideas on how you could help include bug hunting, documentation, javascript, optimisation - really any ideas you have would be more than welcome!', 'wonderflux' );
 		$generic_help .= '</p>';
 		$generic_help .= '<p>';
-		$generic_help .= __( '<strong>Remember, Wonderflux is free, open source code just like WordPress</strong> - so your ideas can help make a great theme framework for the whole community to use. Some ideas on how you could help include bug hunting, documentation, javascript, optimisation - really any ideas you have would be more than welcome!', 'wonderflux' );
-		$generic_help .= '</p>';
-		$generic_help .= '<p>';
-		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/source/checkout/" title="' . $link_svn . '" target="_blank">' . $link_svn . '</a> ';
-		$generic_help .= __( '- SVN code repository - latest development version available for checkout (for developers and testers - NOT to be used on live sites!)', 'wonderflux' );
+		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/source/checkout/" title="'. esc_attr__('Google code SVN', 'wonderflux') . '" target="_blank">' . esc_attr__('Google code SVN', 'wonderflux') . '</a>';
+		$generic_help .= esc_attr__( '- SVN development code repository (for developers and testers - NOT to be used on live sites!)', 'wonderflux' );
 		$generic_help .= '<br />';
-		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/issues/list/" title="' . $link_lis . '" target="_blank">' . $link_lis . '</a> ';
-		$generic_help .= __( '- Development list (for contributors, bug reports and feature requests)', 'wonderflux' );
+		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/issues/list/" title="'. esc_attr__('Google code issue tracking list', 'wonderflux') . '" target="_blank">' . esc_attr__('Google code issue tracking list', 'wonderflux') . '</a>';
+		$generic_help .= esc_attr__( '- Development list (for contributors, bug reports and feature requests)', 'wonderflux' );
 		$generic_help .= '<br />';
-		$generic_help .= '<a href="http://wonderflux.com/guide/" title="' . $link_doc . '" target="_blank">' . $link_doc . '</a> ';
-		$generic_help .= __( '- Documentation site', 'wonderflux' );
+		$generic_help .= '<a href="http://wonderflux.com/guide/" title="'. esc_attr__('Wonderflux documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('Wonderflux documentation', 'wonderflux') . '</a>';
+		$generic_help .= __( ' - Official documentation site (API documentation and quick start guides)', 'wonderflux' );
 
 		$generic_help .= '</p>';
 
 		switch ($screen_id) {
-			case 'toplevel_page_wonderflux' : $this_help = '<h3>' . __( 'Wonderflux Help - Main Options', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . __( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_system' : $this_help = '<h3>' . __( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_advanced' : $this_help = '<h3>' . __( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
+			case 'toplevel_page_wonderflux' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Main Options', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_system' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_advanced' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
 			default : return $contextual_help;
 		}
 
@@ -418,11 +415,9 @@ class wflux_admin extends wflux_data {
 		foreach ($items as $key=>$value) {
 			$output .= esc_attr__(' | ','wonderflux');
 			$output .= '<a href="http://wonderflux.com/guide/' . $key . '/" title="' . esc_attr__('View all Wonderflux ','wonderflux');
-			//$output .= esc_attr__('functions','wonderflux');
 			$output .= $value;
-			$output .= esc_attr__(' (documented so far)','wonderflux');
+			$output .= esc_attr__(' (documented so far!)','wonderflux');
 			$output .= '"> ';
-			//$output .= esc_attr__('Function reference','wonderflux');
 			$output .= $value;
 			$output .= '</a> ';
 		}
@@ -523,6 +518,7 @@ class wflux_admin_forms extends wflux_data {
 		$output .= '<p><strong>' . esc_attr__("If you are using the Facebook features, you must use document type XHTML/RDFa.","wonderflux") . '</strong></p>';
 		echo $output;
 	}
+
 	function wf_form_intro_fb() {
 		$output = '<div class="icon32" id="icon-options-general"><br></div><h2>' . esc_attr__( "Facebook connect", "wonderflux" ) . '</h2>';
 		$output .= '<p>' . esc_attr__("Connect your site with Facebook to allow advanced interaction and sharing. Required if you are using the Facebook share display function. ","wonderflux");
@@ -537,6 +533,7 @@ class wflux_admin_forms extends wflux_data {
 		$output .= esc_attr__("Relevant Facebook and Open Graph meta tags are generated and XML namespace attributes are added. Whilst active, it is manditory to keep the document type as XHTML/RDFa. This ensures that your site will still produce valid code, enable XFBML and advanced loading, along with improved compatibility with Internet Explorer.","wonderflux") . '</strong></p>';
 		echo $output;
 	}
+
 	function wf_form_fb_admins() { $this->wf_form_helper_text($this->wfx_fb_admins,'fb_admins'); }
 	function wf_form_fb_app() { $this->wf_form_helper_text($this->wfx_fb_app,'fb_app'); }
 
@@ -653,7 +650,7 @@ class wflux_admin_forms extends wflux_data {
 	*/
 	function wf_css_framework_build() {
 
-		$css_output = "\n" . ' /*GRID CONFIGURATION*/ ' . "\n";
+		$css_output = "\n/*" . esc_attr__( "GRID CONFIGURATION", "wonderflux" ) . "*/\n";
 
 		//Work out gutter
 		$wf_grid_gutter = ($this->wfx_width - ($this->wfx_columns * $this->wfx_columns_width)) / ($this->wfx_columns - 1);
@@ -813,10 +810,11 @@ class wflux_admin_forms extends wflux_data {
 	/**
 	* Creates the grid output for IE conditional support
 	* @since 0.93
-	* @updated 0.93
+	* @updated 0.931
 	*/
 	function wf_css_framework_build_ie() {
-		$output = '/** * Wonderflux theme framework dynamic column core (legacy IE support) * http://wonderflux.com * * @package Wonderflux * @since Wonderflux 0.2 */ ';
+
+		$output = '/** * ' . esc_attr__( " Wonderflux theme framework dynamic column core (legacy IE support) * http://wonderflux.com * @package Wonderflux * @since Wonderflux 0.2", "wonderflux" ) . ' */ ';
 		$output .= 'body { text-align: ' . $this->wfx_position . '; } ';
 		$output .= '.container { text-align: left; } ';
 

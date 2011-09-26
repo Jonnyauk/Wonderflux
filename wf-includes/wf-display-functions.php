@@ -139,12 +139,13 @@ class wflux_display_code extends wflux_data {
 	* Builds the title in the head of the template
 	*
 	* @since 0.1
-	* @updated 0.881
+	* @updated 0.931
 	*/
 	function wf_head_title($args) {
 
+		echo '<title>';
+
 		if (is_home() || is_front_page()) {
-			echo '<title>';
 			bloginfo('name');
 
 			$this_desc = esc_attr( get_bloginfo( 'description', 'display' ) );
@@ -152,30 +153,28 @@ class wflux_display_code extends wflux_data {
 			if ($this_desc == 'Just another WordPress site') {
 				//Silence is golden - site has default description which we dont want to show
 			} else {
-				//They have set a site description in options
+				//Proper site description in options
 				echo ' - ';
 				echo esc_attr( get_bloginfo( 'description', 'display' ) );
 			}
-			echo '</title>';
 		}
 
 		// If it's a feed, lets add that into the title
 		elseif ( is_feed() ) {
-			echo '<title>' . get_bloginfo( 'name', 'display' ) . ' feed</title>';
+			echo get_bloginfo( 'name', 'display' ) . ' feed';
 		}
 
 		elseif ( is_search() ) {
-			echo '<title>Search results for ' . get_search_query() . ' from ' . get_bloginfo( 'name', 'display' ) . '</title>';
+			printf( __( 'Search results for  %1$s from %2$s', 'wonderflux' ), get_search_query(), get_bloginfo( 'name', 'display' ) );
 		}
 
 		//DEFAULT FALLBACK
 		else {
-			echo '<title>';
-			wp_title(' - ',true,'right');
-			bloginfo('name');
-			echo '</title>';
+			wp_title(' - ', true, 'right');
+			bloginfo( 'name' );
 		}
 
+		echo '</title>';
 		echo "\n";
 
 	}
@@ -347,39 +346,26 @@ class wflux_display_code extends wflux_data {
 	/**
 	*
 	* @since 0.3
-	* @updated 0.881
+	* @updated 0.931
 	*
 	* Footer credit
-	* TODO: Switch for normal display or code comment
 	*
 	*/
-	function wf_performance($args) {
-		echo '<!-- ';
-		$debug_text = get_num_queries();
-		echo $debug_text.' queries in ';
-		$debug_text = timer_stop(1);
-		echo ' seconds';
-		echo ' -->'."\n";
+	function wf_performance() {
+		echo '<!-- ' . sprintf( __( '%1$s queries in v%2$s seconds', 'wonderflux' ), get_num_queries(), timer_stop($display = 0, $precision = 4) ) . ' -->'."\n";
 	}
 
 
 	/**
 	*
 	* @since 0.71
-	* @updated 0.913
+	* @updated 0.931
 	*
 	* Footer code comment credit
 	*
 	*/
-	function wf_code_credit($args) {
-
-		// Default
-		$footer_credit = 'Powered by WordPress and the Wonderflux theme framework';
-		// Allow filtering
-		$footer_credit_output = apply_filters( 'wflux_comment_code_credit', $footer_credit );
-
-		$output = '<!-- '.$footer_credit_output.' -->'."\n";
-		echo $output;
+	function wf_code_credit() {
+		echo '<!-- ' . apply_filters( 'wflux_comment_code_credit', __('Powered by WordPress and the Wonderflux theme framework', 'wonderflux') ) . ' -->' . "\n";
 	}
 
 
@@ -638,7 +624,7 @@ class wflux_display_css extends wflux_display_code {
 
 	/**
 	* @since 0.4
-	* @updated 0.913
+	* @updated 0.931
 	* Builds comment for head of document displaying current Wonderflux layout config
 	* TODO: Build this function properly!
 	*/
@@ -673,15 +659,15 @@ class wflux_display_css extends wflux_display_code {
 		$wf_three_quarter = 'span-'.($wf_columns/4*3);
 		$wf_small = 'span-'.($wf_columns/8);
 
-		$css_info =$start_format . 'WONDERFLUX LAYOUT DESIGN HELPER' . $end_format;
+		$css_info =$start_format . __('WONDERFLUX LAYOUT DESIGN HELPER', 'wonderflux') . $end_format;
 		$css_info .="\n";
-		$css_info .=$start_format . 'Full width: ' . $wf_fullwidth . $end_format;
+		$css_info .=$start_format . __('Full width: ', 'wonderflux') . $wf_fullwidth . $end_format;
 		$css_info .="\n";
-		$css_info .=$start_format . 'Columns: ' . $wf_columns . $end_format;
+		$css_info .=$start_format . __('Columns: ', 'wonderflux') . $wf_columns . $end_format;
 		$css_info .="\n";
-		$css_info .=$start_format . 'Single column: ' . $wf_single . ' pixels wide' . $end_format;
+		$css_info .=$start_format . __('Single column: ', 'wonderflux') . $wf_single . ' pixels wide' . $end_format;
 		$css_info .="\n";
-		$css_info .=$start_format . 'Half: ' . $wf_half . $end_format;
+		$css_info .=$start_format . __('Half: ', 'wonderflux') . $wf_half . $end_format;
 		$css_info .="\n";
 
 		//TODO: More tests for fifths, sixths, sevenths and eighths?!?
@@ -689,14 +675,14 @@ class wflux_display_css extends wflux_display_code {
 		// Test to see if we can use thirds
 		if ( !is_float(($wf_columns/3)) ) {
 
-			$css_info .=$start_format . 'Third: ' . $wf_third . $end_format;
+			$css_info .=$start_format . __('Third: ', 'wonderflux') . $wf_third . $end_format;
 			$css_info .="\n";
-			$css_info .=$start_format . 'Two Third: ' . $wf_two_third . $end_format;
+			$css_info .=$start_format . __('Two Third: ', 'wonderflux') . $wf_two_third . $end_format;
 			$css_info .="\n";
 
 		} else {
 
-			$css_info .=$start_format . 'Your column configuration is not compatible with thirds. Avoid using these in your template designs, or reconfigure options.' . $end_format;
+			$css_info .=$start_format . __('Your column configuration is not compatible with thirds. Avoid using these in your template designs, or reconfigure options.', 'wonderflux') . $end_format;
 			$css_info .="\n";
 
 		}
@@ -704,22 +690,22 @@ class wflux_display_css extends wflux_display_code {
 		// Test to see if we can use quarters
 		if ( !is_float(($wf_columns/4)) ) {
 
-			$css_info .=$start_format . 'Quarter: ' . $wf_quarter . $end_format;
+			$css_info .=$start_format . __('Quarter: ', 'wonderflux') . $wf_quarter . $end_format;
 			$css_info .="\n";
-			$css_info .=$start_format . 'Two Quarters: ' . $wf_half . $end_format;
+			$css_info .=$start_format . __('Two Quarters: ', 'wonderflux') . $wf_half . $end_format;
 			$css_info .="\n";
-			$css_info .=$start_format . 'Three Quarters: ' . 'span-'.(($wf_columns/4)*3) . $end_format;
+			$css_info .=$start_format . __('Three Quarters: ', 'wonderflux') . 'span-'.(($wf_columns/4)*3) . $end_format;
 			$css_info .="\n";
 
 		} else {
 
-			$css_info .=$start_format . 'Your column configuration is not compatible with quarters. Avoid using these in your template designs, or reconfigure options.' . $end_format;
+			$css_info .=$start_format . __('Your column configuration is not compatible with quarters. Avoid using these in your template designs, or reconfigure options.', 'wonderflux') . $end_format;
 			$css_info .="\n";
 
 		}
 
 
-		$css_info .=$start_format . 'Small: ' . $wf_small . $end_format;
+		$css_info .=$start_format . __('Small: ', 'wonderflux') . $wf_small . $end_format;
 		$css_info .="\n";
 
 		echo $css_info;
@@ -814,7 +800,7 @@ class wflux_display extends wflux_display_css {
 	/**
 	*
 	* @since 0.3
-	* @updated 0.913
+	* @updated 0.931
 	*
 	* Footer credit
 	*
@@ -823,9 +809,9 @@ class wflux_display extends wflux_display_css {
 
 		// Defaults
 		$footer_credit_format = 'p';
-		$footer_credit_wp = 'Powered by <a href="http://wordpress.org" title="WordPress">WordPress</a>';
+		$footer_credit_wp = esc_attr__('Powered by ', 'wonderflux') . '<a href="http://wordpress.org" title="' . esc_attr__('WordPress', 'wonderflux') . '">' . esc_attr__('WordPress', 'wonderflux') . '</a>';
 		$footer_credit_divider = ' | ';
-		$footer_credit_wf = 'Built with <a href="http://wonderflux.com" title="Wonderflux WordPress theme framework">Wonderflux Framework</a>';
+		$footer_credit_wf = esc_attr__('Built with ', 'wonderflux') . '<a href="http://wonderflux.com" title="' . esc_attr__('Wonderflux WordPress theme framework', 'wonderflux') . '">' . esc_attr__('Wonderflux Framework', 'wonderflux');
 		$footer_credit_div = '';
 
 		// Setup for individual filtering
@@ -1057,7 +1043,6 @@ class wflux_display_extras {
 
 				// Show Avatar
 				echo '<div class="'.esc_attr($avatar_div_class).'">';
-				//echo .esc_url($avatar_img).
 				echo '<img src="'.esc_url($avatar_img).'" alt="Tweet from '.esc_attr($author_detail).' Twitter user" title="Tweet from @'.esc_attr($author_detail).' Twitter user" width="'.$avatar_size.'" height="'.$avatar_size.'" class="'.esc_attr($avatar_img_class).'" />';
 				echo '</div>';
 			}
@@ -1148,12 +1133,12 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 0.913
+	 * @updated 0.931
 	 */
 	function wf_perma_img($args) {
 
 		$defaults = array (
-			'intro' => 'Read about',
+			'intro' =>  __('Read about', 'Wonderflux'),
 			'title' => 'Y',
 			'seperator' => ' - ',
 			'class' => 'button-more',
@@ -1353,7 +1338,7 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 0.92
+	 * @updated 0.93
 	 */
 	function wf_get_single_content($args) {
 
@@ -1366,7 +1351,7 @@ class wflux_display_extras {
 			'exerptlimit' => '25',
 			'exerptend' => '...',
 			'morelink' => 'N',
-			'morelinktext' => 'Read',
+			'morelinktext' => __('Read', 'Wonderflux'),
 			'morelinkclass' => 'wfx-get-page-loop-more',
 			'boxclass' => 'wfx-get-page-loop',
 			'contentclass' => 'wfx-get-page-loop-content'
@@ -1453,15 +1438,15 @@ class wflux_display_extras {
 	 * @param wpadminbar - Configure display of WordPress admin bar [N]
 	 *
 	 * @since 0.901
-	 * @updated 0.92
+	 * @updated 0.931
 	 */
 	function wf_login_logout($args) {
 
 		$defaults = array (
-			'login' => 'Login',
-			'logintip' => 'Login to site',
-			'logout' => 'Logout',
-			'logouttip' => 'Logout of site',
+			'login' => __('Login', 'Wonderflux'),
+			'logintip' => __('Login to site', 'Wonderflux'),
+			'logout' => __('Logout', 'Wonderflux'),
+			'logouttip' => __('Logout of site', 'Wonderflux'),
 			'loginredirect' => 'dashboard',
 			'logoutredirect' => 'current',
 			'wpadminbar' => 'Y'
@@ -1649,14 +1634,14 @@ class wflux_display_extras {
 	 * @param container_class - Container CSS class [page-counter-navigation]
 	 *
 	 * @since 0.93
-	 * @updated 0.93
+	 * @updated 0.931
 	 */
 	function wf_page_counter($args) {
 
 		$defaults = array (
 			'element' => 'p',
-			'start' => 'Page ',
-			'seperator' => ' of ',
+			'start' => __('Page ', 'Wonderflux'),
+			'seperator' => __(' of ', 'Wonderflux'),
 			'current_span' => 'page-counter-current',
 			'total_span' => 'page-counter-total',
 			'always_show' => 'N',

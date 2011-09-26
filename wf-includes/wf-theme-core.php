@@ -22,7 +22,7 @@ class wflux_theme_core {
 
 	/**
 	*
-	* Sets up WordPress widgets and optionally inserts into template using Wonderflux hook system
+	* Sets up WordPress widgets and optionally inserts into template using Wonderflux hook system, plus a couple of other tricks!
 	*
 	* @param $name - The name of the widget (shows in admin widget editor area) [Incremental number]
 	* @param $description - Description of widget (shows in admin widget editor area) [Drag widgets into here to include them in your site]
@@ -50,7 +50,7 @@ class wflux_theme_core {
 	* endif;
 	*
 	* @since 0.891
-	* @updated 0.93
+	* @updated 0.931
 	*
 	*
 	*/
@@ -64,11 +64,10 @@ class wflux_theme_core {
 			// Check for name in array, if doesnt exist create a unique ID number to use for default fallback name
 			// Widgets have to have unique names otherwise WordPress borks!
 			if (!array_key_exists("name",$values)) { $wf_widget_num++; }
-
-			// Defaults parameters
+			// Default parameters
 			$defaults = array (
-			"name" => "Widget area " . $wf_widget_num,
-			"description" => "Drag widgets into here to include them in your site.",
+			"name" => esc_attr__('Widget area ','wonderflux') . $wf_widget_num,
+			"description" => esc_attr__('Drag widgets into here to include them in your site.','wonderflux'),
 			"location" => "wfsidebar_after_all",
 			"container" => "div",
 			"containerclass" => "widget-box",
@@ -86,13 +85,9 @@ class wflux_theme_core {
 
 			// If a specific container or title ID has been supplied, set it up ready to show
 			//If none supplied, it doesnt put an ID in at all
-			if ($containerid !="") {
-				$containerid = ' id="' . esc_attr($containerid) . '"';
-			}
+			if ($containerid !="") { $containerid = ' id="' . esc_attr($containerid) . '"'; }
 
-			if ($titleid !="") {
-				$titleid = ' id="' . esc_attr($titleid) . '"';
-			}
+			if ($titleid !="") { $titleid = ' id="' . esc_attr($titleid) . '"'; }
 
 			$clean_name = esc_attr( strtolower( str_replace(' ', '-', $name) ) );
 

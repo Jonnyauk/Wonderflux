@@ -352,7 +352,7 @@ class wflux_display_code extends wflux_data {
 	*
 	*/
 	function wf_performance() {
-		echo '<!-- ' . sprintf( __( '%1$s queries in v%2$s seconds', 'wonderflux' ), get_num_queries(), timer_stop($display = 0, $precision = 4) ) . ' -->'."\n";
+		echo '<!-- ' . sprintf( __( '%1$s queries in %2$s seconds', 'wonderflux' ), get_num_queries(), timer_stop($display = 0, $precision = 4) ) . ' -->'."\n";
 	}
 
 

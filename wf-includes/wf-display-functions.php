@@ -811,7 +811,7 @@ class wflux_display extends wflux_display_css {
 		$footer_credit_format = 'p';
 		$footer_credit_wp = esc_attr__('Powered by ', 'wonderflux') . '<a href="http://wordpress.org" title="' . esc_attr__('WordPress', 'wonderflux') . '">' . esc_attr__('WordPress', 'wonderflux') . '</a>';
 		$footer_credit_divider = ' | ';
-		$footer_credit_wf = esc_attr__('Built with ', 'wonderflux') . '<a href="http://wonderflux.com" title="' . esc_attr__('Wonderflux WordPress theme framework', 'wonderflux') . '">' . esc_attr__('Wonderflux Framework', 'wonderflux');
+		$footer_credit_wf = esc_attr__('Built with ', 'wonderflux') . '<a href="http://wonderflux.com" title="' . esc_attr__('Wonderflux WordPress theme framework', 'wonderflux') . '">' . esc_attr__('Wonderflux Framework', 'wonderflux') . '</a>';
 		$footer_credit_div = '';
 
 		// Setup for individual filtering

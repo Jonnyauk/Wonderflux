@@ -1,0 +1,1084 @@
+# This file is distributed under the same license as the Wonderflux theme framework - please refer to readme.txt
+msgid ""
+msgstr ""
+"Project-Id-Version: Wonderflux\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-02 12:09+0100\n"
+"PO-Revision-Date: 2011-10-02 12:09+0100\n"
+"Last-Translator: Jonny Allbut <contact@jonnya.net>\n"
+"Language-Team: Wonderflux team\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: _;__;esc_attr__;esc_attr_e;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: /Volumes/Mac Data/webserver/wonderflux-beta/wp-content/themes/wonderflux/\n"
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//404-content.php:13
+msgid "Sorry"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//404-content.php:17
+msgid "It seems the content you are looking for has either changed or moved."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//404-content.php:18
+msgid "Try using our site search to locate related content."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:16
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:39
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:60
+msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:40
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:61
+msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//functions.php:508
+msgid "Above sidebar"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//functions.php:509
+msgid "Drag widgets into here to include them above the sidebar on your site."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//functions.php:514
+msgid "Below sidebar"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//functions.php:515
+msgid "Drag widgets into here to include them below the sidebar on your site."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//loop-content.php:15
+#, php-format
+msgid "Read %s"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//loop-content.php:18
+msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//loop-content.php:19
+msgid "Pages:"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:34
+msgid "Wonderflux main options"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:34
+msgid "Wonderflux"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:35
+msgid "Wonderflux Style Lab"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:35
+msgid "Style Lab"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:36
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:45
+msgid "Wonderflux Advanced"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:36
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:101
+msgid "Advanced"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:37
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:46
+msgid "Wonderflux System Information"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:37
+msgid "System Information"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:43
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:93
+msgid "Wonderflux Home"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:44
+msgid "Wonderflux Stylelab"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:97
+msgid "Stylelab"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:105
+msgid "System"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:110
+msgid "Settings updated successfully."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:119
+msgid "Ooops, you could be doing so much more with Wonderflux!"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:120
+msgid "Wonderflux is a theme framework. It can be directly activated like this and will work perfectly - but you are really missing out on all the cool stuff Wonderflux can do!"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:122
+msgid "To get the most out of Wonderflux, you should take a quick read over"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:124
+msgid "Read the Wonderflux overview guide"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:126
+msgid "the Wonderflux introduction"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:128
+msgid "- also be sure to check out the documentation links below to learn about how to use the various aspects of Wonderflux."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:132
+msgid "You can also"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:134
+msgid "Download the free Girder Wonderflux child theme"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:136
+msgid "download the free example Wonderflux child theme call Girder"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:138
+msgid " - take a look at the layout code and especially the theme functions.php file for references on using Wonderflux."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:143
+msgid "You are using the"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:143
+msgid "Wonderflux child theme"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:150
+msgid "Help and support"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:153
+msgid "Visit the Wonderflux guide"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:155
+msgid "The Wonderflux guide"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:157
+msgid "is the official documentation site for Wonderflux. Click on the direct links below to find relevant content."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:178
+msgid "Site container position"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:180
+msgid "Sidebar display"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:181
+msgid "Sidebar position"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:183
+msgid "Site container width"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:186
+msgid "Number of vertical columns (inside container+padding)"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:187
+msgid "Desired width of column"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:189
+msgid "Document type"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:190
+msgid "Document language"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:191
+msgid "Document character set"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:193
+msgid "Facebook ID(s)"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:194
+msgid "Facebook Application ID"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:220
+msgid "Sorry, update check not currently available."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:250
+msgid "update"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:252
+msgid "development"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:272
+msgid "Wonderflux framework update available!"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:273
+#, php-format
+msgid "You are running v%1$s, the current latest release is v%2$s"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:275
+msgid "There is an update available to Wonderflux. Please read the update notes to check-up on how this may effect your theme BEFORE updating!"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:276
+msgid "Download the latest Wonderflux update here"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:276
+msgid "download the latest Wonderflux update here"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:284
+msgid "Development version installed"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:285
+msgid "You are running a development version of Wonderflux, cool!"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:285
+msgid "You should probably NOT be using this on live sites."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:286
+msgid "It may contain code thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:287
+msgid "If you are not a developer, advanced designer or tester"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:288
+#, php-format
+msgid "you will probably be better off using <a href=\"%1$s\" title=\"%2$s\">%3$s</a>"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:288
+msgid "Download the latest stable Wonderflux release here"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:288
+msgid "the latest stable version of Wonderflux."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:308
+msgid "WF_THEME_FRAMEWORK_REPLACE documentation"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:308
+msgid "WF_THEME_FRAMEWORK_REPLACE"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:309
+msgid " - A Wonderflux theme constant that removes the core stylesheet CSS files."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:313
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:334
+msgid "Wonderflux documentation"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:313
+msgid "http://wonderflux.com/guide"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:314
+msgid " - All Wonderflux documentation and user guides."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:317
+msgid "Get involved!"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:320
+msgid "A huge amount of resource has been poured into this project since it began in January 2010. If you have ideas on how Wonderflux could improve, why not think about contributing to the development of Wonderflux?"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:323
+msgid "Remember, Wonderflux is free, open source code just like WordPress"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:325
+msgid " - so your ideas can help make a great theme framework for the whole community to use. Some ideas on how you could help include bug hunting, documentation, javascript, optimisation - really any ideas you have would be more than welcome!"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:328
+msgid "Google code SVN"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:329
+msgid "- SVN development code repository (for developers and testers - NOT to be used on live sites!)"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:331
+msgid "Google code issue tracking list"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:332
+msgid "- Development list (for contributors, bug reports and feature requests)"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:335
+msgid " - Official documentation site (API documentation and quick start guides)"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:340
+msgid "Wonderflux Help - Main Options"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:341
+msgid "Wonderflux Help - Stylelab"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:342
+msgid "Wonderflux Help - System"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:343
+msgid "Wonderflux Help - Advanced"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:405
+msgid "Quick start guides"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:406
+msgid "Hook guides"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:407
+msgid "Function guides"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:408
+msgid "Filter guides"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:409
+msgid "Constant guides"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:410
+msgid "File guides"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:414
+msgid "Wonderflux help and documentation"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:416
+msgid " | "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:417
+msgid "View all Wonderflux "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:419
+msgid " (documented so far!)"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:493
+msgid "Use these controls to setup the main dimensions used across all your Wonderflux template designs."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:513
+msgid "Document output"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:515
+msgid "Use these controls to set avanced document type and language attributes."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:516
+msgid "WARNING - "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:517
+msgid "These settings should generally be left as default (transitional, en, UTF-8)."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:518
+msgid "If you are using the Facebook features, you must use document type XHTML/RDFa."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:523
+msgid "Facebook connect"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:524
+msgid "Connect your site with Facebook to allow advanced interaction and sharing. Required if you are using the Facebook share display function. "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:525
+msgid "You can assign multiple Facebook ID&rsquo;s by comma seperation (name1,name2) and a single (optional) application ID. "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:526
+msgid "NOTE - You are required to fill-in at-least your Facebook ID to use the Facebook sharing features. "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:527
+msgid "Get your Facebook ID number by logging into Facebook, and clicking on the 'profile' tab. If you look at the URL in the address bar, you will see something like: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:528
+msgid "http://www.facebook.com/profile.php?id=123456789012345"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:529
+msgid "The string of numbers after 'id=' is your Facebook ID number - copy and paste this into the filed below. "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:530
+msgid "Application ID is optional (advanced users). "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:531
+msgid "Login to Facebook to get your application ID if required."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:531
+msgid "Get your application ID if required"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:532
+msgid "IMPORTANT - When entering and using any of these details, your site document type is automatically switched to XHTML/RDFa. "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:533
+msgid "Relevant Facebook and Open Graph meta tags are generated and XML namespace attributes are added. Whilst active, it is manditory to keep the document type as XHTML/RDFa. This ensures that your site will still produce valid code, enable XFBML and advanced loading, along with improved compatibility with Internet Explorer."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:614
+msgid "CSS override files"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:615
+msgid "Advanced users may wish to remove the default stylesheets that are usually inserted for you when using Wonderflux. The code below is all of the Wonderflux framework CSS file content that is normally inserted into the <head> of your site output, using your current saved configuration."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:616
+msgid "By setting the constant in your child theme functions.php file with the single line:"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:618
+msgid "you will remove the Wonderflux css files: 'wf-css-core-structure', 'wf-css-dynamic-columns' and the conditional 'wf-css-dynamic-core-ie', leaving only your theme.css file in the document <head>. "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:619
+msgid "When you set "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:621
+msgid "to "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:623
+msgid "Wonderflux automatically inserts style-framework.css and style-framework-ie.css for you, with the IE file wrapped in a conditional comment, before loading your main theme CSS file."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:624
+msgid "IMPORTANT - you will need to create 2 new files in your theme directory to use this functionality."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:625
+msgid "1 - Copy and paste the code from BOX 1 into a file called 'style-framework.css' and save it to your child theme directory."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:626
+msgid "2 - Copy and paste the code from BOX 2 into a file called 'style-framework-ie.css' and save it to your child theme directory."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:627
+msgid "IMPORTANT - If you are using the override files as described and change your grid configuration or layout options, please revisit this page and update your files accordingly."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:629
+msgid "1 - Code for your style-framework.css file"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:639
+msgid "2 - Code for your style-framework-ie.css file"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:653
+msgid "GRID CONFIGURATION"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:817
+msgid " Wonderflux theme framework dynamic column core (legacy IE support) * http://wonderflux.com * @package Wonderflux * @since Wonderflux 0.2"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:168
+#, php-format
+msgid "Search results for  %1$s from %2$s"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:355
+#, php-format
+msgid "%1$s queries in %2$s seconds"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:368
+msgid "Powered by WordPress and the Wonderflux theme framework"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:662
+msgid "WONDERFLUX LAYOUT DESIGN HELPER"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:664
+msgid "Full width: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:666
+msgid "Columns: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:668
+msgid "Single column: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:670
+msgid "Half: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:678
+msgid "Third: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:680
+msgid "Two Third: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:685
+msgid "Your column configuration is not compatible with thirds. Avoid using these in your template designs, or reconfigure options."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:693
+msgid "Quarter: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:695
+msgid "Two Quarters: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:697
+msgid "Three Quarters: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:702
+msgid "Your column configuration is not compatible with quarters. Avoid using these in your template designs, or reconfigure options."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:708
+msgid "Small: "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:812
+msgid "Powered by "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:812
+msgid "WordPress"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:814
+msgid "Built with "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:814
+msgid "Wonderflux WordPress theme framework"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:814
+msgid "Wonderflux Framework"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1089
+msgid "Recently"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1099
+msgid "day"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1099
+msgid "ago"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1141
+msgid "Read about"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1212
+msgid "Welcome"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1276
+msgid "Edit this content"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
+msgid "POSTS:"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
+msgid "Create a new post"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+msgid "New"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
+msgid "Edit existing posts"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+msgid "Edit"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+msgid "PAGES:"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+msgid "Create new page"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+msgid "Edit existing pages"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1289
+msgid "Website admin area"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1289
+msgid "Admin area"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1293
+msgid "Edit website widget areas"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1293
+msgid "Edit widgets"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1297
+msgid "Wonderflux theme framework options"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1297
+msgid "Theme options"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1301
+msgid "Log out of website"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1301
+msgid "Log out"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1354
+msgid "Read"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1446
+msgid "Login"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1447
+msgid "Login to site"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1448
+msgid "Logout"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1449
+msgid "Logout of site"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1643
+msgid "Page "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1644
+msgid " of "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-theme-core.php:69
+msgid "Widget area "
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-theme-core.php:70
+msgid "Drag widgets into here to include them in your site."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-advanced.php:6
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-advanced.php:10
+msgid "Save all settings"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:10
+msgid "Current Wonderflux Child Theme"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:13
+msgid "Current theme preview"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:17
+#, php-format
+msgid "%1$s %2$s by %3$s"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:19
+msgid "The theme files are located in"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:24
+msgid "display functions"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:25
+msgid "COMING SOON - Theme designers will be able to enable options to control theme scripts functionality."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:3
+msgid "Column size configuration"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:6
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:30
+msgid "Save Template settings"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:15
+msgid "DEBUG: VALID COMBINATIONS"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:16
+msgid "Currently there is no validation on combinations of numbers, so it is possible to get fractional widths."
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:17
+msgid "For testing purposes, try out the following valid combinations - these all add up correctly:"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:19
+msgid "width=960 x cols=16 x colwidth=45"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:20
+msgid "width=960 x cols=36 x colwidth=15"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:21
+msgid "width=950 x cols=20 x colwidth=38"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:22
+msgid "width=950 x cols=24 x colwidth=30"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:23
+msgid "width=950 x cols=48 x colwidth=10"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:24
+msgid "width=760 x cols=24 x colwidth=24"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:25
+msgid "width=760 x cols=20 x colwidth=19"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:5
+msgid "Server technical information"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:6
+#, php-format
+msgid "PHP version installed: %s"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:7
+#, php-format
+msgid "MySQL version installed: %s"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:9
+msgid "Wonderflux technical information"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:10
+#, php-format
+msgid "Wonderflux version: %1$s, requires at-least WordPress v%2$s, optimised for WordPress v%3$s"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:11
+#, php-format
+msgid "Wonderflux server path: %s"
+msgstr ""
+
+#: /Volumes/Mac
+#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:12
+#, php-format
+msgid "Wonderflux URL path: %s"
+msgstr ""
+

@@ -1,0 +1,47 @@
+/*
+Theme Name: Wonderflux Framework
+Theme URI: http://wonderflux.com
+Description: A theme design framework to be used with additional Wonderflux child themes. IMPORTANT - REQUIRES WORDPRESS 3.0 or above.
+Version: 0.931
+Author: Team Wonderflux
+Author URI: http://wonderflux.com
+Tags: dark, light, white, black, one-column, two-columns, left-sidebar, right-sidebar, fixed-width, flexible-width, full-width-template, theme-options, translation-ready
+License: GNU General Public License v2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+Not much here so I don't interfere with your child theme!
+*/
+
+.sidebar-title {
+	margin: 0;
+}
+
+.sidebar-box ul {
+	margin: 0 0 25px 0;
+}
+
+.sidebar-box ul li {
+	list-style-type: none;
+}
+
+.sidebar-box ul li a {
+	text-decoration: none;
+}
+
+ul.wf-edit-meta {
+	margin-left: 0;
+}
+
+li.wf-edit-meta-links {
+	list-style-type: none;
+}
+
+li.wf-edit-meta-links a {
+	list-style-type: none;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+h2.entry-title a {
+	text-decoration: none;
+}

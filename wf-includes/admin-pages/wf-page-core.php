@@ -21,7 +21,7 @@
 <div class="clear"></div>
 
 <div class="icon32" id="icon-options-general"><br></div>
-<?php echo '<h2>' . get_current_theme(). esc_attr__('display functions', 'wonderflux') . '</h2>'; ?>
+<?php echo '<h2>' . get_current_theme(). ' ' . esc_attr__('display functions', 'wonderflux') . '</h2>'; ?>
 <?php echo '<p>' . esc_attr__('COMING SOON - Theme designers will be able to enable options to control theme scripts functionality.', 'wonderflux') . '</p>'; ?>
 
 </div>

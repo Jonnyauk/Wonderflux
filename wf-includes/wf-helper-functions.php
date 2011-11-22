@@ -430,7 +430,7 @@ class wflux_wp_core {
 	/**
 	* Adds Wonderflux links under Appearance on the WordPress admin bar
 	* @since 0.93
-	* @lastupdate 0.93
+	* @lastupdate 1.0
 	*/
 	function wf_admin_bar_links() {
 		global $wp_admin_bar, $wpdb;
@@ -442,7 +442,12 @@ class wflux_wp_core {
 			if ($input === false) {
 				// Single user role supplied
 				if ( WF_ADMIN_ACCESS == wfx_user_role('') && current_user_can('manage_options') ) {
-					$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+					//Backpat < WordPress 3.3
+					if ( WF_WORDPRESS_VERSION < 3.3 ) {
+						$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+					} else {
+						$wp_admin_bar->add_menu( array( 'parent' => 'site-name', 'id' => 'wf-stylelab', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+					}
 				}
 			} else {
 				// Array of user ID's supplied
@@ -450,7 +455,12 @@ class wflux_wp_core {
 				get_currentuserinfo();
 				foreach ($input as $key=>$user_id) {
 					if ( $user_id == $current_user->ID && current_user_can('manage_options') ) {
-						$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+						//Backpat < WordPress 3.3
+						if ( WF_WORDPRESS_VERSION < 3.3 ) {
+							$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+						} else {
+							$wp_admin_bar->add_menu( array( 'parent' => 'site-name', 'id' => 'wf-stylelab', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+						}
 					}
 				}
 

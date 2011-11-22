@@ -1,28 +1,5 @@
-!! WARNING !!
-
-You have downloaded a development version of the working source code
-from the trunk of the development code! THIS MAY NOT BE 100% STABLE!!
-
-IT IS FOR TESTING AND FEEDBACK ONLY - IT MAY CONTAIN INCOMPLETE CODE.
-
-If you are using this for development purposes, You should make sure
-you have the latest development version available. Non-members may check
-out a read-only working copy from the Google Code SVN:
-http://wonderflux-framework.googlecode.com/svn/trunk/
-
-If you wish to run the current latest public release, visit:
-http://code.google.com/p/wonderflux-framework/downloads/
-
-NOTE: This development version may contain new core functionality, for testing,
-always run the trunk version of WFX Girder theme, which is developed to use the latest
-Wonderflux code, structure and functionality. Refer to the functions.php file
-in particular when upgrading your own themes:
-http://wonderflux-girder-theme.googlecode.com
-
-= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION v0.94alpha
+VERSION v1.0 Release Candidate 1
 
 Copyright (C) 2011 Jonny Allbut / Team Wonderflux - http://wonderflux.com
 
@@ -44,18 +21,15 @@ You may also view the license online at http://www.gnu.org/licenses/gpl-2.0.html
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
-Welcome to the Wonderflux - a free, Open Source theme framework for WordPress.
+Welcome to the Wonderflux - a free, Open Source theme framework for WordPress and BuddyPress.
 
 Wonderflux is distributed under the GPL v2 license just like WordPress
-(yes - that means FREE basically!). There are no plans to ever charge
-for Wonderflux, it will always remain GPL v2 license.
+(yes - that means FREE basically!). Just to clarify then - YES, you can 
+use Wonderflux on as many commercial, non-commercial, and personal WordPress 
+sites as you wish, without any fee or subscription required.
 
-Just to clarify then - YES, you can use Wonderflux on as many commercial,
-non-commercial, personal WordPress sites as you wish, without any fee
-or subscription required.
-
-Any developers are welcome to offer code contributions - the project is
-open to any ideas and improvements;) The goal is to develop a framework
+Any developers are welcome to offer code contributions - the project is 
+open to any ideas and improvements;) The goal is to develop a framework 
 for everyone to use, for free, to make amazing WordPress sites!
 
 Drop by:
@@ -71,6 +45,7 @@ Drop by http://www.wonderflux.com
 HELP AND DOCUMENTATION
 
 Wonderflux Quick start guides - http://wonderflux.com/guide/doc/
+
 Hooks - http://wonderflux.com/guide/hook/
 Functions - http://wonderflux.com/guide/function/
 Filters - http://wonderflux.com/guide/filter/
@@ -82,29 +57,6 @@ WFX Girder is a child theme designed for Wonderflux that can be downloaded from:
 http://wonderflux-girder-theme.googlecode.com
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-UPGRADE NOTES
-
-To be populated for release - from revision 158
-
-= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-
-QUICK START REFERENCE
-
-Wonderflux is a theme framework that works with 'child themes'.
-
-Although Wonderflux will function if activated directly,
-the best way to use Wonderflux is by activating a child theme.
-
-You should have BOTH the Wonderflux child theme (like WFX Girder) and Wonderflux
-installed in your theme directory, then simply activate the Wonderflux child theme.
-
-DEMO CHILD THEME DOWNLOAD
-WFX Girder is a child theme designed for Wonderflux that can be downloaded from:
-http://wonderflux-girder-theme.googlecode.com
-
-This simply means that you can create a theme with just a small
-handful of files and everything else is provided by Wonderflux!
 
 Wonderflux is amazingly flexible, with many filters hooks and
 functions you can over-ride through your child theme functions file.
@@ -118,19 +70,17 @@ IF YOU OVERRIDE THESE YOU WOULD BE STRONGLY ADVISED TO DUPLICATE THE CORE FILES
 FROM WONDERFLUX INTO YOUR CHILD THEME DIRECTORY to retain the Wonderflux
 structure and hook system.
 
-> Start of with using the template parts as shown in the WF Girder
-child theme. Anything that has '-content' in the name is a template part, ie:
+The quickest way to start customsing your theme is by changing the template parts 
+as shown in the WF Girder theme. Anything that has '-content' in the name is a template part, ie:
 
 footer-content.php
 header-content-php
 loop-content-page.php (page loop content - only used on pages)
 loop-content.php (general loop content - used everywhere else)
 
-These files just contain very simple content - just what you want displayed within
-the given area of your site. All of the rest of the site code, structure and CSS is dealt
-with for you by Wonderflux for you. If you have not worked with theme frameworks,
-child themes and get_template_part() before - welcome to the future of
-WordPress theme development!
+These files just contain very simple content - not all the surrounding code. 
+If you have not worked with theme frameworks, child themes and get_template_part() before 
+- welcome to the future of WordPress theme development!
 
 AN IMPORTANT FEATURE of Wonderflux is the location aware get_template_part() function,
 allowing unique content to be easily used when using different views in your theme
@@ -154,7 +104,7 @@ simply create the file:
 footer-content-page.php
 
 in your child theme folder and this content will display only on this condition.
-IF THE FILE DOESN'T EXIST FOR THE LOCATION, it rolls back to footer-content.php
+IF THE FILE DOESN'T EXIST FOR THE LOCATION, it rolls back to the file footer-content.php
 
 This location aware functionality will also work for the following areas in your theme:
 header-content.php

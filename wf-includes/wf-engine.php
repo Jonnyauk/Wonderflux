@@ -4,6 +4,12 @@ load_template(TEMPLATEPATH . '/wf-config.php');
 load_template(WF_INCLUDES_DIR . '/wf-version.php');
 load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
 
+//// BUDDYPRESS FUNCTIONALITY
+
+if ( function_exists( 'bp_is_active' ) ) {
+	load_template(WF_INCLUDES_DIR . '/wf-buddypress.php');
+}
+
 //// ADMIN FUNCTIONS
 
 if (is_admin()) {

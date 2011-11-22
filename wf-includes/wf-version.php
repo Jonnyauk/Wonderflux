@@ -18,6 +18,6 @@ define( 'WF_WORDPRESS_OPTI', '3.2.1' );
 /**
  * The Wonderflux version string
  */
-define( 'WF_VERSION', '0.94alpha' );
+define( 'WF_VERSION', '1.0RC1' );
 
 ?>

@@ -1,23 +1,25 @@
 <?php
 /**
- *
- * Wonderflux version numbers
- *
+ * Version numbers
  */
 
 /**
- * The Wonderflux minimum recommended version
+ * The WordPress version string
+ */
+define( 'WF_WORDPRESS_VERSION', get_bloginfo( 'version' ) );
+
+/**
+ * Wonderflux version string
+ */
+define( 'WF_VERSION', '1.0RC1' );
+
+/**
+ * The minimum recommended version of WordPress for running Wonderflux
  */
 define( 'WF_WORDPRESS_MIN', '3.1.3' );
 
 /**
- * The Wonderflux optimal WordPress version
+ * The recommended optimum version of WordPress for running Wonderflux
  */
-define( 'WF_WORDPRESS_OPTI', '3.2.1' );
-
-/**
- * The Wonderflux version string
- */
-define( 'WF_VERSION', '1.0RC1' );
-
+define( 'WF_WORDPRESS_OPTI', '3.3' );
 ?>

@@ -10,9 +10,9 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 body { line-height: 1.5; }
 html { font-size: 100.01%; }
 body { font-size: 75%; color: #222; background: #fff; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; }
-.align-right { float: right; padding-left: 20px; padding-bottom: 10px; }
-.align-left { float: left; padding-right: 20px; padding-bottom: 10px; }
-.align-center { text-align: center; padding: 0 20px 0 20px; }
+.alignright, .align-right { float: right; padding-left: 20px; padding-bottom: 10px; }
+.alignleft, .align-left { float: left; padding-right: 20px; padding-bottom: 10px; }
+.aligncenter, .align-center { text-align: center; padding: 0 20px 0 20px; }
 .first, .flush-left { margin-left: 0; padding-left: 0; }
 .last, .flush-right { margin-right: 0; padding-right: 0; }
 .top, .flush-top { margin-top: 0; padding-top: 0; }

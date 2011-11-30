@@ -63,7 +63,7 @@ add_action('init','wflux_capacitor_helper', 1);
 
 /**
 * @since 0.913
-* @updated 0.93
+* @updated 1.0
 * Creates all Wonderflux helper functions
 */
 class wflux_helper_all {
@@ -75,6 +75,7 @@ class wflux_helper_all {
 	}
 
 	function info_location(){ return $this->wflux_helper_do->wf_info_location(); }
+	function info_single(){ return $this->wflux_helper_do->wf_info_single(); }
 	function gt_part($args){ $this->wflux_helper_do->wf_get_template_part($args); }
 	function user_role($args){ return $this->wflux_helper_do->wf_user_role($args); }
 	function page_depth($args){ return $this->wflux_helper_do->wf_page_depth($args); }

@@ -205,31 +205,46 @@ class wflux_helper {
 	* Detects what type of content you are currently viewing
 	*
 	* @since 0.881
-	* @lastupdate 0.93
-	* @return text string of location: 'administrator', 'editor', 'author', 'contributor', subscriber'
+	* @lastupdate 1.0
+	* @return text string of location: 'home', 'category', 'tag', 'search', date', 'author', 'taxonomy', 'archive', 'attachment', 'single', 'page', '404', 'index' (default)
 	*/
 	function wf_info_location() {
-
 		switch (TRUE) {
-
-			case is_home() || is_front_page() : $output = 'home'; break;
-			case is_category() : $output = 'category'; break;
-			case is_tag() : $output = 'tag'; break;
-			case is_search() : $output = 'search'; break;
-			case is_date() : $output = 'date'; break;
-			case is_author() : $output = 'author'; break;
-			case is_tax() : $output = 'taxonomy'; break;
-			case is_archive() : $output = 'archive'; break;
-			case is_attachment() : $output = 'attachment'; break;
-			case is_single() : $output = 'single'; break;
-			case is_page() : $output = 'page'; break;
-			case is_404() : $output = '404'; break;
-			default : $output = 'index'; break;
-
+			case is_home() || is_front_page() : $out = 'home'; break;
+			case is_category() : $out = 'category'; break;
+			case is_tag() : $out = 'tag'; break;
+			case is_search() : $out = 'search'; break;
+			case is_date() : $out = 'date'; break;
+			case is_author() : $out = 'author'; break;
+			case is_tax() : $out = 'taxonomy'; break;
+			case is_archive() : $out = 'archive'; break;
+			case is_attachment() : $out = 'attachment'; break;
+			case is_single() : $out = 'single'; break;
+			case is_page() : $out = 'page'; break;
+			case is_404() : $out = '404'; break;
+			default : $out = 'index'; break;
 		}
+		return $out;
+	}
 
-		return $output;
 
+	/**
+	* Detects if you are viewing single content - post, page, attachment, author
+	* as opposed to archive type views
+	*
+	* @since 1.0
+	* @lastupdate 1.0
+	* @return text string: 'single' or 'archive'
+	*/
+	function wf_info_single() {
+		switch ( $this->wf_info_location() ) {
+			case 'post': $out = 'single'; break;
+			case 'page': $out = 'single'; break;
+			case 'attachment': $out = 'single'; break;
+			case 'author': $out = 'single'; break;
+			default : $out = 'archive'; break;
+		}
+		return $out;
 	}
 
 

@@ -59,10 +59,17 @@ load_template(TEMPLATEPATH . '/wf-includes/wf-engine.php');
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 1.0
 * IMPORTANT - Gets type of view
 */
 if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { global $wfx_helper; return $wfx_helper->info_location(); } endif;
+
+/**
+* @since 1.0
+* @updated 1.0
+* IMPORTANT - Detects if you are viewing single content - post, page, attachment, author
+*/
+if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { global $wfx_helper; return $wfx_helper->info_single(); } endif;
 
 /**
 * @since 0.913

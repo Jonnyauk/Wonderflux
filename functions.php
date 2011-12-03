@@ -367,10 +367,24 @@ if ( !function_exists( 'wfx_static_highlight' ) ) : function wfx_static_highligh
 
 /**
 * @since 0.913
-* @updated 0.913
-* Gets attachments of current post - use within loop
+* @updated 1.0
+* Gets attachment(s) or featured images attached to posts in various formats
 */
-if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments($args) { global $wfx; $wfx->get_attachments($args); } endif;
+if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments($args) {
+
+	$defaults = array ( 'echo' => 'Y' );
+
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	global $wfx;
+	if ($echo == 'Y') {
+		echo $wfx->get_attachments($args);
+	} else {
+		return $wfx->get_attachments($args);
+	}
+
+} endif;
 
 /**
 * @since 0.93

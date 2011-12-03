@@ -244,7 +244,7 @@ class wflux_display_all {
 	function get_single_content($args){ $this->wflux_display_ex_do->wf_get_single_content($args); }
 	function login_logout($args){ $this->wflux_display_ex_do->wf_login_logout($args); }
 	function static_highlight($args){ $this->wflux_display_ex_do->wf_static_highlight($args); }
-	function get_attachments($args){ $this->wflux_display_ex_do->wf_get_attachments($args); }
+	function get_attachments($args){ return $this->wflux_display_ex_do->wf_get_attachments($args); }
 	function page_counter($args){ return $this->wflux_display_ex_do->wf_page_counter($args); }
 
 	// Social functions

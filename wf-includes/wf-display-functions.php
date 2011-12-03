@@ -854,7 +854,7 @@ class wflux_display extends wflux_display_css {
 
 /**
 * @since 0.85
-* @updated 0.931
+* @updated 1.0
 * Extra core display functions for theme designers
 */
 class wflux_display_extras {
@@ -1560,58 +1560,62 @@ class wflux_display_extras {
 
 
 	/**
-	 * A soon to be 'swiss army knife' of attachment getters!
-	 *
-	 * TODO: Extend and build properly before next beta!!
-	 * TODO: Build different output types
-	 * TODO: Document!
+	 * Gets attachment(s) or featured images of posts in various formats
+	 * TODO: Soon to be 'swiss army knife' of attachment getters!
 	 *
 	 * @since 0.901
-	 * @updated 0.901
+	 * @updated 1.0
 	 */
 	function wf_get_attachments($args) {
 
 		$defaults = array (
-			'type' => "image",
-			'number' => 1,
-			'order' => "ASC",
-			'output' => "file_url",
-			'echo' => "Y"
+			'type'		=> 'image',
+			'amount'	=> 1,
+			'order'		=> 'ASC',
+			'output'	=> 'file_url',
+			'id'		=> 0,
+			'name'		=> 'thumbnail'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		// Prepare user input for output
-		$type = wp_kses_data($type);
-		if (!is_numeric($number)) { $number=1; }
-		$order = wp_kses_data($order);
-		$output = wp_kses_data($output);
+		$type = ( $type == 'attachment' ) ? $type : wp_kses_data($type);
+		$amount = ( is_numeric($amount) ) ? $amount : 1;
+		$order = ( $order == 'ASC' ) ? $order : wp_kses_data($order);
+		$output = ( $output == 'file_url' ) ? $output : ( in_array($output, array('file_url','parent_url','page_url')) ) ? $output : 'file_url';
+		$id = ( is_numeric($id) ) ? $id : 0;
+		$name = ( $name == 'thumbnail' ) ? $name : wp_kses_data($name);
 
+		$out = false;
 		global $post;
 
-		$files = get_children(array(
-			'post_parent'    => $post->ID,
-			'post_type' => 'attachment',
-			'order' => $order,
-			'post_mime_type' => $type,
-			'numberposts' => $number,
-			'post_status' => null
-		));
+		if ( $type == 'featured' ):
+			// Requested ID/this post
+			$this_img = ( $id > 0 ) ? wp_get_attachment_image_src( get_post_thumbnail_id( $id ), $name) : wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $name);
+			$out = ( is_array($this_img) ) ? $this_img[0] : false;
+		else:
 
-		foreach($files as $file) {
+			$files = get_children(array(
+				'post_parent'	=> $post->ID,
+				'post_type'		=> 'attachment',
+				'order'			=> $order,
+				'post_mime_type'=> $type,
+				'numberposts'	=> $amount,
+				'post_status'	=> 'inherit'
+			));
 
-			switch ($output) {
-				case 'file_url' : $this_output = wp_get_attachment_url($file->ID); break;
-				case 'parent_url' : $this_output = get_permalink($file->post_parent); break;
-				case 'page_url' : $this_output = get_attachment_link($file->ID); break;
-				default : $this_output = wp_get_attachment_url($file->ID); break;
+			foreach( $files as $file ) {
+				switch ( $output ) {
+					case 'file_url' : $out = wp_get_attachment_url($file->ID); break;
+					case 'parent_url' : $out = get_permalink($file->post_parent); break;
+					case 'page_url' : $out = get_attachment_link($file->ID); break;
+					default : $out = wp_get_attachment_url($file->ID); break;
+				}
 			}
 
-			if ($echo == "Y") { echo $this_output; }
-			else { return $this_output; }
-
-		}
+		endif;
+		return $out;
 
 	}
 

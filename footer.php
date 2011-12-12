@@ -12,19 +12,15 @@
 
 wffooter_before_wrapper(); //WF display hook
 wffooter_before_container(); //WF display hook
-?>
 
-<div class="container" id="footer">
+echo apply_filters( 'wflux_layout_footer_container_open', '<div class="container" id="footer">' );
 
-	<?php
 	wffooter_before_content(); //WF display hook
 	wfx_get_template_part('part=footer-content'); // Setup all location aware template parts
 	wffooter_after_content(); //WF display hook
-	?>
 
-</div>
+echo apply_filters( 'wflux_layout_footer_container_close', '</div>' );
 
-<?php
 wffooter_after_container(); //WF display hook
 wffooter_after_wrapper(); //WF display hook
 wfbody_after_wrapper(); //WF display hook

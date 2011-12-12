@@ -13,8 +13,8 @@
 
 wf_output_start(); //WF display hook
 echo '<head>';
-wf_head_meta();
-wp_head();
+	wf_head_meta();
+	wp_head();
 echo '</head>';
 wf_after_head(); //WF display hook
 
@@ -24,19 +24,15 @@ wfbody_before_wrapper(); //WF display hook
 wfheader_before_wrapper(); //WF display hook
 
 wfheader_before_container(); //WF display hook
-?>
 
-<div class="container" id="header">
+echo apply_filters( 'wflux_layout_header_container_open', '<div class="container" id="header">' );
 
-	<?php
 	wfheader_before_content(); //WF display hook
 	wfx_get_template_part('part=header-content'); // Setup all location aware template parts
 	wfheader_after_content(); //WF display hook
-	?>
 
-</div>
+echo apply_filters( 'wflux_layout_header_container_close', '</div>' );
 
-<?php
 wfheader_after_container(); //WF display hook
 wfheader_after_wrapper(); //WF display hook
 ?>

@@ -13,11 +13,11 @@ wfmain_before_wrapper(); //WF display hook
 
 wfmain_before_all_container(); //WF display hook
 wfmain_before_single_container(); //WF display hook
-?>
 
-<div class="container" id="main-content">
 
-	<?php // Main content
+echo apply_filters( 'wflux_layout_content_container_open', '<div class="container" id="main-content">' );
+
+	// Main content
 	wfmain_before_all_content(); //WF display hook
 	wfmain_before_single_content(); //WF display hook
 
@@ -31,11 +31,9 @@ wfmain_before_single_container(); //WF display hook
 	// Display hooks for after main content and sidebar
 	wfmain_after_single_main_content(); //WF display hook
 	wfmain_after_all_main_content(); //WF display hook
-	?>
 
-</div>
+echo apply_filters( 'wflux_layout_content_container_close', '</div>' );
 
-<?php
 wfmain_after_single_container(); //WF display hook
 wfmain_after_all_container(); //WF display hook
 

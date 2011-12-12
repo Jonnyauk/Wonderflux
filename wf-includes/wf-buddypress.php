@@ -342,7 +342,7 @@ class wflux_buddypress_hooks {
 /**
  * Public function to insert Wonderflux content around a file, loop, whatever!
  * @since 0.94
- * @updated 0.94
+ * @updated 1.0
  */
 if ( !function_exists( 'wfx_theme_wrapper' ) ) : function wfx_theme_wrapper($args) {
 	switch ($args) {
@@ -351,7 +351,7 @@ if ( !function_exists( 'wfx_theme_wrapper' ) ) : function wfx_theme_wrapper($arg
 			get_header();
 			wfmain_before_wrapper(); //WF display hook
 			wfmain_before_all_container(); //WF display hook
-			echo '<div class="container" id="main-content">';
+			echo apply_filters( 'wflux_layout_content_container_open', '<div class="container" id="main-content">' );
 
 			wfmain_before_all_content(); //WF display hook
 
@@ -364,7 +364,8 @@ if ( !function_exists( 'wfx_theme_wrapper' ) ) : function wfx_theme_wrapper($arg
 			wfmain_after_all_content(); //WF display hook
 			wfx_get_sidebar(''); //WF WordPress get_sidebar function replacement
 			wfmain_after_all_main_content(); //WF display hook
-			echo '</div>';
+
+			echo apply_filters( 'wflux_layout_content_container_close', '</div>' );
 
 			wfmain_after_all_container(); //WF display hook
 			wfmain_after_wrapper(); //WF display hook

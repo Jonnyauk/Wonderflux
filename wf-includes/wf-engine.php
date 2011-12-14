@@ -189,7 +189,7 @@ add_action('get_header','wflux_capacitor_display', 1);
 
 /**
 * @since 0.913
-* @updated 0.93
+* @updated 1.0
 * Creates all Wonderflux display functions
 */
 class wflux_display_all {

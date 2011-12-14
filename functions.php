@@ -213,7 +213,7 @@ if ( !function_exists( 'wfx_display_head_char_set' ) ) : function wfx_display_he
 
 /**
 * @since 0.71
-* @updated 0.913
+* @updated 1.0
 * IMPORTANT Builds the title of the document
 */
 if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_title($args) { global $wfx; $wfx->head_title($args); } endif;

@@ -139,39 +139,45 @@ class wflux_display_code extends wflux_data {
 	* Builds the title in the head of the template
 	*
 	* @since 0.1
-	* @updated 0.931
+	* @updated 1.0
 	*/
 	function wf_head_title($args) {
 
 		echo '<title>';
 
-		if (is_home() || is_front_page()) {
-			bloginfo('name');
-
-			$this_desc = esc_attr( get_bloginfo( 'description', 'display' ) );
-
-			if ($this_desc == 'Just another WordPress site') {
-				//Silence is golden - site has default description which we dont want to show
-			} else {
-				//Proper site description in options
-				echo ' - ';
-				echo esc_attr( get_bloginfo( 'description', 'display' ) );
-			}
-		}
-
-		// If it's a feed, lets add that into the title
-		elseif ( is_feed() ) {
-			echo get_bloginfo( 'name', 'display' ) . ' feed';
-		}
-
-		elseif ( is_search() ) {
-			printf( __( 'Search results for  %1$s from %2$s', 'wonderflux' ), get_search_query(), get_bloginfo( 'name', 'display' ) );
-		}
-
-		//DEFAULT FALLBACK
-		else {
+		// YOAST WordPress SEO plugin active - let it manage titles as it does a great job!
+		if ( defined('WPSEO_VERSION') || defined('WPSEO_BASENAME') ) {
 			wp_title(' - ', true, 'right');
-			bloginfo( 'name' );
+
+		} else {
+
+			if (is_home() || is_front_page()) {
+
+				$this_desc = esc_attr( get_bloginfo( 'description', 'display' ) );
+
+				if ($this_desc == 'Just another WordPress site') {
+					//Silence is golden - site has default description which we dont want to show
+				} else {
+					//Proper site description in options
+					echo ' - ';
+					echo esc_attr( get_bloginfo( 'description', 'display' ) );
+				}
+			}
+
+			// If it's a feed, lets add that into the title
+			elseif ( is_feed() ) {
+				echo get_bloginfo( 'name', 'display' ) . ' feed';
+			}
+
+			elseif ( is_search() ) {
+				printf( __( 'Search results for  %1$s from %2$s', 'wonderflux' ), get_search_query(), get_bloginfo( 'name', 'display' ) );
+			}
+
+			//DEFAULT FALLBACK
+			else {
+				wp_title(' - ', true, 'right');
+				bloginfo( 'name' );
+			}
 		}
 
 		echo '</title>';

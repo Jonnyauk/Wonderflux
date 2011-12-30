@@ -145,9 +145,9 @@ class wflux_display_code extends wflux_data {
 
 		echo '<title>';
 
-		// YOAST WordPress SEO plugin active - let it manage titles as it does a great job!
-		if ( defined('WPSEO_VERSION') || defined('WPSEO_BASENAME') ) {
-			wp_title(' - ', true, 'right');
+		// If YOAST WordPress SEO plugin active let it manage titles as it does a great job!
+		if ( defined('WPSEO_BASENAME') ) {
+			wp_title('', true, 'right');
 
 		} else {
 

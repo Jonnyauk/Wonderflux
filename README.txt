@@ -1,7 +1,7 @@
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION v1.0 Release Candidate 1
+VERSION v1.0 Release Candidate 2
 
-Copyright (C) 2011 Jonny Allbut / Team Wonderflux - http://wonderflux.com
+Copyright (C) 2012 Jonny Allbut / Team Wonderflux - http://wonderflux.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -33,10 +33,11 @@ open to any ideas and improvements;) The goal is to develop a framework
 for everyone to use, for free, to make amazing WordPress sites!
 
 Drop by:
-http://wonderflux-framework.googlecode.com/
+http://www.wonderflux.com
 
 Keep informed on Wonderflux development:
 - Following @Wonderflux on Twitter
+
 - Subscribing to beta mailing list at: http://feedburner.google.com/fb/a/mailverify?uri=wonderflux-beta-testing
 Drop by http://www.wonderflux.com
 

@@ -16,7 +16,7 @@
 		/* translators: 1: theme title, 2: theme version, 3: theme author */
 		printf(__('%1$s %2$s by %3$s'), $ct->title, $ct->version, $ct->author) ; ?></h4>
 	<p class="theme-description"><?php echo $ct->description; ?></p>
-	<?php echo '<p>' . esc_attr__('The theme files are located in', 'wonderflux') . ' <code>'. WF_THEME .'</code></p>'; ?>
+	<?php echo '<p>' . esc_attr__('The theme files are located in', 'wonderflux') . ' <code>'. WF_THEME_URL .'</code></p>'; ?>
 
 <div class="clear"></div>
 

@@ -15,7 +15,12 @@ if (!defined('WF_CONTENT_URL')) { define( 'WF_CONTENT_URL', WF_MAIN_URL . '/wf-c
 if (!defined('WF_INCLUDES_DIR')) { define( 'WF_INCLUDES_DIR', WF_MAIN_DIR . '/wf-includes'); }
 if (!defined('WF_INCLUDES_URL')) { define( 'WF_INCLUDES_URL', WF_MAIN_URL . '/wf-includes'); }
 
+// Backpat - NOTICE -> Will be removed in Wonderflux v1.1
+// STOP USING WF_THEME - USE WF_THEME_URL INTEAD!
 if (!defined('WF_THEME')) { define( 'WF_THEME', get_bloginfo('stylesheet_directory') ); }
+if (!defined('WF_THEME_URL')) { define( 'WF_THEME_URL', get_bloginfo('stylesheet_directory') ); }
+if (!defined('WF_THEME_DIR')) { define( 'WF_THEME_DIR', STYLESHEETPATH ); }
+
 if (!defined('WF_ADMIN_ACCESS')) { define( 'WF_ADMIN_ACCESS', 'administrator' ); }
 if (!defined('WF_THEME_FRAMEWORK_REPLACE')) { define( 'WF_THEME_FRAMEWORK_REPLACE', false ); }
 ?>

@@ -301,7 +301,7 @@ class wflux_theme_core {
 				switch ( $host ) {
 					case 'theme':
 						$theme_dir = ( $theme_dir == '/js/cycle' ) ? $theme_dir : wp_kses_data( $theme_dir );
-						$host_out = WF_THEME . $theme_dir . '/';
+						$host_out = WF_THEME_URL . $theme_dir . '/';
 					break;
 					case 'microsoft':
 						$host_out = 'http://ajax.aspnetcdn.com/ajax/jquery.cycle/2.99/';
@@ -309,7 +309,7 @@ class wflux_theme_core {
 				}
 			endif;
 
-			$config_out = ( $config == 'wonderflux' ) ? WF_CONTENT_URL.'/js/cycle/jquery.cycle.config.js' : WF_THEME . '/js/cycle/jquery.cycle.config.js';
+			$config_out = ( $config == 'wonderflux' ) ? WF_CONTENT_URL.'/js/cycle/jquery.cycle.config.js' : WF_THEME_URL . '/js/cycle/jquery.cycle.config.js';
 			$location = ( $location == 'footer' ) ? true : false;
 			wp_register_script( 'jquery_cycle', esc_url( $host_out . $type_out . '.js' ), array('jquery'), '2.99' , $location);
 			wp_enqueue_script( 'jquery_cycle' );

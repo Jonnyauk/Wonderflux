@@ -265,7 +265,7 @@ class wflux_display_code extends wflux_data {
 	* @updated 0.93
 	*/
 	function wf_head_css_theme() {
-		$path = WF_THEME.'/style.css';
+		$path = WF_THEME_URL.'/style.css';
 		$version = $this->wfx_mytheme_version;
 		$id = 'main-theme';
 		$media = 'screen, projection';
@@ -308,8 +308,8 @@ class wflux_display_code extends wflux_data {
 	* Requires at least 'style-framework.css' and optionally 'style-framework-ie,css' in your child theme directory
 	*/
 	function wf_head_css_replace() {
-		$path = WF_THEME.'/style-framework.css';
-		$path_ie = WF_THEME.'/style-framework-ie.css';
+		$path = WF_THEME_URL.'/style-framework.css';
+		$path_ie = WF_THEME_URL.'/style-framework-ie.css';
 		$version = $this->wfx_mytheme_version;
 		$id = 'framework';
 		$id_ie = 'framework-ie';
@@ -1761,7 +1761,7 @@ class wflux_display_social extends wflux_data {
 		$this->share_site_name = wp_strip_all_tags( get_bloginfo( 'name', 'raw' ) );
 		$this->share_title = ( isset($post->ID) ) ? wp_strip_all_tags( get_the_title($post->ID) ) : wp_strip_all_tags( get_bloginfo( 'name', 'raw' ) );
 		$this->share_description = wp_strip_all_tags( get_bloginfo( 'description', 'raw' ) );
-		$this->og_image = apply_filters( 'wfx_social_og_meta_image', WF_THEME.'/images/supporting/social_thumbnail.jpg' );
+		$this->og_image = apply_filters( 'wfx_social_og_meta_image', WF_THEME_URL.'/images/supporting/social_thumbnail.jpg' );
 	}
 
 

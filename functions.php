@@ -477,7 +477,7 @@ if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global 
 
 /**
 * @since 0.92
-* @updated 0.931
+* @updated 1.0RC2
 * Setup and insert JQuery how you want it
 */
 if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args='') { global $wfx_theme; $wfx_theme->jquery($args); } endif;

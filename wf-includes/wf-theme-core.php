@@ -197,19 +197,21 @@ class wflux_theme_core {
 	* Sets up required JQuery
 	*
 	* @param $host Where your JQuery is hosted - Default = 'wonderflux' ['wonderflux','google','microsoft','wordpress']
-	* @param $version Which version of JQuery to use (Not controllable if using core WordPress JQuery) - Default = '1.5.1' [ Various versions available ]
-	* @param $location Where you want your JQuery inserted in the code/ WARNING - for advanced users only! - Default = 'header' ['header,'footer']
+	* @param $version Which version of JQuery to use (Not controllable if using core WordPress JQuery) - Default = '1.7.1' [ Various versions, use exact for CDN, '1.4','1.5','1.6','1.7' to get latest versions in Wonderflux core ]
+	* @param $location Where you want your JQuery inserted in the code - Default = 'header' ['header,'footer']
 	*
 	* @since 0.92
-	* @updated 0.931
+	* @updated 1.0RC2
 	*/
 	function wf_js_jquery($args) {
 
+		$latest_jquery = '1.7.1';
+
 		$defaults = array (
-			'host' => 'wordpress',
-			'version' => '1.5.1',
-			'location' => 'header',
-			'https' => false,
+			'host'		=> 'wordpress',
+			'version'	=> $latest_jquery,
+			'location'	=> 'header',
+			'https'		=> false,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -226,42 +228,39 @@ class wflux_theme_core {
 			endif;
 			wp_enqueue_script( 'jquery' );
 		else:
-			switch ( $host ) {
 
+			// Basic check on version
+			is_numeric($version) ? $version : $latest_jquery;
+
+			switch ( $host ) {
 				case 'wonderflux':
-					$version = ( in_array($version, array('1.3', '1.4', '1.5')) ) ? $version : '1.5';
 					switch ($version) {
-						case '1.3': $version = '1.3.2'; break;
-						case '1.4': $version = '1.4.4'; break;
-						case '1.5': $version = '1.5.1'; break;
+						case '1.4'	: $version = '1.4.4'; break;
+						case '1.5'	: $version = '1.5.2'; break;
+						case '1.6'	: $version = '1.6.4'; break;
+						default		: $version = $latest_jquery; break;
 					}
 					$host = WF_CONTENT_URL.'/js/jquery/' . $version . '/jquery.min.js';
 				break;
-
 				case 'google':
-					$version = ( in_array($version, array('1.2.3', '1.2.6', '1.3.0', '1.3.1', '1.3.2', '1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.5.0', '1.5.1', '1.5.2', '1.6.0', '1.6.1', '1.6.2')) ) ? $version : '1.5.2';
 					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'ajax.googleapis.com/ajax/libs/jquery/'. $version .'/jquery.min.js';
 				break;
-
 				case 'microsoft':
-					$version = ( in_array($version, array('1.3.2', '1.4', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.5', '1.5.1', '1.5.2', '1.6', '1.6.1', '1.6.2')) ) ? $version : '1.5.2';
 					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'ajax.aspnetcdn.com/ajax/jQuery/jquery-' . $version . '.min.js';
 				break;
-
 				case 'jquery':
-					$version = ( in_array($version, array('1.2.3', '1.2.6', '1.3.0', '1.3.1', '1.3.2', '1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.4', '1.5.0', '1.5.1', '1.5.2', '1.6.0', '1.6.1', '1.6.2')) ) ? $version : '1.5.2';
 					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'code.jquery.com/jquery-' . $version . '.min.js';
 				break;
-
 				default:
-					$host = WF_CONTENT_URL.'/js/jquery/1.5.1/jquery.min.js';
+					$host = WF_CONTENT_URL.'/js/jquery/' . $latest_jquery . '/jquery.min.js';
 				break;
 			}
+
 			wp_deregister_script( 'jquery' );
 			wp_register_script( 'jquery', esc_url($host), false, $version, $location );
 			wp_enqueue_script( 'jquery' );
-		endif;
 
+		endif;
 	}
 
 

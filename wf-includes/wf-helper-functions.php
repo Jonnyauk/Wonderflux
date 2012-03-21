@@ -352,15 +352,18 @@ class wflux_helper {
 
 	}
 
+
 	/**
 	* Get a custom field value for the main post being shown
 	*
 	* @params name - (string) - The name of the custom field - [NONE]
 	* @params empty - (string) - If there is no value in custom field, do you want an alternative value? - [NONE]
 	* @params escape - (Y/N) - Do you want the characters HTML escaped (so '<p>' becomes '&lt;p&gt;' - [N]
-	* @params return_error - (Y/N) - Do you want something returned on search (is_wp_search) and 404 (is_wp_404) ? - [N]
+	* @params $format - ('string'/'date') - What type of data is it, do you want to change this date format? - ['string']
+	* @params date_style - (string) - PHP date format - [l F j, Y]
+	* @params return_error - (Y/N) - Do you want something returned on search (is_search) and 404 (is_404) ? - [N]
 	* @since 0.92
-	* @lastupdate 0.92
+	* @lastupdate 1.0RC2
 	* @return custom field value, can be used inside and outside loop
 	*/
 	function wf_custom_field($args) {
@@ -369,30 +372,29 @@ class wflux_helper {
 			'name' => '',
 			'empty' => '',
 			'escape' => 'N',
+			'format' => 'string',
+			'date_style' => 'l F j, Y',
 			'return_error' => 'N'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		$return_error_valid = array('N','Y');
-		$return_error = in_array($return_error,$return_error_valid) ? 'N' : 'Y';
-
 		// Detect and optionally return useful value if no chance of custom field being here
 		if (is_search() && $return_error == 'N' ) {
-			return 'is_wp_search';
+			return 'is_search';
 		} elseif (is_404() && $return_error == 'N' ) {
-			return 'is_wp_404';
+			return 'is_404';
 		} else {
 			// We have something to query!
 			wp_reset_query();
 			global $wp_query;
-			$this_postid = $wp_query->post->ID;
+			$postid = $wp_query->post->ID;
 			$name_clean = wp_kses_data($name, '');
 			$empty_clean = wp_kses_post($empty, '');
-			$value = get_post_meta($this_postid, $name_clean, true);
+			$value = get_post_meta($postid, $name_clean, true);
 			$output = ($value != '') ? $value : $empty_clean;
-
+			if ( $format == 'date' ) { $output = date($date_style, $output); };
 			if ($escape == 'Y') { return esc_attr($output); } else { return $output; }
 		}
 

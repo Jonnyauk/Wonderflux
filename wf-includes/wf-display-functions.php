@@ -153,6 +153,8 @@ class wflux_display_code extends wflux_data {
 
 			if (is_home() || is_front_page()) {
 
+				echo get_bloginfo( 'name', 'display' );
+
 				$this_desc = esc_attr( get_bloginfo( 'description', 'display' ) );
 
 				if ($this_desc == 'Just another WordPress site') {

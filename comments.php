@@ -11,7 +11,12 @@
  */
 ?>
 
-			<div id="comments">
+<?php
+if(!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) :
+	die('Sorry, no direct access to this content.');
+endif;
+?>
+<div id="comments">
 <?php if ( post_password_required() ) : ?>
 				<p class="nopassword"><?php _e( 'This post is password protected. Enter the password to view any comments.', 'wonderflux' ); ?></p>
 			</div><!-- #comments -->

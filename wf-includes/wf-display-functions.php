@@ -2008,7 +2008,6 @@ class wflux_display_social extends wflux_data {
 			'recommend' => false,
 			'recommend_text' => false,
 		);
-		//echo 'found me!';
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
@@ -2034,7 +2033,6 @@ class wflux_display_social extends wflux_data {
 
 		// Build output
 		$this->wf_twit_share_render($url,$tweet,$size,$id,$recommend,$recommend_text);
-		//$this->wf_twit_share_render();
 		// Add JS once
 		if ( $this->twit_like_id > 1 ) return;
 		add_action( 'wf_footer', array( $this, 'wf_twit_share_js' ) );
@@ -2074,6 +2072,59 @@ class wflux_display_social extends wflux_data {
 	 */
 	function wf_twit_share_js() {
 		echo '<script src="http://platform.twitter.com/widgets.js" type="text/javascript"></script>';
+	}
+
+
+	/**
+	 * Displays a LinkedIn button with counter.
+	 * @param size - Size of share button. 'small', 'tall' [small]
+	 * @param count - Show count or not. NOTE: Defaults to small 'no_count' [show_count]
+	 * @param url - URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
+	 *
+	 * @since 1.0rc2
+	 * @updated 1.0rc2
+	 */
+	function wf_linkedin_share( $args ) {
+
+		$defaults = array (
+			'size'	=> 'small',
+			'count'	=> 'show_count',
+			'url'	=> false,
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		$size = ( $size == $defaults['size'] ) ? $defaults['size'] : 'tall';
+		$count = ($count == $defaults['count'] ) ? $defaults['count'] : 'no_count';
+		// url - gets cleaned later if required
+
+		//echo 'BUG CATCH:'.$size.$count;
+
+		// LinkedIn button pulls URL dynamically if not set
+		if ( $url == '' || !isset($url) ):
+			$url = false;
+		elseif ( $url == 'home'):
+			$url = home_url();
+		endif;
+
+		// Build output
+		$this->wf_linkedin_render($url,$size,$count);
+	}
+
+
+	/**
+	 * Internal function to render LinkedIn button Javascript output.
+	 * REF: https://developer.linkedin.com/share-plugin-reference
+	 *
+	 * @since 1.0rc2
+	 * @updated 1.0rc2
+	 */
+	function wf_linkedin_render($url,$size,$count) {
+		// No size attribute, just position of counter
+		$position = ($size == 'small') ? 'right' : 'top';
+		$count = ( $count == 'show_count' ) ? ' data-counter="' . $position . '"' : false;
+		echo '<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>' . '<script type="IN/Share"' . $count . ' data-url="' . esc_url($url) . '" ></script>';
 	}
 
 

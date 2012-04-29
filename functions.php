@@ -438,6 +438,14 @@ if ( !function_exists( 'wfx_social_twitter_share' ) ) : function wfx_social_twit
 
 
 /**
+* @since 1.0rc2
+* @updated 1.0rc2
+* Displays LinkedIn share button
+*/
+if ( !function_exists( 'wfx_social_linkedin_share' ) ) : function wfx_social_linkedin_share($args='') { global $wfx; $wfx->linkedin_share($args); } endif;
+
+
+/**
 * @since 0.931
 * @updated 0.931
 * Builds social associated meta tags (Facebook ect)

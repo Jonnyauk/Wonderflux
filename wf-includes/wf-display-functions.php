@@ -2124,7 +2124,7 @@ class wflux_display_social extends wflux_data {
 		// No size attribute, just position of counter
 		$position = ($size == 'small') ? 'right' : 'top';
 		$count = ( $count == 'show_count' ) ? ' data-counter="' . $position . '"' : false;
-		echo '<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>' . '<script type="IN/Share"' . $count . ' data-url="' . esc_url($url) . '" ></script>';
+		echo '<script src="http://platform.linkedin.com/in.js" type="text/javascript"></script>' . '<script type="IN/Share"' . $count . ' data-url="' . esc_url($url) . '" ></script>';
 	}
 
 

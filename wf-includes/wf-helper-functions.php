@@ -15,15 +15,10 @@ class wflux_data {
 	protected $wfx_columns_width; // Width of columns
 	protected $wfx_sidebar_primary_position; // Primary sidebar position
 
-	protected $wfx_content_1_display; // Sets display of main content - EXPERIMENTAL, needs extra coding in core
-	protected $wfx_content_1_size; // Sets relative 'size' of main content area eg 'three_quarter'
-	protected $wfx_content_1_id; // Sets CSS ID of main content container div
-	protected $wfx_content_1_size_columns; // Sets size in columns - NOTE over-rides _size varaiable if set
-
-	protected $wfx_sidebar_1_display; // Sets display of sidebar 1
-	protected $wfx_sidebar_1_size; // Sets relative 'size' of sidebar 1 eg 'quarter'
-	protected $wfx_sidebar_1_id; // Sets CSS ID of sidebar 1 container div
-	protected $wfx_sidebar_1_size_columns; // Optional sidebar size in columns - over-rides _size variable if set
+	protected $wfx_content_1_display; // Display of main content - EXPERIMENTAL, needs extra coding in core
+	protected $wfx_content_1_size; // Relative 'size' of main content area eg 'three_quarter'
+	protected $wfx_content_1_id; // CSS ID of main content container div
+	protected $wfx_content_1_size_columns; // Size in columns - NOTE overrides _size variable if set
 
 	protected $wfx_fb_admins; // Facebook admin owners, for meta data
 	protected $wfx_fb_app; // Facebook app ID, for meta data
@@ -184,8 +179,6 @@ class wflux_data {
 		$this->wfx_sidebar_1_size_columns = ( is_numeric($this->wfx_sidebar_1_size_columns) ) ? $this->wfx_sidebar_1_size_columns : 0;
 
 		//// THEME INFORMATION ////
-
-		// CHILD FUNCTIONALITY
 		$this->wfx_wp_info = get_theme( get_current_theme() );
 		$this->wfx_mytheme_version = $this->wfx_wp_info['Version'];
 
@@ -233,16 +226,14 @@ class wflux_helper {
 	* as opposed to archive type views
 	*
 	* @since 1.0
-	* @lastupdate 1.0
+	* @lastupdate 1.0RC3
 	* @return text string: 'single' or 'archive'
 	*/
 	function wf_info_single() {
 		switch ( $this->wf_info_location() ) {
-			case 'post': $out = 'single'; break;
-			case 'page': $out = 'single'; break;
-			case 'attachment': $out = 'single'; break;
-			case 'author': $out = 'single'; break;
-			default : $out = 'archive'; break;
+			case 'post'||'page'||'attachment'||'author': $out = 'single'; break;
+			default : $out = 'index'; break;
+
 		}
 		return $out;
 	}

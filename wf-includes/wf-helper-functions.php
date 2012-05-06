@@ -198,10 +198,11 @@ class wflux_helper {
 	* Detects what type of content you are currently viewing
 	*
 	* @since 0.881
-	* @lastupdate 1.0
+	* @lastupdate 1.0RC3
 	* @return text string of location: 'home', 'category', 'tag', 'search', date', 'author', 'taxonomy', 'archive', 'attachment', 'single', 'page', '404', 'index' (default)
 	*/
 	function wf_info_location() {
+
 		switch (TRUE) {
 			case is_home() || is_front_page() : $out = 'home'; break;
 			case is_category() : $out = 'category'; break;
@@ -217,6 +218,7 @@ class wflux_helper {
 			case is_404() : $out = '404'; break;
 			default : $out = 'index'; break;
 		}
+
 		return $out;
 	}
 
@@ -227,12 +229,12 @@ class wflux_helper {
 	*
 	* @since 1.0
 	* @lastupdate 1.0RC3
-	* @return text string: 'single' or 'archive'
+	* @return text string: 'single' or 'index'
 	*/
 	function wf_info_single() {
 		switch ( $this->wf_info_location() ) {
 			case 'post'||'page'||'attachment'||'author': $out = 'single'; break;
-			default : $out = 'index'; break;
+			default : $out = false; break;
 
 		}
 		return $out;
@@ -240,38 +242,144 @@ class wflux_helper {
 
 
 	/**
-	* Template part location aware builder
+	* Turbo-charged get template part file include
+	* Appends various location information and uses those files if available in your theme folder
+	*
+	* EXAMPLES
+	* All examples are with $part='loop-content' and shows the order of priority of files
+	*
+	* SINGLE POST (INCLUDING CUSTOM POST TYPES)
+	* NOTE: Normal 'post' post type uses loop-content-single.php NOT loop-content-single-post.php
+	* 1 loop-content-single-{POST-TYPE-SLUG}.php
+	* 2 loop-content-single.php
+	* 3 loop-content.php
+	*
+	* CATEGORY ARCHIVE
+	* 1 loop-content-category-{CATEGORY-SLUG}.php
+	* 2 loop-content-category.php
+	* 3 loop-content.php
+	*
+	* TAXONOMY ARCHIVE
+	* 1 loop-content-taxonomy-{taxonomy-name}-{taxonomy-term}.php
+	* 2 loop-content-taxonomy-{taxonomy-name}.php
+	* 3 loop-content-taxonomy.php
+	* 4 loop-content.php
+	*
+	* TAG ARCHIVE
+	* 1 loop-content-tag-{tag-slug}.php
+	* 2 loop-content-tag.php
+	* 3 loop-content.php
+	*
+	* DATE ARCHIVE
+	* 1 loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than 10)
+	* 2 loop-content-date-{YEAR}.php (4 digit year)
+	* 3 loop-content-date.php
+	* 4 loop-content.php
+	*
+	* AUTHOR TODO: Do username template drill
+	* 1 loop-content-author.php
+	* 2 loop-content.php
+	*
+	* HOMEPAGE
+	* 1 loop-content-home.php
+	* 2 loop-content.php
+	*
+	* SEARCH
+	* 1 loop-content-search.php
+	* 2 loop-content.php
+	*
+	* ARCHIVE
+	* 1 loop-content-archive.php
+	* 2 loop-content.php
+	*
+	* ATTACHMENT TODO: Basic range of filetypes support
+	* 1 loop-content-attachment.php
+	* 2 loop-content.php
+	*
+	* PAGE
+	* 1 loop-content-page.php
+	* 2 loop-content.php
+	*
+	* 404 ERROR PAGE
+	* 1 loop-content-404.php
+	* 2 loop-content.php
+	*
+	* TODO: Support core WordPress post formats?
+	*
 	* IMPORTANT: Used in core template files to setup specific template_parts
-	* Could also be used by theme developers anywhere where they want a location specific additional template part of their own naming and design.
 	*
 	* @since 0.881
-	* @lastupdate 0.913
-	* @params part_name (MANDITORY TO WORK AS EXPECTED!) = string. Name of bottom level template part
+	* @lastupdate 1.0RC3
+	*
+	* @param string $part REQUIRED The slug name for the generic template
+	* @param string $tag OPTIONAL Extends taxonomy views for additional tag specific template parts
 	*/
 	function wf_get_template_part($args) {
 
 		$defaults = array (
-			'part' => 'loop-content'
+			'part' => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
+		if (!$part) return;
+
 		$this_location = $this->wf_info_location('');
-		$this_location_condition = 'is_'.$this_location.'()';
 
-		// wf_info_location function wont work for multiple test required here, so check now
-		if (is_home() || is_front_page()) :
-		get_template_part($part, $this_location);
+		switch($this_location) {
 
-		// Now break down to conditional get_template parts like 'loop-content-page.php and loop-content-category.php
-		elseif ($this_location_condition) :
-		get_template_part($part, $this_location);
+			// Single post/custom post type
+			case ('single'):
+				$slug = get_query_var('post_type');
+				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
+				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
+				else: get_template_part($part, $this_location); endif;
+			break;
 
-		// Just get the default template part as a fall-back
-		else :
-		get_template_part($part);
-		endif;
+			// Category archive
+			case ('category'):
+				$slug = get_category(get_query_var('cat'))->slug;
+				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
+				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
+				else: get_template_part($part, $this_location); endif;
+			break;
+
+			// Tag archive
+			case ('tag'):
+				$slug = get_query_var('tag');
+				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
+				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
+				else: get_template_part($part, $this_location); endif;
+			break;
+
+			// Taxonomy archive
+			case ('taxonomy'):
+				//NOTE: No get_query_var / $wp_query in taxonomy archive view - not populated
+				$this_q = get_queried_object();
+				$slug_depth_1 = (isset($this_q->taxonomy)) ? $this_location . '-' . $this_q->taxonomy : false;
+				$slug_depth_2 = (isset($this_q->slug)) ? $this_location . '-' . $this_q->taxonomy . '-' . $this_q->slug : false;
+				if ( locate_template($part.'-'.$slug_depth_2.'.php', false) !='' ): get_template_part($part, $slug_depth_2);
+				elseif (locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
+				else: get_template_part($part, $this_location); endif;
+			break;
+
+			// Date archive
+			case ('date'):
+				$month = get_query_var('monthnum');
+				$year = get_query_var('year');
+				$slug_1 = (!empty($year)) ? '-' . $year : false;
+				$slug_2 = (!empty($month)) ? ($month < 10) ? sprintf('-%02d', $month) : '-' . $month : false;
+				if ( locate_template($part.'-'.$this_location.$slug_1.$slug_2.'.php', false) !='' ): get_template_part($part, $this_location.$slug_1.$slug_2);
+				elseif ( locate_template($part.'-'.$this_location.$slug_1.'.php', false) !='' ): get_template_part($part, $this_location.$slug_1);
+				else: get_template_part($part, $this_location); endif;
+			break;
+
+			default:
+				get_template_part($part, $this_location);
+			break;
+
+		}
 
 	}
 

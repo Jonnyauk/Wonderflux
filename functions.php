@@ -408,6 +408,12 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
 
 } endif;
 
+/**
+* @since 1.0RC3
+* @updated 1.0RC3
+* Include a file and cache generated output for desired time
+*/
+if ( !function_exists( 'wfx_get_cached_part' ) ) : function wfx_get_cached_part($args) { global $wfx; $wfx->get_cached_part($args); } endif;
 
 
 ////  4  //////////// SOCIAL FUNCTIONS

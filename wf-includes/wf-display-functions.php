@@ -1719,6 +1719,61 @@ class wflux_display_extras {
 		}
 	}
 
+
+	/**
+	* Include a file and cache generated output for desired time
+	* Works with most things, but may not work with more advanced functions/plugins that inject CSS or JS into header/footer or do other funky stuff!
+	* Defaults to caching file in active theme directory /cache (required to be writeable by server)
+	* If you wish to flush the cached files, append your site url as follows using either of these examples:
+	* Example 1 - flush all files www.mydomain.com/?flushcache_all=1
+	* Example 2 - flush individual cached element www.mydomain.com/?flushcache_NAME_OF_INCLUDE=1
+	*
+	* @param part - (string) - The name of the file in your theme directory you want to run and cache, without file extension.
+	* @param file_ext - (string) - Defaults to 'php', file extension of the file you want to cache (WITHOUT the '.'!)
+	* @param expire - (integer) - How many minutes to keep using the file once initially cached.
+	* @param cache_path - (string) - Full server path to cached files (NOT URL!).
+	*
+	* @since 1.0RC3
+	* @lastupdate 1.0RC3
+	*
+	*/
+	function wf_get_cached_part($args) {
+
+		$defaults = array (
+			'part' => false,
+			'file_ext' => 'php',
+			'expire' => 1,
+			'cache_path' => WF_THEME_DIR . '/cache/'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		if (!$part) return;
+
+		$expire = (is_numeric($expire)) ? $expire : 1;
+		$cachefile = $cache_path.$part."-cache.htm";
+		$cachetime = $expire * 60; // convert to minutes
+
+		$flush_all = ( isset($_GET['flushcache_all']) && $_GET['flushcache_all'] == 1 ) ? true : false;
+		$flush_this = ( isset($_GET['flushcache_'.$part.'']) && $_GET['flushcache_'.$part.''] == 1 ) ? true : false;
+
+		if ( file_exists( $cachefile ) && ( time() - $cachetime < filemtime($cachefile)) && ( $flush_all == false ) && ( $flush_this == false ) ) {
+			include($cachefile);
+		} else {
+			ob_start();
+			echo "\n" . '<!--Wonderflux cached element start -->' . "\n";
+			locate_template( $part.'.'.$file_ext, true, false );
+			echo "\n" . '<!--Wonderflux cached element end -->' . "\n";
+			$fp = fopen( $cachefile, 'w' );
+			fwrite( $fp, ob_get_contents() );
+			fclose( $fp );
+			ob_end_flush();
+		}
+
+	}
+
+
 }
 
 

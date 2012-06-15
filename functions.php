@@ -579,7 +579,13 @@ if (WF_THEME_FRAMEWORK_REPLACE == false) {
 }
 
 // Core Wonderflux theme activation
-if (get_current_theme() == 'Wonderflux Framework') { add_action('wp_loaded', 'wfx_core_default_widgets'); }
+
+// Backpat - depreciated function get_current_theme() in WordPress 3.4
+if ( WF_WORDPRESS_VERSION < 3.4 ) {
+	if (get_current_theme() == 'Wonderflux Framework') add_action('wp_loaded', 'wfx_core_default_widgets');
+} else {
+	if (wp_get_theme()->Name == 'Wonderflux Framework') add_action('wp_loaded', 'wfx_core_default_widgets');
+}
 
 add_action('init', 'wfx_config_language');
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs

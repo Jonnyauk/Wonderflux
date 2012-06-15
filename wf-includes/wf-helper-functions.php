@@ -179,7 +179,10 @@ class wflux_data {
 		$this->wfx_sidebar_1_size_columns = ( is_numeric($this->wfx_sidebar_1_size_columns) ) ? $this->wfx_sidebar_1_size_columns : 0;
 
 		//// THEME INFORMATION ////
-		$this->wfx_wp_info = get_theme( get_current_theme() );
+
+		// Backpat - depreciated function get_theme() and get_current_theme() in WordPress 3.4
+		$this->wfx_wp_info = ( WF_WORDPRESS_VERSION < 3.4 ) ? get_theme( get_current_theme() ) : wp_get_theme(wp_get_theme()->Name);
+
 		$this->wfx_mytheme_version = $this->wfx_wp_info['Version'];
 
 	}

@@ -113,7 +113,9 @@ class wflux_admin extends wflux_data {
 
 		if ($include == 'advanced'): $this->admin_forms->wf_form_helper_file_css_combine('css/wf-css-core-structure.css','Y'); endif;
 
-		$wf_current_theme = get_current_theme();
+		// Backpat - depreciated function get_current_theme() in WordPress 3.4
+		$wf_current_theme = ( WF_WORDPRESS_VERSION < 3.4 ) ? get_current_theme() : wp_get_theme()->Name;
+
 		if ($wf_current_theme == 'Wonderflux Framework') {
 			$output = '<div id="message2" class="updated">';
 			$output .= '<h3>' . esc_attr__('Ooops, you could be doing so much more with Wonderflux!','wonderflux') . '</h3>';
@@ -140,7 +142,7 @@ class wflux_admin extends wflux_data {
 			$output .= '</div>';
 			echo $output;
 		} else {
-			echo '<p>' . esc_attr__('You are using the','wonderflux') . ' ' . esc_attr(get_current_theme()) . ' ' . esc_attr__('Wonderflux child theme','wonderflux') . '</p>';
+			echo '<p>' . esc_attr__('You are using the','wonderflux') . ' ' . esc_attr($wf_current_theme) . ' ' . esc_attr__('Wonderflux child theme','wonderflux') . '</p>';
 		}
 
 

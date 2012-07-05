@@ -233,6 +233,23 @@ if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_h
 if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag($args) { global $wfx; $wfx->body_tag($args); } endif;
 
 /**
+* @since 1.0RC3
+* @updated 1.0RC3
+* A more flexible post class function - especially compared to get_post_class()
+*/
+if ( !function_exists( 'wfx_display_post_class' ) ) : function wfx_display_post_class($args) {
+
+	$defaults = array ( 'echo' => 'Y' );
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args, EXTR_SKIP );
+
+	global $wfx;
+	if ( $echo == 'Y' ) { echo $wfx->post_class($args); }
+	else { return $wfx->post_class($args); }
+
+} endif;
+
+/**
 * @since 0.72
 * @updated 0.913
 * Displays debug in code comment

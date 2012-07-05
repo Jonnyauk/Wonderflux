@@ -352,6 +352,60 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
+	 *
+	 * A more flexible post class function
+	 *
+	 * @since 1.0RC3
+	 * @updated 1.0RC3
+	 *
+	 * @param $extra (string) : Comma seperated, extra CSS classes you wish to add
+	 * @param $extra_position (string) : 'after' or 'before' - position of your additional $extra CSS classes
+	 * @param $just_string (Y/N) : Wrap the output in 'class=""' like normal WordPress
+	 * @filter wflux_wp_post_class : Filter the core WordPress post_class values
+	 *
+	 * NOTES on 'wflux_wp_post_class' filter:
+	 * Use $post_class var in your filter function if you want access to core WP post classes
+	 * You can then do things like:
+	 * unset($post_class[0]) Remove an item from the array (where [0] is the index/key in the array of WP class values)
+	 * $post_class[] = 'my-new-class' Add an item to the array (Can also be done with the $extra param in function if required - which is simpler!)
+	 *
+	*/
+	function wf_post_class($args){
+
+		$defaults = array (
+			'extra' => '',
+			'extra_position' => 'after',
+			'just_string' => 'N'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+		$extra = ( !empty($extra)) ? wp_kses_data($extra, '' ) : '';
+
+		global $post;
+		$post_class = apply_filters( 'wflux_wp_post_class', get_post_class('', $post->ID) );
+
+		$post_class_out = '';
+		$pc_count = 1;
+		$pc_total = count( $post_class );
+
+		if ( is_array( $post_class ) ){
+			foreach ($post_class as $value) {
+				$post_class_out .= $value;
+				if ( $pc_count < $pc_total ) $post_class_out .= ' ';
+				$pc_count++;
+			}
+		} else {
+			$post_class_out = $post_class;
+		}
+
+		$post_class_out = ( !empty($extra) && $extra_position == 'after' ) ? $post_class_out . ' ' . $extra : $extra . ' ' . $post_class_out;
+		return ( $just_string == 'N' ) ? 'class="' . $post_class_out . '"': $post_class_out;
+
+	}
+
+
+	/**
 	*
 	* @since 0.3
 	* @updated 0.931

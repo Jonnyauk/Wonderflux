@@ -237,7 +237,7 @@ if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_ta
 * @updated 1.0RC3
 * A more flexible post class function - especially compared to get_post_class()
 */
-if ( !function_exists( 'wfx_display_post_class' ) ) : function wfx_display_post_class($args) {
+if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
 
 	$defaults = array ( 'echo' => 'Y' );
 	$args = wp_parse_args( $args, $defaults );

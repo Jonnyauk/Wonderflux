@@ -374,7 +374,7 @@ class wflux_display_code extends wflux_data {
 
 		$defaults = array (
 			'extra' => '',
-			'extra_position' => 'after',
+			'position' => 'after',
 			'just_string' => 'N'
 		);
 
@@ -399,7 +399,10 @@ class wflux_display_code extends wflux_data {
 			$post_class_out = $post_class;
 		}
 
-		$post_class_out = ( !empty($extra) && $extra_position == 'after' ) ? $post_class_out . ' ' . $extra : $extra . ' ' . $post_class_out;
+		if (!empty($extra)) {
+			$post_class_out = ( $position == 'before' ) ? $extra . ' ' . $post_class_out : $post_class_out . ' ' . $extra;
+		}
+
 		return ( $just_string == 'N' ) ? 'class="' . $post_class_out . '"': $post_class_out;
 
 	}

@@ -5,7 +5,7 @@
  * Customise this in your child theme by:
  * - Using hooks and your own functions
  * - Copying this file to your child theme and customising - it will over-ride this file
- * - This is pretty similar to the 2010 theme comments file, this is an area for future development!
+ * - This is pretty similar to the default theme comments file, this is an area for future development!
  *
  * @package Wonderflux
  */
@@ -65,16 +65,49 @@ endif;
 				<div class="nav-previous"><?php previous_comments_link( __( '<span class="meta-nav">&larr;</span> Older Comments', 'wonderflux' ) ); ?></div>
 				<div class="nav-next"><?php next_comments_link( __( 'Newer Comments <span class="meta-nav">&rarr;</span>', 'wonderflux' ) ); ?></div>
 			</div><!-- .navigation -->
-<?php endif; // check for comment navigation ?>
+<?php endif; // check for comment navigation
 
-<?php else : // or, if we don't have comments:
+else : // or, if we don't have comments:
 	if ( ! comments_open() ) :
 	// Silence is golden
+
+endif; // end ! comments_open()
+endif; // end have_comments()
+
+
+// Wonderflux comments extra functionality
+// Logical to keep in comments.php to keep everything together?
+
+
+/**
+ * Replaces core comments fields with valid XHTML
+ *
+ * @since 1.0RC3
+ * @return comment fields for filter
+ */
+function my_wfx_comment_fields($fields) {
+
+	$commenter = wp_get_current_commenter();
+	$req = get_option( 'require_name_email' );
+
+	$fields['author'] =	'<p class="comment-form-author">' . '<label for="author">' . __( 'Name', 'wonderflux' ) . '</label> ' .
+		            	'<input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30"' . ' />' . ( $req ? '<span class="required">*</span>' : '' ) . '</p>';
+	$fields['email'] =	'<p class="comment-form-email"><label for="email">' . __( 'Email', 'wonderflux' ) . '</label> ' .
+						'<input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30"' . ' />' . ( $req ? '<span class="required">*</span>' : '' ) . '</p>';
+	$fields['url'] =	'<p class="comment-form-url"><label for="url">' . __( 'Website', 'wonderflux' ) . '</label>' .
+						'<input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></p>';
+	return $fields;
+
+}
+add_filter('comment_form_default_fields', 'my_wfx_comment_fields', 9);
+
+// Silly WordPress - the actual comment field is not in the filterable $fields array (as of WordPress 3.4x)
+$args = array(
+		'comment_field' => '<p class="comment-form-comment"><label for="comment">' . __( 'Your comment', 'wonderflux' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" ></textarea></p>',
+);
+
+comment_form($args);
+
 ?>
-<?php endif; // end ! comments_open() ?>
-
-<?php endif; // end have_comments() ?>
-
-<?php comment_form(); ?>
 
 </div><!-- #comments -->

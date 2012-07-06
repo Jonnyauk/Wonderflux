@@ -8,38 +8,19 @@ Author URI: http://wonderflux.com
 Tags: dark, light, white, black, one-column, two-columns, left-sidebar, right-sidebar, fixed-width, flexible-width, full-width-template, theme-options, buddypress, translation-ready
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+NOTE: Wonderflux is designed to be used with child themes, you should not activate Wonderflux directly and therefore never need this stylesheet
 */
 
-.sidebar-title {
-	margin: 0;
-}
+h2.entry-title a { text-decoration: none; }
 
-.sidebar-box ul {
-	margin: 0 0 25px 0;
-}
+.sidebar-title { margin: 0; }
+.sidebar-box ul { margin: 0 0 25px 0; }
+.sidebar-box ul li { list-style-type: none; }
+.sidebar-box ul li a { text-decoration: none;}
 
-.sidebar-box ul li {
-	list-style-type: none;
-}
+ul.wf-edit-meta { margin-left: 0; }
+li.wf-edit-meta-links { list-style-type: none; }
+li.wf-edit-meta-links a { font-weight: bold; list-style-type: none;  text-decoration: none; }
 
-.sidebar-box ul li a {
-	text-decoration: none;
-}
-
-ul.wf-edit-meta {
-	margin-left: 0;
-}
-
-li.wf-edit-meta-links {
-	list-style-type: none;
-}
-
-li.wf-edit-meta-links a {
-	list-style-type: none;
-	font-weight: bold;
-	text-decoration: none;
-}
-
-h2.entry-title a {
-	text-decoration: none;
-}
+#commentform label { font-weight: bold; float: left; width: 20%; padding-top: 4px; }

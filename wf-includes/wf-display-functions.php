@@ -364,7 +364,8 @@ class wflux_display_code extends wflux_data {
 	 * @filter wflux_post_class : Filter the core WordPress post_class values
 	 * @filter wflux_post_class_first : Filter the extra CSS class added to start of last post in loop (default 'first-in-loop')
 	 * @filter wflux_post_class_last : Filter the extra CSS class added to end of last post in loop (default 'last-in-loop')
-	 *
+	 * @filter wflux_post_class_single : Filter the extra CSS class added to single post views (default 'single-post')
+	 * @filter wflux_post_class_multiple : Filter the extra CSS class added to multiple post views (default 'multiple-posts')
 	 * NOTES on 'wflux_post_class' filter:
 	 * Use $post_class var in your filter function if you want access to core WP post classes
 	 * You can then do things like:
@@ -404,9 +405,12 @@ class wflux_display_code extends wflux_data {
 		}
 
 		if ( !is_singular() ){
+			$post_class_out = $post_class_out . ' ' . apply_filters( 'wflux_post_class_multiple', 'multiple-posts' );
 			$post_class_out = $post_class_out . ' ' . 'paged-return-' . $wp_query->current_post;
 			$post_class_out = ( $wp_query->current_post != 0 ) ? $post_class_out : $post_class_out . ' ' . apply_filters( 'wflux_post_class_first', 'first-in-loop' );
 			$post_class_out = ( ($wp_query->current_post+1) != $wp_query->post_count ) ? $post_class_out : $post_class_out . ' ' . apply_filters( 'wflux_post_class_last', 'last-in-loop' );
+		} else {
+			$post_class_out = $post_class_out . ' ' . apply_filters( 'wflux_post_class_single', 'single-post' );
 		}
 
 		if (!empty($extra)){

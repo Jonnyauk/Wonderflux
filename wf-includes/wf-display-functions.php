@@ -361,9 +361,11 @@ class wflux_display_code extends wflux_data {
 	 * @param $extra (string) : Comma seperated, extra CSS classes you wish to add
 	 * @param $extra_position (string) : 'after' or 'before' - position of your additional $extra CSS classes
 	 * @param $just_string (Y/N) : Wrap the output in 'class=""' like normal WordPress
-	 * @filter wflux_wp_post_class : Filter the core WordPress post_class values
+	 * @filter wflux_post_class : Filter the core WordPress post_class values
+	 * @filter wflux_post_class_first : Filter the extra CSS class added to start of last post in loop (default 'first-in-loop')
+	 * @filter wflux_post_class_last : Filter the extra CSS class added to end of last post in loop (default 'last-in-loop')
 	 *
-	 * NOTES on 'wflux_wp_post_class' filter:
+	 * NOTES on 'wflux_post_class' filter:
 	 * Use $post_class var in your filter function if you want access to core WP post classes
 	 * You can then do things like:
 	 * unset($post_class[0]) Remove an item from the array (where [0] is the index/key in the array of WP class values)
@@ -380,17 +382,19 @@ class wflux_display_code extends wflux_data {
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
-		$extra = ( !empty($extra)) ? wp_kses_data($extra, '' ) : '';
+		$extra = ( !empty($extra) ) ? wp_kses_data($extra, '' ) : '';
 
 		global $post;
-		$post_class = apply_filters( 'wflux_wp_post_class', get_post_class('', $post->ID) );
+		global $wp_query;
+
+		$post_class = apply_filters( 'wflux_post_class', get_post_class( '', $post->ID) );
 
 		$post_class_out = '';
 		$pc_count = 1;
 		$pc_total = count( $post_class );
 
 		if ( is_array( $post_class ) ){
-			foreach ($post_class as $value) {
+			foreach ( $post_class as $value ) {
 				$post_class_out .= $value;
 				if ( $pc_count < $pc_total ) $post_class_out .= ' ';
 				$pc_count++;
@@ -399,7 +403,13 @@ class wflux_display_code extends wflux_data {
 			$post_class_out = $post_class;
 		}
 
-		if (!empty($extra)) {
+		if ( !is_singular() ){
+			$post_class_out = $post_class_out . ' ' . 'paged-return-' . $wp_query->current_post;
+			$post_class_out = ( $wp_query->current_post != 0 ) ? $post_class_out : $post_class_out . ' ' . apply_filters( 'wflux_post_class_first', 'first-in-loop' );
+			$post_class_out = ( ($wp_query->current_post+1) != $wp_query->post_count ) ? $post_class_out : $post_class_out . ' ' . apply_filters( 'wflux_post_class_last', 'last-in-loop' );
+		}
+
+		if (!empty($extra)){
 			$post_class_out = ( $position == 'before' ) ? $extra . ' ' . $post_class_out : $post_class_out . ' ' . $extra;
 		}
 

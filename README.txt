@@ -1,5 +1,5 @@
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION v1.0 Release Candidate 2
+VERSION v1.0 Release Candidate 3
 
 Copyright (C) 2012 Jonny Allbut / Team Wonderflux - http://wonderflux.com
 
@@ -24,12 +24,12 @@ You may also view the license online at http://www.gnu.org/licenses/gpl-2.0.html
 Welcome to the Wonderflux - a free, Open Source theme framework for WordPress and BuddyPress.
 
 Wonderflux is distributed under the GPL v2 license just like WordPress
-(yes - that means FREE basically!). Just to clarify then - YES, you can 
-use Wonderflux on as many commercial, non-commercial, and personal WordPress 
+(yes - that means FREE basically!). Just to clarify then - YES, you can
+use Wonderflux on as many commercial, non-commercial, and personal WordPress
 sites as you wish, without any fee or subscription required.
 
-Any developers are welcome to offer code contributions - the project is 
-open to any ideas and improvements;) The goal is to develop a framework 
+Any developers are welcome to offer code contributions - the project is
+open to any ideas and improvements;) The goal is to develop a framework
 for everyone to use, for free, to make amazing WordPress sites!
 
 Drop by:
@@ -71,7 +71,7 @@ IF YOU OVERRIDE THESE YOU WOULD BE STRONGLY ADVISED TO DUPLICATE THE CORE FILES
 FROM WONDERFLUX INTO YOUR CHILD THEME DIRECTORY to retain the Wonderflux
 structure and hook system.
 
-The quickest way to start customsing your theme is by changing the template parts 
+The quickest way to start customsing your theme is by changing the template parts
 as shown in the WF Girder theme. Anything that has '-content' in the name is a template part, ie:
 
 footer-content.php
@@ -79,8 +79,8 @@ header-content-php
 loop-content-page.php (page loop content - only used on pages)
 loop-content.php (general loop content - used everywhere else)
 
-These files just contain very simple content - not all the surrounding code. 
-If you have not worked with theme frameworks, child themes and get_template_part() before 
+These files just contain very simple content - not all the surrounding code.
+If you have not worked with theme frameworks, child themes and get_template_part() before
 - welcome to the future of WordPress theme development!
 
 AN IMPORTANT FEATURE of Wonderflux is the location aware get_template_part() function,

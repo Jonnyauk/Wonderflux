@@ -464,8 +464,9 @@ class wflux_helper {
 	* @params $format - ('string'/'date') - What type of data is it, do you want to change this date format? - ['string']
 	* @params date_style - (string) - PHP date format - [l F j, Y]
 	* @params return_error - (Y/N) - Do you want something returned on search (is_search) and 404 (is_404) ? - [N]
+	* @params id - (integer) - function usually returns main loop custom field, setting this forces function to get custom field from specific post ID [N]
 	* @since 0.92
-	* @lastupdate 1.0RC2
+	* @lastupdate 1.0RC3
 	* @return custom field value, can be used inside and outside loop
 	*/
 	function wf_custom_field($args) {
@@ -476,26 +477,36 @@ class wflux_helper {
 			'escape' => 'N',
 			'format' => 'string',
 			'date_style' => 'l F j, Y',
-			'return_error' => 'N'
+			'return_error' => 'N',
+			'id' => 'false'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
+		$empty_clean = wp_kses_post($empty, '');
+
 		// Detect and optionally return useful value if no chance of custom field being here
 		if (is_search() && $return_error == 'N' ) {
-			return 'is_search';
+			return $empty_clean;
 		} elseif (is_404() && $return_error == 'N' ) {
-			return 'is_404';
+			return $empty_clean;
 		} else {
 			// We have something to query!
 			wp_reset_query();
-			global $wp_query;
-			$postid = $wp_query->post->ID;
+
+			if (!isset($id)) {
+				global $wp_query;
+				$this_id = $wp_query->post->ID;
+			}else{
+				$this_id = intval($id);
+			}
+
 			$name_clean = wp_kses_data($name, '');
-			$empty_clean = wp_kses_post($empty, '');
-			$value = get_post_meta($postid, $name_clean, true);
+
+			$value = get_post_meta($this_id, $name_clean, true);
 			$output = ($value != '') ? $value : $empty_clean;
+
 			if ( $format == 'date' ) { $output = date($date_style, $output); };
 			if ($escape == 'Y') { return esc_attr($output); } else { return $output; }
 		}

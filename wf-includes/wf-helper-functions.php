@@ -464,7 +464,7 @@ class wflux_helper {
 	* @params $format - ('string'/'date') - What type of data is it, do you want to change this date format? - ['string']
 	* @params date_style - (string) - PHP date format - [l F j, Y]
 	* @params return_error - (Y/N) - Do you want something returned on search (is_search) and 404 (is_404) ? - [N]
-	* @params id - (integer) - function usually returns main loop custom field, setting this forces function to get custom field from specific post ID [N]
+	* @params id - (integer) - function usually returns main loop custom field, setting $id forces function to get custom field from specific post ID [false]
 	* @since 0.92
 	* @lastupdate 1.0RC3
 	* @return custom field value, can be used inside and outside loop
@@ -478,7 +478,7 @@ class wflux_helper {
 			'format' => 'string',
 			'date_style' => 'l F j, Y',
 			'return_error' => 'N',
-			'id' => 'false'
+			'id' => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -495,7 +495,7 @@ class wflux_helper {
 			// We have something to query!
 			wp_reset_query();
 
-			if (!isset($id)) {
+			if (empty($id)) {
 				global $wp_query;
 				$this_id = $wp_query->post->ID;
 			}else{

@@ -3,6 +3,7 @@
 load_template(TEMPLATEPATH . '/wf-config.php');
 load_template(WF_INCLUDES_DIR . '/wf-version.php');
 load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
+load_template(WF_INCLUDES_DIR . '/wf-data-management.php');
 
 //// BUDDYPRESS FUNCTIONALITY
 
@@ -47,6 +48,30 @@ if (is_admin()) {
 
 
 //// HELPER FUNCTIONS
+
+
+/**
+* @since 1.0RC4
+* @updated 1.0RC4
+* Sets up all Wonderflux core data handling/cleaning functions
+*/
+function wflux_capacitor_data_manage() {
+	global $wfx_data_manage; $wfx_data_manage = new wflux_data_manage_all;
+}
+add_action('init','wflux_capacitor_data_manage', 1);
+
+
+/**
+* @since 1.0RC4
+* @updated 1.0RC4
+* Creates all Wonderflux core data handling/cleaning functions
+*/
+class wflux_data_manage_all {
+	static $wflux_data_manage_do;
+	function __construct(){ $this->wflux_data_manage_do = new wflux_data_manage; }
+	function allowed_tags($args){ return $this->wflux_data_manage_do->wf_allowed_tags($args); }
+	function strip_whitespace($input){ return $this->wflux_data_manage_do->wf_strip_whitespace($input); }
+}
 
 
 /**

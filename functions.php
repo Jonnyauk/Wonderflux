@@ -142,6 +142,7 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
 */
 if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; return $wfx_helper->__Y(); } endif;
 
+
 /**
 * @since 0.93
 * @updated 0.93
@@ -149,6 +150,26 @@ if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; re
 * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__N' ) in your child theme
 */
 if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; return $wfx_helper->__N(); } endif;
+
+
+/**
+* @since 1.0RC4
+* @updated 1.0RC4
+* Returns array of common layout tags to be used with kses or similar
+*/
+if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags($args) {
+	 global $wfx_data_manage; return $wfx_data_manage->allowed_tags($args);
+} endif;
+
+
+/**
+* @since 1.0RC4
+* @updated 1.0RC4
+* Returns $input with whitespace stripped out
+*/
+if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespace($input,$echo='N') {
+	global $wfx_data_manage; return $wfx_data_manage->strip_whitespace($input);
+} endif;
 
 
 ////  2  //////////// DISPLAY FUNCTIONS
@@ -427,10 +448,20 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
 
 /**
 * @since 1.0RC3
-* @updated 1.0RC3
+* @updated 1.0RC4
 * Include a file and cache generated output for desired time
+* EXPERIMENTAL - Dont use on live sites!
 */
-if ( !function_exists( 'wfx_get_cached_part' ) ) : function wfx_get_cached_part($args) { global $wfx; $wfx->get_cached_part($args); } endif;
+if ( !function_exists( 'wfx_get_cached_part' ) ) : function wfx_get_cached_part($args) {
+	wp_parse_str($args, $echo_do);
+	$echo = (isset($echo_do['echo']) && $echo_do['echo'] == 'Y') ? 'Y' : 'N';
+	global $wfx;
+	if ($echo == 'Y') {
+		 echo $wfx->get_cached_part($args);
+	} else {
+		 return $wfx->get_cached_part($args);
+	}
+} endif;
 
 
 ////  4  //////////// SOCIAL FUNCTIONS

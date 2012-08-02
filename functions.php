@@ -318,10 +318,19 @@ if ( !function_exists( 'wfx_get_sidebar' ) ) : function wfx_get_sidebar($args) {
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 1.0RC4
 * Creates dynamic CSS grid class definition
 */
-if ( !function_exists( 'wfx_css' ) ) : function wfx_css($args) { global $wfx; $wfx->css($args); } endif;
+if ( !function_exists( 'wfx_css' ) ) : function wfx_css($args) {
+	wp_parse_str($args, $echo_do);
+	$echo = (isset($echo_do['echo']) && $echo_do['echo'] == 'N') ? 'N' : 'Y';
+	global $wfx;
+	if ($echo == 'Y') {
+		 echo $wfx->css($args);
+	} else {
+		 return $wfx->css($args);
+	}
+} endif;
 
 /**
 * @since 0.913

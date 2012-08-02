@@ -471,7 +471,7 @@ class wflux_display_code extends wflux_data {
 
 /**
 * @since 0.913
-* @updated 0.93
+* @updated 1.0RC4
 * Core display functions that output CSS
 */
 class wflux_display_css extends wflux_display_code {
@@ -479,7 +479,7 @@ class wflux_display_css extends wflux_display_code {
 	/**
 	*
 	* @since 0.2
-	* @updated 0.93
+	* @updated 1.0RC4
 	*
 	* Defines size conventions to use in template grid systems to avoid putting actual numbers into templates
 	* By using this function to define containers, you can dynamically resize the whole layout
@@ -686,7 +686,7 @@ class wflux_display_css extends wflux_display_code {
 		}
 
 		//OK Lets build this CSS!
-		echo $divout_open_clean . 'class="' . $css_core_def . $size_def . $move_def . $last . $class_clean . '"' . $id_clean . $divout_close_clean;
+		return $divout_open_clean . 'class="' . $css_core_def . $size_def . $move_def . $last . $class_clean . '"' . $id_clean . $divout_close_clean;
 
 	}
 
@@ -824,7 +824,7 @@ class wflux_display_css extends wflux_display_code {
 	* @updated 0.93
 	* Sets up required layout divs for sidebar1 WITH content1
 	*/
-	function wf_layout_build_sb1($args) { $this->wf_css('columns='.$this->wfx_sidebar_1_size_columns.'&size='.$this->wfx_sidebar_1_size.'&id='.$this->wfx_sidebar_1_id.'&last=y&divoutput=Y&class=sidebar-1-with-content-1'); }
+	function wf_layout_build_sb1($args) { echo $this->wf_css('columns='.$this->wfx_sidebar_1_size_columns.'&size='.$this->wfx_sidebar_1_size.'&id='.$this->wfx_sidebar_1_id.'&last=y&divoutput=Y&class=sidebar-1-with-content-1'); }
 
 
 	/**
@@ -832,7 +832,7 @@ class wflux_display_css extends wflux_display_code {
 	* @updated 0.93
 	* Sets up required layout divs for sidebar1 WITHOUT content1
 	*/
-	function wf_layout_build_sb1_no_content($args) { $this->wf_css('id='.$this->wfx_sidebar_1_id.'&last=y&divoutput=Y&class=sidebar-1-no-content-1'); }
+	function wf_layout_build_sb1_no_content($args) { echo $this->wf_css('id='.$this->wfx_sidebar_1_id.'&last=y&divoutput=Y&class=sidebar-1-no-content-1'); }
 
 
 
@@ -841,7 +841,7 @@ class wflux_display_css extends wflux_display_code {
 	* @updated 0.93
 	* Sets up required layout divs for main content1 WITH sidebar1
 	*/
-	function wf_layout_build_content_sb1($args) { $this->wf_css('columns='.$this->wfx_content_1_size_columns.'&size='.$this->wfx_content_1_size.'&id='.$this->wfx_content_1_id.'&last=y&divoutput=Y&class=content-1-with-sidebar-1'); }
+	function wf_layout_build_content_sb1($args) { echo $this->wf_css('columns='.$this->wfx_content_1_size_columns.'&size='.$this->wfx_content_1_size.'&id='.$this->wfx_content_1_id.'&last=y&divoutput=Y&class=content-1-with-sidebar-1'); }
 
 
 	/**
@@ -849,7 +849,7 @@ class wflux_display_css extends wflux_display_code {
 	* @updated 0.93
 	* Sets up required layout divs for main content1 WITHOUT sidebar1
 	*/
-	function wf_layout_build_content_no_sb1($args) { $this->wf_css('id='.$this->wfx_content_1_id.'&last=y&divoutput=Y&class=content-1-no-sidebar-1'); }
+	function wf_layout_build_content_no_sb1($args) { echo $this->wf_css('id='.$this->wfx_content_1_id.'&last=y&divoutput=Y&class=content-1-no-sidebar-1'); }
 
 }
 

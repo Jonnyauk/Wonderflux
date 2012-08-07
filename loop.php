@@ -13,15 +13,19 @@
 
 wfloop_before(); //WF display hook
 
-if (!have_posts())
-	if (is_search())
+if ( !have_posts() ): // No posts found
+	if ( is_search() )
 		get_template_part('loop-content', 'no-search-results');
 	else
 		get_template_part('loop-content', '404');
-else
-	while (have_posts()) : the_post();
+elseif ( isset($_GET['s']) && trim($_GET['s']) == '' ): // If no query supplied, show no results - dont like this, just override in child theme!
+	get_template_part('loop-content', 'no-search-results');
+	query_posts('showposts=0'); // Reset post data so page counters show incorrectly - no results = no paged results thanks!
+else:
+	while ( have_posts() ) : the_post();
 		wfx_get_template_part('part=loop-content'); // Setup all location aware template parts
 	endwhile;
+endif;
 
 wfx_page_counter('navigation=Y');
 

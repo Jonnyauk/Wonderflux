@@ -13,11 +13,15 @@
 
 wfloop_before(); //WF display hook
 
-if (!have_posts() ) : get_template_part('404-content', 'general'); endif;
-
-while (have_posts()) : the_post();
-	wfx_get_template_part('part=loop-content'); // Setup all location aware template parts
-endwhile;
+if (!have_posts())
+	if (is_search())
+		get_template_part('loop-content', 'no-search-results');
+	else
+		get_template_part('loop-content', '404');
+else
+	while (have_posts()) : the_post();
+		wfx_get_template_part('part=loop-content'); // Setup all location aware template parts
+	endwhile;
 
 wfx_page_counter('navigation=Y');
 

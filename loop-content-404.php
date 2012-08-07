@@ -8,7 +8,7 @@
  * @package Wonderflux
  */
 ?>
-<div id="post-0" class="post-0 status-error format-standard hentry">
+<div id="post-0" class="post-0 type-error format-standard hentry single-post paged-return-0 first-in-loop last-in-loop">
 
 	<h2 class="entry-title"><?php _e( 'Sorry', 'wonderflux' ); ?></h2>
 

@@ -1,9 +1,35 @@
 <?php
-
 load_template(TEMPLATEPATH . '/wf-config.php');
 load_template(WF_INCLUDES_DIR . '/wf-version.php');
 load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
 load_template(WF_INCLUDES_DIR . '/wf-data-management.php');
+load_template(WF_INCLUDES_DIR . '/wf-theme-support.php');
+
+//// FUNCTIONALITY REQUIRED BEFORE INIT HOOK
+
+
+/**
+ * @since 1.0RC4
+ * @updated 1.0RC4
+ * Theme support and early call functionality required before init hook
+*/
+function wflux_capacitor_early() {
+	global $wfx_theme_support; $wfx_theme_support = new wflux_early_all;
+}
+add_action('after_setup_theme','wflux_capacitor_early', 2);
+
+
+/**
+ * @since 1.0RC4
+ * @updated 1.0RC4
+ * Theme support and early call functionality required before init hook
+*/
+class wflux_early_all {
+	static $wflux_theme_support_do;
+	function __construct(){ $this->wflux_theme_support_do = new wflux_theme_support; }
+	function core_feeds(){ return $this->wflux_theme_support_do->wf_core_feeds(); }
+}
+
 
 //// BUDDYPRESS FUNCTIONALITY
 

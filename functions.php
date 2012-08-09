@@ -5,25 +5,27 @@
  * Information and license:    README.txt
  *
  * Guide and documentation:    http://wonderflux.com/guide
- * Introduction to Wonderflux: http://wonderflux.com/guide/doc/introduction/
- * Wonderflux child themes:    http://wonderflux.com/guide/doc/child-theme-files/
+ * Introduction to Wonderflux: http://wonderflux.com/guide/doc/introduction
+ * Wonderflux child themes:    http://wonderflux.com/guide/doc/child-theme-files
  *
  * Bugs/improvements/feedback: http://code.google.com/p/wonderflux-framework/issues/list
- * Official release downloads: http://code.google.com/p/wonderflux-framework/downloads/
+ * Official release downloads: http://code.google.com/p/wonderflux-framework/downloads
  * Development code:           http://code.google.com/p/wonderflux-framework/source/checkout
  *
- * 1 - Helper functions
- * 2 - Display functions
- * 3 - Theme display functions
- * 4 - Social functions
- * 5 - Theme configuration functions
- * 6 - Script support functions
- * 7 - Admin functions
- * 8 - Wonderflux Core
- * 9 - Add actions to hooks
+ * INDEX OF THIS FILE
+ *
+ * 1 - Add actions to hooks
+ * 2 - Helper functions
+ * 3 - Display functions
+ * 4 - Theme display functions
+ * 5 - Social functions
+ * 6 - Theme configuration functions
+ * 7 - Script support functions
+ * 8 - Admin functions
+ * 9 - Wonderflux Core
  *
  * DON'T HACK ME!! You should NOT modify the Wonderflux theme framework to avoid issues with updates in the future.
- * It's designed to offer cutting edge flexibility - with lots of ways to manipulate output from your child theme!
+ * It's designed to offer lots of flexibility to manipulate from your child theme, like:
  *
  * 1) Create a function with the same name as a Wonderflux display function below in your child theme.
  *    This will override the ones in this file and be used instead.
@@ -33,18 +35,20 @@
  *
  * 3) Add a filter - http://wonderflux.com/guide/filter/
  *
- * 4) Use over 100 location-aware hooks http://wonderflux.com/guide/hook/
+ * 4) Use over 120 location-aware hooks http://wonderflux.com/guide/hook/
  *
  * If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
  * http://code.google.com/p/wonderflux-framework/issues/list
  *
  * DEVELOPERS AND TESTERS
- * Developers have full SVN checkout access to trunk where the latest non-released development code is held.
- * Visit http://code.google.com/p/wonderflux-framework/source/checkout for access information.
  * All development is tracked within the Google Code SVN system.
- * The trunk version is for contributions, testing and development - NOT for live sites!!
+ * Anyone has full SVN checkout access to the latest non-released development code.
+ * Visit http://code.google.com/p/wonderflux-framework/source/checkout for access information.
+ * The trunk version is for contributions, testing and development - NOT for live sites (unless you are brave!)
  *
- * Thanks for using Wonderflux - follow us on Twitter @Wonderflux for updates and news.
+ * THANKS FOR USING WONDERFLUX!
+ * Created something cool? Let us know - we can't wait to see what you create!
+ * Follow us on Twitter @Wonderflux for updates and news.
  *
  * @package Wonderflux
  *
@@ -53,8 +57,61 @@
 // Start your engine
 load_template(TEMPLATEPATH . '/wf-includes/wf-engine.php');
 
+//  1  //////////// Add actions to hooks and create Wonderflux
 
-////  1  //////////// HELPER FUNCTIONS
+// IMPORTANT - Use remove_action in your child theme to control any of this!
+
+//// 1.1 // Early setup (before init)
+
+add_action('after_setup_theme', 'wfx_core_feeds', 3);
+
+//// 1.2 // Special child theme functions
+
+// Create the functions my_wfx_layout() and my_wfx_scripts() in your child theme functions file
+
+// Use this to configure all your Wonderflux child theme layout functions like wfx_background_divs()
+if ( function_exists( 'my_wfx_layout' ) ) { add_action('get_header', 'my_wfx_layout', 1); }
+// Use this to configure all your Wonderflux child theme script functions like wfx_jquery()
+if ( function_exists( 'my_wfx_scripts' ) ) { if ( !is_admin() ) : add_action('init', 'my_wfx_scripts', 1); endif; }
+
+//// 1.3 // Columns functionality
+
+// Allow full removal of the core CSS in one swoop
+if (WF_THEME_FRAMEWORK_REPLACE == false) {
+	add_action('wf_head_meta', 'wfx_display_head_css_structure', 2);
+	add_action('wf_head_meta', 'wfx_display_head_css_columns', 2);
+	add_action('wf_head_meta', 'wfx_display_head_css_ie', 2);
+} elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
+	add_action('wf_head_meta', 'wfx_head_css_replace', 2);
+}
+
+//// 1.4 // If Wonderflux activated directly with no child theme
+
+// Backpat - depreciated function get_current_theme() in WordPress 3.4
+if ( WF_WORDPRESS_VERSION < 3.4 ) {
+	if (get_current_theme() == 'Wonderflux Framework') add_action('wp_loaded', 'wfx_core_default_widgets');
+} else {
+	if (wp_get_theme()->Name == 'Wonderflux Framework') add_action('wp_loaded', 'wfx_core_default_widgets');
+}
+
+//// 1.5 // Wonderflux core functionality
+
+add_action('init', 'wfx_config_language');
+add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
+add_action('wf_output_start', 'wfx_display_head_open', 1);
+add_action('get_header', 'wfx_social_meta');
+add_action('wf_head_meta', 'wfx_display_head_char_set', 1);
+add_action('wf_head_meta', 'wfx_display_head_title', 3);
+add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
+add_action('wf_head_meta', 'wfx_display_css_info');
+add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
+add_action('wffooter_after_content', 'wfx_display_credit', 1);
+add_action('wf_footer', 'wfx_debug_performance', 12);
+add_action('wf_footer', 'wfx_display_code_credit', 3);
+add_action('auth_redirect', 'wfx_admin_menus');
+
+
+////  2  //////////// HELPER FUNCTIONS
 
 
 /**
@@ -172,7 +229,15 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 } endif;
 
 
-////  2  //////////// DISPLAY FUNCTIONS
+////  3  //////////// DISPLAY FUNCTIONS
+
+
+/**
+* @since 1.0RC4
+* @updated 1.0RC4
+* Inserts WordPress 'automatic-feed-links' )
+*/
+if ( !function_exists( 'wfx_core_feeds' ) ) : function wfx_core_feeds() { global $wfx_theme_support; $wfx_theme_support->core_feeds(); } endif;
 
 
 // Only need functions if have child theme overrides
@@ -306,7 +371,7 @@ if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_inf
 if ( !function_exists( 'wfx_get_dimensions' ) ) : function wfx_get_dimensions($args) { global $wfx; return $wfx->get_dimensions($args); } endif;
 
 
-////  3  //////////// THEME DISPLAY
+////  4  //////////// THEME DISPLAY
 
 
 /**
@@ -436,7 +501,7 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
 /**
 * @since 0.93
 * @updated 0.93
-* Creates 'page x of x' output for lists of results like category view and others
+* Creates 'page x of x' output for lists of posts like archive or query views
 */
 if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args) {
 
@@ -473,7 +538,7 @@ if ( !function_exists( 'wfx_get_cached_part' ) ) : function wfx_get_cached_part(
 } endif;
 
 
-////  4  //////////// SOCIAL FUNCTIONS
+////  5  //////////// SOCIAL FUNCTIONS
 
 
 /**
@@ -516,7 +581,7 @@ if ( !function_exists( 'wfx_social_linkedin_share' ) ) : function wfx_social_lin
 if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args='') { global $wfx; $wfx->social_meta($args); } endif;
 
 
-//  5  //////////// THEME CONFIGURATION
+//  6  //////////// THEME CONFIGURATION
 
 
 /**
@@ -543,7 +608,7 @@ if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs(
 if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global $wfx_theme; $wfx_theme->ie6_png($args); } endif;
 
 
-//  6  //////////// SCRIPT SUPPORT
+//  7  //////////// SCRIPT SUPPORT
 
 
 /**
@@ -562,7 +627,7 @@ if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args='') { global
 if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { global $wfx_theme; $wfx_theme->cycle($args); } endif;
 
 
-//  7  //////////// ADMIN FUNCTIONS
+//  8  //////////// ADMIN FUNCTIONS
 
 
 /**
@@ -573,15 +638,15 @@ if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { gl
 if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { global $wfx_admin; $wfx_admin->admin_menus(); } endif;
 
 
-//  8  //////////// WONDERFLUX CORE
-
-
 /**
 * @since 0.93
 * @updated 0.93
 * Adds Wonderflux options to appearance menu (respcts WF_ADMIN_ACCESS)
 */
 if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_links(); } endif;
+
+
+//  9  //////////// WONDERFLUX CORE
 
 
 // For when Wonderflux gets activated directly
@@ -613,48 +678,4 @@ function wfx_core_default_widgets() {
 	);
 
 }
-
-
-//  9  //////////// Add actions to hooks
-
-// Special child theme function
-// Create the function my_wfx_layout() in your child theme functions file
-// Use this to configure all your Wonderflux child theme layout functions like wfx_background_divs()
-if ( function_exists( 'my_wfx_layout' ) ) { add_action('get_header', 'my_wfx_layout', 1); }
-// Use this to configure all your Wonderflux child theme script functions like wfx_jquery()
-if ( function_exists( 'my_wfx_scripts' ) ) { if ( !is_admin() ) : add_action('init', 'my_wfx_scripts', 1); endif; }
-
-// Core Wonderflux functionality
-
-// Allow full removal of the core CSS in one swoop
-if (WF_THEME_FRAMEWORK_REPLACE == false) {
-	add_action('wf_head_meta', 'wfx_display_head_css_structure', 2);
-	add_action('wf_head_meta', 'wfx_display_head_css_columns', 2);
-	add_action('wf_head_meta', 'wfx_display_head_css_ie', 2);
-} elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
-	add_action('wf_head_meta', 'wfx_head_css_replace', 2);
-}
-
-// Core Wonderflux theme activation
-
-// Backpat - depreciated function get_current_theme() in WordPress 3.4
-if ( WF_WORDPRESS_VERSION < 3.4 ) {
-	if (get_current_theme() == 'Wonderflux Framework') add_action('wp_loaded', 'wfx_core_default_widgets');
-} else {
-	if (wp_get_theme()->Name == 'Wonderflux Framework') add_action('wp_loaded', 'wfx_core_default_widgets');
-}
-
-add_action('init', 'wfx_config_language');
-add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
-add_action('wf_output_start', 'wfx_display_head_open', 1);
-add_action('get_header', 'wfx_social_meta');
-add_action('wf_head_meta', 'wfx_display_head_char_set', 1);
-add_action('wf_head_meta', 'wfx_display_head_title', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
-add_action('wf_head_meta', 'wfx_display_css_info');
-add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
-add_action('wffooter_after_content', 'wfx_display_credit', 1);
-add_action('wf_footer', 'wfx_debug_performance', 12);
-add_action('wf_footer', 'wfx_display_code_credit', 3);
-add_action('auth_redirect', 'wfx_admin_menus');
 ?>

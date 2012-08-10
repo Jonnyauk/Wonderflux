@@ -1,5 +1,5 @@
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION v1.0 Release Candidate 3
+VERSION v1.0 Release Candidate 4
 
 Copyright (C) 2012 Jonny Allbut / Team Wonderflux - http://wonderflux.com
 

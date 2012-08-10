@@ -139,7 +139,7 @@ class wflux_data {
 				$this->wfx_content_1_size = $this->wfx_db_display['content_s'];
 			}
 		} elseif ( $this->wfx_content_1_size == false ) {
-			$this->wfx_content_1_size = 'quarter';
+			$this->wfx_content_1_size = 'three_quarter';
 		}
 
 		// CONTENT 1 CSS ID

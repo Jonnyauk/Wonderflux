@@ -131,10 +131,16 @@ class wflux_data {
 		$this->wfx_content_1_display = ( $this->wfx_content_1_display == 'Y' ) ? 'Y' : 'N';
 
 		// CONTENT 1 SIZE
-		$this->wfx_content_1_size = 'three_quarter';
+		$this->wfx_content_1_size = (isset($this->wfx_db_display['content_s']) ) ? $this->wfx_db_display['content_s'] : false;
 		$this->wfx_content_1_size = apply_filters( 'wflux_content_1_size', $this->wfx_content_1_size );
-		//if ( !has_filter('wflux_content_1_size') ) { $this->wfx_content_1_size = $this->wfx_db_display['content_s']; // DB ACTION!! }
-		$this->wfx_content_1_size = wp_kses_data($this->wfx_content_1_size, '');
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() ) {
+			if (has_filter('wflux_sidebar_1_size') ) {
+				$this->wfx_content_1_size = $this->wfx_db_display['content_s'];
+			}
+		} elseif ( $this->wfx_content_1_size == false ) {
+			$this->wfx_content_1_size = 'quarter';
+		}
 
 		// CONTENT 1 CSS ID
 		$this->wfx_content_1_id = 'content';
@@ -161,10 +167,16 @@ class wflux_data {
 		}
 
 		// SIDEBAR 1 SIZE
-		$this->wfx_sidebar_1_size = 'quarter';
+		$this->wfx_sidebar_1_size = (isset($this->wfx_db_display['sidebar_s']) ) ? $this->wfx_db_display['sidebar_s'] : false;
 		$this->wfx_sidebar_1_size = apply_filters( 'wflux_sidebar_1_size', $this->wfx_sidebar_1_size );
-		//if ( !has_filter('wflux_sidebar_1_size') ) { $this->wfx_sidebar_1_size = $this->wfx_db_display['sidebar_s']; // DB ACTION!! }
-		$this->wfx_sidebar_1_size = wp_kses_data($this->wfx_sidebar_1_size, '');
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() ) {
+			if (has_filter('wflux_sidebar_1_size') ) {
+				$this->wfx_sidebar_1_size = $this->wfx_db_display['sidebar_s'];
+			}
+		} elseif ( $this->wfx_sidebar_1_size == false ) {
+			$this->wfx_sidebar_1_size = 'quarter';
+		}
 
 		// SIDEBAR 1 CSS ID
 		$this->wfx_sidebar_1_id = 'sidebar';

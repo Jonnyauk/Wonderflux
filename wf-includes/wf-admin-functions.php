@@ -177,16 +177,15 @@ class wflux_admin extends wflux_data {
 		add_settings_section('style_lab_fb', '', array($this->admin_forms, 'wf_form_intro_fb'), 'wonderflux_stylelab_fb');
 
 		//1) Key 2) form label 3) Builder function 4)Page 5)Section
-		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab', 'style_lab');
 
+		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('columns_w', esc_attr__('Width of column (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('content_s', esc_attr__('Content size (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_s', esc_attr__('Sidebar size (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
-
-		add_settings_field('container_w', esc_attr__('Site container width','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab', 'style_lab');
-		//add_settings_field('padding_l', 'Left site container padding', array($this->admin_forms, 'wf_form_padding_l'), 'wonderflux_stylelab', 'style_lab');
-		//add_settings_field('padding_r', 'Right site container padding', array($this->admin_forms, 'wf_form_padding_r'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('columns_num', esc_attr__('Number of vertical columns (inside container+padding)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('columns_w', esc_attr__('Desired width of column','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab', 'style_lab');
 
 		add_settings_field('doc_type', esc_attr__('Document type','wonderflux'), array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_lang', esc_attr__('Document language','wonderflux'), array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');
@@ -448,6 +447,8 @@ class wflux_admin_forms extends wflux_data {
 			'doc_lang'		=> array ('aa','ab','ae','af','ak','am','an','ar','as','av','ay','az','ba','be','bg','bh','bi','bm','bn','bo','bo','br','bs','ca','ce','ch','co','cr','cs','cs','cu','cv','cy','cy','da','de','de','dv','dz','ee','el','el','en','eo','es','et','eu','eu','fa','fa','ff','fi','fj','fo','fr','fr','fy','ga','gd','gl','gn','gu','gv','ha','he','hi','ho','hr','ht','hu','hy','hy','hz','ia','id','ie','ig','ii','ik','io','is','is','it','iu','ja','jv','ka','ka','kg','ki','kj','kk','kl','km','kn','ko','kr','ks','ku','kv','kw','ky','la','lb','lg','li','ln','lo','lt','lu','lv','mg','mh','mi','mi','mk','mk','ml','mn','mr','ms','ms','mt','my','my','na','nb','nd','ne','ng','nl','nl','nn','no','nr','nv','ny','oc','oj','om','or','os','pa','pi','pl','ps','pt','qu','rm','rn','ro','ro','ru','rw','sa','sc','sd','se','sg','si','sk','sk','sl','sm','sn','so','sq','sq','sr','ss','st','su','sv','sw','ta','te','tg','th','ti','tk','tl','tn','to','tr','ts','tt','tw','ty','ug','uk','ur','uz','ve','vi','vo','wa','wo','xh','yi','yo','za','zh','zh','zu'),
 			'doc_charset'	=> array ('UTF-8','UTF-16','ISO-2022-JP','ISO-2022-JP-2','ISO-2022-KR','ISO-8859-1','ISO-8859-10','ISO-8859-15','ISO-8859-2','ISO-8859-3','ISO-8859-4','ISO-8859-5','ISO-8859-6','ISO-8859-7','ISO-8859-8','ISO-8859-9'),
 			'container_p'	=> array ('left','middle','right'),
+			'content_s'		=> array ('full','half','third','quarter','fifth','sixth','seventh','eigth','ninth','tenth','eleventh','twelveth'),
+			'sidebar_s'		=> array ('full','half','third','quarter','fifth','sixth','seventh','eigth','ninth','tenth','eleventh','twelveth'),
 			'sidebar_p'		=> array ('left','right'),
 			'sidebar_d'		=> array ('Y','N'),
 			'container_w'	=> array ( 950, range(400,2000,10) ),
@@ -492,16 +493,15 @@ class wflux_admin_forms extends wflux_data {
 
 	//////// STYLE LAB FORM ITEMS
 	// Section HTML, displayed before the first option
-	function wf_form_intro_main() { echo '<p>' . esc_attr__("Use these controls to setup the main dimensions used across all your Wonderflux template designs.","wonderflux") . '</p>'; }
+	function wf_form_intro_main() { echo '<p>' . esc_attr__('Use these controls to setup the main dimensions of your theme design. IMPORTANT - Filtering these values in your child theme allows finer grain control (for instance, conditional on page/type of view) and will over-ride any values set here.','wonderflux') . '</p>'; }
 
-	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p',$this->valid['container_p']); }
+	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p']); }
+	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->valid['content_s']); }
+	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->valid['sidebar_s']); }
 	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N'))); }
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p']); }
 	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10); }
-	/* NOT ACTIVE AT MOMENT
-	function wf_form_padding_l() { $this->wf_form_helper_ddown_range('padding_l',0,200,1); }
-	function wf_form_padding_r() { $this->wf_form_helper_ddown_range('padding_r',0,200,1); }
-	*/
+
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1); }
 

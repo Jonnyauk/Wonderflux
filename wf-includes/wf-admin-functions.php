@@ -436,10 +436,86 @@ class wflux_admin extends wflux_data {
 */
 class wflux_admin_forms extends wflux_data {
 
-	private $valid; // Hold array of options with whitelists and default values
+	private $common_size;	// Common size definitions for dropdown
+	private $valid;			// Hold array of options with whitelists and default values
+	private $size_accept;	// Whitelist of size options
 
 	function __construct() {
+
 		parent::__construct();
+
+		$this->common_size = array(
+			array('Full'=>'full'),
+			array('1 Half'=>'half'),
+			array('1 Third'=>'third'),
+			array('- 2 Thirds'=>'two_third'),
+			array('1 Quarter'=>'quarter'),
+			array('- 2 Quarters'=>'two_quarter'),
+			array('- 3 Quarters'=>'threee_quarter'),
+			array('1 Fifth'=>'fifth'),
+			array('- 2 Fifths'=>'two_fifth'),
+			array('- 3 Fifths'=>'three_fifth'),
+			array('- 4 Fifths'=>'four_fifth'),
+			array('1 Sixth'=>'sixth'),
+			array('- 2 Sixths'=>'two_sixth'),
+			array('- 3 Sixths'=>'three_sixth'),
+			array('- 4 Sixths'=>'four_sixth'),
+			array('- 5 Sixths'=>'five_sixth'),
+			array('1 Seventh'=>'seventh'),
+			array('- 2 Sevenths'=>'two_seventh'),
+			array('- 3 Sevenths'=>'three_seventh'),
+			array('- 4 Sevenths'=>'four_seventh'),
+			array('- 5 Sevenths'=>'five_seventh'),
+			array('- 6 Sevenths'=>'six_seventh'),
+			array('1 Eigth'=>'eighth'),
+			array('- 2 Eigths'=>'two_eighth'),
+			array('- 3 Eigths'=>'three_eighth'),
+			array('- 4 Eigths'=>'four_eighth'),
+			array('- 5 Eigths'=>'five_eighth'),
+			array('- 6 Eigths'=>'six_eighth'),
+			array('- 7 Eigths'=>'seven_eighth'),
+			array('1 Ninth'=>'ninth'),
+			array('- 2 Ninths'=>'two_ninth'),
+			array('- 3 Ninths'=>'three_ninth'),
+			array('- 4 Ninths'=>'four_ninth'),
+			array('- 5 Ninths'=>'five_ninth'),
+			array('- 6 Ninths'=>'six_ninth'),
+			array('- 7 Ninths'=>'seven_ninth'),
+			array('- 8 Ninths'=>'eight_ninth'),
+			array('1 Tenth'=>'tenth'),
+			array('- 2 Tenths'=>'two_tenth'),
+			array('- 3 Tenths'=>'three_tenth'),
+			array('- 4 Tenths'=>'four_tenth'),
+			array('- 5 Tenths'=>'five_tenth'),
+			array('- 6 Tenths'=>'six_tenth'),
+			array('- 7 Tenths'=>'seven_tenth'),
+			array('- 8 Tenths'=>'eight_tenth'),
+			array('- 9 Tenths'=>'nine_tenth'),
+			array('1 Eleventh'=>'eleventh'),
+			array('- 2 Elevenths'=>'two_eleventh'),
+			array('- 3 Elevenths'=>'three_eleventh'),
+			array('- 4 Elevenths'=>'four_eleventh'),
+			array('- 5 Elevenths'=>'five_eleventh'),
+			array('- 6 Elevenths'=>'six_eleventh'),
+			array('- 7 Elevenths'=>'seven_eleventh'),
+			array('- 8 Elevenths'=>'eight_eleventh'),
+			array('- 9 Elevenths'=>'nine_eleventh'),
+			array('- 10 Elevenths'=>'ten_eleventh'),
+			array('1 Twelveth'=>'twelveth'),
+			array('- 2 Twelveths'=>'two_twelveth'),
+			array('- 3 Twelveths'=>'three_twelveth'),
+			array('- 4 Twelveths'=>'four_twelveth'),
+			array('- 5 Twelveths'=>'five_twelveth'),
+			array('- 6 Twelveths'=>'six_twelveth'),
+			array('- 7 Twelveths'=>'seven_twelveth'),
+			array('- 8 Twelveths'=>'eight_twelveth'),
+			array('- 9 Twelveths'=>'nine_twelveth'),
+			array('- 10 Twelveths'=>'ten_twelveth'),
+			array('- 11 Twelveths'=>'eleven_twelveth')
+		);
+
+		$this->size_accept = array('full', 'half', 'third', 'two_third', 'quarter', 'two_quarter', 'threee_quarter', 'fifth', 'two_fifth', 'three_fifth', 'four_fifth', 'sixth', 'two_sixth', 'three_sixth', 'four_sixth', 'five_sixth', 'seventh', 'two_seventh', 'three_seventh', 'four_seventh', 'five_seventh', 'six_seventh', 'eighth', 'two_eighth', 'three_eighth', 'four_eighth', 'five_eighth', 'six_eighth', 'seven_eighth', 'ninth', 'two_ninth', 'three_ninth', 'four_ninth', 'five_ninth', 'six_ninth', 'seven_ninth', 'eight_ninth', 'tenth', 'two_tenth', 'three_tenth', 'four_tenth', 'five_tenth', 'six_tenth', 'seven_tenth', 'eight_tenth', 'nine_tenth', 'eleventh', 'two_eleventh', 'three_eleventh', 'four_eleventh', 'five_eleventh', 'six_eleventh', 'seven_eleventh', 'eight_eleventh', 'nine_eleventh', 'ten_eleventh', 'twelveth', 'two_twelveth', 'three_twelveth', 'four_twelveth', 'five_twelveth', 'six_twelveth', 'seven_twelveth', 'eight_twelveth', 'nine_twelveth', 'ten_twelveth', 'eleven_twelveth');
+
 		// First value of each array is used as default value if no whitelisted value supplied
 		// If no value supplied, input is free text value and is deep cleaned instead!
 		$this->valid = array(
@@ -447,8 +523,8 @@ class wflux_admin_forms extends wflux_data {
 			'doc_lang'		=> array ('aa','ab','ae','af','ak','am','an','ar','as','av','ay','az','ba','be','bg','bh','bi','bm','bn','bo','bo','br','bs','ca','ce','ch','co','cr','cs','cs','cu','cv','cy','cy','da','de','de','dv','dz','ee','el','el','en','eo','es','et','eu','eu','fa','fa','ff','fi','fj','fo','fr','fr','fy','ga','gd','gl','gn','gu','gv','ha','he','hi','ho','hr','ht','hu','hy','hy','hz','ia','id','ie','ig','ii','ik','io','is','is','it','iu','ja','jv','ka','ka','kg','ki','kj','kk','kl','km','kn','ko','kr','ks','ku','kv','kw','ky','la','lb','lg','li','ln','lo','lt','lu','lv','mg','mh','mi','mi','mk','mk','ml','mn','mr','ms','ms','mt','my','my','na','nb','nd','ne','ng','nl','nl','nn','no','nr','nv','ny','oc','oj','om','or','os','pa','pi','pl','ps','pt','qu','rm','rn','ro','ro','ru','rw','sa','sc','sd','se','sg','si','sk','sk','sl','sm','sn','so','sq','sq','sr','ss','st','su','sv','sw','ta','te','tg','th','ti','tk','tl','tn','to','tr','ts','tt','tw','ty','ug','uk','ur','uz','ve','vi','vo','wa','wo','xh','yi','yo','za','zh','zh','zu'),
 			'doc_charset'	=> array ('UTF-8','UTF-16','ISO-2022-JP','ISO-2022-JP-2','ISO-2022-KR','ISO-8859-1','ISO-8859-10','ISO-8859-15','ISO-8859-2','ISO-8859-3','ISO-8859-4','ISO-8859-5','ISO-8859-6','ISO-8859-7','ISO-8859-8','ISO-8859-9'),
 			'container_p'	=> array ('left','middle','right'),
-			'content_s'		=> array ('full','half','third','quarter','fifth','sixth','seventh','eigth','ninth','tenth','eleventh','twelveth'),
-			'sidebar_s'		=> array ('full','half','third','quarter','fifth','sixth','seventh','eigth','ninth','tenth','eleventh','twelveth'),
+			'content_s'		=> $this->size_accept,
+			'sidebar_s'		=> $this->size_accept,
 			'sidebar_p'		=> array ('left','right'),
 			'sidebar_d'		=> array ('Y','N'),
 			'container_w'	=> array ( 950, range(400,2000,10) ),
@@ -496,8 +572,8 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_intro_main() { echo '<p>' . esc_attr__('Use these controls to setup the main dimensions of your theme design. IMPORTANT - Filtering these values in your child theme allows finer grain control (for instance, conditional on page/type of view) and will over-ride any values set here.','wonderflux') . '</p>'; }
 
 	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p']); }
-	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->valid['content_s']); }
-	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->valid['sidebar_s']); }
+	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->common_size); }
+	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->common_size); }
 	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N'))); }
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p']); }
 	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10); }

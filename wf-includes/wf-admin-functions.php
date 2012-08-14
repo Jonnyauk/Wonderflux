@@ -451,7 +451,7 @@ class wflux_admin_forms extends wflux_data {
 			array('- 2 Thirds'=>'two_third'),
 			array('1 Quarter'=>'quarter'),
 			array('- 2 Quarters'=>'two_quarter'),
-			array('- 3 Quarters'=>'threee_quarter'),
+			array('- 3 Quarters'=>'three_quarter'),
 			array('1 Fifth'=>'fifth'),
 			array('- 2 Fifths'=>'two_fifth'),
 			array('- 3 Fifths'=>'three_fifth'),
@@ -514,7 +514,7 @@ class wflux_admin_forms extends wflux_data {
 			array('- 11 Twelveths'=>'eleven_twelveth')
 		);
 
-		$this->size_accept = array('full', 'half', 'third', 'two_third', 'quarter', 'two_quarter', 'threee_quarter', 'fifth', 'two_fifth', 'three_fifth', 'four_fifth', 'sixth', 'two_sixth', 'three_sixth', 'four_sixth', 'five_sixth', 'seventh', 'two_seventh', 'three_seventh', 'four_seventh', 'five_seventh', 'six_seventh', 'eighth', 'two_eighth', 'three_eighth', 'four_eighth', 'five_eighth', 'six_eighth', 'seven_eighth', 'ninth', 'two_ninth', 'three_ninth', 'four_ninth', 'five_ninth', 'six_ninth', 'seven_ninth', 'eight_ninth', 'tenth', 'two_tenth', 'three_tenth', 'four_tenth', 'five_tenth', 'six_tenth', 'seven_tenth', 'eight_tenth', 'nine_tenth', 'eleventh', 'two_eleventh', 'three_eleventh', 'four_eleventh', 'five_eleventh', 'six_eleventh', 'seven_eleventh', 'eight_eleventh', 'nine_eleventh', 'ten_eleventh', 'twelveth', 'two_twelveth', 'three_twelveth', 'four_twelveth', 'five_twelveth', 'six_twelveth', 'seven_twelveth', 'eight_twelveth', 'nine_twelveth', 'ten_twelveth', 'eleven_twelveth');
+		$this->size_accept = array('full', 'half', 'third', 'two_third', 'quarter', 'two_quarter', 'three_quarter', 'fifth', 'two_fifth', 'three_fifth', 'four_fifth', 'sixth', 'two_sixth', 'three_sixth', 'four_sixth', 'five_sixth', 'seventh', 'two_seventh', 'three_seventh', 'four_seventh', 'five_seventh', 'six_seventh', 'eighth', 'two_eighth', 'three_eighth', 'four_eighth', 'five_eighth', 'six_eighth', 'seven_eighth', 'ninth', 'two_ninth', 'three_ninth', 'four_ninth', 'five_ninth', 'six_ninth', 'seven_ninth', 'eight_ninth', 'tenth', 'two_tenth', 'three_tenth', 'four_tenth', 'five_tenth', 'six_tenth', 'seven_tenth', 'eight_tenth', 'nine_tenth', 'eleventh', 'two_eleventh', 'three_eleventh', 'four_eleventh', 'five_eleventh', 'six_eleventh', 'seven_eleventh', 'eight_eleventh', 'nine_eleventh', 'ten_eleventh', 'twelveth', 'two_twelveth', 'three_twelveth', 'four_twelveth', 'five_twelveth', 'six_twelveth', 'seven_twelveth', 'eight_twelveth', 'nine_twelveth', 'ten_twelveth', 'eleven_twelveth');
 
 		// First value of each array is used as default value if no whitelisted value supplied
 		// If no value supplied, input is free text value and is deep cleaned instead!

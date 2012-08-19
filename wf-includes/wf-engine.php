@@ -213,6 +213,9 @@ class wflux_theme_all {
 	function jquery($args){ $this->wflux_theme_core_do->wf_js_jquery($args); }
 	function cycle($args){ $this->wflux_theme_core_do->wf_js_cycle($args); }
 
+	// Core WordPress stuff
+	function core_comment_js(){ $this->wflux_theme_core_do->wf_core_comment_js(); }
+
 	// Internet Explorer (Pesky IE!)
 	function ie6_png($args){ $this->wflux_theme_ie_do->wf_ie6_png($args); }
 
@@ -281,7 +284,6 @@ class wflux_display_all {
 	function css_close($args){ $this->wflux_display_css_do->wf_css_close($args); }
 	function layout_build($args){ $this->wflux_display_css_do->wf_layout_build($args); }
 
-
 	// Display functions
 	function get_sidebar($args){ $this->wflux_display_do->wf_get_sidebar($args); }
 	function display_credit($args){ $this->wflux_display_do->wf_credit($args); }
@@ -300,7 +302,6 @@ class wflux_display_all {
 	function get_attachments($args){ return $this->wflux_display_ex_do->wf_get_attachments($args); }
 	function page_counter($args){ return $this->wflux_display_ex_do->wf_page_counter($args); }
 	function get_cached_part($args){ return $this->wflux_display_ex_do->wf_get_cached_part($args); }
-
 
 	// Social functions
 	function g_plus_1($args){ return $this->wflux_display_social_do->wf_g_plus_1($args); }

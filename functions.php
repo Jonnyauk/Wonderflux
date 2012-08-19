@@ -97,6 +97,7 @@ if ( WF_WORDPRESS_VERSION < 3.4 ) {
 //// 1.5 // Wonderflux core functionality
 
 add_action('init', 'wfx_config_language');
+add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
 add_action('wf_output_start', 'wfx_display_head_open', 1);
 add_action('get_header', 'wfx_social_meta');
@@ -238,6 +239,15 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 * Inserts WordPress 'automatic-feed-links' )
 */
 if ( !function_exists( 'wfx_core_feeds' ) ) : function wfx_core_feeds() { global $wfx_theme_support; $wfx_theme_support->core_feeds(); } endif;
+
+
+/**
+* @since 1.0RC4
+* @updated 1.0RC4
+* Core WordPress threaded comment reply Javascript
+*/
+if ( !function_exists( 'wfx_core_comment_js' ) ) : function wfx_core_comment_js() { global $wfx_theme; $wfx_theme->core_comment_js(); } endif;
+
 
 
 // Only need functions if have child theme overrides

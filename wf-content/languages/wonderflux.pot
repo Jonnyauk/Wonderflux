@@ -1,1084 +1,2284 @@
 # This file is distributed under the same license as the Wonderflux theme framework - please refer to readme.txt
+# Translated strings upto revision 209
 msgid ""
 msgstr ""
 "Project-Id-Version: Wonderflux\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-02 12:09+0100\n"
-"PO-Revision-Date: 2011-10-02 12:09+0100\n"
-"Last-Translator: Jonny Allbut <jonny@wonderfluxflux.com>\n"
-"Language-Team: Wonderflux team\n"
+"Report-Msgid-Bugs-To: http://code.google.com/p/wonderflux-framework/issues/"
+"list\n"
+"POT-Creation-Date: 2012-08-22 13:33-0000\n"
+"PO-Revision-Date: 2012-08-22 13:33-0000\n"
+"Last-Translator: Jonny Allbut <jonny@wonderflux.com>\n"
+"Language-Team: Wonderflux Development Team <devteam@wonderflux.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-SourceCharset: utf-8\n"
 "X-Poedit-KeywordsList: _;__;esc_attr__;esc_attr_e;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SearchPath-0: /Volumes/Mac Data/webserver/wonderflux-beta/wp-content/themes/wonderflux/\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: ../\n"
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//404-content.php:13
-msgid "Sorry"
+#: ..//comments.php:21
+msgid ""
+"This post is password protected. Enter the password to view any comments."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//404-content.php:17
-msgid "It seems the content you are looking for has either changed or moved."
-msgstr ""
-
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//404-content.php:18
-msgid "Try using our site search to locate related content."
-msgstr ""
-
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:16
-msgid "This post is password protected. Enter the password to view any comments."
-msgstr ""
-
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:39
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:60
+#: ..//comments.php:44 ..//comments.php:65
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:40
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//comments.php:61
+#: ..//comments.php:45 ..//comments.php:66
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//functions.php:508
+#: ..//comments.php:93 ..//members/single/profile/profile-wp.php:15
+#: ..//wf-includes/wf-buddypress.php:203
+msgid "Name"
+msgstr ""
+
+#: ..//comments.php:95 ..//wf-includes/wf-buddypress.php:205
+msgid "Email"
+msgstr ""
+
+#: ..//comments.php:97 ..//members/single/profile/profile-wp.php:33
+#: ..//wf-includes/wf-buddypress.php:207
+msgid "Website"
+msgstr ""
+
+#: ..//comments.php:106
+msgid "Your comment"
+msgstr ""
+
+#: ..//functions.php:675
 msgid "Above sidebar"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//functions.php:509
+#: ..//functions.php:676
 msgid "Drag widgets into here to include them above the sidebar on your site."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//functions.php:514
+#: ..//functions.php:681
 msgid "Below sidebar"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//functions.php:515
+#: ..//functions.php:682
 msgid "Drag widgets into here to include them below the sidebar on your site."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//loop-content.php:15
+#: ..//loop-content-404.php:13
+msgid "Sorry"
+msgstr ""
+
+#: ..//loop-content-404.php:17
+msgid "It seems the content you are looking for has either changed or moved."
+msgstr ""
+
+#: ..//loop-content-404.php:18
+msgid "Try using our site search to locate related content."
+msgstr ""
+
+#: ..//loop-content-no-search-results.php:18
+#, php-format
+msgid "No search results found for: %s"
+msgstr ""
+
+#: ..//loop-content-no-search-results.php:20
+msgid "No search value entered"
+msgstr ""
+
+#: ..//loop-content-no-search-results.php:28
+msgid ""
+"Sorry, nothing matched your search criteria. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: ..//loop-content-no-search-results.php:30
+msgid ""
+"Sorry, you did not enter a search keyword. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: ..//loop-content.php:15
 #, php-format
 msgid "Read %s"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//loop-content.php:18
+#: ..//loop-content.php:18
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//loop-content.php:19
+#: ..//loop-content.php:19
 msgid "Pages:"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:34
+#: ..//activity/activity-loop.php:41
+msgid "Load More"
+msgstr ""
+
+#: ..//activity/activity-loop.php:55
+msgid "Sorry, there was no activity found. Please try a different filter."
+msgstr ""
+
+#: ..//activity/comment.php:27
+#, php-format
+msgid ""
+"<a href=\"%1$s\">%2$s</a> replied <a href=\"%3$s\" class=\"activity-time-"
+"since\"><span class=\"time-since\">%4$s</span></a>"
+msgstr ""
+
+#: ..//activity/comment.php:37 ..//forums/single/edit.php:10
+#: ..//groups/single/forum/edit.php:10
+msgid "Reply"
+msgstr ""
+
+#: ..//activity/comment.php:43
+#: ..//members/single/messages/messages-loop.php:50
+#: ..//members/single/messages/single.php:24
+msgid "Delete"
+msgstr ""
+
+#: ..//activity/entry.php:37
+msgid "In reply to: "
+msgstr ""
+
+#: ..//activity/entry.php:37
+msgid "View Thread / Permalink"
+msgstr ""
+
+#: ..//activity/entry.php:37 ..//wf-includes/wf-buddypress.php:72
+msgid "View"
+msgstr ""
+
+#: ..//activity/entry.php:60
+#, php-format
+msgid "Comment <span>%s</span>"
+msgstr ""
+
+#: ..//activity/entry.php:68
+msgid "Mark as Favorite"
+msgstr ""
+
+#: ..//activity/entry.php:68 ..//wf-content/buddypress/ajax.php:334
+msgid "Favorite"
+msgstr ""
+
+#: ..//activity/entry.php:72 ..//wf-content/buddypress/ajax.php:325
+msgid "Remove Favorite"
+msgstr ""
+
+#: ..//activity/entry.php:104
+msgid "Post"
+msgstr ""
+
+#: ..//activity/entry.php:104
+msgid "or press esc to cancel."
+msgstr ""
+
+#: ..//activity/index.php:21
+msgid "Site Activity"
+msgstr ""
+
+#: ..//activity/index.php:39
+msgid "The public activity for everyone on this site."
+msgstr ""
+
+#: ..//activity/index.php:39 ..//members/index.php:33
+#, php-format
+msgid "All Members <span>%s</span>"
+msgstr ""
+
+#: ..//activity/index.php:49
+msgid "The activity of my friends only."
+msgstr ""
+
+#: ..//activity/index.php:49 ..//members/index.php:37
+#, php-format
+msgid "My Friends <span>%s</span>"
+msgstr ""
+
+#: ..//activity/index.php:61
+msgid "The activity of groups I am a member of."
+msgstr ""
+
+#: ..//activity/index.php:61 ..//groups/index.php:39
+#, php-format
+msgid "My Groups <span>%s</span>"
+msgstr ""
+
+#: ..//activity/index.php:71
+msgid "The activity I've marked as a favorite."
+msgstr ""
+
+#: ..//activity/index.php:71
+#, php-format
+msgid "My Favorites <span>%s</span>"
+msgstr ""
+
+#: ..//activity/index.php:77
+msgid "Activity that I have been mentioned in."
+msgstr ""
+
+#: ..//activity/index.php:77
+msgid "Mentions"
+msgstr ""
+
+#: ..//activity/index.php:77
+#, php-format
+msgid "<span>%s new</span>"
+msgstr ""
+
+#: ..//activity/index.php:87 ..//groups/single/activity.php:3
+msgid "RSS Feed"
+msgstr ""
+
+#: ..//activity/index.php:87 ..//groups/single/activity.php:3
+msgid "RSS"
+msgstr ""
+
+#: ..//activity/index.php:92 ..//groups/single/activity.php:8
+#: ..//members/single/activity.php:18
+msgid "Show:"
+msgstr ""
+
+#: ..//activity/index.php:94 ..//groups/single/activity.php:10
+#: ..//members/single/activity.php:20
+msgid "Everything"
+msgstr ""
+
+#: ..//activity/index.php:95 ..//groups/single/activity.php:11
+#: ..//members/single/activity.php:21
+msgid "Updates"
+msgstr ""
+
+#: ..//activity/index.php:99 ..//forums/forums-loop.php:40
+#: ..//members/single/activity.php:27
+msgid "Posts"
+msgstr ""
+
+#: ..//activity/index.php:100 ..//members/single/activity.php:28
+msgid "Comments"
+msgstr ""
+
+#: ..//activity/index.php:106 ..//groups/single/activity.php:14
+#: ..//members/single/activity.php:43
+msgid "Forum Topics"
+msgstr ""
+
+#: ..//activity/index.php:107 ..//groups/single/activity.php:15
+#: ..//members/single/activity.php:44
+msgid "Forum Replies"
+msgstr ""
+
+#: ..//activity/index.php:113 ..//members/single/activity.php:50
+msgid "New Groups"
+msgstr ""
+
+#: ..//activity/index.php:114 ..//groups/single/activity.php:18
+#: ..//members/single/activity.php:51
+msgid "Group Memberships"
+msgstr ""
+
+#: ..//activity/index.php:120 ..//members/single/activity.php:35
+msgid "Friendships"
+msgstr ""
+
+#: ..//activity/index.php:124
+msgid "New Members"
+msgstr ""
+
+#: ..//activity/post-form.php:23
+#, php-format
+msgid "What's new in %s, %s?"
+msgstr ""
+
+#: ..//activity/post-form.php:25
+#, php-format
+msgid "What's new, %s?"
+msgstr ""
+
+#: ..//activity/post-form.php:35
+msgid "Post Update"
+msgstr ""
+
+#: ..//activity/post-form.php:42
+msgid "Post in"
+msgstr ""
+
+#: ..//activity/post-form.php:45 ..//members/single/profile/profile-wp.php:8
+msgid "My Profile"
+msgstr ""
+
+#: ..//blogs/blogs-loop.php:90
+msgid "Sorry, there were no sites found."
+msgstr ""
+
+#: ..//blogs/create.php:19 ..//blogs/index.php:21
+msgid "Create a Site"
+msgstr ""
+
+#: ..//blogs/create.php:19 ..//blogs/index.php:21
+msgid "Site Directory"
+msgstr ""
+
+#: ..//blogs/create.php:30
+msgid "Site registration is currently disabled"
+msgstr ""
+
+#: ..//blogs/index.php:33
+#, php-format
+msgid "All Sites <span>%s</span>"
+msgstr ""
+
+#: ..//blogs/index.php:37
+#, php-format
+msgid "My Sites <span>%s</span>"
+msgstr ""
+
+#: ..//blogs/index.php:53 ..//forums/index.php:58
+#: ..//forums/single/forum.php:34 ..//groups/index.php:55
+#: ..//groups/single/forum.php:32 ..//members/index.php:53
+#: ..//members/single/blogs.php:19 ..//members/single/forums.php:18
+#: ..//members/single/friends.php:20 ..//members/single/groups.php:20
+msgid "Order By:"
+msgstr ""
+
+#: ..//blogs/index.php:55 ..//forums/index.php:60
+#: ..//forums/single/forum.php:36 ..//groups/index.php:57
+#: ..//groups/single/forum.php:34 ..//members/index.php:55
+#: ..//members/single/blogs.php:21 ..//members/single/forums.php:20
+#: ..//members/single/friends.php:22 ..//members/single/groups.php:22
+msgid "Last Active"
+msgstr ""
+
+#: ..//blogs/index.php:56 ..//members/single/blogs.php:22
+msgid "Newest"
+msgstr ""
+
+#: ..//blogs/index.php:57 ..//groups/index.php:60 ..//members/index.php:60
+#: ..//members/single/blogs.php:23 ..//members/single/friends.php:24
+#: ..//members/single/groups.php:25
+msgid "Alphabetical"
+msgstr ""
+
+#: ..//forums/forums-loop.php:39
+msgid "Topic"
+msgstr ""
+
+#: ..//forums/forums-loop.php:41
+msgid "Freshness"
+msgstr ""
+
+#: ..//forums/forums-loop.php:54
+msgid "Permalink"
+msgstr ""
+
+#: ..//forums/forums-loop.php:61
+#, php-format
+msgid "Started by %1$s"
+msgstr ""
+
+#: ..//forums/forums-loop.php:72
+#, php-format
+msgid "in %1$s"
+msgstr ""
+
+#: ..//forums/forums-loop.php:122
+msgid "Sorry, there were no forum topics found."
+msgstr ""
+
+#: ..//forums/index.php:21
+msgid "Forums Directory"
+msgstr ""
+
+#: ..//forums/index.php:21 ..//forums/single/forum.php:19
+#: ..//groups/single/forum.php:17
+msgid "New Topic"
+msgstr ""
+
+#: ..//forums/index.php:38
+#, php-format
+msgid "All Topics <span>%s</span>"
+msgstr ""
+
+#: ..//forums/index.php:42
+#, php-format
+msgid "My Topics <span>%s</span>"
+msgstr ""
+
+#: ..//forums/index.php:61 ..//forums/single/forum.php:37
+#: ..//groups/single/forum.php:35 ..//members/single/forums.php:21
+msgid "Most Posts"
+msgstr ""
+
+#: ..//forums/index.php:62 ..//forums/single/forum.php:38
+#: ..//groups/single/forum.php:36 ..//members/single/forums.php:22
+msgid "Unreplied"
+msgstr ""
+
+#: ..//forums/index.php:98
+msgid "Create New Topic:"
+msgstr ""
+
+#: ..//forums/index.php:102 ..//forums/single/edit.php:49
+#: ..//groups/single/forum.php:71 ..//groups/single/forum/edit.php:49
+msgid "Title:"
+msgstr ""
+
+#: ..//forums/index.php:105 ..//forums/single/edit.php:52
+#: ..//groups/single/forum.php:74 ..//groups/single/forum/edit.php:52
+msgid "Content:"
+msgstr ""
+
+#: ..//forums/index.php:108 ..//groups/single/forum.php:77
+#: ..//groups/single/forum/edit.php:55
+msgid "Tags (comma separated):"
+msgstr ""
+
+#: ..//forums/index.php:111
+msgid "Post In Group Forum:"
+msgstr ""
+
+#: ..//forums/index.php:114
+msgid "----"
+msgstr ""
+
+#: ..//forums/index.php:131 ..//groups/single/forum.php:83
+msgid "Post Topic"
+msgstr ""
+
+#: ..//forums/index.php:132
+msgid "Cancel"
+msgstr ""
+
+#: ..//forums/index.php:143
+#, php-format
+msgid ""
+"You are not a member of any groups so you don't have any group forums you "
+"can post in. To start posting, first find a group that matches the topic "
+"subject you'd like to start. If this group does not exist, why not <a "
+"href='%s'>create a new group</a>? Once you have joined or created the group "
+"you can post your topic in that group's forum."
+msgstr ""
+
+#: ..//forums/single/edit.php:16 ..//forums/single/forum.php:25
+#: ..//forums/single/topic.php:40 ..//groups/single/forum.php:23
+#: ..//groups/single/forum/edit.php:16 ..//groups/single/forum/topic.php:16
+msgid "Forum Directory"
+msgstr ""
+
+#: ..//forums/single/edit.php:25 ..//groups/single/forum/edit.php:25
+msgid "Edit:"
+msgstr ""
+
+#: ..//forums/single/edit.php:57 ..//forums/single/edit.php:73
+#: ..//groups/single/admin.php:32 ..//groups/single/admin.php:117
+#: ..//groups/single/forum/edit.php:60 ..//groups/single/forum/edit.php:76
+#: ..//members/single/profile/edit.php:126
+#: ..//members/single/settings/general.php:67
+#: ..//members/single/settings/notifications.php:60
+msgid "Save Changes"
+msgstr ""
+
+#: ..//forums/single/edit.php:88 ..//groups/single/forum/edit.php:91
+msgid "This topic does not exist."
+msgstr ""
+
+#: ..//forums/single/forum-header.php:13 ..//groups/groups-loop.php:47
+#: ..//groups/single/group-header.php:42
+#, php-format
+msgid "active %s"
+msgstr ""
+
+#: ..//forums/single/topic.php:34 ..//groups/single/forum/topic.php:10
+msgid "New Reply"
+msgstr ""
+
+#: ..//forums/single/topic.php:94
+#, php-format
+msgid "%s said %s ago:"
+msgstr ""
+
+#: ..//forums/single/topic.php:114 ..//groups/single/forum/topic.php:91
+msgid "Permanent link to this post"
+msgstr ""
+
+#: ..//forums/single/topic.php:150 ..//groups/single/forum/topic.php:127
+msgid "Add a reply:"
+msgstr ""
+
+#: ..//forums/single/topic.php:155 ..//groups/single/forum/topic.php:132
+msgid "Post Reply"
+msgstr ""
+
+#: ..//forums/single/topic.php:166 ..//groups/single/forum/topic.php:143
+msgid "This topic is closed, replies are no longer accepted."
+msgstr ""
+
+#: ..//forums/single/topic.php:181 ..//groups/single/forum/topic.php:157
+msgid "There are no posts for this topic."
+msgstr ""
+
+#: ..//groups/create.php:16 ..//groups/index.php:21
+msgid "Create a Group"
+msgstr ""
+
+#: ..//groups/create.php:16 ..//groups/index.php:21
+msgid "Groups Directory"
+msgstr ""
+
+#: ..//groups/create.php:37 ..//groups/single/admin.php:16
+msgid "Group Name (required)"
+msgstr ""
+
+#: ..//groups/create.php:40 ..//groups/single/admin.php:19
+msgid "Group Description (required)"
+msgstr ""
+
+#: ..//groups/create.php:60 ..//groups/single/admin.php:47
+msgid "Enable discussion forum"
+msgstr ""
+
+#: ..//groups/create.php:67
+#, php-format
+msgid ""
+"<strong>Attention Site Admin:</strong> Group forums require the <a href=\"%s"
+"\">correct setup and configuration</a> of a bbPress installation."
+msgstr ""
+
+#: ..//groups/create.php:76 ..//groups/single/admin.php:56
+msgid "Privacy Options"
+msgstr ""
+
+#: ..//groups/create.php:80 ..//groups/single/admin.php:61
+msgid "This is a public group"
+msgstr ""
+
+#: ..//groups/create.php:82 ..//groups/single/admin.php:63
+msgid "Any site member can join this group."
+msgstr ""
+
+#: ..//groups/create.php:83 ..//groups/create.php:92
+#: ..//groups/single/admin.php:64 ..//groups/single/admin.php:74
+msgid ""
+"This group will be listed in the groups directory and in search results."
+msgstr ""
+
+#: ..//groups/create.php:84 ..//groups/single/admin.php:65
+msgid "Group content and activity will be visible to any site member."
+msgstr ""
+
+#: ..//groups/create.php:89 ..//groups/single/admin.php:71
+msgid "This is a private group"
+msgstr ""
+
+#: ..//groups/create.php:91 ..//groups/single/admin.php:73
+msgid "Only users who request membership and are accepted can join the group."
+msgstr ""
+
+#: ..//groups/create.php:93 ..//groups/create.php:102
+#: ..//groups/single/admin.php:75 ..//groups/single/admin.php:85
+msgid ""
+"Group content and activity will only be visible to members of the group."
+msgstr ""
+
+#: ..//groups/create.php:98 ..//groups/single/admin.php:81
+msgid "This is a hidden group"
+msgstr ""
+
+#: ..//groups/create.php:100 ..//groups/single/admin.php:83
+msgid "Only users who are invited can join the group."
+msgstr ""
+
+#: ..//groups/create.php:101 ..//groups/single/admin.php:84
+msgid ""
+"This group will not be listed in the groups directory or search results."
+msgstr ""
+
+#: ..//groups/create.php:109 ..//groups/single/admin.php:92
+msgid "Group Invitations"
+msgstr ""
+
+#: ..//groups/create.php:111 ..//groups/single/admin.php:94
+msgid "Which members of this group are allowed to invite others?"
+msgstr ""
+
+#: ..//groups/create.php:116 ..//groups/single/admin.php:99
+msgid "All group members"
+msgstr ""
+
+#: ..//groups/create.php:121 ..//groups/single/admin.php:104
+msgid "Group admins and mods only"
+msgstr ""
+
+#: ..//groups/create.php:126 ..//groups/single/admin.php:109
+msgid "Group admins only"
+msgstr ""
+
+#: ..//groups/create.php:152 ..//groups/single/admin.php:127
+msgid ""
+"Upload an image to use as an avatar for this group. The image will be shown "
+"on the main group page, and in search results."
+msgstr ""
+
+#: ..//groups/create.php:156 ..//groups/single/admin.php:131
+#: ..//members/single/profile/change-avatar.php:18
+msgid "Upload Image"
+msgstr ""
+
+#: ..//groups/create.php:160
+msgid "To skip the avatar upload process, hit the \"Next Step\" button."
+msgstr ""
+
+#: ..//groups/create.php:167
+msgid "Crop Group Avatar"
+msgstr ""
+
+#: ..//groups/create.php:169 ..//groups/single/admin.php:151
+#: ..//members/single/profile/change-avatar.php:33
+msgid "Avatar to crop"
+msgstr ""
+
+#: ..//groups/create.php:172 ..//groups/single/admin.php:154
+#: ..//members/single/profile/change-avatar.php:36
+msgid "Avatar preview"
+msgstr ""
+
+#: ..//groups/create.php:175 ..//groups/single/admin.php:157
+#: ..//members/single/profile/change-avatar.php:39
+msgid "Crop Image"
+msgstr ""
+
+#: ..//groups/create.php:214 ..//groups/single/send-invites.php:22
+msgid "Select people to invite from your friends list."
+msgstr ""
+
+#: ..//groups/create.php:232 ..//groups/single/send-invites.php:42
+#: ..//wf-content/buddypress/ajax.php:393
+msgid "Remove Invite"
+msgstr ""
+
+#: ..//groups/create.php:249 ..//groups/single/send-invites.php:73
+msgid ""
+"Once you have built up friend connections you will be able to invite others "
+"to your group. You can send invites any time in the future by selecting the "
+"\"Send Invites\" option when viewing your new group."
+msgstr ""
+
+#: ..//groups/create.php:271
+msgid "Back to Previous Step"
+msgstr ""
+
+#: ..//groups/create.php:278
+msgid "Next Step"
+msgstr ""
+
+#: ..//groups/create.php:285
+msgid "Create Group and Continue"
+msgstr ""
+
+#: ..//groups/create.php:292
+msgid "Finish"
+msgstr ""
+
+#: ..//groups/groups-loop.php:95
+msgid "There were no groups found."
+msgstr ""
+
+#: ..//groups/index.php:35
+#, php-format
+msgid "All Groups <span>%s</span>"
+msgstr ""
+
+#: ..//groups/index.php:58 ..//members/single/groups.php:23
+msgid "Most Members"
+msgstr ""
+
+#: ..//groups/index.php:59 ..//members/single/groups.php:24
+msgid "Newly Created"
+msgstr ""
+
+#: ..//groups/single/admin.php:25
+msgid "Notify group members of changes via email"
+msgstr ""
+
+#: ..//groups/single/admin.php:26 ..//registration/register.php:202
+msgid "Yes"
+msgstr ""
+
+#: ..//groups/single/admin.php:27 ..//registration/register.php:203
+msgid "No"
+msgstr ""
+
+#: ..//groups/single/admin.php:137
+msgid ""
+"If you'd like to remove the existing avatar but not upload a new one, please "
+"use the delete avatar button."
+msgstr ""
+
+#: ..//groups/single/admin.php:139
+#: ..//members/single/profile/change-avatar.php:24
+msgid "Delete Avatar"
+msgstr ""
+
+#: ..//groups/single/admin.php:149
+msgid "Crop Avatar"
+msgstr ""
+
+#: ..//groups/single/admin.php:177
+msgid "Administrators"
+msgstr ""
+
+#: ..//groups/single/admin.php:185 ..//groups/single/admin.php:210
+#, php-format
+msgid "Profile picture of %s"
+msgstr ""
+
+#: ..//groups/single/admin.php:189 ..//groups/single/admin.php:215
+msgid "Demote to Member"
+msgstr ""
+
+#: ..//groups/single/admin.php:203
+msgid "Moderators"
+msgstr ""
+
+#: ..//groups/single/admin.php:214 ..//groups/single/admin.php:270
+msgid "Promote to Admin"
+msgstr ""
+
+#: ..//groups/single/admin.php:229
+msgid "Members"
+msgstr ""
+
+#: ..//groups/single/admin.php:258
+msgid "(banned)"
+msgstr ""
+
+#: ..//groups/single/admin.php:264
+msgid "Unban this member"
+msgstr ""
+
+#: ..//groups/single/admin.php:264
+msgid "Remove Ban"
+msgstr ""
+
+#: ..//groups/single/admin.php:268
+msgid "Kick and ban this member"
+msgstr ""
+
+#: ..//groups/single/admin.php:268
+msgid "Kick &amp; Ban"
+msgstr ""
+
+#: ..//groups/single/admin.php:269
+msgid "Promote to Mod"
+msgstr ""
+
+#: ..//groups/single/admin.php:274
+msgid "Remove this member"
+msgstr ""
+
+#: ..//groups/single/admin.php:274
+msgid "Remove from group"
+msgstr ""
+
+#: ..//groups/single/admin.php:288 ..//groups/single/members.php:87
+msgid "This group has no members."
+msgstr ""
+
+#: ..//groups/single/admin.php:318 ..//members/single/friends/requests.php:37
+#: ..//members/single/groups/invites.php:23
+msgid "Accept"
+msgstr ""
+
+#: ..//groups/single/admin.php:320 ..//members/single/friends/requests.php:38
+#: ..//members/single/groups/invites.php:24
+msgid "Reject"
+msgstr ""
+
+#: ..//groups/single/admin.php:333
+msgid "There are no pending membership requests."
+msgstr ""
+
+#: ..//groups/single/admin.php:350
+msgid ""
+"WARNING: Deleting this group will completely remove ALL content associated "
+"with it. There is no way back, please be careful with this option."
+msgstr ""
+
+#: ..//groups/single/admin.php:353
+msgid "I understand the consequences of deleting this group."
+msgstr ""
+
+#: ..//groups/single/admin.php:358
+msgid "Delete Group"
+msgstr ""
+
+#: ..//groups/single/forum.php:65
+msgid "You will auto join this group when you start a new topic."
+msgstr ""
+
+#: ..//groups/single/forum.php:69
+msgid "Post a New Topic:"
+msgstr ""
+
+#: ..//groups/single/group-header.php:11
+msgid "Group Admins"
+msgstr ""
+
+#: ..//groups/single/group-header.php:20
+msgid "Group Mods"
+msgstr ""
+
+#: ..//groups/single/request-membership.php:4
+#, php-format
+msgid "You are requesting to become a member of the group '%s'."
+msgstr ""
+
+#: ..//groups/single/request-membership.php:7
+msgid "Comments (optional)"
+msgstr ""
+
+#: ..//groups/single/request-membership.php:12
+msgid "Send Request"
+msgstr ""
+
+#: ..//groups/single/send-invites.php:60
+msgid "Send Invites"
+msgstr ""
+
+#: ..//groups/single/forum/topic.php:31
+msgid "Topic tags:"
+msgstr ""
+
+#: ..//groups/single/forum/topic.php:77
+#, php-format
+msgid "%1$s said %2$s:"
+msgstr ""
+
+#: ..//groups/single/forum/topic.php:122
+msgid "You will auto join this group when you reply to this topic."
+msgstr ""
+
+#: ..//members/index.php:21
+msgid "Members Directory"
+msgstr ""
+
+#: ..//members/index.php:56 ..//members/single/friends.php:23
+msgid "Newest Registered"
+msgstr ""
+
+#: ..//members/members-loop.php:108
+msgid "Sorry, no members were found."
+msgstr ""
+
+#: ..//members/single/friends/requests.php:68
+msgid "You have no pending friendship requests."
+msgstr ""
+
+#: ..//members/single/groups/invites.php:14
+#, php-format
+msgid "%s members"
+msgstr ""
+
+#: ..//members/single/groups/invites.php:37
+msgid "You have no outstanding group invites."
+msgstr ""
+
+#: ..//members/single/messages/compose.php:5
+msgid "Send To (Username or Friend's Name)"
+msgstr ""
+
+#: ..//members/single/messages/compose.php:14
+msgid "This is a notice to all users."
+msgstr ""
+
+#: ..//members/single/messages/compose.php:17
+msgid "Subject"
+msgstr ""
+
+#: ..//members/single/messages/compose.php:20
+msgid "Message"
+msgstr ""
+
+#: ..//members/single/messages/compose.php:28
+msgid "Send Message"
+msgstr ""
+
+#: ..//members/single/messages/messages-loop.php:31
+msgid "From:"
+msgstr ""
+
+#: ..//members/single/messages/messages-loop.php:36
+msgid "To:"
+msgstr ""
+
+#: ..//members/single/messages/messages-loop.php:42
+msgid "View Message"
+msgstr ""
+
+#: ..//members/single/messages/messages-loop.php:50
+#: ..//members/single/messages/notices-loop.php:38
+#: ..//members/single/messages/single.php:24
+msgid "Delete Message"
+msgstr ""
+
+#: ..//members/single/messages/messages-loop.php:68
+msgid "Sorry, no messages were found."
+msgstr ""
+
+#: ..//members/single/messages/notices-loop.php:31
+msgid "Sent:"
+msgstr ""
+
+#: ..//members/single/messages/notices-loop.php:49
+msgid "Sorry, no notices were found."
+msgstr ""
+
+#: ..//members/single/messages/single.php:14
+msgid "You are alone in this conversation."
+msgstr ""
+
+#: ..//members/single/messages/single.php:18
+#, php-format
+msgid "Conversation between %s and you."
+msgstr ""
+
+#: ..//members/single/messages/single.php:75
+msgid "Send a Reply"
+msgstr ""
+
+#: ..//members/single/messages/single.php:91
+msgid "Send Reply"
+msgstr ""
+
+#: ..//members/single/profile/change-avatar.php:1
+msgid "Change Avatar"
+msgstr ""
+
+#: ..//members/single/profile/change-avatar.php:7
+msgid ""
+"Your avatar will be used on your profile and throughout the site. If there "
+"is a <a href=\"http://gravatar.com\">Gravatar</a> associated with your "
+"account email we will use that, or you can upload an image from your "
+"computer."
+msgstr ""
+
+#: ..//members/single/profile/change-avatar.php:14
+msgid ""
+"Click below to select a JPG, GIF or PNG format photo from your computer and "
+"then click 'Upload Image' to proceed."
+msgstr ""
+
+#: ..//members/single/profile/change-avatar.php:23
+msgid ""
+"If you'd like to delete your current avatar but not upload a new one, please "
+"use the delete avatar button."
+msgstr ""
+
+#: ..//members/single/profile/change-avatar.php:24
+msgid "Delete My Avatar"
+msgstr ""
+
+#: ..//members/single/profile/change-avatar.php:31
+msgid "Crop Your New Avatar"
+msgstr ""
+
+#: ..//members/single/profile/change-avatar.php:55
+msgid ""
+"Your avatar will be used on your profile and throughout the site. To change "
+"your avatar, please create an account with <a href=\"http://gravatar.com"
+"\">Gravatar</a> using the same email address as you used to register with "
+"this site."
+msgstr ""
+
+#: ..//members/single/profile/edit.php:10
+#, php-format
+msgid "Editing '%s' Profile Group"
+msgstr ""
+
+#: ..//members/single/profile/edit.php:26
+#: ..//members/single/profile/edit.php:33
+#: ..//members/single/profile/edit.php:40
+#: ..//members/single/profile/edit.php:49
+#: ..//members/single/profile/edit.php:67
+#: ..//members/single/profile/edit.php:83
+#: ..//members/single/profile/edit.php:93 ..//registration/register.php:34
+#: ..//registration/register.php:38 ..//registration/register.php:42
+#: ..//registration/register.php:46 ..//registration/register.php:73
+#: ..//registration/register.php:81 ..//registration/register.php:89
+#: ..//registration/register.php:99 ..//registration/register.php:110
+#: ..//registration/register.php:125 ..//registration/register.php:136
+#: ..//registration/register.php:186 ..//registration/register.php:195
+msgid "(required)"
+msgstr ""
+
+#: ..//members/single/profile/edit.php:58
+#: ..//members/single/profile/edit.php:73 ..//registration/register.php:116
+msgid "Clear"
+msgstr ""
+
+#: ..//members/single/profile/profile-wp.php:8
+#, php-format
+msgid "%s's Profile"
+msgstr ""
+
+#: ..//members/single/profile/profile-wp.php:24
+msgid "About Me"
+msgstr ""
+
+#: ..//members/single/profile/profile-wp.php:42
+msgid "Jabber"
+msgstr ""
+
+#: ..//members/single/profile/profile-wp.php:51
+msgid "AOL Messenger"
+msgstr ""
+
+#: ..//members/single/profile/profile-wp.php:60
+msgid "Yahoo Messenger"
+msgstr ""
+
+#: ..//members/single/settings/delete-account.php:48
+msgid "Delete Account"
+msgstr ""
+
+#: ..//members/single/settings/delete-account.php:53
+msgid ""
+"WARNING: Deleting your account will completely remove ALL content associated "
+"with it. There is no way back, please be careful with this option."
+msgstr ""
+
+#: ..//members/single/settings/delete-account.php:56
+msgid "I understand the consequences of deleting my account."
+msgstr ""
+
+#: ..//members/single/settings/delete-account.php:61
+msgid "Delete My Account"
+msgstr ""
+
+#: ..//members/single/settings/general.php:48
+msgid "General Settings"
+msgstr ""
+
+#: ..//members/single/settings/general.php:54
+msgid ""
+"Current Password <span>(required to update email or change current password)"
+"</span>"
+msgstr ""
+
+#: ..//members/single/settings/general.php:55
+msgid "Password Lost and Found"
+msgstr ""
+
+#: ..//members/single/settings/general.php:55
+msgid "Lost your password?"
+msgstr ""
+
+#: ..//members/single/settings/general.php:57
+msgid "Account Email"
+msgstr ""
+
+#: ..//members/single/settings/general.php:60
+msgid "Change Password <span>(leave blank for no change)</span>"
+msgstr ""
+
+#: ..//members/single/settings/general.php:61
+msgid "New Password"
+msgstr ""
+
+#: ..//members/single/settings/general.php:62
+msgid "Repeat New Password"
+msgstr ""
+
+#: ..//members/single/settings/notifications.php:48
+msgid "Email Notification"
+msgstr ""
+
+#: ..//members/single/settings/notifications.php:53
+msgid "Send a notification by email when:"
+msgstr ""
+
+#: ..//registration/activate.php:9
+msgid "Account Activated"
+msgstr ""
+
+#: ..//registration/activate.php:14
+msgid ""
+"Your account was activated successfully! Your account details have been sent "
+"to you in a separate email."
+msgstr ""
+
+#: ..//registration/activate.php:16
+msgid ""
+"Your account was activated successfully! You can now log in with the "
+"username and password you provided when you signed up."
+msgstr ""
+
+#: ..//registration/activate.php:21
+msgid "Activate your Account"
+msgstr ""
+
+#: ..//registration/activate.php:25
+msgid "Please provide a valid activation key."
+msgstr ""
+
+#: ..//registration/activate.php:29
+msgid "Activation Key:"
+msgstr ""
+
+#: ..//registration/activate.php:33
+msgid "Activate"
+msgstr ""
+
+#: ..//registration/register.php:13
+msgid "User registration is currently not allowed."
+msgstr ""
+
+#: ..//registration/register.php:20
+msgid "Create an Account"
+msgstr ""
+
+#: ..//registration/register.php:24
+msgid ""
+"Registering for this site is easy, just fill in the fields below and we'll "
+"get a new account set up for you in no time."
+msgstr ""
+
+#: ..//registration/register.php:32
+msgid "Account Details"
+msgstr ""
+
+#: ..//registration/register.php:34
+msgid "Username"
+msgstr ""
+
+#: ..//registration/register.php:38
+msgid "Email Address"
+msgstr ""
+
+#: ..//registration/register.php:42
+msgid "Choose a Password"
+msgstr ""
+
+#: ..//registration/register.php:46
+msgid "Confirm Password"
+msgstr ""
+
+#: ..//registration/register.php:62
+msgid "Profile Details"
+msgstr ""
+
+#: ..//registration/register.php:180
+msgid "Blog Details"
+msgstr ""
+
+#: ..//registration/register.php:182
+msgid "Yes, I'd like to create a new site"
+msgstr ""
+
+#: ..//registration/register.php:186
+msgid "Blog URL"
+msgstr ""
+
+#: ..//registration/register.php:195
+msgid "Site Title"
+msgstr ""
+
+#: ..//registration/register.php:199
+msgid ""
+"I would like my site to appear in search engines, and in public listings "
+"around this network."
+msgstr ""
+
+#: ..//registration/register.php:216
+msgid "Complete Sign Up"
+msgstr ""
+
+#: ..//registration/register.php:227
+msgid "Sign Up Complete!"
+msgstr ""
+
+#: ..//registration/register.php:233
+msgid ""
+"You have successfully created your account! To begin using this site you "
+"will need to activate your account via the email we have just sent to your "
+"address."
+msgstr ""
+
+#: ..//registration/register.php:235
+msgid ""
+"You have successfully created your account! Please log in using the username "
+"and password you have just created."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:160
+msgid "Please enter some content to post."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:177
+msgid "There was a problem posting your update, please try again."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:202
+msgid "Please do not leave the comment area blank."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:207
+#: ..//wf-content/buddypress/ajax.php:218
+msgid "There was an error posting that reply, please try again."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:275
+#: ..//wf-content/buddypress/ajax.php:310
+msgid "There was a problem when deleting. Please try again."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:419
+msgid "Friendship could not be canceled."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:421
+msgid "Add Friend"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:429
+msgid "Friendship could not be requested."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:431
+msgid "Friendship Requested"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:434
+msgid "Request Pending"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:446
+msgid "There was a problem accepting that request. Please try again."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:457
+msgid "There was a problem rejecting that request. Please try again."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:480
+msgid "Error joining group"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:482
+msgid "Leave Group"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:490
+msgid "Error requesting membership"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:492
+msgid "Membership Requested"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:501
+msgid "Error leaving group"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:504
+msgid "Join Group"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:506
+msgid "Request Membership"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:518
+msgid "There was a problem closing the notice."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:543
+#, php-format
+msgid "Sent %s"
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:560
+msgid "There was a problem sending that reply. Please try again."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:570
+msgid "There was a problem marking messages as unread."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:586
+msgid "There was a problem marking messages as read."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:602
+msgid "There was a problem deleting messages."
+msgstr ""
+
+#: ..//wf-content/buddypress/ajax.php:609
+msgid "Messages deleted."
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:34
 msgid "Wonderflux main options"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:34
+#: ..//wf-includes/wf-admin-functions.php:34
 msgid "Wonderflux"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:35
+#: ..//wf-includes/wf-admin-functions.php:35
 msgid "Wonderflux Style Lab"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:35
+#: ..//wf-includes/wf-admin-functions.php:35
+#: ..//wf-includes/wf-helper-functions.php:589
+#: ..//wf-includes/wf-helper-functions.php:591
+#: ..//wf-includes/wf-helper-functions.php:602
+#: ..//wf-includes/wf-helper-functions.php:604
 msgid "Style Lab"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:36
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:45
+#: ..//wf-includes/wf-admin-functions.php:36
+#: ..//wf-includes/wf-admin-functions.php:45
 msgid "Wonderflux Advanced"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:36
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:101
+#: ..//wf-includes/wf-admin-functions.php:36
+#: ..//wf-includes/wf-admin-functions.php:101
 msgid "Advanced"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:37
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:46
+#: ..//wf-includes/wf-admin-functions.php:37
+#: ..//wf-includes/wf-admin-functions.php:46
 msgid "Wonderflux System Information"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:37
+#: ..//wf-includes/wf-admin-functions.php:37
 msgid "System Information"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:43
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:93
+#: ..//wf-includes/wf-admin-functions.php:43
+#: ..//wf-includes/wf-admin-functions.php:93
 msgid "Wonderflux Home"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:44
+#: ..//wf-includes/wf-admin-functions.php:44
 msgid "Wonderflux Stylelab"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:97
+#: ..//wf-includes/wf-admin-functions.php:97
 msgid "Stylelab"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:105
+#: ..//wf-includes/wf-admin-functions.php:105
 msgid "System"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:110
+#: ..//wf-includes/wf-admin-functions.php:110
 msgid "Settings updated successfully."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:119
+#: ..//wf-includes/wf-admin-functions.php:121
 msgid "Ooops, you could be doing so much more with Wonderflux!"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:120
-msgid "Wonderflux is a theme framework. It can be directly activated like this and will work perfectly - but you are really missing out on all the cool stuff Wonderflux can do!"
+#: ..//wf-includes/wf-admin-functions.php:122
+msgid ""
+"Wonderflux is a theme framework. It can be directly activated like this and "
+"will work perfectly - but you are really missing out on all the cool stuff "
+"Wonderflux can do!"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:122
+#: ..//wf-includes/wf-admin-functions.php:124
 msgid "To get the most out of Wonderflux, you should take a quick read over"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:124
+#: ..//wf-includes/wf-admin-functions.php:126
 msgid "Read the Wonderflux overview guide"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:126
+#: ..//wf-includes/wf-admin-functions.php:128
 msgid "the Wonderflux introduction"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:128
-msgid "- also be sure to check out the documentation links below to learn about how to use the various aspects of Wonderflux."
+#: ..//wf-includes/wf-admin-functions.php:130
+msgid ""
+"- also be sure to check out the documentation links below to learn about how "
+"to use the various aspects of Wonderflux."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:132
+#: ..//wf-includes/wf-admin-functions.php:134
 msgid "You can also"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:134
+#: ..//wf-includes/wf-admin-functions.php:136
 msgid "Download the free Girder Wonderflux child theme"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:136
+#: ..//wf-includes/wf-admin-functions.php:138
 msgid "download the free example Wonderflux child theme call Girder"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:138
-msgid " - take a look at the layout code and especially the theme functions.php file for references on using Wonderflux."
+#: ..//wf-includes/wf-admin-functions.php:140
+msgid ""
+" - take a look at the layout code and especially the theme functions.php "
+"file for references on using Wonderflux."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:143
+#: ..//wf-includes/wf-admin-functions.php:145
 msgid "You are using the"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:143
+#: ..//wf-includes/wf-admin-functions.php:145
 msgid "Wonderflux child theme"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:150
+#: ..//wf-includes/wf-admin-functions.php:152
 msgid "Help and support"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:153
+#: ..//wf-includes/wf-admin-functions.php:155
 msgid "Visit the Wonderflux guide"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:155
+#: ..//wf-includes/wf-admin-functions.php:157
 msgid "The Wonderflux guide"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:157
-msgid "is the official documentation site for Wonderflux. Click on the direct links below to find relevant content."
+#: ..//wf-includes/wf-admin-functions.php:159
+msgid ""
+"is the official documentation site for Wonderflux. Click on the direct links "
+"below to find relevant content."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:178
-msgid "Site container position"
+#: ..//wf-includes/wf-admin-functions.php:181
+msgid "Site container width (pixels)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:180
+#: ..//wf-includes/wf-admin-functions.php:182
+msgid "Vertical columns (number - inside site container)"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:183
+msgid "Width of column (pixels)"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:184
+msgid "Content size (relative size)"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:185
+msgid "Sidebar size (relative size)"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:186
 msgid "Sidebar display"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:181
+#: ..//wf-includes/wf-admin-functions.php:187
 msgid "Sidebar position"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:183
-msgid "Site container width"
+#: ..//wf-includes/wf-admin-functions.php:188
+msgid "Site container position"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:186
-msgid "Number of vertical columns (inside container+padding)"
-msgstr ""
-
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:187
-msgid "Desired width of column"
-msgstr ""
-
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:189
+#: ..//wf-includes/wf-admin-functions.php:190
 msgid "Document type"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:190
+#: ..//wf-includes/wf-admin-functions.php:191
 msgid "Document language"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:191
+#: ..//wf-includes/wf-admin-functions.php:192
 msgid "Document character set"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:193
+#: ..//wf-includes/wf-admin-functions.php:194
 msgid "Facebook ID(s)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:194
+#: ..//wf-includes/wf-admin-functions.php:195
 msgid "Facebook Application ID"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:220
+#: ..//wf-includes/wf-admin-functions.php:221
 msgid "Sorry, update check not currently available."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:250
+#: ..//wf-includes/wf-admin-functions.php:251
 msgid "update"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:252
+#: ..//wf-includes/wf-admin-functions.php:253
 msgid "development"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:272
+#: ..//wf-includes/wf-admin-functions.php:273
 msgid "Wonderflux framework update available!"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:273
+#: ..//wf-includes/wf-admin-functions.php:274
 #, php-format
 msgid "You are running v%1$s, the current latest release is v%2$s"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:275
-msgid "There is an update available to Wonderflux. Please read the update notes to check-up on how this may effect your theme BEFORE updating!"
+#: ..//wf-includes/wf-admin-functions.php:276
+msgid ""
+"There is an update available to Wonderflux. Please read the update notes to "
+"check-up on how this may effect your theme BEFORE updating!"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:276
+#: ..//wf-includes/wf-admin-functions.php:277
 msgid "Download the latest Wonderflux update here"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:276
+#: ..//wf-includes/wf-admin-functions.php:277
 msgid "download the latest Wonderflux update here"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:284
+#: ..//wf-includes/wf-admin-functions.php:285
 msgid "Development version installed"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:285
+#: ..//wf-includes/wf-admin-functions.php:286
 msgid "You are running a development version of Wonderflux, cool!"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:285
+#: ..//wf-includes/wf-admin-functions.php:286
 msgid "You should probably NOT be using this on live sites."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:286
-msgid "It may contain code thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme."
+#: ..//wf-includes/wf-admin-functions.php:287
+msgid ""
+"It may contain code thats not finished just yet, or new functionality that "
+"may conflict with your current Wonderflux child theme."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:287
+#: ..//wf-includes/wf-admin-functions.php:288
 msgid "If you are not a developer, advanced designer or tester"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:288
+#: ..//wf-includes/wf-admin-functions.php:289
 #, php-format
-msgid "you will probably be better off using <a href=\"%1$s\" title=\"%2$s\">%3$s</a>"
+msgid ""
+"you will probably be better off using <a href=\"%1$s\" title=\"%2$s\">%3$s</"
+"a>"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:288
+#: ..//wf-includes/wf-admin-functions.php:289
 msgid "Download the latest stable Wonderflux release here"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:288
+#: ..//wf-includes/wf-admin-functions.php:289
 msgid "the latest stable version of Wonderflux."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:308
+#: ..//wf-includes/wf-admin-functions.php:309
 msgid "WF_THEME_FRAMEWORK_REPLACE documentation"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:308
+#: ..//wf-includes/wf-admin-functions.php:309
 msgid "WF_THEME_FRAMEWORK_REPLACE"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:309
-msgid " - A Wonderflux theme constant that removes the core stylesheet CSS files."
+#: ..//wf-includes/wf-admin-functions.php:310
+msgid ""
+" - A Wonderflux theme constant that removes the core stylesheet CSS files."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:313
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:334
+#: ..//wf-includes/wf-admin-functions.php:314
+#: ..//wf-includes/wf-admin-functions.php:335
 msgid "Wonderflux documentation"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:313
+#: ..//wf-includes/wf-admin-functions.php:314
 msgid "http://wonderflux.com/guide"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:314
+#: ..//wf-includes/wf-admin-functions.php:315
 msgid " - All Wonderflux documentation and user guides."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:317
+#: ..//wf-includes/wf-admin-functions.php:318
 msgid "Get involved!"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:320
-msgid "A huge amount of resource has been poured into this project since it began in January 2010. If you have ideas on how Wonderflux could improve, why not think about contributing to the development of Wonderflux?"
+#: ..//wf-includes/wf-admin-functions.php:321
+msgid ""
+"A huge amount of resource has been poured into this project since it began "
+"in January 2010. If you have ideas on how Wonderflux could improve, why not "
+"think about contributing to the development of Wonderflux?"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:323
+#: ..//wf-includes/wf-admin-functions.php:324
 msgid "Remember, Wonderflux is free, open source code just like WordPress"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:325
-msgid " - so your ideas can help make a great theme framework for the whole community to use. Some ideas on how you could help include bug hunting, documentation, javascript, optimisation - really any ideas you have would be more than welcome!"
+#: ..//wf-includes/wf-admin-functions.php:326
+msgid ""
+" - so your ideas can help make a great theme framework for the whole "
+"community to use. Some ideas on how you could help include bug hunting, "
+"documentation, javascript, optimisation - really any ideas you have would be "
+"more than welcome!"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:328
+#: ..//wf-includes/wf-admin-functions.php:329
 msgid "Google code SVN"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:329
-msgid "- SVN development code repository (for developers and testers - NOT to be used on live sites!)"
+#: ..//wf-includes/wf-admin-functions.php:330
+msgid ""
+"- SVN development code repository (for developers and testers - NOT to be "
+"used on live sites!)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:331
+#: ..//wf-includes/wf-admin-functions.php:332
 msgid "Google code issue tracking list"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:332
+#: ..//wf-includes/wf-admin-functions.php:333
 msgid "- Development list (for contributors, bug reports and feature requests)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:335
-msgid " - Official documentation site (API documentation and quick start guides)"
+#: ..//wf-includes/wf-admin-functions.php:336
+msgid ""
+" - Official documentation site (API documentation and quick start guides)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:340
+#: ..//wf-includes/wf-admin-functions.php:341
 msgid "Wonderflux Help - Main Options"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:341
+#: ..//wf-includes/wf-admin-functions.php:342
 msgid "Wonderflux Help - Stylelab"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:342
+#: ..//wf-includes/wf-admin-functions.php:343
 msgid "Wonderflux Help - System"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:343
+#: ..//wf-includes/wf-admin-functions.php:344
 msgid "Wonderflux Help - Advanced"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:405
+#: ..//wf-includes/wf-admin-functions.php:406
 msgid "Quick start guides"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:406
+#: ..//wf-includes/wf-admin-functions.php:407
 msgid "Hook guides"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:407
+#: ..//wf-includes/wf-admin-functions.php:408
 msgid "Function guides"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:408
+#: ..//wf-includes/wf-admin-functions.php:409
 msgid "Filter guides"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:409
+#: ..//wf-includes/wf-admin-functions.php:410
 msgid "Constant guides"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:410
+#: ..//wf-includes/wf-admin-functions.php:411
 msgid "File guides"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:414
+#: ..//wf-includes/wf-admin-functions.php:415
 msgid "Wonderflux help and documentation"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:416
+#: ..//wf-includes/wf-admin-functions.php:417
 msgid " | "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:417
+#: ..//wf-includes/wf-admin-functions.php:418
 msgid "View all Wonderflux "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:419
+#: ..//wf-includes/wf-admin-functions.php:420
 msgid " (documented so far!)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:493
-msgid "Use these controls to setup the main dimensions used across all your Wonderflux template designs."
+#: ..//wf-includes/wf-admin-functions.php:572
+msgid ""
+"Use these controls to setup the main dimensions of your theme design. "
+"IMPORTANT - Filtering these values in your child theme allows finer grain "
+"control (for instance, conditional on page/type of view) and will over-ride "
+"any values set here."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:513
+#: ..//wf-includes/wf-admin-functions.php:591
 msgid "Document output"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:515
-msgid "Use these controls to set avanced document type and language attributes."
+#: ..//wf-includes/wf-admin-functions.php:593
+msgid ""
+"Use these controls to set avanced document type and language attributes."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:516
+#: ..//wf-includes/wf-admin-functions.php:594
 msgid "WARNING - "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:517
-msgid "These settings should generally be left as default (transitional, en, UTF-8)."
+#: ..//wf-includes/wf-admin-functions.php:595
+msgid ""
+"These settings should generally be left as default (transitional, en, UTF-8)."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:518
-msgid "If you are using the Facebook features, you must use document type XHTML/RDFa."
+#: ..//wf-includes/wf-admin-functions.php:596
+msgid ""
+"If you are using the Facebook features, you must use document type XHTML/"
+"RDFa."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:523
+#: ..//wf-includes/wf-admin-functions.php:601
 msgid "Facebook connect"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:524
-msgid "Connect your site with Facebook to allow advanced interaction and sharing. Required if you are using the Facebook share display function. "
+#: ..//wf-includes/wf-admin-functions.php:602
+msgid ""
+"Connect your site with Facebook to allow advanced interaction and sharing. "
+"Required if you are using the Facebook share display function. "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:525
-msgid "You can assign multiple Facebook ID&rsquo;s by comma seperation (name1,name2) and a single (optional) application ID. "
+#: ..//wf-includes/wf-admin-functions.php:603
+msgid ""
+"You can assign multiple Facebook ID&rsquo;s by comma seperation (name1,"
+"name2) and a single (optional) application ID. "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:526
-msgid "NOTE - You are required to fill-in at-least your Facebook ID to use the Facebook sharing features. "
+#: ..//wf-includes/wf-admin-functions.php:604
+msgid ""
+"NOTE - You are required to fill-in at-least your Facebook ID to use the "
+"Facebook sharing features. "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:527
-msgid "Get your Facebook ID number by logging into Facebook, and clicking on the 'profile' tab. If you look at the URL in the address bar, you will see something like: "
+#: ..//wf-includes/wf-admin-functions.php:605
+msgid ""
+"Get your Facebook ID number by logging into Facebook, and clicking on the "
+"'profile' tab. If you look at the URL in the address bar, you will see "
+"something like: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:528
+#: ..//wf-includes/wf-admin-functions.php:606
 msgid "http://www.facebook.com/profile.php?id=123456789012345"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:529
-msgid "The string of numbers after 'id=' is your Facebook ID number - copy and paste this into the filed below. "
+#: ..//wf-includes/wf-admin-functions.php:607
+msgid ""
+"The string of numbers after 'id=' is your Facebook ID number - copy and "
+"paste this into the filed below. "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:530
+#: ..//wf-includes/wf-admin-functions.php:608
 msgid "Application ID is optional (advanced users). "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:531
+#: ..//wf-includes/wf-admin-functions.php:609
 msgid "Login to Facebook to get your application ID if required."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:531
+#: ..//wf-includes/wf-admin-functions.php:609
 msgid "Get your application ID if required"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:532
-msgid "IMPORTANT - When entering and using any of these details, your site document type is automatically switched to XHTML/RDFa. "
+#: ..//wf-includes/wf-admin-functions.php:610
+msgid ""
+"IMPORTANT - When entering and using any of these details, your site document "
+"type is automatically switched to XHTML/RDFa. "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:533
-msgid "Relevant Facebook and Open Graph meta tags are generated and XML namespace attributes are added. Whilst active, it is manditory to keep the document type as XHTML/RDFa. This ensures that your site will still produce valid code, enable XFBML and advanced loading, along with improved compatibility with Internet Explorer."
+#: ..//wf-includes/wf-admin-functions.php:611
+msgid ""
+"Relevant Facebook and Open Graph meta tags are generated and XML namespace "
+"attributes are added. Whilst active, it is manditory to keep the document "
+"type as XHTML/RDFa. This ensures that your site will still produce valid "
+"code, enable XFBML and advanced loading, along with improved compatibility "
+"with Internet Explorer."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:614
+#: ..//wf-includes/wf-admin-functions.php:692
 msgid "CSS override files"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:615
-msgid "Advanced users may wish to remove the default stylesheets that are usually inserted for you when using Wonderflux. The code below is all of the Wonderflux framework CSS file content that is normally inserted into the <head> of your site output, using your current saved configuration."
+#: ..//wf-includes/wf-admin-functions.php:693
+msgid ""
+"Advanced users may wish to remove the default stylesheets that are usually "
+"inserted for you when using Wonderflux. The code below is all of the "
+"Wonderflux framework CSS file content that is normally inserted into the "
+"<head> of your site output, using your current saved configuration."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:616
-msgid "By setting the constant in your child theme functions.php file with the single line:"
+#: ..//wf-includes/wf-admin-functions.php:694
+msgid ""
+"By setting the constant in your child theme functions.php file with the "
+"single line:"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:618
-msgid "you will remove the Wonderflux css files: 'wf-css-core-structure', 'wf-css-dynamic-columns' and the conditional 'wf-css-dynamic-core-ie', leaving only your theme.css file in the document <head>. "
+#: ..//wf-includes/wf-admin-functions.php:696
+msgid ""
+"you will remove the Wonderflux css files: 'wf-css-core-structure', 'wf-css-"
+"dynamic-columns' and the conditional 'wf-css-dynamic-core-ie', leaving only "
+"your theme.css file in the document <head>. "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:619
+#: ..//wf-includes/wf-admin-functions.php:697
 msgid "When you set "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:621
+#: ..//wf-includes/wf-admin-functions.php:699
 msgid "to "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:623
-msgid "Wonderflux automatically inserts style-framework.css and style-framework-ie.css for you, with the IE file wrapped in a conditional comment, before loading your main theme CSS file."
+#: ..//wf-includes/wf-admin-functions.php:701
+msgid ""
+"Wonderflux automatically inserts style-framework.css and style-framework-ie."
+"css for you, with the IE file wrapped in a conditional comment, before "
+"loading your main theme CSS file."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:624
-msgid "IMPORTANT - you will need to create 2 new files in your theme directory to use this functionality."
+#: ..//wf-includes/wf-admin-functions.php:702
+msgid ""
+"IMPORTANT - you will need to create 2 new files in your theme directory to "
+"use this functionality."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:625
-msgid "1 - Copy and paste the code from BOX 1 into a file called 'style-framework.css' and save it to your child theme directory."
+#: ..//wf-includes/wf-admin-functions.php:703
+msgid ""
+"1 - Copy and paste the code from BOX 1 into a file called 'style-framework."
+"css' and save it to your child theme directory."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:626
-msgid "2 - Copy and paste the code from BOX 2 into a file called 'style-framework-ie.css' and save it to your child theme directory."
+#: ..//wf-includes/wf-admin-functions.php:704
+msgid ""
+"2 - Copy and paste the code from BOX 2 into a file called 'style-framework-"
+"ie.css' and save it to your child theme directory."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:627
-msgid "IMPORTANT - If you are using the override files as described and change your grid configuration or layout options, please revisit this page and update your files accordingly."
+#: ..//wf-includes/wf-admin-functions.php:705
+msgid ""
+"IMPORTANT - If you are using the override files as described and change your "
+"grid configuration or layout options, please revisit this page and update "
+"your files accordingly."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:629
+#: ..//wf-includes/wf-admin-functions.php:707
 msgid "1 - Code for your style-framework.css file"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:639
+#: ..//wf-includes/wf-admin-functions.php:717
 msgid "2 - Code for your style-framework-ie.css file"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:653
+#: ..//wf-includes/wf-admin-functions.php:731
 msgid "GRID CONFIGURATION"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-admin-functions.php:817
-msgid " Wonderflux theme framework dynamic column core (legacy IE support) * http://wonderflux.com * @package Wonderflux * @since Wonderflux 0.2"
+#: ..//wf-includes/wf-admin-functions.php:895
+msgid ""
+" Wonderflux theme framework dynamic column core (legacy IE support) * http://"
+"wonderflux.com * @package Wonderflux * @since Wonderflux 0.2"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:168
+#: ..//wf-includes/wf-buddypress.php:65
+msgid "My Favorites"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:66
+msgid "Accepted"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:67
+msgid "Rejected"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:68
+msgid "Show all comments for this thread"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:69
+msgid "Show all"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:70
+msgid "comments"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:71
+msgid "Close"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:133
+#, php-format
+msgid ""
+"<a href=\"%1$s\" rel=\"nofollow\">%2$s</a> said on <a href=\"%3$s\"><span "
+"class=\"time-since\">%4$s</span></a>"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:140
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:152
+msgid "Edit comment"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:152
+#: ..//wf-includes/wf-display-functions.php:1378
+#: ..//wf-includes/wf-display-functions.php:1382
+msgid "Edit"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:215
+#, php-format
+msgid "You must be <a href=\"%1$s\">logged in</a> to post a comment."
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:216
+msgid "Leave a reply"
+msgstr ""
+
+#: ..//wf-includes/wf-buddypress.php:391
+msgid "Social Profile"
+msgstr ""
+
+#: ..//wf-includes/wf-display-functions.php:175
 #, php-format
 msgid "Search results for  %1$s from %2$s"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:355
+#: ..//wf-includes/wf-display-functions.php:434
 #, php-format
 msgid "%1$s queries in %2$s seconds"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:368
+#: ..//wf-includes/wf-display-functions.php:447
 msgid "Powered by WordPress and the Wonderflux theme framework"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:662
+#: ..//wf-includes/wf-display-functions.php:741
 msgid "WONDERFLUX LAYOUT DESIGN HELPER"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:664
+#: ..//wf-includes/wf-display-functions.php:743
 msgid "Full width: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:666
+#: ..//wf-includes/wf-display-functions.php:745
 msgid "Columns: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:668
+#: ..//wf-includes/wf-display-functions.php:747
 msgid "Single column: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:670
+#: ..//wf-includes/wf-display-functions.php:749
 msgid "Half: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:678
+#: ..//wf-includes/wf-display-functions.php:757
 msgid "Third: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:680
+#: ..//wf-includes/wf-display-functions.php:759
 msgid "Two Third: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:685
-msgid "Your column configuration is not compatible with thirds. Avoid using these in your template designs, or reconfigure options."
+#: ..//wf-includes/wf-display-functions.php:764
+msgid ""
+"Your column configuration is not compatible with thirds. Avoid using these "
+"in your template designs, or reconfigure options."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:693
+#: ..//wf-includes/wf-display-functions.php:772
 msgid "Quarter: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:695
+#: ..//wf-includes/wf-display-functions.php:774
 msgid "Two Quarters: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:697
+#: ..//wf-includes/wf-display-functions.php:776
 msgid "Three Quarters: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:702
-msgid "Your column configuration is not compatible with quarters. Avoid using these in your template designs, or reconfigure options."
+#: ..//wf-includes/wf-display-functions.php:781
+msgid ""
+"Your column configuration is not compatible with quarters. Avoid using these "
+"in your template designs, or reconfigure options."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:708
+#: ..//wf-includes/wf-display-functions.php:787
 msgid "Small: "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:812
+#: ..//wf-includes/wf-display-functions.php:891
 msgid "Powered by "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:812
+#: ..//wf-includes/wf-display-functions.php:891
 msgid "WordPress"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:814
+#: ..//wf-includes/wf-display-functions.php:893
 msgid "Built with "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:814
+#: ..//wf-includes/wf-display-functions.php:893
 msgid "Wonderflux WordPress theme framework"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:814
+#: ..//wf-includes/wf-display-functions.php:893
 msgid "Wonderflux Framework"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1089
+#: ..//wf-includes/wf-display-functions.php:1186
 msgid "Recently"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1099
+#: ..//wf-includes/wf-display-functions.php:1196
 msgid "day"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1099
+#: ..//wf-includes/wf-display-functions.php:1196
 msgid "ago"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1141
+#: ..//wf-includes/wf-display-functions.php:1238
 msgid "Read about"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1212
+#: ..//wf-includes/wf-display-functions.php:1309
 msgid "Welcome"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1276
+#: ..//wf-includes/wf-display-functions.php:1373
 msgid "Edit this content"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
+#: ..//wf-includes/wf-display-functions.php:1378
 msgid "POSTS:"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
+#: ..//wf-includes/wf-display-functions.php:1378
 msgid "Create a new post"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+#: ..//wf-includes/wf-display-functions.php:1378
+#: ..//wf-includes/wf-display-functions.php:1382
 msgid "New"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
+#: ..//wf-includes/wf-display-functions.php:1378
 msgid "Edit existing posts"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1281
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
-msgid "Edit"
-msgstr ""
-
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+#: ..//wf-includes/wf-display-functions.php:1382
 msgid "PAGES:"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+#: ..//wf-includes/wf-display-functions.php:1382
 msgid "Create new page"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1285
+#: ..//wf-includes/wf-display-functions.php:1382
 msgid "Edit existing pages"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1289
+#: ..//wf-includes/wf-display-functions.php:1386
 msgid "Website admin area"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1289
+#: ..//wf-includes/wf-display-functions.php:1386
 msgid "Admin area"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1293
+#: ..//wf-includes/wf-display-functions.php:1390
 msgid "Edit website widget areas"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1293
+#: ..//wf-includes/wf-display-functions.php:1390
 msgid "Edit widgets"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1297
+#: ..//wf-includes/wf-display-functions.php:1394
 msgid "Wonderflux theme framework options"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1297
+#: ..//wf-includes/wf-display-functions.php:1394
 msgid "Theme options"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1301
+#: ..//wf-includes/wf-display-functions.php:1398
 msgid "Log out of website"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1301
+#: ..//wf-includes/wf-display-functions.php:1398
 msgid "Log out"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1354
+#: ..//wf-includes/wf-display-functions.php:1451
 msgid "Read"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1446
+#: ..//wf-includes/wf-display-functions.php:1543
 msgid "Login"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1447
+#: ..//wf-includes/wf-display-functions.php:1544
 msgid "Login to site"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1448
+#: ..//wf-includes/wf-display-functions.php:1545
 msgid "Logout"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1449
+#: ..//wf-includes/wf-display-functions.php:1546
 msgid "Logout of site"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1643
+#: ..//wf-includes/wf-display-functions.php:1744
 msgid "Page "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-display-functions.php:1644
+#: ..//wf-includes/wf-display-functions.php:1745
 msgid " of "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-theme-core.php:69
+#: ..//wf-includes/wf-theme-core.php:69
 msgid "Widget area "
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/wf-theme-core.php:70
+#: ..//wf-includes/wf-theme-core.php:70
 msgid "Drag widgets into here to include them in your site."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-advanced.php:6
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-advanced.php:10
+#: ..//wf-includes/admin-pages/wf-page-advanced.php:6
+#: ..//wf-includes/admin-pages/wf-page-advanced.php:10
 msgid "Save all settings"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:10
+#: ..//wf-includes/admin-pages/wf-page-core.php:8
 msgid "Current Wonderflux Child Theme"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:13
-msgid "Current theme preview"
-msgstr ""
-
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:17
+#: ..//wf-includes/admin-pages/wf-page-core.php:17
 #, php-format
 msgid "%1$s %2$s by %3$s"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:19
+#: ..//wf-includes/admin-pages/wf-page-core.php:19
 msgid "The theme files are located in"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:24
+#: ..//wf-includes/admin-pages/wf-page-core.php:29
 msgid "display functions"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-core.php:25
-msgid "COMING SOON - Theme designers will be able to enable options to control theme scripts functionality."
+#: ..//wf-includes/admin-pages/wf-page-core.php:30
+msgid ""
+"COMING SOON - Theme designers will be able to enable options to control "
+"theme scripts functionality."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:3
+#: ..//wf-includes/admin-pages/wf-page-style.php:3
 msgid "Column size configuration"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:6
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:30
+#: ..//wf-includes/admin-pages/wf-page-style.php:6
+#: ..//wf-includes/admin-pages/wf-page-style.php:30
 msgid "Save Template settings"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:15
-msgid "DEBUG: VALID COMBINATIONS"
+#: ..//wf-includes/admin-pages/wf-page-style.php:15
+msgid "IMPORTANT: VALID COMBINATIONS"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:16
-msgid "Currently there is no validation on combinations of numbers, so it is possible to get fractional widths."
+#: ..//wf-includes/admin-pages/wf-page-style.php:16
+msgid ""
+"It is currently possible to get fractional widths, or layout sizes that do "
+"not work correctly."
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:17
-msgid "For testing purposes, try out the following valid combinations - these all add up correctly:"
+#: ..//wf-includes/admin-pages/wf-page-style.php:17
+msgid "Try out the following common valid combinations:"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:19
-msgid "width=960 x cols=16 x colwidth=45"
+#: ..//wf-includes/admin-pages/wf-page-style.php:19
+msgid ""
+"width=960 x columns=16 x column width=45 (valid suggested relative sizes: "
+"full, half, quarter, eigth)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:20
-msgid "width=960 x cols=36 x colwidth=15"
+#: ..//wf-includes/admin-pages/wf-page-style.php:20
+msgid ""
+"width=960 x columns=36 x column width=15 (valid suggested relative sizes: "
+"full, half, third, quarter, sixth, ninth, twelveth)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:21
-msgid "width=950 x cols=20 x colwidth=38"
+#: ..//wf-includes/admin-pages/wf-page-style.php:21
+msgid ""
+"width=950 x columns=20 x column width=38 (valid suggested relative sizes: "
+"full, half, third, quarter, fifth, tenth)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:22
-msgid "width=950 x cols=24 x colwidth=30"
+#: ..//wf-includes/admin-pages/wf-page-style.php:22
+msgid ""
+"width=950 x columns=24 x column width=30 (valid suggested relative sizes: "
+"full, half, third, quarter, sixth, eighth, twelveth)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:23
-msgid "width=950 x cols=48 x colwidth=10"
+#: ..//wf-includes/admin-pages/wf-page-style.php:23
+msgid ""
+"width=950 x columns=48 x column width=10 (valid suggested relative sizes: "
+"full, half, third, quarter, sixth, eighth, twelveth)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:24
-msgid "width=760 x cols=24 x colwidth=24"
+#: ..//wf-includes/admin-pages/wf-page-style.php:24
+msgid ""
+"width=760 x columns=24 x column width=24 (valid suggested relative sizes: "
+"full, half, third, quarter, sixth, eighth, twelveth)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-style.php:25
-msgid "width=760 x cols=20 x colwidth=19"
+#: ..//wf-includes/admin-pages/wf-page-style.php:25
+msgid ""
+"width=760 x columns=20 x column width=19 (valid suggested relative sizes: "
+"full, half, third, quarter, fifth, tenth)"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:5
+#: ..//wf-includes/admin-pages/wf-page-system.php:5
 msgid "Server technical information"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:6
+#: ..//wf-includes/admin-pages/wf-page-system.php:6
 #, php-format
 msgid "PHP version installed: %s"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:7
+#: ..//wf-includes/admin-pages/wf-page-system.php:7
 #, php-format
 msgid "MySQL version installed: %s"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:9
+#: ..//wf-includes/admin-pages/wf-page-system.php:9
 msgid "Wonderflux technical information"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:10
+#: ..//wf-includes/admin-pages/wf-page-system.php:10
 #, php-format
-msgid "Wonderflux version: %1$s, requires at-least WordPress v%2$s, optimised for WordPress v%3$s"
+msgid ""
+"Wonderflux version: %1$s, requires at-least WordPress v%2$s, optimised for "
+"WordPress v%3$s"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:11
+#: ..//wf-includes/admin-pages/wf-page-system.php:11
 #, php-format
 msgid "Wonderflux server path: %s"
 msgstr ""
 
-#: /Volumes/Mac
-#: Data/webserver/wonderflux-beta/wp-content/themes/wonderflux//wf-includes/admin-pages/wf-page-system.php:12
+#: ..//wf-includes/admin-pages/wf-page-system.php:12
 #, php-format
 msgid "Wonderflux URL path: %s"
 msgstr ""
-

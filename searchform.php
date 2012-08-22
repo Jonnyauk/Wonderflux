@@ -8,10 +8,10 @@
  * @package Wonderflux
  */
 ?>
-<form action="<?php echo home_url(); ?>/" method="get" accept-charset="utf-8">
+<form id="searchform" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="get">
   <fieldset>
-    <label for="search">Search site</label>
-    <input type="text" name="s" id="search" value="<?php the_search_query(); ?>" />
-    <input type="submit" id="searchsubmit" value="Search" />
+    <label for="search"><?php esc_attr_e( 'Search', 'wonderflux' ); ?></label>
+    <input type="text" name="s" class="field" id="search" value="<?php the_search_query(); ?>" />
+    <input type="submit" name="submit" id="searchsubmit" value="<?php esc_attr_e( 'Search', 'wonderflux' ); ?>" />
   </fieldset>
 </form>

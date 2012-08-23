@@ -1,5 +1,5 @@
 <?php
-load_template(TEMPLATEPATH . '/wf-config.php');
+load_template(get_template_directory() . '/wf-config.php');
 load_template(WF_INCLUDES_DIR . '/wf-version.php');
 load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
 load_template(WF_INCLUDES_DIR . '/wf-data-management.php');

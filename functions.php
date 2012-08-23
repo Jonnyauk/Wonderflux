@@ -55,7 +55,7 @@
  */
 
 // Start your engine
-load_template(TEMPLATEPATH . '/wf-includes/wf-engine.php');
+load_template(get_template_directory() . '/wf-includes/wf-engine.php');
 
 //  1  //////////// Add actions to hooks and create Wonderflux
 

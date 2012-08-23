@@ -6,7 +6,7 @@
  * @since Wonderflux 0.1
  */
 
-if (!defined('WF_MAIN_DIR')) { define( 'WF_MAIN_DIR', TEMPLATEPATH ); }
+if (!defined('WF_MAIN_DIR')) { define( 'WF_MAIN_DIR', get_template_directory() ); }
 if (!defined('WF_MAIN_URL')) { define( 'WF_MAIN_URL', get_template_directory_uri()); }
 
 if (!defined('WF_CONTENT_DIR')) { define( 'WF_CONTENT_DIR', WF_MAIN_DIR . '/wf-content'); }

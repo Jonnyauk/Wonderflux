@@ -2,7 +2,7 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 0.931
+* @updated 1.0RC4
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {
@@ -264,20 +264,15 @@ class wflux_display_code extends wflux_data {
 	* Inserts main theme CSS
 	*
 	* @since 0.72
-	* @updated 0.93
+	* @updated 1.0RC4
 	*/
 	function wf_head_css_theme() {
-		$path = WF_THEME_URL.'/style.css';
-		$version = $this->wfx_mytheme_version;
-		$id = 'main-theme';
-		$media = 'screen, projection';
-
 		// Allow filtering
-		$path = apply_filters( 'wflux_css_theme_path', $path );
-		$id = apply_filters( 'wflux_css_theme_id', $id );
-		$media = apply_filters( 'wflux_css_theme_media', $media );
+		$id = apply_filters( 'wflux_css_theme_id', 'main-theme' );
+		$path = apply_filters( 'wflux_css_theme_path', WF_THEME_URL.'/style.css' );
+		$media = apply_filters( 'wflux_css_theme_media', 'screen, projection' );
 
-		wp_register_style( $id, $path,'', $version, $media );
+		wp_register_style( $id, $path, '', $this->wfx_mytheme_version_clean, $media );
 		wp_enqueue_style( $id );
 	}
 
@@ -312,7 +307,7 @@ class wflux_display_code extends wflux_data {
 	function wf_head_css_replace() {
 		$path = WF_THEME_URL.'/style-framework.css';
 		$path_ie = WF_THEME_URL.'/style-framework-ie.css';
-		$version = $this->wfx_mytheme_version;
+		$version = $this->wfx_mytheme_version_clean;
 		$id = 'framework';
 		$id_ie = 'framework-ie';
 		$media = 'screen, projection';

@@ -316,7 +316,7 @@ if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_
 
 /**
 * @since 0.72
-* @updated 0.913
+* @updated 1.0RC4
 * Inserts the core theme CSS
 */
 if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_head_css_theme($args) { global $wfx; $wfx->head_css_theme($args); } endif;

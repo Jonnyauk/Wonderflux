@@ -193,9 +193,8 @@ class wflux_data {
 		//// THEME INFORMATION ////
 
 		// Backpat - depreciated function get_theme() and get_current_theme() in WordPress 3.4
-		$this->wfx_wp_info = ( WF_WORDPRESS_VERSION < 3.4 ) ? get_theme( get_current_theme() ) : wp_get_theme(wp_get_theme()->Name);
-
-		$this->wfx_mytheme_version = $this->wfx_wp_info['Version'];
+		$this->wfx_mytheme_version = ( WF_WORDPRESS_VERSION < 3.4 ) ? current_theme_info()->version : wp_get_theme()->version;
+		$this->wfx_mytheme_version_clean = ( is_numeric($this->wfx_mytheme_version) ) ? $this->wfx_mytheme_version : urlencode( sanitize_title_with_dashes($this->wfx_mytheme_version) );
 
 	}
 

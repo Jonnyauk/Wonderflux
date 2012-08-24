@@ -1,11 +1,12 @@
 # This file is distributed under the same license as the Wonderflux theme framework - please refer to readme.txt
-# Translated strings upto revision 210
+# Translated strings upto revision 214
 msgid ""
 msgstr ""
 "Project-Id-Version: Wonderflux\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-22 16:53-0000\n"
-"PO-Revision-Date: 2012-08-22 16:54-0000\n"
+"Report-Msgid-Bugs-To: http://code.google.com/p/wonderflux-framework/issues/"
+"list\n"
+"POT-Creation-Date: 2012-08-24 09:03-0000\n"
+"PO-Revision-Date: 2012-08-24 09:03-0000\n"
 "Last-Translator: Jonny Allbut <jonny@wonderflux.com>\n"
 "Language-Team: Wonderflux Development Team <devteam@wonderflux.com>\n"
 "MIME-Version: 1.0\n"
@@ -46,19 +47,19 @@ msgstr ""
 msgid "Your comment"
 msgstr ""
 
-#: ..//functions.php:675
+#: ..//functions.php:684
 msgid "Above sidebar"
 msgstr ""
 
-#: ..//functions.php:676
+#: ..//functions.php:685
 msgid "Drag widgets into here to include them above the sidebar on your site."
 msgstr ""
 
-#: ..//functions.php:681
+#: ..//functions.php:690
 msgid "Below sidebar"
 msgstr ""
 
-#: ..//functions.php:682
+#: ..//functions.php:691
 msgid "Drag widgets into here to include them below the sidebar on your site."
 msgstr ""
 
@@ -1332,10 +1333,10 @@ msgid "Wonderflux Style Lab"
 msgstr ""
 
 #: ..//wf-includes/wf-admin-functions.php:35
-#: ..//wf-includes/wf-helper-functions.php:589
-#: ..//wf-includes/wf-helper-functions.php:591
-#: ..//wf-includes/wf-helper-functions.php:602
-#: ..//wf-includes/wf-helper-functions.php:604
+#: ..//wf-includes/wf-helper-functions.php:592
+#: ..//wf-includes/wf-helper-functions.php:594
+#: ..//wf-includes/wf-helper-functions.php:605
+#: ..//wf-includes/wf-helper-functions.php:607
 msgid "Style Lab"
 msgstr ""
 
@@ -1704,6 +1705,274 @@ msgstr ""
 msgid " (documented so far!)"
 msgstr ""
 
+#: ..//wf-includes/wf-admin-functions.php:448
+msgid "Full"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:449
+msgid "Half"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:450
+msgid "1 Third"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:451
+msgid "- 2 Thirds"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:452
+msgid "1 Quarter"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:453
+msgid "- 2 Quarters"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:454
+msgid "- 3 Quarters"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:455
+msgid "1 Fifth"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:456
+msgid "- 2 Fifths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:457
+msgid "- 3 Fifths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:458
+msgid "- 4 Fifths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:459
+msgid "1 Sixth"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:460
+msgid "- 2 Sixths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:461
+msgid "- 3 Sixths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:462
+msgid "- 4 Sixths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:463
+msgid "- 5 Sixths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:464
+msgid "1 Seventh"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:465
+msgid "- 2 Sevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:466
+msgid "- 3 Sevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:467
+msgid "- 4 Sevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:468
+msgid "- 5 Sevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:469
+msgid "- 6 Sevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:470
+msgid "1 Eigth"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:471
+msgid "- 2 Eigths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:472
+msgid "- 3 Eigths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:473
+msgid "- 4 Eigths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:474
+msgid "- 5 Eigths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:475
+msgid "- 6 Eigths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:476
+msgid "- 7 Eigths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:477
+msgid "1 Ninth"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:478
+msgid "- 2 Ninths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:479
+msgid "- 3 Ninths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:480
+msgid "- 4 Ninths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:481
+msgid "- 5 Ninths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:482
+msgid "- 6 Ninths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:483
+msgid "- 7 Ninths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:484
+msgid "- 8 Ninths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:485
+msgid "1 Tenth"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:486
+msgid "- 2 Tenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:487
+msgid "- 3 Tenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:488
+msgid "- 4 Tenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:489
+msgid "- 5 Tenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:490
+msgid "- 6 Tenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:491
+msgid "- 7 Tenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:492
+msgid "- 8 Tenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:493
+msgid "- 9 Tenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:494
+msgid "1 Eleventh"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:495
+msgid "- 2 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:496
+msgid "- 3 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:497
+msgid "- 4 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:498
+msgid "- 5 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:499
+msgid "- 6 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:500
+msgid "- 7 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:501
+msgid "- 8 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:502
+msgid "- 9 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:503
+msgid "- 10 Elevenths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:504
+msgid "1 Twelveth"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:505
+msgid "- 2 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:506
+msgid "- 3 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:507
+msgid "- 4 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:508
+msgid "- 5 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:509
+msgid "- 6 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:510
+msgid "- 7 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:511
+msgid "- 8 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:512
+msgid "- 9 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:513
+msgid "- 10 Twelveths"
+msgstr ""
+
+#: ..//wf-includes/wf-admin-functions.php:514
+msgid "- 11 Twelveths"
+msgstr ""
+
 #: ..//wf-includes/wf-admin-functions.php:572
 msgid ""
 "Use these controls to setup the main dimensions of your theme design. "
@@ -1929,8 +2198,8 @@ msgid "Edit comment"
 msgstr ""
 
 #: ..//wf-includes/wf-buddypress.php:152
-#: ..//wf-includes/wf-display-functions.php:1378
-#: ..//wf-includes/wf-display-functions.php:1382
+#: ..//wf-includes/wf-display-functions.php:1373
+#: ..//wf-includes/wf-display-functions.php:1377
 msgid "Edit"
 msgstr ""
 
@@ -1952,209 +2221,209 @@ msgstr ""
 msgid "Search results for  %1$s from %2$s"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:434
+#: ..//wf-includes/wf-display-functions.php:429
 #, php-format
 msgid "%1$s queries in %2$s seconds"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:447
+#: ..//wf-includes/wf-display-functions.php:442
 msgid "Powered by WordPress and the Wonderflux theme framework"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:741
+#: ..//wf-includes/wf-display-functions.php:736
 msgid "WONDERFLUX LAYOUT DESIGN HELPER"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:743
+#: ..//wf-includes/wf-display-functions.php:738
 msgid "Full width: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:745
+#: ..//wf-includes/wf-display-functions.php:740
 msgid "Columns: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:747
+#: ..//wf-includes/wf-display-functions.php:742
 msgid "Single column: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:749
+#: ..//wf-includes/wf-display-functions.php:744
 msgid "Half: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:757
+#: ..//wf-includes/wf-display-functions.php:752
 msgid "Third: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:759
+#: ..//wf-includes/wf-display-functions.php:754
 msgid "Two Third: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:764
+#: ..//wf-includes/wf-display-functions.php:759
 msgid ""
 "Your column configuration is not compatible with thirds. Avoid using these "
 "in your template designs, or reconfigure options."
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:772
+#: ..//wf-includes/wf-display-functions.php:767
 msgid "Quarter: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:774
+#: ..//wf-includes/wf-display-functions.php:769
 msgid "Two Quarters: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:776
+#: ..//wf-includes/wf-display-functions.php:771
 msgid "Three Quarters: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:781
+#: ..//wf-includes/wf-display-functions.php:776
 msgid ""
 "Your column configuration is not compatible with quarters. Avoid using these "
 "in your template designs, or reconfigure options."
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:787
+#: ..//wf-includes/wf-display-functions.php:782
 msgid "Small: "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:891
+#: ..//wf-includes/wf-display-functions.php:886
 msgid "Powered by "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:891
+#: ..//wf-includes/wf-display-functions.php:886
 msgid "WordPress"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:893
+#: ..//wf-includes/wf-display-functions.php:888
 msgid "Built with "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:893
+#: ..//wf-includes/wf-display-functions.php:888
 msgid "Wonderflux WordPress theme framework"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:893
+#: ..//wf-includes/wf-display-functions.php:888
 msgid "Wonderflux Framework"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1186
+#: ..//wf-includes/wf-display-functions.php:1181
 msgid "Recently"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1196
+#: ..//wf-includes/wf-display-functions.php:1191
 msgid "day"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1196
+#: ..//wf-includes/wf-display-functions.php:1191
 msgid "ago"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1238
+#: ..//wf-includes/wf-display-functions.php:1233
 msgid "Read about"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1309
+#: ..//wf-includes/wf-display-functions.php:1304
 msgid "Welcome"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1373
+#: ..//wf-includes/wf-display-functions.php:1368
 msgid "Edit this content"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1378
+#: ..//wf-includes/wf-display-functions.php:1373
 msgid "POSTS:"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1378
+#: ..//wf-includes/wf-display-functions.php:1373
 msgid "Create a new post"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1378
-#: ..//wf-includes/wf-display-functions.php:1382
+#: ..//wf-includes/wf-display-functions.php:1373
+#: ..//wf-includes/wf-display-functions.php:1377
 msgid "New"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1378
+#: ..//wf-includes/wf-display-functions.php:1373
 msgid "Edit existing posts"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1382
+#: ..//wf-includes/wf-display-functions.php:1377
 msgid "PAGES:"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1382
+#: ..//wf-includes/wf-display-functions.php:1377
 msgid "Create new page"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1382
+#: ..//wf-includes/wf-display-functions.php:1377
 msgid "Edit existing pages"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1386
+#: ..//wf-includes/wf-display-functions.php:1381
 msgid "Website admin area"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1386
+#: ..//wf-includes/wf-display-functions.php:1381
 msgid "Admin area"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1390
+#: ..//wf-includes/wf-display-functions.php:1385
 msgid "Edit website widget areas"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1390
+#: ..//wf-includes/wf-display-functions.php:1385
 msgid "Edit widgets"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1394
+#: ..//wf-includes/wf-display-functions.php:1389
 msgid "Wonderflux theme framework options"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1394
+#: ..//wf-includes/wf-display-functions.php:1389
 msgid "Theme options"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1398
+#: ..//wf-includes/wf-display-functions.php:1393
 msgid "Log out of website"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1398
+#: ..//wf-includes/wf-display-functions.php:1393
 msgid "Log out"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1451
+#: ..//wf-includes/wf-display-functions.php:1446
 msgid "Read"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1543
+#: ..//wf-includes/wf-display-functions.php:1538
 msgid "Login"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1544
+#: ..//wf-includes/wf-display-functions.php:1539
 msgid "Login to site"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1545
+#: ..//wf-includes/wf-display-functions.php:1540
 msgid "Logout"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1546
+#: ..//wf-includes/wf-display-functions.php:1541
 msgid "Logout of site"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1744
+#: ..//wf-includes/wf-display-functions.php:1739
 msgid "Page "
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1745
+#: ..//wf-includes/wf-display-functions.php:1740
 msgid " of "
 msgstr ""
 
-#: ..//wf-includes/wf-theme-core.php:69
+#: ..//wf-includes/wf-theme-core.php:79
 msgid "Widget area "
 msgstr ""
 
-#: ..//wf-includes/wf-theme-core.php:70
+#: ..//wf-includes/wf-theme-core.php:80
 msgid "Drag widgets into here to include them in your site."
 msgstr ""
 

@@ -596,7 +596,7 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 0.931
 * IMPORTANT Sets up widgets
 */
 if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global $wfx_theme; $wfx_theme->widgets($args); } endif;

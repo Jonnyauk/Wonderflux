@@ -1,12 +1,12 @@
 # This file is distributed under the same license as the Wonderflux theme framework - please refer to readme.txt
-# Translated strings upto revision 214
+# Translated strings upto revision 215
 msgid ""
 msgstr ""
 "Project-Id-Version: Wonderflux\n"
 "Report-Msgid-Bugs-To: http://code.google.com/p/wonderflux-framework/issues/"
 "list\n"
-"POT-Creation-Date: 2012-08-24 09:03-0000\n"
-"PO-Revision-Date: 2012-08-24 09:03-0000\n"
+"POT-Creation-Date: 2012-08-24 10:16-0000\n"
+"PO-Revision-Date: 2012-08-24 10:16-0000\n"
 "Last-Translator: Jonny Allbut <jonny@wonderflux.com>\n"
 "Language-Team: Wonderflux Development Team <devteam@wonderflux.com>\n"
 "MIME-Version: 1.0\n"
@@ -47,19 +47,19 @@ msgstr ""
 msgid "Your comment"
 msgstr ""
 
-#: ..//functions.php:684
+#: ..//functions.php:675
 msgid "Above sidebar"
 msgstr ""
 
-#: ..//functions.php:685
+#: ..//functions.php:676
 msgid "Drag widgets into here to include them above the sidebar on your site."
 msgstr ""
 
-#: ..//functions.php:690
+#: ..//functions.php:681
 msgid "Below sidebar"
 msgstr ""
 
-#: ..//functions.php:691
+#: ..//functions.php:682
 msgid "Drag widgets into here to include them below the sidebar on your site."
 msgstr ""
 
@@ -1333,10 +1333,10 @@ msgid "Wonderflux Style Lab"
 msgstr ""
 
 #: ..//wf-includes/wf-admin-functions.php:35
-#: ..//wf-includes/wf-helper-functions.php:592
-#: ..//wf-includes/wf-helper-functions.php:594
-#: ..//wf-includes/wf-helper-functions.php:605
-#: ..//wf-includes/wf-helper-functions.php:607
+#: ..//wf-includes/wf-helper-functions.php:588
+#: ..//wf-includes/wf-helper-functions.php:590
+#: ..//wf-includes/wf-helper-functions.php:601
+#: ..//wf-includes/wf-helper-functions.php:603
 msgid "Style Lab"
 msgstr ""
 
@@ -2306,6 +2306,22 @@ msgstr ""
 msgid "Wonderflux Framework"
 msgstr ""
 
+#: ..//wf-includes/wf-display-functions.php:1059
+msgid "Sorry, no tweets available."
+msgstr ""
+
+#: ..//wf-includes/wf-display-functions.php:1138
+msgid "Tweet from "
+msgstr ""
+
+#: ..//wf-includes/wf-display-functions.php:1138
+msgid " Twitter user"
+msgstr ""
+
+#: ..//wf-includes/wf-display-functions.php:1138
+msgid "Tweet from @"
+msgstr ""
+
 #: ..//wf-includes/wf-display-functions.php:1181
 msgid "Recently"
 msgstr ""
@@ -2419,11 +2435,19 @@ msgstr ""
 msgid " of "
 msgstr ""
 
-#: ..//wf-includes/wf-theme-core.php:79
+#: ..//wf-includes/wf-display-functions.php:1850
+msgid "cached-part-start"
+msgstr ""
+
+#: ..//wf-includes/wf-display-functions.php:1851
+msgid "cached-part-end"
+msgstr ""
+
+#: ..//wf-includes/wf-theme-core.php:69
 msgid "Widget area "
 msgstr ""
 
-#: ..//wf-includes/wf-theme-core.php:80
+#: ..//wf-includes/wf-theme-core.php:70
 msgid "Drag widgets into here to include them in your site."
 msgstr ""
 

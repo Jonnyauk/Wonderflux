@@ -928,7 +928,7 @@ class wflux_display extends wflux_display_css {
 
 /**
 * @since 0.85
-* @updated 1.0
+* @updated 1.0RC4
 * Extra core display functions for theme designers
 */
 class wflux_display_extras {
@@ -1031,7 +1031,7 @@ class wflux_display_extras {
 	 * TODO: Probably need to convert this to using Twitter API to get users avatar as not present in old school RSS feed and it's the right thing to do!
 	 *
 	 * @since 0.85
-	 * @updated 0.92
+	 * @updated 1.0RC4
 	 */
 	function wf_twitter_feed($args) {
 
@@ -1056,7 +1056,7 @@ class wflux_display_extras {
 			'tweet_div' => 'Y',
 			'tweet_div_class' => 'twitter-stream-single',
 			'tweet_count_class' => 'tweet-num',
-			'fail' => 'Sorry, no tweets available.'
+			'fail' => __('Sorry, no tweets available.', 'wonderflux')
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1135,7 +1135,7 @@ class wflux_display_extras {
 
 				// Show Avatar
 				echo '<div class="'.esc_attr($avatar_div_class).'">';
-				echo '<img src="'.esc_url($avatar_img).'" alt="Tweet from '.esc_attr($author_detail).' Twitter user" title="Tweet from @'.esc_attr($author_detail).' Twitter user" width="'.$avatar_size.'" height="'.$avatar_size.'" class="'.esc_attr($avatar_img_class).'" />';
+				echo '<img src="'.esc_url($avatar_img).'" alt="'.esc_attr__('Tweet from ', 'wonderflux').esc_attr($author_detail).esc_attr__(' Twitter user', 'wonderflux').'" title="'.esc_attr__('Tweet from @', 'wonderflux').esc_attr($author_detail).esc_attr__(' Twitter user', 'wonderflux').'" width="'.$avatar_size.'" height="'.$avatar_size.'" class="'.esc_attr($avatar_img_class).'" />';
 				echo '</div>';
 			}
 
@@ -1178,7 +1178,7 @@ class wflux_display_extras {
 					$fulldays = floor($timediff/(60*60*24));
 
 					if ($fulldays == '0') {
-						echo esc_attr($seperator) . '<span class="' . esc_attr($date_class) . '">' . esc_attr__('Recently', 'Wonderflux') . '</span>';
+						echo esc_attr($seperator) . '<span class="' . esc_attr($date_class) . '">' . esc_attr__('Recently', 'wonderflux') . '</span>';
 					} else {
 						// Sort out formatting
 						if ($fulldays == '1') {
@@ -1188,7 +1188,7 @@ class wflux_display_extras {
 							$dayappend = 's';
 						}
 						//TODO: Internationalisation for day/days (single/plural)
-						echo esc_attr($seperator) . '<span class="' . esc_attr($date_class) . '">' . $fulldays . ' ' . esc_attr__('day', 'Wonderflux') . $dayappend . ' ' . esc_attr__('ago', 'Wonderflux') . '</span>';
+						echo esc_attr($seperator) . '<span class="' . esc_attr($date_class) . '">' . $fulldays . ' ' . esc_attr__('day', 'wonderflux') . $dayappend . ' ' . esc_attr__('ago', 'wonderflux') . '</span>';
 					}
 
 					} else {
@@ -1230,7 +1230,7 @@ class wflux_display_extras {
 	function wf_perma_img($args) {
 
 		$defaults = array (
-			'intro' =>  esc_attr__('Read about', 'Wonderflux'),
+			'intro' =>  __('Read about', 'wonderflux'),
 			'title' => 'Y',
 			'seperator' => ' - ',
 			'class' => 'button-more',
@@ -1252,7 +1252,7 @@ class wflux_display_extras {
 		if (!is_numeric($width)) { $width = 150; } // Checking if a number is light weight
 		if (!is_numeric($height)) { $height = 30; } // Checking if a number is light weight
 
-		$output = '<a href="' . get_permalink() . '" title="' . $intro . '">';
+		$output = '<a href="' . get_permalink() . '" title="' . esc_attr($intro) . '">';
 		$output .= '<img class="';
 		$output .= esc_attr($class);
 		$output .= '" src="';
@@ -1301,7 +1301,7 @@ class wflux_display_extras {
 	function wf_edit_meta($args) {
 
 		$defaults = array (
-			'userintro' => esc_attr__('Welcome', 'Wonderflux'),
+			'userintro' => __('Welcome', 'wonderflux'),
 			'username' => 'Y',
 			'intro' => 'Y',
 			'postcontrols' => 'Y',
@@ -1365,32 +1365,32 @@ class wflux_display_extras {
 			if ( $edit_do == 'Y' ) {
 				$this_post_id = ( isset($wp_query->post->ID) ) ? $wp_query->post->ID : '';
 				if ( $this_post_id !='' && current_user_can('edit_post', $this_post_id) ) {
-					$output .= $liclass. '<a href="' . wp_sanitize_redirect($this_admin) . 'post.php?action=edit&amp;post=' . $this_post_id . '" title="' . esc_attr__('Edit this content', 'Wonderflux') . '">' . esc_attr__('Edit this content', 'Wonderflux') . '</a></li>';
+					$output .= $liclass. '<a href="' . wp_sanitize_redirect($this_admin) . 'post.php?action=edit&amp;post=' . $this_post_id . '" title="' . esc_attr__('Edit this content', 'wonderflux') . '">' . esc_attr__('Edit this content', 'wonderflux') . '</a></li>';
 				}
 			}
 
 			if ( current_user_can('edit_posts') && $postcontrols == 'Y' ) {
-				$output .= $liclass . esc_attr__('POSTS:', 'Wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php" title="' . esc_attr__('Create a new post', 'Wonderflux') . '">' . esc_attr__('New', 'Wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php" title="' . esc_attr__('Edit existing posts', 'Wonderflux') . '">' . esc_attr__('Edit', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . esc_attr__('POSTS:', 'wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php" title="' . esc_attr__('Create a new post', 'wonderflux') . '">' . esc_attr__('New', 'wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php" title="' . esc_attr__('Edit existing posts', 'wonderflux') . '">' . esc_attr__('Edit', 'wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('edit_pages') && $pagecontrols == 'Y' ) {
-				$output .= $liclass . esc_attr__('PAGES:', 'Wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php?post_type=page" title="' . esc_attr__('Create new page', 'Wonderflux') . '">' . esc_attr__('New', 'Wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php?post_type=page" title="' . esc_attr__('Edit existing pages', 'Wonderflux') . '">' . esc_attr__('Edit', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . esc_attr__('PAGES:', 'wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php?post_type=page" title="' . esc_attr__('Create new page', 'wonderflux') . '">' . esc_attr__('New', 'wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php?post_type=page" title="' . esc_attr__('Edit existing pages', 'wonderflux') . '">' . esc_attr__('Edit', 'wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('publish_posts') && $adminlink == 'Y' ) {
-				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . '" title="' . esc_attr__('Website admin area', 'Wonderflux') . '">' . esc_attr__('Admin area', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . '" title="' . esc_attr__('Website admin area', 'wonderflux') . '">' . esc_attr__('Admin area', 'wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('edit_theme_options') && $widgetslink == 'Y' ) {
-				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . 'widgets.php" title="' . esc_attr__('Edit website widget areas', 'Wonderflux') . '">' . esc_attr__('Edit widgets', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . 'widgets.php" title="' . esc_attr__('Edit website widget areas', 'wonderflux') . '">' . esc_attr__('Edit widgets', 'wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('edit_theme_options') && $wfcontrols == 'Y' ) {
-				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . 'admin.php?page=wonderflux" title="Wonderflux ' . esc_attr__('Wonderflux theme framework options', 'Wonderflux') . '">' . esc_attr__('Theme options', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . 'admin.php?page=wonderflux" title="' . esc_attr__('Wonderflux theme framework options', 'wonderflux') . '">' . esc_attr__('Theme options', 'wonderflux') . '</a></li>';
 			}
 
 			if ( $logoutlink == 'Y' ) {
-				$output .= $liclass . '<a href="' . wp_logout_url( get_permalink() ) . '" title="' . esc_attr__('Log out of website', 'Wonderflux') . '">' . esc_attr__('Log out', 'Wonderflux') . '</a></li>';
+				$output .= $liclass . '<a href="' . wp_logout_url( get_permalink() ) . '" title="' . esc_attr__('Log out of website', 'wonderflux') . '">' . esc_attr__('Log out', 'wonderflux') . '</a></li>';
 			}
 
 			$output .= '</ul>';
@@ -1443,7 +1443,7 @@ class wflux_display_extras {
 			'exerptlimit' => '25',
 			'exerptend' => '...',
 			'morelink' => 'N',
-			'morelinktext' => esc_attr__('Read', 'Wonderflux'),
+			'morelinktext' => __('Read', 'wonderflux'),
 			'morelinkclass' => 'wfx-get-page-loop-more',
 			'boxclass' => 'wfx-get-page-loop',
 			'contentclass' => 'wfx-get-page-loop-content'
@@ -1535,10 +1535,10 @@ class wflux_display_extras {
 	function wf_login_logout($args) {
 
 		$defaults = array (
-			'login' => esc_attr__('Login', 'Wonderflux'),
-			'logintip' => esc_attr__('Login to site', 'Wonderflux'),
-			'logout' => esc_attr__('Logout', 'Wonderflux'),
-			'logouttip' => esc_attr__('Logout of site', 'Wonderflux'),
+			'login' => __('Login', 'wonderflux'),
+			'logintip' => __('Login to site', 'wonderflux'),
+			'logout' => __('Logout', 'wonderflux'),
+			'logouttip' => __('Logout of site', 'wonderflux'),
 			'loginredirect' => 'dashboard',
 			'logoutredirect' => 'current',
 			'wpadminbar' => 'Y'
@@ -1736,8 +1736,8 @@ class wflux_display_extras {
 
 		$defaults = array (
 			'element' => 'p',
-			'start' => esc_attr__('Page ', 'Wonderflux'),
-			'seperator' => esc_attr__(' of ', 'Wonderflux'),
+			'start' => esc_attr__('Page ', 'wonderflux'),
+			'seperator' => esc_attr__(' of ', 'wonderflux'),
 			'current_span' => 'page-counter-current',
 			'total_span' => 'page-counter-total',
 			'always_show' => 'N',
@@ -1847,8 +1847,8 @@ class wflux_display_extras {
 			'mimify' => 'Y',
 			'transient_key' => '',
 			'flushable' => 'Y',
-			'output_start' => '<!--cached-part-start-->',
-			'output_end' => '<!--cached-part-end-->'
+			'output_start' => '<!--' . __('cached-part-start', 'wonderflux') . '-->',
+			'output_end' => '<!--' . __('cached-part-end', 'wonderflux') . '-->'
 		);
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );

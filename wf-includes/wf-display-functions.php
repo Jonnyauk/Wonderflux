@@ -1235,7 +1235,7 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 0.931
+	 * @updated 1.0RC4
 	 */
 	function wf_perma_img($args) {
 
@@ -1266,7 +1266,7 @@ class wflux_display_extras {
 		$output .= '<img class="';
 		$output .= esc_attr($class);
 		$output .= '" src="';
-		$output .= dirname( get_bloginfo('stylesheet_url') );
+		$output .= WF_THEME_URL;
 		$output .= '/' . esc_attr($path) . '/';
 		$output .= esc_attr($img);
 		$output .= '" alt="';

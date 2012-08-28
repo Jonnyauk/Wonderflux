@@ -470,7 +470,7 @@ if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_co
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 1.0RC4
 * Creates an image link to the post displayed
 */
 if ( !function_exists( 'wfx_perma_img' ) ) : function wfx_perma_img($args) { global $wfx; $wfx->perma_img($args); } endif;

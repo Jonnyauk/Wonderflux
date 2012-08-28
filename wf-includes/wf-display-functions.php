@@ -461,6 +461,16 @@ class wflux_display_code extends wflux_data {
 		}
 	}
 
+	/**
+	* @since 1.0RC4
+	* @updated 1.0RC4
+	* IMPORTANT - Configures WordPress $content_width global for embeded media such as YouTube video
+	*/
+	function wf_content_width() {
+		global $content_width;
+		if ( !isset( $content_width ) ) $content_width = $this->wfx_content_size_px;
+	}
+
 }
 
 
@@ -830,7 +840,6 @@ class wflux_display_css extends wflux_display_code {
 	function wf_layout_build_sb1_no_content($args) { echo $this->wf_css('id='.$this->wfx_sidebar_1_id.'&last=y&divoutput=Y&class=sidebar-1-no-content-1'); }
 
 
-
 	/**
 	* @since 0.93
 	* @updated 0.93
@@ -845,6 +854,7 @@ class wflux_display_css extends wflux_display_code {
 	* Sets up required layout divs for main content1 WITHOUT sidebar1
 	*/
 	function wf_layout_build_content_no_sb1($args) { echo $this->wf_css('id='.$this->wfx_content_1_id.'&last=y&divoutput=Y&class=content-1-no-sidebar-1'); }
+
 
 }
 

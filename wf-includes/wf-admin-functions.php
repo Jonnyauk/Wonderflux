@@ -2,7 +2,7 @@
 
 /**
 * @since 0.3
-* @updated 0.931
+* @updated 1.0RC4
 * Admin form functions
 */
 class wflux_admin extends wflux_data {
@@ -166,31 +166,31 @@ class wflux_admin extends wflux_data {
 	/**
 	* Sets up and configures options and form fields
 	* @since 0.81
-	* @updated 0.93
+	* @updated 1.0RC4
 	*/
 	function wf_register_settings(){
 
 		register_setting('wf_settings_display', 'wonderflux_display', array($this->admin_forms, 'validate_opts_layout') );
 
 		add_settings_section('style_lab', '', array($this->admin_forms, 'wf_form_intro_main'), 'wonderflux_stylelab');
+		add_settings_section('style_lab_grid', '', array($this->admin_forms, 'wf_form_intro_grid'), 'wonderflux_stylelab_grid');
 		add_settings_section('style_lab_doc', '', array($this->admin_forms, 'wf_form_intro_doc'), 'wonderflux_stylelab_doc');
 		add_settings_section('style_lab_fb', '', array($this->admin_forms, 'wf_form_intro_fb'), 'wonderflux_stylelab_fb');
 
 		//1) Key 2) form label 3) Builder function 4)Page 5)Section
 
-		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('columns_w', esc_attr__('Width of column (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('content_s', esc_attr__('Content size (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('sidebar_s', esc_attr__('Sidebar size (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('columns_w', esc_attr__('Width of column (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('content_s', esc_attr__('Content width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_s', esc_attr__('Sidebar width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab', 'style_lab');
-
 		add_settings_field('doc_type', esc_attr__('Document type','wonderflux'), array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_lang', esc_attr__('Document language','wonderflux'), array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_charset', esc_attr__('Document character set','wonderflux'), array($this->admin_forms, 'wf_form_doc_charset'), 'wonderflux_stylelab_doc', 'style_lab_doc');
-
 		add_settings_field('fb_admins', esc_attr__('Facebook ID(s)','wonderflux'), array($this->admin_forms, 'wf_form_fb_admins'), 'wonderflux_stylelab_fb', 'style_lab_fb');
 		add_settings_field('fb_app', esc_attr__('Facebook Application ID','wonderflux'), array($this->admin_forms, 'wf_form_fb_app'), 'wonderflux_stylelab_fb', 'style_lab_fb');
 
@@ -301,7 +301,7 @@ class wflux_admin extends wflux_data {
  	/**
 	* Contextual help
 	* @since 0.92
-	* @updated 0.931
+	* @updated 1.0RC4
 	*/
 	function wf_contextual_help($contextual_help, $screen_id, $screen) {
 
@@ -309,6 +309,25 @@ class wflux_admin extends wflux_data {
 		$adv_help .= '<a href="http://wonderflux.com/guide/constant/wf_theme_framework_replace/" title="'. esc_attr__('WF_THEME_FRAMEWORK_REPLACE documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('WF_THEME_FRAMEWORK_REPLACE', 'wonderflux') . '</a>';
 		$adv_help .= esc_attr__(' - A Wonderflux theme constant that removes the core stylesheet CSS files.', 'wonderflux');
 		$adv_help .= '</p>';
+
+		$style_help = '<p>' . esc_attr('It is currently possible to set layout sizes that do not work correctly in the layout cloumn/grid settings.', 'wonderflux') . '</p>';
+		$style_help .= esc_attr('Try out the following common valid combinations:', 'wonderflux') . '</p>';
+		$style_help .= '<p>'.esc_attr('width=960 x columns=16 x column width=45', 'wonderflux');
+		$style_help .= '<br/>'.esc_attr('(valid suggested relative sizes: full, half, quarter, eigth)', 'wonderflux') . '</p>';
+
+		$style_help .= '<p>'.esc_attr('width=960 x columns=36 x column width=15', 'wonderflux');
+		$style_help .= '<br/>'.esc_attr('(valid suggested relative sizes: full, half, third, quarter, sixth, ninth, twelveth)', 'wonderflux') . '</li>';
+		$style_help .= '<p>'.esc_attr('width=950 x columns=20 x column width=38', 'wonderflux');
+		$style_help .= '<br/>'.esc_attr('(valid suggested relative sizes: full, half, third, quarter, fifth, tenth)', 'wonderflux') . '</li>';
+		$style_help .= '<p>'.esc_attr('width=950 x columns=24 x column width=30', 'wonderflux');
+		$style_help .= '<br/>'.esc_attr('(valid suggested relative sizes: full, half, third, quarter, sixth, eighth, twelveth)', 'wonderflux') . '</li>';
+		$style_help .= '<p>'.esc_attr('width=950 x columns=48 x column width=10', 'wonderflux');
+		$style_help .= '<br/>'.esc_attr('(valid suggested relative sizes: full, half, third, quarter, sixth, eighth, twelveth)', 'wonderflux') . '</li>';
+		$style_help .= '<p>'.esc_attr('width=760 x columns=24 x column width=24', 'wonderflux');
+		$style_help .= '<br/>'.esc_attr('(valid suggested relative sizes: full, half, third, quarter, sixth, eighth, twelveth)', 'wonderflux') . '</li>';
+		$style_help .= '<p>'.esc_attr('width=760 x columns=20 x column width=19', 'wonderflux');
+		$style_help .= '<br/>'.esc_attr('(valid suggested relative sizes: full, half, third, quarter, fifth, tenth)', 'wonderflux') . '</li>';
+
 
 		$generic_help = '<p>';
 		$generic_help .= '<a href="http://wonderflux.com/guide/" title="'. esc_attr__('Wonderflux documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('http://wonderflux.com/guide', 'wonderflux') . '</a>';
@@ -339,7 +358,7 @@ class wflux_admin extends wflux_data {
 
 		switch ($screen_id) {
 			case 'toplevel_page_wonderflux' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Main Options', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $style_help . $generic_help; break;
 			case 'wonderflux_page_wonderflux_system' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
 			case 'wonderflux_page_wonderflux_advanced' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
 			default : return $contextual_help;
@@ -432,6 +451,7 @@ class wflux_admin extends wflux_data {
 
 /**
 * @since 0.81
+* @updated 1.0RC4
 * Admin form functions
 */
 class wflux_admin_forms extends wflux_data {
@@ -524,6 +544,7 @@ class wflux_admin_forms extends wflux_data {
 			'doc_charset'	=> array ('UTF-8','UTF-16','ISO-2022-JP','ISO-2022-JP-2','ISO-2022-KR','ISO-8859-1','ISO-8859-10','ISO-8859-15','ISO-8859-2','ISO-8859-3','ISO-8859-4','ISO-8859-5','ISO-8859-6','ISO-8859-7','ISO-8859-8','ISO-8859-9'),
 			'container_p'	=> array ('left','middle','right'),
 			'content_s'		=> $this->size_accept,
+			'content_s_px'=> array ( 600, range(200,1200,2) ),
 			'sidebar_s'		=> $this->size_accept,
 			'sidebar_p'		=> array ('left','right'),
 			'sidebar_d'		=> array ('Y','N'),
@@ -550,7 +571,6 @@ class wflux_admin_forms extends wflux_data {
 		$db_ops = (is_array(get_option('wonderflux_display')) ) ? get_option('wonderflux_display') : array(false);
 		$new_ops = array();
 
-
 		foreach ( $this->valid as $op_type=>$values ) {
 			if ( isset($input[$op_type]) ):
 				if ( empty($values) ): $new_ops[$op_type] = wp_kses( $input[$op_type], '' );
@@ -569,19 +589,24 @@ class wflux_admin_forms extends wflux_data {
 
 	//////// STYLE LAB FORM ITEMS
 	// Section HTML, displayed before the first option
-	function wf_form_intro_main() { echo '<p>' . esc_attr__('Use these controls to setup the main dimensions of your theme design. IMPORTANT - Filtering these values in your child theme allows finer grain control (for instance, conditional on page/type of view) and will over-ride any values set here.','wonderflux') . '</p>'; }
+	function wf_form_intro_grid() {
+		echo '<h2>' . esc_attr__('CSS grid/column settings','wonderflux') . '</h2>';
+		echo '<p>' . esc_attr__('Setup the dimensions of the CSS layout columns (grid system).', 'wonderflux') . '</p>';
+	}
+	function wf_form_intro_main() {
+		echo '<h2>' . esc_attr__('Main content and sidebar settings','wonderflux') . '</h2>';
+		echo '<p>' . esc_attr__('Setup the dimensions of your main content area and sidebar.','wonderflux') . '</p>';
+	}
 
 	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p']); }
 	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->common_size); }
+	function wf_form_content_s_px() { $this->wf_form_helper_ddown_range($this->wfx_content_size_px,'content_s_px',200,1200,2); }
 	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->common_size); }
 	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N'))); }
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p']); }
 	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10); }
-
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1); }
-
-	// Doc
 	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',$this->valid['doc_type']); }
 	function wf_form_doc_lang() { $this->wf_form_helper_ddown_std($this->wfx_doc_lang,'doc_lang',$this->valid['doc_lang']); }
 	function wf_form_doc_charset() { $this->wf_form_helper_ddown_std($this->wfx_doc_charset,'doc_charset',$this->valid['doc_charset']); }
@@ -668,7 +693,7 @@ class wflux_admin_forms extends wflux_data {
 	/**
 	* Creates a text area populated with a file
 	* @since 0.93
-	* @updated 0.93
+	* @updated 1.0RC4
 	*/
 	function wf_form_helper_file_css_combine($file,$cleanup) {
 

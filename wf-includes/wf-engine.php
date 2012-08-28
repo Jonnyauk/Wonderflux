@@ -277,6 +277,7 @@ class wflux_display_all {
 	function debug_performance($args){ $this->wflux_display_code_do->wf_performance($args); }
 	function code_credit($args){ $this->wflux_display_code_do->wf_code_credit($args); }
 	function get_dimensions($args){ return $this->wflux_display_code_do->wf_get_dimensions($args); }
+	function content_width_embed(){ $this->wflux_display_code_do->wf_content_width(); }
 
 	// CSS layout functions
 	function css($args){ return $this->wflux_display_css_do->wf_css($args); }

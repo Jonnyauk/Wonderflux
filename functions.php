@@ -98,6 +98,7 @@ if ( WF_WORDPRESS_VERSION < 3.4 ) {
 
 add_action('init', 'wfx_config_language');
 add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
+add_action('get_header', 'wfx_content_width_embed', 2); // IMPORTANT Sets WordPress $content_width global for oEmbed media
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
 add_action('wf_output_start', 'wfx_display_head_open', 1);
 add_action('get_header', 'wfx_social_meta');
@@ -379,6 +380,14 @@ if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_inf
 * Returns saved site dimensions
 */
 if ( !function_exists( 'wfx_get_dimensions' ) ) : function wfx_get_dimensions($args) { global $wfx; return $wfx->get_dimensions($args); } endif;
+
+/**
+* @since 1.0RC4
+* @updated 1.0RC4
+* IMPORTANT Sets WordPress $content_width global for oEmbed media
+*/
+if ( !function_exists( 'wfx_content_width_embed' ) ) : function wfx_content_width_embed() { global $wfx; $wfx->content_width_embed(); } endif;
+
 
 
 ////  4  //////////// THEME DISPLAY

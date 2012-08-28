@@ -20,6 +20,8 @@ class wflux_data {
 	protected $wfx_content_1_id; // CSS ID of main content container div
 	protected $wfx_content_1_size_columns; // Size in columns - NOTE overrides _size variable if set
 
+	protected $wfx_content_size_px; // For core WordPress $content_width global
+
 	protected $wfx_fb_admins; // Facebook admin owners, for meta data
 	protected $wfx_fb_app; // Facebook app ID, for meta data
 
@@ -135,11 +137,23 @@ class wflux_data {
 		$this->wfx_content_1_size = apply_filters( 'wflux_content_1_size', $this->wfx_content_1_size );
 		// If filtered and in admin, just show original value saved to DB, not filtered values
 		if ( is_admin() ) {
-			if (has_filter('wflux_sidebar_1_size') ) {
+			if (has_filter('wflux_content_1_size') ) {
 				$this->wfx_content_1_size = $this->wfx_db_display['content_s'];
 			}
 		} elseif ( $this->wfx_content_1_size == false ) {
 			$this->wfx_content_1_size = 'three_quarter';
+		}
+
+		// CONTENT SIZE (PIXELS) - 200 to 2000 IMPORTANT USED BY WORDPRESS $content_width GLOBAL
+		$this->wfx_content_size_px = (isset($this->wfx_db_display['content_s_px']) ) ? $this->wfx_db_display['content_s_px'] : false;
+		$this->wfx_content_size_px = apply_filters( 'wflux_content_embed_width', $this->wfx_content_size_px );
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() ) {
+			if (has_filter('wflux_content_embed_width') ) {
+				$this->wfx_content_size_px = $this->wfx_db_display['content_s_px'];
+			}
+		} elseif ( $this->wfx_content_size_px == false ) {
+			$this->wfx_content_size_px = 600;
 		}
 
 		// CONTENT 1 CSS ID

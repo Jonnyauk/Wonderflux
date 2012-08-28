@@ -1,9 +1,10 @@
 /**
- * Wonderflux theme framework structure core
+ * Wonderflux theme framework structure CSS
  * http://wonderflux.com
  *
  * @package Wonderflux
- * @since Wonderflux 0.1
+ * @since 0.1
+ * @updated 1.0RC4
  */
 /** Positioning and styling **/
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
@@ -97,10 +98,21 @@ th,td,caption { padding: 5px; }
 tr.even td { background: #e5ecf9; }
 caption { background: #eee; }
 
-/** WordPress Specific **/
+/**** WordPress Specific ****/
+
+/** Media **/
 
 .wp-caption { font-size: 0.9em; }
 .gallery-caption { font-size: 0.9em; }
 .wp-caption-text { font-weight: bold; }
-.sticky { font-weight: bold; }
+
+/** Comments **/
+
 .bypostauthor { font-weight: bold; }
+ol.commentlist ul { list-style: none; }
+ol.commentlist p { margin-bottom: 0; }
+.comment-body { margin-bottom: 15px; }
+
+/** Posts **/
+
+.sticky { font-weight: bold; }

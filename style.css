@@ -5,7 +5,7 @@ Description: A theme design framework for professional WordPress and BuddyPress 
 Version: 1.0RC4
 Author: Team Wonderflux
 Author URI: http://wonderflux.com
-Tags: dark, light, white, black, one-column, two-columns, left-sidebar, right-sidebar, fixed-width, flexible-width, full-width-template, theme-options, buddypress, translation-ready
+Tags: dark, light, white, one-column, two-columns, left-sidebar, right-sidebar, fixed-width, flexible-width, theme-options, buddypress, translation-ready
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,9 +15,10 @@ NOTE: Wonderflux is designed to be used with child themes, you should not activa
 h2.entry-title a { text-decoration: none; }
 
 .sidebar-title { margin: 0; }
-.sidebar-box ul { margin: 0 0 25px 0; }
+.sidebar-box ul { margin: 0; }
 .sidebar-box ul li { list-style-type: none; }
-.sidebar-box ul li a { text-decoration: none;}
+.sidebar-box ul li ul { margin: 0 0 0 10px; }
+.sidebar-box a { text-decoration: none;}
 
 ul.wf-edit-meta { margin-left: 0; }
 li.wf-edit-meta-links { list-style-type: none; }

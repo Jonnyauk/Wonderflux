@@ -194,18 +194,22 @@ class wflux_theme_core {
 
 
 	/**
-	* Sets up required JQuery
+	* Inserts JQuery into your theme
 	*
-	* @param $host Where your JQuery is hosted - Default = 'wonderflux' ['wonderflux','google','microsoft','wordpress']
-	* @param $version Which version of JQuery to use (Not controllable if using core WordPress JQuery) - Default = '1.7.1' [ Various versions, use exact for CDN, '1.4','1.5','1.6','1.7' to get latest versions in Wonderflux core ]
+	* @param $host Where your JQuery is hosted - Default = 'wonderflux' ['wordpress','wonderflux','google','microsoft','jquery']
+	* @param $version Which version of JQuery to use (No effect if $host = 'wordpress') Default = '1.8.1' [ Various versions, use exact for CDN or '1.6','1.7','1.8' to get latest versions of each from Wonderflux core ]
 	* @param $location Where you want your JQuery inserted in the code - Default = 'header' ['header,'footer']
+	* @param $host Do you need https? - Default = false [true,false] NOTE: JQuery CDN doesnt support https
 	*
 	* @since 0.92
-	* @updated 1.0RC2
+	* @updated 1.0RC4
 	*/
 	function wf_js_jquery($args) {
 
-		$latest_jquery = '1.7.1';
+		$latest_jquery = '1.8.1'; // Latest version bundled in Wonderflux
+		// Backpat - WordPress 3.4 - v1.7.2, WordPress 3.3 = v1.7.1, WordPress 3.2 = v1.6.1
+		$wp_jquery = ( WF_WORDPRESS_VERSION < 3.4 ) ? ( WF_WORDPRESS_VERSION < 3.3 ) ? '1.6.1' : '1.7.1' : '1.7.2'; // WordPress bundled JQuery (just used in version string, not too important)
+		$wp_jquery_url = includes_url().'js/jquery/jquery.js'; // Core WordPress bundled JQuery URL
 
 		$defaults = array (
 			'host'		=> 'wordpress',
@@ -219,47 +223,30 @@ class wflux_theme_core {
 
 		$location = ( $location == 'footer' ) ? true : false;
 
-		// If using core its simple
 		if ( $host == 'wordpress' ):
-			// Core JQuery always wants to be in the header when called!
-			if ( $location == 'footer' ):
-				wp_deregister_script('jquery');
-				wp_register_script('jquery', home_url().'/wp-includes/js/jquery/jquery.js', false, '1.6.1', $location);
-			endif;
+			if ( $location == 'footer' )
+				wp_deregister_script('jquery'); // Core WordPress JQuery always wants to be in the header;(
+				wp_register_script('jquery', $wp_jquery_url, false, $wp_jquery, true);
 			wp_enqueue_script( 'jquery' );
 		else:
-
-			// Basic check on version
-			is_numeric($version) ? $version : $latest_jquery;
-
 			switch ( $host ) {
 				case 'wonderflux':
 					switch ($version) {
-						case '1.4'	: $version = '1.4.4'; break;
-						case '1.5'	: $version = '1.5.2'; break;
 						case '1.6'	: $version = '1.6.4'; break;
+						case '1.7' : $version = '1.7.2'; break;
+						case '1.8'	: $version = '1.8.1'; break;
 						default		: $version = $latest_jquery; break;
 					}
-					$host = WF_CONTENT_URL.'/js/jquery/' . $version . '/jquery.min.js';
+					$host = ($version == $wp_jquery) ? $wp_jquery_url : WF_CONTENT_URL.'/js/jquery/' . $version . '/jquery.min.js';
 				break;
-				case 'google':
-					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'ajax.googleapis.com/ajax/libs/jquery/'. $version .'/jquery.min.js';
-				break;
-				case 'microsoft':
-					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'ajax.aspnetcdn.com/ajax/jQuery/jquery-' . $version . '.min.js';
-				break;
-				case 'jquery':
-					$host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'code.jquery.com/jquery-' . $version . '.min.js';
-				break;
-				default:
-					$host = WF_CONTENT_URL.'/js/jquery/' . $latest_jquery . '/jquery.min.js';
-				break;
+				case 'google': $host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'ajax.googleapis.com/ajax/libs/jquery/'. $version .'/jquery.min.js'; break;
+				case 'microsoft': $host = ( $https == true ) ? 'https://' : 'http://'; $host .= 'ajax.aspnetcdn.com/ajax/jQuery/jquery-' . $version . '.min.js'; break;
+				case 'jquery': $host = 'http://code.jquery.com/jquery-' . $version . '.min.js'; break;
+				default: $host = WF_CONTENT_URL.'/js/jquery/' . $latest_jquery . '/jquery.min.js'; break;
 			}
-
 			wp_deregister_script( 'jquery' );
-			wp_register_script( 'jquery', esc_url($host), false, $version, $location );
+			wp_register_script( 'jquery', esc_url($host), false, $version, true );
 			wp_enqueue_script( 'jquery' );
-
 		endif;
 	}
 

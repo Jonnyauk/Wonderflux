@@ -324,8 +324,8 @@ if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_h
 
 /**
 * @since 0.931
-* @updated 0.931
-* Inserts opening dynamic body tag in output - adds Extra Wonderflux CSS classes
+* @updated 1.0RC4
+* Inserts opening dynamic body tag in output - adds Extra Wonderflux CSS classes and basic browser detection
 */
 if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag($args) { global $wfx; $wfx->body_tag($args); } endif;
 

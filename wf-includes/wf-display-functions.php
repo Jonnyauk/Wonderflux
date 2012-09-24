@@ -328,21 +328,43 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.931
-	* @updated 0.931
+	* @updated 1.0RC4
 	* VERY IMPORTANT!
-	* Opens <body> tag using dynamic WordPress body and sidebar/content CSS definition classes
+	*
+	* @filter wflux_body_class_browser : Filter for the browser detection CSS class output
+	* @filter wflux_body_class : Filter for ALL CSS classes output
+	*
+	* Opens and closes <body> tag using dynamic WordPress body and sidebar/content CSS definition classes
+	* Adds extra CSS classes that describe your theme layout configuration, including browser type
+	* WARNING - Browser detection is fairly basic!
+	* Add to this easily by using core WordPress filter 'body_class' or override whole function
 	*/
 	function wf_body_tag($args) {
 
-		$output = "\n";
-		$output .= '<body class="';
+		// Setup WordPress stanrdard browser detection globals - fairly basic
+		global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
+		$browser = 'browser-';
+
+		switch (TRUE){
+			case $is_lynx: $browser .= 'lynx '; break;
+			case $is_gecko: $browser .= 'gecko '; break;
+			case $is_IE: $browser .= 'ie '; break;
+			case $is_opera: $browser .= 'opera '; break;
+			case $is_NS4: $browser .= 'netscape-4 '; break;
+			case $is_iphone: $browser .= 'iphone '; break;
+			case $is_safari: $browser .= 'safari '; break;
+			case $is_chrome: $browser .= 'chrome '; break;
+			default: $browser .= 'not-defined '; break;
+		}
+
+		$output = apply_filters( 'wflux_body_class_browser', $browser );
 		$output .= join( ' ', get_body_class() );
 		$output .= ( $this->wfx_sidebar_1_display == 'Y' ) ? ' content-with-sidebar-1' : ' content-no-sidebar-1';
 		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? ' sidebar-1-left' : '';
 		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'right' ) ? ' sidebar-1-right' : '';
 		$output .= ' width-'.$this->wfx_width;
-		$output .= '">' . "\n";
-		echo $output;
+
+		echo "\n" . '<body class="' . apply_filters( 'wflux_body_class', $output ) . '">' . "\n";
 	}
 
 

@@ -1132,8 +1132,6 @@ class wflux_display_extras {
 		//if ( false === ($cached_data) ) {
 		if ( !$cached_data ) {
 
-			echo 'TEST';
-
 			// Setup URL args to query Twitter with
 			$url_args = urlencode_deep(
 				array(

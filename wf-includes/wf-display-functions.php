@@ -1038,10 +1038,29 @@ class wflux_display_extras {
 	/**
 	 * Displays a configurable user Twitter stream or Twitter @reply stream
 	 *
+	 * //TODO: Go over sanitisation and regex functionality
+	 * //TODO: Screwup when activating linked emails and urls - it all in the regexing
+	 * //TODO: Param for setting links to open in new window or not
+	 * //TODO: Build and extend $query
+	 *
 	 * @param user - The Twitter username [Wonderflux]
 	 * @param update - How often you want the Twitter stream cache to refresh in minutes [60]
 	 * @param items - Number of Tweets you wish to show [5]
-	 * @param show_name - Show the username at the start of each Tweet [N]
+	 * @param transient_key - (string) OPTIONAL Transient option name (if using multiple twitter stream display). Default is CURRENT_THEME_NAME_c_twitter (NOTE: will be trimmed to 32 characters max)
+	 * @param show_name - Show the username at the start of each Tweet [N] // TODO: Allow diferent position
+	 * @param link_name - Link username to Twitter page [N]
+	 *
+	 * @param tweet_div - Contain each tweet in it's own CSS div [Y]
+	 * @param tweet_div_class - CSS class used on individual tweet div [twitter-stream-single]
+	 * @param tweet_count_class - CSS class added to individual tweet div - appends '-INTEGER' automatically to allow more sophisticated CSS styling [tweet-num]
+	 * @param fail_message - Message shown when there is no tweets available [Sorry, no tweets available.]
+	 *
+	 * @param avatar - Show author avatar with tweet [N]
+	 * @param link_avatar - Link avatar to Twitter page
+	 * @param avatar_div_class - CSS class used on avatar containing div to allow alightment to tweet (so it can be floated left/right in theme CSS) [twitter-stream-avatar]
+	 * @param avatar_img_class - CSS class used on avatar image (so it can have extra CSS styling in theme CSS) [twitter-stream-avatar-img]
+	 * @param avatar_size - Width and height in px of avatar - always shown as square image. Don't go bigger - this is the original size available! [48]
+	 *
 	 * @param active_urls - Turn links mentioned in Tweets into hyperlinks [Y]
 	 * @param show_date - Show the date at after the Tweet [Y]
 	 * @param date_format - If 'relative' displays 'recently' if less than 24 hours or shows complete days if over 24 hours [relative]
@@ -1050,17 +1069,9 @@ class wflux_display_extras {
 	 * @param tweet_class - Tweet (and date) CSS class [twitter-stream]
 	 * @param seperator - Seperator between Tweet and date (not shown if date is hidden) [ - ]
 	 * @param date_class - CSS span class on date [twitter-stream-date]
-	 * @param replies - If set to Y ONLY shows replies (@username tweets) sent by any user on Twitter to defined 'user' [N]
-	 * @param avatar - EXPERIMENTAL ALPHA Currently only works for replies (not public stream) [N]
-	 * @param avatar_div_class - CSS class used on avatar containing div to allow alightment to tweet (so it can be floated left/right in theme CSS) [twitter-stream-avatar]
-	 * @param avatar_img_class - CSS class used on avatar image (so it can have extra CSS styling in theme CSS) [twitter-stream-avatar-img]
-	 * @param avatar_size - Width and height in px of avatar - always shown as square image. Don't go bigger - this is the original size available! [48]
-	 * @param tweet_div - Contain each tweet in it's own CSS div [Y]
-	 * @param tweet_div_class - CSS class used on individual tweet div [twitter-stream-single]
-	 * @param tweet_count_class - CSS class added to individual tweet div - appends '-INTEGER' automatically to allow more sophisticated CSS styling [tweet-num]
-	 * @param fail - Message shown when there is no tweets available [Sorry, no tweets available.]
+	 * @param replies - WARNING WILL BE DEPRECIATED - USE $query INSTEAD - query=replies
 	 *
-	 * TODO: Probably need to convert this to using Twitter API to get users avatar as not present in old school RSS feed and it's the right thing to do!
+	 * @param query - (string) DEFAULT: 'user' - Query Twitter to return different data: 'user' = Normal user timeline, 'replies' = (@$user tweets)
 	 *
 	 * @since 0.85
 	 * @updated 1.0RC4
@@ -1070,25 +1081,37 @@ class wflux_display_extras {
 		$defaults = array (
 			'user' => 'Wonderflux',
 			'update' => '60',
-			'items' => '5',
+			'items' => '3',
+			'transitent_key' => '',
 			'show_name' => 'N',
-			'active_urls' => 'Y',
-			'show_date' => 'Y',
-			'date_format' => 'relative',
-			'smileys' => 'Y',
-			'content_style' => 'p',
-			'tweet_class' => 'twitter-stream',
-			'seperator' => ' - ',
-			'date_class' => 'twitter-stream-date',
-			'replies' => 'N',
+			'link_name' => 'N',
 			'avatar' => 'N',
-			'avatar_div_class' => 'twitter-stream-avatar',
+			'link_avatar' => 'Y',
+			'avatar_div' => 'Y', /*NEW Wrap avatar in DIV*/
+			'avatar_div_class' => 'twitter-stream-avatar',  /*NEW class on avatar div*/
 			'avatar_img_class' => 'twitter-stream-avatar-img',
 			'avatar_size' => '48',
+			'avatar_https' => 'N', /*NEW Fetch avatars via https instead of http*/
+			'tweet_class' => 'twitter-stream',
 			'tweet_div' => 'Y',
 			'tweet_div_class' => 'twitter-stream-single',
 			'tweet_count_class' => 'tweet-num',
-			'fail' => __('Sorry, no tweets available.', 'wonderflux')
+			'fail' => __('Sorry, no tweets available.', 'wonderflux'),
+			'content_style' => 'p',
+			'active_urls' => 'Y',
+			'active_hashtag_urls' => 'N', /*NEW - Turn hashtags into active links */
+			'active_mention_urls' => 'N', /*NEW - Turn @username into active links */
+			'active_email_urls' => 'N', /*NEW - Turn email addresses into mailto links */
+			'active_urls_target' => 'Y', /*NEW TODO: NEED TO BUILD INTO REGEX STUFF! ALL links open in same window, set to N for new tab/window target*/
+
+			'smileys' => 'N', /*NOTE: Changed default to N - WordPress only parses smileys if there is a space before them */
+
+			'show_date' => 'Y',
+			'date_format' => 'relative',
+
+			'seperator' => ' - ',
+			'date_class' => 'twitter-stream-date',
+			'replies' => 'N', // NOT SURE BOUT THIS ONE!!
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -1096,150 +1119,177 @@ class wflux_display_extras {
 
 		// Prepare user input for output
 		$user = wp_kses_data($user);
-		if (!is_numeric($update)) { $update = 60; }
-		if (!is_numeric($items) || ($items > 25) ) { $items = 5; }
-		$content_style = wp_kses_data($content_style);
-		$avatar_div_class = wp_kses_data($avatar_div_class);
-		$avatar_img_class = wp_kses_data($avatar_div_class);
+		$update = ($update != 60 ) ? ( (!is_numeric($update) ) ? 60 : $update ) : $update;
+		$items = ($items <= 3 ) ? ( (!is_numeric($items) ) ? 3 : $items ) : $items;
 		if (!is_numeric($avatar_size)) { $avatar_size = 48; }
-		$tweet_div_class = wp_kses_data($tweet_div_class);
-		$tweet_count_class = wp_kses_data($tweet_count_class);
-		$fail = wp_kses_data($fail);
 
+		$urls_target = ($active_urls_target_same == 'Y') ? '' : ' target="_blank"';
 
-		// Get WP feed functionality
-		include_once(ABSPATH . WPINC . '/feed.php');
+		$transient_key = mb_substr( empty($transient_key) ? preg_replace('/[^a-zA-Z0-9]/','_', $user) . '_c_twitter' : $transient_key , 0, 32);
+		$cached_data = get_site_transient( $transient_key );
 
-		add_filter( 'wp_feed_cache_transient_lifetime', create_function( '$update', 'return ' . ($update*60) . ';' ) );
+		// Check cache
+		//if ( false === ($cached_data) ) {
+		if ( !$cached_data ) {
 
-		// Fetch feed
-		if ($replies == 'Y') {
-			// Get @ replies query feed
-			$rss = fetch_feed( esc_url('http://search.twitter.com/search.rss?q=@'.$user) );
-		} else {
-			// Get normal user timeline feed
-			$rss = fetch_feed( esc_url('http://twitter.com/statuses/user_timeline/'.$user.'.rss') );
+			echo 'TEST';
+
+			// Setup URL args to query Twitter with
+			$url_args = urlencode_deep(
+				array(
+					'include_entities'=> 0,
+					'include_rts'=> 0,
+					'screen_name'=>$user,
+					'count'=> ($items >= 3) ? $items+4 : $items // TODO: R&D why certain numbers above 3 get less tweets - Lets cache more to cover this
+				)
+			);
+
+			// TO DO
+			// PUT BACK IN SEARCH QUERY FOR MENTIONS
+			// feedtype - @replies or normal user timeline
+			// if ($replies == 'Y') {
+				// $query_url = 'http://search.twitter.com/search.json?q=@'.$user;
+			// } else {
+				// $query_url = 'https://api.twitter.com/1/statuses/user_timeline.json?include_entities='
+				// .'&include_rts=' . $url_args["include_rts"]
+				// .'&screen_name=' . $url_args["screen_name"]
+				// .'&count=' . $url_args["count"];
+			// }
+
+			$remote_data = wp_remote_get(
+				'https://api.twitter.com/1/statuses/user_timeline.json?include_entities='
+				.'&include_rts=' . $url_args["include_rts"]
+				.'&screen_name=' . $url_args["screen_name"]
+				.'&count=' . $url_args["count"]
+			);
+			$cached_data = ( is_wp_error($remote_data) ) ? false : json_decode( $remote_data['body'] );
+			// Convert seconds to minutes for expiry
+			set_site_transient( $transient_key, $cached_data, $update*60 );
 		}
 
-		// Catch for if the Twitter Fail Whale is around (or something else went wrong)
-		// NOTE: Extra 'fail' css class added
-		if ( is_wp_error($rss) ) {
+		// Prep elements for output
 
-			// Oops, we don't have any data
-			echo '<' . esc_attr($content_style) . ' class="' . esc_attr($tweet_class) . ' fail">' . esc_attr($fail) . '</' . esc_attr($content_style) . '>';
+		$tweet_count = 0;
+		$tweet_cache_total = count($cached_data);
+		$tweet_total = ( $items < $tweet_cache_total ) ? $items : $tweet_cache_total;
+
+		if ( empty($cached_data) ) {
+
+			echo '<' . esc_attr($content_style) . ' class="' . esc_attr($tweet_class) . ' twitter-stream-fail">' . esc_attr($fail) . '</' . esc_attr($content_style) . '>';
 
 		} else {
 
-		// How many?
-		$rss_items = $rss->get_items( 0, $rss->get_item_quantity($items) );
+		    foreach ( $cached_data as $var => $value ) {
 
-		$div_count = 0;
+				$tweet_count++;
 
-		foreach ( $rss_items as $item ) {
+				// Regardless of number cached, control display by $items param
+				if (  $tweet_count <= $items ) {
 
-			if ($tweet_div == 'Y') {
-				// Yup, start at 1 because only devs start at 0!
-				$div_count++;
-				echo '<div class="' . esc_attr($tweet_div_class) . ' ' . $tweet_count_class . '-' . $div_count . '">';
-			}
+					// SETUP COMMON DATA
+					$name_out = $cached_data[$var]->user->screen_name;
 
-			$this_update = $item->get_title();
+					// Avatar
+					$avatar_out = '';
+					if ($avatar == 'Y'){
+						$avatar_root = ( $avatar_https == 'Y' ) ? $cached_data[$var]->user->profile_image_url_https : $cached_data[$var]->user->profile_image_url;
+						$avatar_info = pathinfo($avatar_root);
 
-			// AVATAR ALPHA CODE
-			// TODO: Build this into normal tweet stream
-			// Normal stream doesn't have avatars in (great) so probably need to convert all of this to Twitter API to get at avatar?
-			if ($avatar == 'Y' && $replies == 'Y') {
+						// Crazy fool file naming from Twitter ref
+						// 48x48 _normal.jpg
+						// 128x128 _reasonably_small.jpg
 
-				// Get avatar URL
-				$enclosures = $item->get_enclosures('');
-				foreach ($enclosures as $enc) {
-					$avatar_img = $enc->link;
-				}
+						// NOTE: Filter here for Mobile/RWD - Get higher res image if you want it
+						$avatar_size_get = apply_filters( 'wflux_twitter_avatar_size', ($avatar_size <= 48) ? '_normal' : '_reasonably_small' );
+						$avatar_path_out = str_replace(array('_normal.jpg'), $avatar_size_get . '.' . $avatar_info['extension'], $avatar_root);
 
-				// Get original author username
-				$authors = $item->get_authors();
-				foreach ($authors as $author) {
-					$author_detail = $author->email;
-					$start = strpos($author_detail,"(") ;
-					$end = strpos($author_detail,")") ;
-					$author_detail = substr($author_detail,$start+1,$end-$start-1) ; // without brackets
-				}
+						// Setup link on avatar
+						$a_link_start = ($link_avatar == 'Y') ? '<a href="' . esc_url('http://twitter.com/' . $name_out) . '" title="' . sprintf( esc_attr__( 'Tweet from %s Twitter user', 'wonderflux' ), $name_out ) . '"' . $urls_target . '>' : '';
+						$a_link_end = ($link_avatar == 'Y') ? '</a>' : '';
 
-				// Show Avatar
-				echo '<div class="'.esc_attr($avatar_div_class).'">';
-				echo '<img src="'.esc_url($avatar_img).'" alt="'.esc_attr__('Tweet from ', 'wonderflux').esc_attr($author_detail).esc_attr__(' Twitter user', 'wonderflux').'" title="'.esc_attr__('Tweet from @', 'wonderflux').esc_attr($author_detail).esc_attr__(' Twitter user', 'wonderflux').'" width="'.$avatar_size.'" height="'.$avatar_size.'" class="'.esc_attr($avatar_img_class).'" />';
-				echo '</div>';
-			}
+						// Div container on image?
+						$a_div_start = ($avatar_div == 'Y') ? '<div class="'.esc_attr($avatar_div_class).'">' : '';
+						$a_div_end = ($avatar_div == 'Y') ? '</div>' : '';
 
-			if ($show_name == 'N') {
-				// Remove username from start
-				$this_update = preg_replace('/'.$user.':/', '', $this_update, 1);
-			}
+						$avatar_out =
+						$a_div_start .
+						$a_link_start .
+						'<img src="' . esc_url($avatar_path_out) . '" ' .
+						'alt="' . sprintf( esc_attr__( 'Tweet from %s', 'wonderflux' ), $name_out ) . '" ' .
+						'title="' . sprintf( esc_attr__( 'Tweet from %s', 'wonderflux' ), $name_out ) . '" ' .
+						'width="' . $avatar_size . '" height="' . $avatar_size . '" ' .
+						'class="' . esc_attr($avatar_img_class) . '"' .
+						'/>' .
+						$a_link_end .
+						$a_div_end;
+					}
 
-			if ($active_urls == 'Y') {
-				// Parse and setup link URLs
-				$this_update = preg_replace( "/(([[:alnum:]]+:\/\/)|www\.)([^[:space:]]*)"."([[:alnum:]#?\/&=])/i", "<a href=\"\\1\\3\\4\">"."\\1\\3\\4</a>", $this_update);
-			}
+					// Date
+					$date_out = '';
+					if ($show_date == 'Y') {
+						if ($date_format == 'relative') {
+							$current_time = time();
+							$rawdate = $cached_data[$var]->created_at;
+							$timestampdate = strtotime($rawdate);
+							$timediff = $current_time - $timestampdate;
+							$fulldays = floor($timediff/(60*60*24)); // rounding
 
-			// OUTPUT START OF TWEET
-			echo '<' . esc_attr($content_style) . ' class="' . esc_attr($tweet_class) . '">';
-
-			// OUTPUT TWEET
-			if ($smileys == 'Y') {
-				echo convert_smilies(ltrim($this_update));
-			} else {
-				echo ltrim($this_update);
-			}
-
-			if ($show_date == 'Y') {
-
-				if ($date_format == 'relative') {
-
-					//CURRENT TIME IN UNIX TIMESTAMP
-					$current_time = time();
-					//echo $current_time;
-
-					// Get date how it comes through
-					$rawdate = $item->get_date('');
-
-					// Format to unix timestamp
-					$timestampdate = SimplePie_Misc::parse_date($rawdate);
-					// find difference
-					$timediff = $current_time - $timestampdate;
-					// Round to days
-					$fulldays = floor($timediff/(60*60*24));
-
-					if ($fulldays == '0') {
-						echo esc_attr($seperator) . '<span class="' . esc_attr($date_class) . '">' . esc_attr__('Recently', 'wonderflux') . '</span>';
-					} else {
-						// Sort out formatting
-						if ($fulldays == '1') {
-						// Just one day, so its day not days
-							$dayappend = '';
+							if ($fulldays == '0') {
+								$date_ref = esc_attr__('Recently', 'wonderflux');
+							} else {
+								// Singular/plural
+								$date_ref = sprintf( _n( '%1$s day ago', '%1$s days ago', $fulldays, 'wonderflux' ), $fulldays );
+							}
 						} else {
-							$dayappend = 's';
+							$date_ref = $cached_data[$var]->created_at;
 						}
-						//TODO: Internationalisation for day/days (single/plural)
-						echo esc_attr($seperator) . '<span class="' . esc_attr($date_class) . '">' . $fulldays . ' ' . esc_attr__('day', 'wonderflux') . $dayappend . ' ' . esc_attr__('ago', 'wonderflux') . '</span>';
+						// Output
+						$date_out = '<span class="' . esc_attr($date_class) . '">' . esc_attr($seperator) . $date_ref . '</span>';
 					}
 
-					} else {
-						echo esc_attr($seperator) . '<span class="' . esc_attr($date_class) . '">' . $item->get_date('') . '</span>';
+					// Format message
+					$tweet_body = $cached_data[$var]->text;
+					// Build clickable URLs in tweets
+					$tweet_body = ($active_urls == 'Y') ? preg_replace( "/(([[:alnum:]]+:\/\/)|www\.)([^[:space:]]*)"."([[:alnum:]#?\/&=])/i", "<a href=\"\\1\\3\\4\">"."\\1\\3\\4</a>", $tweet_body) : $tweet_body;
+					// Build clickable hashtags in tweets
+					$tweet_body = ($active_hashtag_urls == 'Y') ? preg_replace("/#(\w+)/", "<a href=\"http://search.twitter.com/search?q=\\1\">#\\1</a>", $tweet_body) : $tweet_body;
+					// Build clickable @names in tweets
+					$tweet_body = ($active_mention_urls == 'Y') ? preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\">@\\1</a>", $tweet_body) : $tweet_body;
+					// Build clickable email addresses in tweets
+					$tweet_body = ($active_email_urls == 'N') ? preg_replace("/(\S+@\S+\.\S+)/i", "<a href='mailto:$1'>$1</a>", $tweet_body) : $tweet_body;
+					// Convert smileys
+					$tweet_body = ($smileys == 'Y') ? convert_smilies($tweet_body) : $tweet_body;
+					// Build name (with optional link)
+					if ($show_name == 'Y'){ $name_out = ($link_name == 'Y') ? '<a href="' . esc_url('http://twitter.com/' . $cached_data[$var]->user->screen_name) . '" title="' . $name_out . ' on Twitter">'.$name_out.'</a>' : $name_out; }
+					// Add in (potentially linked) name at start (restores previous display)
+					$tweet_body = ($show_name == 'Y') ? $name_out. ': '.$tweet_body : $tweet_body;
+
+					// OUTPUT
+
+					if ($tweet_div == 'Y') {
+						// Add CSS class for first/last tweets - start at 1 because only devs start at 0!
+						$tweet_count_first_last = ( $tweet_count == 1 ) ? 'twitter-stream-first' : ( ($tweet_count == $tweet_total) ? 'twitter-stream-last' : '' );
+						echo '<div class="' . esc_attr($tweet_div_class) . ' ' . $tweet_count_first_last . ' ' . $tweet_count_class . '-' . $tweet_count . '">';
 					}
+					echo '<' . esc_attr($content_style) . ' class="' . esc_attr($tweet_class) . '">' . $avatar_out . $tweet_body . $date_out . '</' . esc_attr($content_style) . '>';
+					// IMPORTANT Close individual container DIV for tweet
+					echo ($tweet_div == 'Y') ? '</div>' : '';
+
 				}
 
-				//Close off tweet
-				echo '</' . esc_attr($content_style) . '>';
+		    }
 
-				if ($tweet_div == 'Y') {
-					echo '</div>';
-				}
-
-			}
-
-		}// End foreach
+		}
 
 	}
+
+
+
+
+
+
+
+
 
 
 	/**

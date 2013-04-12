@@ -818,22 +818,6 @@ class wflux_display_css extends wflux_display_code {
 	}
 
 
-
-
-
-
-
-
-			// if (floor($this->wfx_columns/($i+1)) == $this->wfx_columns/($i+1)){
-				// if ( $type == 'relative') $this->wf_css_test_pattern_rel($i+1); else $this->wf_css_test_pattern_col($i+1);
-			// } else {
-				// $errors[] = $i+1;
-			// }
-
-
-
-
-
 	/**
 	 * @since 1.0RC4
 	 * @updated 1.0RC4
@@ -962,19 +946,6 @@ class wflux_display_css extends wflux_display_code {
 		wfx_css_close('');
 
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	/**

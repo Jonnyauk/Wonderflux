@@ -818,6 +818,165 @@ class wflux_display_css extends wflux_display_code {
 	}
 
 
+
+
+
+
+
+
+			// if (floor($this->wfx_columns/($i+1)) == $this->wfx_columns/($i+1)){
+				// if ( $type == 'relative') $this->wf_css_test_pattern_rel($i+1); else $this->wf_css_test_pattern_col($i+1);
+			// } else {
+				// $errors[] = $i+1;
+			// }
+
+
+
+
+
+	/**
+	 * @since 1.0RC4
+	 * @updated 1.0RC4
+	 * Generates a repeating patern of columns for testing the grid layout system
+	 * 
+	 * @param rows (integer) Maximum number of rows of divs you wish to output. [12]
+	 * @param type (string) Maximum number of rows of divs you wish to output. 'relative', 'columns' [relative]
+	 */
+	function wf_css_test_pattern( $args ){
+		
+		$defaults = array (
+			'rows' => $this->wfx_columns,
+			'type' => 'columns',	
+			'split' => 'single', 
+			'compatibility' => 'Y',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+		$type = ($type !='relative') ? 'columns' : $type;
+		$split = ($split !='single') ? 'relative' : $split;
+		$errors = array();
+		
+		if ( intval($rows) > 12 && $type == 'relative' ): $rows = 12;
+		elseif 
+			( intval($rows) > 101 && $type == 'columns' ): $rows = 10;
+		endif;
+
+		for( $i=0; $i<$rows; $i++ ){
+			if ( $type == 'relative') 
+				$this->wf_css_test_pattern_rel('divs='.($i+1).'&compatibility='.$compatibility.''); 
+			else 
+				$this->wf_css_test_pattern_col('divs='.($i+1).'&split='.$split.'');
+		}
+
+	}
+
+
+	/**
+	 * @since 1.0RC4
+	 * @updated 1.0RC4
+	 * Generates a repeating patern of columns for testing the grid layout system
+	 * Internal function used by wf_css_test_pattern
+	 * 
+	 * @param divs (integer) Maximum number of rows of divs you wish to output. [1]
+	 */
+	function wf_css_test_pattern_col( $args ){
+		
+		$defaults = array (
+			'divs' => $this->wfx_columns,
+			'css' => array( 'p','small','strong' ),	
+			'size' => $this->wfx_columns,
+			'split' => 'single'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+		$size = ($split == 'single') ? 1 : floor($this->wfx_columns/$divs);
+
+		wfx_css( 'size=full&class=blocksample-row' . ' blocksample-row&divoutput=Y' );
+		echo '<h2 class="flush-bottom">' . $divs . ' columns, column size: ' . $divs . '</h2>';
+
+		for( $i=0; $i<$divs; $i++ ) {
+			$last = ( $i < ($divs-1) ) ? '' : 'Y';
+			wfx_css( 'columns=' . $size . '&class=blocksample-size-'.$divs . ' blocksample' . '&last=' . $last . '&divoutput=Y' );
+			echo '<' . $css[0] . ' class="flush-bottom">' . ($i+1) . '</'.$css[0].'>';
+			echo '<' . $css[0] . ' class="flush-bottom">' . '<' . $css[1] . '>' . 'Size: ' . $size . '</'.$css[1].'>' . '</'.$css[0].'>';
+			echo '</div>';
+		}
+		
+		wfx_css_close('');
+
+	}
+
+
+	/**
+	 * @since 1.0RC4
+	 * @updated 1.0RC4
+	 * Generates a repeating patern of columns using relative sizes like 'half','quarter' for testing the grid layout system.
+	 * Internal function used by wf_css_test_pattern
+	 * 
+	 * @param divs (integer) Maximum number of rows of divs you wish to output. NOTE: Maximum 12 [1]
+	 * @param compatibility (string) Set to N to show incompatible relative sizes, ie 24 columns will not divide into 9. 'Y','N' [Y]
+	 */
+	function wf_css_test_pattern_rel( $args ){
+		
+		$defaults = array (
+			'divs' => $this->wfx_columns,
+			'css' => array( 'p','small','strong' ),
+			'compatibility' => 'Y'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+		$divs = ( intval($divs) < 13 ) ? $divs : 12;
+
+		switch ( $divs ){
+			case '1': $def = 'full'; break;
+			case '2': $def = 'half'; break;
+			case '3': $def = 'third'; break;
+			case '4': $def = 'quarter'; break;
+			case '5': $def = 'fifth'; break;
+			case '6': $def = 'sixth'; break;
+			case '7': $def = 'seventh'; break;
+			case '8': $def = 'eigth'; break;
+			case '9': $def = 'ninth'; break;
+			case '10': $def = 'tenth'; break;
+			case '11': $def = 'eleventh'; break;
+			case '12': $def = 'twelveth'; break;
+			default: $def = 'full'; break;
+		}
+		
+		
+
+		wfx_css( 'size=full&class=blocksample-row' . ' blocksample-row&divoutput=Y' );
+		echo '<h2 class="flush-bottom">' . $divs . ' columns, relative size: ' . $def . '</h2>';
+
+		for( $i=0; $i<$divs; $i++ ){
+			$last = ( $i < ($divs-1) ) ? '' : 'Y';
+			wfx_css( 'size=' . $def . '&class=blocksample-size-'.$def . ' blocksample' . '&last=' . $last . '&divoutput=Y' );
+			echo '<' . $css[0] . ' class="flush-bottom">' . ($i+1) . '</'.$css[0].'>';
+			echo '<' . $css[0] . ' class="flush-bottom">' . '<' . $css[1] . '>' . 'Size: ' . $def . '</'.$css[1].'>' . '</'.$css[0].'>';
+			echo '</div>';
+		}
+		
+		wfx_css_close('');
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	/**
 	* @since 0.93
 	* @updated 0.93

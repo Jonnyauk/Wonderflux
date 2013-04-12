@@ -374,6 +374,30 @@ if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($a
 */
 if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_info($args) { global $wfx; $wfx->css_info($args); } endif;
 
+
+
+
+
+
+
+
+
+/**
+* @since 0.51
+* @updated 0.913
+* Displays CSS info for designers as a comment in the head source code
+*/
+if ( !function_exists( 'wfx_display_test_pattern' ) ) : function wfx_display_test_pattern($args) { global $wfx; $wfx->test_pattern($args); } endif;
+
+
+
+
+
+
+
+
+
+
 /**
 * @since 0.93
 * @updated 0.93

@@ -282,6 +282,7 @@ class wflux_display_all {
 	// CSS layout functions
 	function css($args){ return $this->wflux_display_css_do->wf_css($args); }
 	function css_info($args){ $this->wflux_display_css_do->wf_css_info($args); }
+	function test_pattern($args){ $this->wflux_display_css_do->wf_css_test_pattern($args); }
 	function css_close($args){ $this->wflux_display_css_do->wf_css_close($args); }
 	function layout_build($args){ $this->wflux_display_css_do->wf_layout_build($args); }
 

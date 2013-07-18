@@ -491,7 +491,7 @@ class wflux_helper {
 	* @params return_error - (Y/N) - Do you want something returned on search (is_search) and 404 (is_404) ? - [N]
 	* @params id - (integer) - function usually returns main loop custom field, setting $id forces function to get custom field from specific post ID [false]
 	* @since 0.92
-	* @lastupdate 1.0RC3
+	* @lastupdate 1.1
 	* @return custom field value, can be used inside and outside loop
 	*/
 	function wf_custom_field($args) {
@@ -512,9 +512,11 @@ class wflux_helper {
 		$empty_clean = wp_kses_post($empty, '');
 
 		// Detect and optionally return useful value if no chance of custom field being here
-		if (is_search() && $return_error == 'N' ) {
-			return $empty_clean;
+		if (is_admin() ) {
+			// Silence is golden
 		} elseif (is_404() && $return_error == 'N' ) {
+			return $empty_clean;
+		} elseif (is_search() && $return_error == 'N' ) {
 			return $empty_clean;
 		} else {
 			// We have something to query!

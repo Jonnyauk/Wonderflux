@@ -170,8 +170,8 @@ if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { g
 
 /**
 * @since 0.92
-* @updated 1.0RC3
-* Returns custom field value
+* @updated 1.1
+* Echo (default) or return custom field value
 */
 if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args) {
 

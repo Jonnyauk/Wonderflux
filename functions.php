@@ -426,7 +426,7 @@ if ( !function_exists( 'wfx_get_sidebar' ) ) : function wfx_get_sidebar($args) {
 
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Creates dynamic CSS grid class definition
 */
 if ( !function_exists( 'wfx_css' ) ) : function wfx_css($args) {

@@ -489,7 +489,9 @@ class wflux_helper {
 	* @params $format - ('string'/'date') - What type of data is it, do you want to change this date format? - ['string']
 	* @params date_style - (string) - PHP date format - [l F j, Y]
 	* @params return_error - (Y/N) - Do you want something returned on search (is_search) and 404 (is_404) ? - [N]
+	* @params trim - (Y/N) - Trim white space characters from start and end of custom field value [N]
 	* @params id - (integer) - function usually returns main loop custom field, setting $id forces function to get custom field from specific post ID [false]
+	* 
 	* @since 0.92
 	* @lastupdate 1.1
 	* @return custom field value, can be used inside and outside loop
@@ -503,6 +505,7 @@ class wflux_helper {
 			'format' => 'string',
 			'date_style' => 'l F j, Y',
 			'return_error' => 'N',
+			'trim' => 'N',
 			'id' => false
 		);
 
@@ -519,6 +522,7 @@ class wflux_helper {
 		} elseif (is_search() && $return_error == 'N' ) {
 			return $empty_clean;
 		} else {
+
 			// We have something to query!
 			wp_reset_query();
 
@@ -535,7 +539,8 @@ class wflux_helper {
 			$output = ($value != '') ? $value : $empty_clean;
 
 			if ( $format == 'date' ) { $output = date($date_style, $output); };
-			if ($escape == 'Y') { return esc_attr($output); } else { return $output; }
+			if ( $trim == 'Y' ) { $output = trim($output); }
+			if ( $escape == 'Y' ) { return esc_attr($output); } else { return $output; }
 		}
 
 	}

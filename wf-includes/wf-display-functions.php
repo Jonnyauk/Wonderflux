@@ -498,7 +498,7 @@ class wflux_display_code extends wflux_data {
 
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Core display functions that output CSS
 */
 class wflux_display_css extends wflux_display_code {
@@ -506,7 +506,7 @@ class wflux_display_css extends wflux_display_code {
 	/**
 	*
 	* @since 0.2
-	* @updated 1.0RC4
+	* @updated 1.1
 	*
 	* Defines size conventions to use in template grid systems to avoid putting actual numbers into templates
 	* By using this function to define containers, you can dynamically resize the whole layout
@@ -533,7 +533,7 @@ class wflux_display_css extends wflux_display_code {
 			'size' => 'full',
 			'class' => '',
 			'id' => '',
-			'last' => '',
+			'last' => 'N',
 			'move' => '',
 			'divoutput' => 'N',
 			'columns' => 0
@@ -546,27 +546,14 @@ class wflux_display_css extends wflux_display_code {
 		$wf_columns = $this->wfx_columns;
 		$wf_single = $this->wfx_columns_width;
 
-		//Blank or invalid param passed so clear it
-		if (!$last || !$last == 'N') {
-			$last = '';
-		} else {
-			//Put in space
-			$last = ' last';
-		}
+		//Last class added only if == Y
+		$last = ( $last == 'Y' ) ? ' last' : '';
 
-		// Prepare extra CSS classes for display if supplied
-		if ($class !='') {
-			$class_clean = ' ' . wp_kses($class, '');
-		} else {
-			$class_clean = '';
-		}
+		// Prepare extra CSS classes string for display if supplied
+		$class_clean = ( $class !='' ) ? ' ' . wp_kses( $class, '' ) : '';
 
 		// Prepare extra CSS id for display if supplied
-		if ($id !='') {
-			$id_clean = ' id="' . wp_kses($id, '') . '"';
-		} else {
-			$id_clean = '';
-		}
+		$id_clean = ( $id !='' ) ? ' id="' . wp_kses( $id, '' ) . '"' : '';
 
 		// IMPORTANT divoutput parameter is for use in theme functions file
 		// It encloses the dynamic size class in '<div' and '>' for you

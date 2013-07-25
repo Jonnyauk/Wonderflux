@@ -128,7 +128,7 @@ remove_action('wf_hook_name','wf_function_name',postitionnumber);
 4) Use over 100 location-aware hooks.
 
 If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
-Get involved at http://wonderflux-framework.googlecode.com
+Get involved at https://github.com/Jonnyauk/Wonderflux
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 

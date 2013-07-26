@@ -480,13 +480,6 @@ if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
 /**
 * @since 0.913
 * @updated 0.913
-* Creates a very configurable twitter feed
-*/
-if ( !function_exists( 'wfx_twitter_feed' ) ) : function wfx_twitter_feed($args) { global $wfx; $wfx->twitter_feed($args); } endif;
-
-/**
-* @since 0.913
-* @updated 0.913
 * Gets a single post/page/whatever
 */
 if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_content($args) { global $wfx; $wfx->get_single_content($args); } endif;

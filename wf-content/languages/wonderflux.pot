@@ -2320,34 +2320,6 @@ msgstr ""
 msgid "Wonderflux Framework"
 msgstr ""
 
-#: ..//wf-includes/wf-display-functions.php:1069
-msgid "Sorry, no tweets available."
-msgstr ""
-
-#: ..//wf-includes/wf-display-functions.php:1148
-msgid "Tweet from "
-msgstr ""
-
-#: ..//wf-includes/wf-display-functions.php:1148
-msgid " Twitter user"
-msgstr ""
-
-#: ..//wf-includes/wf-display-functions.php:1148
-msgid "Tweet from @"
-msgstr ""
-
-#: ..//wf-includes/wf-display-functions.php:1191
-msgid "Recently"
-msgstr ""
-
-#: ..//wf-includes/wf-display-functions.php:1201
-msgid "day"
-msgstr ""
-
-#: ..//wf-includes/wf-display-functions.php:1201
-msgid "ago"
-msgstr ""
-
 #: ..//wf-includes/wf-display-functions.php:1243
 msgid "Read about"
 msgstr ""

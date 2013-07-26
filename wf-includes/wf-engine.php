@@ -295,7 +295,6 @@ class wflux_display_all {
 
 	// EX Display functions - these are useful to theme designers
 	function excerpt($args){ return $this->wflux_display_ex_do->wf_excerpt($args); } // TO TEST
-	function twitter_feed($args){ $this->wflux_display_ex_do->wf_twitter_feed($args); }
 	function perma_img($args){ $this->wflux_display_ex_do->wf_perma_img($args); } // TO TEST
 	function edit_meta($args){ $this->wflux_display_ex_do->wf_edit_meta($args); } // NEEDS MORE TESTING?
 	function get_single_content($args){ $this->wflux_display_ex_do->wf_get_single_content($args); }

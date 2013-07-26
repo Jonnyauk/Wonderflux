@@ -9,8 +9,8 @@ load_template(WF_INCLUDES_DIR . '/wf-theme-support.php');
 
 
 /**
- * @since 1.0RC4
- * @updated 1.0RC4
+ * @since 1.1
+ * @updated 1.1
  * Theme support and early call functionality required before init hook
 */
 function wflux_capacitor_early() {
@@ -20,8 +20,8 @@ add_action('after_setup_theme','wflux_capacitor_early', 2);
 
 
 /**
- * @since 1.0RC4
- * @updated 1.0RC4
+ * @since 1.1
+ * @updated 1.1
  * Theme support and early call functionality required before init hook
 */
 class wflux_early_all {
@@ -77,8 +77,8 @@ if (is_admin()) {
 
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * Sets up all Wonderflux core data handling/cleaning functions
 */
 function wflux_capacitor_data_manage() {
@@ -88,8 +88,8 @@ add_action('init','wflux_capacitor_data_manage', 1);
 
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * Creates all Wonderflux core data handling/cleaning functions
 */
 class wflux_data_manage_all {
@@ -243,7 +243,7 @@ add_action('get_header','wflux_capacitor_display', 1);
 
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Creates all Wonderflux display functions
 */
 class wflux_display_all {

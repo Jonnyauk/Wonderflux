@@ -1,7 +1,7 @@
 <?php
 /**
  * Wonderflux data management functions
- * @since 1.0RC4
+ * @since 1.1
  */
 class wflux_data_manage {
 
@@ -11,8 +11,8 @@ class wflux_data_manage {
 	 * @params none
 	 * @filter 'wflux_allowed_tags' to mainpulate allowed tags
 	 *
-	 * @lastupdate 1.0RC4
-	 * @since 1.0RC4
+	 * @lastupdate 1.1
+	 * @since 1.1
 	 * @return array
 	 *
 	 * TODO: Expand $type to allow for finer grain control over allowed tags
@@ -420,8 +420,8 @@ class wflux_data_manage {
 	 *
 	 * @params input (string)
 	 *
-	 * @lastupdate 1.0RC4
-	 * @since 1.0RC4
+	 * @lastupdate 1.1
+	 * @since 1.1
 	 * @return array
 	 *
 	 * TODO: TEST MORE!

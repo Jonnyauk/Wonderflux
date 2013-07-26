@@ -2,7 +2,7 @@
 
 /**
 * @since 0.3
-* @updated 1.0RC4
+* @updated 1.1
 * Admin form functions
 */
 class wflux_admin extends wflux_data {
@@ -166,7 +166,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Sets up and configures options and form fields
 	* @since 0.81
-	* @updated 1.0RC4
+	* @updated 1.1
 	*/
 	function wf_register_settings(){
 
@@ -301,7 +301,7 @@ class wflux_admin extends wflux_data {
  	/**
 	* Contextual help
 	* @since 0.92
-	* @updated 1.0RC4
+	* @updated 1.1
 	*/
 	function wf_contextual_help($contextual_help, $screen_id, $screen) {
 
@@ -451,7 +451,7 @@ class wflux_admin extends wflux_data {
 
 /**
 * @since 0.81
-* @updated 1.0RC4
+* @updated 1.1
 * Admin form functions
 */
 class wflux_admin_forms extends wflux_data {
@@ -693,7 +693,7 @@ class wflux_admin_forms extends wflux_data {
 	/**
 	* Creates a text area populated with a file
 	* @since 0.93
-	* @updated 1.0RC4
+	* @updated 1.1
 	*/
 	function wf_form_helper_file_css_combine($file,$cleanup) {
 

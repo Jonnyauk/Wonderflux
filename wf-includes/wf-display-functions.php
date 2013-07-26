@@ -2,7 +2,7 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {
@@ -264,7 +264,7 @@ class wflux_display_code extends wflux_data {
 	* Inserts main theme CSS
 	*
 	* @since 0.72
-	* @updated 1.0RC4
+	* @updated 1.1
 	*/
 	function wf_head_css_theme() {
 		// Allow filtering
@@ -328,7 +328,7 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.931
-	* @updated 1.0RC4
+	* @updated 1.1
 	* VERY IMPORTANT!
 	*
 	* @filter wflux_body_class_browser : Filter for the browser detection CSS class output
@@ -484,8 +484,8 @@ class wflux_display_code extends wflux_data {
 	}
 
 	/**
-	* @since 1.0RC4
-	* @updated 1.0RC4
+	* @since 1.1
+	* @updated 1.1
 	* IMPORTANT - Configures WordPress $content_width global for embeded media such as YouTube video
 	*/
 	function wf_content_width() {
@@ -806,8 +806,8 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	 * @since 1.0RC4
-	 * @updated 1.0RC4
+	 * @since 1.1
+	 * @updated 1.1
 	 * Generates a repeating patern of columns for testing the grid layout system
 	 * 
 	 * @param rows (integer) Maximum number of rows of divs you wish to output. [12]
@@ -844,8 +844,8 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	 * @since 1.0RC4
-	 * @updated 1.0RC4
+	 * @since 1.1
+	 * @updated 1.1
 	 * Generates a repeating patern of columns for testing the grid layout system
 	 * Internal function used by wf_css_test_pattern
 	 * 
@@ -881,8 +881,8 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	 * @since 1.0RC4
-	 * @updated 1.0RC4
+	 * @since 1.1
+	 * @updated 1.1
 	 * Generates a repeating patern of columns using relative sizes like 'half','quarter' for testing the grid layout system.
 	 * Internal function used by wf_css_test_pattern
 	 * 
@@ -1077,7 +1077,7 @@ class wflux_display extends wflux_display_css {
 
 /**
 * @since 0.85
-* @updated 1.0RC4
+* @updated 1.1
 * Extra core display functions for theme designers
 */
 class wflux_display_extras {
@@ -1089,8 +1089,8 @@ class wflux_display_extras {
 	 * Used in cache function (and maybe others in the future!)
 	 * @return string
 	 *
-	 * @since 1.0RC4
-	 * @updated 1.0RC4
+	 * @since 1.1
+	 * @updated 1.1
 	 * TODO: Check core WP version_compare() - guessing < evaluation on constant quicker/easier?
 	 */
 	private function get_clean_theme_name() {
@@ -1191,7 +1191,7 @@ class wflux_display_extras {
 	 * @param query - (string) DEFAULT: 'user' - Query Twitter to return different data: 'user' = Normal user timeline, 'replies' = (@$user tweets)
 	 *
 	 * @since 0.85
-	 * @updated 1.0RC4
+	 * @updated 1.1
 	 */
 	function wf_twitter_feed($args) {
 
@@ -1422,7 +1422,7 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 1.0RC4
+	 * @updated 1.1
 	 */
 	function wf_perma_img($args) {
 
@@ -2026,8 +2026,8 @@ class wflux_display_extras {
 	 *
 	 * @filter wflux_allowed_cached_tags - array of allowed output tags used with kses
 	 *
-	 * @since 1.0RC4
-	 * @lastupdate 1.0RC4
+	 * @since 1.1
+	 * @lastupdate 1.1
 	 *
 	 * TODO: Extend $sanitise_in and sanitise_out with more options
 	 * TODO: Should this be made location aware?

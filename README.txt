@@ -1,7 +1,9 @@
 WONDERFLUX WORDPRESS THEME FRAMEWORK
-VERSION v1.0 Release Candidate 4
+VERSION v1.1BETA
 
-Copyright (C) 2012 Jonny Allbut / Team Wonderflux - http://wonderflux.com
+Copyright (c)2013 Jonny Allbut 
+Jonnyauk - http://jonnya.net
+Team Wonderflux - http://wonderflux.com
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -26,7 +28,7 @@ Welcome to the Wonderflux - a free, Open Source theme framework for WordPress an
 Wonderflux is distributed under the GPL v2 license just like WordPress
 (yes - that means FREE basically!). Just to clarify then - YES, you can
 use Wonderflux on as many commercial, non-commercial, and personal WordPress
-sites as you wish, without any fee or subscription required.
+sites as you wish, without ANY fee, subscription or credit required.
 
 Any developers are welcome to offer code contributions - the project is
 open to any ideas and improvements;) The goal is to develop a framework
@@ -37,9 +39,7 @@ http://www.wonderflux.com
 
 Keep informed on Wonderflux development:
 - Following @Wonderflux on Twitter
-
 - Subscribing to beta mailing list at: http://feedburner.google.com/fb/a/mailverify?uri=wonderflux-beta-testing
-Drop by http://www.wonderflux.com
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
@@ -59,6 +59,26 @@ https://github.com/Jonnyauk/wonderflux-girder
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
+!! DON'T HACK WONDERFLUX !!
+
+You should not modify the Wonderflux theme framework to avoid issues with updates in the future. 
+It's a theme framework (or 'parent theme') that you use with child themes.
+You have lots of ways to manipulate this from your child theme! http://codex.wordpress.org/Child_Themes
+
+1) Create a function with the same name as a core Wonderflux display function in your child theme.
+
+2) Remove a core Wonderflux action in your child theme functions file with the code:
+remove_action('wf_hook_name','wf_function_name',postitionnumber);
+
+3) Add a filter to a display function.
+
+4) Use over 100 location-aware hooks.
+
+If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
+Get involved at https://github.com/Jonnyauk/Wonderflux
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+
 Wonderflux is amazingly flexible, with many filters hooks and
 functions you can over-ride through your child theme functions file.
 
@@ -72,7 +92,9 @@ FROM WONDERFLUX INTO YOUR CHILD THEME DIRECTORY to retain the Wonderflux
 structure and hook system.
 
 The quickest way to start customsing your theme is by changing the template parts
-as shown in the WF Girder theme. Anything that has '-content' in the name is a template part, ie:
+as shown in the WF Girder theme. 
+
+Anything that has '-content' in the name is a template part, ie:
 
 footer-content.php
 header-content-php
@@ -113,23 +135,6 @@ sidebar-content.php
 footer-content.php
 loop-content.php
 
-!! DON'T HACK WONDERFLUX !!
-
-You should not modify the Wonderflux theme framework to avoid issues with updates in the future.
-You have lots of ways to manipulate this from your child theme! http://codex.wordpress.org/Child_Themes
-
-1) Create a function with the same name as a core Wonderflux display function in your child theme.
-
-2) Remove a core Wonderflux action in your child theme functions file with the code:
-remove_action('wf_hook_name','wf_function_name',postitionnumber);
-
-3) Add a filter to a display function.
-
-4) Use over 100 location-aware hooks.
-
-If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
-Get involved at https://github.com/Jonnyauk/Wonderflux
-
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 
 OTHER REFERENCE
@@ -138,11 +143,9 @@ Note the use of PHP layout display functions to setup CSS layout divs in WFX Gir
 They use a special definitions such as 'half' and 'quarter' to make layout easier.
 By using these functions you are able to create layouts that dynamically resize.
 
-You will find reference to all hooks in themes/wonderflux/wf-includes/wf-display-hooks.php
-
-You will find a number of more interesting display functions for you to use in your
-themes in themes/wonderflux/wf-includes/wf_engine.php in the wflux_functions class
-
 You will see a reference guide in the head of your document if you view source.
 It is currently working in a very similar way to the Blueprint CSS framework, the same
 rules and references apply - http://www.blueprintcss.org/
+
+You will find a number of more interesting display functions for you to use in your
+themes in themes/wonderflux/wf-includes/wf_engine.php in the wflux_functions class

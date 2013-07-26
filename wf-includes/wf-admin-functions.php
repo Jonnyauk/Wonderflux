@@ -132,7 +132,7 @@ class wflux_admin extends wflux_data {
 			$output .= $this->wf_common_help();
 			$output .= '<p>';
 			$output .= esc_attr__('You can also','wonderflux');
-			$output .= ' <a href="http://code.google.com/p/wonderflux-girder-theme/" title="';
+			$output .= ' <a href="https://github.com/Jonnyauk/wonderflux-girder/" title="';
 			$output .= esc_attr__('Download the free Girder Wonderflux child theme','wonderflux');
 			$output .= '">';
 			$output .= esc_attr__('download the free example Wonderflux child theme call Girder','wonderflux');
@@ -274,7 +274,7 @@ class wflux_admin extends wflux_data {
 			$output .= '<p>' . sprintf( __( 'You are running v%1$s, the current latest release is v%2$s', 'wonderflux' ), WF_VERSION, $this->wf_latest_version_fetch() ) . '</p>';
 
 			$output .= '<p>' . esc_attr__('There is an update available to Wonderflux. Please read the update notes to check-up on how this may effect your theme BEFORE updating!', 'wonderflux') . '</p>';
-			$output .= '<p>You can <a href="http://code.google.com/p/wonderflux-framework/downloads/" title="'. esc_attr__('Download the latest Wonderflux update here', 'wonderflux') . '">' . esc_attr__('download the latest Wonderflux update here', 'wonderflux') . '</a>.</p>';
+			$output .= '<p>You can <a href="https://github.com/Jonnyauk/Wonderflux/releases/" title="'. esc_attr__('Download the latest Wonderflux update here', 'wonderflux') . '">' . esc_attr__('download the latest Wonderflux update here', 'wonderflux') . '</a>.</p>';
 			$output .= '</div>';
 
 			echo $output;
@@ -286,7 +286,7 @@ class wflux_admin extends wflux_data {
 			$output .= '<p>' . esc_attr__('You are running a development version of Wonderflux, cool!', 'wonderflux') . ' <strong>' . esc_attr__('You should probably NOT be using this on live sites.', 'wonderflux') . '</strong></p>';
 			$output .= '<p>' . esc_attr__('It may contain code thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme.', 'wonderflux') . '</p>';
 			$output .= '<p><strong>' . esc_attr__('If you are not a developer, advanced designer or tester', 'wonderflux') . '</strong> ' . esc_attr__('If you are not a developer, advanced designer or tester', 'wonderflux');
-			$output .= sprintf( __( 'you will probably be better off using <a href="%1$s" title="%2$s">%3$s</a>', 'wonderflux' ), 'http://code.google.com/p/wonderflux-framework/downloads/' , __('Download the latest stable Wonderflux release here', 'wonderflux'), esc_attr__('the latest stable version of Wonderflux.', 'wonderflux') );
+			$output .= sprintf( __( 'you will probably be better off using <a href="%1$s" title="%2$s">%3$s</a>', 'wonderflux' ), 'https://github.com/Jonnyauk/Wonderflux/releases/' , __('Download the latest stable Wonderflux release here', 'wonderflux'), esc_attr__('the latest stable version of Wonderflux.', 'wonderflux') );
 			$output .= '</div>';
 
 			echo $output;
@@ -345,13 +345,13 @@ class wflux_admin extends wflux_data {
 		$generic_help .= esc_attr__( ' - so your ideas can help make a great theme framework for the whole community to use. Some ideas on how you could help include bug hunting, documentation, javascript, optimisation - really any ideas you have would be more than welcome!', 'wonderflux' );
 		$generic_help .= '</p>';
 		$generic_help .= '<p>';
-		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/source/checkout/" title="'. esc_attr__('Google code SVN', 'wonderflux') . '" target="_blank">' . esc_attr__('Google code SVN', 'wonderflux') . '</a>';
-		$generic_help .= esc_attr__( '- SVN development code repository (for developers and testers - NOT to be used on live sites!)', 'wonderflux' );
+		$generic_help .= '<a href="https://github.com/Jonnyauk/Wonderflux" title="'. esc_attr__('GitHub code repository', 'wonderflux') . '" target="_blank">' . esc_attr__('GitHub code repository', 'wonderflux') . '</a>';
+		$generic_help .= esc_attr__( '- Git development code repository (for developers and testers - NOT to be used on live sites!)', 'wonderflux' );
 		$generic_help .= '<br />';
-		$generic_help .= '<a href="http://code.google.com/p/wonderflux-framework/issues/list/" title="'. esc_attr__('Google code issue tracking list', 'wonderflux') . '" target="_blank">' . esc_attr__('Google code issue tracking list', 'wonderflux') . '</a>';
+		$generic_help .= '<a href="https://github.com/Jonnyauk/Wonderflux/issues" title="'. esc_attr__('GitHub issue tracking list', 'wonderflux') . '" target="_blank">' . esc_attr__('GitHub issue tracking list', 'wonderflux') . '</a>';
 		$generic_help .= esc_attr__( '- Development list (for contributors, bug reports and feature requests)', 'wonderflux' );
 		$generic_help .= '<br />';
-		$generic_help .= '<a href="http://wonderflux.com/guide/" title="'. esc_attr__('Wonderflux documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('Wonderflux documentation', 'wonderflux') . '</a>';
+		$generic_help .= '<a href="http://wonderflux.com/guide" title="'. esc_attr__('Wonderflux documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('Wonderflux documentation', 'wonderflux') . '</a>';
 		$generic_help .= __( ' - Official documentation site (API documentation and quick start guides)', 'wonderflux' );
 
 		$generic_help .= '</p>';

@@ -55,7 +55,7 @@ Files - http://wonderflux.com/guide/file/
 
 DEMO CHILD THEME DOWNLOAD
 WFX Girder is a child theme designed for Wonderflux that can be downloaded from:
-http://wonderflux-girder-theme.googlecode.com
+https://github.com/Jonnyauk/wonderflux-girder
 
 = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
 

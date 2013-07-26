@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wonderflux\n"
-"Report-Msgid-Bugs-To: http://code.google.com/p/wonderflux-framework/issues/"
+"Report-Msgid-Bugs-To: https://github.com/Jonnyauk/Wonderflux/issues"
 "list\n"
 "POT-Creation-Date: 2012-08-28 11:44-0000\n"
 "PO-Revision-Date: 2012-08-28 11:45-0000\n"
@@ -1633,17 +1633,17 @@ msgid ""
 msgstr ""
 
 #: ..//wf-includes/wf-admin-functions.php:348
-msgid "Google code SVN"
+msgid "GitHub code repository"
 msgstr ""
 
 #: ..//wf-includes/wf-admin-functions.php:349
 msgid ""
-"- SVN development code repository (for developers and testers - NOT to be "
+"- Git development code repository (for developers and testers - NOT to be "
 "used on live sites!)"
 msgstr ""
 
 #: ..//wf-includes/wf-admin-functions.php:351
-msgid "Google code issue tracking list"
+msgid "GitHub issue tracking list"
 msgstr ""
 
 #: ..//wf-includes/wf-admin-functions.php:352

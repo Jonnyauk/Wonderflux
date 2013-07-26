@@ -8,9 +8,9 @@
  * Introduction to Wonderflux: http://wonderflux.com/guide/doc/introduction
  * Wonderflux child themes:    http://wonderflux.com/guide/doc/child-theme-files
  *
- * Bugs/improvements/feedback: http://code.google.com/p/wonderflux-framework/issues/list
- * Official release downloads: http://code.google.com/p/wonderflux-framework/downloads
- * Development code:           http://code.google.com/p/wonderflux-framework/source/checkout
+ * Bugs/improvements/feedback: https://github.com/Jonnyauk/Wonderflux/issues
+ * Official release downloads: https://github.com/Jonnyauk/Wonderflux/releases
+ * Development code:           https://github.com/Jonnyauk/Wonderflux
  *
  * INDEX OF THIS FILE
  *
@@ -38,12 +38,11 @@
  * 4) Use over 120 location-aware hooks http://wonderflux.com/guide/hook/
  *
  * If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
- * http://code.google.com/p/wonderflux-framework/issues/list
+ * https://github.com/Jonnyauk/Wonderflux
  *
  * DEVELOPERS AND TESTERS
- * All development is tracked within the Google Code SVN system.
- * Anyone has full SVN checkout access to the latest non-released development code.
- * Visit http://code.google.com/p/wonderflux-framework/source/checkout for access information.
+ * All development is tracked within the GitHub project.
+ * Anyone has full checkout access to the latest non-released development code.
  * The trunk version is for contributions, testing and development - NOT for live sites (unless you are brave!)
  *
  * THANKS FOR USING WONDERFLUX!

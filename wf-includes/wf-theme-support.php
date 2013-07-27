@@ -7,7 +7,7 @@
 /**
  * Wonderflux theme_support setup
  * TODO: Populate with extended Wonderflux add_theme_support functionality
- * @since 1.0RC4
+ * @since 1.1
  */
 class wflux_theme_support {
 
@@ -17,8 +17,8 @@ class wflux_theme_support {
 	 *
 	 * @param None
 	 *
-	 * @since 1.0RC4
-	 * @lastupdate 1.0RC4
+	 * @since 1.1
+	 * @lastupdate 1.1
 	 * TODO: Extend functionality!
 	 */
 	function wf_core_feeds(){

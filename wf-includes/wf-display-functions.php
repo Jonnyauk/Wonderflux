@@ -2,7 +2,7 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {
@@ -264,7 +264,7 @@ class wflux_display_code extends wflux_data {
 	* Inserts main theme CSS
 	*
 	* @since 0.72
-	* @updated 1.0RC4
+	* @updated 1.1
 	*/
 	function wf_head_css_theme() {
 		// Allow filtering
@@ -328,7 +328,7 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.931
-	* @updated 1.0RC4
+	* @updated 1.1
 	* VERY IMPORTANT!
 	*
 	* @filter wflux_body_class_browser : Filter for the browser detection CSS class output
@@ -484,8 +484,8 @@ class wflux_display_code extends wflux_data {
 	}
 
 	/**
-	* @since 1.0RC4
-	* @updated 1.0RC4
+	* @since 1.1
+	* @updated 1.1
 	* IMPORTANT - Configures WordPress $content_width global for embeded media such as YouTube video
 	*/
 	function wf_content_width() {
@@ -498,7 +498,7 @@ class wflux_display_code extends wflux_data {
 
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Core display functions that output CSS
 */
 class wflux_display_css extends wflux_display_code {
@@ -506,7 +506,7 @@ class wflux_display_css extends wflux_display_code {
 	/**
 	*
 	* @since 0.2
-	* @updated 1.0RC4
+	* @updated 1.1
 	*
 	* Defines size conventions to use in template grid systems to avoid putting actual numbers into templates
 	* By using this function to define containers, you can dynamically resize the whole layout
@@ -533,7 +533,7 @@ class wflux_display_css extends wflux_display_code {
 			'size' => 'full',
 			'class' => '',
 			'id' => '',
-			'last' => '',
+			'last' => 'N',
 			'move' => '',
 			'divoutput' => 'N',
 			'columns' => 0
@@ -546,27 +546,14 @@ class wflux_display_css extends wflux_display_code {
 		$wf_columns = $this->wfx_columns;
 		$wf_single = $this->wfx_columns_width;
 
-		//Blank or invalid param passed so clear it
-		if (!$last || !$last == 'N') {
-			$last = '';
-		} else {
-			//Put in space
-			$last = ' last';
-		}
+		//Last class added only if == Y
+		$last = ( $last == 'Y' ) ? ' last' : '';
 
-		// Prepare extra CSS classes for display if supplied
-		if ($class !='') {
-			$class_clean = ' ' . wp_kses($class, '');
-		} else {
-			$class_clean = '';
-		}
+		// Prepare extra CSS classes string for display if supplied
+		$class_clean = ( $class !='' ) ? ' ' . wp_kses( $class, '' ) : '';
 
 		// Prepare extra CSS id for display if supplied
-		if ($id !='') {
-			$id_clean = ' id="' . wp_kses($id, '') . '"';
-		} else {
-			$id_clean = '';
-		}
+		$id_clean = ( $id !='' ) ? ' id="' . wp_kses( $id, '' ) . '"' : '';
 
 		// IMPORTANT divoutput parameter is for use in theme functions file
 		// It encloses the dynamic size class in '<div' and '>' for you
@@ -819,8 +806,8 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	 * @since 1.0RC4
-	 * @updated 1.0RC4
+	 * @since 1.1
+	 * @updated 1.1
 	 * Generates a repeating patern of columns for testing the grid layout system
 	 * 
 	 * @param rows (integer) Maximum number of rows of divs you wish to output. [12]
@@ -857,8 +844,8 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	 * @since 1.0RC4
-	 * @updated 1.0RC4
+	 * @since 1.1
+	 * @updated 1.1
 	 * Generates a repeating patern of columns for testing the grid layout system
 	 * Internal function used by wf_css_test_pattern
 	 * 
@@ -894,8 +881,8 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	 * @since 1.0RC4
-	 * @updated 1.0RC4
+	 * @since 1.1
+	 * @updated 1.1
 	 * Generates a repeating patern of columns using relative sizes like 'half','quarter' for testing the grid layout system.
 	 * Internal function used by wf_css_test_pattern
 	 * 
@@ -1090,7 +1077,7 @@ class wflux_display extends wflux_display_css {
 
 /**
 * @since 0.85
-* @updated 1.0RC4
+* @updated 1.1
 * Extra core display functions for theme designers
 */
 class wflux_display_extras {
@@ -1102,8 +1089,8 @@ class wflux_display_extras {
 	 * Used in cache function (and maybe others in the future!)
 	 * @return string
 	 *
-	 * @since 1.0RC4
-	 * @updated 1.0RC4
+	 * @since 1.1
+	 * @updated 1.1
 	 * TODO: Check core WP version_compare() - guessing < evaluation on constant quicker/easier?
 	 */
 	private function get_clean_theme_name() {
@@ -1166,261 +1153,6 @@ class wflux_display_extras {
 
 
 	/**
-	 * Displays a configurable user Twitter stream or Twitter @reply stream
-	 *
-	 * //TODO: Go over sanitisation and regex functionality
-	 * //TODO: Screwup when activating linked emails and urls - it all in the regexing
-	 * //TODO: Param for setting links to open in new window or not
-	 * //TODO: Build and extend $query
-	 *
-	 * @param user - The Twitter username [Wonderflux]
-	 * @param update - How often you want the Twitter stream cache to refresh in minutes [60]
-	 * @param items - Number of Tweets you wish to show [5]
-	 * @param transient_key - (string) OPTIONAL Transient option name (if using multiple twitter stream display). Default is CURRENT_THEME_NAME_c_twitter (NOTE: will be trimmed to 32 characters max)
-	 * @param show_name - Show the username at the start of each Tweet [N] // TODO: Allow diferent position
-	 * @param link_name - Link username to Twitter page [N]
-	 *
-	 * @param tweet_div - Contain each tweet in it's own CSS div [Y]
-	 * @param tweet_div_class - CSS class used on individual tweet div [twitter-stream-single]
-	 * @param tweet_count_class - CSS class added to individual tweet div - appends '-INTEGER' automatically to allow more sophisticated CSS styling [tweet-num]
-	 * @param fail_message - Message shown when there is no tweets available [Sorry, no tweets available.]
-	 *
-	 * @param avatar - Show author avatar with tweet [N]
-	 * @param link_avatar - Link avatar to Twitter page
-	 * @param avatar_div_class - CSS class used on avatar containing div to allow alightment to tweet (so it can be floated left/right in theme CSS) [twitter-stream-avatar]
-	 * @param avatar_img_class - CSS class used on avatar image (so it can have extra CSS styling in theme CSS) [twitter-stream-avatar-img]
-	 * @param avatar_size - Width and height in px of avatar - always shown as square image. Don't go bigger - this is the original size available! [48]
-	 *
-	 * @param active_urls - Turn links mentioned in Tweets into hyperlinks [Y]
-	 * @param show_date - Show the date at after the Tweet [Y]
-	 * @param date_format - If 'relative' displays 'recently' if less than 24 hours or shows complete days if over 24 hours [relative]
-	 * @param smileys - If Tweet has typographic smiley faces in, replace with graphics [Y]
-	 * @param content_style - Tweet (and date) CSS style [p]
-	 * @param tweet_class - Tweet (and date) CSS class [twitter-stream]
-	 * @param seperator - Seperator between Tweet and date (not shown if date is hidden) [ - ]
-	 * @param date_class - CSS span class on date [twitter-stream-date]
-	 * @param replies - WARNING WILL BE DEPRECIATED - USE $query INSTEAD - query=replies
-	 *
-	 * @param query - (string) DEFAULT: 'user' - Query Twitter to return different data: 'user' = Normal user timeline, 'replies' = (@$user tweets)
-	 *
-	 * @since 0.85
-	 * @updated 1.0RC4
-	 */
-	function wf_twitter_feed($args) {
-
-		$defaults = array (
-			'user' => 'Wonderflux',
-			'update' => '60',
-			'items' => '3',
-			'transitent_key' => '',
-			'show_name' => 'N',
-			'link_name' => 'N',
-			'avatar' => 'N',
-			'link_avatar' => 'Y',
-			'avatar_div' => 'Y', /*NEW Wrap avatar in DIV*/
-			'avatar_div_class' => 'twitter-stream-avatar',  /*NEW class on avatar div*/
-			'avatar_img_class' => 'twitter-stream-avatar-img',
-			'avatar_size' => '48',
-			'avatar_https' => 'N', /*NEW Fetch avatars via https instead of http*/
-			'tweet_class' => 'twitter-stream',
-			'tweet_div' => 'Y',
-			'tweet_div_class' => 'twitter-stream-single',
-			'tweet_count_class' => 'tweet-num',
-			'fail' => __('Sorry, no tweets available.', 'wonderflux'),
-			'content_style' => 'p',
-			'active_urls' => 'Y',
-			'active_hashtag_urls' => 'N', /*NEW - Turn hashtags into active links */
-			'active_mention_urls' => 'N', /*NEW - Turn @username into active links */
-			'active_email_urls' => 'N', /*NEW - Turn email addresses into mailto links */
-			'active_urls_target' => 'Y', /*NEW TODO: NEED TO BUILD INTO REGEX STUFF! ALL links open in same window, set to N for new tab/window target*/
-
-			'smileys' => 'N', /*NOTE: Changed default to N - WordPress only parses smileys if there is a space before them */
-
-			'show_date' => 'Y',
-			'date_format' => 'relative',
-
-			'seperator' => ' - ',
-			'date_class' => 'twitter-stream-date',
-			'replies' => 'N', // NOT SURE BOUT THIS ONE!!
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-		extract( $args, EXTR_SKIP );
-
-		// Prepare user input for output
-		$user = wp_kses_data($user);
-		$update = ($update != 60 ) ? ( (!is_numeric($update) ) ? 60 : $update ) : $update;
-		$items = ($items <= 3 ) ? ( (!is_numeric($items) ) ? 3 : $items ) : $items;
-		if (!is_numeric($avatar_size)) { $avatar_size = 48; }
-
-		$urls_target = ($active_urls_target_same == 'Y') ? '' : ' target="_blank"';
-
-		$transient_key = mb_substr( empty($transient_key) ? preg_replace('/[^a-zA-Z0-9]/','_', $user) . '_c_twitter' : $transient_key , 0, 32);
-		$cached_data = get_site_transient( $transient_key );
-
-		// Check cache
-		//if ( false === ($cached_data) ) {
-		if ( !$cached_data ) {
-
-			// Setup URL args to query Twitter with
-			$url_args = urlencode_deep(
-				array(
-					'include_entities'=> 0,
-					'include_rts'=> 0,
-					'screen_name'=>$user,
-					'count'=> ($items >= 3) ? $items+4 : $items // TODO: R&D why certain numbers above 3 get less tweets - Lets cache more to cover this
-				)
-			);
-
-			// TO DO
-			// PUT BACK IN SEARCH QUERY FOR MENTIONS
-			// feedtype - @replies or normal user timeline
-			// if ($replies == 'Y') {
-				// $query_url = 'http://search.twitter.com/search.json?q=@'.$user;
-			// } else {
-				// $query_url = 'https://api.twitter.com/1/statuses/user_timeline.json?include_entities='
-				// .'&include_rts=' . $url_args["include_rts"]
-				// .'&screen_name=' . $url_args["screen_name"]
-				// .'&count=' . $url_args["count"];
-			// }
-
-			$remote_data = wp_remote_get(
-				'https://api.twitter.com/1/statuses/user_timeline.json?include_entities='
-				.'&include_rts=' . $url_args["include_rts"]
-				.'&screen_name=' . $url_args["screen_name"]
-				.'&count=' . $url_args["count"]
-			);
-			$cached_data = ( is_wp_error($remote_data) ) ? false : json_decode( $remote_data['body'] );
-			// Convert seconds to minutes for expiry
-			set_site_transient( $transient_key, $cached_data, $update*60 );
-		}
-
-		// Prep elements for output
-
-		$tweet_count = 0;
-		$tweet_cache_total = count($cached_data);
-		$tweet_total = ( $items < $tweet_cache_total ) ? $items : $tweet_cache_total;
-
-		if ( empty($cached_data) ) {
-
-			echo '<' . esc_attr($content_style) . ' class="' . esc_attr($tweet_class) . ' twitter-stream-fail">' . esc_attr($fail) . '</' . esc_attr($content_style) . '>';
-
-		} else {
-
-		    foreach ( $cached_data as $var => $value ) {
-
-				$tweet_count++;
-
-				// Regardless of number cached, control display by $items param
-				if (  $tweet_count <= $items ) {
-
-					// SETUP COMMON DATA
-					$name_out = $cached_data[$var]->user->screen_name;
-
-					// Avatar
-					$avatar_out = '';
-					if ($avatar == 'Y'){
-						$avatar_root = ( $avatar_https == 'Y' ) ? $cached_data[$var]->user->profile_image_url_https : $cached_data[$var]->user->profile_image_url;
-						$avatar_info = pathinfo($avatar_root);
-
-						// Crazy fool file naming from Twitter ref
-						// 48x48 _normal.jpg
-						// 128x128 _reasonably_small.jpg
-
-						// NOTE: Filter here for Mobile/RWD - Get higher res image if you want it
-						$avatar_size_get = apply_filters( 'wflux_twitter_avatar_size', ($avatar_size <= 48) ? '_normal' : '_reasonably_small' );
-						$avatar_path_out = str_replace(array('_normal.jpg'), $avatar_size_get . '.' . $avatar_info['extension'], $avatar_root);
-
-						// Setup link on avatar
-						$a_link_start = ($link_avatar == 'Y') ? '<a href="' . esc_url('http://twitter.com/' . $name_out) . '" title="' . sprintf( esc_attr__( 'Tweet from %s Twitter user', 'wonderflux' ), $name_out ) . '"' . $urls_target . '>' : '';
-						$a_link_end = ($link_avatar == 'Y') ? '</a>' : '';
-
-						// Div container on image?
-						$a_div_start = ($avatar_div == 'Y') ? '<div class="'.esc_attr($avatar_div_class).'">' : '';
-						$a_div_end = ($avatar_div == 'Y') ? '</div>' : '';
-
-						$avatar_out =
-						$a_div_start .
-						$a_link_start .
-						'<img src="' . esc_url($avatar_path_out) . '" ' .
-						'alt="' . sprintf( esc_attr__( 'Tweet from %s', 'wonderflux' ), $name_out ) . '" ' .
-						'title="' . sprintf( esc_attr__( 'Tweet from %s', 'wonderflux' ), $name_out ) . '" ' .
-						'width="' . $avatar_size . '" height="' . $avatar_size . '" ' .
-						'class="' . esc_attr($avatar_img_class) . '"' .
-						'/>' .
-						$a_link_end .
-						$a_div_end;
-					}
-
-					// Date
-					$date_out = '';
-					if ($show_date == 'Y') {
-						if ($date_format == 'relative') {
-							$current_time = time();
-							$rawdate = $cached_data[$var]->created_at;
-							$timestampdate = strtotime($rawdate);
-							$timediff = $current_time - $timestampdate;
-							$fulldays = floor($timediff/(60*60*24)); // rounding
-
-							if ($fulldays == '0') {
-								$date_ref = esc_attr__('Recently', 'wonderflux');
-							} else {
-								// Singular/plural
-								$date_ref = sprintf( _n( '%1$s day ago', '%1$s days ago', $fulldays, 'wonderflux' ), $fulldays );
-							}
-						} else {
-							$date_ref = $cached_data[$var]->created_at;
-						}
-						// Output
-						$date_out = '<span class="' . esc_attr($date_class) . '">' . esc_attr($seperator) . $date_ref . '</span>';
-					}
-
-					// Format message
-					$tweet_body = $cached_data[$var]->text;
-					// Build clickable URLs in tweets
-					$tweet_body = ($active_urls == 'Y') ? preg_replace( "/(([[:alnum:]]+:\/\/)|www\.)([^[:space:]]*)"."([[:alnum:]#?\/&=])/i", "<a href=\"\\1\\3\\4\">"."\\1\\3\\4</a>", $tweet_body) : $tweet_body;
-					// Build clickable hashtags in tweets
-					$tweet_body = ($active_hashtag_urls == 'Y') ? preg_replace("/#(\w+)/", "<a href=\"http://search.twitter.com/search?q=\\1\">#\\1</a>", $tweet_body) : $tweet_body;
-					// Build clickable @names in tweets
-					$tweet_body = ($active_mention_urls == 'Y') ? preg_replace("/@(\w+)/", "<a href=\"http://www.twitter.com/\\1\">@\\1</a>", $tweet_body) : $tweet_body;
-					// Build clickable email addresses in tweets
-					$tweet_body = ($active_email_urls == 'N') ? preg_replace("/(\S+@\S+\.\S+)/i", "<a href='mailto:$1'>$1</a>", $tweet_body) : $tweet_body;
-					// Convert smileys
-					$tweet_body = ($smileys == 'Y') ? convert_smilies($tweet_body) : $tweet_body;
-					// Build name (with optional link)
-					if ($show_name == 'Y'){ $name_out = ($link_name == 'Y') ? '<a href="' . esc_url('http://twitter.com/' . $cached_data[$var]->user->screen_name) . '" title="' . $name_out . ' on Twitter">'.$name_out.'</a>' : $name_out; }
-					// Add in (potentially linked) name at start (restores previous display)
-					$tweet_body = ($show_name == 'Y') ? $name_out. ': '.$tweet_body : $tweet_body;
-
-					// OUTPUT
-
-					if ($tweet_div == 'Y') {
-						// Add CSS class for first/last tweets - start at 1 because only devs start at 0!
-						$tweet_count_first_last = ( $tweet_count == 1 ) ? 'twitter-stream-first' : ( ($tweet_count == $tweet_total) ? 'twitter-stream-last' : '' );
-						echo '<div class="' . esc_attr($tweet_div_class) . ' ' . $tweet_count_first_last . ' ' . $tweet_count_class . '-' . $tweet_count . '">';
-					}
-					echo '<' . esc_attr($content_style) . ' class="' . esc_attr($tweet_class) . '">' . $avatar_out . $tweet_body . $date_out . '</' . esc_attr($content_style) . '>';
-					// IMPORTANT Close individual container DIV for tweet
-					echo ($tweet_div == 'Y') ? '</div>' : '';
-
-				}
-
-		    }
-
-		}
-
-	}
-
-
-
-
-
-
-
-
-
-
-	/**
 	 * Displays an image that leads to the individual post/page/content
 	 * Can be used inside loop or custom wp_query
 	 *
@@ -1435,7 +1167,7 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 1.0RC4
+	 * @updated 1.1
 	 */
 	function wf_perma_img($args) {
 
@@ -2039,8 +1771,8 @@ class wflux_display_extras {
 	 *
 	 * @filter wflux_allowed_cached_tags - array of allowed output tags used with kses
 	 *
-	 * @since 1.0RC4
-	 * @lastupdate 1.0RC4
+	 * @since 1.1
+	 * @lastupdate 1.1
 	 *
 	 * TODO: Extend $sanitise_in and sanitise_out with more options
 	 * TODO: Should this be made location aware?

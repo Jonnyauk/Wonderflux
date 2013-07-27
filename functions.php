@@ -8,9 +8,9 @@
  * Introduction to Wonderflux: http://wonderflux.com/guide/doc/introduction
  * Wonderflux child themes:    http://wonderflux.com/guide/doc/child-theme-files
  *
- * Bugs/improvements/feedback: http://code.google.com/p/wonderflux-framework/issues/list
- * Official release downloads: http://code.google.com/p/wonderflux-framework/downloads
- * Development code:           http://code.google.com/p/wonderflux-framework/source/checkout
+ * Bugs/improvements/feedback: https://github.com/Jonnyauk/Wonderflux/issues
+ * Official release downloads: https://github.com/Jonnyauk/Wonderflux/releases
+ * Development code:           https://github.com/Jonnyauk/Wonderflux
  *
  * INDEX OF THIS FILE
  *
@@ -38,12 +38,11 @@
  * 4) Use over 120 location-aware hooks http://wonderflux.com/guide/hook/
  *
  * If you still feel the need to hack the Wonderflux core code, why not submit a patch or suggestion?
- * http://code.google.com/p/wonderflux-framework/issues/list
+ * https://github.com/Jonnyauk/Wonderflux
  *
  * DEVELOPERS AND TESTERS
- * All development is tracked within the Google Code SVN system.
- * Anyone has full SVN checkout access to the latest non-released development code.
- * Visit http://code.google.com/p/wonderflux-framework/source/checkout for access information.
+ * All development is tracked within the GitHub project.
+ * Anyone has full checkout access to the latest non-released development code.
  * The trunk version is for contributions, testing and development - NOT for live sites (unless you are brave!)
  *
  * THANKS FOR USING WONDERFLUX!
@@ -170,8 +169,8 @@ if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { g
 
 /**
 * @since 0.92
-* @updated 1.0RC3
-* Returns custom field value
+* @updated 1.1
+* Echo (default) or return custom field value
 */
 if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args) {
 
@@ -212,8 +211,8 @@ if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; re
 
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * Returns array of common layout tags to be used with kses or similar
 */
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags($args) {
@@ -222,8 +221,8 @@ if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags($args)
 
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * Returns $input with whitespace stripped out
 */
 if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespace($input,$echo='N') {
@@ -235,16 +234,16 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * Inserts WordPress 'automatic-feed-links' )
 */
 if ( !function_exists( 'wfx_core_feeds' ) ) : function wfx_core_feeds() { global $wfx_theme_support; $wfx_theme_support->core_feeds(); } endif;
 
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * Core WordPress threaded comment reply Javascript
 */
 if ( !function_exists( 'wfx_core_comment_js' ) ) : function wfx_core_comment_js() { global $wfx_theme; $wfx_theme->core_comment_js(); } endif;
@@ -317,14 +316,14 @@ if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_
 
 /**
 * @since 0.72
-* @updated 1.0RC4
+* @updated 1.1
 * Inserts the core theme CSS
 */
 if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_head_css_theme($args) { global $wfx; $wfx->head_css_theme($args); } endif;
 
 /**
 * @since 0.931
-* @updated 1.0RC4
+* @updated 1.1
 * Inserts opening dynamic body tag in output - adds Extra Wonderflux CSS classes and basic browser detection
 */
 if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag($args) { global $wfx; $wfx->body_tag($args); } endif;
@@ -406,8 +405,8 @@ if ( !function_exists( 'wfx_display_test_pattern' ) ) : function wfx_display_tes
 if ( !function_exists( 'wfx_get_dimensions' ) ) : function wfx_get_dimensions($args) { global $wfx; return $wfx->get_dimensions($args); } endif;
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * IMPORTANT Sets WordPress $content_width global for oEmbed media
 */
 if ( !function_exists( 'wfx_content_width_embed' ) ) : function wfx_content_width_embed() { global $wfx; $wfx->content_width_embed(); } endif;
@@ -426,7 +425,7 @@ if ( !function_exists( 'wfx_get_sidebar' ) ) : function wfx_get_sidebar($args) {
 
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Creates dynamic CSS grid class definition
 */
 if ( !function_exists( 'wfx_css' ) ) : function wfx_css($args) {
@@ -481,20 +480,13 @@ if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
 /**
 * @since 0.913
 * @updated 0.913
-* Creates a very configurable twitter feed
-*/
-if ( !function_exists( 'wfx_twitter_feed' ) ) : function wfx_twitter_feed($args) { global $wfx; $wfx->twitter_feed($args); } endif;
-
-/**
-* @since 0.913
-* @updated 0.913
 * Gets a single post/page/whatever
 */
 if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_content($args) { global $wfx; $wfx->get_single_content($args); } endif;
 
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Creates an image link to the post displayed
 */
 if ( !function_exists( 'wfx_perma_img' ) ) : function wfx_perma_img($args) { global $wfx; $wfx->perma_img($args); } endif;
@@ -565,7 +557,7 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
 
 /**
 * @since 1.0RC3
-* @updated 1.0RC4
+* @updated 1.1
 * Include a file and cache generated output for desired time
 * EXPERIMENTAL - Dont use on live sites!
 */
@@ -656,7 +648,7 @@ if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global 
 
 /**
 * @since 0.92
-* @updated 1.0RC4
+* @updated 1.1
 * Setup and insert JQuery
 */
 if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args='') { global $wfx_theme; $wfx_theme->jquery($args); } endif;

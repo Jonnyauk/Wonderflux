@@ -5,7 +5,7 @@
 /**
 *
 * @since 0.891
-* @updated 1.0RC4
+* @updated 1.1
 *
 * Core template functions
 *
@@ -132,7 +132,7 @@ class wflux_theme_core {
 	* Sets up WordPress for language packs
 	* EXPERIMENTAL FIRST PASS - needs testing and filters!
 	* @since 0.913
-	* @updated 1.0RC4
+	* @updated 1.1
 	*/
 	function wf_language_pack($args) {
 		load_theme_textdomain( 'wonderflux', WF_MAIN_DIR . '/wf-content/languages' );
@@ -202,7 +202,7 @@ class wflux_theme_core {
 	* @param $host Do you need https? - Default = false [true,false] NOTE: JQuery CDN doesnt support https
 	*
 	* @since 0.92
-	* @updated 1.0RC4
+	* @updated 1.1
 	*/
 	function wf_js_jquery($args) {
 
@@ -312,8 +312,8 @@ class wflux_theme_core {
 	 *
 	 * @param None
 	 *
-	 * @since 1.0RC4
-	 * @lastupdate 1.0RC4
+	 * @since 1.1
+	 * @lastupdate 1.1
 	 */
 	function wf_core_comment_js(){
 		if ( is_singular() && get_option( 'thread_comments' ) )

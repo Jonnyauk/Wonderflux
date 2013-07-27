@@ -9,8 +9,8 @@ load_template(WF_INCLUDES_DIR . '/wf-theme-support.php');
 
 
 /**
- * @since 1.0RC4
- * @updated 1.0RC4
+ * @since 1.1
+ * @updated 1.1
  * Theme support and early call functionality required before init hook
 */
 function wflux_capacitor_early() {
@@ -20,8 +20,8 @@ add_action('after_setup_theme','wflux_capacitor_early', 2);
 
 
 /**
- * @since 1.0RC4
- * @updated 1.0RC4
+ * @since 1.1
+ * @updated 1.1
  * Theme support and early call functionality required before init hook
 */
 class wflux_early_all {
@@ -77,8 +77,8 @@ if (is_admin()) {
 
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * Sets up all Wonderflux core data handling/cleaning functions
 */
 function wflux_capacitor_data_manage() {
@@ -88,8 +88,8 @@ add_action('init','wflux_capacitor_data_manage', 1);
 
 
 /**
-* @since 1.0RC4
-* @updated 1.0RC4
+* @since 1.1
+* @updated 1.1
 * Creates all Wonderflux core data handling/cleaning functions
 */
 class wflux_data_manage_all {
@@ -243,7 +243,7 @@ add_action('get_header','wflux_capacitor_display', 1);
 
 /**
 * @since 0.913
-* @updated 1.0RC4
+* @updated 1.1
 * Creates all Wonderflux display functions
 */
 class wflux_display_all {
@@ -295,7 +295,6 @@ class wflux_display_all {
 
 	// EX Display functions - these are useful to theme designers
 	function excerpt($args){ return $this->wflux_display_ex_do->wf_excerpt($args); } // TO TEST
-	function twitter_feed($args){ $this->wflux_display_ex_do->wf_twitter_feed($args); }
 	function perma_img($args){ $this->wflux_display_ex_do->wf_perma_img($args); } // TO TEST
 	function edit_meta($args){ $this->wflux_display_ex_do->wf_edit_meta($args); } // NEEDS MORE TESTING?
 	function get_single_content($args){ $this->wflux_display_ex_do->wf_get_single_content($args); }

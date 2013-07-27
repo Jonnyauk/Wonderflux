@@ -285,7 +285,7 @@ class wflux_admin extends wflux_data {
 			$output .= '<h3>' . esc_attr__('Development version installed', 'wonderflux') . '</h3>';
 			$output .= '<p>' . esc_attr__('You are running a development version of Wonderflux, cool!', 'wonderflux') . ' <strong>' . esc_attr__('You should probably NOT be using this on live sites.', 'wonderflux') . '</strong></p>';
 			$output .= '<p>' . esc_attr__('It may contain code thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme.', 'wonderflux') . '</p>';
-			$output .= '<p><strong>' . esc_attr__('If you are not a developer, advanced designer or tester', 'wonderflux') . '</strong> ' . esc_attr__('If you are not a developer, advanced designer or tester', 'wonderflux');
+			$output .= '<p><strong>' . esc_attr__('If you are not a developer, advanced designer or tester', 'wonderflux') . '</strong> ';
 			$output .= sprintf( __( 'you will probably be better off using <a href="%1$s" title="%2$s">%3$s</a>', 'wonderflux' ), 'https://github.com/Jonnyauk/Wonderflux/releases/' , __('Download the latest stable Wonderflux release here', 'wonderflux'), esc_attr__('the latest stable version of Wonderflux.', 'wonderflux') );
 			$output .= '</div>';
 

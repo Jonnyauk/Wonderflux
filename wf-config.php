@@ -23,4 +23,6 @@ if (!defined('WF_THEME_DIR')) { define( 'WF_THEME_DIR', get_stylesheet_directory
 
 if (!defined('WF_ADMIN_ACCESS')) { define( 'WF_ADMIN_ACCESS', 'administrator' ); }
 if (!defined('WF_THEME_FRAMEWORK_REPLACE')) { define( 'WF_THEME_FRAMEWORK_REPLACE', false ); }
+
+if (!defined('WF_DEBUG')) { define( 'WF_DEBUG', false ); }
 ?>

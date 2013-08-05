@@ -25,7 +25,7 @@ add_action('after_setup_theme','wflux_capacitor_early', 2);
  * Theme support and early call functionality required before init hook
 */
 class wflux_early_all {
-	static $wflux_theme_support_do;
+	public $wflux_theme_support_do;
 	function __construct(){ $this->wflux_theme_support_do = new wflux_theme_support; }
 	function core_feeds(){ return $this->wflux_theme_support_do->wf_core_feeds(); }
 }
@@ -61,7 +61,7 @@ if (is_admin()) {
 	*/
 	class wflux_admin_all {
 
-		static $wflux_admin_do;
+		public $wflux_admin_do;
 
 		function __construct(){
 			$this->wflux_admin_do = new wflux_admin;
@@ -93,7 +93,7 @@ add_action('init','wflux_capacitor_data_manage', 1);
 * Creates all Wonderflux core data handling/cleaning functions
 */
 class wflux_data_manage_all {
-	static $wflux_data_manage_do;
+	public $wflux_data_manage_do;
 	function __construct(){ $this->wflux_data_manage_do = new wflux_data_manage; }
 	function allowed_tags($args){ return $this->wflux_data_manage_do->wf_allowed_tags($args); }
 	function strip_whitespace($input){ return $this->wflux_data_manage_do->wf_strip_whitespace($input); }
@@ -119,7 +119,7 @@ add_action('init','wflux_capacitor_helper', 1);
 */
 class wflux_helper_all {
 
-	static $wflux_helper_do;
+	public $wflux_helper_do;
 
 	function __construct(){
 		$this->wflux_helper_do = new wflux_helper;
@@ -156,7 +156,7 @@ add_action('init','wflux_capacitor_wp_helper', 1);
 */
 class wflux_wp_helper_all {
 
-	static $wflux_helper_do;
+	public $wflux_helper_do;
 
 	function __construct(){
 		$this->wflux_helper_do = new wflux_wp_core;
@@ -196,8 +196,8 @@ add_action('init','wflux_capacitor_theme', 1);
 */
 class wflux_theme_all {
 
-	static $wflux_theme_core_do;
-	static $wflux_theme_ie_do;
+	public $wflux_theme_core_do;
+	public $wflux_theme_ie_do;
 
 	function __construct(){
 		$this->wflux_theme_core_do = new wflux_theme_core;
@@ -248,11 +248,11 @@ add_action('get_header','wflux_capacitor_display', 1);
 */
 class wflux_display_all {
 
-	static $wflux_display_code_do;
-	static $wflux_display_css_do;
-	static $wflux_display_do;
-	static $wflux_display_ex_do;
-	static $wflux_display_social_do;
+	public $wflux_display_code_do;
+	public $wflux_display_css_do;
+	public $wflux_display_do;
+	public $wflux_display_ex_do;
+	public $wflux_display_social_do;
 
 	function __construct(){
 		$this->wflux_display_code_do = new wflux_display_code;

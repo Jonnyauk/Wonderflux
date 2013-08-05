@@ -12,8 +12,8 @@
 */
 class wflux_theme_core {
 
-	static $wfx_count_bg_divs;
-	static $wfx_count_bg_divs_hook;
+	public $wfx_count_bg_divs;
+	public $wfx_count_bg_divs_hook;
 
 	function __construct() {
 		$this->wfx_count_bg_divs = 0;

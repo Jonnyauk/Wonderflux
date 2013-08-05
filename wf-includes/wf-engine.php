@@ -162,7 +162,6 @@ class wflux_wp_helper_all {
 		$this->wflux_helper_do = new wflux_wp_core;
 	}
 
-	function admin_bar_remove($args){ $this->wflux_helper_do->wf_admin_bar_remove($args); }
 	function admin_bar_links(){ $this->wflux_helper_do->wf_admin_bar_links(); }
 
 }

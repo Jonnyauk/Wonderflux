@@ -577,17 +577,6 @@ class wflux_helper {
 */
 class wflux_wp_core {
 
-	/**
-	* Removes core WordPress admin bar
-	* @since 0.92
-	* @lastupdate 0.92
-	*/
-	function wf_admin_bar_remove() {
-		wp_deregister_script('admin-bar');
-		wp_deregister_style('admin-bar');
-		remove_action('wp_footer','wp_admin_bar_render',1000);
-	}
-
 
 	/**
 	* Adds Wonderflux links under Appearance on the WordPress admin bar

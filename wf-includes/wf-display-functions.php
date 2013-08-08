@@ -1475,8 +1475,7 @@ class wflux_display_extras {
 			'logout' => __('Logout', 'wonderflux'),
 			'logouttip' => __('Logout of site', 'wonderflux'),
 			'loginredirect' => 'dashboard',
-			'logoutredirect' => 'current',
-			'wpadminbar' => 'Y'
+			'logoutredirect' => 'current'
 		);
 
 		$args = wp_parse_args( $args, $defaults );

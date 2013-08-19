@@ -23,27 +23,23 @@ You may also view the license online: http://www.gnu.org/licenses/gpl-2.0.html
 Welcome to Wonderflux
 ----------------------------------------------------------------------
 
-#### A free, professional Open Source 
-#### theme framework for WordPress and BuddyPress.
+### A free, professional Open Source theme framework for WordPress & BuddyPress
 
 Wonderflux is distributed under the GPL v2 license and just like WordPress is 
 free to download, use and modify. YES, you can use Wonderflux on as many 
 commercial, non-commercial and personal WordPress websites as you wish without 
 any a fee, subscription or credit required (but it would be appreciated!)
 
-Anyone is welcome to suggest ideas or code on GitHub, the goal is to develop a 
-fantastic professional theme framework for everyone to use, for free, to make 
-amazing WordPress sites!
+**Anyone is welcome to suggest ideas or code on GitHub**, the goal is to 
+develop a fantastic professional theme framework for everyone to use, for free, 
+to make amazing WordPress sites!
 
 * **Project development home:**
   https://github.com/Jonnyauk/Wonderflux
-
 * **Ideas and bug reports:**
   https://github.com/Jonnyauk/Wonderflux/issues
-
 * **Development release milestones:**
   https://github.com/Jonnyauk/Wonderflux/milestones
-
 * **Follow Wonderflux on Twitter:**
   https://twitter.com/wonderflux
 
@@ -58,11 +54,11 @@ coding is much more fun than writing documentation, but there is fairly
 complete in-line code documentation in the wf-includes directory files for 
 your reference if you dig around.
 
-* **Hooks** http://wonderflux.com/guide/hook/
-* **Functions** http://wonderflux.com/guide/function/
-* **Filters** http://wonderflux.com/guide/filter/
-* **Constants** http://wonderflux.com/guide/constant/
-* **Files** http://wonderflux.com/guide/file/
+* **Hooks:** http://wonderflux.com/guide/hook/
+* **Functions:** http://wonderflux.com/guide/function/
+* **Filters:** http://wonderflux.com/guide/filter/
+* **Constants:** http://wonderflux.com/guide/constant/
+* **Files:** http://wonderflux.com/guide/file/
 
 Getting started
 ----------------------------------------------------------------------
@@ -88,8 +84,8 @@ Wonderflux template files in their Wonderflux child theme,
 for example header.php or footer.php
 
 **IF YOU OVERRIDE THESE YOU SHOULD DUPLICATE THE CORE FILE FROM 
-WONDERFLUX INTO YOUR CHILD THEME DIRECTORY**
-This will ensure you retain the Wonderflux structure and hook system 
+WONDERFLUX INTO YOUR CHILD THEME DIRECTORY,**
+this will ensure you retain the Wonderflux structure and hook system 
 to give you the perfect 'starter' file to begin playing with!
 
 The quickest way to begin learning how to use Wonderflux is to download the 
@@ -197,7 +193,7 @@ using template part loop-content.php as an example template part:
 The dynamic CSS grid layout system
 ----------------------------------------------------------------------
 
-Wonderflux generates a complete CSS grid layout system based on Blueprint CSS,  
+Wonderflux generates a complete CSS grid layout system based on Blueprint CSS, 
 the difference is you can configure the number and width of columns, site 
 container width and more by going to the Wonderflux options page.
 

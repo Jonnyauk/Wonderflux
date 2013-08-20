@@ -34,14 +34,10 @@ any a fee, subscription or credit required (but it would be appreciated!)
 develop a fantastic professional theme framework for everyone to use, for free, 
 to make amazing WordPress sites!
 
-* **Project development home:**
-  https://github.com/Jonnyauk/Wonderflux
-* **Ideas and bug reports:**
-  https://github.com/Jonnyauk/Wonderflux/issues
-* **Development milestones:**
-  https://github.com/Jonnyauk/Wonderflux/issues/milestones
-* **Follow Wonderflux on Twitter:**
-  https://twitter.com/wonderflux
+* [Project development home](https://github.com/Jonnyauk/Wonderflux) 
+* [Ideas and bug reports](https://github.com/Jonnyauk/Wonderflux/issues) 
+* [Dev milestones](https://github.com/Jonnyauk/Wonderflux/issues/milestones) 
+* [Follow Wonderflux on Twitter](https://twitter.com/wonderflux) 
 
 Help and documentation
 ----------------------------------------------------------------------
@@ -52,19 +48,19 @@ coding is much more fun than writing documentation, but there is fairly
 complete in-line code documentation in the wf-includes directory files for 
 your reference if you dig around.
 
-* **All documentation:** http://wonderflux.com/guide
-* **Hooks:** http://wonderflux.com/guide/hook
-* **Functions:** http://wonderflux.com/guide/function
-* **Filters:** http://wonderflux.com/guide/filter
-* **Constants:** http://wonderflux.com/guide/constant
-* **Files:** http://wonderflux.com/guide/file
+* [All documentation](http://wonderflux.com/guide) 
+* [Hooks](http://wonderflux.com/guide/hook) 
+* [Functions](http://wonderflux.com/guide/function) 
+* [Filters](http://wonderflux.com/guide/filter) 
+* [Constants](http://wonderflux.com/guide/constant) 
+* [Files](http://wonderflux.com/guide/file) 
 
 Getting started
 ----------------------------------------------------------------------
 
-Wonderflux is a theme framework (or 'parent theme') that you use by building 
-your own child themes. You simply have both Wonderflux and your child theme 
-uploaded to your normal WordPress theme directory.
+Wonderflux is a theme framework (sometimes called a *parent theme*) that you 
+use by building your own child themes. You simply have both Wonderflux and 
+your child theme uploaded to your normal WordPress theme directory.
 
 By activating your child theme in the WordPress admin area just like a normal 
 theme, it will automatically use files and functionality from Wonderflux, 
@@ -76,7 +72,7 @@ number of files that override or add functionality to Wonderflux or your
 website. A simple rule to remember is that if a core Wonderflux theme 
 layout file exists in your child theme directory (eg header-content.php) 
 it will be used instead of the core Wonderflux file. Read more about this 
-in the 'Template parts' section below.
+in the *Template parts* section below.
 
 Only advanced developers will need to actually override other standard 
 Wonderflux template files in their Wonderflux child theme, 
@@ -85,7 +81,7 @@ for example header.php or footer.php
 **IF YOU OVERRIDE THESE YOU SHOULD DUPLICATE THE CORE FILE FROM 
 WONDERFLUX INTO YOUR CHILD THEME DIRECTORY,**
 this will ensure you retain the Wonderflux structure and hook system 
-to give you the perfect 'starter' file to begin playing with!
+to give you the perfect *starter* file to begin playing with!
 
 ### WFX Girder - a demonstration theme
 
@@ -105,9 +101,9 @@ files simpler to edit. They can be thought of as re-useable parts that
 help avoid repetition of code.
 
 An example is loop-content.php - used to display the main content of your 
-site. Instead of repeating common CSS classes and layout, just edit this one 
-file, or see below on extending with 'location awareness' for more 
-complex configurations.
+site. Instead of repeating common CSS classes and layout just edit this 
+one file, or see below on optionally extending with *location awareness* 
+for more complex configurations.
 
 If you have not worked with theme frameworks, parent themes or 
 get_template_part() before - welcome to the future of WordPress 
@@ -122,15 +118,17 @@ Wonderflux can do for you!
 
 ### Extend template parts with location awareness
 
-Wonderflux extends the principle of 'template parts' by adding 
-'location awareness'. This automatically adds the ability to use 
+Wonderflux extends the principle of *template parts* by adding 
+*location awareness*. This automatically adds the ability to use 
 files such as header-content-category.php which will override 
 header-content.php when viewing a category archive.
 
-**Location awareness works automatically** - if the file exists, it gets used, 
-if it doesn't it falls back to the default file. Listed below is the order, 
-or 'cascade' of files that will be used in given locations, 
-using template part loop-content.php as an example template part:
+**Location awareness works automatically** - if the file exists it gets used, 
+otherwise it falls back to using the default file (the last listed). You will 
+see the files shown below in the order, or *cascade* of files that will be 
+used in given locations. We are using template part loop-content.php as an 
+example template part, but this will work with any main template part, or 
+indeed your own files if you use the wfx_get_template_part() function:
 
 * **SINGLE POST (INCLUDING CUSTOM POST TYPES)**
   *NOTE: Normal 'post' post type uses loop-content-single.php 
@@ -210,7 +208,7 @@ The core CSS layout is generated by the following values:
 ### Building smarter sized divs
 
 Note the use of the wfx_css() layout display function to setup CSS layout divs 
-in the WFX Girder demonstration theme. The 'size' parameter is a relative size 
+in the WFX Girder demonstration theme. The *size* parameter is a relative size 
 description of the width of a div in relation to the width of the main content. 
 See an example below of 2 quarters and one half div - making a complete row:
 
@@ -230,13 +228,13 @@ By using this function to define your div CSS classes, you can create easy to
 understand layout markup with unique layouts that dynamically resize as you 
 change the core CSS grid configuration.
 
-With the current CSS grid system, you MUST add the parameter 'last=Y' to the 
+With the current CSS grid system, you MUST add the parameter *last=Y* to the 
 last div in a row, This will hopefully not be required with the new responsive 
 grid system in development - *more soon!*
 
 ### More advanced development
 
-The entire grid configuration and all *wrapper* output can be filtered and 
+The entire grid configuration and all wrapper output can be filtered and 
 removed if required - remember this is a framework! Oh and if you spot 
 somewhere that needs a filter or more flexibility, just let me know on the 
 [GitHub issues page](https://github.com/Jonnyauk/Wonderflux/issues).
@@ -270,5 +268,6 @@ future versions of WordPress and improve performance and functionality.
 6.	Use over 100 location-aware hooks to detect what type of 
 	content is being viewed and automatically add unique content.
 	
-If you still feel the need to hack the Wonderflux core code, why not 
-[get involved on GitHub](https://github.com/Jonnyauk/Wonderflux)
+If you still feel the need to hack the Wonderflux core code, why not get 
+involved with the project on GitHub, all feedback and contributions are welcome! 
+[GitHub Wonderflux project page](https://github.com/Jonnyauk/Wonderflux)

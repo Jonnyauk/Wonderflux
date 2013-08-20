@@ -808,7 +808,7 @@ class wflux_display_css extends wflux_display_code {
 	/**
 	 * @since 1.1
 	 * @updated 1.1
-	 * Generates a repeating patern of columns for testing the grid layout system
+	 * Generates a repeating pattern of columns for testing the grid layout system
 	 * 
 	 * @param rows (integer) Maximum number of rows of divs you wish to output. [12]
 	 * @param type (string) Maximum number of rows of divs you wish to output. 'relative', 'columns' [relative]
@@ -846,7 +846,7 @@ class wflux_display_css extends wflux_display_code {
 	/**
 	 * @since 1.1
 	 * @updated 1.1
-	 * Generates a repeating patern of columns for testing the grid layout system
+	 * Generates a repeating pattern of columns for testing the grid layout system
 	 * Internal function used by wf_css_test_pattern
 	 * 
 	 * @param divs (integer) Maximum number of rows of divs you wish to output. [1]
@@ -883,7 +883,7 @@ class wflux_display_css extends wflux_display_code {
 	/**
 	 * @since 1.1
 	 * @updated 1.1
-	 * Generates a repeating patern of columns using relative sizes like 'half','quarter' for testing the grid layout system.
+	 * Generates a repeating pattern of columns using relative sizes like 'half','quarter' for testing the grid layout system.
 	 * Internal function used by wf_css_test_pattern
 	 * 
 	 * @param divs (integer) Maximum number of rows of divs you wish to output. NOTE: Maximum 12 [1]

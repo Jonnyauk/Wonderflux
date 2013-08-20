@@ -38,15 +38,13 @@ to make amazing WordPress sites!
   https://github.com/Jonnyauk/Wonderflux
 * **Ideas and bug reports:**
   https://github.com/Jonnyauk/Wonderflux/issues
-* **Development release milestones:**
-  https://github.com/Jonnyauk/Wonderflux/milestones
+* **Development milestones:**
+  https://github.com/Jonnyauk/Wonderflux/issues/milestones
 * **Follow Wonderflux on Twitter:**
   https://twitter.com/wonderflux
 
 Help and documentation
 ----------------------------------------------------------------------
-
-http://wonderflux.com/guide
 
 The Wonderflux documentation site is a (slowly!) growing reference of all the 
 functions, hooks and filters you can use in your child themes. Apologies, 
@@ -54,11 +52,12 @@ coding is much more fun than writing documentation, but there is fairly
 complete in-line code documentation in the wf-includes directory files for 
 your reference if you dig around.
 
-* **Hooks:** http://wonderflux.com/guide/hook/
-* **Functions:** http://wonderflux.com/guide/function/
-* **Filters:** http://wonderflux.com/guide/filter/
-* **Constants:** http://wonderflux.com/guide/constant/
-* **Files:** http://wonderflux.com/guide/file/
+* **All documentation:** http://wonderflux.com/guide
+* **Hooks:** http://wonderflux.com/guide/hook
+* **Functions:** http://wonderflux.com/guide/function
+* **Filters:** http://wonderflux.com/guide/filter
+* **Constants:** http://wonderflux.com/guide/constant
+* **Files:** http://wonderflux.com/guide/file
 
 Getting started
 ----------------------------------------------------------------------
@@ -88,13 +87,14 @@ WONDERFLUX INTO YOUR CHILD THEME DIRECTORY,**
 this will ensure you retain the Wonderflux structure and hook system 
 to give you the perfect 'starter' file to begin playing with!
 
+### WFX Girder - a demonstration theme
+
 The quickest way to begin learning how to use Wonderflux is to download the 
 WFX Girder demonstration child theme and examine the file structure and code. 
 There are lots of comments in the file to get you started.
 
-### WFX Girder - a demonstration theme
+[Download WFX Girder theme](https://github.com/Jonnyauk/wonderflux-girder)
 
-https://github.com/Jonnyauk/wonderflux-girder
 
 Template parts
 ----------------------------------------------------------------------
@@ -236,10 +236,10 @@ grid system in development - *more soon!*
 
 ### More advanced development
 
-The entire grid configuration and all 'wrapper' output can be filtered and 
-removed if required, don't worry - remember this is a framework! Oh and if 
-you spot somewhere that needs a filter or more flexibility, just let me know 
-on the GitHub issues page!
+The entire grid configuration and all *wrapper* output can be filtered and 
+removed if required - remember this is a framework! Oh and if you spot 
+somewhere that needs a filter or more flexibility, just let me know on the 
+[GitHub issues page](https://github.com/Jonnyauk/Wonderflux/issues).
 
 DON'T HACK WONDERFLUX!
 ----------------------------------------------------------------------
@@ -269,6 +269,6 @@ future versions of WordPress and improve performance and functionality.
 
 6.	Use over 100 location-aware hooks to detect what type of 
 	content is being viewed and automatically add unique content.
-	If you still feel the need to hack the Wonderflux core code, 
-	why not submit a patch or suggestion? Get involved at 
-	https://github.com/Jonnyauk/Wonderflux
+	
+If you still feel the need to hack the Wonderflux core code, why not 
+[get involved on GitHub](https://github.com/Jonnyauk/Wonderflux)

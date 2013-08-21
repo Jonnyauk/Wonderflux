@@ -24,18 +24,14 @@ class wflux_admin extends wflux_data {
 	/**
 	* Build the admin menus
 	* @since 0.3
-	* @updated 0.931
+	* @updated 1.1
 	*/
 	function wf_add_pages(){
-		global $wflux_core_admin_page_main;
-		global $wflux_core_admin_page_style;
-		global $wflux_core_admin_page_config;
-		global $wflux_core_admin_page_advanced;
-		$wflux_core_admin_page_main = add_menu_page( esc_attr__('Wonderflux main options','wonderflux'), esc_attr__('Wonderflux','wonderflux'), 'administrator', 'wonderflux', array($this, 'wf_page_core'));
-		$wflux_core_admin_page_style = add_submenu_page( 'wonderflux', esc_attr__('Wonderflux Style Lab','wonderflux'), esc_attr__('Style Lab','wonderflux'), 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
-		$wflux_core_admin_page_advanced = add_submenu_page( 'wonderflux', esc_attr__('Wonderflux Advanced','wonderflux'), esc_attr__('Advanced','wonderflux'), 'administrator', 'wonderflux_advanced', array($this, 'wf_page_advanced'));
-		$wflux_core_admin_page_cms = add_submenu_page( 'wonderflux', esc_attr__('Wonderflux System Information','wonderflux'), esc_attr__('System Information','wonderflux'), 'administrator', 'wonderflux_system', array($this, 'wf_page_system'));
-		//TODO: If user is superadmin ID, reveal advanced config menu
+		$wflux_core_admin_page_main = add_theme_page( esc_attr__('Wonderflux main options','wonderflux'), esc_attr__('Wonderflux','wonderflux'), 'administrator', 'wonderflux', array($this, 'wf_page_core'));
+		$wflux_core_admin_page_style = add_submenu_page( NULL, esc_attr__('Wonderflux Style Lab','wonderflux'), esc_attr__('Style Lab','wonderflux'), 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
+		$wflux_core_admin_page_advanced = add_submenu_page( NULL, esc_attr__('Wonderflux Advanced','wonderflux'), esc_attr__('Advanced','wonderflux'), 'administrator', 'wonderflux_advanced', array($this, 'wf_page_advanced'));
+		$wflux_core_admin_page_cms = add_submenu_page( NULL, esc_attr__('Wonderflux System Information','wonderflux'), esc_attr__('System Information','wonderflux'), 'administrator', 'wonderflux_system', array($this, 'wf_page_system'));
+		//TODO: If user has wonderflux_edit capability, reveal advanced config menu
 	}
 
 

@@ -1664,7 +1664,7 @@ class wflux_display_extras {
 	 * @param container_class - Container CSS class [page-counter-navigation]
 	 *
 	 * @since 0.93
-	 * @updated 0.931
+	 * @updated 1.1
 	 */
 	function wf_page_counter($args) {
 
@@ -1682,58 +1682,123 @@ class wflux_display_extras {
 			'container' => 'Y',
 			'container_class' => 'page-counter'
 		);
+		
+		// Dont show navigation if this is a single post
+		if (is_single()) {
+			// Silence is golden
+		} else {
 
-		$args = wp_parse_args( $args, $defaults );
-		extract( $args, EXTR_SKIP );
+			$args = wp_parse_args( $args, $defaults );
+			extract( $args, EXTR_SKIP );
+	
+			// Clean up ready to use
+			$element = ($element == 'p') ? $element : wp_kses_data($element, '');
+			$start = ($start == 'Page ') ? $start : wp_kses_data($start, '');
+			$seperator = ($seperator == ' of ') ? $seperator : wp_kses_data($seperator, '');
+			$current_span = ($current_span == ' of ') ? $current_span : wp_kses_data($current_span, '');
+			$total_span = ($total_span == ' of ') ? $total_span : wp_kses_data($total_span, '');
+			$always_show = ($always_show == 'N') ? $always_show : 'Y';
+			$navigation = ($total_span == 'N') ? $navigation : wp_kses_data($navigation, '');
+			$navigation_span = ($total_span == 'page_num_nav') ? $navigation_span : wp_kses_data($navigation_span, '');
+			$previous = ($previous == '&lt; ') ? $previous : wp_kses_data($previous, '');
+			$next = ($next == ' &gt;') ? $next : wp_kses_data($next, '');
+			// If someone has removed the span CSS classes definition, dont render to screen
+			$current_span = (!$current_span == '') ? '<span class="'.$current_span.'">' : '';
+			$current_span_close = (!$current_span == '') ? '</span>' : '';
+			$navigation_span = ($navigation_span == '') ? '<span class="'.$navigation_span.'">' : '';
+			$navigation_span = (!$navigation_span == '') ? '</span>' : '';
+			$navigation_span_close = (!$navigation_span == '') ? '</span>' : '';
+			$total_span = (!$total_span == '') ? '<span class="'.$total_span.'">' : '';
+			$total_span_close = (!$current_span == '') ? '</span>' : '';
+			$container = ($container == 'Y') ? 'Y' : 'N';
+			$container_class = ($container_class == 'page-counter-navigation') ? $container_class : wp_kses_data($container_class, '');
+	
+			
+	
+			// get total number of pages
+			global $wp_query;
+			$total = $wp_query->max_num_pages;
+	
+			// Setup current page
+			$current = 1;
+			$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
+	
+			$output = ($container == 'Y') ? '<div class="' . $container_class . '">' : '';
+			$output .= ($element == '') ? '' : '<'.$element.'>';
+			$output .= ($navigation == 'N') ? '' : $navigation_span . $this->wf_previous_posts_link($previous) . $navigation_span_close;
+			$output .= esc_html( $start );
+			$output .= $current_span . $current.$current_span_close;
+			$output .= esc_html( $seperator );
+			$output .= $total_span . $total.$total_span_close;
+			$output .= ($navigation == 'N') ? '' : $navigation_span . $this->wf_next_posts_link($next) . $navigation_span_close;
+			$output .= ($element == '') ? '' : '</'. $element .'>';
+			$output .= ($container == 'Y') ? '</div>' : '';
+	
+			// Always show results, even if just one page
+			if ( $always_show == 'Y' ) {
+				return $output;
+			// only render if we have more than one page of results
+			} elseif ( $total > 1 ) {
+				return $output;
+			}
+			
+		}
 
-		// Clean up ready to use
-		$element = ($element == 'p') ? $element : wp_kses_data($element, '');
-		$start = ($start == 'Page ') ? $start : wp_kses_data($start, '');
-		$seperator = ($seperator == ' of ') ? $seperator : wp_kses_data($seperator, '');
-		$current_span = ($current_span == ' of ') ? $current_span : wp_kses_data($current_span, '');
-		$total_span = ($total_span == ' of ') ? $total_span : wp_kses_data($total_span, '');
-		$always_show = ($always_show == 'N') ? $always_show : 'Y';
-		$navigation = ($total_span == 'N') ? $navigation : wp_kses_data($navigation, '');
-		$navigation_span = ($total_span == 'page_num_nav') ? $navigation_span : wp_kses_data($navigation_span, '');
-		$previous = ($previous == '&lt; ') ? $previous : wp_kses_data($previous, '');
-		$next = ($next == ' &gt;') ? $next : wp_kses_data($next, '');
-		// If someone has removed the span CSS classes definition, dont render to screen
-		$current_span = (!$current_span == '') ? '<span class="'.$current_span.'">' : '';
-		$current_span_close = (!$current_span == '') ? '</span>' : '';
-		$navigation_span = ($navigation_span == '') ? '<span class="'.$navigation_span.'">' : '';
-		$navigation_span = (!$navigation_span == '') ? '</span>' : '';
-		$navigation_span_close = (!$navigation_span == '') ? '</span>' : '';
-		$total_span = (!$total_span == '') ? '<span class="'.$total_span.'">' : '';
-		$total_span_close = (!$current_span == '') ? '</span>' : '';
-		$container = ($container == 'Y') ? 'Y' : 'N';
-		$container_class = ($container_class == 'page-counter-navigation') ? $container_class : wp_kses_data($container_class, '');
+	}
 
 
-		// get total number of pages
-		global $wp_query;
-		$total = $wp_query->max_num_pages;
+	/**
+	 * Return the previous posts page link.
+	 * Somewhat similar to core WP get_previous_posts_link() function
+	 * Just for internal use at the moment in wf_page_counter()
+	 * 
+	 * TODO: Extend in the future and enable as a basic core function in functions.php
+	 * TODO: Allow control of CSS class applied
+	 *
+	 * @param label - Previous page link text string
+	 * @return string|null
+	 * 
+	 * @since 1.1
+	 * @updated 1.1
+	 */
+	function wf_previous_posts_link( $label = null ) {
+		global $paged;		
+		if ( null === $label )
+			$label = __( '&laquo; Previous Page' );
+		if ( $paged > 1 ) {
+			return '<span class="page-counter-nav-prev"><a href="' . previous_posts( false ) . '">' . esc_attr( wp_kses($label,'') ) .'</a></span>';
+		}
+	}
 
-		// Setup current page
-		$current = 1;
-		$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
 
-		$output = ($container == 'Y') ? '<div class="' . $container_class . '">' : '';
-		$output .= ($element == '') ? '' : '<'.$element.'>';
-		$output .= ($navigation == 'N') ? '' : $navigation_span . get_previous_posts_link('&lt; ',0) . $navigation_span_close;
-		$output .= esc_html( $start );
-		$output .= $current_span . $current.$current_span_close;
-		$output .= esc_html( $seperator );
-		$output .= $total_span . $total.$total_span_close;
-		$output .= ($navigation == 'N') ? '' : get_next_posts_link(' &gt;',0);
-		$output .= ($element == '') ? '' : '</'. $element .'>';
-		$output .= ($container == 'Y') ? '</div>' : '';
+	/**
+	 * Return the next posts page link.
+	 * Somewhat similar to core WP get_next_posts_link() function
+	 * Just for internal use at the moment in wf_page_counter()
+	 * 
+	 * TODO: Extend in the future and enable as a basic core function in functions.php
+	 * TODO: Allow control of CSS class applied
+	 *
+	 * @param label - Previous page link text string
+	 * @return string|null
+	 * 
+	 * @since 1.1
+	 * @updated 1.1
+	 */
+	function wf_next_posts_link( $label = null, $max_page = 0 ) {
+		global $paged, $wp_query;
+	
+		if ( !$max_page )
+			$max_page = $wp_query->max_num_pages;
+		if ( !$paged )
+			$paged = 1;
+		$nextpage = intval($paged) + 1;
 
-		// Always show results, even if just one page
-		if ( $always_show == 'Y' ) {
-			return $output;
-		// only render if we have more than one page of results
-		} elseif ( $total > 1 ) {
-			return $output;
+		if ( null === $label )
+			$label = __( '&raquo; Next Page' );
+		
+		if ( $nextpage <= $max_page ) {
+			return '<span class="page-counter-nav-next"><a href="' . next_posts( $max_page, false ) . '">' . esc_attr( wp_kses($label,'') ) .'</a></span>';
 		}
 	}
 

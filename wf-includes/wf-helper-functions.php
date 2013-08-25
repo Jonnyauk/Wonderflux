@@ -254,16 +254,20 @@ class wflux_helper {
 	/**
 	* Detects if you are viewing single content - post, page, attachment, author
 	* as opposed to archive type views
+	* 
+	* Use core WordPress is_single() for basic single post check
 	*
 	* @since 1.0
-	* @lastupdate 1.0RC3
-	* @return text string: 'single' or 'index'
+	* @lastupdate 1.1
+	* @return boolean: true | false
 	*/
 	function wf_info_single() {
 		switch ( $this->wf_info_location() ) {
-			case 'post'||'page'||'attachment'||'author': $out = 'single'; break;
+			case 'single': $out = true; break;
+			case 'page': $out = true; break;
+			case 'attachment': $out = true; break;
+			case 'author': $out = true; break;
 			default : $out = false; break;
-
 		}
 		return $out;
 	}

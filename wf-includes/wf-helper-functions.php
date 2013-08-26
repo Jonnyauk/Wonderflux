@@ -608,7 +608,7 @@ class wflux_wp_core {
 						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-home-2', 'title' => __( 'Wonderflux home', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux') ) );
 						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-stylelab', 'title' => __( 'Stylelab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
 						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-advanced', 'title' => __( 'Advanced options', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_advanced') ) );
-						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-system', 'title' => __( 'System information', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_advanced') ) );
+						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-system', 'title' => __( 'System information', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_system') ) );
 						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-ext-guide', 'title' => __( 'API/documentation', 'wonderflux' ), 'href' => wp_sanitize_redirect('wonderflux.com/guide') ) );
 					}
 				}
@@ -626,7 +626,7 @@ class wflux_wp_core {
 							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-home-2', 'title' => __( 'Wonderflux home', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux') ) );
 							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-stylelab', 'title' => __( 'Stylelab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
 							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-advanced', 'title' => __( 'Advanced options', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_advanced') ) );
-							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-system', 'title' => __( 'System information', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_advanced') ) );
+							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-system', 'title' => __( 'System information', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_system') ) );
 							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-ext-guide', 'title' => __( 'API/documentation', 'wonderflux' ), 'href' => wp_sanitize_redirect('wonderflux.com/guide') ) );
 						}
 					}

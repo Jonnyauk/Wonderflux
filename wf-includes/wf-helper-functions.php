@@ -576,45 +576,58 @@ class wflux_helper {
 
 
 /**
-* Core Wonderflux WordPress manipulation functions
+* Core Wonderflux WordPress admin helper functions
 * Used internally by Wonderflux
 */
 class wflux_wp_core {
 
 
 	/**
-	* Adds Wonderflux links under Appearance on the WordPress admin bar
+	* Adds Wonderflux links to the WordPress admin bar
 	* @since 0.93
-	* @lastupdate 1.0
+	* @lastupdate 1.1
 	*/
 	function wf_admin_bar_links() {
-		global $wp_admin_bar, $wpdb;
-		if ( !is_admin_bar_showing() || WF_ADMIN_ACCESS == 'none' ) {
+		global $wp_admin_bar;
+		if ( !is_admin_bar_showing() || !current_user_can('manage_options') ) {
 			return;
+		} elseif ( WF_ADMIN_ACCESS == 'none') {
+			return;			
 		} elseif ( WF_ADMIN_ACCESS !='' ) {
 
 			$input = @unserialize(WF_ADMIN_ACCESS);
+
 			if ($input === false) {
 				// Single user role supplied
-				if ( WF_ADMIN_ACCESS == wfx_user_role('') && current_user_can('manage_options') ) {
+				if ( WF_ADMIN_ACCESS == wfx_user_role('') ) {
 					//Backpat < WordPress 3.3
 					if ( WF_WORDPRESS_VERSION < 3.3 ) {
-						$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+						$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Wonderflux Stylelab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
 					} else {
-						$wp_admin_bar->add_menu( array( 'parent' => 'site-name', 'id' => 'wf-stylelab', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+						$wp_admin_bar->add_menu( array( 'id' => 'wonderflux-home', 'title' => __( 'Wonderflux', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux') ) );
+						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-home-2', 'title' => __( 'Wonderflux home', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux') ) );
+						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-stylelab', 'title' => __( 'Stylelab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-advanced', 'title' => __( 'Advanced options', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_advanced') ) );
+						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-system', 'title' => __( 'System information', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_advanced') ) );
+						$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-ext-guide', 'title' => __( 'API/documentation', 'wonderflux' ), 'href' => wp_sanitize_redirect('wonderflux.com/guide') ) );
 					}
 				}
 			} else {
 				// Array of user ID's supplied
 				global $current_user;
 				get_currentuserinfo();
-				foreach ($input as $key=>$user_id) {
-					if ( $user_id == $current_user->ID && current_user_can('manage_options') ) {
+				foreach ( $input as $key=>$user_id ) {
+					if ( $user_id == $current_user->ID ) {
 						//Backpat < WordPress 3.3
 						if ( WF_WORDPRESS_VERSION < 3.3 ) {
-							$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+							$wp_admin_bar->add_menu( array( 'parent' => 'appearance', 'title' => __( 'Wonderflux Stylelab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
 						} else {
-							$wp_admin_bar->add_menu( array( 'parent' => 'site-name', 'id' => 'wf-stylelab', 'title' => __( 'Style Lab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+							$wp_admin_bar->add_menu( array( 'id' => 'wonderflux-home', 'title' => __( 'Wonderflux', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux') ) );
+							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-home-2', 'title' => __( 'Wonderflux home', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux') ) );
+							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-stylelab', 'title' => __( 'Stylelab', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_stylelab') ) );
+							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-advanced', 'title' => __( 'Advanced options', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_advanced') ) );
+							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-system', 'title' => __( 'System information', 'wonderflux' ), 'href' => wp_sanitize_redirect(admin_url().'admin.php?page=wonderflux_advanced') ) );
+							$wp_admin_bar->add_menu( array( 'parent' => 'wonderflux-home', 'id' => 'wonderflux-ext-guide', 'title' => __( 'API/documentation', 'wonderflux' ), 'href' => wp_sanitize_redirect('wonderflux.com/guide') ) );
 						}
 					}
 				}

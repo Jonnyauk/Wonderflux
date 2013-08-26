@@ -214,6 +214,14 @@ if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; re
 /**
 * @since 1.1
 * @updated 1.1
+* Displays input in a nicer way for debugging
+*/
+if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input) { global $wfx_helper; $wfx_helper->debug($input); } endif;
+
+
+/**
+* @since 1.1
+* @updated 1.1
 * Returns array of common layout tags to be used with kses or similar
 */
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags($args) {

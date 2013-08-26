@@ -570,6 +570,28 @@ class wflux_helper {
 	* @return Y
 	*/
 	function wf__N() { return 'N'; }
+	
+
+	/**
+	* Displays input in a nicer way for debugging 
+	* @since 1.1
+	* @lastupdate 1.1
+	*/
+	function wf_debug($input) {
+		$o = '<div style="background-color:#cccccc; color:#000; padding:5px; overflow:scroll; border: 4px solid #ff0a0a;">';
+		if ( empty($input) ) {
+			$o .= '<pre>' . esc_attr__('Input variable is NULL/empty or not available', 'wonderflux') . '</pre>'; 
+		} else {
+			$o .= '<pre><strong>' . esc_attr__('Debug output for data type:', 'wonderflux') . '</strong> ' . gettype($input) . '</pre>';
+			if (is_array($input) || is_object($input)) {
+	   			$o .= '<pre>' . print_r($input,true) . '</pre>';
+			} else {
+				$o .= '<p class="flush-bottom">' . $input . '</p>';
+			}
+		}
+		$o .= '</div>';
+		echo $o;
+	}
 
 
 }

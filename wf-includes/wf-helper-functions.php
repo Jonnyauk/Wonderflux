@@ -196,7 +196,7 @@ class wflux_data {
 		$this->wfx_sidebar_1_id = 'sidebar';
 		$this->wfx_sidebar_1_id = apply_filters( 'wflux_sidebar_1_id', $this->wfx_sidebar_1_id );
 		//if ( !has_filter('wflux_sidebar_1_id') ) { $this->wfx_sidebar_1_id = $this->wfx_db_display['sidebar_i']; // DB ACTION!! }
-		$this->wfx_sidebar_1_id = wp_kses_data($this->wfx_sidebar_1_id, '');
+		$this->wfx_sidebar_1_id = ( $this->wfx_sidebar_1_id !='sidebar' ) ? wp_kses_data( $this->wfx_sidebar_1_id, '' ) : $this->wfx_sidebar_1_id;
 
 		// SIDEBAR 1 COLUMNS
 		$this->wfx_sidebar_1_size_columns = 0;

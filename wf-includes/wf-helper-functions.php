@@ -173,7 +173,7 @@ class wflux_data {
 		$this->wfx_sidebar_1_display = apply_filters( 'wflux_sidebar_1_display', $this->wfx_sidebar_1_display );
 		// If filtered and in admin, just show original value saved to DB, not filtered values
 		if ( is_admin() ) {
-			if (has_filter('wflux_sidebar_1_display') ) {
+			if ( has_filter('wflux_sidebar_1_display') ) {
 				$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d'];
 			}
 		} elseif ( $this->wfx_sidebar_1_display == false ) {
@@ -185,7 +185,7 @@ class wflux_data {
 		$this->wfx_sidebar_1_size = apply_filters( 'wflux_sidebar_1_size', $this->wfx_sidebar_1_size );
 		// If filtered and in admin, just show original value saved to DB, not filtered values
 		if ( is_admin() ) {
-			if (has_filter('wflux_sidebar_1_size') ) {
+			if ( has_filter('wflux_sidebar_1_size') ) {
 				$this->wfx_sidebar_1_size = $this->wfx_db_display['sidebar_s'];
 			}
 		} elseif ( $this->wfx_sidebar_1_size == false ) {
@@ -196,13 +196,60 @@ class wflux_data {
 		$this->wfx_sidebar_1_id = 'sidebar';
 		$this->wfx_sidebar_1_id = apply_filters( 'wflux_sidebar_1_id', $this->wfx_sidebar_1_id );
 		//if ( !has_filter('wflux_sidebar_1_id') ) { $this->wfx_sidebar_1_id = $this->wfx_db_display['sidebar_i']; // DB ACTION!! }
-		$this->wfx_sidebar_1_id = wp_kses_data($this->wfx_sidebar_1_id, '');
+		$this->wfx_sidebar_1_id = ( $this->wfx_sidebar_1_id !='sidebar' ) ? wp_kses_data( $this->wfx_sidebar_1_id, '' ) : $this->wfx_sidebar_1_id;
 
 		// SIDEBAR 1 COLUMNS
 		$this->wfx_sidebar_1_size_columns = 0;
 		$this->wfx_sidebar_1_size_columns = apply_filters( 'wflux_sidebar_1_size_columns', $this->wfx_sidebar_1_size_columns );
 		//if ( !has_filter('wflux_sidebar_1_size_columns') ) { $this->wfx_sidebar_1_size_columns = $this->wfx_db_display['sidebar_c']; // DB ACTION!! }
 		$this->wfx_sidebar_1_size_columns = ( is_numeric($this->wfx_sidebar_1_size_columns) ) ? $this->wfx_sidebar_1_size_columns : 0;
+
+
+
+
+
+
+		// SIDEBAR 2 CSS ID
+		// TODO: Create options?
+		$this->wfx_sidebar_2_id = 'sidebar2';
+		$this->wfx_sidebar_2_id = apply_filters( 'wflux_sidebar_2_id', $this->wfx_sidebar_2_id );
+		$this->wfx_sidebar_2_id = ( $this->wfx_sidebar_2_id !='sidebar2') ? wp_kses_data($this->wfx_sidebar_2_id, '') : $this->wfx_sidebar_2_id;
+
+
+		// SIDEBAR 2 DISPLAY
+		$this->wfx_sidebar_2_display = (isset($this->wfx_db_display['sidebar_2_d']) ) ? $this->wfx_db_display['sidebar_2_d'] : false;
+		$this->wfx_sidebar_2_display = apply_filters( 'wflux_sidebar_2_display', $this->wfx_sidebar_2_display );
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() ) {
+			if ( has_filter('wflux_sidebar_2_display') ) {
+				$this->wfx_sidebar_2_display = $this->wfx_db_display['sidebar_2_d'];
+			}
+		} elseif ( $this->wfx_sidebar_2_display == false ) {
+			$this->wfx_sidebar_2_display = 'Y';
+		}
+
+		// SIDEBAR 2 SIZE
+		$this->wfx_sidebar_2_size = (isset($this->wfx_db_display['sidebar_2_s']) ) ? $this->wfx_db_display['sidebar_2_s'] : false;
+		$this->wfx_sidebar_2_size = apply_filters( 'wflux_sidebar_2_size', $this->wfx_sidebar_2_size );
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() ) {
+			if ( has_filter('wflux_sidebar_2_size') ) {
+				$this->wfx_sidebar_2_size = $this->wfx_db_display['sidebar_2_s'];
+			}
+		} elseif ( $this->wfx_sidebar_2_size == false ) {
+			$this->wfx_sidebar_2_size = 'quarter';
+		}
+
+
+		//TODO: ALPHA TESTING CODE!
+		// A new array is needed to save layout config neatly
+		//$this->wfx_layout_config = (isset($this->wfx_db_display['layout']) ) ? $this->wfx_db_display['layout'] : false;
+		$this->wfx_layout_config = array('content_1','sidebar_1');
+		//foreach $this->wfx_layout_config // 
+		$this->wfx_layout_config = apply_filters( 'wflux_layout_config', $this->wfx_layout_config );
+
+
+
 
 		//// THEME INFORMATION ////
 

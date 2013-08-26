@@ -124,8 +124,9 @@ if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { 
 
 /**
 * @since 1.0
-* @updated 1.0
-* IMPORTANT - Detects if you are viewing single content - post, page, attachment, author
+* @updated 1.1
+* Detects if you are viewing single content - post, page, attachment, author - returns true or false
+*
 */
 if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { global $wfx_helper; return $wfx_helper->info_single(); } endif;
 

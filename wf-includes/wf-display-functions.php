@@ -1462,10 +1462,9 @@ class wflux_display_extras {
 	 * @param logouttip - The Logout tooltip [Logout of site]
 	 * @param loginredirect - Redirect to where on login [dashboard]
 	 * @param logoutredirect - Redirect to where on logout [current]
-	 * @param wpadminbar - Configure display of WordPress admin bar [N]
 	 *
 	 * @since 0.901
-	 * @updated 0.931
+	 * @updated 1.1
 	 */
 	function wf_login_logout($args) {
 

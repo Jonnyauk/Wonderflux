@@ -1487,13 +1487,6 @@ class wflux_display_extras {
 			echo '<a href="'.wp_login_url().'" title="'.esc_attr($logintip).'">'.esc_attr($login).'</a>';
 		}
 
-		// Configure WordPress 3.1+ admin bar
-		if ( $wpadminbar == 'N' ) {
-			global $wfx_wp_helper; $wfx_wp_helper->admin_bar_remove('');
-		} else {
-			// Still include the WordPress admin bar... how many admin menus do you need you crazy fool?!
-		}
-
 	}
 
 

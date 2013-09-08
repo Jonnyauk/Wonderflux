@@ -223,6 +223,28 @@ class wflux_data {
 class wflux_helper {
 
 	/**
+	 * Returns array containing information about file based on filename
+	 * 
+	 * @since 1.1
+	 * @lastupdate 1.1
+	 * @return array ext,type,nicetype,playable
+	 * 
+	 * TODO: Extend to optionally check for path/existence of file and proper file checking
+	 */
+	function wf_info_file( $filename='' ) {
+			
+		if ( empty($filename) ) return false;
+
+		$info = wp_check_filetype($filename);
+		$file_ext = ( !empty($info) ) ? explode( '.', $filename ) : '';
+		$file_nice = wp_ext2type( array_pop( $file_ext ) );
+
+		$info['nicetype'] = ( !empty($file_nice) ) ? $file_nice : 'file';
+		$info['playable'] = ( in_array( $file_nice,array('video','audio') ) ) ? 'Y' : 'N';
+		return $info;
+	}
+
+	/**
 	* Detects what type of content you are currently viewing
 	*
 	* @since 0.881

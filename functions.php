@@ -114,6 +114,12 @@ add_action('auth_redirect', 'wfx_admin_menus');
 
 ////  2  //////////// HELPER FUNCTIONS
 
+/**
+* @since 1.1
+* @updated 1.1
+* Returns array of information about a file based on filename
+*/
+if ( !function_exists( 'wfx_info_file' ) ) : function wfx_info_file($filename='') { global $wfx_helper; return $wfx_helper->info_file($filename); } endif;
 
 /**
 * @since 0.913

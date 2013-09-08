@@ -125,6 +125,7 @@ class wflux_helper_all {
 		$this->wflux_helper_do = new wflux_helper;
 	}
 
+	function info_file($filetype){ return $this->wflux_helper_do->wf_info_file($filetype); }
 	function info_location(){ return $this->wflux_helper_do->wf_info_location(); }
 	function info_single(){ return $this->wflux_helper_do->wf_info_single(); }
 	function gt_part($args){ $this->wflux_helper_do->wf_get_template_part($args); }

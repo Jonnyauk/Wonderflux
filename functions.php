@@ -390,29 +390,12 @@ if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($a
 */
 if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_info($args) { global $wfx; $wfx->css_info($args); } endif;
 
-
-
-
-
-
-
-
-
 /**
 * @since 0.51
 * @updated 0.913
 * Displays CSS info for designers as a comment in the head source code
 */
 if ( !function_exists( 'wfx_display_test_pattern' ) ) : function wfx_display_test_pattern($args) { global $wfx; $wfx->test_pattern($args); } endif;
-
-
-
-
-
-
-
-
-
 
 /**
 * @since 0.93
@@ -427,7 +410,6 @@ if ( !function_exists( 'wfx_get_dimensions' ) ) : function wfx_get_dimensions($a
 * IMPORTANT Sets WordPress $content_width global for oEmbed media
 */
 if ( !function_exists( 'wfx_content_width_embed' ) ) : function wfx_content_width_embed() { global $wfx; $wfx->content_width_embed(); } endif;
-
 
 
 ////  4  //////////// THEME DISPLAY

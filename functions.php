@@ -222,6 +222,14 @@ if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$admin_onl
 /**
 * @since 1.1
 * @updated 1.1
+* Adds message to error reporting if WP_DEBUG is true.
+*/
+if ( !function_exists( 'wfx_debug_report' ) ) : function wfx_debug_report($function='', $message='', $version='') { global $wfx_helper; $wfx_helper->debug_report($function, $message, $version); } endif;
+
+
+/**
+* @since 1.1
+* @updated 1.1
 * Returns array of common layout tags to be used with kses or similar
 */
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags($args) {

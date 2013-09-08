@@ -625,7 +625,7 @@ class wflux_helper {
 	 *
 	 * @param string $function The function that was called.
 	 * @param string $message A message explaining what has been done incorrectly.
-	 * @param string $version The version of WordPress where the message was added.
+	 * @param string $version Wonderflux version when the message was added.
 	 */
 	function wf_debug_report( $function, $message, $version ) {
 	

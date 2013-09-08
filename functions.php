@@ -216,7 +216,7 @@ if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; re
 * @updated 1.1
 * Displays input in a nicer way for debugging
 */
-if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input) { global $wfx_helper; $wfx_helper->debug($input); } endif;
+if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$admin_only=true,$role=false,$id=false) { global $wfx_helper; $wfx_helper->debug($input,$admin_only,$role,$id); } endif;
 
 
 /**

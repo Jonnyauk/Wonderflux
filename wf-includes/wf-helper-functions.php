@@ -570,15 +570,33 @@ class wflux_helper {
 	* @return Y
 	*/
 	function wf__N() { return 'N'; }
-	
 
+	
 	/**
-	* Displays input in a nicer way for debugging 
-	* @since 1.1
-	* @lastupdate 1.1
-	*/
-	function wf_debug($input) {
-		$o = '<div style="background-color:#cccccc; color:#000; padding:5px; overflow:scroll; border: 4px solid #ff0a0a;">';
+	 * Displays input in a nicer way for debugging
+	 * Only displays for top level site admin by default
+	 *
+	 * @since 1.1
+	 * @lastupdate 1.1
+	 *
+	 * @param string $input The content you wish to debug - a variable or function. Default = ''
+	 * @param string $admin_only Only display to top level site admin not other users. Default=true
+	 * @param bool $role Only display to supplied WordPress role. Default = ''
+	 * @param integer $id Only display to supplied user ID. Default = ''
+	 */
+	function wf_debug( $input='', $admin_only=true, $role=false, $id=false ) {
+		
+		// Check against top level admin
+		if ( $admin_only && !is_super_admin() )
+			return;
+		// Check against user role
+		if ( $role && !current_user_can($role) )
+			return;
+		// Check against user ID
+		if ( is_integer($id) && get_current_user_id() != $id )
+			return;
+
+		$o = '<div style="color:#000; padding:5px; overflow:scroll; border: 4px solid #ff0a0a;">';
 		if ( empty($input) ) {
 			$o .= '<pre>' . esc_attr__('Input variable is NULL/empty or not available', 'wonderflux') . '</pre>'; 
 		} else {
@@ -586,11 +604,13 @@ class wflux_helper {
 			if (is_array($input) || is_object($input)) {
 	   			$o .= '<pre>' . print_r($input,true) . '</pre>';
 			} else {
-				$o .= '<p class="flush-bottom">' . $input . '</p>';
+				$o .= '<p>' . $input . '</p>';
 			}
 		}
 		$o .= '</div>';
+
 		echo $o;
+
 	}
 
 

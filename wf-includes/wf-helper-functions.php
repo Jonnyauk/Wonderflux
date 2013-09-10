@@ -241,7 +241,8 @@ class wflux_helper {
 		// wp_ext2type doesn't have functionality to detect image type file (WordPress 3.6)
 		// See http://core.trac.wordpress.org/ticket/25261 for patch submitted to address this - may get fixed?!
 		// TODO: Check if patch accepted and incorporated in future release of WordPress
-		$file_nice = ( empty($file_nice) && in_array($info['ext'], array('jpg','jpeg','jpe','gif','png','bmp','tif','tiff','ico')) ) ? 'image' : 'file';
+		$img_types = apply_filters( 'wfx_ext_img', array('jpg','jpeg','jpe','gif','png','bmp','tif','tiff','ico') );
+		$file_nice = ( empty($file_nice) && in_array($info['ext'], $img_types ) ) ? 'image' : $file_nice;
 
 		$info['nicetype'] = $file_nice;
 		$info['playable'] = ( in_array( $file_nice,array('video','audio') ) ) ? 'Y' : 'N';

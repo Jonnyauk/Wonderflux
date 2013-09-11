@@ -116,3 +116,6 @@ ol.commentlist p { margin-bottom: 0; }
 /** Posts **/
 
 .sticky { font-weight: bold; }
+
+/** Responsive **/
+.responsive-full-width { width: auto !important; width: 100%; max-width: 100%; height: auto; } /* Use this to size elements to full width of container */

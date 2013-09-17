@@ -1576,63 +1576,206 @@ class wflux_display_extras {
 
 	}
 
-
+	 
 	/**
-	 * Gets attachment(s) or featured images of posts in various formats
-	 * TODO: Soon to be 'swiss army knife' of attachment getters!
+	 * Gets attachment(s) or featured images of main post query
+	 * Used in loop-content-attachment.php - will try and playback files or create nice links
+	 * Can be used inside or outside the loop
 	 *
 	 * @since 0.901
-	 * @updated 1.0
+	 * @updated 1.1
+	 * 
+	 * TODO: Extend with ID control for any post ID
+	 * TODO: Extend media playback control
+	 *
+	 * @param strg	$type Type of output: 
+	 *				'all' for all attachments (note extra params for this)
+	 *				'featured_image' for featured post thumbnail
+	 * 				'attachment' for single attachment pages
+	 * @param strg	$mime_type Limit to certain mime type
+	 * 				only used if $type=all
+	 * @param intg	$amount Limit the amount of attachments
+	 * 				only used if $type=all
+	 * @param strg	$order Order of attachments (by date)
+	 * 				only used if $type=all
+	 * @param strg	$output p|ul|ol - What element to use to wrap individual attachment(s) in
+	 * @param strg	$img_size Image size (including registered custom sizes)
+	 * 				only used if $type=featured_image
+	 * @param bool	$div_wrap true|false Wrap all output in optional div
+	 * @param strg	$div_class CSS class used on wrapper div
+	 * 				only used if $div_wrap=true
+	 * @param strg	$element_class Add your own additional CSS class(es) to the $output
+	 * @param strg	$link_class Add your own additional CSS class(es) to download links
+	 * @param strg	$img_class CSS class added to image attachments
+	 * @param strg	$output_start Text show before text links - default is 'Download '
+	 * @param strg	$output_end Text shown after text links - default is none
+	 * @param strg	$meta_key Used for more advanced attachment queries - see WP core get_children()
+	 * @param strg	$meta_value Used for more advanced attachment queries - see WP core get_children()
+	 * 
 	 */
 	function wf_get_attachments($args) {
+		
+		// Acceptable values ($var_accept) - first item in array is used as default
+		$type_accept = array( 'all','featured_image','attachment' ); /* TODO: Extend in the future */		
+		$output_accept = array( 'p','ul','ol' );
+		$mime_type_accept = array( false,'image','video','text','audio','application','' );
 
 		$defaults = array (
-			'type'		=> 'image',
-			'amount'	=> 1,
-			'order'		=> 'ASC',
-			'output'	=> 'file_url',
-			'id'		=> 0,
-			'name'		=> 'thumbnail'
+			'type' => $type_accept[0],
+			'mime_type' => false,
+			'amount' => -1,
+			'order' => 'ASC',
+			'output' => 'ul',
+			'img_size' => 'large',
+			'div_wrap' => false,
+			'div_class' => 'box-get-attachment',
+			'element_class' => 'get-attachment-file', 
+			/*'link_title_start' => 'Download ',*/
+			'link_title_end' => false,
+			'link_class' => 'get-attachment-link',
+			'img_class' => 'attachment-single responsive-full-width',
+			'output_start' => 'Download ',
+			'output_end' => false,
+			'meta_key' => false,
+			'meta_value' => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		$type = ( $type == 'attachment' ) ? $type : wp_kses_data($type);
-		$amount = ( is_numeric($amount) ) ? $amount : 1;
-		$order = ( $order == 'ASC' ) ? $order : wp_kses_data($order);
-		$output = ( $output == 'file_url' ) ? $output : ( in_array($output, array('file_url','parent_url','page_url')) ) ? $output : 'file_url';
-		$id = ( is_numeric($id) ) ? $id : 0;
-		$name = ( $name == 'thumbnail' ) ? $name : wp_kses_data($name);
+		// Cleanup variables, final escaping etc done later on output
 
-		$out = false;
+		$type = ( $type == $type_accept[0] ) ? $type : ( in_array( $type, $type_accept ) ) ? $type : $type_accept[0];
+		$output = ( $output == $output_accept[0] ) ? $output : ( in_array( $output, $output_accept ) ) ? $output : $output_accept[0];
+		$output_i = ( $output == 'ul' || $output == 'ol' ) ?  'li': 'p';
+
+		$mime_type = ( !empty($mime_type) ) ? $mime_type : false;
+
+		$amount = ( is_numeric($amount) ) ? $amount : -1;
+		$order = ( $order == 'ASC' ) ? $order : 'DESC';
+		$img_size = ( $img_size == 'large' ) ? $img_size : ( in_array($img_size, get_intermediate_image_sizes()) ) ? $img_size : 'large';
+		$link_class = ( !empty($link_class) ) ? $link_class . ' ' : '';
+		
+		// Ready for output
+		$out = '';
 		global $post;
 
-		if ( $type == 'featured' ):
-			// Requested ID/this post
-			$this_img = ( $id > 0 ) ? wp_get_attachment_image_src( get_post_thumbnail_id( $id ), $name) : wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), $name);
-			$out = ( is_array($this_img) ) ? $this_img[0] : false;
-		else:
+		// $type controls the output
+		if ( $type == 'featured_image' && has_post_thumbnail($post->ID) ):
+			
+			$out .= ( $div_wrap ) ? '<div class="'. esc_attr($div_class) .'">' : '';
+			//TODO: Setup get_the_post_thumbnail $attr array for parameters
+			$out .= get_the_post_thumbnail($post->ID, $img_size);
+			$out .= ( $div_wrap ) ? '</div>' : '';
+
+		// Used in loop-content-attachment.php			
+		elseif ( $type == 'attachment' ):
+
+			$attachment_url = wp_get_attachment_url($post->ID);			
+			$file_info = wfx_info_file( $attachment_url );
+			
+			$out .= ( $div_wrap && !empty($attachment_url) ) ? '<div class="'. esc_attr($div_class) .'">' : '';
+			
+			// Display the attachment the best way we can
+			switch ( $file_info['nicetype'] ) {
+				case 'image':			
+					// already checked its an image dont need wp_attachment_is_image( $post->ID ):
+					$img_scr = wp_get_attachment_image_src( $post->ID, $img_size );
+					// Setup correct alt and title for image if possible
+					$alt_atr = get_post_meta($post->ID, '_wp_attachment_image_alt', true);
+					$alt_atr = ( !empty($alt_atr) ) ? $alt_atr : get_the_title();
+					$title_atr = $post->post_excerpt;
+					$title_atr = ( !empty($post->post_excerpt) ) ? $title_atr : get_the_title();
+
+					$out .= ( !empty( $img_scr ) ) ? '<p class="attachment-image"><img src="' . esc_url( $img_scr[0] ) . '" width="' . $img_scr[1] . '" height="' . $img_scr[2] . '" class="'.esc_attr( $img_class ) . '" alt="' . esc_attr( $alt_atr ) . '" title="' . esc_attr( $title_atr ) . '" /></p>' :  ''; 
+				break;
+				
+				//Try and play it WP3.6 oembed style
+				case 'audio':
+					// Things I tried but didn't work as expected with internal URLS
+					// Works, but not for internal urls
+					//echo wp_oembed_get($mp3_url);
+					// global $wp_embed;
+					// echo $wp_embed->shortcode(array(), $mp3_url);
+					
+					// Backpat - WordPress 3.6 oembeds just with URL (if on new line), cool!
+					$backp_start = ( WF_WORDPRESS_VERSION < 3.6 ) ? '[audio src="' : '';
+					$backp_end = ( WF_WORDPRESS_VERSION < 3.6 ) ? '"]' : '';
+					$out .= apply_filters( 'the_content', $backp_start . esc_url( $attachment_url ) . $backp_end );
+				break;
+
+				//Try and play it
+				case 'video':
+					// Backpat - WordPress 3.6 oembeds just with URL (if on new line), cool!
+					$backp_start = ( WF_WORDPRESS_VERSION < 3.6 ) ? '[video src="' : '';
+					$backp_end = ( WF_WORDPRESS_VERSION < 3.6 ) ? '"]' : '';
+					$out .= apply_filters( 'the_content', $backp_start . esc_url( $attachment_url ) . $backp_end );
+				break;
+				
+				// A slightly more useful general file link
+				default:
+					$tool_tip = sprintf( __( 'Download %1$s (.%2$s file)', 'wonderflux' ), $file_info['nicetype'], $file_info['ext'] );
+					$title_info = sprintf( __( ' (%1$s .%2$s file)', 'wonderflux' ), $file_info['nicetype'], $file_info['ext'] );
+
+					$out .= ($output == 'ul' || $output == 'ol') ? ($output == 'ul') ? '<ul class="' . $element_class . '">' : '<ol class="' . $element_class . '">' : '';
+					$out .= '<' . esc_attr( $output_i ) . ' class="attachment-' . $file_info['ext'] . '">';
+					$out .= '<a class="' . esc_attr( $element_class ) . ' ' . esc_attr( $link_class ) . 'attachment-'.$file_info['ext'] . ' attachment-'.$post->ID . '" ';
+					$out .= 'title="' . esc_attr( $tool_tip . $link_title_end ) . '" ';
+					$out .= 'href="' . esc_url( $attachment_url ) . '">';
+					$out .= esc_attr( $output_start.get_the_title( $post->ID ).$output_end.$title_info );
+					$out .= '</a></' . esc_attr($output_i) . '>';
+					$out .= ($output == 'ul' || $output == 'ol') ? ($output == 'ul') ? '</ul>' : '</ol>' : '';
+				break;	
+				$out .= "\n";
+
+			}
+
+			$out .= ( $div_wrap && !empty($attachment_url) ) ? '</div>' : '';
+
+		// Used to fetch all attachments of current post
+		elseif ( $type == 'all' ):
 
 			$files = get_children(array(
 				'post_parent'	=> $post->ID,
 				'post_type'		=> 'attachment',
 				'order'			=> $order,
-				'post_mime_type'=> $type,
+				'post_mime_type'=> $mime_type,
 				'numberposts'	=> $amount,
-				'post_status'	=> 'inherit'
+				'post_status'	=> 'inherit',
+				'meta_key'		=> ( is_array($meta_key) ) ? $meta_key : null, // NOTE: false busts the query - has to be null not false
+				'meta_value'	=> ( is_array($meta_value) ) ? $meta_value : null // NOTE: false busts the query - has to be null not false
 			));
+			
+			if ($files){
 
-			foreach( $files as $file ) {
-				switch ( $output ) {
-					case 'file_url' : $out = wp_get_attachment_url($file->ID); break;
-					case 'parent_url' : $out = get_permalink($file->post_parent); break;
-					case 'page_url' : $out = get_attachment_link($file->ID); break;
-					default : $out = wp_get_attachment_url($file->ID); break;
-				}
+				$out .= ( $div_wrap ) ? '<div class="'. esc_attr($div_class) .'">' : '';				
+				$out .= ($output == 'ul' || $output == 'ol') ? ($output == 'ul') ? '<ul class="' . $element_class . '">' : '<ol class="' . $element_class . '">' : '';
+
+				foreach( $files as $file ) {
+	
+					$file_url = wp_get_attachment_url($file->ID);			
+					$file_info = wfx_info_file( $file_url );
+					$tool_tip = sprintf( __( 'Download %1$s (.%2$s file)', 'wonderflux' ), $file_info['nicetype'], $file_info['ext'] );
+					$title_info = sprintf( __( ' (%1$s .%2$s file)', 'wonderflux' ), $file_info['nicetype'], $file_info['ext'] );
+
+	
+					$out .= '<' . esc_attr( $output_i ) . ' ' . esc_attr( $element_class ) . ' attachment-'.$file_info['ext'] . ' attachment-'.$file->ID . '">';
+					$out .= '<a class="' . esc_attr( $link_class ) . 'get-attachment-'.$file_info['ext'] . ' get-attachment-'.$file->ID . '" ';
+					$out .= 'title="' . esc_attr( $tool_tip . $link_title_end ) . '" ';
+					$out .= 'href="' . esc_url( $file_url ) . '">';
+					$out .= esc_attr( $output_start . get_the_title( $file->ID ) . $output_end.$title_info );
+					$out .= '</a></' . esc_attr( $output_i ) . '>' . "\n";
+					$out .= "\n";
+	
+				}				
+
+				$out .= ($output == 'ul' || $output == 'ol') ? ($output == 'ul') ? '</ul>' : '</ol>' : '';
+				$out .= ( $div_wrap ) ? '</div>' : '';
 			}
 
 		endif;
+		
+		$out .= "\n";	
 		return $out;
 
 	}

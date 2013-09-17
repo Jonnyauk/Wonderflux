@@ -15,6 +15,12 @@
 	<h2 class="entry-title"><?php the_title(); ?></h2>
 
 	<div class="entry-content">
+
+		<?php 
+		wfx_get_attachments('type=attachment');
+		the_content();		
+		?>
+
 	</div>
 
 </div>

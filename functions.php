@@ -518,11 +518,15 @@ if ( !function_exists( 'wfx_login_logout' ) ) : function wfx_login_logout($args)
 if ( !function_exists( 'wfx_static_highlight' ) ) : function wfx_static_highlight($args) { global $wfx; $wfx->static_highlight($args); } endif;
 
 /**
-* @since 0.913
-* @updated 1.0
-* Gets attachment(s) or featured images attached to posts in various formats
-*/
-if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments($args) {
+ * @since 0.913
+ * @updated 1.1
+ *
+ * Gets attachment(s) or featured images of main post query
+ * Used in loop-content-attachment.php - will try and playback files or create nice links
+ * Can be used inside or outside the loop
+ * 
+ */
+if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments( $args='' ) {
 
 	$defaults = array ( 'echo' => 'Y' );
 

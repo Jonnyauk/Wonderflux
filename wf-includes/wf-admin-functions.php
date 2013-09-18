@@ -648,19 +648,28 @@ class wflux_admin_forms extends wflux_data {
 
 	/**
 	* Creates a dropdown for options page
+	* IMPORTANT: Defaults for content1 and sidebar1 set here if no database options saved
 	* @since 0.81
-	* @updated 0.93
+	* @updated 1.1
 	*/
-	function wf_form_helper_ddown_std($data,$definition,$items) {
+	function wf_form_helper_ddown_std( $data,$definition,$items ) {
 		echo "<select id='wonderflux_display[".$definition."]' name='wonderflux_display[".$definition."]'>";
-		foreach($items as $key=>$value) {
-			if (is_array($value)) {
-				foreach($value as $key=>$value) {
-					$selected = ($value==$data) ? 'selected="selected"' : '';
-					echo "<option value='$value' $selected>$key</option>";
+		foreach( $items as $key=>$value ) {
+			if ( is_array( $value ) ) {
+				foreach( $value as $key=>$value ) {
+					$selected = ( $value == $data ) ? 'selected="selected"' : '';
+					// Check if no value saved and set appropriate option for sidebar1 size
+					if ( !$data && $definition == 'sidebar_s' && $value == 'quarter' ) {
+						echo "<option value='$value' selected='selected'>$key</option>";
+					// Check if no value saved and set appropriate option for content1 size
+					} elseif ( !$data && $definition == 'content_s' && $value == 'three_quarter' ) {
+						echo "<option value='$value' selected='selected'>$key</option>";						
+					} else {
+						echo "<option value='$value' $selected>$key</option>";
+					}
 				}
 			} else {
-				$selected = ($value==$data) ? 'selected="selected"' : '';
+				$selected = ( $value==$data ) ? 'selected="selected"' : '';
 				echo "<option value='$value' $selected>$value</option>";
 			}
 		}

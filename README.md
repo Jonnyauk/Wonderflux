@@ -270,4 +270,5 @@ future versions of WordPress and improve performance and functionality.
 	
 If you still feel the need to hack the Wonderflux core code, why not get 
 involved with the project on GitHub, all feedback and contributions are welcome! 
-[GitHub Wonderflux project page](https://github.com/Jonnyauk/Wonderflux)
+Drop by the [GitHub Wonderflux project page](https://github.com/Jonnyauk/Wonderflux) 
+to find out more.

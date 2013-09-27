@@ -14,8 +14,8 @@
 
 	<div class="entry-content">
 
-		<p><?php _e( 'It seems the content you are looking for has either changed or moved.', 'wonderflux' ); ?></p>
-		<p><?php _e( 'Try using our site search to locate related content.', 'wonderflux' ); ?></p>
+		<p><?php esc_html_e( 'It seems the content you are looking for has either changed or moved.', 'wonderflux' ); ?></p>
+		<p><?php esc_html_e( 'Try using our site search to locate related content.', 'wonderflux' ); ?></p>
 		<?php get_search_form(); ?>
 
 	</div>

@@ -11,13 +11,13 @@
 ?>
 <div class="sidebar-box">
 
-	<h4 class="sidebar-title">Pages</h4>
+	<h4 class="sidebar-title"><?php esc_html_e( 'Pages', 'wonderflux' ); ?></h4>
 	<ul><?php wp_list_pages('title_li=' ); ?></ul>
 
-	<h4 class="sidebar-title">Categories</h4>
+	<h4 class="sidebar-title"><?php esc_html_e( 'Categories', 'wonderflux' ); ?></h4>
 	<ul><?php wp_list_categories('show_count=1&title_li='); ?></ul>
 
-	<h4 class="sidebar-title">Archives</h4>
+	<h4 class="sidebar-title"><?php esc_html_e( 'Archives', 'wonderflux' ); ?></h4>
 	<ul><?php wp_get_archives('type=monthly'); ?></ul>
 
 </div>

@@ -15,7 +15,7 @@ $search_val = trim(get_search_query());
 	<h2 class="entry-title">
 	<?php
 	if (!empty($search_val))
-		printf( __( 'No search results found for: %s', 'wondeflux' ), '<span>' . $search_val . '</span>' );
+		printf( esc_html__( 'No search results found for: %s', 'wondeflux' ), '<span>' . $search_val . '</span>' );
 	else
 		_e( 'No search value entered', 'wonderflux' );
 	?>
@@ -25,9 +25,9 @@ $search_val = trim(get_search_query());
 		<p>
 		<?php
 		if (!empty($search_val))
-			_e( 'Sorry, nothing matched your search criteria. Please try again with some different keywords.', 'wonderflux' );
+			esc_html_e( 'Sorry, nothing matched your search criteria. Please try again with some different keywords.', 'wonderflux' );
 		else
-			_e( 'Sorry, you did not enter a search keyword. Please try again with some different keywords.', 'wonderflux' );
+			esc_html_e( 'Sorry, you did not enter a search keyword. Please try again with some different keywords.', 'wonderflux' );
 		?>
 		</p>
 		<?php get_search_form(); ?>

@@ -31,12 +31,6 @@ class wflux_early_all {
 }
 
 
-//// BUDDYPRESS FUNCTIONALITY
-
-if ( function_exists( 'bp_is_active' ) ) {
-	load_template(WF_INCLUDES_DIR . '/wf-buddypress.php');
-}
-
 //// ADMIN FUNCTIONS
 
 if (is_admin()) {

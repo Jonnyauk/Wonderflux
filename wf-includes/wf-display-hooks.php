@@ -178,4 +178,10 @@ function wfmain_after_404_content() { do_action('wfmain_after_404_content'); }
 function wfmain_after_404_main_content() { do_action('wfmain_after_404_main_content'); }
 function wfmain_after_404_container() { do_action('wfmain_after_404_container'); }
 
+// BuddyPress
+function wfmain_before_bp_container() { do_action('wfmain_before_bp_container'); }
+function wfmain_before_bp_content() { do_action('wfmain_before_bp_content'); }
+function wfmain_after_bp_content() { do_action('wfmain_after_bp_content'); }
+function wfmain_after_bp_main_content() { do_action('wfmain_after_bp_main_content'); }
+function wfmain_after_bp_container() { do_action('wfmain_after_bp_container'); }
 ?>

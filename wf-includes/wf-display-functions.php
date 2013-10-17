@@ -547,7 +547,7 @@ class wflux_display_css extends wflux_display_code {
 		$wf_single = $this->wfx_columns_width;
 
 		//Last class added only if == Y
-		$last = ( $last == 'Y' ) ? ' last' : '';
+		$last = ( 0 === strcasecmp( $last, 'Y' ) ) ? ' last' : '';
 
 		// Prepare extra CSS classes string for display if supplied
 		$class_clean = ( $class !='' ) ? ' ' . wp_kses( $class, '' ) : '';
@@ -559,7 +559,7 @@ class wflux_display_css extends wflux_display_code {
 		// It encloses the dynamic size class in '<div' and '>' for you
 		// Sugest you dont use this at get_template_part xhtml code level as you want to see clearly where the divs open and close
 		// Could be used in get_template_part code blocks
-		if ($divoutput == 'Y') {
+		if ( 0 === strcasecmp( $divoutput, 'Y') ) {
 			$divout_open_clean = '<div ';
 			$divout_close_clean = '>';
 		} else {

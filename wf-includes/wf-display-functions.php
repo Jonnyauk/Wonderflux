@@ -557,7 +557,7 @@ class wflux_display_css extends wflux_display_code {
 
 		// IMPORTANT divoutput parameter is for use in theme functions file
 		// It encloses the dynamic size class in '<div' and '>' for you
-		// Sugest you dont use this at get_template_part xhtml code level as you want to see clearly where the divs open and close
+		// Suggest you dont use this at get_template_part xhtml code level as you want to see clearly where the divs open and close
 		// Could be used in get_template_part code blocks
 		if ( 0 === strcasecmp( $divoutput, 'Y') ) {
 			$divout_open_clean = '<div ';

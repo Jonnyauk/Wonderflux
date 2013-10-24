@@ -625,7 +625,7 @@ class wflux_helper {
 
 		$o = '<div style="color:#000; padding:5px; overflow:scroll; border: 4px solid #ff0a0a;">';
 		if ( empty($input) ) {
-			$o .= '<pre>' . esc_attr__('No date returned or false/empty/null', 'wonderflux') . '</pre>'; 
+			$o .= '<pre>' . esc_attr__('No data returned or false/empty/null', 'wonderflux') . '</pre>'; 
 		} else {
 			$o .= '<pre><strong>' . esc_attr__('Debug output for data type:', 'wonderflux') . '</strong> ' . gettype($input) . '</pre>';
 			if (is_array($input) || is_object($input)) {

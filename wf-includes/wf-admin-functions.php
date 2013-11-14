@@ -2,8 +2,8 @@
 
 /**
 * @since 0.3
-* @updated 1.1
-* Admin form functions
+* @updated 2.0
+* Admin area functions for options pages and menus
 */
 class wflux_admin extends wflux_data {
 
@@ -297,9 +297,9 @@ class wflux_admin extends wflux_data {
  	/**
 	* Contextual help
 	* @since 0.92
-	* @updated 1.1
+	* @updated 2.0
 	*/
-	function wf_contextual_help($contextual_help, $screen_id, $screen) {
+	function wf_contextual_help() {
 
 		$adv_help = '<p>';
 		$adv_help .= '<a href="http://wonderflux.com/guide/constant/wf_theme_framework_replace/" title="'. esc_attr__('WF_THEME_FRAMEWORK_REPLACE documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('WF_THEME_FRAMEWORK_REPLACE', 'wonderflux') . '</a>';
@@ -352,12 +352,14 @@ class wflux_admin extends wflux_data {
 
 		$generic_help .= '</p>';
 
-		switch ($screen_id) {
-			case 'toplevel_page_wonderflux' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Main Options', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_stylelab' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $style_help . $generic_help; break;
-			case 'wonderflux_page_wonderflux_system' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'wonderflux_page_wonderflux_advanced' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
-			default : return $contextual_help;
+		$this_wfx_screen = get_current_screen();
+
+		switch ($this_wfx_screen->id) {
+			case 'appearance_page_wonderflux' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Main Options', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'admin_page_wonderflux_stylelab' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $style_help . $generic_help; break;
+			case 'admin_page_wonderflux_advanced' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
+			case 'admin_page_wonderflux_system' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			default : return false;
 		}
 
 		return $this_help;

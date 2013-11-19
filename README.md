@@ -159,6 +159,12 @@ indeed your own files if you use the wfx_get_template_part() function:
   2. loop-content-date-{YEAR}.php
   3. loop-content-date.php
   4. loop-content.php
+  
+* **POST ARCHIVE**
+  *NOTE: especially useful for custom post type archives - introduced in v2.0!*
+	1. loop-content-archive-{post-type-slug}.php
+	2. loop-content-archive.php
+	3. loop-content.php
 
 * **AUTHOR**
   1. loop-content-author.php
@@ -170,10 +176,6 @@ indeed your own files if you use the wfx_get_template_part() function:
 
 * **SEARCH**
   1. loop-content-search.php
-  2. loop-content.php
-
-* **ARCHIVE**
-  1. loop-content-archive.php
   2. loop-content.php
 
 * **ATTACHMENT**

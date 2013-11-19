@@ -352,9 +352,6 @@ class wflux_helper {
 	* 1 loop-content-search.php
 	* 2 loop-content.php
 	*
-	* ARCHIVE
-	* 1 loop-content-archive.php
-	* 2 loop-content.php
 	*
 	* ATTACHMENT TODO: Basic range of filetypes support
 	* 1 loop-content-attachment.php

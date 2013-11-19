@@ -334,6 +334,11 @@ class wflux_helper {
 	* 2 loop-content-date-{YEAR}.php (4 digit year)
 	* 3 loop-content-date.php
 	* 4 loop-content.php
+	* 
+	* POST ARCHIVE (especially useful for custom post type archives!)
+	* 1 loop-content-archive-{post-type-slug}.php
+	* 2 loop-content-archive.php
+	* 3 loop-content.php
 	*
 	* AUTHOR TODO: Do username template drill
 	* 1 loop-content-author.php
@@ -365,10 +370,10 @@ class wflux_helper {
 	*
 	* TODO: Support core WordPress post formats?
 	*
-	* IMPORTANT: Used in core template files to setup specific template_parts
+	* IMPORTANT: Used in core template files to setup smarter specific template_parts
 	*
 	* @since 0.881
-	* @lastupdate 1.0RC3
+	* @lastupdate 2.0
 	*
 	* @param string $part REQUIRED The slug name for the generic template
 	* @param string $tag OPTIONAL Extends taxonomy views for additional tag specific template parts
@@ -431,6 +436,14 @@ class wflux_helper {
 				$slug_2 = (!empty($month)) ? ($month < 10) ? sprintf('-%02d', $month) : '-' . $month : false;
 				if ( locate_template($part.'-'.$this_location.$slug_1.$slug_2.'.php', false) !='' ): get_template_part($part, $this_location.$slug_1.$slug_2);
 				elseif ( locate_template($part.'-'.$this_location.$slug_1.'.php', false) !='' ): get_template_part($part, $this_location.$slug_1);
+				else: get_template_part($part, $this_location); endif;
+			break;
+				
+			// Archive/custom post type archive
+			case ('archive'):
+				$slug = get_query_var('post_type');
+				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
+				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
 				else: get_template_part($part, $this_location); endif;
 			break;
 

@@ -1077,7 +1077,7 @@ class wflux_display extends wflux_display_css {
 
 /**
 * @since 0.85
-* @updated 1.1
+* @updated 2.0
 * Extra core display functions for theme designers
 */
 class wflux_display_extras {
@@ -1365,13 +1365,14 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 0.93
+	 * @updated 2.0
 	 */
 	function wf_get_single_content($args) {
 
 		$defaults = array (
 			'id' => 2,
 			'titlestyle' => 'h4',
+			'titleclass' => '',
 			'contentstyle' => 'p',
 			'title' => 'Y',
 			'titlelink' => 'N',
@@ -1389,6 +1390,7 @@ class wflux_display_extras {
 
 		// Prepare user input for output
 		$titlestyle = wp_kses_data($titlestyle);
+		$titleclass = wp_kses_data($titleclass);
 		$boxclass = wp_kses_data($boxclass);
 		$contentstyle = wp_kses_data($contentstyle);
 		$contentclass = wp_kses_data($contentclass);
@@ -1396,6 +1398,8 @@ class wflux_display_extras {
 		$morelinktext = wp_kses_data($morelinktext);
 		$morelinkclass = wp_kses_data($morelinkclass);
 		if (!is_numeric($id)) { $id = 2; }
+		
+		$titleclass = ( !empty($titleclass) ) ? ' class="' . sanitize_html_class($titleclass) . '"' : '';
 
 		// LOOP BEGIN
 		$my_q_posts = new WP_Query(array(
@@ -1408,11 +1412,11 @@ class wflux_display_extras {
 			// Title
 			if ($title == 'Y') {
 				$title_out = '<div class="wf-mini-display-title">';
-				$title_out .= '<' . esc_attr($titlestyle) . '>';
+				$title_out .= '<' . sanitize_html_class( $titlestyle ) . $titleclass . '>';
 				if ($titlelink == 'Y') { $title_out .= '<a href="' . get_permalink() . '" title="'. get_the_title() .'">'; }
 				$title_out .= get_the_title();
 				if ($titlelink == 'Y') { $title_out .= '</a>'; }
-				$title_out .= '</' . esc_attr($titlestyle) . '>';
+				$title_out .= '</' . sanitize_html_class($titlestyle) . '>';
 				$title_out .= "\n";
 				$title_out .= '</div>';
 			} else {

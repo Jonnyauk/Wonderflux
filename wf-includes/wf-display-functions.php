@@ -807,11 +807,11 @@ class wflux_display_css extends wflux_display_code {
 
 	/**
 	 * @since 1.1
-	 * @updated 1.1
+	 * @updated 2.0
 	 * Generates a repeating pattern of columns for testing the grid layout system
 	 * 
 	 * @param rows (integer) Maximum number of rows of divs you wish to output. [12]
-	 * @param type (string) Maximum number of rows of divs you wish to output. 'relative', 'columns' [relative]
+	 * @param type (string) Type of column definitions to use to build output - raw column classes 'columns', or nice definitions. 'relative' [relative]
 	 */
 	function wf_css_test_pattern( $args ){
 		

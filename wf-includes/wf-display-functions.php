@@ -865,7 +865,7 @@ class wflux_display_css extends wflux_display_code {
 		$size = ($split == 'single') ? 1 : floor($this->wfx_columns/$divs);
 
 		wfx_css( 'size=full&class=blocksample-row' . ' blocksample-row&divoutput=Y' );
-		echo '<h2 class="flush-bottom">' . $divs . ' columns, column size: ' . $divs . '</h2>';
+		echo '<h3 class="flush-bottom">Columns: ' . $divs . '</h2>';
 
 		for( $i=0; $i<$divs; $i++ ) {
 			$last = ( $i < ($divs-1) ) ? '' : 'Y';

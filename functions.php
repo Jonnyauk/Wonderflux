@@ -107,7 +107,6 @@ add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
 add_action('wf_head_meta', 'wfx_display_css_info');
 add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
 add_action('wffooter_after_content', 'wfx_display_credit', 1);
-add_action('wf_footer', 'wfx_debug_performance', 12);
 add_action('wf_footer', 'wfx_display_code_credit', 3);
 add_action('auth_redirect', 'wfx_admin_menus');
 

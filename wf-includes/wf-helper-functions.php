@@ -224,15 +224,15 @@ class wflux_helper {
 
 	/**
 	 * Returns array containing information about file based on filename
-	 * 
+	 *
 	 * @since 1.1
 	 * @lastupdate 1.1
 	 * @return array ext,type,nicetype,playable
-	 * 
+	 *
 	 * TODO: Extend to optionally check for path/existence of file and proper file checking
 	 */
 	function wf_info_file( $filename='' ) {
-			
+
 		if ( empty($filename) ) return false;
 
 		$info = wp_check_filetype($filename);
@@ -281,7 +281,7 @@ class wflux_helper {
 	/**
 	* Detects if you are viewing single content - post, page, attachment, author
 	* as opposed to archive type views
-	* 
+	*
 	* Use core WordPress is_single() for basic single post check
 	*
 	* @since 1.0
@@ -334,7 +334,7 @@ class wflux_helper {
 	* 2 loop-content-date-{YEAR}.php (4 digit year)
 	* 3 loop-content-date.php
 	* 4 loop-content.php
-	* 
+	*
 	* POST ARCHIVE (especially useful for custom post type archives!)
 	* 1 loop-content-archive-{post-type-slug}.php
 	* 2 loop-content-archive.php
@@ -435,7 +435,7 @@ class wflux_helper {
 				elseif ( locate_template($part.'-'.$this_location.$slug_1.'.php', false) !='' ): get_template_part($part, $this_location.$slug_1);
 				else: get_template_part($part, $this_location); endif;
 			break;
-				
+
 			// Archive/custom post type archive
 			case ('archive'):
 				$slug = get_query_var('post_type');
@@ -532,7 +532,7 @@ class wflux_helper {
 	* @params return_error - (Y/N) - Do you want something returned on search (is_search) and 404 (is_404) ? - [N]
 	* @params trim - (Y/N) - Trim white space characters from start and end of custom field value [N]
 	* @params id - (integer) - function usually returns main loop custom field, setting $id forces function to get custom field from specific post ID [false]
-	* 
+	*
 	* @since 0.92
 	* @lastupdate 1.1
 	* @return custom field value, can be used inside and outside loop
@@ -608,7 +608,7 @@ class wflux_helper {
 	*/
 	function wf__N() { return 'N'; }
 
-	
+
 	/**
 	 * Displays input in a nicer way for debugging
 	 * Only displays for top level site admin by default
@@ -617,12 +617,13 @@ class wflux_helper {
 	 * @lastupdate 1.1
 	 *
 	 * @param string $input The content you wish to debug - a variable or function. Default = ''
+	 *        NOTE: Use string 'wp_query' to access WordPress $wp_query
 	 * @param string $admin_only Only display to top level site admin not other users. Default=true
 	 * @param bool $role Only display to supplied WordPress role. Default = ''
 	 * @param integer $id Only display to supplied user ID. Default = ''
 	 */
 	function wf_debug( $input='', $admin_only=true, $role=false, $id=false ) {
-		
+
 		// Check against top level admin
 		if ( $admin_only && !is_super_admin() )
 			return;
@@ -635,9 +636,17 @@ class wflux_helper {
 
 		$o = '<div style="color:#000; padding:5px; overflow:scroll; border: 4px solid #ff0a0a;">';
 		if ( empty($input) ) {
-			$o .= '<pre>' . esc_attr__('No data returned or false/empty/null', 'wonderflux') . '</pre>'; 
+			$o .= '<pre>' . esc_attr__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
 		} else {
-			$o .= '<pre><strong>' . esc_attr__('Debug output for data type:', 'wonderflux') . '</strong> ' . gettype($input) . '</pre>';
+
+			$input_type = ( $input == 'wp_query' ) ? 'object - WordPress core $wp_query' : gettype($input);
+
+			if ($input === 'wp_query') {
+				global $wp_query;
+				$input = $wp_query;
+			}
+
+			$o .= '<pre><strong>' . esc_attr__('Debug output for data type:', 'wonderflux') . '</strong> ' . $input_type . '</pre>';
 			if (is_array($input) || is_object($input)) {
 	   			$o .= '<pre>' . print_r($input,true) . '</pre>';
 			} else {
@@ -665,15 +674,15 @@ class wflux_helper {
 	 * @param string $version Wonderflux version when the message was added.
 	 */
 	function wf_debug_report( $function, $message, $version ) {
-	
+
 		do_action( 'wfx_debug_report_run', $function, $message, $version );
-	
+
 		if ( WP_DEBUG )
 			$version = !is_null( $version ) ? '' : sprintf( __( '(This message was added in version %s.)' ), $version );
 			$message .= ' ' . __( 'Please see <a href="http://wonderflux.com/guide/">The Wonderflux Guide</a> for more information.' );
 			trigger_error( sprintf( __( '%1$s was called <strong>incorrectly</strong>. %2$s %3$s' ), $function, $message, $version ) );
 	}
-	
+
 
 }
 
@@ -695,7 +704,7 @@ class wflux_wp_core {
 		if ( !is_admin_bar_showing() || !current_user_can('manage_options') ) {
 			return;
 		} elseif ( WF_ADMIN_ACCESS == 'none') {
-			return;			
+			return;
 		} elseif ( WF_ADMIN_ACCESS !='' ) {
 
 			$input = @unserialize(WF_ADMIN_ACCESS);

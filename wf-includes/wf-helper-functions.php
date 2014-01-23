@@ -617,7 +617,8 @@ class wflux_helper {
 	 * @lastupdate 1.1
 	 *
 	 * @param string $input The content you wish to debug - a variable or function. Default = ''
-	 *        NOTE: Use string 'wp_query' to access WordPress $wp_query
+	 *        NOTE: Use string 'wp_query' to access WordPress $wp_query object
+	 *        NOTE: Use string 'wp_posts' to access WordPress $posts object
 	 * @param string $admin_only Only display to top level site admin not other users. Default=true
 	 * @param bool $role Only display to supplied WordPress role. Default = ''
 	 * @param integer $id Only display to supplied user ID. Default = ''
@@ -639,11 +640,26 @@ class wflux_helper {
 			$o .= '<pre>' . esc_attr__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
 		} else {
 
-			$input_type = ( $input == 'wp_query' ) ? 'object - WordPress core $wp_query' : gettype($input);
+			switch ( $input ) {
+				case 'wp_query':
+					$input_type = 'object - WordPress core $wp_query';
+				break;
 
-			if ($input === 'wp_query') {
+				case 'wp_posts':
+					$input_type = 'object - WordPress core $posts';
+				break;
+
+				default:
+					$input_type = gettype($input);
+				break;
+			}
+
+			if ( $input === 'wp_query' ) {
 				global $wp_query;
 				$input = $wp_query;
+			} elseif ( $input === 'wp_posts' ) {
+				global $posts;
+				$input = $posts;
 			}
 
 			$o .= '<pre><strong>' . esc_attr__('Debug output for data type:', 'wonderflux') . '</strong> ' . $input_type . '</pre>';

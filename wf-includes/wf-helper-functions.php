@@ -635,7 +635,8 @@ class wflux_helper {
 		if ( is_integer($id) && get_current_user_id() != $id )
 			return;
 
-		$o = '<div style="color:#000; padding:5px; overflow:scroll; border: 4px solid #ff0a0a;">';
+		$o = '<div style="color:#000; padding:5px; overflow:auto; border: 4px solid #ff0a0a; background-color: #fec9c9;" class="wfx_debug_output">';
+
 		if ( empty($input) ) {
 			$o .= '<pre>' . esc_attr__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
 		} else {

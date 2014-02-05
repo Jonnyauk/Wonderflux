@@ -569,9 +569,9 @@ class wflux_helper {
 
 			if (empty($id)) {
 				global $wp_query;
-				$this_id = $wp_query->post->ID;
-			}else{
-				$this_id = intval($id);
+				$this_id = isset( $wp_query->post->ID ) ? $wp_query->post->ID : false;
+			} else {
+				$this_id = intval( $id );
 			}
 
 			$name_clean = wp_kses_data($name, '');

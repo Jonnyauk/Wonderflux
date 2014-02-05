@@ -553,35 +553,35 @@ class wflux_helper {
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		$empty_clean = wp_kses_post($empty, '');
+		$empty_clean = wp_kses_post( $empty, '' );
 
 		// Detect and optionally return useful value if no chance of custom field being here
-		if (is_admin() ) {
+		if ( is_admin() ) {
 			// Silence is golden
-		} elseif (is_404() && $return_error == 'N' ) {
+		} elseif ( is_404() && $return_error == 'N' ) {
 			return $empty_clean;
-		} elseif (is_search() && $return_error == 'N' ) {
+		} elseif ( is_search() && $return_error == 'N' ) {
 			return $empty_clean;
 		} else {
 
 			// We have something to query!
 			wp_reset_query();
 
-			if (empty($id)) {
+			if ( empty($id) ) {
 				global $wp_query;
 				$this_id = isset( $wp_query->post->ID ) ? $wp_query->post->ID : false;
 			} else {
 				$this_id = intval( $id );
 			}
 
-			$name_clean = wp_kses_data($name, '');
+			$name_clean = wp_kses_data( $name, '' );
 
 			$value = get_post_meta($this_id, $name_clean, true);
-			$output = ($value != '') ? $value : $empty_clean;
+			$output = ( $value != '' ) ? $value : $empty_clean;
 
-			if ( $format == 'date' ) { $output = date($date_style, $output); };
-			if ( $trim == 'Y' ) { $output = trim($output); }
-			if ( $escape == 'Y' ) { return esc_attr($output); } else { return $output; }
+			if ( $format == 'date' ) { $output = date( $date_style, $output ); };
+			if ( $trim == 'Y' ) { $output = trim( $output ); }
+			if ( $escape == 'Y' ) { return esc_attr( $output ); } else { return $output; }
 		}
 
 	}

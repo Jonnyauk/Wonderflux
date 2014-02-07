@@ -11,6 +11,8 @@
  * @package Wonderflux
  */
 
+$hook_where = wfx_info_location();
+
 wfloop_before(); //WF display hook
 
 if ( !have_posts() ): // No posts found
@@ -18,13 +20,23 @@ if ( !have_posts() ): // No posts found
 		get_template_part('loop-content', 'no-search-results');
 	else
 		get_template_part('loop-content', '404');
-elseif ( isset($_GET['s']) && trim($_GET['s']) == '' ): // If no query supplied, show no results - dont like this, just override in child theme!
-	get_template_part('loop-content', 'no-search-results');
-	query_posts('showposts=0'); // Reset post data so page counters show incorrectly - no results = no paged results thanks!
+	elseif ( isset($_GET['s']) && trim($_GET['s']) == '' ): // If no query supplied, show no results - dont like this, just override in child theme!
+		get_template_part('loop-content', 'no-search-results');
+		query_posts('showposts=0'); // Reset post data so page counters show incorrectly - no results = no paged results thanks!
 else:
+
+	wfloop_before_found_posts_all();
+	$wfloop_before_found = 'wfloop_before_found_posts_'.$hook_where;
+	$wfloop_before_found();
+
 	while ( have_posts() ) : the_post();
 		wfx_get_template_part('part=loop-content'); // Setup all location aware template parts
 	endwhile;
+
+	$wfloop_after_found = 'wfloop_after_found_posts_'.$hook_where;
+	$wfloop_after_found();
+	wfloop_after_found_posts_all();
+
 endif;
 
 wfx_page_counter('navigation=Y');

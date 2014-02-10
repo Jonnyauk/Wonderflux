@@ -1143,9 +1143,12 @@ class wflux_display_extras {
 		// Remove punctuation
 		if ($trim == 'Y') {
 			$end_check = substr($excerpt, -1);
-			$punctuation = array('.',',','-','&minus;','&ndash;','&mdash;');
+			$punctuation = array('.',',','-','&minus;','&ndash;','&mdash;','!','?');
 			if (in_array($end_check,$punctuation)): $excerpt = substr($excerpt, 0, -1); endif;
 		}
+
+		// Dont include excerpt end if there is no excerpt!
+		$excerpt_end = ( !empty($excerpt) ) ? $excerpt_end : '';
 
 		return esc_attr($excerpt) . esc_attr($excerpt_end);
 

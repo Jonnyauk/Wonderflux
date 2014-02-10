@@ -35,7 +35,7 @@ echo apply_filters( 'wflux_layout_content_container_open', '<div class="containe
 	wfmain_before_all_content(); //WF display hook
 	wfmain_before_bp_content(); //WF display hook
 
-	get_template_part( 'loop', 'index' );
+	get_template_part( 'loop', 'buddypress' );
 
 	wfmain_after_bp_content(); //WF display hook
 	wfmain_after_all_content(); //WF display hook

@@ -1112,7 +1112,7 @@ class wflux_display_extras {
 	 * $trim = Trim off punctuation from end of excerpt - good when you don't want it to bump into your excerpt end. Default 'Y'
 	 *
 	 * @since 0.85
-	 * @updated 0.931
+	 * @updated 1.1
 	 */
 	function wf_excerpt($args) {
 

@@ -459,7 +459,7 @@ if ( !function_exists( 'wfx_layout_build' ) ) : function wfx_layout_build($args)
 
 /**
 * @since 0.913
-* @updated 0.92
+* @updated 1.1
 * Creates a clean excerpt
 */
 if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
@@ -523,7 +523,7 @@ if ( !function_exists( 'wfx_static_highlight' ) ) : function wfx_static_highligh
  * Gets attachment(s) or featured images of main post query
  * Used in loop-content-attachment.php - will try and playback files or create nice links
  * Can be used inside or outside the loop
- * 
+ *
  */
 if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments( $args='' ) {
 

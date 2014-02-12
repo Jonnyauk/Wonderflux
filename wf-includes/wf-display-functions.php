@@ -2107,6 +2107,49 @@ class wflux_display_extras {
 	}
 
 
+	/**
+	 *
+	 * Builds a text string from a basic array
+	 * Separates each value with an optional delimiter (but not the last one!)
+	 *
+	 * @since 1.1
+	 * @updated 1.1
+	 *
+	 * @param $values | array | REQUIRED | Basic array of values
+	 * @param $seperator | string | optional | What you want in-between each item in array
+	 * @param $start | string | optional | Text string at start of array
+	 * @param $end | string | optional | Text string at end of array
+	 *
+	 */
+	function wf_array_to_delimited_string($args){
+
+		$defaults = array (
+		'values'	=> '',
+		'seperator'	=> ', ',
+		'start'		=> '',
+		'end'		=> ''
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		if ( !is_array($values) ) return;
+
+		$count_all = count($values);
+		$counter = 1;
+		$output = '';
+
+		foreach( $values as $key => $value ) {
+			$output .= $value;
+			$output .= ( $counter != $count_all ) ? $seperator : '';
+			$counter++;
+		}
+
+		return esc_html($start.$output.$end);
+
+	}
+
+
 }
 
 

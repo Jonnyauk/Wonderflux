@@ -601,6 +601,26 @@ if ( !function_exists( 'wfx_build_hyperlink' ) ) : function wfx_build_hyperlink(
 } endif;
 
 
+/**
+ * @since 1.1
+ * @updated 1.1
+ * Builds a text string from a basic array
+ * Separates each value with an optional delimiter (but not the last one!)
+ */
+if ( !function_exists( 'wfx_array_to_delimited_string' ) ) : function wfx_array_to_delimited_string($args) {
+
+	$echo = (isset($args['echo']) && $args['echo'] == 'Y') ? 'Y' : 'N';
+
+	global $wfx;
+	if ($echo == 'Y') {
+		echo $wfx->array_to_delimited_string($args);
+	} else {
+		return $wfx->array_to_delimited_string($args);
+	}
+
+} endif;
+
+
 ////  5  //////////// SOCIAL FUNCTIONS
 
 

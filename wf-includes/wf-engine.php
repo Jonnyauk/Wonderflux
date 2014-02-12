@@ -300,6 +300,7 @@ class wflux_display_all {
 	function page_counter($args){ return $this->wflux_display_ex_do->wf_page_counter($args); }
 	function get_cached_part($args){ return $this->wflux_display_ex_do->wf_get_cached_part($args); }
 	function build_hyperlink($args){ return $this->wflux_display_ex_do->wf_build_hyperlink($args); }
+	function array_to_delimited_string($args){ return $this->wflux_display_ex_do->wf_array_to_delimited_string($args); }
 
 	// Social functions
 	function g_plus_1($args){ return $this->wflux_display_social_do->wf_g_plus_1($args); }

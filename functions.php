@@ -563,6 +563,7 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
 
 } endif;
 
+
 /**
 * @since 1.0RC3
 * @updated 1.1
@@ -578,6 +579,25 @@ if ( !function_exists( 'wfx_get_cached_part' ) ) : function wfx_get_cached_part(
 	} else {
 		 return $wfx->get_cached_part($args);
 	}
+} endif;
+
+
+/**
+ * @since 1.1
+ * @updated 1.1
+ * Builds a clickable link from supplied data
+ */
+if ( !function_exists( 'wfx_build_hyperlink' ) ) : function wfx_build_hyperlink($args) {
+
+	$echo = (isset($args['echo']) && $args['echo'] == 'Y') ? 'Y' : 'N';
+
+	global $wfx;
+	if ($echo == 'Y') {
+		echo $wfx->build_hyperlink($args);
+	} else {
+		return $wfx->build_hyperlink($args);
+	}
+
 } endif;
 
 

@@ -2047,6 +2047,66 @@ class wflux_display_extras {
 	}
 
 
+	/**
+	 *
+	 * Builds a clickable link from supplied data
+	 *
+	 * @since 1.1
+	 * @updated 1.1
+	 *
+	 * @param $url | string | REQUIRED | Full url of where you want to link to
+	 * @param $title | string | optional | Title attribute/tooltip (default is none = not shown)
+	 * @param $target | string | optional | Target attribute (default is none = not shown)
+	 * @param $class | string | optional | CSS class for link (default is none = not shown)
+	 * @param $id | string | optional | CSS ID for link (default is none = not shown)
+	 * @param $text | string | optional | Text to show in link (defaults to $url if none supplied)
+	 * @param $span | bool - true/false | optional | Wrap $text in optional <span></span> if true (default is false - not shown)
+	 * @param $span_class | string | optional | Adds CSS class to optional <span></span> around $title (default is none - not shown)
+	 * @param $type | string | optional | Type of link resource. For example: application/pdf (default is none - not shown)
+	 * @param $rel | string | optional | Relationship from the current document to the resource specified by the href (default is none - not shown)
+	 *
+	 */
+	function wf_build_hyperlink($args){
+
+		$defaults = array (
+		'url'		=> '',
+		'title'		=> '',
+		'target'	=> '',
+		'id'		=> '',
+		'class'		=> '',
+		'text'		=> '',
+		'span'		=> false,
+		'span_class'=> '',
+		'type'		=> '',
+		'rel'		=> '',
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		if ( empty($url) ) return;
+
+		$o = '<a ';
+		$o .= 'href="' . esc_url_raw( $url ) . '"';
+		$o .= ( !empty($title) ) ? ' title="'. esc_attr( $title ) . '"': '';
+		$o .= ( !empty($target) ) ? ' target="'. esc_attr( $target ) . '"': '';
+		$o .= ( !empty($id) ) ? ' id="'. esc_attr( $id ) . '"' : '';
+		$o .= ( !empty($class) ) ? ' class="'. esc_attr( strtolower($class) ) . '"' : '';
+		$o .= ( !empty($type) ) ? ' type="'. esc_attr( $type ) . '"' : '';
+		$o .= ( !empty($rel) ) ? ' type="'. esc_attr( $rel ) . '"' : '';
+		$o .= '>';
+		$o .= ( !empty($span) ) ? '<span' : '';
+		$o .= ( !empty($span) && !empty($span_class) ) ? ' class="' . esc_attr( strtolower($span_class) ) . '"' : '';
+		$o .= ( !empty($span) ) ? '>' : '';
+		$o .= (!empty($text)) ? esc_html( $text ) : esc_html( $url );
+		$o .= ( !empty($span) ) ? '</span>' : '';
+		$o .= '</a>';
+
+		return $o;
+
+	}
+
+
 }
 
 

@@ -661,6 +661,11 @@ class wflux_helper {
 			} elseif ( $input === 'wp_posts' ) {
 				global $posts;
 				$input = $posts;
+			} elseif ( $input === 'get_queried' ) {
+				$input = get_queried_object();
+			} elseif ( $input === 'wp_taxonomies' ) {
+				global $wp_taxonomies;
+				$input = $wp_taxonomies;
 			}
 
 			$o .= '<pre><strong>' . esc_attr__('Debug output for data type:', 'wonderflux') . '</strong> ' . $input_type . '</pre>';

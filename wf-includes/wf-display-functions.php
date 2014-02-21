@@ -2119,6 +2119,7 @@ class wflux_display_extras {
 	 * @param $seperator | string | optional | What you want in-between each item in array
 	 * @param $start | string | optional | Text string at start of array
 	 * @param $end | string | optional | Text string at end of array
+	 * @param $esc | bool | optional | Use esc_html on output
 	 *
 	 */
 	function wf_array_to_delimited_string($args){
@@ -2127,7 +2128,8 @@ class wflux_display_extras {
 		'values'	=> '',
 		'seperator'	=> ', ',
 		'start'		=> '',
-		'end'		=> ''
+		'end'		=> '',
+		'esc'		=> true
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -2145,7 +2147,7 @@ class wflux_display_extras {
 			$counter++;
 		}
 
-		return esc_html($start.$output.$end);
+		return ($esc == true) ? esc_html($start.$output.$end) : $start.$output.$end;
 
 	}
 

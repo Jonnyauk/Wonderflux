@@ -2135,7 +2135,7 @@ class wflux_display_extras {
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		if ( !is_array($values) ) return;
+		if ( !is_array($values) || empty($values) ) return;
 
 		$count_all = count($values);
 		$counter = 1;

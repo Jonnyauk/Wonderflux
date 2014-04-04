@@ -2113,13 +2113,13 @@ class wflux_display_extras {
 	 * Separates each value with an optional delimiter (but not the last one!)
 	 *
 	 * @since 1.1
-	 * @updated 1.1
+	 * @updated 2.0
 	 *
 	 * @param $values | array | REQUIRED | Basic array of values
 	 * @param $seperator | string | optional | What you want in-between each item in array
 	 * @param $start | string | optional | Text string at start of array
 	 * @param $end | string | optional | Text string at end of array
-	 * @param $esc | bool | optional | Use esc_html on output
+	 * @param $esc | bool | optional | Use esc_html on $values and $seperator output
 	 *
 	 */
 	function wf_array_to_delimited_string($args){
@@ -2142,12 +2142,14 @@ class wflux_display_extras {
 		$output = '';
 
 		foreach( $values as $key => $value ) {
-			$output .= $value;
-			$output .= ( $counter != $count_all ) ? $seperator : '';
+			if ( !empty($value) ){
+				$output .= $value;
+				$output .= ( $counter != $count_all ) ? $seperator : '';
+			}
 			$counter++;
 		}
 
-		return ($esc == true) ? esc_html($start.$output.$end) : $start.$output.$end;
+		return ($esc == true) ? $start . esc_html($output) . $end : $start.$output.$end;
 
 	}
 

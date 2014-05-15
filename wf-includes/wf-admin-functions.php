@@ -18,19 +18,22 @@ class wflux_admin extends wflux_data {
 
 	function __construct(){
 		$this->admin_forms = new wflux_admin_forms;
+		$this->admin_backup = new wflux_admin_backup;
+		add_action("load-admin_page_wonderflux_backup", array($this->admin_backup, 'wf_import_export'));
 	}
 
 
 	/**
 	* Build the admin menus
 	* @since 0.3
-	* @updated 1.1
+	* @updated 2.0
 	*/
 	function wf_add_pages(){
 		$wflux_core_admin_page_main = add_theme_page( esc_attr__('Wonderflux main options','wonderflux'), esc_attr__('Wonderflux','wonderflux'), 'administrator', 'wonderflux', array($this, 'wf_page_core'));
 		$wflux_core_admin_page_style = add_submenu_page( NULL, esc_attr__('Wonderflux Style Lab','wonderflux'), esc_attr__('Style Lab','wonderflux'), 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
 		$wflux_core_admin_page_advanced = add_submenu_page( NULL, esc_attr__('Wonderflux Advanced','wonderflux'), esc_attr__('Advanced','wonderflux'), 'administrator', 'wonderflux_advanced', array($this, 'wf_page_advanced'));
 		$wflux_core_admin_page_cms = add_submenu_page( NULL, esc_attr__('Wonderflux System Information','wonderflux'), esc_attr__('System Information','wonderflux'), 'administrator', 'wonderflux_system', array($this, 'wf_page_system'));
+		$wflux_core_admin_page_backup = add_submenu_page( NULL, esc_attr__('Wonderflux Options Backup','wonderflux'), esc_attr__('Options Backup','wonderflux'), 'administrator', 'wonderflux_backup', array($this, 'wf_page_backup'));
 		//TODO: If user has wonderflux_edit capability, reveal advanced config menu
 	}
 
@@ -40,12 +43,13 @@ class wflux_admin extends wflux_data {
 	function wf_page_stylelab() { $this->wf_page_build('themes', esc_attr__('Wonderflux Stylelab','wonderflux'), 'style'); }
 	function wf_page_advanced() { $this->wf_page_build('themes', esc_attr__('Wonderflux Advanced','wonderflux'), 'advanced'); }
 	function wf_page_system() { $this->wf_page_build('tools', esc_attr__('Wonderflux System Information','wonderflux'), 'system'); }
+	function wf_page_backup() { $this->wf_page_build('tools', esc_attr__('Wonderflux Options Backup','wonderflux'), 'backup'); }
 
 
 	/**
 	* Builds Wonderflux admin pages
 	* @since 0.1
-	* @updated 0.931
+	* @updated 2.0
 	*
 	*	@params
 	*
@@ -77,6 +81,7 @@ class wflux_admin extends wflux_data {
 			case('style'): $tab2=TRUE; break;
 			case('advanced'): $tab3=TRUE; break;
 			case('system'): $tab4=TRUE; break;
+			case('backup'): $tab5=TRUE; break;
 			default: $tab1=TRUE; break;
 		}
 
@@ -99,15 +104,22 @@ class wflux_admin extends wflux_data {
 		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_system" class="nav-tab';
 		if (isset($tab4)) { echo $thistab_highlight; };
 		echo'">' . esc_attr__('System', 'wonderflux') . '</a>';
+
+		echo '<a href="'.wp_sanitize_redirect(admin_url()).'admin.php?page=wonderflux_backup" class="nav-tab';
+		if (isset($tab5)) { echo $thistab_highlight; };
+		echo'">' . esc_attr__('Backup/Restore', 'wonderflux') . '</a>';
 		echo '</h2>';
 
 		echo '</div>';
 
 		if ( isset( $_GET['settings-updated'] ) ): echo '<div class="updated settings-error" id="setting-error-settings_updated"><p><strong>' . $title . ' ' . esc_attr__('Settings updated successfully.', 'wonderflux') . '</strong></p></div>'; endif;
+		if ( isset( $_GET['backuperror'] ) ): echo '<div class="updated error" id="setting-error-settings_updated"><p><strong>' . esc_attr__('Import aborted - no settings changed. Sorry - looks like thats the wrong file you tried to import.', 'wonderflux') . '</strong></p></div>'; endif;
 
 		require('admin-pages/wf-page-'.$include.'.php');
 
 		if ($include == 'advanced'): $this->admin_forms->wf_form_helper_file_css_combine('css/wf-css-core-structure.css','Y'); endif;
+
+		if ($include == 'backup'): $this->admin_backup->wf_backup_form(); endif;
 
 		// Backpat - depreciated function get_current_theme() in WordPress 3.4
 		$wf_current_theme = ( WF_WORDPRESS_VERSION < 3.4 ) ? get_current_theme() : wp_get_theme()->Name;
@@ -152,7 +164,7 @@ class wflux_admin extends wflux_data {
 		$output .= '">';
 		$output .= esc_attr__('The Wonderflux guide','wonderflux');
 		$output .= '</a> ';
-		$output .= esc_attr__('is the official documentation site for Wonderflux. Click on the direct links below to find relevant content.','wonderflux');
+		$output .= esc_attr__('is the official (work in progress!) documentation site for Wonderflux. Click on the direct links below to find relevant content.','wonderflux');
 		echo $output;
 		echo $this->wf_common_help();
 		echo '</div>'; // close themes-php wrap div
@@ -324,6 +336,7 @@ class wflux_admin extends wflux_data {
 		$style_help .= '<p>'.esc_attr('width=760 x columns=20 x column width=19', 'wonderflux');
 		$style_help .= '<br/>'.esc_attr('(valid suggested relative sizes: full, half, third, quarter, fifth, tenth)', 'wonderflux') . '</li>';
 
+		$backup_help = '<p>' . esc_attr('Use this page to backup or restore your Wonderflux theme options.', 'wonderflux') . '</p>';
 
 		$generic_help = '<p>';
 		$generic_help .= '<a href="http://wonderflux.com/guide/" title="'. esc_attr__('Wonderflux documentation', 'wonderflux') . '" target="_blank">' . esc_attr__('http://wonderflux.com/guide', 'wonderflux') . '</a>';
@@ -359,6 +372,7 @@ class wflux_admin extends wflux_data {
 			case 'admin_page_wonderflux_stylelab' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $style_help . $generic_help; break;
 			case 'admin_page_wonderflux_advanced' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
 			case 'admin_page_wonderflux_system' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'admin_page_wonderflux_backup' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Backup', 'wonderflux' ) . '</h3>' . $backup_help . $generic_help; break;
 			default : return false;
 		}
 
@@ -665,7 +679,7 @@ class wflux_admin_forms extends wflux_data {
 						echo "<option value='$value' selected='selected'>$key</option>";
 					// Check if no value saved and set appropriate option for content1 size
 					} elseif ( !$data && $definition == 'content_s' && $value == 'three_quarter' ) {
-						echo "<option value='$value' selected='selected'>$key</option>";						
+						echo "<option value='$value' selected='selected'>$key</option>";
 					} else {
 						echo "<option value='$value' $selected>$key</option>";
 					}
@@ -982,4 +996,81 @@ class wflux_admin_forms extends wflux_data {
 //END wflux_admin_forms class
 }
 
+
+/**
+ * @since 2.0
+ * @updated 2.0
+ * Admin area theme backup functions
+ */
+class wflux_admin_backup {
+
+
+	function wf_import_export() {
+		if (isset($_GET['action']) && ($_GET['action'] == 'download')) {
+			header("Cache-Control: public, must-revalidate");
+			header("Pragma: hack");
+			header("Content-Type: text/plain");
+			header('Content-Disposition: attachment; filename="theme-options-'.date("dMy").'.dat"');
+			echo serialize($this->_get_options());
+			die();
+		}
+		if (isset($_POST['upload']) && check_admin_referer('wfx_options_backuprestore', 'wfx_options_backuprestore')) {
+			if ($_FILES["file"]["error"] > 0) {
+				// error
+			} else {
+				$options = unserialize(file_get_contents($_FILES["file"]["tmp_name"]));
+				if ($options) {
+					foreach ($options as $option) {
+						if ($option->option_name == 'wonderflux_display') {
+							update_option($option->option_name, unserialize($option->option_value));
+							$reporting = '&backupsuccess=true';
+						} else {
+							$reporting = '&backuperror=true';
+						}
+
+					}
+				}
+			}
+			wp_redirect(admin_url('admin.php?page=wonderflux_backup'.$reporting));
+			exit;
+		}
+	}
+
+
+	function wf_backup_form() {
+
+
+		echo '<form action="" method="POST" enctype="multipart/form-data">';
+			echo '<style>#backup-options td { display: block; margin-bottom: 20px; }</style>';
+			echo '<table id="backup-options">';
+				echo '<tr><td>';
+						echo '<h3>Backup/Export</h3>';
+						echo '<p>Current saved settings for the Wonderflux theme framework:</p>';
+						echo '<p><textarea class="widefat code" rows="20" cols="100" onclick="this.select()">'. serialize($this->_get_options()) . '</textarea></p>';
+						echo '<p><a href="?page=wonderflux_backup&action=download" class="button-secondary">Download as file</a></p>';
+					echo '</td><td>';
+						echo '<h3>Restore/Import</h3>';
+						echo '<p><label class="description" for="upload">Restore a previous backup</label></p>';
+						echo '<p><input type="file" name="file" /> <input type="submit" name="upload" id="upload" class="button-primary" value="Upload file" /></p>';
+						wp_nonce_field('wfx_options_backuprestore', 'wfx_options_backuprestore');
+					echo '</td></tr>';
+			echo '</table>';
+		echo '</form>';
+
+	}
+
+
+	function _display_options() {
+		$options = unserialize($this->_get_options());
+	}
+
+
+	function _get_options() {
+		global $wpdb;
+		return $wpdb->get_results("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name = 'wonderflux_display'");
+	}
+
+
+//END wflux_admin_backup class
+}
 ?>

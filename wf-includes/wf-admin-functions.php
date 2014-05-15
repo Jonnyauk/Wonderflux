@@ -114,6 +114,7 @@ class wflux_admin extends wflux_data {
 
 		if ( isset( $_GET['settings-updated'] ) ): echo '<div class="updated settings-error" id="setting-error-settings_updated"><p><strong>' . $title . ' ' . esc_attr__('Settings updated successfully.', 'wonderflux') . '</strong></p></div>'; endif;
 		if ( isset( $_GET['backuperror'] ) ): echo '<div class="updated error" id="setting-error-settings_updated"><p><strong>' . esc_attr__('Import aborted - no settings changed. Sorry - looks like thats the wrong file you tried to import.', 'wonderflux') . '</strong></p></div>'; endif;
+		if ( isset( $_GET['backupsuccess'] ) ): echo '<div class="updated" id="settings_updated"><p><strong>' . esc_attr__('Import complete - Wonderflux theme settings restored.', 'wonderflux') . '</strong></p></div>'; endif;
 
 		require('admin-pages/wf-page-'.$include.'.php');
 
@@ -1006,17 +1007,18 @@ class wflux_admin_backup {
 
 
 	function wf_import_export() {
+		//$reporting = '&backuperror=true';
 		if (isset($_GET['action']) && ($_GET['action'] == 'download')) {
 			header("Cache-Control: public, must-revalidate");
 			header("Pragma: hack");
 			header("Content-Type: text/plain");
-			header('Content-Disposition: attachment; filename="theme-options-'.date("dMy").'.dat"');
+			header('Content-Disposition: attachment; filename="wonderflux-theme-options-'.date("dSMY").'.dat"');
 			echo serialize($this->_get_options());
 			die();
 		}
 		if (isset($_POST['upload']) && check_admin_referer('wfx_options_backuprestore', 'wfx_options_backuprestore')) {
 			if ($_FILES["file"]["error"] > 0) {
-				// error
+				$reporting = '&backuperror=true';
 			} else {
 				$options = unserialize(file_get_contents($_FILES["file"]["tmp_name"]));
 				if ($options) {

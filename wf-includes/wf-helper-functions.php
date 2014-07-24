@@ -6,6 +6,7 @@ class wflux_data {
 
 	//Size vars
 	protected $wfx_db_display; // Array of core Wonderflux display options
+	protected $wfx_grid_type; // Grid type
 	protected $wfx_doc_type; // Document type
 	protected $wfx_doc_lang; // Document language
 	protected $wfx_doc_charset; // Document type
@@ -31,6 +32,12 @@ class wflux_data {
 		$this->wfx_db_display = get_option('wonderflux_display');
 
 		//// DOCUMENT CONFIGURATION ////
+
+		// GRID TYPE - 'Pixels (old)','Percent (Experimental Responsive)'
+		$this->wfx_grid_type = ( isset($this->wfx_db_display['grid_type']) ) ? $this->wfx_db_display['grid_type'] : false;
+		// Validate - first value is default
+		$grid_type_accept = array('Pixels','Percent');
+		$this->wfx_grid_type = ( !$this->wfx_grid_type || !in_array($this->wfx_grid_type,$grid_type_accept) ) ? $grid_type_accept[0] : $this->wfx_grid_type;
 
 		// DOCTYPE - 'transitional','strict','frameset','1.1','1.1basic'
 		$this->wfx_doc_type = (isset($this->wfx_db_display['doc_type']) ) ? $this->wfx_db_display['doc_type'] : false;

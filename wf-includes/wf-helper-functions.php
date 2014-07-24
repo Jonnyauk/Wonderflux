@@ -7,7 +7,7 @@ class wflux_data {
 	//Size vars
 	protected $wfx_db_display; // Array of core Wonderflux display options
 	protected $wfx_doc_type; // Document type
-	protected $wfx_doc_lang; // Document type
+	protected $wfx_doc_lang; // Document language
 	protected $wfx_doc_charset; // Document type
 	protected $wfx_width; // Width of main site container
 	protected $wfx_position; // Position of main site container

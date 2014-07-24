@@ -696,7 +696,7 @@ class wflux_helper {
 	 * to get the backtrace up to what file and function called the specific function.
 	 *
 	 * @since 1.1
-	 * @lastupdate 1.1
+	 * @lastupdate 2.0
 	 *
 	 * @param string $function The function that was called.
 	 * @param string $message A message explaining what has been done incorrectly.
@@ -707,9 +707,9 @@ class wflux_helper {
 		do_action( 'wfx_debug_report_run', $function, $message, $version );
 
 		if ( WP_DEBUG )
-			$version = !is_null( $version ) ? '' : sprintf( __( '(This message was added in version %s.)' ), $version );
-			$message .= ' ' . __( 'Please see <a href="http://wonderflux.com/guide/">The Wonderflux Guide</a> for more information.' );
-			trigger_error( sprintf( __( '%1$s was called <strong>incorrectly</strong>. %2$s %3$s' ), $function, $message, $version ) );
+			$version = !is_null( $version ) ? '' : sprintf( __( '(This message was added in version %s.)', 'wonderflux' ), $version );
+			$message .= ' ' . __( 'Please see <a href="http://wonderflux.com/guide/">The Wonderflux Guide</a> for more information.', 'wonderflux' );
+			trigger_error( sprintf( __( '%1$s was called <strong>incorrectly</strong>. %2$s %3$s', 'wonderflux' ), $function, $message, $version ) );
 	}
 
 

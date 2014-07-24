@@ -74,7 +74,6 @@ class wflux_admin extends wflux_data {
 	function wf_page_build($icon, $title, $include) {
 
 		echo '<div class="themes-php wrap">';
-		echo '<div id="icon-'.$icon.'" class="icon32"><br /></div>';
 
 		switch ($include) {
 			case('core'): $tab1=TRUE; break;
@@ -155,10 +154,8 @@ class wflux_admin extends wflux_data {
 		}
 
 
-		$output = '<div id="icon-options-general" class="icon32">';
-		$output .= '<br />';
-		$output .= '</div>';
-		$output .= '<h2>' . esc_attr__('Help and support','wonderflux') . '</h2>';
+
+		$output = '<h2>' . esc_attr__('Help and support','wonderflux') . '</h2>';
 		$output .= '<p>';
 		$output .= ' <a href="http://wonderflux.com/guide/" title="';
 		$output .= esc_attr__('Visit the Wonderflux guide','wonderflux');
@@ -604,10 +601,12 @@ class wflux_admin_forms extends wflux_data {
 	// Section HTML, displayed before the first option
 	function wf_form_intro_grid() {
 		echo '<h2>' . esc_attr__('CSS grid/column settings','wonderflux') . '</h2>';
+		echo '<div class="clear"></div>';
 		echo '<p>' . esc_attr__('Setup the dimensions of the CSS layout columns (grid system).', 'wonderflux') . '</p>';
 	}
 	function wf_form_intro_main() {
 		echo '<h2>' . esc_attr__('Main content and sidebar settings','wonderflux') . '</h2>';
+		echo '<div class="clear"></div>';
 		echo '<p>' . esc_attr__('Setup the dimensions of your main content area and sidebar.','wonderflux') . '</p>';
 	}
 
@@ -626,7 +625,8 @@ class wflux_admin_forms extends wflux_data {
 
 	// Facebook
 	function wf_form_intro_doc() {
-		$output = '<div class="icon32" id="icon-options-general"><br></div><h2>' . esc_attr__( "Document output", "wonderflux" ) . '</h2>';
+		$output = '<h2>' . esc_attr__( "Document output", "wonderflux" ) . '</h2>';
+		$output .= '<div class="clear"></div>';
 		$output .= '<p>';
 		$output .= esc_attr__("Use these controls to set avanced document type and language attributes.","wonderflux");
 		$output .= '<br /><strong>' . esc_attr__("WARNING - ","wonderflux") . '</strong>';
@@ -636,7 +636,8 @@ class wflux_admin_forms extends wflux_data {
 	}
 
 	function wf_form_intro_fb() {
-		$output = '<div class="icon32" id="icon-options-general"><br></div><h2>' . esc_attr__( "Facebook connect", "wonderflux" ) . '</h2>';
+		$output = '<h2>' . esc_attr__( "Facebook connect", "wonderflux" ) . '</h2>';
+		$output .= '<div class="clear"></div>';
 		$output .= '<p>' . esc_attr__("Connect your site with Facebook to allow advanced interaction and sharing. Required if you are using the Facebook share display function. ","wonderflux");
 		$output .= esc_attr__("You can assign multiple Facebook ID&rsquo;s by comma seperation (name1,name2) and a single (optional) application ID. ","wonderflux");
 		$output .= '<strong>' . esc_attr__("NOTE - You are required to fill-in at-least your Facebook ID to use the Facebook sharing features. ","wonderflux") . '</p></strong>';
@@ -736,7 +737,7 @@ class wflux_admin_forms extends wflux_data {
 		$content_grid = ( $cleanup == 'Y' ) ? preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $this->wf_css_framework_build()) : $this->wf_css_framework_build();
 		$content_grid = esc_textarea( $content_grid );
 
-		$output = '<div class="icon32" id="icon-options-general"><br></div><h2>' . esc_attr__( "CSS override files", "wonderflux" ) . '</h2>';
+		$output = '<h2>' . esc_attr__( "CSS override files", "wonderflux" ) . '</h2>';
 		$output .= '<p>' . esc_attr__( "Advanced users may wish to remove the default stylesheets that are usually inserted for you when using Wonderflux. The code below is all of the Wonderflux framework CSS file content that is normally inserted into the <head> of your site output, using your current saved configuration.", "wonderflux" ) . '</p>';
 		$output .= '<p>' . esc_attr__( "By setting the constant in your child theme functions.php file with the single line:", "wonderflux" );
 		$output .= ' <strong>' . 'define( \'WF_THEME_FRAMEWORK_REPLACE\', true);' . '</strong> ';

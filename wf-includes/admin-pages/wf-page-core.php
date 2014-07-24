@@ -20,13 +20,12 @@
 
 		<div class="clear"></div>
 
-		<div class="icon32" id="icon-options-general"><br></div>
-
 		<?php
 		// Backpat - depreciated function get_current_theme() in WordPress 3.4
 		$this_current_theme = ( WF_WORDPRESS_VERSION < 3.4 ) ? get_current_theme() : wp_get_theme()->Name;
 
 		echo '<h2>' . apply_filters( 'wflux_options_theme_name_header', $this_current_theme ) . ' ' . esc_attr__('display functions', 'wonderflux') . '</h2>';
+		echo '<div class="clear"></div>';
 		echo '<p>' . esc_attr__('COMING SOON - Theme designers will be able to enable options to control theme scripts functionality.', 'wonderflux') . '</p>';
 		?>
 	</div>

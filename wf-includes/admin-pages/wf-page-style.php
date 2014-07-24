@@ -1,6 +1,7 @@
 <div class="wrap">
 	<form action="options.php" method="post">
-	<div class="icon32" id="icon-options-general"><br></div><h2><?php esc_attr_e('Theme layout configuration', 'wonderflux'); ?></h2>
+	<h2><?php esc_attr_e('Theme layout configuration', 'wonderflux'); ?></h2>
+	<div class="clear"></div>
 	<p>
 	<?php esc_attr_e('It is currently possible to set layout sizes that do not work correctly in the layout cloumn/grid settings. For suggested size configurations, click on the help tab top right.', 'wonderflux'); ?>
 	</p>

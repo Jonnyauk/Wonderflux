@@ -667,10 +667,10 @@ class wflux_admin_forms extends wflux_data {
 	* Creates a dropdown for options page
 	* IMPORTANT: Defaults for content1 and sidebar1 set here if no database options saved
 	* @since 0.81
-	* @updated 1.1
+	* @updated 2.0
 	*/
 	function wf_form_helper_ddown_std( $data,$definition,$items ) {
-		echo "<select id='wonderflux_display[".$definition."]' name='wonderflux_display[".$definition."]'>";
+		echo "<select id='wonderflux_display_".esc_attr($definition)."' name='wonderflux_display[".$definition."]'>";
 		foreach( $items as $key=>$value ) {
 			if ( is_array( $value ) ) {
 				foreach( $value as $key=>$value ) {
@@ -698,11 +698,11 @@ class wflux_admin_forms extends wflux_data {
 	/**
 	* Creates a dropdown for options page populated with range of numbers
 	* @since 0.81
-	* @updated 0.93
+	* @updated 2.0
 	*/
 	function wf_form_helper_ddown_range($data,$definition,$low,$high,$step) {
 		$items = range($low,$high,$step);
-		echo "<select id='wonderflux_display[".$definition."]' name='wonderflux_display[".$definition."]'>";
+		echo "<select id='wonderflux_display_".esc_attr($definition)."' name='wonderflux_display[".$definition."]'>";
 		foreach($items as $item) {
 			$selected = ($item==$data) ? 'selected="selected"' : '';
 			echo "<option value='$item' $selected>$item</option>";

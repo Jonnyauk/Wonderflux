@@ -292,7 +292,8 @@ class wflux_display_code extends wflux_data {
 		'&amp;p='.$this->wfx_position.
 		'&amp;sbp='.$this->wfx_sidebar_primary_position.
 		'&amp;cw='.$this->wfx_columns_width.
-		'&amp;c='.$columns_num = $this->wfx_columns.'';
+		'&amp;c='.$columns_num = $this->wfx_columns.
+		'&amp;grid='.$this->wfx_grid_type;
 		return str_replace(array('ver=wfx-dynamic'), array("$vars"), $input);
 	}
 

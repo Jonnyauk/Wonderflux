@@ -270,7 +270,10 @@ future versions of WordPress and improve performance and functionality.
 6.	Use over 100 location-aware hooks to detect what type of
 	content is being viewed and automatically add unique content.
 
-If you still feel the need to hack the Wonderflux core code, why not get
-involved with the project on GitHub, all feedback and contributions are welcome!
+If you still feel the need to hack the Wonderflux core code - that means that
+there is probably something that needs changing! Why not get involved with the
+project on GitHub, all feedback and contributions are welcome!
 Drop by the [GitHub Wonderflux project page](https://github.com/Jonnyauk/Wonderflux)
-to find out more.
+to find out more. Branches and patches are probably the best way to contribute, but
+if you're not able to do this, just submit an 'issue' and explain how you would
+like to see Wonderflux improved... and I'll do my best to accomodate it thanks!

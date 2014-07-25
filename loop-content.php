@@ -19,6 +19,14 @@
 		<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'wonderflux' ), 'after' => '</div>' ) ); ?>
 	</div>
 
+	<?php
+	if ( is_single() && has_tag() ) {
+		echo '<div class="tag-content">';
+			the_tags( '<p>Tags: ', ', ', '</p>' );
+		echo '</div>';
+	}
+	?>
+
 </div>
 
 <?php comments_template( '', true ); ?>

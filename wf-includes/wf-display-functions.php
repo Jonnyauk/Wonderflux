@@ -1907,7 +1907,7 @@ class wflux_display_extras {
 	function wf_previous_posts_link( $label = null ) {
 		global $paged;		
 		if ( null === $label )
-			$label = __( '&laquo; Previous Page' );
+			$label = __( '&laquo; Previous Page', 'wonderflux' );
 		if ( $paged > 1 ) {
 			return '<span class="page-counter-nav-prev"><a href="' . previous_posts( false ) . '">' . esc_attr( wp_kses($label,'') ) .'</a></span>';
 		}
@@ -1938,8 +1938,8 @@ class wflux_display_extras {
 		$nextpage = intval($paged) + 1;
 
 		if ( null === $label )
-			$label = __( '&raquo; Next Page' );
-		
+			$label = __( '&raquo; Next Page', 'wonderflux' );
+
 		if ( $nextpage <= $max_page ) {
 			return '<span class="page-counter-nav-next"><a href="' . next_posts( $max_page, false ) . '">' . esc_attr( wp_kses($label,'') ) .'</a></span>';
 		}

@@ -184,6 +184,7 @@ class wflux_admin extends wflux_data {
 		add_settings_section('style_lab_fb', '', array($this->admin_forms, 'wf_form_intro_fb'), 'wonderflux_stylelab_fb');
 
 		//1) Key 2) form label 3) Builder function 4)Page 5)Section
+		add_settings_field('grid_type', esc_attr__('Select pixel based grid (old system) or experimental new percent based responsive grid layout structure','wonderflux'), array($this->admin_forms, 'wf_form_grid_type'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
@@ -557,6 +558,7 @@ class wflux_admin_forms extends wflux_data {
 			'content_s_px'=> array ( 600, range(200,1200,2) ),
 			'sidebar_s'		=> $this->size_accept,
 			'sidebar_p'		=> array ('left','right'),
+			'grid_type'		=> array ('Pixels','Percent'),
 			'sidebar_d'		=> array ('Y','N'),
 			'container_w'	=> array ( 950, range(400,2000,10) ),
 			'columns_num'	=> array ( 24, range(2,100,1) ),
@@ -609,6 +611,8 @@ class wflux_admin_forms extends wflux_data {
 		echo '<div class="clear"></div>';
 		echo '<p>' . esc_attr__('Setup the dimensions of your main content area and sidebar.','wonderflux') . '</p>';
 	}
+
+	function wf_form_grid_type() { $this->wf_form_helper_ddown_std($this->wfx_grid_type,'grid_type',$this->valid['grid_type']); }
 
 	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p']); }
 	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->common_size); }

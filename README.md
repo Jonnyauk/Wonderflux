@@ -1,8 +1,12 @@
-Wonderflux WordPress theme framework
+![wonderflux](http://wonderflux.com/wonderflux-logo.png)
+
 ====================================
+Wonderflux WordPress theme framework
+
 #### Verson v2.0 ALPHA DEVELOPMENT VERSION
 #### Copyright (c)2014 Jonny Allbut
 #### http://jonnya.net / @Jonnyauk
+====================================
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

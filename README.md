@@ -289,5 +289,7 @@ How to contribute - all patches welcome!
 
 Drop by the [GitHub Wonderflux project page](https://github.com/Jonnyauk/Wonderflux)
 to find out more. Branches and patches are probably the best way to contribute, but
-if you're not able to do this, just submit an 'issue' and explain how you would
-like to see Wonderflux improved... and I'll do my best to accomodate it thanks!
+if you're not able to do this, do not worry - you can still send over your ideas,
+just [create a new issue on GitHub](https://github.com/Jonnyauk/Wonderflux/issues)
+and explain how you would like to see Wonderflux improved... and I'll do my best to
+accomodate it thanks!

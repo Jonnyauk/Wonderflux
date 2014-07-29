@@ -150,7 +150,8 @@ class wflux_admin extends wflux_data {
 			$output .= '</div>';
 			echo $output;
 		} else {
-			echo '<p>' . esc_attr__('You are using the','wonderflux') . ' ' . esc_attr($wf_current_theme) . ' ' . esc_attr__('Wonderflux child theme','wonderflux') . '</p>';
+			// Silence is golden
+			//echo '<p>' . esc_attr__('You are using the','wonderflux') . ' ' . esc_attr($wf_current_theme) . ' ' . esc_attr__('Wonderflux child theme','wonderflux') . '</p>';
 		}
 
 

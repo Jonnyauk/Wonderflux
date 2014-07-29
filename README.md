@@ -1,8 +1,7 @@
 ![wonderflux](http://wonderflux.com/wonderflux-logo.png)
 
 ====================================
-Wonderflux WordPress theme framework
-
+#### Wonderflux WordPress theme framework
 #### Verson v2.0 ALPHA DEVELOPMENT VERSION
 #### Copyright (c)2014 Jonny Allbut
 #### http://jonnya.net / @Jonnyauk

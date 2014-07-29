@@ -87,7 +87,10 @@ to give you the perfect *starter* file to begin playing with!
 
 The quickest way to begin learning how to use Wonderflux is to download the
 WFX Girder demonstration child theme and examine the file structure and code.
-There are lots of comments in the file to get you started.
+There are lots of comments in each file to get you started.
+
+WFX Girder is not only a good way to learn Wonderflux, but also provides a
+solid base starter child theme for you to build your own themes with.
 
 [Download WFX Girder theme](https://github.com/Jonnyauk/wonderflux-girder)
 

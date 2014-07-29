@@ -241,7 +241,7 @@ removed if required - remember this is a framework! Oh and if you spot
 somewhere that needs a filter or more flexibility, just let me know on the
 [GitHub issues page](https://github.com/Jonnyauk/Wonderflux/issues).
 
-DON'T HACK WONDERFLUX!
+DON'T hack Wonderflux!
 ----------------------------------------------------------------------
 
 You should not modify the Wonderflux theme framework to avoid issues with
@@ -270,7 +270,7 @@ future versions of WordPress and improve performance and functionality.
 6.	Use over 100 location-aware hooks to detect what type of
 	content is being viewed and automatically add unique content.
 
-STILL FEEL THE NEED TO HACK WONDERFLUX?
+Still feel the need to hack Wonderflux?
 ----------------------------------------------------------------------
 
 If you still feel the need to hack the Wonderflux core code - that means that
@@ -278,7 +278,7 @@ there is probably something that needs changing! See somewhere you'd like a
 filter, spotted a bug, or see a function that needs extra paramters? Why not get
 involved with the project on GitHub, all feedback and contributions are welcome.
 
-HOW TO CONTRIBUTE - ALL PACHES WELCOME!
+How to contribute - all patches welcome!
 ----------------------------------------------------------------------
 
 Drop by the [GitHub Wonderflux project page](https://github.com/Jonnyauk/Wonderflux)

@@ -281,7 +281,7 @@ Still feel the need to hack Wonderflux?
 
 If you still feel the need to hack the Wonderflux core code - that means that
 there is probably something that needs changing! See somewhere you'd like a
-filter, spotted a bug, or see a function that needs extra paramters? Why not get
+filter, spotted a bug, or see a function that needs extra parameters? Why not get
 involved with the project on GitHub, all feedback and contributions are welcome.
 
 How to contribute - all patches welcome!

@@ -25,7 +25,7 @@
 		<?php endif; ?>
 
 		<h4><?php
-			printf(__('%1$s %2$s by %3$s'), $ct->title, $ct->version, $ct->author) ; ?></h4>
+			printf(__('%1$s %2$s by %3$s', 'wonderflux'), $ct->title, $ct->version, $ct->author) ; ?></h4>
 		<p class="theme-description"><?php echo $ct->description; ?></p>
 		<?php echo '<p>' . esc_attr__('The theme files are located in', 'wonderflux') . ' <code>'. WF_THEME_URL .'/</code></p>'; ?>
 

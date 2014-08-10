@@ -96,6 +96,7 @@ if ( WF_WORDPRESS_VERSION < 3.4 ) {
 //// 1.5 // Wonderflux core functionality
 
 add_action('init', 'wfx_config_language');
+add_action('init','wfx_show_hooks');
 add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
 add_action('get_header', 'wfx_content_width_embed', 2); // IMPORTANT Sets WordPress $content_width global for oEmbed media
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
@@ -230,6 +231,14 @@ if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$admin_onl
 * Adds message to error reporting if WP_DEBUG is true.
 */
 if ( !function_exists( 'wfx_debug_report' ) ) : function wfx_debug_report($function='', $message='', $version='') { global $wfx_helper; $wfx_helper->debug_report($function, $message, $version); } endif;
+
+
+/**
+* @since 2.0
+* @updated 2.0
+* Reveals the location of all relevant Wonderflux display hooks within your theme.
+*/
+if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global $wfx_helper; $wfx_helper->show_hooks(); } endif;
 
 
 /**

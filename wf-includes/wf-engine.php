@@ -108,7 +108,7 @@ add_action('init','wflux_capacitor_helper', 1);
 
 /**
 * @since 0.913
-* @updated 1.1
+* @updated 2.0
 * Creates all Wonderflux helper functions
 */
 class wflux_helper_all {
@@ -130,6 +130,7 @@ class wflux_helper_all {
 	function __N(){ return $this->wflux_helper_do->wf__N(); }
 	function debug($input,$admin_only,$role,$id) { $this->wflux_helper_do->wf_debug($input,$admin_only,$role,$id); }
 	function debug_report($function, $message, $version) { $this->wflux_helper_do->wf_debug_report($function, $message, $version); }
+	function show_hooks() { $this->wflux_helper_do->wf_show_hooks(); }
 
 }
 

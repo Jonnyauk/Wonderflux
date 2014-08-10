@@ -713,6 +713,193 @@ class wflux_helper {
 	}
 
 
+	/**
+	 * When logged in as a user has capability of manage_options
+	 * (can be override with wflux_debug_show_hooks filter) and
+	 * WF_DEBUG constant defined as true, this plugin reveals the
+	 * location of all relevant Wonderflux display hooks within your theme.
+	 *
+	 * @since 2.0
+	 * @lastupdate 2.0
+	 *
+	 * @param filter wflux_debug_show_hooks Set to true to override manage_options user capability check
+	 */
+	function wf_show_hooks(){
+
+		$user_priv = ( has_filter('wflux_debug_show_hooks') ) ? apply_filters( 'wflux_debug_show_hooks', false ) : current_user_can( 'manage_options' );
+
+		if ( !is_admin() && $user_priv && WF_DEBUG ){
+
+			add_action( 'wf_output_start', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wf_head_meta', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wf_after_head', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wf_footer', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfbody_before_wrapper', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfbody_after_wrapper', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfheader_before_wrapper', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfheader_before_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfheader_before_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfheader_after_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfheader_after_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfheader_after_wrapper', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wffooter_before_wrapper', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wffooter_before_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wffooter_before_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wffooter_after_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wffooter_after_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wffooter_after_wrapper', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_all', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_all', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_all', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_all', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_wrapper', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_wrapper', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_all_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_all_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_all_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_all_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_all_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_index', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_index', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_index_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_index_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_index_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_index_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_index_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_index', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_index', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_home', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_home', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_home_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_home_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_home_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_home_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_home_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_home', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_home', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_page', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_page', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_page_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_page_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_page_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_page_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_page_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_page', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_page', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_single', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_single', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_single_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_single_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_single_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_single_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_single_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_single', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_single', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_category', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_category', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_category_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_category_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_category_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_category_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_category_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_category', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_category', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_date', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_date', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_date_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_date_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_date_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_date_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_date_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_date', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_date', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_author', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_author', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_author_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_author_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_author_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_author_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_author_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_author', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_author', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_tag', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_tag', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_tag_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_tag_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_tag_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_tag_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_tag_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_tag', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_tag', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_taxonomy', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_taxonomy', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_taxonomy_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_taxonomy_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_taxonomy_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_taxonomy_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_taxonomy_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_taxonomy', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_taxonomy', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_archive', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_archive', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_archive_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_archive_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_archive_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_archive_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_archive_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_archive', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_archive', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_search', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_search', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_search_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_search_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_search_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_search_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_search_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_search', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_search', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_attachment', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_attachment', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_attachment_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_attachment_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_attachment_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_attachment_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_attachment_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_attachment', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_attachment', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_before_404', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfsidebar_after_404', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_404_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_404_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_404_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_404_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_404_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_before_found_posts_404', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfloop_after_found_posts_404', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_bp_container', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_before_bp_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_bp_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_bp_main_content', array($this, 'wf_show_hooks_do'), 1 );
+			add_action( 'wfmain_after_bp_container', array($this, 'wf_show_hooks_do'), 1 );
+		}
+	}
+
+	/**
+	 * Used by wf_show_hooks() to display hook
+	 *
+	 * @since 2.0
+	 * @lastupdate 2.0
+	 *
+	 * @param filter wflux_debug_show_hooks_css Sets up inline style used for hook display
+	 */
+	function wf_show_hooks_do(){
+		$debug_style = apply_filters( 'wflux_debug_show_hooks_css', 'display: inline-block; background-color: rgba(127, 127, 127, 0.7); border: 1px solid #212121; margin: 0; font-size: 0.8em; color: #fff;' );
+		echo '<p style="'.esc_attr($debug_style).'">Wonderflux hook: &#x27;' . current_filter() . '&#x27;</p>';
+	}
+
+
 }
 
 

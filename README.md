@@ -51,6 +51,10 @@ coding is much more fun than writing documentation, but there is fairly
 complete in-line code documentation in the wf-includes directory files for
 your reference if you dig around.
 
+Please note the documentation site is somewhat out of date - I've fallen behind
+a little on working on this unfortunately, due to time contraints. However, once
+I've completed Wonderflux v2.0 I'll be turning my attention back to documentation!
+
 * [All documentation](http://wonderflux.com/guide)
 * [Hooks](http://wonderflux.com/guide/hook)
 * [Functions](http://wonderflux.com/guide/function)

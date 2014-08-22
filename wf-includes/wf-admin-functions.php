@@ -613,20 +613,20 @@ class wflux_admin_forms extends wflux_data {
 		echo '<p>' . esc_attr__('Setup the dimensions of your main content area and sidebar.','wonderflux') . '</p>';
 	}
 
-	function wf_form_grid_type() { $this->wf_form_helper_ddown_std($this->wfx_grid_type,'grid_type',$this->valid['grid_type']); }
+	function wf_form_grid_type() { $this->wf_form_helper_ddown_std($this->wfx_grid_type,'grid_type',$this->valid['grid_type'],'*EXPERIMENTAL - In development!'); }
 
-	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p']); }
-	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->common_size); }
-	function wf_form_content_s_px() { $this->wf_form_helper_ddown_range($this->wfx_content_size_px,'content_s_px',200,1200,2); }
-	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->common_size); }
-	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N'))); }
-	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p']); }
-	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10); }
-	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1); }
-	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1); }
-	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',$this->valid['doc_type']); }
-	function wf_form_doc_lang() { $this->wf_form_helper_ddown_std($this->wfx_doc_lang,'doc_lang',$this->valid['doc_lang']); }
-	function wf_form_doc_charset() { $this->wf_form_helper_ddown_std($this->wfx_doc_charset,'doc_charset',$this->valid['doc_charset']); }
+	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p'],''); }
+	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->common_size,''); }
+	function wf_form_content_s_px() { $this->wf_form_helper_ddown_range($this->wfx_content_size_px,'content_s_px',200,1200,2,''); }
+	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->common_size,''); }
+	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N')),''); }
+	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p'],''); }
+	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10,''); }
+	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1,''); }
+	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1,''); }
+	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',$this->valid['doc_type'],''); }
+	function wf_form_doc_lang() { $this->wf_form_helper_ddown_std($this->wfx_doc_lang,'doc_lang',$this->valid['doc_lang'],''); }
+	function wf_form_doc_charset() { $this->wf_form_helper_ddown_std($this->wfx_doc_charset,'doc_charset',$this->valid['doc_charset'],''); }
 
 	// Facebook
 	function wf_form_intro_doc() {
@@ -675,7 +675,7 @@ class wflux_admin_forms extends wflux_data {
 	* @since 0.81
 	* @updated 2.0
 	*/
-	function wf_form_helper_ddown_std( $data,$definition,$items ) {
+	function wf_form_helper_ddown_std( $data, $definition, $items, $label_note ) {
 		echo "<select id='wonderflux_display_".esc_attr($definition)."' name='wonderflux_display[".$definition."]'>";
 		foreach( $items as $key=>$value ) {
 			if ( is_array( $value ) ) {
@@ -697,6 +697,7 @@ class wflux_admin_forms extends wflux_data {
 			}
 		}
 		echo "</select>";
+		echo ( !empty($label_note) ) ? ' ' . esc_html( $label_note ) : '';
 		echo "\n";
 	}
 
@@ -706,7 +707,7 @@ class wflux_admin_forms extends wflux_data {
 	* @since 0.81
 	* @updated 2.0
 	*/
-	function wf_form_helper_ddown_range($data,$definition,$low,$high,$step) {
+	function wf_form_helper_ddown_range($data, $definition, $low, $high, $step, $label_note) {
 		$items = range($low,$high,$step);
 		echo "<select id='wonderflux_display_".esc_attr($definition)."' name='wonderflux_display[".$definition."]'>";
 		foreach($items as $item) {
@@ -714,6 +715,7 @@ class wflux_admin_forms extends wflux_data {
 			echo "<option value='$item' $selected>$item</option>";
 		}
 		echo "</select>";
+		echo ( !empty($label_note) ) ? ' ' . esc_html( $label_note ) : '';
 		echo "\n";
 	}
 

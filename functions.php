@@ -738,7 +738,7 @@ if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { glob
 /**
 * @since 0.93
 * @updated 0.93
-* Adds Wonderflux options to appearance menu (respcts WF_ADMIN_ACCESS)
+* Adds Wonderflux options to appearance menu (respects WF_ADMIN_ACCESS)
 */
 if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_links(); } endif;
 

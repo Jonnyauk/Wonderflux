@@ -728,7 +728,7 @@ class wflux_helper {
 
 		$user_priv = ( has_filter('wflux_debug_show_hooks') ) ? apply_filters( 'wflux_debug_show_hooks', false ) : current_user_can( 'manage_options' );
 
-		if ( !is_admin() && $user_priv && WF_DEBUG ){
+		if ( !is_admin() && $user_priv ){
 
 			add_action( 'wf_output_start', array($this, 'wf_show_hooks_do'), 1 );
 			add_action( 'wf_head_meta', array($this, 'wf_show_hooks_do'), 1 );

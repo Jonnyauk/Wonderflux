@@ -96,7 +96,6 @@ if ( WF_WORDPRESS_VERSION < 3.4 ) {
 //// 1.5 // Wonderflux core functionality
 
 add_action('init', 'wfx_config_language');
-add_action('init','wfx_show_hooks');
 add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
 add_action('get_header', 'wfx_content_width_embed', 2); // IMPORTANT Sets WordPress $content_width global for oEmbed media
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
@@ -110,6 +109,12 @@ add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
 add_action('wffooter_after_content', 'wfx_display_credit', 1);
 add_action('wf_footer', 'wfx_display_code_credit', 3);
 add_action('auth_redirect', 'wfx_admin_menus');
+
+//// 1.6 // Wonderflux debug functionality
+
+if ( WF_DEBUG == true ){
+	add_action('init','wfx_show_hooks');
+}
 
 
 ////  2  //////////// HELPER FUNCTIONS

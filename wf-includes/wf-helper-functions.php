@@ -969,5 +969,72 @@ class wflux_wp_core {
 		}
 	}
 
+
+	/**
+	 * Adds files currently in use to the Wondeflux admin bar menu
+	 * @since 2.0
+	 * @lastupdate 2.0
+	 */
+	function wf_admin_bar_files_info(){
+
+		global $wp_admin_bar;
+
+		// Setup first menu item
+		$wp_admin_bar->add_menu( array(
+			'id'    => 'wfx-file-menu',
+			'parent'=> 'wonderflux-admin-bar-menu',
+			'title' => 'Files in use',
+			'meta'  => array(
+				'title' => __('Wonderflux template parts in use'),
+			),
+		));
+
+		// Get file data
+		$included_files = get_included_files();
+		$stylesheet_dir = str_replace( '\\', '/', get_stylesheet_directory() );
+		$template_dir = str_replace( '\\', '/', get_template_directory() );
+
+		foreach ( $included_files as $key => $path ) {
+
+		    $path = str_replace( '\\', '/', $path );
+			// Strip out non-template includes and other bits
+		    if ( strpos( $path, $stylesheet_dir ) === false && strpos( $path, $template_dir ) === false ){
+		        unset( $included_files[$key] );
+		    } elseif ( strpos($path, 'wf-includes') || strpos($path, 'functions.php') || strpos($path, 'wf-config.php') ){
+		        unset( $included_files[$key] );
+		    }
+
+		}
+
+		// Reformat for display output
+		$nice_includes = array();
+		$includes_count = 0;
+
+		foreach ( $included_files as $file ) {
+			$urlParts = explode( '/', $file );
+			$parts_count = count( $urlParts );
+			$file_1 = ( $includes_count == 0 ) ? 'Main file > ' . $urlParts[$parts_count-1] : $urlParts[$parts_count-1];
+			$nice_includes[$includes_count] = $file_1 . ' (' . $urlParts[$parts_count-2] . ')';
+			$includes_count ++;
+		}
+
+		foreach ( $nice_includes as $menu_item ) {
+			//TODO: Add in links to Wonderflux guide for relevant template parts
+			$wp_admin_bar->add_menu( array(
+				'id'    => esc_attr( $menu_item ),
+				'parent' => 'wfx-file-menu',
+				'title' => esc_html( $menu_item ),
+				/*'href'  => '#',*/
+				/*'meta'  => array(
+					'title' => __('My Sub Menu Item'),
+					'target' => '_blank',
+					'class' => 'my_menu_item_class'
+				),*/
+			));
+		}
+
+	}
+
+
 }
 ?>

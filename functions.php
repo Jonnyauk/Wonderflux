@@ -114,6 +114,7 @@ add_action('auth_redirect', 'wfx_admin_menus');
 
 if ( WF_DEBUG == true ){
 	add_action('init','wfx_show_hooks');
+	add_action('admin_bar_menu', 'wfx_admin_bar_files_info', 100);
 }
 
 
@@ -741,6 +742,14 @@ if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { glob
 * Adds Wonderflux options to appearance menu (respects WF_ADMIN_ACCESS)
 */
 if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_links(); } endif;
+
+
+/**
+* @since 2.0
+* @updated 2.0
+* Adds files currently in use to the Wondeflux admin bar menu
+*/
+if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_files_info() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_files_info(); } endif;
 
 
 //  9  //////////// WONDERFLUX CORE

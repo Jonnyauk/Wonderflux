@@ -161,6 +161,7 @@ class wflux_wp_helper_all {
 	}
 
 	function admin_bar_links(){ $this->wflux_helper_do->wf_admin_bar_links(); }
+	function admin_bar_files_info(){ $this->wflux_helper_do->wf_admin_bar_files_info(); }
 
 }
 

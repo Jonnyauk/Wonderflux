@@ -985,7 +985,7 @@ class wflux_wp_core {
 			'parent'=> 'wonderflux-admin-bar-menu',
 			'title' => 'Files in use',
 			'meta'  => array(
-				'title' => __('Wonderflux template parts in use'),
+				'title' => __('Wonderflux template parts in use', 'wonderflux'),
 			),
 		));
 

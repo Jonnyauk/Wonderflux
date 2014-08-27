@@ -6,7 +6,9 @@
  * @since 0.1
  * @updated 2.0
  */
-/** Positioning and styling **/
+
+/*** Positioning and styling ***/
+
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td { margin: 0; padding: 0; border: 0; font-weight: inherit; font-style: inherit; font-size: 100%; font-family: inherit; vertical-align: baseline; }
 body { line-height: 1.5; }
 html { font-size: 100.01%; }
@@ -20,13 +22,13 @@ body { font-size: 75%; color: #222; background: #fff; font-family: "Helvetica Ne
 .bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
 .content-left { text-align: left; }
 .content-right { text-align: right; }
-
-/** Clearing floats without extra markup Based on How To Clear Floats Without Structural Markup by PiE [http://www.positioniseverything.net/easyclearing.html] **/
+/* Clearing floats without extra markup Based on How To Clear Floats Without Structural Markup by PiE [http://www.positioniseverything.net/easyclearing.html] */
 .clearfix:after, .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
 .clearfix, .container { display: block; }
 .clear { clear: both; }
 
-/** Headings **/
+
+/*** Headings ***/
 
 h1,h2,h3,h4,h5,h6 { font-weight: normal; color: #111; }
 h1 { font-size: 3em; line-height: 1; margin-bottom: 0.5em; }
@@ -38,7 +40,8 @@ h6 { font-size: 1em; font-weight: bold; }
 h1 img, h2 img, h3 img,
 h4 img, h5 img, h6 img { margin: 0; }
 
-/** Text elements **/
+
+/*** Text elements ***/
 
 p { margin: 0 0 1.5em; }
 p img.left { float: left; margin: 1.5em 1.5em 1.5em 0; padding: 0; }
@@ -56,12 +59,14 @@ del { color: #666; }
 pre { margin: 1.5em 0; white-space: pre; }
 pre,code,tt { font: 1em 'andale mono', 'lucida console', monospace; line-height: 1.5; word-wrap: break-word; }
 
-/** Links **/
+
+/*** Links ***/
 a, a:active { outline: none; }
 a, a:focus { -moz-outline-style: none; }
 a img { border: none; }
 
-/** Forms **/
+
+/*** Forms ***/
 
 label { font-weight: bold; }
 fieldset { padding: 1.4em; margin: 0 0 1.5em 0; border: 1px solid #ccc; }
@@ -76,7 +81,8 @@ input[type=checkbox], input[type=radio], input.checkbox, input.radio { position:
 form.inline { line-height: 3; }
 form.inline p { margin-bottom: 0; }
 
-/** Lists **/
+
+/*** Lists ***/
 
 li ul, li ol { margin: 0 1.5em 1em; }
 ul, ol { margin: 0 1.5em 1.5em 1.5em; }
@@ -86,7 +92,8 @@ dl { margin: 0 0 1.5em 0; }
 dl dt { font-weight: bold; }
 dd { margin-left: 1.5em; }
 
-/** Tables **/
+
+/*** Tables ***/
 
 table { border-collapse: separate; border-spacing: 0; }
 caption, th, td { text-align: left; font-weight: normal; }
@@ -98,7 +105,8 @@ th,td,caption { padding: 5px; }
 tr.even td { background: #e5ecf9; }
 caption { background: #eee; }
 
-/** Image handling **/
+
+/*** Image handling ***/
 
 /* Fluid images for posts, comments, and widgets */
 .entry-content img,
@@ -126,24 +134,26 @@ img.wp-post-image {
 	max-width: 100%;
 }
 
-/** Responsive **/
-.responsive-full-width { width: auto !important; width: 100%; max-width: 100%; height: auto; } /* Use this to size elements to full width of container */
 
-/**** WordPress Specific ****/
+/*** WordPress Specific ***/
 
-/** Media **/
+/* Media */
 
 .wp-caption { font-size: 0.9em; }
 .gallery-caption { font-size: 0.9em; }
 .wp-caption-text { font-weight: bold; }
 
-/** Comments **/
+/* Comments */
 
 .bypostauthor { font-weight: bold; }
 ol.commentlist ul { list-style: none; }
 ol.commentlist p { margin-bottom: 0; }
 .comment-body { margin-bottom: 15px; }
 
-/** Posts **/
+/* Posts */
 
 .sticky { font-weight: bold; }
+
+
+/*** Responsive ***/
+.responsive-full-width { width: auto !important; width: 100%; max-width: 100%; height: auto; } /* Use this to size elements to full width of container */

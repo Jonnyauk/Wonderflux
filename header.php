@@ -13,12 +13,19 @@
 
 wf_output_start(); //WF display hook
 echo '<head>';
-	wf_head_meta();
-	wp_head();
+wf_head_meta();
+wp_head();
 echo '</head>';
 wf_after_head(); //WF display hook
 
-wfx_display_body_tag(''); // IMPORTANT - Inserts dynamic <body> tag with extra Wonderflux CSS classes
+
+echo "\n" . '<body ';
+// NOTE: Wonderflux adds additional classes using the WordPress core WordPress 'body_class' filter
+// Use filter 'wflux_body_class_browser' : browser detection CSS class output
+//Use filter 'wflux_body_class_layout' : layout description classes
+body_class();
+echo '>' . "\n";
+
 
 wfbody_before_wrapper(); //WF display hook
 wfheader_before_wrapper(); //WF display hook

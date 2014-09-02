@@ -2,16 +2,18 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 1.1
+* @updated 2.0
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {
 
 	protected $xml_namespaces;
+	protected $head_classes;
 
 	function __construct() {
 		parent::__construct();
 		$this->xml_namespaces = array(); // Holds all XML namespaces to build into head
+		$this->head_classes = array(); // Holds all additional classes that will be added to head
 	}
 
 	/**
@@ -329,43 +331,70 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.931
-	* @updated 1.1
-	* VERY IMPORTANT!
+	* @updated 2.0
 	*
 	* @filter wflux_body_class_browser : Filter for the browser detection CSS class output
-	* @filter wflux_body_class : Filter for ALL CSS classes output
+	* @filter wflux_body_class_layout : Filter for Wonderflux layout description classes
 	*
-	* Opens and closes <body> tag using dynamic WordPress body and sidebar/content CSS definition classes
 	* Adds extra CSS classes that describe your theme layout configuration, including browser type
 	* WARNING - Browser detection is fairly basic!
-	* Add to this easily by using core WordPress filter 'body_class' or override whole function
+	* Add to by using core WordPress filter 'body_class' or override whole function
 	*/
-	function wf_body_tag($args) {
+	function wf_body_tag(){
 
-		// Setup WordPress stanrdard browser detection globals - fairly basic
+		// Setup using WordPress standard browser detection globals - fairly basic
 		global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
 		$browser = 'browser-';
 
 		switch (TRUE){
-			case $is_lynx: $browser .= 'lynx '; break;
-			case $is_gecko: $browser .= 'gecko '; break;
-			case $is_IE: $browser .= 'ie '; break;
-			case $is_opera: $browser .= 'opera '; break;
-			case $is_NS4: $browser .= 'netscape-4 '; break;
-			case $is_iphone: $browser .= 'iphone '; break;
-			case $is_safari: $browser .= 'safari '; break;
-			case $is_chrome: $browser .= 'chrome '; break;
-			default: $browser .= 'not-defined '; break;
+			case $is_lynx: $browser .= 'lynx'; break;
+			case $is_gecko: $browser .= 'gecko'; break;
+			case $is_IE: $browser .= 'ie'; break;
+			case $is_opera: $browser .= 'opera'; break;
+			case $is_NS4: $browser .= 'netscape-4'; break;
+			case $is_iphone: $browser .= 'iphone'; break;
+			case $is_safari: $browser .= 'safari'; break;
+			case $is_chrome: $browser .= 'chrome'; break;
+			default: $browser .= 'browser-not-defined'; break;
 		}
 
-		$output = apply_filters( 'wflux_body_class_browser', $browser );
-		$output .= join( ' ', get_body_class() );
-		$output .= ( $this->wfx_sidebar_1_display == 'Y' ) ? ' content-with-sidebar-1' : ' content-no-sidebar-1';
-		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? ' sidebar-1-left' : '';
-		$output .= ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'right' ) ? ' sidebar-1-right' : '';
-		$output .= ' width-'.$this->wfx_width;
+		$this->head_classes[] = apply_filters( 'wflux_body_class_browser', $browser );
 
-		echo "\n" . '<body class="' . apply_filters( 'wflux_body_class', $output ) . '">' . "\n";
+		// Setup additional layout classes
+		$layout_classes = array();
+		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' ) ? 'content-with-sidebar-1' : 'content-no-sidebar-1';
+		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? ' sidebar-1-left' : '';
+		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'right' ) ? ' sidebar-1-right' : '';
+		$layout_classes[] = ' width-'.$this->wfx_width;
+
+		// Split back to string for use in wf_body_tag_filter
+		$layout_classes_str = '';
+		foreach ( apply_filters( 'wflux_body_class_layout', $layout_classes ) as $class ) {
+			$layout_classes_str .= $class;
+		}
+
+		$this->head_classes[] = $layout_classes_str;
+
+		// Put it all together and filter body_class
+		add_filter( 'body_class', array($this, 'wf_body_tag_filter') );
+
+	}
+
+
+	/**
+	 * @since 0.931
+	 * @updated 2.0
+	 * Used in wf_body_tag() to filter body_class
+	 */
+	function wf_body_tag_filter($classes){
+
+		// Add browser info to start of body class
+		array_unshift( $classes, $this->head_classes[0] );
+		// Add additional layout classes
+		$classes[] = $this->head_classes[1];
+
+		return $classes;
+
 	}
 
 
@@ -810,16 +839,16 @@ class wflux_display_css extends wflux_display_code {
 	 * @since 1.1
 	 * @updated 2.0
 	 * Generates a repeating pattern of columns for testing the grid layout system
-	 * 
+	 *
 	 * @param rows (integer) Maximum number of rows of divs you wish to output. [12]
 	 * @param type (string) Type of column definitions to use to build output - raw column classes 'columns', or nice definitions. 'relative' [relative]
 	 */
 	function wf_css_test_pattern( $args ){
-		
+
 		$defaults = array (
 			'rows' => $this->wfx_columns,
-			'type' => 'columns',	
-			'split' => 'single', 
+			'type' => 'columns',
+			'split' => 'single',
 			'compatibility' => 'Y',
 		);
 
@@ -828,16 +857,16 @@ class wflux_display_css extends wflux_display_code {
 		$type = ($type !='relative') ? 'columns' : $type;
 		$split = ($split !='single') ? 'relative' : $split;
 		$errors = array();
-		
+
 		if ( intval($rows) > 12 && $type == 'relative' ): $rows = 12;
-		elseif 
+		elseif
 			( intval($rows) > 101 && $type == 'columns' ): $rows = 10;
 		endif;
 
 		for( $i=0; $i<$rows; $i++ ){
-			if ( $type == 'relative') 
-				$this->wf_css_test_pattern_rel('divs='.($i+1).'&compatibility='.$compatibility.''); 
-			else 
+			if ( $type == 'relative')
+				$this->wf_css_test_pattern_rel('divs='.($i+1).'&compatibility='.$compatibility.'');
+			else
 				$this->wf_css_test_pattern_col('divs='.($i+1).'&split='.$split.'');
 		}
 
@@ -849,14 +878,14 @@ class wflux_display_css extends wflux_display_code {
 	 * @updated 1.1
 	 * Generates a repeating pattern of columns for testing the grid layout system
 	 * Internal function used by wf_css_test_pattern
-	 * 
+	 *
 	 * @param divs (integer) Maximum number of rows of divs you wish to output. [1]
 	 */
 	function wf_css_test_pattern_col( $args ){
-		
+
 		$defaults = array (
 			'divs' => $this->wfx_columns,
-			'css' => array( 'p','small','strong' ),	
+			'css' => array( 'p','small','strong' ),
 			'size' => $this->wfx_columns,
 			'split' => 'single'
 		);
@@ -875,7 +904,7 @@ class wflux_display_css extends wflux_display_code {
 			echo '<' . $css[0] . ' class="flush-bottom">' . '<' . $css[1] . '>' . 'Size: ' . $size . '</'.$css[1].'>' . '</'.$css[0].'>';
 			echo '</div>';
 		}
-		
+
 		wfx_css_close('');
 
 	}
@@ -886,12 +915,12 @@ class wflux_display_css extends wflux_display_code {
 	 * @updated 1.1
 	 * Generates a repeating pattern of columns using relative sizes like 'half','quarter' for testing the grid layout system.
 	 * Internal function used by wf_css_test_pattern
-	 * 
+	 *
 	 * @param divs (integer) Maximum number of rows of divs you wish to output. NOTE: Maximum 12 [1]
 	 * @param compatibility (string) Set to N to show incompatible relative sizes, ie 24 columns will not divide into 9. 'Y','N' [Y]
 	 */
 	function wf_css_test_pattern_rel( $args ){
-		
+
 		$defaults = array (
 			'divs' => $this->wfx_columns,
 			'css' => array( 'p','small','strong' ),
@@ -917,8 +946,8 @@ class wflux_display_css extends wflux_display_code {
 			case '12': $def = 'twelveth'; break;
 			default: $def = 'full'; break;
 		}
-		
-		
+
+
 
 		wfx_css( 'size=full&class=blocksample-row' . ' blocksample-row&divoutput=Y' );
 		echo '<h3 class="flush-bottom">Columns: ' . $divs . '</h3>';
@@ -930,7 +959,7 @@ class wflux_display_css extends wflux_display_code {
 			echo '<' . $css[0] . ' class="flush-bottom">' . '<' . $css[1] . '>' . 'Size: ' . $def . '</'.$css[1].'>' . '</'.$css[0].'>';
 			echo '</div>';
 		}
-		
+
 		wfx_css_close('');
 
 	}
@@ -1402,7 +1431,7 @@ class wflux_display_extras {
 		$morelinktext = wp_kses_data($morelinktext);
 		$morelinkclass = wp_kses_data($morelinkclass);
 		if (!is_numeric($id)) { $id = 2; }
-		
+
 		$titleclass = ( !empty($titleclass) ) ? ' class="' . sanitize_html_class($titleclass) . '"' : '';
 
 		// LOOP BEGIN
@@ -1584,7 +1613,7 @@ class wflux_display_extras {
 
 	}
 
-	 
+
 	/**
 	 * Gets attachment(s) or featured images of main post query
 	 * Used in loop-content-attachment.php - will try and playback files or create nice links
@@ -1592,11 +1621,11 @@ class wflux_display_extras {
 	 *
 	 * @since 0.901
 	 * @updated 1.1
-	 * 
+	 *
 	 * TODO: Extend with ID control for any post ID
 	 * TODO: Extend media playback control
 	 *
-	 * @param strg	$type Type of output: 
+	 * @param strg	$type Type of output:
 	 *				'all' for all attachments (note extra params for this)
 	 *				'featured_image' for featured post thumbnail
 	 * 				'attachment' for single attachment pages
@@ -1619,12 +1648,12 @@ class wflux_display_extras {
 	 * @param strg	$output_end Text shown after text links - default is none
 	 * @param strg	$meta_key Used for more advanced attachment queries - see WP core get_children()
 	 * @param strg	$meta_value Used for more advanced attachment queries - see WP core get_children()
-	 * 
+	 *
 	 */
 	function wf_get_attachments($args) {
-		
+
 		// Acceptable values ($var_accept) - first item in array is used as default
-		$type_accept = array( 'all','featured_image','attachment' ); /* TODO: Extend in the future */		
+		$type_accept = array( 'all','featured_image','attachment' ); /* TODO: Extend in the future */
 		$output_accept = array( 'p','ul','ol' );
 		$mime_type_accept = array( false,'image','video','text','audio','application','' );
 
@@ -1637,7 +1666,7 @@ class wflux_display_extras {
 			'img_size' => 'large',
 			'div_wrap' => false,
 			'div_class' => 'box-get-attachment',
-			'element_class' => 'get-attachment-file', 
+			'element_class' => 'get-attachment-file',
 			/*'link_title_start' => 'Download ',*/
 			'link_title_end' => false,
 			'link_class' => 'get-attachment-link',
@@ -1663,30 +1692,30 @@ class wflux_display_extras {
 		$order = ( $order == 'ASC' ) ? $order : 'DESC';
 		$img_size = ( $img_size == 'large' ) ? $img_size : ( in_array($img_size, get_intermediate_image_sizes()) ) ? $img_size : 'large';
 		$link_class = ( !empty($link_class) ) ? $link_class . ' ' : '';
-		
+
 		// Ready for output
 		$out = '';
 		global $post;
 
 		// $type controls the output
 		if ( $type == 'featured_image' && has_post_thumbnail($post->ID) ):
-			
+
 			$out .= ( $div_wrap ) ? '<div class="'. esc_attr($div_class) .'">' : '';
 			//TODO: Setup get_the_post_thumbnail $attr array for parameters
 			$out .= get_the_post_thumbnail($post->ID, $img_size);
 			$out .= ( $div_wrap ) ? '</div>' : '';
 
-		// Used in loop-content-attachment.php			
+		// Used in loop-content-attachment.php
 		elseif ( $type == 'attachment' ):
 
-			$attachment_url = wp_get_attachment_url($post->ID);			
+			$attachment_url = wp_get_attachment_url($post->ID);
 			$file_info = wfx_info_file( $attachment_url );
-			
+
 			$out .= ( $div_wrap && !empty($attachment_url) ) ? '<div class="'. esc_attr($div_class) .'">' : '';
-			
+
 			// Display the attachment the best way we can
 			switch ( $file_info['nicetype'] ) {
-				case 'image':			
+				case 'image':
 					// already checked its an image dont need wp_attachment_is_image( $post->ID ):
 					$img_scr = wp_get_attachment_image_src( $post->ID, $img_size );
 					// Setup correct alt and title for image if possible
@@ -1695,9 +1724,9 @@ class wflux_display_extras {
 					$title_atr = $post->post_excerpt;
 					$title_atr = ( !empty($post->post_excerpt) ) ? $title_atr : get_the_title();
 
-					$out .= ( !empty( $img_scr ) ) ? '<p class="attachment-image"><img src="' . esc_url( $img_scr[0] ) . '" width="' . $img_scr[1] . '" height="' . $img_scr[2] . '" class="'.esc_attr( $img_class ) . '" alt="' . esc_attr( $alt_atr ) . '" title="' . esc_attr( $title_atr ) . '" /></p>' :  ''; 
+					$out .= ( !empty( $img_scr ) ) ? '<p class="attachment-image"><img src="' . esc_url( $img_scr[0] ) . '" width="' . $img_scr[1] . '" height="' . $img_scr[2] . '" class="'.esc_attr( $img_class ) . '" alt="' . esc_attr( $alt_atr ) . '" title="' . esc_attr( $title_atr ) . '" /></p>' :  '';
 				break;
-				
+
 				//Try and play it WP3.6 oembed style
 				case 'audio':
 					// Things I tried but didn't work as expected with internal URLS
@@ -1705,7 +1734,7 @@ class wflux_display_extras {
 					//echo wp_oembed_get($mp3_url);
 					// global $wp_embed;
 					// echo $wp_embed->shortcode(array(), $mp3_url);
-					
+
 					// Backpat - WordPress 3.6 oembeds just with URL (if on new line), cool!
 					$backp_start = ( WF_WORDPRESS_VERSION < 3.6 ) ? '[audio src="' : '';
 					$backp_end = ( WF_WORDPRESS_VERSION < 3.6 ) ? '"]' : '';
@@ -1719,7 +1748,7 @@ class wflux_display_extras {
 					$backp_end = ( WF_WORDPRESS_VERSION < 3.6 ) ? '"]' : '';
 					$out .= apply_filters( 'the_content', $backp_start . esc_url( $attachment_url ) . $backp_end );
 				break;
-				
+
 				// A slightly more useful general file link
 				default:
 					$tool_tip = sprintf( __( 'Download %1$s (.%2$s file)', 'wonderflux' ), $file_info['nicetype'], $file_info['ext'] );
@@ -1733,7 +1762,7 @@ class wflux_display_extras {
 					$out .= esc_attr( $output_start.get_the_title( $post->ID ).$output_end.$title_info );
 					$out .= '</a></' . esc_attr($output_i) . '>';
 					$out .= ($output == 'ul' || $output == 'ol') ? ($output == 'ul') ? '</ul>' : '</ol>' : '';
-				break;	
+				break;
 				$out .= "\n";
 
 			}
@@ -1753,20 +1782,20 @@ class wflux_display_extras {
 				'meta_key'		=> ( is_array($meta_key) ) ? $meta_key : null, // NOTE: false busts the query - has to be null not false
 				'meta_value'	=> ( is_array($meta_value) ) ? $meta_value : null // NOTE: false busts the query - has to be null not false
 			));
-			
+
 			if ($files){
 
-				$out .= ( $div_wrap ) ? '<div class="'. esc_attr($div_class) .'">' : '';				
+				$out .= ( $div_wrap ) ? '<div class="'. esc_attr($div_class) .'">' : '';
 				$out .= ($output == 'ul' || $output == 'ol') ? ($output == 'ul') ? '<ul class="' . $element_class . '">' : '<ol class="' . $element_class . '">' : '';
 
 				foreach( $files as $file ) {
-	
-					$file_url = wp_get_attachment_url($file->ID);			
+
+					$file_url = wp_get_attachment_url($file->ID);
 					$file_info = wfx_info_file( $file_url );
 					$tool_tip = sprintf( __( 'Download %1$s (.%2$s file)', 'wonderflux' ), $file_info['nicetype'], $file_info['ext'] );
 					$title_info = sprintf( __( ' (%1$s .%2$s file)', 'wonderflux' ), $file_info['nicetype'], $file_info['ext'] );
 
-	
+
 					$out .= '<' . esc_attr( $output_i ) . ' ' . esc_attr( $element_class ) . ' attachment-'.$file_info['ext'] . ' attachment-'.$file->ID . '">';
 					$out .= '<a class="' . esc_attr( $link_class ) . 'get-attachment-'.$file_info['ext'] . ' get-attachment-'.$file->ID . '" ';
 					$out .= 'title="' . esc_attr( $tool_tip . $link_title_end ) . '" ';
@@ -1774,16 +1803,16 @@ class wflux_display_extras {
 					$out .= esc_attr( $output_start . get_the_title( $file->ID ) . $output_end.$title_info );
 					$out .= '</a></' . esc_attr( $output_i ) . '>' . "\n";
 					$out .= "\n";
-	
-				}				
+
+				}
 
 				$out .= ($output == 'ul' || $output == 'ol') ? ($output == 'ul') ? '</ul>' : '</ol>' : '';
 				$out .= ( $div_wrap ) ? '</div>' : '';
 			}
 
 		endif;
-		
-		$out .= "\n";	
+
+		$out .= "\n";
 		return $out;
 
 	}
@@ -1825,7 +1854,7 @@ class wflux_display_extras {
 			'container' => 'Y',
 			'container_class' => 'page-counter'
 		);
-		
+
 		// Dont show navigation if this is a single post
 		if (is_single()) {
 			// Silence is golden
@@ -1833,7 +1862,7 @@ class wflux_display_extras {
 
 			$args = wp_parse_args( $args, $defaults );
 			extract( $args, EXTR_SKIP );
-	
+
 			// Clean up ready to use
 			$element = ($element == 'p') ? $element : wp_kses_data($element, '');
 			$start = ($start == 'Page ') ? $start : wp_kses_data($start, '');
@@ -1855,17 +1884,17 @@ class wflux_display_extras {
 			$total_span_close = (!$current_span == '') ? '</span>' : '';
 			$container = ($container == 'Y') ? 'Y' : 'N';
 			$container_class = ($container_class == 'page-counter-navigation') ? $container_class : wp_kses_data($container_class, '');
-	
-			
-	
+
+
+
 			// get total number of pages
 			global $wp_query;
 			$total = $wp_query->max_num_pages;
-	
+
 			// Setup current page
 			$current = 1;
 			$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
-	
+
 			$output = ($container == 'Y') ? '<div class="' . $container_class . '">' : '';
 			$output .= ($element == '') ? '' : '<'.$element.'>';
 			$output .= ($navigation == 'N') ? '' : $navigation_span . $this->wf_previous_posts_link($previous) . $navigation_span_close;
@@ -1876,7 +1905,7 @@ class wflux_display_extras {
 			$output .= ($navigation == 'N') ? '' : $navigation_span . $this->wf_next_posts_link($next) . $navigation_span_close;
 			$output .= ($element == '') ? '' : '</'. $element .'>';
 			$output .= ($container == 'Y') ? '</div>' : '';
-	
+
 			// Always show results, even if just one page
 			if ( $always_show == 'Y' ) {
 				return $output;
@@ -1884,7 +1913,7 @@ class wflux_display_extras {
 			} elseif ( $total > 1 ) {
 				return $output;
 			}
-			
+
 		}
 
 	}
@@ -1894,18 +1923,18 @@ class wflux_display_extras {
 	 * Return the previous posts page link.
 	 * Somewhat similar to core WP get_previous_posts_link() function
 	 * Just for internal use at the moment in wf_page_counter()
-	 * 
+	 *
 	 * TODO: Extend in the future and enable as a basic core function in functions.php
 	 * TODO: Allow control of CSS class applied
 	 *
 	 * @param label - Previous page link text string
 	 * @return string|null
-	 * 
+	 *
 	 * @since 1.1
 	 * @updated 1.1
 	 */
 	function wf_previous_posts_link( $label = null ) {
-		global $paged;		
+		global $paged;
 		if ( null === $label )
 			$label = __( '&laquo; Previous Page', 'wonderflux' );
 		if ( $paged > 1 ) {
@@ -1918,19 +1947,19 @@ class wflux_display_extras {
 	 * Return the next posts page link.
 	 * Somewhat similar to core WP get_next_posts_link() function
 	 * Just for internal use at the moment in wf_page_counter()
-	 * 
+	 *
 	 * TODO: Extend in the future and enable as a basic core function in functions.php
 	 * TODO: Allow control of CSS class applied
 	 *
 	 * @param label - Previous page link text string
 	 * @return string|null
-	 * 
+	 *
 	 * @since 1.1
 	 * @updated 1.1
 	 */
 	function wf_next_posts_link( $label = null, $max_page = 0 ) {
 		global $paged, $wp_query;
-	
+
 		if ( !$max_page )
 			$max_page = $wp_query->max_num_pages;
 		if ( !$paged )

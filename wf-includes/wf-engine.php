@@ -269,7 +269,7 @@ class wflux_display_all {
 	function head_css_columns($args){ $this->wflux_display_code_do->wf_head_css_columns($args); }
 	function head_css_ie($args){ $this->wflux_display_code_do->wf_head_css_ie($args); }
 	function head_css_replace($args){ $this->wflux_display_code_do->wf_head_css_replace($args); }
-	function body_tag($args){ $this->wflux_display_code_do->wf_body_tag($args); }
+	function body_tag(){ $this->wflux_display_code_do->wf_body_tag(); }
 	function post_class($args){ return $this->wflux_display_code_do->wf_post_class($args); }
 
 	function debug_performance($args){ $this->wflux_display_code_do->wf_performance($args); }

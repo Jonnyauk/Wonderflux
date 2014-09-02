@@ -97,8 +97,9 @@ if ( WF_WORDPRESS_VERSION < 3.4 ) {
 
 add_action('init', 'wfx_config_language');
 add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
-add_action('get_header', 'wfx_content_width_embed', 2); // IMPORTANT Sets WordPress $content_width global for oEmbed media
+add_action('get_header', 'wfx_display_body_tag', 1);
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
+add_action('get_header', 'wfx_content_width_embed', 2); // IMPORTANT Sets WordPress $content_width global for oEmbed media
 add_action('wf_output_start', 'wfx_display_head_open', 1);
 add_action('get_header', 'wfx_social_meta');
 add_action('wf_head_meta', 'wfx_display_head_char_set', 1);
@@ -363,7 +364,7 @@ if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_h
 * @updated 1.1
 * Inserts opening dynamic body tag in output - adds Extra Wonderflux CSS classes and basic browser detection
 */
-if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag($args) { global $wfx; $wfx->body_tag($args); } endif;
+if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag() { global $wfx; $wfx->body_tag(); } endif;
 
 /**
 * @since 1.0RC3

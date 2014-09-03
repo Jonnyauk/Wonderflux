@@ -8,13 +8,13 @@
 	<h2><?php esc_attr_e('Welcome to Wonderflux', 'wonderflux'); ?></h2>
 	<div class="clear"></div>
 	<p>
-	<?php esc_attr_e('Wonderflux is an advanced, open source theme framework. ', 'wonderflux'); ?>
-	<?php esc_attr_e('It gives you a reliable and easy to update parent theme for creating your own bespoke WordPress themes.', 'wonderflux'); ?>
+	<?php esc_attr_e('Wonderflux is an advanced, open source theme framework (sometimes known as a parent theme). ', 'wonderflux'); ?>
 	</p>
 	<p>
-	<?php esc_attr_e('The best way to use Wonderflux is to create a child theme. ', 'wonderflux'); ?>
-	<?php esc_attr_e('Explore the links in the help and support section at the bottom of this page to find out more.', 'wonderflux'); ?>
-	</p>
+	<?php esc_attr_e('It gives you a reliable and easy to update platform for creating your own bespoke Wonderflux child themes for WordPress.', 'wonderflux'); ?>
+	<p><strong>
+	<?php esc_attr_e('Explore the links in the help and support section below to find out more.', 'wonderflux'); ?>
+	</p></strong>
 
 	<?php
 

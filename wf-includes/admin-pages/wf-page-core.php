@@ -9,28 +9,41 @@
 	<div class="clear"></div>
 	<p>
 	<?php esc_attr_e('Wonderflux is an advanced, open source theme framework. ', 'wonderflux'); ?>
-	<?php esc_attr_e('It is built to provide a solid, reliable and easily updateable base for creating bespoke WordPress themes.', 'wonderflux'); ?>
+	<?php esc_attr_e('It gives you a reliable and easy to update parent theme for creating your own bespoke WordPress themes.', 'wonderflux'); ?>
 	</p>
 	<p>
 	<?php esc_attr_e('The best way to use Wonderflux is to create a child theme. ', 'wonderflux'); ?>
 	<?php esc_attr_e('Explore the links in the help and support section at the bottom of this page to find out more.', 'wonderflux'); ?>
 	</p>
 
-	<h2><?php esc_attr_e('Current Wonderflux Child Theme', 'wonderflux'); ?></h2>
-	<div class="clear"></div>
-	<div id="current-wf-theme">
+	<?php
 
-		<?php if ( $screenshot = $ct->get_screenshot() ) : ?>
-			<img src="<?php echo esc_url( $screenshot ); ?>" style="float:left; margin: 0 20px 20px 0; max-height:130px;" />
-		<?php endif; ?>
+	// Only show theme info if we are using a child theme
+	if ( $ct->title != 'Wonderflux Framework' ){
 
-		<h4><?php
-			printf(__('%1$s %2$s by %3$s', 'wonderflux'), $ct->title, $ct->version, $ct->author) ; ?></h4>
-		<p class="theme-description"><?php echo $ct->description; ?></p>
-		<?php echo '<p>' . esc_attr__('The theme files are located in', 'wonderflux') . ' <code>'. WF_THEME_URL .'/</code></p>'; ?>
+		?>
 
+		<h2><?php esc_attr_e('Current Wonderflux Child Theme', 'wonderflux'); ?></h2>
 		<div class="clear"></div>
+		<div id="current-wf-theme">
 
-	</div>
+			<?php if ( $screenshot = $ct->get_screenshot() ) : ?>
+				<img src="<?php echo esc_url( $screenshot ); ?>" style="float:left; margin: 0 20px 20px 0; max-height:130px;" />
+			<?php endif; ?>
+
+			<h4><?php
+				printf(__('%1$s %2$s by %3$s', 'wonderflux'), $ct->title, $ct->version, $ct->author) ; ?></h4>
+			<p class="theme-description"><?php echo $ct->description; ?></p>
+			<?php echo '<p>' . esc_attr__('The theme files are located in', 'wonderflux') . ' <code>'. WF_THEME_URL .'/</code></p>'; ?>
+
+			<div class="clear"></div>
+
+		</div>
+
+		<?php
+
+	}
+
+	?>
 
 </div>

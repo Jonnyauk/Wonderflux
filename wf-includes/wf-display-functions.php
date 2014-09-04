@@ -82,7 +82,7 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* Builds array of XML namespace attributes to pass to wf_head_meta_xml_namespace
-	* @filter wf_head_meta_xml_namespace_main - Full output of default XML namespace definition.
+	* @filter wflux_head_meta_xml_namespace_main - Full output of default XML namespace definition.
 	*
 	* @since 0.931
 	* @updated 0.931
@@ -90,7 +90,7 @@ class wflux_display_code extends wflux_data {
 	function xml_namespace_build() {
 		//$this->xml_namespaces[] = wp_strip_all_tags($name);
 		// Default namespace
-		$this->xml_namespaces[] = apply_filters( 'wf_head_meta_xml_namespace_main', 'xmlns="http://www.w3.org/1999/xhtml"' );
+		$this->xml_namespaces[] = apply_filters( 'wflux_head_meta_xml_namespace_main', 'xmlns="http://www.w3.org/1999/xhtml"' );
 		// If using Facebook need Open Graph AND Facebook namespace definitions
 		if ( $this->wfx_doc_type == 'XHTML/RDFa' ):
 			$this->xml_namespaces[] = 'xmlns:og="http://ogp.me/ns#"';

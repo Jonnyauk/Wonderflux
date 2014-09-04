@@ -18,14 +18,18 @@ wp_head();
 echo '</head>';
 wf_after_head(); //WF display hook
 
+echo "\n";
 
-echo "\n" . '<body ';
 // NOTE: Wonderflux adds additional classes using the WordPress core WordPress 'body_class' filter
 // Use filter 'wflux_body_class_browser' : browser detection CSS class output
-//Use filter 'wflux_body_class_layout' : layout description classes
-body_class();
-echo '>' . "\n";
+// Use filter 'wflux_body_class_layout' : layout description classes
+// NOTE: We have to break out of PHP because theme testers don't see body_class() properly otherwise - boo ;(
+?>
 
+<body <?php body_class(); ?>>
+
+<?php
+echo "\n";
 
 wfbody_before_wrapper(); //WF display hook
 wfheader_before_wrapper(); //WF display hook

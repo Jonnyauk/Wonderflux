@@ -760,17 +760,13 @@ class wflux_admin_forms extends wflux_data {
 		$output .= '<p><strong>' . esc_attr__( "IMPORTANT - If you are using the override files as described and change your grid configuration or layout options, please revisit this page and update your files accordingly.", "wonderflux" ) . '</strong></p>';
 
 		$output .= '<h3>' . esc_attr__( "1 - Code for your style-framework.css file", "wonderflux" ) . '</h3>';
-		$output .= '<script type="text/javascript">';
-		$output .= 'function select_all() { var text_val=eval("document.form1.newcontent"); text_val.focus(); text_val.select(); }';
-		$output .= 'function select_all2() { var text_val=eval("document.form1.newcontent2"); text_val.focus(); text_val.select(); }';
-		$output .= '</script>';
 		$output .= '<form name="form1" method="post" action="" >';
-		$output .= '<textarea cols="100" rows="20" name="newcontent" id="newcontent" tabindex="1" onClick="select_all();">'.$content.$content_grid.'</textarea>';
+		$output .= '<textarea cols="100" rows="20" name="newcontent" id="newcontent" tabindex="1" onclick="this.select()">'.$content.$content_grid.'</textarea>';
 
 		$content_ie = $this->wf_css_framework_build_ie();
 
 		$output .= '<h3>' . esc_attr__( "2 - Code for your style-framework-ie.css file", "wonderflux" ) . '</h3>';
-		$output .= '<textarea cols="100" rows="20" name="newcontent2" id="newcontent2" tabindex="2" onClick="select_all2();">'.$content_ie.'</textarea>';
+		$output .= '<textarea cols="100" rows="20" name="newcontent2" id="newcontent2" tabindex="2" onclick="this.select()">'.$content_ie.'</textarea>';
 		$output .= '</form>';
 		echo $output;
 	}

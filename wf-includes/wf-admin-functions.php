@@ -761,12 +761,12 @@ class wflux_admin_forms extends wflux_data {
 
 		$output .= '<h3>' . esc_attr__( "1 - Code for your style-framework.css file", "wonderflux" ) . '</h3>';
 		$output .= '<form name="form1" method="post" action="" >';
-		$output .= '<textarea cols="100" rows="20" name="newcontent" id="newcontent" tabindex="1" onclick="this.select()">'.$content.$content_grid.'</textarea>';
+		$output .= '<textarea cols="100" rows="20" name="newcontent" id="css-wfx-framework" tabindex="1" onclick="this.select()">'.$content.$content_grid.'</textarea>';
 
 		$content_ie = $this->wf_css_framework_build_ie();
 
 		$output .= '<h3>' . esc_attr__( "2 - Code for your style-framework-ie.css file", "wonderflux" ) . '</h3>';
-		$output .= '<textarea cols="100" rows="20" name="newcontent2" id="newcontent2" tabindex="2" onclick="this.select()">'.$content_ie.'</textarea>';
+		$output .= '<textarea cols="100" rows="20" name="newcontent2" id="css-wfx-framework-ie" tabindex="2" onclick="this.select()">'.$content_ie.'</textarea>';
 		$output .= '</form>';
 		echo $output;
 	}

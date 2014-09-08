@@ -33,13 +33,11 @@ wf_output_start(); //WF display hook
 wf_head_meta();
 wp_head();
 ?>
-</head>
 
+</head>
 <?php
 
 wf_after_head(); //WF display hook
-
-echo "\n";
 
 // NOTE: Wonderflux adds additional classes using the WordPress core WordPress 'body_class' filter
 // Use filter 'wflux_body_class_browser' : browser detection CSS class output
@@ -50,7 +48,6 @@ echo "\n";
 <body <?php body_class(); ?>>
 
 <?php
-echo "\n";
 
 wfbody_before_wrapper(); //WF display hook
 wfheader_before_wrapper(); //WF display hook

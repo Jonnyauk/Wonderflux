@@ -261,7 +261,7 @@ class wflux_display_all {
 	}
 
 	// Code functions
-	function head_open($args){ $this->wflux_display_code_do->wf_head_open($args); }
+	function head_open(){ $this->wflux_display_code_do->wf_head_open(); }
 	function head_char_set($args){ $this->wflux_display_code_do->wf_head_char_set($args); }
 	function head_title($args){ $this->wflux_display_code_do->wf_head_title($args); }
 	function head_css_structure($args){ $this->wflux_display_code_do->wf_head_css_structure($args); }

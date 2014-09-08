@@ -97,10 +97,10 @@ if ( WF_WORDPRESS_VERSION < 3.4 ) {
 
 add_action('init', 'wfx_config_language');
 add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
+add_action('get_header', 'wfx_display_head_open', 1);
 add_action('get_header', 'wfx_display_body_tag', 1);
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
 add_action('get_header', 'wfx_content_width_embed', 2); // IMPORTANT Sets WordPress $content_width global for oEmbed media
-add_action('wf_output_start', 'wfx_display_head_open', 1);
 add_action('get_header', 'wfx_social_meta');
 add_action('wf_head_meta', 'wfx_display_head_char_set', 1);
 add_action('wf_head_meta', 'wfx_display_head_title', 3);
@@ -335,7 +335,7 @@ if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language(
 * @updated 0.931
 * IMPORTANT Builds the head of the document
 */
-if ( !function_exists( 'wfx_display_head_open' ) ) : function wfx_display_head_open($args) { global $wfx; $wfx->head_open($args); } endif;
+if ( !function_exists( 'wfx_display_head_open' ) ) : function wfx_display_head_open() { global $wfx; $wfx->head_open(); } endif;
 
 
 /**

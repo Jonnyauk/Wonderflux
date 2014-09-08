@@ -9,35 +9,30 @@ class wflux_display_code extends wflux_data {
 
 	protected $xml_namespaces;
 	protected $head_classes;
+	protected $lang_attributes;
 
 	function __construct() {
 		parent::__construct();
 		$this->xml_namespaces = array(); // Holds all XML namespaces to build into head
 		$this->head_classes = array(); // Holds all additional classes that will be added to head
+		$this->lang_attributes = ''; // Holds all additional attributes added to <html>
+
 	}
 
 	/**
 	* Builds the start of the head with doc type declaration
 	*
 	* @since 0.931
-	* @updated 0.931
+	* @updated 2.0
 	*
-	* @param $doctype (limited variable string) : Document type : 'transitional' (default), 'strict', 'frameset', '1.1', '1.1basic', 'html5', 'XHTML/RDFa'
-	* @param $lang (user variable string) : Alphabetic International language code : 'en' (default), USER INPUT
-	* @param $content : Document content : 'html' (default)
-	* @param $charset (user variable string) : Character encoding : 'utf8' (default), USER INPUT
 	*/
-	function wf_head_open($args) {
+	function wf_head_open() {
 
-		$defaults = array (
-			'doctype' => $this->wfx_doc_type,
-			'lang' => $this->wfx_doc_lang,
-			'content' => 'html',
-			'charset' => $this->wfx_doc_charset
-		);
 
-		$args = wp_parse_args( $args, $defaults );
-		extract( $args, EXTR_SKIP );
+		$doctype = $this->wfx_doc_type;
+		$lang = $this->wfx_doc_lang;
+		$content = 'html';
+
 
 		// Language code
 		if ($lang !='en' || strlen( trim($lang) ) < 6): $lang_output = sanitize_key($lang);
@@ -55,12 +50,12 @@ class wflux_display_code extends wflux_data {
 			default: $doctype_output = '1.0 Transitional'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-tansitional'; break;
 		}
 
-		// Character set
-		$charset_output = wp_kses($charset, '');
+		if ($doctype == 'html5'):
 
-		// Output
-		if ($doctype == 'html5'): $output = '<!DOCTYPE html>' . "\n" . '<html lang="'.$lang_output.'">' . "\n";
+			$output = '<!DOCTYPE html>' . "\n" . '<html lang="'.$lang_output.'">' . "\n";
+
 		else:
+
 			// Content type
 			if ($content !='html' || strlen($content) <= 4) :
 				$content_output = sanitize_key($content, '');
@@ -72,11 +67,26 @@ class wflux_display_code extends wflux_data {
 
 			$lang_extra = ( $doctype == 'XHTML/RDFa' ) ? '' : 'lang="'.$lang_output.'" ';
 			$output = '<!DOCTYPE ' . 'html PUBLIC "-//W3C//DTD ' . $doctype_output . '//' . strtoupper($lang_output) . '" "http://www.w3.org/' . $doctype_link_output . '.dtd">';
-			$output .="\n";
-			$output .='<html ' . 'xml:lang="'.$lang_output.'" ' . $lang_extra . $namespaces . '>';
-			$output .="\n";
+
 		endif;
-		echo $output;
+
+		$this->lang_attributes = wp_kses( apply_filters('wflux_language_attributes', 'xml:lang="'.$lang_output.'" ' . $lang_extra . $namespaces), '' );
+
+		// Filter core WordPress language attributes
+		add_filter('language_attributes', array($this, 'wf_lang_attributes_filter'));
+
+	}
+
+	/**
+	 *
+	 * Used in wf_head_open() to filter language_attributes
+	 * Note - data already checked/filtered when $this->lang_attributes set in wf_head_open()
+	 *
+	 * @since 2.0
+	 * @updated 2.0
+	 */
+	function wf_lang_attributes_filter($attributes){
+		return $this->lang_attributes;
 	}
 
 

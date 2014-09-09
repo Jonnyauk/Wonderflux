@@ -2238,7 +2238,7 @@ class wflux_display_social extends wflux_data {
 		$this->share_site_name = wp_strip_all_tags( get_bloginfo( 'name', 'raw' ) );
 		$this->share_title = ( isset($post->ID) ) ? wp_strip_all_tags( get_the_title($post->ID) ) : wp_strip_all_tags( get_bloginfo( 'name', 'raw' ) );
 		$this->share_description = wp_strip_all_tags( get_bloginfo( 'description', 'raw' ) );
-		$this->og_image = apply_filters( 'wfx_social_og_meta_image', WF_THEME_URL.'/images/supporting/social_thumbnail.jpg' );
+		$this->og_image = apply_filters( 'wflux_social_og_meta_image', WF_THEME_URL.'/images/supporting/social_thumbnail.jpg' );
 	}
 
 

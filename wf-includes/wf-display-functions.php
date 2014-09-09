@@ -2199,7 +2199,7 @@ class wflux_display_extras {
 
 /**
 * @since 0.931
-* @updated 0.931
+* @updated 2.0
 * Social networking functionality
 */
 class wflux_display_social extends wflux_data {
@@ -2374,10 +2374,10 @@ class wflux_display_social extends wflux_data {
 	 * @param size - Size of plus 1 button. 'small', 'medium', 'standard', 'tall' [medium]
 	 * @param count - Show count or not. NOTE: Tall size always shows count. 'no_count', 'show_count' [show_count]
 	 * @param url - URL to plus 1 - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
-	 * @filter wfx_social_gplus_target - Sets the target name that's added to the start of the unique ID. Used in div ID and Javascript output. [social-link-gplus]
+	 * @filter wflux_social_gplus_target - Sets the target name that's added to the start of the unique ID. Used in div ID and Javascript output. [social-link-gplus]
 	 *
 	 * @since 0.931
-	 * @updated 0.931
+	 * @updated 2.0
 	 */
 	function wf_g_plus_1( $args ) {
 
@@ -2406,7 +2406,7 @@ class wflux_display_social extends wflux_data {
 		endif;
 		$url = ', \'href\': \'' . $url . '\' ';
 
-		$target = apply_filters( 'wfx_social_gplus_target', 'social-link-gplus' );
+		$target = apply_filters( 'wflux_social_gplus_target', 'social-link-gplus' );
 
 		// Build output
 		// TODO: Switch for controlling different types of output here

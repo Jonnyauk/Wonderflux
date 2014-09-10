@@ -692,8 +692,8 @@ class wflux_helper {
 	/**
 	 * Adds message to error reporting if WP_DEBUG is true.
 	 *
-	 * There is a hook wfx_debug_report_run that will be called that can be used
-	 * to get the backtrace up to what file and function called the specific function.
+	 * Hook wf_debug_report_run used to get the backtrace up to what file and function
+	 * called the specific function reported.
 	 *
 	 * @since 1.1
 	 * @lastupdate 2.0
@@ -704,7 +704,7 @@ class wflux_helper {
 	 */
 	function wf_debug_report( $function, $message, $version ) {
 
-		do_action( 'wfx_debug_report_run', $function, $message, $version );
+		do_action( 'wf_debug_report_run', $function, $message, $version );
 
 		if ( WP_DEBUG )
 			$version = !is_null( $version ) ? '' : sprintf( __( '(This message was added in version %s.)', 'wonderflux' ), $version );

@@ -56,7 +56,9 @@
 // Start your engine
 load_template(get_template_directory() . '/wf-includes/wf-engine.php');
 
+
 //  1  //////////// Add actions to hooks and create Wonderflux
+
 
 // IMPORTANT - Use remove_action in your child theme to control any of this!
 
@@ -96,7 +98,7 @@ if ( WF_WORDPRESS_VERSION < 3.4 ) {
 //// 1.5 // Wonderflux core functionality
 
 add_action('init', 'wfx_config_language');
-add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
+add_action('wp_enqueue_scripts', 'wfx_core_comment_js', 2);
 add_action('get_header', 'wfx_display_head_open', 1);
 add_action('get_header', 'wfx_display_body_tag', 1);
 add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout divs
@@ -120,6 +122,7 @@ if ( WF_DEBUG == true ){
 
 
 ////  2  //////////// HELPER FUNCTIONS
+
 
 /**
 * @since 1.1
@@ -205,7 +208,6 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
 
 } endif;
 
-
 /**
 * @since 0.93
 * @updated 0.93
@@ -213,7 +215,6 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
 * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme
 */
 if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; return $wfx_helper->__Y(); } endif;
-
 
 /**
 * @since 0.93
@@ -223,14 +224,12 @@ if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; re
 */
 if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; return $wfx_helper->__N(); } endif;
 
-
 /**
 * @since 1.1
 * @updated 1.1
 * Displays input in a nicer way for debugging
 */
 if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$admin_only=true,$role=false,$id=false) { global $wfx_helper; $wfx_helper->debug($input,$admin_only,$role,$id); } endif;
-
 
 /**
 * @since 1.1
@@ -239,14 +238,12 @@ if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$admin_onl
 */
 if ( !function_exists( 'wfx_debug_report' ) ) : function wfx_debug_report($function='', $message='', $version='') { global $wfx_helper; $wfx_helper->debug_report($function, $message, $version); } endif;
 
-
 /**
 * @since 2.0
 * @updated 2.0
 * Reveals the location of all relevant Wonderflux display hooks within your theme.
 */
 if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global $wfx_helper; $wfx_helper->show_hooks(); } endif;
-
 
 /**
 * @since 1.1
@@ -256,7 +253,6 @@ if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags($args) {
 	 global $wfx_data_manage; return $wfx_data_manage->allowed_tags($args);
 } endif;
-
 
 /**
 * @since 1.1
@@ -278,15 +274,12 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 */
 if ( !function_exists( 'wfx_core_feeds' ) ) : function wfx_core_feeds() { global $wfx_theme_support; $wfx_theme_support->core_feeds(); } endif;
 
-
 /**
 * @since 1.1
 * @updated 1.1
 * Core WordPress threaded comment reply Javascript
 */
 if ( !function_exists( 'wfx_core_comment_js' ) ) : function wfx_core_comment_js() { global $wfx_theme; $wfx_theme->core_comment_js(); } endif;
-
-
 
 // Only need functions if have child theme overrides
 if (WF_THEME_FRAMEWORK_REPLACE == false) {
@@ -336,7 +329,6 @@ if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language(
 * IMPORTANT Builds the head of the document
 */
 if ( !function_exists( 'wfx_display_head_open' ) ) : function wfx_display_head_open() { global $wfx; $wfx->head_open(); } endif;
-
 
 /**
 * @since 0.931
@@ -579,7 +571,6 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
 
 } endif;
 
-
 /**
 * @since 1.0RC3
 * @updated 1.1
@@ -596,7 +587,6 @@ if ( !function_exists( 'wfx_get_cached_part' ) ) : function wfx_get_cached_part(
 		 return $wfx->get_cached_part($args);
 	}
 } endif;
-
 
 /**
  * @since 1.1
@@ -615,7 +605,6 @@ if ( !function_exists( 'wfx_build_hyperlink' ) ) : function wfx_build_hyperlink(
 	}
 
 } endif;
-
 
 /**
  * @since 1.1
@@ -647,14 +636,12 @@ if ( !function_exists( 'wfx_array_to_delimited_string' ) ) : function wfx_array_
 */
 if ( !function_exists( 'wfx_social_google_plus_1' ) ) : function wfx_social_google_plus_1($args='') { global $wfx; $wfx->g_plus_1($args); } endif;
 
-
 /**
 * @since 0.931
 * @updated 0.931
 * Displays Facebook Like button
 */
 if ( !function_exists( 'wfx_social_facebook_like' ) ) : function wfx_social_facebook_like($args='') { global $wfx; $wfx->fb_like($args); } endif;
-
 
 /**
 * @since 0.931
@@ -663,14 +650,12 @@ if ( !function_exists( 'wfx_social_facebook_like' ) ) : function wfx_social_face
 */
 if ( !function_exists( 'wfx_social_twitter_share' ) ) : function wfx_social_twitter_share($args='') { global $wfx; $wfx->twit_share($args); } endif;
 
-
 /**
 * @since 1.0rc2
 * @updated 1.0rc2
 * Displays LinkedIn share button
 */
 if ( !function_exists( 'wfx_social_linkedin_share' ) ) : function wfx_social_linkedin_share($args='') { global $wfx; $wfx->linkedin_share($args); } endif;
-
 
 /**
 * @since 0.931
@@ -690,14 +675,12 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
 */
 if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global $wfx_theme; $wfx_theme->widgets($args); } endif;
 
-
 /**
 * @since 0.92
 * @updated 0.92
 * IMPORTANT Sets up background divs
 */
 if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs($args) { global $wfx_theme; $wfx_theme->background_divs($args); } endif;
-
 
 /**
 * @since 0.913
@@ -717,7 +700,6 @@ if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global 
 */
 if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args='') { global $wfx_theme; $wfx_theme->jquery($args); } endif;
 
-
 /**
 * @since 0.92
 * @updated 0.931
@@ -736,14 +718,12 @@ if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { gl
 */
 if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { global $wfx_admin; $wfx_admin->admin_menus(); } endif;
 
-
 /**
 * @since 0.93
 * @updated 0.93
 * Adds Wonderflux options to appearance menu (respects WF_ADMIN_ACCESS)
 */
 if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_links(); } endif;
-
 
 /**
 * @since 2.0
@@ -757,6 +737,7 @@ if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_f
 
 
 // For when Wonderflux gets activated directly
+
 
 /**
 * @since 0.902

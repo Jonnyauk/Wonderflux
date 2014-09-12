@@ -9,7 +9,6 @@ class wflux_admin extends wflux_data {
 
 
     // wf_page_build
-	var $icon;
 	var $title;
 	var $include;
 	var $paths;
@@ -39,11 +38,11 @@ class wflux_admin extends wflux_data {
 
 
 	// Add content to admin areas
-	function wf_page_core() { $this->wf_page_build('index', esc_attr__('Wonderflux Home','wonderflux'), 'core'); }
-	function wf_page_stylelab() { $this->wf_page_build('themes', esc_attr__('Wonderflux Stylelab','wonderflux'), 'style'); }
-	function wf_page_advanced() { $this->wf_page_build('themes', esc_attr__('Wonderflux Advanced','wonderflux'), 'advanced'); }
-	function wf_page_system() { $this->wf_page_build('tools', esc_attr__('Wonderflux System Information','wonderflux'), 'system'); }
-	function wf_page_backup() { $this->wf_page_build('tools', esc_attr__('Wonderflux Options Backup','wonderflux'), 'backup'); }
+	function wf_page_core() { $this->wf_page_build(esc_attr__('Wonderflux Home','wonderflux'), 'core'); }
+	function wf_page_stylelab() { $this->wf_page_build(esc_attr__('Wonderflux Stylelab','wonderflux'), 'style'); }
+	function wf_page_advanced() { $this->wf_page_build(esc_attr__('Wonderflux Advanced','wonderflux'), 'advanced'); }
+	function wf_page_system() { $this->wf_page_build(esc_attr__('Wonderflux System Information','wonderflux'), 'system'); }
+	function wf_page_backup() { $this->wf_page_build(esc_attr__('Wonderflux Options Backup','wonderflux'), 'backup'); }
 
 
 	/**
@@ -53,25 +52,12 @@ class wflux_admin extends wflux_data {
 	*
 	*	@params
 	*
-	*	'icon' =
-	*	edit - pin
-	*	index - house
-	*	upload - media
-	*	link - chain link
-	*	page - page
-	*	edit-comments - speech bubble
-	*	themes - window with blocks
-	*	plugins - plug
-	*	profile - people
-	*	tools - hammer/screwdriver
-	*	options-general - slider panel
-	*
 	*	'title' = Title at top of page
 	*
 	*	'include' = Which admin content/form to include
 	*
 	*/
-	function wf_page_build($icon, $title, $include) {
+	function wf_page_build($title, $include) {
 
 		echo '<div class="themes-php wrap">';
 

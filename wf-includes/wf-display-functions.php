@@ -2,7 +2,7 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 2.0
+* @updated 1.2
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {
@@ -23,7 +23,7 @@ class wflux_display_code extends wflux_data {
 	* Builds the start of the head with doc type declaration
 	*
 	* @since 0.931
-	* @updated 2.0
+	* @updated 1.2
 	*
 	*/
 	function wf_head_open() {
@@ -82,8 +82,8 @@ class wflux_display_code extends wflux_data {
 	 * Used in wf_head_open() to filter language_attributes
 	 * Note - data already checked/filtered when $this->lang_attributes set in wf_head_open()
 	 *
-	 * @since 2.0
-	 * @updated 2.0
+	 * @since 1.2
+	 * @updated 1.2
 	 */
 	function wf_lang_attributes_filter($attributes){
 		return $this->lang_attributes;
@@ -341,7 +341,7 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.931
-	* @updated 2.0
+	* @updated 1.2
 	*
 	* @filter wflux_body_class_browser : Filter for the browser detection CSS class output
 	* @filter wflux_body_class_layout : Filter for Wonderflux layout description classes
@@ -393,7 +393,7 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	 * @since 0.931
-	 * @updated 2.0
+	 * @updated 1.2
 	 * Used in wf_body_tag() to filter body_class
 	 */
 	function wf_body_tag_filter($classes){
@@ -847,7 +847,7 @@ class wflux_display_css extends wflux_display_code {
 
 	/**
 	 * @since 1.1
-	 * @updated 2.0
+	 * @updated 1.2
 	 * Generates a repeating pattern of columns for testing the grid layout system
 	 *
 	 * @param rows (integer) Maximum number of rows of divs you wish to output. [12]
@@ -1117,7 +1117,7 @@ class wflux_display extends wflux_display_css {
 
 /**
 * @since 0.85
-* @updated 2.0
+* @updated 1.2
 * Extra core display functions for theme designers
 */
 class wflux_display_extras {
@@ -1408,7 +1408,7 @@ class wflux_display_extras {
 	 * @output HTML formatted content
 	 *
 	 * @since 0.85
-	 * @updated 2.0
+	 * @updated 1.2
 	 */
 	function wf_get_single_content($args) {
 
@@ -2153,7 +2153,7 @@ class wflux_display_extras {
 	 * Separates each value with an optional delimiter (but not the last one!)
 	 *
 	 * @since 1.1
-	 * @updated 2.0
+	 * @updated 1.2
 	 *
 	 * @param $values | array | REQUIRED | Basic array of values
 	 * @param $seperator | string | optional | What you want in-between each item in array
@@ -2199,7 +2199,7 @@ class wflux_display_extras {
 
 /**
 * @since 0.931
-* @updated 2.0
+* @updated 1.2
 * Social networking functionality
 */
 class wflux_display_social extends wflux_data {
@@ -2377,7 +2377,7 @@ class wflux_display_social extends wflux_data {
 	 * @filter wflux_social_gplus_target - Sets the target name that's added to the start of the unique ID. Used in div ID and Javascript output. [social-link-gplus]
 	 *
 	 * @since 0.931
-	 * @updated 2.0
+	 * @updated 1.2
 	 */
 	function wf_g_plus_1( $args ) {
 

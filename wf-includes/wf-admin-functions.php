@@ -2,7 +2,7 @@
 
 /**
 * @since 0.3
-* @updated 2.0
+* @updated 1.2
 * Admin area functions for options pages and menus
 */
 class wflux_admin extends wflux_data {
@@ -25,7 +25,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Build the admin menus
 	* @since 0.3
-	* @updated 2.0
+	* @updated 1.2
 	*/
 	function wf_add_pages(){
 		$wflux_core_admin_page_main = add_theme_page( esc_attr__('Wonderflux main options','wonderflux'), esc_attr__('Wonderflux','wonderflux'), 'administrator', 'wonderflux', array($this, 'wf_page_core'));
@@ -48,7 +48,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Builds Wonderflux admin pages
 	* @since 0.1
-	* @updated 2.0
+	* @updated 1.2
 	*
 	*	@params
 	*
@@ -159,7 +159,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Sets up and configures options and form fields
 	* @since 0.81
-	* @updated 1.1
+	* @updated 1.2
 	*/
 	function wf_register_settings(){
 
@@ -295,7 +295,7 @@ class wflux_admin extends wflux_data {
  	/**
 	* Contextual help
 	* @since 0.92
-	* @updated 2.0
+	* @updated 1.2
 	*/
 	function wf_contextual_help() {
 
@@ -659,7 +659,7 @@ class wflux_admin_forms extends wflux_data {
 	* Creates a dropdown for options page
 	* IMPORTANT: Defaults for content1 and sidebar1 set here if no database options saved
 	* @since 0.81
-	* @updated 2.0
+	* @updated 1.2
 	*/
 	function wf_form_helper_ddown_std( $data, $definition, $items, $label_note ) {
 		echo "<select id='wonderflux_display_".esc_attr($definition)."' name='wonderflux_display[".$definition."]'>";
@@ -691,7 +691,7 @@ class wflux_admin_forms extends wflux_data {
 	/**
 	* Creates a dropdown for options page populated with range of numbers
 	* @since 0.81
-	* @updated 2.0
+	* @updated 1.2
 	*/
 	function wf_form_helper_ddown_range($data, $definition, $low, $high, $step, $label_note) {
 		$items = range($low,$high,$step);
@@ -989,8 +989,8 @@ class wflux_admin_forms extends wflux_data {
 
 
 /**
- * @since 2.0
- * @updated 2.0
+ * @since 1.2
+ * @updated 1.2
  * Admin area theme backup functions
  */
 class wflux_admin_backup {

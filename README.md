@@ -2,7 +2,7 @@
 
 ====================================
 #### Wonderflux WordPress theme framework
-#### Verson v2.0 ALPHA DEVELOPMENT VERSION
+#### Version v1.2
 #### Stable/production releases: https://github.com/Jonnyauk/Wonderflux/releases
 #### Copyright (c)2014 Jonny Allbut
 #### http://jonnya.net / @Jonnyauk

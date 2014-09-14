@@ -377,7 +377,7 @@ class wflux_helper {
 	* IMPORTANT: Used in core template files to setup smarter specific template_parts
 	*
 	* @since 0.881
-	* @lastupdate 2.0
+	* @lastupdate 1.2
 	*
 	* @param string $part REQUIRED The slug name for the generic template
 	* @param string $tag OPTIONAL Extends taxonomy views for additional tag specific template parts
@@ -696,7 +696,7 @@ class wflux_helper {
 	 * called the specific function reported.
 	 *
 	 * @since 1.1
-	 * @lastupdate 2.0
+	 * @lastupdate 1.2
 	 *
 	 * @param string $function The function that was called.
 	 * @param string $message A message explaining what has been done incorrectly.
@@ -719,8 +719,8 @@ class wflux_helper {
 	 * WF_DEBUG constant defined as true, this plugin reveals the
 	 * location of all relevant Wonderflux display hooks within your theme.
 	 *
-	 * @since 2.0
-	 * @lastupdate 2.0
+	 * @since 1.2
+	 * @lastupdate 1.2
 	 *
 	 * @param filter wflux_debug_show_hooks Set to true to override manage_options user capability check
 	 */
@@ -889,8 +889,8 @@ class wflux_helper {
 	/**
 	 * Used by wf_show_hooks() to display hook
 	 *
-	 * @since 2.0
-	 * @lastupdate 2.0
+	 * @since 1.2
+	 * @lastupdate 1.2
 	 *
 	 * @param filter wflux_debug_show_hooks_css Sets up inline style used for hook display
 	 */
@@ -913,7 +913,7 @@ class wflux_wp_core {
 	/**
 	* Adds Wonderflux links to the WordPress admin bar
 	* @since 0.93
-	* @lastupdate 2.0
+	* @lastupdate 1.2
 	*/
 	function wf_admin_bar_links() {
 		global $wp_admin_bar;
@@ -972,8 +972,8 @@ class wflux_wp_core {
 
 	/**
 	 * Adds files currently in use to the Wondeflux admin bar menu
-	 * @since 2.0
-	 * @lastupdate 2.0
+	 * @since 1.2
+	 * @lastupdate 1.2
 	 */
 	function wf_admin_bar_files_info(){
 

@@ -11,7 +11,7 @@ define( 'WF_WORDPRESS_VERSION', get_bloginfo( 'version' ) );
 /**
  * Wonderflux version string
  */
-define( 'WF_VERSION', '2.0ALPHA' );
+define( 'WF_VERSION', '1.2' );
 
 /**
  * The minimum recommended version of WordPress for running this version of Wonderflux

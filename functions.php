@@ -239,8 +239,8 @@ if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$admin_onl
 if ( !function_exists( 'wfx_debug_report' ) ) : function wfx_debug_report($function='', $message='', $version='') { global $wfx_helper; $wfx_helper->debug_report($function, $message, $version); } endif;
 
 /**
-* @since 2.0
-* @updated 2.0
+* @since 1.2
+* @updated 1.2
 * Reveals the location of all relevant Wonderflux display hooks within your theme.
 */
 if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global $wfx_helper; $wfx_helper->show_hooks(); } endif;
@@ -405,7 +405,7 @@ if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_inf
 
 /**
 * @since 1.1
-* @updated 2.0
+* @updated 1.2
 * Generates a repeating pattern of columns for testing the grid layout system
 */
 if ( !function_exists( 'wfx_display_test_pattern' ) ) : function wfx_display_test_pattern($args) { global $wfx; $wfx->test_pattern($args); } endif;
@@ -491,7 +491,7 @@ if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
 
 /**
 * @since 0.913
-* @updated 2.0
+* @updated 1.2
 * Gets a single post/page/whatever
 */
 if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_content($args) { global $wfx; $wfx->get_single_content($args); } endif;
@@ -726,8 +726,8 @@ if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { glob
 if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_links(); } endif;
 
 /**
-* @since 2.0
-* @updated 2.0
+* @since 1.2
+* @updated 1.2
 * Adds files currently in use to the Wondeflux admin bar menu
 */
 if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_files_info() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_files_info(); } endif;

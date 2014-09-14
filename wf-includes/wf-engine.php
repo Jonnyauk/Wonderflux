@@ -108,7 +108,7 @@ add_action('init','wflux_capacitor_helper', 1);
 
 /**
 * @since 0.913
-* @updated 2.0
+* @updated 1.2
 * Creates all Wonderflux helper functions
 */
 class wflux_helper_all {

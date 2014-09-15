@@ -1,8 +1,10 @@
 <?php header("Content-type: text/css"); ?>
 /**
  *
- * Wonderflux theme framework dynamic percentage based column core
- * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
+ * Flux Layout - A dynamic percentage based layout engine
+ * Built for the Wonderflux theme framework
+ *
+ * NO DATA IS NOT ESCAPED THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
  * http://wonderflux.com
  *
  * @package Wonderflux

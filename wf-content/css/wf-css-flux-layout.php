@@ -183,7 +183,7 @@ class wflux_wondergrid {
 				case 17: $def = array( 17, 'seventeenth' ); break;
 				case 18: $def = array( 18, 'eightteenth' ); break;
 				case 19: $def = array( 19, 'nineteenth' ); break;
-				case 20: $def = array( 20, 'twentyith' ); break;
+				case 20: $def = array( 20, 'twentieth' ); break;
 				default: $def = array( 0, '' ); break;
 			}
 

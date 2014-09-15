@@ -44,6 +44,7 @@ $wf_grid->grid_blocks();
 $wf_grid->grid_space_loops();
 $wf_grid->grid_push_loops();
 $wf_grid->grid_relative_loops(array(1,2,3,4,5,6,7,8,9,10,11,12));
+$wf_grid->grid_media_queries();
 
 
 /**
@@ -217,4 +218,70 @@ class wflux_wondergrid {
 
 	}
 
+}	/*
+	 * Media queries output for different sized screens
+	 * 4 definitions:
+	 * rwd-large Large screen (Should hit very high resolution desktops)
+	 * rwd-medium Medium screen (Should hit most portrait tablets)
+	 * rwd-small Small screen (should hit most landscape phones)
+	 * rwd-tiny Tiny screen (should hit most portrait phones)
+	 */
+	function grid_media_queries() {
+
+		// TODO: Build this is a more dynamic way!
+		// TODO: Options and filters on min or max width
+		// TODO: Options and filters on breakpoint integers
+		$sizes = array(
+			'large'		=> array(
+							'def'	=> 'rwd-large',
+							'type'	=> 'min',
+							'break'	=> 1441,
+							'note'	=> 'Large screens - rwd-large (Should hit very high resolution desktops)'
+						),
+			'medium'	=> array(
+							'def'	=> 'rwd-medium',
+							'type'	=> 'max',
+							'break'	=> 1023,
+							'note'	=> 'Medium screens - rwd-medium (Should hit most portrait tablets)'
+						),
+			'small'		=> array(
+							'def'	=> 'rwd-small',
+							'type'	=>  'max',
+							'break'	=> 759,
+							'note'	=> 'Small screens - rwd-small (should hit most landscape phones)'
+						),
+			'tiny'		=> array(
+							'def'	=> 'rwd-tiny',
+							'type'	=>  'max',
+							'break'	=> 479,
+							'note'	=> 'Tiny screens - rwd-tiny (should hit most portrait phones)'
+						)
+		);
+
+		// Array of just definitions - used for -hide-except rules
+		$all_defs = array();
+		foreach ($sizes as $size) {
+			$all_defs[] = $size['def'];
+		}
+
+		foreach ( $sizes as $size ) {
+
+			echo '/* ' . $size['note'] . ' */' . "\n"
+			. '@media screen and (' . $size['type']
+			. '-width: ' .  $size['break'] . 'px) {' . "\n"
+			. "  ." . $size['def'] . '-hide { display: none; }' . "\n";
+
+			// Use $all_defs to build -hide-except rules
+			foreach ($all_defs as $a_def) {
+				echo ( $a_def != $size['def'] ) ? "  ." . $a_def . '-only { display: none; }' . "\n" : '';
+			}
+
+			echo '}'. "\n\n";
+
+		}
+
+	}
+
 }
+
+?>

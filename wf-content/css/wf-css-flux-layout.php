@@ -12,12 +12,6 @@
  *
  */
 
-<?php
-
-//TODO: Check and clean input values
-
-?>
-
 /* General rules */
 
 * {
@@ -32,12 +26,11 @@
           box-sizing: border-box;
 }
 
-
 <?php
 
 
 /* DO IT! */
-$wf_grid = new wflux_wondergrid;
+$wf_grid = new wflux_layout;
 $wf_grid->grid_container();
 $wf_grid->grid_float_blocks();
 $wf_grid->grid_blocks();
@@ -51,7 +44,7 @@ $wf_grid->grid_media_queries();
  * Grid building functionality for wf-css-dynamic-columns file
  * @since 2.0
  */
-class wflux_wondergrid {
+class wflux_layout {
 
 	protected $rwd_width;				// Width of main container (% or pixels)
 	protected $rwd_columns;				// Number of columns in layout
@@ -66,7 +59,8 @@ class wflux_wondergrid {
 
 	function __construct() {
 
-		//TODO - ADD IN FILTERS HERE!
+		// TODO: - Add in filters
+		// TODO: Build admin option controls
 
 		$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
 		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 20;
@@ -87,8 +81,7 @@ class wflux_wondergrid {
 	 */
 	function grid_container(){
 
-		//echo '.container { width: ' . $this->rwd_width . '%; margin: 0 auto; }';
-		echo '.container { width: 950px; margin: 0 auto; }';
+		echo '.container { width: ' . $this->rwd_width . '%; margin: 0 auto; }';
 		echo "\n" . "\n";
 
 	}
@@ -121,7 +114,7 @@ class wflux_wondergrid {
 	}
 
 	/*
-	 * Outputs marin + padding rules
+	 * Outputs margin + padding rules
 	 */
 	function grid_mover( $type, $definition, $direction ){
 
@@ -218,7 +211,7 @@ class wflux_wondergrid {
 
 	}
 
-}	/*
+	/*
 	 * Media queries output for different sized screens
 	 * 4 definitions:
 	 * rwd-large Large screen (Should hit very high resolution desktops)

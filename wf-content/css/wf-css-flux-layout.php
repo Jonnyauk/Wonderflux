@@ -36,7 +36,7 @@ $wf_grid->grid_float_blocks();
 $wf_grid->grid_blocks();
 $wf_grid->grid_space_loops();
 $wf_grid->grid_push_loops();
-$wf_grid->grid_relative_loops(array(1,2,3,4,5,6,7,8,9,10,11,12));
+$wf_grid->grid_relative_loops(array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20));
 $wf_grid->grid_media_queries();
 
 

@@ -225,29 +225,38 @@ class wflux_layout {
 		// TODO: Options and filters on min or max width
 		// TODO: Options and filters on breakpoint integers
 		$sizes = array(
-			'large'		=> array(
-							'def'	=> 'rwd-large',
-							'type'	=> 'min',
-							'break'	=> 1441,
-							'note'	=> 'Large screens - rwd-large (Should hit very high resolution desktops)'
-						),
-			'medium'	=> array(
-							'def'	=> 'rwd-medium',
-							'type'	=> 'max',
-							'break'	=> 1023,
-							'note'	=> 'Medium screens - rwd-medium (Should hit most portrait tablets)'
+			'tiny'	=> array(
+							'def'	=> 'rwd-tiny',
+							'max'	=> 479,
+							'units'	=> 'px',
+							'note'	=> 'Tiny screens - rwd-tiny (should hit most portrait phones)'
 						),
 			'small'		=> array(
 							'def'	=> 'rwd-small',
-							'type'	=>  'max',
-							'break'	=> 759,
+							'min'	=> 480,
+							'max'	=> 760,
+							'units'	=> 'px',
 							'note'	=> 'Small screens - rwd-small (should hit most landscape phones)'
 						),
-			'tiny'		=> array(
-							'def'	=> 'rwd-tiny',
-							'type'	=>  'max',
-							'break'	=> 479,
-							'note'	=> 'Tiny screens - rwd-tiny (should hit most portrait phones)'
+			'medium'		=> array(
+							'def'	=> 'rwd-medium',
+							'min'	=> 761,
+							'max'	=> 1024,
+							'units'	=> 'px',
+							'note'	=> 'Medium screens - rwd-medium (Should hit most portrait tablets)'
+						),
+			'large'		=> array(
+							'def'	=> 'rwd-large',
+							'min'	=> 1025,
+							'max'	=> 1440,
+							'units'	=> 'px',
+							'note'	=> 'Large screens - rwd-large (Should hit most standard desktops and landscape tablets)'
+						),
+			'xlarge'		=> array(
+							'def'	=> 'rwd-xlarge',
+							'min'	=> 1441,
+							'units'	=> 'px',
+							'note'	=> 'Extra large screens - rwd-xlarge (Should hit high-res larger devices)'
 						)
 		);
 
@@ -259,12 +268,23 @@ class wflux_layout {
 
 		foreach ( $sizes as $size ) {
 
+			// Units are only ever 2 characters...right?
+			$units = (!$size[units] && $size[units] == 'px') ? 'px' : substr($size[units], 0, 2);
+			$min = (!$size[min] && !is_numeric($size[min])) ? '' : 'and ( min-width:' . $size[min] . $units . ' )';
+			$max = (!$size[max] && !is_numeric($size[max])) ? '' : 'and ( max-width:' . $size[max] . $units . ' )';
+			$size_queries = ( !empty($min) && !empty($max) ) ? $min . ' ' . $max : $min . $max;
+			$hider_val = max($size[min], $size[max]) + 1;
+
 			echo '/* ' . $size['note'] . ' */' . "\n"
-			. '@media screen and (' . $size['type']
-			. '-width: ' .  $size['break'] . 'px) {' . "\n"
+			. '@media screen ' . $size_queries . ' {' . "\n"
 			. "  ." . $size['def'] . '-hide { display: none; }' . "\n";
 
-			// Use $all_defs to build -hide-except rules
+			echo '}'. "\n\n";
+
+			echo '/* Hiders */' . "\n"
+			. '@media screen and ( min-width:' . $hider_val . $units . ' ) {' . "\n";
+
+			//Use $all_defs to build -hide-except rules
 			foreach ($all_defs as $a_def) {
 				echo ( $a_def != $size['def'] ) ? "  ." . $a_def . '-only { display: none; }' . "\n" : '';
 			}

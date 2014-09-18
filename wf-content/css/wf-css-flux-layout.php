@@ -2,11 +2,8 @@
 /**
  *
  * Flux Layout - A dynamic percentage based layout engine
- * Built for the Wonderflux theme framework - http://wonderflux.com
- * Free to use on any project and released under the GPLv2 license
- * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to excerpts of:
- * normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
- * inuitcss - https://github.com/inuitcss - Apache 2 license -  - project by Harry Roberts
+ * Built for the Wonderflux theme framework
+ * Includes normalize.css - git.io/normalize
  *
  * NO DATA IS NOT ESCAPED THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
  * http://wonderflux.com

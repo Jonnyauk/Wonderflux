@@ -5,10 +5,11 @@
  * Built for the Wonderflux theme framework - http://wonderflux.com
  * Free to use on any project and released under the GPLv2 license
  * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to excerpts of:
- * normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
- * inuitcss - https://github.com/inuitcss - Apache 2 license -  - project by Harry Roberts
+ * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
+ * inuitcss - https://github.com/inuitcss - Apache 2 license - project by Harry Roberts
  *
- * NO DATA IS NOT ESCAPED THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
+ * NO DATA IS NOT ESCAPED - DANGER WILL ROBINSON
+ * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
  * http://wonderflux.com
  *
  * @package Wonderflux

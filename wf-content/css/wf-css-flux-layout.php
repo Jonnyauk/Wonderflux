@@ -1,8 +1,9 @@
 <?php header("Content-type: text/css"); ?>
 /**
  *
- * Flux Layout - A dynamic percentage based layout engine
- * Built for the Wonderflux theme framework - http://wonderflux.com
+ * Flux Layout - A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
+ * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
+ *
  * Free to use on any project and released under the GPLv2 license
  * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to excerpts of:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
@@ -10,7 +11,6 @@
  *
  * NO DATA IS NOT ESCAPED - DANGER WILL ROBINSON
  * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
- * http://wonderflux.com
  *
  * @package Wonderflux
  * @since Wonderflux 2.0
@@ -25,7 +25,7 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 
 /**
- *  The 'ol clearfix
+ *  Little oldschool clearfix
  */
 .cfix:before,
 .cfix:after {
@@ -52,20 +52,6 @@ img[height] {
 
 <?php
 
-// Other elements for legacy browsers
-
-// For IE 6/7 (trigger hasLayout)
-/* .cf {
-	*zoom:1;
-}*/
-
-?>
-
-
-
-<?php
-
-
 /* DO IT! */
 $wf_grid = new wflux_layout;
 $wf_grid->grid_container();
@@ -73,7 +59,7 @@ $wf_grid->grid_float_blocks();
 $wf_grid->grid_blocks();
 $wf_grid->grid_space_loops();
 $wf_grid->grid_push_loops();
-$wf_grid->grid_relative_loops(array(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20));
+$wf_grid->grid_relative_loops(array(1,2,3,4,5,6,7,8,9,10,11,12));
 $wf_grid->grid_media_queries();
 
 

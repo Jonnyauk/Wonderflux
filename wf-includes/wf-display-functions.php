@@ -964,7 +964,11 @@ class wflux_display_css extends wflux_display_code {
 
 		for( $i=0; $i<$divs; $i++ ){
 			$last = ( $i < ($divs-1) ) ? '' : 'Y';
-			wfx_css( 'size=' . $def . '&class=blocksample-size-'.$def . ' blocksample' . '&last=' . $last . '&divoutput=Y' );
+
+			//wfx_css( 'size=' . $def . '&class=blocksample-size-'.$def . ' blocksample' . '&last=' . $last . '&divoutput=Y' );
+			echo '<div class="blocksample ' . apply_filters( 'wflux_css_definition', 'span-' ) . '1-' . $divs . '">';
+
+
 			echo '<' . $css[0] . ' class="flush-bottom">' . ($i+1) . '</'.$css[0].'>';
 			echo '<' . $css[0] . ' class="flush-bottom">' . '<' . $css[1] . '>' . 'Size: ' . $def . '</'.$css[1].'>' . '</'.$css[0].'>';
 			echo '</div>';

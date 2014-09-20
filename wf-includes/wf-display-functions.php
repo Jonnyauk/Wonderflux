@@ -607,7 +607,7 @@ class wflux_display_css extends wflux_display_code {
 			$divout_close_clean = '';
 		}
 
-		$css_core_def = 'span-';
+		$css_core_def = apply_filters( 'wflux_css_definition', 'span-' );
 		$css_push_def = 'push-';
 		$css_pull_def = 'pull-';
 

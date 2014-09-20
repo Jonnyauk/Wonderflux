@@ -29,16 +29,81 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 	box-sizing: border-box;
 }
 
+/*** Containers and alignment ***/
+
+.pad-tiny { padding: 1%; }
+.pad-small { padding: 2.5%; }
+.pad-medium { padding: 5%; }
+.pad-large { padding: 10%; }
+
+.alignright, .align-right { float: right; margin: 0 0 5px 20px; }
+.alignleft, .align-left { float: left; margin: 0 20px 5px 0; }
+.aligncenter, .align-center { text-align: center; margin: 5px auto; }
+.first, .flush-left { margin-left: 0; padding-left: 0; }
+.last, .flush-right { margin-right: 0; padding-right: 0; }
+.top, .flush-top { margin-top: 0; padding-top: 0; }
+.bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
+.content-left { text-align: left; }
+.content-center { text-align: center; }
+.content-right { text-align: right; }
+
 /**
- * Little oldschool clearfix
+ * Wonderflux v1.x legacy clearfix
+ * Clearing floats without extra markup
+ * Based on How To Clear Floats Without Structural Markup
+ * by PiE [http://www.positioniseverything.net/easyclearing.html]
+ *
  */
-.cfix:before, .cfix:after { content:""; display:table; }
-.cfix:after { clear:both; }
+.clearfix:after, .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
+.clearfix, .container { display: block; }
+.clear { clear: both; }
+.clearfix:before, .clearfix:after { content:""; display:table; }
+.clearfix:after { clear:both; }
+
+/* Viewport height */
+
+.height-full { height: 100vh; }
+.height-half { height: 50vh; }
+.height-third { height: 33.3333h; }
+.height-quarter { height: 25vh; }
+.height-fifth { height: 20vh; }
+.height-sixth { height: 16.6666vh; }
+.height-seventh { height: 14.2587vh; }
+.height-eighth { height: 12.5vh; }
+
+/*** Image handling ***/
+
+/* Fluid images for posts, comments, and widgets */
+.entry-content img,
+.entry-summary img,
+.comment-content img,
+.widget img,
+.wp-caption {
+	max-width: 100%;
+}
+
+/* Make sure images with WordPress-added height and width attributes are scaled correctly */
+.entry-content img,
+.entry-summary img,
+.comment-content img[height],
+img[class*="align"],
+img[class*="wp-image-"],
+img[class*="attachment-"] {
+	height: auto;
+}
+
+img.size-full,
+img.size-large,
+img.wp-post-image {
+	height: auto;
+	max-width: 100%;
+}
+
+/*** Third-party services ***/
 
 /**
  * Google Maps breaks if 'max-width: 100%' acts upon it
- * If a 'width' and/or 'height' attribute have been explicitly defined,
- * don't make fluid
+ * If 'width' and/or 'height' explicitly defined, don't make fluid
  */
 .gm-style img, img[width], img[height] { max-width: none; }
 

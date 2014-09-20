@@ -5,11 +5,11 @@
  * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
  *
  * Free to use on any project and released under the GPLv2 license
- * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to excerpts of:
+ * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to excerpts and inspiration from:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
  * inuitcss - https://github.com/inuitcss - Apache 2 license - project by Harry Roberts
  *
- * NO DATA IS NOT ESCAPED - DANGER WILL ROBINSON
+ * NO DATA IS NOT ESCAPED - DANGER WILL ROBINSON!
  * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
  *
  * @package Wonderflux
@@ -23,32 +23,18 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 /* Other common new elements */
 
+/**
+ * Little oldschool clearfix
+ */
+.cfix:before, .cfix:after { content:""; display:table; }
+.cfix:after { clear:both; }
 
 /**
- *  Little oldschool clearfix
+ * Google Maps breaks if 'max-width: 100%' acts upon it
+ * If a 'width' and/or 'height' attribute have been explicitly defined,
+ * don't make fluid
  */
-.cfix:before,
-.cfix:after {
-    content:"";
-    display:table;
-}
-.cfix:after {
-    clear:both;
-}
-
-
-/**
- * 1. Google Maps breaks if 'max-width: 100%' acts upon it; use their selector
- *    to remove the effects.
- * 2. If a 'width' and/or 'height' attribute have been explicitly defined, let's
- *    not make the image fluid.
- */
-.gm-style img,
-img[width],
-img[height] {
- max-width: none;
-}
-
+.gm-style img, img[width], img[height] { max-width: none; }
 
 <?php
 

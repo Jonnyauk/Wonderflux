@@ -199,7 +199,7 @@ class wflux_layout {
 
 				if ( $size == 1 ){
 
-					echo 'rwd-size-1 .' . $this->rwd_class_prepend
+					echo $this->rwd_class_prepend . $this->rwd_class_proportional . '1-1 .' . $this->rwd_class_prepend
 					. $def[1] .' { width: 100%; ' . "} " . $this->rwd_minify;
 
 				} else {
@@ -208,7 +208,7 @@ class wflux_layout {
 
 						echo '.' . $this->rwd_class_prepend . $this->rwd_class_proportional . $limit . '-' . $def[0]
 						. ', .' . $this->rwd_class_prepend . $this->rwd_class_proportional . $limit . '-' . $def[1]
-						. ' { width: ' . $limit * ( 100 / $size ) . '%; ' . 'float:left;' . "} " . $this->rwd_minify;
+						. ' { width: ' . $limit * ( 100 / $size ) . '%; ' . 'float:left;' . " } " . $this->rwd_minify;
 
 					}
 

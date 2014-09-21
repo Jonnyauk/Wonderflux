@@ -247,7 +247,7 @@ class wflux_layout {
 
 	/*
 	 * Outputs main site container
-	 * $sizes = array of integers representing what dividions to output
+	 * $sizes = array of integers representing what sizes to output
 	 */
 	function grid_relative_loops($sizes) {
 

@@ -5,9 +5,8 @@
  * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
  *
  * Free to use on any project and released under the GPLv2 license
- * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to excerpts and inspiration from:
+ * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
- * inuitcss - https://github.com/inuitcss - Apache 2 license - project by Harry Roberts
  *
  * NO DATA IS NOT ESCAPED - DANGER WILL ROBINSON!
  * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
@@ -135,9 +134,9 @@ $wf_grid = new wflux_layout;
 $wf_grid->grid_container();
 $wf_grid->grid_float_blocks();
 $wf_grid->grid_blocks();
+$wf_grid->grid_relative_loops( array(1,2,3,4,5,8,12,16,32) );
 $wf_grid->grid_space_loops();
 $wf_grid->grid_push_loops();
-$wf_grid->grid_relative_loops(array(1,2,3,4,5,6,7,8,9,10,11,12));
 $wf_grid->grid_media_queries();
 
 /**

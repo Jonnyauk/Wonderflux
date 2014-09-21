@@ -107,6 +107,27 @@ img.wp-post-image {
  */
 .gm-style img, img[width], img[height] { max-width: none; }
 
+/*** WordPress Specific ***/
+
+/* Media */
+
+.wp-caption { font-size: 0.9em; }
+.gallery-caption { font-size: 0.9em; }
+.wp-caption-text { font-weight: bold; }
+
+/* Comments */
+
+.bypostauthor { font-weight: bold; }
+ol.commentlist ul { list-style: none; }
+ol.commentlist p { margin-bottom: 0; }
+.comment-body { margin-bottom: 15px; }
+
+/* Posts */
+
+.sticky { font-weight: bold; }
+
+/*** Flux Layout ***/
+
 <?php
 
 /* DO IT! Just for testing and development */

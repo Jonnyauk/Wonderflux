@@ -53,8 +53,8 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
  * by PiE [http://www.positioniseverything.net/easyclearing.html]
  *
  */
-.clearfix:after, .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
-.clearfix, .container { display: block; }
+.clearfix:after, .container:after, .row:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
+.clearfix, .container, .row { display: block; }
 .clear { clear: both; }
 .clearfix:before, .clearfix:after { content:""; display:table; }
 .clearfix:after { clear:both; }

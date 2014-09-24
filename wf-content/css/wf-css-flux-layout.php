@@ -397,31 +397,15 @@ class wflux_layout {
 			}
 			echo '{ display: none; }' . $this->rwd_minify;
 
-			// Relative sized resizers
-			echo ' .' . $size['def'] . '-1-1, .' . $size['def'] . '-full { width: 100%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-2 { width: 50%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-3 { width: 33.3333%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-4 { width: 25%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-5 { width: 20%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-6 { width: 16.6666%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-7 { width: 14.2857%; } ' . $this->rwd_minify;
-			echo ' .' . $size['def'] . '-1-8 { width: 12.5%; } ' . $this->rwd_minify;
-			/* Dont need individual rules for each
-			foreach ( $sizes_rel as $size_r ) {
+			// Sizers
+			foreach ( $this->mq_specific as $size_r ) {
 				if ( intval($size_r) > 1 && intval($size_r) < 101 ){
 					for ( $limit=1; $limit < $size_r; $limit++ ) {
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r . '-full'
-						. ' { width: 100%; } ' . $this->rwd_minify;
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r . '-half'
-						. ' { width: 50%; } ' . $this->rwd_minify;
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r . '-third'
-						. ' { width: 33.3333%; } ' . $this->rwd_minify;
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r . '-quarter'
-						. ' { width: 25%; } ' . $this->rwd_minify;
+						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r
+						. ' { width: ' . (100/$size_r)*$limit . '%; } ' . $this->rwd_minify;
 					}
 				}
 			}
-			*/
 
 			// Close media query
 			echo '}' . $this->rwd_minify_2;

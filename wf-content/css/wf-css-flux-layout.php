@@ -134,10 +134,10 @@ $wf_grid = new wflux_layout;
 $wf_grid->grid_containers();
 $wf_grid->grid_float_blocks();
 $wf_grid->grid_blocks();
-$wf_grid->grid_relative_loops( array(1,2,3,4,5,6,7,8,9,10,11,12,16,32) );
+$wf_grid->grid_relative_loops();
 $wf_grid->grid_space_loops();
 $wf_grid->grid_push_loops();
-$wf_grid->grid_media_queries( array(2,4,8) );
+$wf_grid->grid_media_queries();
 
 /**
  * Percent based CSS and media query layout generator
@@ -149,6 +149,8 @@ class wflux_layout {
 	protected $rwd_columns;				// Number of columns in layout
 	protected $rwd_column_width;		// Width of columns (%)
 	protected $rwd_class_prepend;		// Prepend all CSS selectors (or not!)
+	protected $rwd_relative;				// Array for general relative sizes to generate
+	protected $mq_specific;				// Array for media specific relative sizes to generate
 	protected $rwd_minify;				// CSS selector - column width blocks
 	protected $rwd_class_space_left;	// CSS selector - padding left
 	protected $rwd_class_space_right;	// CSS selector - padding right
@@ -164,6 +166,8 @@ class wflux_layout {
 		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 20;
 		$this->rwd_column_width = 100 / $this->rwd_columns;
 		$this->rwd_class_prepend = 'box-';
+		$this->rwd_relative = array(1,2,3,4,5,6,7,8,9,10,11,12,16,32);
+		$this->mq_specific = array(2,4,6,12);
 		$this->rwd_minify = "\n";
 
 		$this->rwd_class_space_left = $this->rwd_class_prepend . 'pad-left';
@@ -189,11 +193,13 @@ class wflux_layout {
 	 */
 	function grid_float_blocks(){
 
+		echo '/**** Grid blocks ****/' . "\n";
+
 		for ( $limit=1; $limit <= $this->rwd_columns; $limit++ ) {
 			echo 'div.' . $this->rwd_class_prepend . $limit;
 			echo ($limit == $this->rwd_columns) ? '' : ', ';
 		}
-		echo " { float: left; margin: 0; }" . $this->rwd_minify_2;
+		echo " { float: left; margin: 0; }" . $this->rwd_minify;
 
 	}
 
@@ -248,11 +254,11 @@ class wflux_layout {
 	 * Outputs relative sized CSS
 	 * $sizes = array of integers representing what sizes to output
 	 */
-	function grid_relative_loops( $sizes ) {
+	function grid_relative_loops() {
 
-		if ( !is_array($sizes) ) return;
+		if ( !is_array($this->rwd_relative) ) return;
 
-		foreach ( $sizes as $size ) {
+		foreach ( $this->rwd_relative as $size ) {
 
 			if ( intval($size) >= 1 && intval($size) < 101 ) {
 
@@ -322,7 +328,7 @@ class wflux_layout {
 	 * rwd-medium Medium screens - Standard computers and landscape tablets
 	 * rwd-large Large screens - Swanky hi-res screens
 	 */
-	function grid_media_queries( $sizes_rel ) {
+	function grid_media_queries() {
 
 		// TODO: Options and filters on min or max width
 		// TODO: Options and filters on breakpoint integers
@@ -360,7 +366,7 @@ class wflux_layout {
 		// Array of just definitions - used for -hide-except rules
 		$all_defs = array();
 
-		foreach ($sizes_mq as $size) {
+		foreach ( $sizes_mq as $size ) {
 			$all_defs[] = $size['def']; // Used to exclude in hider media queries
 			$sizes_min[] = $size['min']; // Used to exclude in hider media queries
 			$sizes_max[] = $size['max']; // Used to exclude in hider media queries

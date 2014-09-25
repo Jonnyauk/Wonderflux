@@ -167,7 +167,7 @@ class wflux_layout {
 		$this->rwd_column_width = 100 / $this->rwd_columns;
 		$this->rwd_class_prepend = 'box-';
 		$this->rwd_relative = array(1,2,3,4,5,6,7,8,9,10,11,12,16,32);
-		$this->mq_specific = array(2,4,6,12);
+		$this->mq_specific = array(2,4,8,16);
 		$this->rwd_minify = "\n";
 
 		$this->rwd_class_space_left = $this->rwd_class_prepend . 'pad-left';

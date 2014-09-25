@@ -134,9 +134,9 @@ $wf_grid = new wflux_layout;
 $wf_grid->grid_containers();
 $wf_grid->grid_float_blocks();
 $wf_grid->grid_blocks();
-$wf_grid->grid_relative_loops();
 $wf_grid->grid_space_loops();
 $wf_grid->grid_push_loops();
+$wf_grid->grid_relative_loops();
 $wf_grid->grid_media_queries();
 
 /**
@@ -376,19 +376,19 @@ class wflux_layout {
 
 		foreach ( $sizes_mq as $size ) {
 
-			// Units are only ever 2 characters...right?
 			$units = ( !$size[units] && $size[units] == 'px' ) ? 'px' : substr( $size[units], 0, 2 );
 			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and ( min-width:' . $size[min] . $units . ' )';
 			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and ( max-width:' . $size[max] . $units . ' )';
 			$size_queries = ( !empty($min) && !empty($max) ) ? $min . ' ' . $max : $min . $max;
 
-			// Core media queries
-			// TODO: More to come!
+			// Specific breakpoint hider
+
 			echo '/* ' . $size['def'] . ': ' . $size['note'] . ' */' . $this->rwd_minify
 			. '@media screen ' . $size_queries . ' {' . $this->rwd_minify
 			. ' .' . $size['def'] . '-hide { display: none; }' . $this->rwd_minify;
 
-			// Hiders
+			// Other breakpoint hiders
+
 			$o_count = 2;
 			foreach ( $all_defs as $def ) {
 				$o_1 = ( ($all_defs_count) == $o_count ) ? ' ' : ',';
@@ -397,9 +397,12 @@ class wflux_layout {
 			}
 			echo '{ display: none; }' . $this->rwd_minify;
 
-			// Sizers
+			// Specific proportional breakpoint sizers
+
+			echo ' .' . $size['def'] . '-1-1, .' . $size['def'] . '-full { width: 100%; } ' . $this->rwd_minify;
+
 			foreach ( $this->mq_specific as $size_r ) {
-				if ( intval($size_r) > 1 && intval($size_r) < 101 ){
+				if ( intval($size_r) > 1 && intval($size_r) < 101 ) {
 					for ( $limit=1; $limit < $size_r; $limit++ ) {
 						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r
 						. ' { width: ' . (100/$size_r)*$limit . '%; } ' . $this->rwd_minify;

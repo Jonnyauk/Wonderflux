@@ -405,7 +405,7 @@ class wflux_layout {
 				if ( intval($size_r) > 1 && intval($size_r) < 101 ) {
 					for ( $limit=1; $limit < $size_r; $limit++ ) {
 						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r
-						. ' { width: ' . (100/$size_r)*$limit . '%; } ' . $this->rwd_minify;
+						. ' { width: ' . (100/$size_r)*$limit . '%; float:left; } ' . $this->rwd_minify;
 					}
 				}
 			}

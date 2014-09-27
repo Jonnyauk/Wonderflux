@@ -30,10 +30,11 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 /*** Containers and alignment ***/
 
-.pad-tiny { padding: 1%; }
-.pad-small { padding: 2.5%; }
-.pad-medium { padding: 5%; }
-.pad-large { padding: 10%; }
+.pad-tiny, .pad-small, .pad-medium, .pad-large { margin: 0; }
+.pad-tiny { padding: 5px; }
+.pad-small { padding: 10px; }
+.pad-medium { padding: 20px; }
+.pad-large { padding: 40px; }
 
 .alignright, .align-right { float: right; margin: 0 0 5px 20px; }
 .alignleft, .align-left { float: left; margin: 0 20px 5px 0; }

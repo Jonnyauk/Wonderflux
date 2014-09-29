@@ -109,7 +109,7 @@ img.wp-post-image {
  * Google Maps breaks if 'max-width: 100%' acts upon it
  * If 'width' and/or 'height' explicitly defined, don't make fluid
  */
-.gm-style img, img[width], img[height] { max-width: none; }
+.gm-style img, .gm-style img[width], .gm-style img[height] { max-width: none; }
 
 /*** WordPress Specific ***/
 

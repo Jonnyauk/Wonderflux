@@ -151,10 +151,10 @@ $wf_grid->grid_media_queries();
 class wflux_layout {
 
 	protected $rwd_width;				// Width of main container (% or pixels)
-	protected $rwd_columns;				// Number of columns in layout
-	protected $rwd_column_width;		// Width of columns (%)
-	protected $rwd_class_prepend;		// Prepend all CSS selectors (or not!)
-	protected $rwd_relative;				// Array for general relative sizes to generate
+	protected $rwd_columns;				// INPUT - Number of columns in layout
+	protected $rwd_column_width;		// INPUT - Width of columns (%)
+	protected $rwd_class_prepend;		// INPUT - Prepend all CSS selectors (or not!)
+	protected $rwd_relative;			// Array for general relative sizes to generate
 	protected $mq_specific;				// Array for media specific relative sizes to generate
 	protected $rwd_minify;				// CSS selector - column width blocks
 	protected $rwd_class_space_left;	// CSS selector - padding left
@@ -163,9 +163,6 @@ class wflux_layout {
 	protected $rwd_class_move_right;	// CSS selector - margin right
 
 	function __construct() {
-
-		// TODO: - Add in filters
-		// TODO: Build admin option controls
 
 		$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
 		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 20;

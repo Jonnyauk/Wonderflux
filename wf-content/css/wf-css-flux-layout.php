@@ -8,7 +8,6 @@
  * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
  *
- * NO DATA IS NOT ESCAPED - DANGER WILL ROBINSON!
  * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
  *
  * @package Wonderflux
@@ -22,15 +21,9 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 /* Additional resets */
 
-html {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
+html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 
-*, *:before, *:after {
-	box-sizing: inherit;
-}
+*, *:before, *:after { box-sizing: inherit; }
 
 /*** Containers and alignment ***/
 
@@ -78,30 +71,11 @@ html {
 /*** Image handling ***/
 
 /* Fluid images for posts, comments, and widgets */
-.entry-content img,
-.entry-summary img,
-.comment-content img,
-.widget img,
-.wp-caption {
-	max-width: 100%;
-}
+.entry-content img, .entry-summary img, .comment-content img, .widget img, .wp-caption { max-width: 100%; }
 
 /* Make sure images with WordPress-added height and width attributes are scaled correctly */
-.entry-content img,
-.entry-summary img,
-.comment-content img[height],
-img[class*="align"],
-img[class*="wp-image-"],
-img[class*="attachment-"] {
-	height: auto;
-}
-
-img.size-full,
-img.size-large,
-img.wp-post-image {
-	height: auto;
-	max-width: 100%;
-}
+.entry-content img, .entry-summary img, .comment-content img[height], img[class*="align"], img[class*="wp-image-"], img[class*="attachment-"] { height: auto; }
+img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%; }
 
 /*** Third-party services ***/
 
@@ -166,7 +140,6 @@ class wflux_layout {
 
 		$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
 		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 20;
-		//$this->rwd_class_prepend = ( isset($this->rwd_class_prepend) && !preg_match('/s/[&<>"\']/', $this->rwd_class_prepend) ) ? $this->rwd_class_prepend : 'box';
 		$this->rwd_class_prepend = ( !isset($this->rwd_class_prepend) ) ? 'box-': strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_class_prepend) );
 		$this->rwd_column_width = 100 / $this->rwd_columns;
 		$this->rwd_relative = array(1,2,3,4,5,6,7,8,9,10,11,12,16,32);
@@ -186,8 +159,8 @@ class wflux_layout {
 	 */
 	function grid_containers(){
 
-		echo '.container { ' . 'width: ' . $this->rwd_width . '%; margin: 0 auto; }' . $this->rwd_minify;
-		echo '.row { ' . 'width: 100%; margin: 0 auto; }' . $this->rwd_minify_2;
+		echo '.container { ' . 'width: ' . $this->rwd_width . '%; margin: 0 auto; }' . $this->rwd_minify
+		. '.row { ' . 'width: 100%; margin: 0 auto; }' . $this->rwd_minify_2;
 
 	}
 
@@ -199,8 +172,8 @@ class wflux_layout {
 		echo '/**** Grid blocks ****/' . "\n";
 
 		for ( $limit=1; $limit <= $this->rwd_columns; $limit++ ) {
-			echo 'div.' . $this->rwd_class_prepend . $limit;
-			echo ($limit == $this->rwd_columns) ? '' : ', ';
+			echo 'div.' . $this->rwd_class_prepend . $limit
+			. ($limit == $this->rwd_columns) ? '' : ', ';
 		}
 		echo " { float: left; margin: 0; }" . $this->rwd_minify;
 

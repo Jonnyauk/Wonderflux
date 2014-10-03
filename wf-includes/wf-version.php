@@ -16,7 +16,7 @@ define( 'WF_VERSION', '1.2' );
 /**
  * The minimum recommended version of WordPress for running this version of Wonderflux
  */
-define( 'WF_WORDPRESS_MIN', '3.2' );
+define( 'WF_WORDPRESS_MIN', '3.4' );
 
 /**
  * The optimum recommended version of WordPress for running this version of Wonderflux

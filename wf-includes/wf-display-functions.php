@@ -1121,7 +1121,7 @@ class wflux_display extends wflux_display_css {
 
 /**
 * @since 0.85
-* @updated 1.2
+* @updated 2.0
 * Extra core display functions for theme designers
 */
 class wflux_display_extras {
@@ -1134,13 +1134,11 @@ class wflux_display_extras {
 	 * @return string
 	 *
 	 * @since 1.1
-	 * @updated 1.1
-	 * TODO: Check core WP version_compare() - guessing < evaluation on constant quicker/easier?
+	 * @updated 2.0
 	 */
 	private function get_clean_theme_name() {
-		// Backpat - depreciated function get_current_theme() in WordPress 3.4
 		if ( !$this->clean_theme_name )
-			$this->clean_theme_name = preg_replace('/[^a-zA-Z0-9]/','_', ( WF_WORDPRESS_VERSION < 3.4 ) ? get_current_theme() : wp_get_theme()->Name );
+			$this->clean_theme_name = wp_get_theme()->Name;
 			return $this->clean_theme_name;
 	}
 

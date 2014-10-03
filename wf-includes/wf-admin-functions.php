@@ -108,7 +108,7 @@ class wflux_admin extends wflux_data {
 		if ($include == 'backup'): $this->admin_backup->wf_backup_form(); endif;
 
 		// Backpat - depreciated function get_current_theme() in WordPress 3.4
-		$wf_current_theme = ( WF_WORDPRESS_VERSION < 3.4 ) ? get_current_theme() : wp_get_theme()->Name;
+		$wf_current_theme = wp_get_theme()->Name;
 
 		if ($wf_current_theme == 'Wonderflux Framework') {
 			$output = '<div id="message2" class="updated">';
@@ -171,7 +171,7 @@ class wflux_admin extends wflux_data {
 		add_settings_section('style_lab_fb', '', array($this->admin_forms, 'wf_form_intro_fb'), 'wonderflux_stylelab_fb');
 
 		//1) Key 2) form label 3) Builder function 4)Page 5)Section
-		//add_settings_field('grid_type', esc_attr__('Select pixel based grid (old system) or experimental new percent based responsive grid layout structure','wonderflux'), array($this->admin_forms, 'wf_form_grid_type'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('grid_type', esc_attr__('Select CSS layout system','wonderflux'), array($this->admin_forms, 'wf_form_grid_type'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');

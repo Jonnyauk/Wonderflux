@@ -1,8 +1,7 @@
 <div class="wrap">
 
 	<?php
-	// Backpat - depreciated function current_theme_info() in WordPress 3.4
-	$ct = ( WF_WORDPRESS_VERSION < 3.4 ) ? current_theme_info() : wp_get_theme();
+	$ct = wp_get_theme();
 	?>
 
 	<h2><?php esc_attr_e('Welcome to Wonderflux', 'wonderflux'); ?></h2>

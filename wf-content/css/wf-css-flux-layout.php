@@ -139,7 +139,7 @@ class wflux_layout {
 	function __construct() {
 
 		$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
-		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 20;
+		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
 		$this->rwd_class_prepend = ( !isset($this->rwd_class_prepend) ) ? 'box-': strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_class_prepend) );
 		$this->rwd_column_width = 100 / $this->rwd_columns;
 		$this->rwd_relative = array(1,2,3,4,5,6,7,8,9,10,11,12,16,32);
@@ -380,8 +380,15 @@ class wflux_layout {
 			foreach ( $this->mq_specific as $size_r ) {
 				if ( intval($size_r) > 1 && intval($size_r) < 101 ) {
 					for ( $limit=1; $limit < $size_r; $limit++ ) {
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r
-						. ' { width: ' . (100/$size_r)*$limit . '%; float:left; } ' . $this->rwd_minify;
+						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r;
+
+						// Min size definitions
+						for ( $limit_def=0; $limit_def < ($all_defs_count ); $limit_def++ ) {
+								echo ($all_defs[$limit_def] <= $size['def']) ? ', .' . $all_defs[$limit_def] . '-min-' . $limit . '-' . $size_r : '';
+						}
+
+						echo ' { width: ' . (100/$size_r)*$limit . '%; float:left; } ' . $this->rwd_minify;
+
 					}
 				}
 			}
@@ -394,5 +401,4 @@ class wflux_layout {
 	}
 
 }
-
 ?>

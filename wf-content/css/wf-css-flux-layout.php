@@ -128,8 +128,9 @@ class wflux_layout {
 	protected $rwd_columns;				// INPUT - Number of columns in layout
 	protected $rwd_column_width;		// INPUT - Width of columns (%)
 	protected $rwd_class_prepend;		// INPUT - Prepend all CSS selectors (or not!)
-	protected $rwd_relative;			// Array for general relative sizes to generate
-	protected $mq_specific;				// Array for media specific relative sizes to generate
+	protected $rwd_relative;			// Array for general relative sizes
+	protected $mq_config;				// Array for media query Media query cofig
+	protected $mq_specific;				// Array for media query specific relative sizes
 	protected $rwd_minify;				// CSS selector - column width blocks
 	protected $rwd_class_space_left;	// CSS selector - padding left
 	protected $rwd_class_space_right;	// CSS selector - padding right
@@ -145,11 +146,42 @@ class wflux_layout {
 		$this->rwd_relative = array(1,2,3,4,5,6,7,8,9,10,11,12,16,32);
 		$this->mq_specific = array(2,4,8,16);
 		$this->rwd_minify = "\n";
+		$this->mq_config = array(
+			'tiny'	=> array(
+							'def'	=> 'mq-tiny',
+							'min'	=> 0,
+							'max'	=> 480,
+							'units'	=> 'px',
+							'note'	=> 'Tiny screens - small portrait phones'
+						),
+			'small'		=> array(
+							'def'	=> 'mq-small',
+							'min'	=> 481,
+							'max'	=> 768,
+							'units'	=> 'px',
+							'note'	=> 'Small screens - Lower spec landscape phones and some portrait tablets'
+						),
+			'medium'		=> array(
+							'def'	=> 'mq-medium',
+							'min'	=> 769,
+							'max'	=> 1409,
+							'units'	=> 'px',
+							'note'	=> 'Medium screens - Standard computers and landscape tablets'
+						),
+			'large'		=> array(
+							'def'	=> 'mq-large',
+							'min'	=> 1410,
+							'units'	=> 'px',
+							'note'	=> 'Large screens - Swanky hi-res screens'
+						),
+
+		);
 
 		$this->rwd_class_space_left = $this->rwd_class_prepend . 'pad-left';
 		$this->rwd_class_space_right = $this->rwd_class_prepend . 'pad-right';
 		$this->rwd_class_move_left = $this->rwd_class_prepend . 'move-left';
 		$this->rwd_class_move_right = $this->rwd_class_prepend . 'move-right';
+		$this->rwd_minify = "\n";
 		$this->rwd_minify_2 = $this->rwd_minify . $this->rwd_minify;
 
 	}
@@ -342,7 +374,7 @@ class wflux_layout {
 		// Array of just definitions - used for -hide-except rules
 		$all_defs = array();
 
-		foreach ( $sizes_mq as $size ) {
+		foreach ( $this->mq_config as $size ) {
 			$all_defs[] = $size['def']; // Used to exclude in hider media queries
 			$sizes_min[] = $size['min']; // Used to exclude in hider media queries
 			$sizes_max[] = $size['max']; // Used to exclude in hider media queries
@@ -350,7 +382,7 @@ class wflux_layout {
 
 		$all_defs_count = count( $all_defs );
 
-		foreach ( $sizes_mq as $size ) {
+		foreach ( $this->mq_config as $size ) {
 
 			$units = ( !$size[units] && $size[units] == 'px' ) ? 'px' : substr( $size[units], 0, 2 );
 			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and ( min-width:' . $size[min] . $units . ' )';

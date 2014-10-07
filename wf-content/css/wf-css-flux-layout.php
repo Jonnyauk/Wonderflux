@@ -338,39 +338,6 @@ class wflux_layout {
 	 */
 	function grid_media_queries() {
 
-		// TODO: Options and filters on min or max width
-		// TODO: Options and filters on breakpoint integers
-		$sizes_mq = array(
-			'tiny'	=> array(
-							'def'	=> 'mq-tiny',
-							'min'	=> 0,
-							'max'	=> 480,
-							'units'	=> 'px',
-							'note'	=> 'Tiny screens - small portrait phones'
-						),
-			'small'		=> array(
-							'def'	=> 'mq-small',
-							'min'	=> 481,
-							'max'	=> 768,
-							'units'	=> 'px',
-							'note'	=> 'Small screens - Lower spec landscape phones and some portrait tablets'
-						),
-			'medium'		=> array(
-							'def'	=> 'mq-medium',
-							'min'	=> 769,
-							'max'	=> 1409,
-							'units'	=> 'px',
-							'note'	=> 'Medium screens - Standard computers and landscape tablets'
-						),
-			'large'		=> array(
-							'def'	=> 'mq-large',
-							'min'	=> 1410,
-							'units'	=> 'px',
-							'note'	=> 'Large screens - Swanky hi-res screens'
-						),
-
-		);
-
 		// Array of just definitions - used for -hide-except rules
 		$all_defs = array();
 

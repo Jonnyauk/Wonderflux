@@ -204,8 +204,8 @@ class wflux_layout {
 		echo '/**** Grid blocks ****/' . "\n";
 
 		for ( $limit=1; $limit <= $this->rwd_columns; $limit++ ) {
-			echo 'div.' . $this->rwd_class_prepend . $limit
-			. ($limit == $this->rwd_columns) ? '' : ', ';
+			echo '.'. $this->rwd_class_prepend . $limit;
+			echo ($limit == $this->rwd_columns) ? '' : ', ';
 		}
 		echo " { float: left; margin: 0; }" . $this->rwd_minify;
 

@@ -449,7 +449,7 @@ class wflux_admin extends wflux_data {
 
 /**
 * @since 0.81
-* @updated 1.1
+* @updated 2.0
 * Admin form functions
 */
 class wflux_admin_forms extends wflux_data {
@@ -545,7 +545,7 @@ class wflux_admin_forms extends wflux_data {
 			'content_s_px'=> array ( 600, range(200,1200,2) ),
 			'sidebar_s'		=> $this->size_accept,
 			'sidebar_p'		=> array ('left','right'),
-			'grid_type'		=> array ('Pixels','Percent'),
+			'grid_type'		=> array ('pixels','percent'),
 			'sidebar_d'		=> array ('Y','N'),
 			'container_w'	=> array ( 950, range(400,2000,10) ),
 			'columns_num'	=> array ( 24, range(2,100,1) ),

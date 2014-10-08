@@ -2,7 +2,7 @@
 //TODO: Setup for translation
 /**
 * @since 0.913
-* @updated 1.2
+* @updated 2.0
 * Core display functions that output code
 */
 class wflux_display_code extends wflux_data {
@@ -225,12 +225,15 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.72
-	* @updated 0.93
+	* @updated 2.0
 	* Dynamic grid builder
 	*/
 	function wf_head_css_columns($args) {
 		if (WF_THEME_FRAMEWORK_REPLACE == false) {
-			$path = WF_CONTENT_URL . '/css/wf-css-dynamic-columns.php';
+
+			$file = ($this->wfx_grid_type == 'percent') ? 'flux-layout' : 'dynamic-columns';
+
+			$path = WF_CONTENT_URL . '/css/wf-css-' . $file . '.php';
 			$version = 'wfx-dynamic';
 			$id = 'wfx-columns';
 			$media = 'screen, projection';

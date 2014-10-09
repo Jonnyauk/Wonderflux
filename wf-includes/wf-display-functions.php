@@ -541,7 +541,7 @@ class wflux_display_code extends wflux_data {
 
 /**
 * @since 0.913
-* @updated 1.1
+* @updated 2.0
 * Core display functions that output CSS
 */
 class wflux_display_css extends wflux_display_code {
@@ -549,7 +549,7 @@ class wflux_display_css extends wflux_display_code {
 	/**
 	*
 	* @since 0.2
-	* @updated 1.1
+	* @updated 2.0
 	*
 	* Defines size conventions to use in template grid systems to avoid putting actual numbers into templates
 	* By using this function to define containers, you can dynamically resize the whole layout
@@ -610,7 +610,9 @@ class wflux_display_css extends wflux_display_code {
 			$divout_close_clean = '';
 		}
 
-		$css_core_def = apply_filters( 'wflux_css_definition', 'span-' );
+		// BACKPAT Wonderflux 2.0 uses 'box-' Wonderflux 1.x confusing 'span-'
+		$css_core_def = ( $this->wfx_grid_type == 'percent' ) ? 'box-' : 'span-';
+		$css_core_def = apply_filters( 'wflux_css_definition', $css_core_def );
 		$css_push_def = 'push-';
 		$css_pull_def = 'pull-';
 

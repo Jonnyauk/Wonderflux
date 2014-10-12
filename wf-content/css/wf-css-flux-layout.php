@@ -124,18 +124,18 @@ $wf_grid->grid_media_queries();
  */
 class wflux_layout {
 
-	protected $rwd_width;				// Width of main container (% or pixels)
+	protected $rwd_width;				// INPUT - Width of main container (% or pixels)
 	protected $rwd_columns;				// INPUT - Number of columns in layout
-	protected $rwd_column_width;		// INPUT - Width of columns (%)
 	protected $rwd_class_prepend;		// INPUT - Prepend all CSS selectors (or not!)
-	protected $rwd_relative;			// Array for general relative sizes
-	protected $mq_config;				// Array for media query Media query cofig
-	protected $mq_specific;				// Array for media query specific relative sizes
-	protected $rwd_minify;				// CSS selector - column width blocks
-	protected $rwd_class_space_left;	// CSS selector - padding left
-	protected $rwd_class_space_right;	// CSS selector - padding right
-	protected $rwd_class_move_left;		// CSS selector - margin left
-	protected $rwd_class_move_right;	// CSS selector - margin right
+	protected $rwd_relative;			// ARRAY - General relative sizes
+	protected $mq_config;				// ARRAY - Media queries cofig
+	protected $mq_specific;				// ARRAY - Media query relative sizes
+	protected $rwd_class_space_left;	// INTERNAL - CSS selector - padding left
+	protected $rwd_class_space_right;	// INTERNAL - CSS selector - padding right
+	protected $rwd_class_move_left;		// INTERNAL - CSS selector - margin left
+	protected $rwd_class_move_right;	// INTERNAL - CSS selector - margin right
+	protected $rwd_column_width;		// INTERNAL - Width of columns (%)
+	protected $rwd_minify;				// INTERNAL - CSS selector - column width blocks
 
 	function __construct() {
 
@@ -143,8 +143,8 @@ class wflux_layout {
 		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
 		$this->rwd_class_prepend = ( !isset($this->rwd_class_prepend) ) ? 'box-': strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_class_prepend) );
 		$this->rwd_column_width = 100 / $this->rwd_columns;
-		$this->rwd_relative = array(1,2,3,4,6,8,12,16);
-		$this->mq_specific = array(2,3,4,8);
+		$this->rwd_relative = array(1,2,4,5,8,10,16);
+		$this->mq_specific = array(1,2,4,8);
 
 		$this->mq_config = array(
 			'tiny'	=> array(

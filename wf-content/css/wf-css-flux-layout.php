@@ -356,24 +356,26 @@ class wflux_layout {
 			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and ( max-width:' . $size[max] . $units . ' )';
 			$size_queries = ( !empty($min) && !empty($max) ) ? $min . ' ' . $max : $min . $max;
 
-			// Specific breakpoint hider
-
+			// Open media query
 			echo '/* ' . $size['def'] . ': ' . $size['note'] . ' */' . $this->rwd_minify
-			. '@media screen ' . $size_queries . ' {' . $this->rwd_minify
-			. ' .' . $size['def'] . '-hide { display: none; }' . $this->rwd_minify;
+			. '@media screen ' . $size_queries . ' {' . $this->rwd_minify;
+
+			// Keep span
+			echo ' span.' . $size['def'] . '-keep { display:block; }' . $this->rwd_minify;
+
+			// Specific breakpoint hider
+			echo ' .' . $size['def'] . '-hide { display: none; }' . $this->rwd_minify;
 
 			// Other breakpoint hiders
-
 			$o_count = 2;
 			foreach ( $all_defs as $def ) {
-				$o_1 = ( ($all_defs_count) == $o_count ) ? ' ' : ',';
-				echo ( $def != $size['def'] ) ? ' .' . $def . '-only' . $o_1 : '';
+				$prepend = ( ($all_defs_count) == $o_count ) ? ' ' : ',';
+				echo ( $def != $size['def'] ) ? ' .' . $def . '-only' . $prepend : '';
 				$o_count = ( $def != $size['def'] ) ? $o_count+1 : $o_count;
 			}
 			echo '{ display: none; }' . $this->rwd_minify;
 
 			// Specific proportional breakpoint sizers
-
 			foreach ( $this->mq_specific as $size_r ) {
 				if ( intval($size_r) < 101 ) {
 					for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {

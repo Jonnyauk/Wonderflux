@@ -223,8 +223,7 @@ class wflux_data {
 
 /**
 * Core Wonderflux helper functions
-* Used internally by Wonderflux and can be used by advanced theme developers to cut down code in their advanced child themes!
-* IMPORTANT - If any info is being grabbed in a function, it probably wants go go in here!
+* Used internally by Wonderflux and can be used by theme developers in child themes
 */
 class wflux_helper {
 
@@ -307,8 +306,11 @@ class wflux_helper {
 
 
 	/**
-	* Turbo-charged get template part file include
+	* Turbo-charged get_template_part file include
 	* Appends various location information and uses those files if available in your theme folder
+	*
+	* Can also use small screen alternative template parts for small screen devices
+	* by creating an additional file with '-small' appended, like: loop-content-single-small.php
 	*
 	* EXAMPLES
 	* All examples are with $part='loop-content' and shows the order of priority of files
@@ -371,90 +373,141 @@ class wflux_helper {
 	* 1 loop-content-404.php
 	* 2 loop-content.php
 	*
-	* TODO: Support core WordPress post formats?
-	*
 	* IMPORTANT: Used in core template files to setup smarter specific template_parts
 	*
+	* TODO: Extend the simple WP core $is_mobile detection
+	*
 	* @since 0.881
-	* @lastupdate 1.2
+	* @lastupdate 2.0
 	*
 	* @param string $part REQUIRED The slug name for the generic template
-	* @param string $tag OPTIONAL Extends taxonomy views for additional tag specific template parts
+	*
+	*
 	*/
-	function wf_get_template_part($args) {
+	function wf_get_template_part( $args ) {
 
 		$defaults = array (
-			'part' => false
+			'part' => false,
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		if (!$part) return;
+		if ( !$part ) return;
+
+		// Basic small screen detection
+		$small = ( wp_is_mobile() ) ? true : false;
 
 		$this_location = $this->wf_info_location('');
 
-		switch($this_location) {
+		switch( $this_location ) {
 
 			// Single post/custom post type
-			case ('single'):
-				$slug = get_query_var('post_type');
-				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
-				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
-				else: get_template_part($part, $this_location); endif;
+			case ( 'single' ):
+
+				$slug = get_query_var( 'post_type' );
+				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
+
+				// if ( $small == true ){
+
+					if ( locate_template( $part.'-'.$slug_depth_1.'-small.php', false ) !='' ):
+						$part_get = $slug_depth_1.'-small';
+					elseif ( locate_template( $part.'-'.$slug_depth_1.'.php', false ) !='' ):
+						$part_get = $this_location;
+					else:
+						$part_get = $this_location;
+					endif;
+
+				// } else {
+//
+					// if ( locate_template( $part.'-'.$slug_depth_1.'.php', false ) !='' ):
+						// $part_get = $slug_depth_1;
+					// else:
+						// $part_get = $this_location;
+					// endif;
+//
+				// }
+
 			break;
 
 			// Category archive
-			case ('category'):
-				$slug = get_category(get_query_var('cat'))->slug;
-				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
-				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
-				else: get_template_part($part, $this_location); endif;
+			case ( 'category' ):
+				$slug = get_category( get_query_var('cat') )->slug;
+				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
+				if ( locate_template( $part.'-'.$slug_depth_1.'.php', false ) !='' ):
+					$part_get = $slug_depth_1;
+				else:
+					$part_get = $this_location;
+				endif;
 			break;
 
 			// Tag archive
-			case ('tag'):
+			case ( 'tag' ):
 				$slug = get_query_var('tag');
-				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
-				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
-				else: get_template_part($part, $this_location); endif;
+				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
+				if ( locate_template( $part.'-'.$slug_depth_1.'.php', false ) !='' ):
+					$part_get = $slug_depth_1;
+				else:
+					$part_get = $this_location;
+				endif;
 			break;
 
 			// Taxonomy archive
 			case ('taxonomy'):
 				//NOTE: No get_query_var / $wp_query in taxonomy archive view - not populated
 				$this_q = get_queried_object();
-				$slug_depth_1 = (isset($this_q->taxonomy)) ? $this_location . '-' . $this_q->taxonomy : false;
-				$slug_depth_2 = (isset($this_q->slug)) ? $this_location . '-' . $this_q->taxonomy . '-' . $this_q->slug : false;
-				if ( locate_template($part.'-'.$slug_depth_2.'.php', false) !='' ): get_template_part($part, $slug_depth_2);
-				elseif (locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
-				else: get_template_part($part, $this_location); endif;
+				$slug_depth_1 = ( isset($this_q->taxonomy) ) ? $this_location . '-' . $this_q->taxonomy : false;
+				$slug_depth_2 = ( isset($this_q->slug) ) ? $this_location . '-' . $this_q->taxonomy . '-' . $this_q->slug : false;
+				if ( locate_template($part.'-'.$slug_depth_2.'.php', false) !='' ):
+					$part_get = $slug_depth_2;
+				elseif (locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ):
+					$part_get = $slug_depth_1;
+				else:
+					$part_get = $this_location;
+				endif;
 			break;
 
 			// Date archive
 			case ('date'):
-				$month = get_query_var('monthnum');
-				$year = get_query_var('year');
-				$slug_1 = (!empty($year)) ? '-' . $year : false;
-				$slug_2 = (!empty($month)) ? ($month < 10) ? sprintf('-%02d', $month) : '-' . $month : false;
-				if ( locate_template($part.'-'.$this_location.$slug_1.$slug_2.'.php', false) !='' ): get_template_part($part, $this_location.$slug_1.$slug_2);
-				elseif ( locate_template($part.'-'.$this_location.$slug_1.'.php', false) !='' ): get_template_part($part, $this_location.$slug_1);
-				else: get_template_part($part, $this_location); endif;
+				$month = get_query_var( 'monthnum' );
+				$year = get_query_var( 'year' );
+				$slug_1 = ( !empty($year) ) ? '-' . $year : false;
+				$slug_2 = ( !empty($month) ) ? ($month < 10) ? sprintf( '-%02d', $month ) : '-' . $month : false;
+				if ( locate_template($part.'-'.$this_location.$slug_1.$slug_2.'.php', false) !='' ):
+					$part_get = $this_location.$slug_1.$slug_2;
+				elseif ( locate_template($part.'-'.$this_location.$slug_1.'.php', false) !='' ):
+					$part_get = $this_location.$slug_1;
+				else:
+					$part_get = $this_location;
+				endif;
 			break;
 
 			// Archive/custom post type archive
 			case ('archive'):
-				$slug = get_query_var('post_type');
+				$slug = get_query_var( 'post_type' );
 				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
-				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ): get_template_part($part, $slug_depth_1);
-				else: get_template_part($part, $this_location); endif;
+				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ):
+					$part_get = $slug_1;
+				else:
+					$part_get = $this_location;
+				endif;
 			break;
 
 			default:
-				get_template_part($part, $this_location);
+				$part_get = $this_location;
 			break;
 
 		}
+
+		// if ( $small == true ){
+			// if ( locate_template($part.'-' . $part_get . '-small.php', false) !='' ):
+				// get_template_part( $part, sanitize_html_class($part_get . '-small') );
+			// else:
+				// get_template_part( $part, sanitize_html_class($part_get) );
+			// endif;
+		// } else {
+			get_template_part( $part, sanitize_html_class($part_get) );
+		// }
 
 	}
 

@@ -227,6 +227,14 @@ class wflux_data {
 */
 class wflux_helper {
 
+	protected $wfx_is_small_screen; // Basic non-desktop detection
+
+	function __construct() {
+
+		$this->wfx_is_small_screen = wp_is_mobile();
+
+	}
+
 	/**
 	 * Returns array containing information about file based on filename
 	 *

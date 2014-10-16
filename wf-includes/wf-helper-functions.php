@@ -402,11 +402,8 @@ class wflux_helper {
 		extract( $args, EXTR_SKIP );
 
 		if ( !$part ) return;
-
-		// Basic small screen detection
-		$small = ( wp_is_mobile() ) ? true : false;
-
 		$this_location = $this->wf_info_location('');
+		$part_get = false;
 
 		switch( $this_location ) {
 
@@ -416,48 +413,58 @@ class wflux_helper {
 				$slug = get_query_var( 'post_type' );
 				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
 
-				// if ( $small == true ){
-
-					if ( locate_template( $part.'-'.$slug_depth_1.'-small.php', false ) !='' ):
-						$part_get = $slug_depth_1.'-small';
-					elseif ( locate_template( $part.'-'.$slug_depth_1.'.php', false ) !='' ):
-						$part_get = $this_location;
-					else:
-						$part_get = $this_location;
+				if ( $this->wfx_is_small_screen == true ){
+					if ( locate_template( $part . '-' . $slug_depth_1 . 'small.php', false ) !='' ):
+						$part_get = $slug_depth_1 . 'small';
 					endif;
+				}
 
-				// } else {
-//
-					// if ( locate_template( $part.'-'.$slug_depth_1.'.php', false ) !='' ):
-						// $part_get = $slug_depth_1;
-					// else:
-						// $part_get = $this_location;
-					// endif;
-//
-				// }
+				if ( empty($part_get) ){
+					if ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
+						$part_get = $slug_depth_1;
+					endif;
+				}
 
 			break;
 
 			// Category archive
 			case ( 'category' ):
+
 				$slug = get_category( get_query_var('cat') )->slug;
 				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
-				if ( locate_template( $part.'-'.$slug_depth_1.'.php', false ) !='' ):
-					$part_get = $slug_depth_1;
-				else:
-					$part_get = $this_location;
-				endif;
+
+				if ( $this->wfx_is_small_screen == true ){
+					if ( locate_template( $part . '-' . $slug_depth_1 . 'small.php', false ) !='' ):
+						$part_get = $slug_depth_1 . 'small';
+					endif;
+				}
+
+				if ( empty($part_get) ){
+					if ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
+						$part_get = $slug_depth_1;
+					endif;
+				}
+
 			break;
 
 			// Tag archive
 			case ( 'tag' ):
+
 				$slug = get_query_var('tag');
 				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
-				if ( locate_template( $part.'-'.$slug_depth_1.'.php', false ) !='' ):
-					$part_get = $slug_depth_1;
-				else:
-					$part_get = $this_location;
-				endif;
+
+				if ( $this->wfx_is_small_screen == true ){
+					if ( locate_template( $part . '-' . $slug_depth_1 . 'small.php', false ) !='' ):
+						$part_get = $slug_depth_1 . 'small';
+					endif;
+				}
+
+				if ( empty($part_get) ){
+					if ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
+						$part_get = $slug_depth_1;
+					endif;
+				}
+
 			break;
 
 			// Taxonomy archive
@@ -466,13 +473,23 @@ class wflux_helper {
 				$this_q = get_queried_object();
 				$slug_depth_1 = ( isset($this_q->taxonomy) ) ? $this_location . '-' . $this_q->taxonomy : false;
 				$slug_depth_2 = ( isset($this_q->slug) ) ? $this_location . '-' . $this_q->taxonomy . '-' . $this_q->slug : false;
-				if ( locate_template($part.'-'.$slug_depth_2.'.php', false) !='' ):
-					$part_get = $slug_depth_2;
-				elseif (locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ):
-					$part_get = $slug_depth_1;
-				else:
-					$part_get = $this_location;
-				endif;
+
+				if ( $this->wfx_is_small_screen == true ){
+					if ( locate_template($part . '-' . $slug_depth_2 . '-small.php', false) !='' ):
+						$part_get = $slug_depth_2 . '-small';
+					elseif ( locate_template($part . '-' . $slug_depth_1 . '-small.php', false) !='' ):
+						$part_get = $slug_depth_1 . '-small';
+					endif;
+				}
+
+				if ( empty($part_get) ){
+					if ( locate_template($part . '-' . $slug_depth_2 . '.php', false) !='' ):
+						$part_get = $slug_depth_2;
+					elseif ( locate_template($part . '-' . $slug_depth_1 . '.php', false) !='' ):
+						$part_get = $slug_depth_1;
+					endif;
+				}
+
 			break;
 
 			// Date archive
@@ -481,24 +498,43 @@ class wflux_helper {
 				$year = get_query_var( 'year' );
 				$slug_1 = ( !empty($year) ) ? '-' . $year : false;
 				$slug_2 = ( !empty($month) ) ? ($month < 10) ? sprintf( '-%02d', $month ) : '-' . $month : false;
-				if ( locate_template($part.'-'.$this_location.$slug_1.$slug_2.'.php', false) !='' ):
-					$part_get = $this_location.$slug_1.$slug_2;
-				elseif ( locate_template($part.'-'.$this_location.$slug_1.'.php', false) !='' ):
-					$part_get = $this_location.$slug_1;
-				else:
-					$part_get = $this_location;
-				endif;
+
+				if ( $this->wfx_is_small_screen == true ){
+					if ( locate_template( $part . '-' . $this_location . $slug_1 . $slug_2 . '-small.php', false) !='' ):
+						$part_get = $this_location . $slug_1 . $slug_2 . '-small';
+					elseif ( locate_template($part . '-' . $this_location . $slug_1 . '-small.php', false) !='' ):
+						$part_get = $this_location . $slug_1 . '-small';
+					endif;
+				}
+
+				if ( empty($part_get) ){
+					if ( locate_template( $part . '-' . $this_location . $slug_1 . $slug_2 . '.php', false) !='' ):
+						$part_get = $this_location . $slug_1 . $slug_2;
+					elseif ( locate_template($part . '-' . $this_location . $slug_1 . '.php', false) !='' ):
+						$part_get = $this_location . $slug_1;
+					endif;
+				}
+
 			break;
 
 			// Archive/custom post type archive
 			case ('archive'):
+
 				$slug = get_query_var( 'post_type' );
 				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
-				if ( locate_template($part.'-'.$slug_depth_1.'.php', false) !='' ):
-					$part_get = $slug_1;
-				else:
-					$part_get = $this_location;
-				endif;
+
+				if ( $this->wfx_is_small_screen == true ){
+					if ( locate_template( $part . '-' . $slug_depth_1 . 'small.php', false ) !='' ):
+						$part_get = $slug_depth_1 . 'small';
+					endif;
+				}
+
+				if ( empty($part_get) ){
+					if ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
+						$part_get = $slug_depth_1;
+					endif;
+				}
+
 			break;
 
 			default:
@@ -507,15 +543,9 @@ class wflux_helper {
 
 		}
 
-		// if ( $small == true ){
-			// if ( locate_template($part.'-' . $part_get . '-small.php', false) !='' ):
-				// get_template_part( $part, sanitize_html_class($part_get . '-small') );
-			// else:
-				// get_template_part( $part, sanitize_html_class($part_get) );
-			// endif;
-		// } else {
-			get_template_part( $part, sanitize_html_class($part_get) );
-		// }
+		$part_get = ( !empty($part_get) ) ? $part_get : $this_location;
+
+		get_template_part( $part, sanitize_html_class($part_get) );
 
 	}
 

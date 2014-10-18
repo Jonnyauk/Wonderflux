@@ -1,0 +1,104 @@
+/**
+ *
+ * Flux Layout - core reset and base rules
+ *    
+ * A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
+ * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
+ *
+ * Free to use on any project and released under the GPLv2 license
+ * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
+ * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
+ *
+ * @package Wonderflux
+ * @since Wonderflux 2.0
+ *
+ */
+
+/*** normalize.css v3.0.1 ***/
+
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block;}audio,canvas,progress,video{display:inline-block;vertical-align:baseline;}audio:not([controls]){display:none;height:0;}[hidden],template{display:none;}a{background:transparent;}a:active,a:hover{outline:0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}h1{font-size:2em;margin:0.67em 0;}mark{background:#ff0;color:#000;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:1em 40px;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}pre{overflow:auto;}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em;}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0;}button{overflow:visible;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}input{line-height:normal;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}textarea{overflow:auto;}optgroup{font-weight:bold;}table{border-collapse:collapse;border-spacing:0;}td,th{padding:0;}
+
+/* Additional resets */
+
+html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+*, *:before, *:after { box-sizing: inherit; }
+
+/*** Containers and alignment ***/
+
+.pad-tiny, .pad-small, .pad-medium, .pad-large { margin: 0; }
+.pad-tiny { padding: 5px; }
+.pad-small { padding: 10px; }
+.pad-medium { padding: 20px; }
+.pad-large { padding: 40px; }
+
+.alignright, .align-right { float: right; margin: 0 0 5px 20px; }
+.alignleft, .align-left { float: left; margin: 0 20px 5px 0; }
+.aligncenter, .align-center { text-align: center; margin: 5px auto; }
+.first, .flush-left { margin-left: 0; padding-left: 0; }
+.last, .flush-right { margin-right: 0; padding-right: 0; }
+.top, .flush-top { margin-top: 0; padding-top: 0; }
+.bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
+.content-left { text-align: left; }
+.content-center { text-align: center; }
+.content-right { text-align: right; }
+
+/**
+ * Wonderflux v1.x legacy clearfix
+ * Clearing floats without extra markup
+ * Based on How To Clear Floats Without Structural Markup
+ * by PiE [http://www.positioniseverything.net/easyclearing.html]
+ *
+ */
+.clearfix:after, .container:after, .row:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
+.clearfix, .container, .row { display: block; }
+.clear { clear: both; }
+.clearfix:before, .clearfix:after { content:""; display:table; }
+.clearfix:after { clear:both; }
+
+/* Viewport height */
+
+.height-full { height: 100vh; }
+.height-half { height: 50vh; }
+.height-third { height: 33.3333h; }
+.height-quarter { height: 25vh; }
+.height-fifth { height: 20vh; }
+.height-sixth { height: 16.6666vh; }
+.height-seventh { height: 14.2587vh; }
+.height-eighth { height: 12.5vh; }
+
+/*** Image handling ***/
+
+/* Fluid images for posts, comments, and widgets */
+.entry-content img, .entry-summary img, .comment-content img, .widget img, .wp-caption { max-width: 100%; }
+
+/* Make sure images with WordPress-added height and width attributes are scaled correctly */
+.entry-content img, .entry-summary img, .comment-content img[height], img[class*="align"], img[class*="wp-image-"], img[class*="attachment-"] { height: auto; }
+img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%; }
+
+/*** Third-party services ***/
+
+/**
+ * Google Maps breaks if 'max-width: 100%' acts upon it
+ * If 'width' and/or 'height' explicitly defined, don't make fluid
+ */
+.gm-style img, .gm-style img[width], .gm-style img[height] { max-width: none; }
+
+/*** WordPress Specific ***/
+
+/* Media */
+
+.wp-caption { font-size: 0.9em; }
+.gallery-caption { font-size: 0.9em; }
+.wp-caption-text { font-weight: bold; }
+
+/* Comments */
+
+.bypostauthor { font-weight: bold; }
+ol.commentlist ul { list-style: none; }
+ol.commentlist p { margin-bottom: 0; }
+.comment-body { margin-bottom: 15px; }
+
+/* Posts */
+
+.sticky { font-weight: bold; }

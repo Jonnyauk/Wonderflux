@@ -201,14 +201,19 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* Inserts structure CSS
+	* Inserts core structure CSS
 	*
 	* @since 0.72
-	* @updated 0.93
+	* @updated 2.0
 	*/
 	function wf_head_css_structure() {
+
 		if (WF_THEME_FRAMEWORK_REPLACE == false) {
-			$path = WF_CONTENT_URL . '/css/wf-css-core-structure.css';
+
+			// Backpat - switch source file for core CSS framework
+			$file = ( $this->wfx_grid_type == 'percent' ) ? 'wf-css-flux-layout-core.css' : 'wf-css-core-structure.css';
+
+			$path = WF_CONTENT_URL . '/css/' . $file;
 			$version = WF_VERSION;
 			$id = 'wfx-structure';
 
@@ -219,7 +224,9 @@ class wflux_display_code extends wflux_data {
 
 			wp_register_style( $id , $path,'',$version,'screen, projection' );
 			wp_enqueue_style( $id );
+
 		}
+
 	}
 
 

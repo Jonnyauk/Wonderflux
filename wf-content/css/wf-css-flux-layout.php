@@ -21,10 +21,9 @@
 /* DO IT! Just for testing and development */
 $wf_grid = new wflux_layout;
 $wf_grid->grid_containers();
-$wf_grid->grid_float_blocks();
 $wf_grid->grid_blocks();
-$wf_grid->grid_space_loops();
-$wf_grid->grid_push_loops();
+//$wf_grid->grid_space_loops();
+//$wf_grid->grid_push_loops();
 $wf_grid->grid_relative_loops();
 $wf_grid->grid_media_queries();
 
@@ -35,8 +34,8 @@ $wf_grid->grid_media_queries();
 class wflux_layout {
 
 	protected $rwd_width;				// INPUT - Width of main container (% or pixels)
-	protected $rwd_columns;				// INPUT - Number of columns in layout
-	protected $rwd_class_prepend;		// INPUT - Prepend all CSS selectors (or not!)
+	protected $rwd_columns_basic;		// INPUT - Number of basic (no gutter) columns in layout
+	protected $rwd_class_prepend;		// INPUT - Prepend all CSS main selectors
 	protected $rwd_relative;			// ARRAY - General relative sizes
 	protected $mq_config;				// ARRAY - Media queries cofig
 	protected $mq_specific;				// ARRAY - Media query relative sizes
@@ -49,13 +48,12 @@ class wflux_layout {
 
 	function __construct() {
 
+		// Cleanup all data ready to be used
 		$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
-		$this->rwd_columns = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
-		$this->rwd_class_prepend = ( !isset($this->rwd_class_prepend) ) ? 'box-': strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_class_prepend) );
-		$this->rwd_column_width = 100 / $this->rwd_columns;
+		$this->rwd_columns_basic = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
+		$this->rwd_class_prepend = ( !isset($this->rwd_class_prepend) ) ? 'box-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_class_prepend) );
 		$this->rwd_relative = array(1,2,4,5,8,10,16);
 		$this->mq_specific = array(1,2,4,8);
-
 		$this->mq_config = array(
 			'tiny'	=> array(
 							'def'	=> 'mq-tiny',
@@ -87,6 +85,8 @@ class wflux_layout {
 
 		);
 
+		// Internal values
+		$this->rwd_column_width = 100 / $this->rwd_columns_basic;
 		$this->rwd_class_space_left = $this->rwd_class_prepend . 'pad-left';
 		$this->rwd_class_space_right = $this->rwd_class_prepend . 'pad-right';
 		$this->rwd_class_move_left = $this->rwd_class_prepend . 'move-left';
@@ -96,45 +96,49 @@ class wflux_layout {
 
 	}
 
-	/*
+	/**
 	 * Outputs main site .container and .row classes
 	 */
 	function grid_containers() {
 
-		echo '.container { ' . 'width: ' . $this->rwd_width . '%; margin: 0 auto; }' . $this->rwd_minify
-		. '.row { ' . 'width: 100%; margin: 0 auto; }' . $this->rwd_minify_2;
+		echo '.container { ' . 'width:' . $this->rwd_width . '%; margin:0 auto; }' . $this->rwd_minify
+		. '.row { ' . 'width:100%; margin:0 auto; }' . $this->rwd_minify_2;
 
 	}
 
-	/*
+	/**
 	 * Outputs float rules for all blocks
 	 */
 	function grid_float_blocks() {
 
 		echo '/**** Grid blocks ****/' . "\n";
 
-		for ( $limit=1; $limit <= $this->rwd_columns; $limit++ ) {
+		for ( $limit=1; $limit <= $this->rwd_columns_basic; $limit++ ) {
 			echo '.'. $this->rwd_class_prepend . $limit;
-			echo ( $limit == $this->rwd_columns ) ? '' : ', ';
+			echo ( $limit == $this->rwd_columns_basic ) ? '' : ', ';
 		}
-		echo " { float: left; margin: 0; }" . $this->rwd_minify;
+		echo ' { float: left; margin: 0; }' . $this->rwd_minify;
 
 	}
 
-	/*
+	/**
 	 * Outputs percent widths for blocks
 	 */
 	function grid_blocks() {
 
-		for ( $limit=1; $limit <= $this->rwd_columns; $limit++ ) {
+		// Basic common rules
+		$this->grid_float_blocks();
+
+		// Main output
+		for ( $limit=1; $limit <= $this->rwd_columns_basic; $limit++ ) {
 			echo '.' . $this->rwd_class_prepend . $limit . ' { width: '
-			. $this->rwd_column_width * $limit . '%; ' . "} " . $this->rwd_minify;
+			. $this->rwd_column_width * $limit . '%; }' . $this->rwd_minify;
 		}
 		echo $this->rwd_minify;
 
 	}
 
-	/*
+	/**
 	 * Outputs margin + padding rules
 	 */
 	function grid_mover( $type, $definition, $direction ) {
@@ -145,9 +149,9 @@ class wflux_layout {
 		$css_1 = ( $direction == 'l' ) ? '{ ' . $css_type . ': 0 ' . $negpos : '{ ' . $css_type . ': 0 0 0 ' . $negpos;
 		$css_2 = ( $direction == 'l' ) ? ' 0 0; ' : '; ';
 
-		for ( $limit=1; $limit <= $this->rwd_columns; $limit++ ) {
+		for ( $limit=1; $limit <= $this->rwd_columns_basic; $limit++ ) {
 			echo '.' . $definition . '-' . $limit . ' ' . $css_1
-			. $this->rwd_column_width * $limit . '%' . $css_2 . '} ' . $this->rwd_minify;
+			. $this->rwd_column_width * $limit . '%' . $css_2 . '}' . $this->rwd_minify;
 		}
 
 	}
@@ -168,7 +172,7 @@ class wflux_layout {
 
 	}
 
-	/*
+	/**
 	 * Outputs relative sized CSS
 	 * $sizes = array of integers representing what sizes to output
 	 */
@@ -216,7 +220,7 @@ class wflux_layout {
 				if ( $size == 1 ){
 
 					echo $this->rwd_class_prepend . '1-1, .' . $this->rwd_class_prepend
-					. $def[1] .' { width: 100%; } ' . $this->rwd_minify;
+					. $def[1] .' { width:100%; }' . $this->rwd_minify;
 
 				} else {
 
@@ -224,7 +228,7 @@ class wflux_layout {
 
 						echo '.' . $this->rwd_class_prepend . $limit . '-' . $def[0];
 						echo ( !empty($def[1]) ) ? ', .' . $this->rwd_class_prepend . $limit . '-' . $def[1] : '';
-						echo ' { width: ' . $limit * ( 100 / $size ) . '%; float:left;' . " } " . $this->rwd_minify;
+						echo ' { width:' . $limit * ( 100 / $size ) . '%; float:left; }' . $this->rwd_minify;
 
 					}
 
@@ -238,7 +242,7 @@ class wflux_layout {
 
 	}
 
-	/*
+	/**
 	 * Media queries output for different sized screens
 	 * 4 definitions:
 	 * rwd-tiny Tiny screens - small portrait phones
@@ -298,9 +302,9 @@ class wflux_layout {
 
 						$float_def = ($size_r == 1 ) ? '' : 'float:left; ';
 
-						echo ' { width: ' . ( 100/$size_r ) * $limit . '%; ';
+						echo ' { width:' . ( 100/$size_r ) * $limit . '%; ';
 						echo ( $size_r == 1 ) ? '' : 'float:left; ';
-						echo '} ' . $this->rwd_minify;
+						echo '}' . $this->rwd_minify;
 
 					}
 				}

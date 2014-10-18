@@ -255,24 +255,32 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.80
-	* @updated 0.93
-	* Core layout grid CSS
+	* @updated 2.0
+	* Core layout grid CSS for legacy Internet Explorer (<IE8)
 	*/
 	function wf_head_css_ie($args) {
-		if (WF_THEME_FRAMEWORK_REPLACE == false) {
+
+		// Backpat - legacy Wonderflux v1 IE additional fallback dynamic grid
+		if ( WF_THEME_FRAMEWORK_REPLACE == false && $this->wfx_grid_type == 'pixels' ) {
+
 			$path = WF_CONTENT_URL . '/css/wf-css-dynamic-core-ie.php';
 			$version = 'wfx-dynamic';
 			$id = 'wfx-ie';
 			$media = 'screen, projection';
+
 			// Allow filtering
 			$path = apply_filters( 'wflux_css_ie_path', $path );
 			$id = apply_filters( 'wflux_css_ie_id', $id );
 			$media = apply_filters( 'wflux_css_ie_media', $media );
+
 			wp_register_style( $id, $path,'', $version, $media );
 			wp_enqueue_style( $id );
+
 			// IMPORTANT - Add conditional IE wrapper
 			$GLOBALS['wp_styles']->add_data( 'wfx-ie', 'conditional', 'lt IE 8' );
+
 		}
+
 	}
 
 

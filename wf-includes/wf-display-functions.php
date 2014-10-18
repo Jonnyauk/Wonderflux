@@ -231,6 +231,7 @@ class wflux_display_code extends wflux_data {
 	function wf_head_css_columns($args) {
 		if (WF_THEME_FRAMEWORK_REPLACE == false) {
 
+			/* Backpat - switch grid generator source file */
 			$file = ($this->wfx_grid_type == 'percent') ? 'flux-layout' : 'dynamic-columns';
 
 			$path = WF_CONTENT_URL . '/css/wf-css-' . $file . '.php';
@@ -247,7 +248,7 @@ class wflux_display_code extends wflux_data {
 			wp_enqueue_style( $id );
 
 			// IMPORTANT - Append layout arguments to url
-			add_filter( 'style_loader_tag', array($this,'wf_head_css_add_args'));
+			add_filter( 'style_loader_tag', array($this,'wf_head_css_add_args') );
 		}
 	}
 
@@ -293,23 +294,37 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* Inserts theme CSS sizing parameters - used in filter if required
+	* Inserts theme CSS sizing parameters
+	* Settings can be filtered - see wflux_data class
 	* Picks up on version set as 'ver=wfx-dynamic':
 	* wp_register_style( '', '','','wfx-dynamic','');
 	* Appends Wonderflux size URL params
-	* TODO: Investigate a cleaner way to do this!
 	*
 	* @since 0.93
-	* @updated 0.93
+	* @updated 2.0
 	*/
 	function wf_head_css_add_args($input) {
-		$vars = '&amp;w='.$this->wfx_width.
-		'&amp;p='.$this->wfx_position.
-		'&amp;sbp='.$this->wfx_sidebar_primary_position.
-		'&amp;cw='.$this->wfx_columns_width.
-		'&amp;c='.$columns_num = $this->wfx_columns.
-		'&amp;grid='.$this->wfx_grid_type;
+
+		// Backpat - config for grid types
+		if ( $this->wfx_grid_type == 'percent' ){
+
+			$vars = '&amp;w='.$this->wfx_width.
+			'&amp;p='.$this->wfx_position.
+			'&amp;sbp='.$this->wfx_sidebar_primary_position.
+			'&amp;c='.$columns_num = $this->wfx_columns;
+
+		} else {
+
+			$vars = '&amp;w='.$this->wfx_width.
+			'&amp;p='.$this->wfx_position.
+			'&amp;sbp='.$this->wfx_sidebar_primary_position.
+			'&amp;cw='.$this->wfx_columns_width.
+			'&amp;c='.$columns_num = $this->wfx_columns;
+
+		}
+
 		return str_replace(array('ver=wfx-dynamic'), array("$vars"), $input);
+
 	}
 
 

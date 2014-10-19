@@ -16,6 +16,9 @@ class wflux_admin extends wflux_data {
 	var $admin_forms;
 
 	function __construct(){
+
+		parent::__construct();
+
 		$this->admin_forms = new wflux_admin_forms;
 		$this->admin_backup = new wflux_admin_backup;
 		add_action("load-admin_page_wonderflux_backup", array($this->admin_backup, 'wf_import_export'));
@@ -175,7 +178,15 @@ class wflux_admin extends wflux_data {
 
 		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-		add_settings_field('columns_w', esc_attr__('Width of column (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+
+		/**
+		 * Backpat - remove column width if using Wonderflux 2 percent grid
+		 */
+		if ( $this->wfx_grid_type == 'pixels' ) {
+			// Pixel column width
+			add_settings_field('columns_w', esc_attr__('Width of column (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		}
+
 		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('content_s', esc_attr__('Content width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');

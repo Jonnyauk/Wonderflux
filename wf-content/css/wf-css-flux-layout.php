@@ -40,6 +40,7 @@ class wflux_layout {
 	protected $rwd_class_prepend;		// INPUT - Prepend all CSS main selectors
 	protected $rwd_columns_prepend;		// INPUT - Prepend all CSS column selectors
 	protected $rwd_columns;				// ARRAY - Advanced columns with gutters
+	protected $rwd_columns_gutter;		// INPUT - Target gutter (%)
 	protected $rwd_relative;			// ARRAY - General relative sizes
 	protected $mq_config;				// ARRAY - Media queries cofig
 	protected $mq_specific;				// ARRAY - Media query relative sizes
@@ -72,6 +73,8 @@ class wflux_layout {
 			sort($this->rwd_columns);
 			array_unshift( $this->rwd_columns, $this->rwd_columns_basic );
 		}
+
+		$this->rwd_columns_gutter = 2;
 
 		$this->mq_specific = array(1,2,4,8);
 
@@ -154,13 +157,11 @@ class wflux_layout {
 	 */
 	function grid_columns() {
 
-		$core_gutter = 2;
-
 		echo '/******** Traditional columns ********/' . $this->rwd_minify_2;
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->rwd_columns_prepend . '"] { '
-		. 'float:left; margin-left: ' . $core_gutter . '%; }'
+		. 'float:left; margin-left: ' . $this->rwd_columns_gutter . '%; }'
 		 . $this->rwd_minify;
 
 		echo '.row.' . rtrim($this->rwd_columns_prepend, '-') . ' div:first-child { margin-left: 0; }' . $this->rwd_minify;
@@ -172,7 +173,7 @@ class wflux_layout {
 
 						echo '.' . $this->rwd_columns_prepend . $limit . '-' . $size_r
 						. ' { width:'
-						. ((100 - ($size_r - 1) * $core_gutter) / $size_r ) * $limit
+						. ((100 - ($size_r - 1) * $this->rwd_columns_gutter) / $size_r ) * $limit
 						. '%; }'
 						. $this->rwd_minify;
 

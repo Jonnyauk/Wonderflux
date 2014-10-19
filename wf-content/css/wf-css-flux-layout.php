@@ -143,12 +143,11 @@ class wflux_layout {
 		 . $this->rwd_minify_2;
 
 		// Main output
-		// Removed - use relative loops for consistency?
-		// for ( $limit=1; $limit <= $this->rwd_columns_basic; $limit++ ) {
-			// echo '.' . $this->rwd_class_prepend . $limit . ' { width: '
-			// . $this->rwd_column_width * $limit . '%; }' . $this->rwd_minify;
-		// }
-		// echo $this->rwd_minify;
+		for ( $limit=1; $limit <= $this->rwd_columns_basic; $limit++ ) {
+			echo '.' . $this->rwd_class_prepend . $limit . ' { width: '
+			. $this->rwd_column_width * $limit . '%; }' . $this->rwd_minify;
+		}
+		echo $this->rwd_minify;
 
 	}
 

@@ -565,7 +565,7 @@ class wflux_admin_forms extends wflux_data {
 			'content_s_px'=> array ( 600, range(200,1200,2) ),
 			'sidebar_s'		=> $this->size_accept,
 			'sidebar_p'		=> array ('left','right'),
-			'grid_type'		=> array ('pixels','percent'),
+			'grid_type'		=> array ('percent','pixels'),
 			'sidebar_d'		=> array ('Y','N'),
 			'container_u'	=> array ('percent','pixels'),
 			'container_w'	=> array ( 950, range(400,2000,10) ),

@@ -176,6 +176,7 @@ class wflux_admin extends wflux_data {
 
 		//1) Key 2) form label 3) Builder function 4)Page 5)Section
 		add_settings_field('grid_type', esc_attr__('Select CSS layout system','wonderflux'), array($this->admin_forms, 'wf_form_grid_type'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
+		add_settings_field('container_u', esc_attr__('Site container width unit','wonderflux'), array($this->admin_forms, 'wf_form_container_u'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
 		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
@@ -558,6 +559,7 @@ class wflux_admin_forms extends wflux_data {
 			'sidebar_p'		=> array ('left','right'),
 			'grid_type'		=> array ('pixels','percent'),
 			'sidebar_d'		=> array ('Y','N'),
+			'container_u'	=> array ('percent','pixels'),
 			'container_w'	=> array ( 950, range(400,2000,10) ),
 			'columns_num'	=> array ( 24, range(2,100,1) ),
 			'columns_w'		=> array ( 30, range(10,200,1) ),
@@ -618,7 +620,7 @@ class wflux_admin_forms extends wflux_data {
 		echo '<p>' . esc_attr__('Setup the dimensions of your main content area and sidebar.','wonderflux') . '</p>';
 	}
 
-	function wf_form_grid_type() { $this->wf_form_helper_ddown_std($this->wfx_grid_type,'grid_type',$this->valid['grid_type'],'*EXPERIMENTAL - In development!'); }
+	function wf_form_grid_type() { $this->wf_form_helper_ddown_std($this->wfx_grid_type,'grid_type',$this->valid['grid_type'],''); }
 
 	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p'],''); }
 	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->common_size,''); }
@@ -626,6 +628,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->common_size,''); }
 	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N')),''); }
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p'],''); }
+	function wf_form_container_u() { $this->wf_form_helper_ddown_std($this->wfx_width_unit,'container_u',array('percent','pixels'),''); }
 	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10,''); }
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1,''); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1,''); }

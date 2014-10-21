@@ -10,6 +10,7 @@ class wflux_data {
 	protected $wfx_doc_type; // Document type
 	protected $wfx_doc_lang; // Document language
 	protected $wfx_doc_charset; // Document type
+	protected $wfx_width_type; // Width unit of main site container (px or %)
 	protected $wfx_width; // Width of main site container
 	protected $wfx_position; // Position of main site container
 	protected $wfx_columns; // Number of columns
@@ -93,6 +94,12 @@ class wflux_data {
 		$this->wfx_fb_app = ( isset($this->wfx_db_display['fb_app'] ) ) ? wp_kses_data( $this->wfx_db_display['fb_app'] ) : '';
 
 		//// COLUMNS CONFIGURATION ////
+
+		// CONTAINER UNITS - 'pixels','percent'
+		$this->wfx_width_unit = ( isset($this->wfx_db_display['container_u']) ) ? $this->wfx_db_display['container_u'] : false;
+		// Validate - first value is default
+		$grid_unit_accept = array('percent','pixels');
+		$this->wfx_width_unit = ( !$this->wfx_width_unit || !in_array($this->wfx_width_unit,$grid_type_accept) ) ? $grid_unit_accept[0] : $this->wfx_width_unit;
 
 		// CONTAINER SIZE - 400 to 2000
 		$this->wfx_width = (isset($this->wfx_db_display['container_w']) ) ? $this->wfx_db_display['container_w'] : false;

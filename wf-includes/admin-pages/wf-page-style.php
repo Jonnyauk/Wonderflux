@@ -10,13 +10,17 @@
 		<?php esc_attr_e('Configure the dynamic CSS layout (note that filters over-ride these options.)', 'wonderflux'); ?>
 		</p>
 
-		<p class="submit">
-			<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save settings', 'wonderflux'); ?>" />
-		</p>
-
 		<div id="wfx_fields_display">
 			<?php
 			settings_fields('wf_settings_display');
+			do_settings_sections('wonderflux_stylelab_grid_core');
+			?>
+
+			<p class="submit">
+				<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save settings', 'wonderflux'); ?>" />
+			</p>
+
+			<?php
 			do_settings_sections('wonderflux_stylelab_grid');
 			do_settings_sections('wonderflux_stylelab');
 			?>

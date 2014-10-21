@@ -169,13 +169,13 @@ class wflux_admin extends wflux_data {
 		register_setting('wf_settings_display', 'wonderflux_display', array($this->admin_forms, 'validate_opts_layout') );
 
 		add_settings_section('style_lab', '', array($this->admin_forms, 'wf_form_intro_main'), 'wonderflux_stylelab');
+		add_settings_section('style_lab_grid_core', '', array($this->admin_forms, 'wf_form_intro_grid_core'), 'wonderflux_stylelab_grid_core');
 		add_settings_section('style_lab_grid', '', array($this->admin_forms, 'wf_form_intro_grid'), 'wonderflux_stylelab_grid');
 		add_settings_section('style_lab_doc', '', array($this->admin_forms, 'wf_form_intro_doc'), 'wonderflux_stylelab_doc');
 		add_settings_section('style_lab_fb', '', array($this->admin_forms, 'wf_form_intro_fb'), 'wonderflux_stylelab_fb');
 
 		//1) Key 2) form label 3) Builder function 4)Page 5)Section
-		add_settings_field('grid_type', esc_attr__('Select CSS layout system','wonderflux'), array($this->admin_forms, 'wf_form_grid_type'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-
+		add_settings_field('grid_type', esc_attr__('Select CSS layout system','wonderflux'), array($this->admin_forms, 'wf_form_grid_type'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
 		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
@@ -598,12 +598,20 @@ class wflux_admin_forms extends wflux_data {
 	}
 
 	//////// STYLE LAB FORM ITEMS
-	// Section HTML, displayed before the first option
+
+	function wf_form_intro_grid_core() {
+		echo '<h2>' . esc_attr__('CSS grid/column core configuration','wonderflux') . '</h2>';
+		echo '<div class="clear"></div>';
+		echo '<p><strong>' . esc_attr__('Options must be set before further grid configuration.', 'wonderflux') . '</strong></p>';
+		echo '<p>' . esc_attr__('Use percent for responsive (Wonderflux v2) system or pixels for legacy non-responsive (Wonderflux v1) system.', 'wonderflux') . '</p>';
+	}
+
 	function wf_form_intro_grid() {
 		echo '<h2>' . esc_attr__('CSS grid/column settings','wonderflux') . '</h2>';
 		echo '<div class="clear"></div>';
 		echo '<p>' . esc_attr__('Setup the dimensions of the CSS layout columns (grid system).', 'wonderflux') . '</p>';
 	}
+
 	function wf_form_intro_main() {
 		echo '<h2>' . esc_attr__('Main content and sidebar settings','wonderflux') . '</h2>';
 		echo '<div class="clear"></div>';

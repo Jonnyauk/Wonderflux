@@ -7,7 +7,7 @@
 		<div class="clear"></div>
 
 		<p>
-		<?php esc_attr_e('Configure the dynamic CSS layout (note that filters over-ride these options.)', 'wonderflux'); ?>
+		<?php esc_attr_e('Configure dynamic CSS layout rules (note that filters over-ride these options.)', 'wonderflux'); ?>
 		</p>
 
 		<div id="wfx_fields_display">
@@ -17,7 +17,7 @@
 			?>
 
 			<p class="submit">
-				<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save settings', 'wonderflux'); ?>" />
+				<input name="Submit" type="submit" class="button-primary" value="<?php esc_attr_e('Save core configuration', 'wonderflux'); ?>" />
 			</p>
 
 			<?php

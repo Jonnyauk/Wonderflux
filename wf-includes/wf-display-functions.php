@@ -323,18 +323,19 @@ class wflux_display_code extends wflux_data {
 		// Backpat - config for grid types
 		if ( $this->wfx_grid_type == 'percent' ){
 
-			$vars = '&amp;w='.$this->wfx_width.
-			'&amp;p='.$this->wfx_position.
-			'&amp;sbp='.$this->wfx_sidebar_primary_position.
-			'&amp;c='.$columns_num = $this->wfx_columns;
+			$vars = '&amp;w=' . $this->wfx_width
+			. '&amp;cu=' . $this->wfx_width_unit
+			. '&amp;p=' . $this->wfx_position
+			. '&amp;sbp=' . $this->wfx_sidebar_primary_position
+			. '&amp;c=' . $this->wfx_columns;
 
 		} else {
 
-			$vars = '&amp;w='.$this->wfx_width.
-			'&amp;p='.$this->wfx_position.
-			'&amp;sbp='.$this->wfx_sidebar_primary_position.
-			'&amp;cw='.$this->wfx_columns_width.
-			'&amp;c='.$columns_num = $this->wfx_columns;
+			$vars = '&amp;w=' . $this->wfx_width
+			. '&amp;p=' . $this->wfx_position
+			. '&amp;sbp=' . $this->wfx_sidebar_primary_position
+			. '&amp;cw=' . $this->wfx_columns_width
+			. '&amp;c=' . $this->wfx_columns;
 
 		}
 

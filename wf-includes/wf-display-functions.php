@@ -324,7 +324,7 @@ class wflux_display_code extends wflux_data {
 		if ( $this->wfx_grid_type == 'percent' ){
 
 			$vars = '&amp;w=' . $this->wfx_width
-			. '&amp;cu=' . $this->wfx_width_unit
+			. '&amp;wu=' . $this->wfx_width_unit
 			. '&amp;p=' . $this->wfx_position
 			. '&amp;sbp=' . $this->wfx_sidebar_primary_position
 			. '&amp;c=' . $this->wfx_columns;

@@ -35,7 +35,8 @@ $wf_grid->grid_media_queries();
  */
 class wflux_layout {
 
-	protected $rwd_width;				// INPUT - Width of main container (% or pixels)
+	protected $rwd_width;				// INPUT - Width of main container
+	protected $rwd_width_units;			// INPUT - Units for main container width (% or pixels)
 	protected $rwd_columns_basic;		// INPUT - Number of basic (no gutter) columns in layout
 	protected $rwd_class_prepend;		// INPUT - Prepend all CSS main selectors
 	protected $rwd_columns_prepend;		// INPUT - Prepend all CSS column selectors
@@ -55,6 +56,7 @@ class wflux_layout {
 
 		// Cleanup all data ready to be used
 		$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
+		$this->rwd_width_units = ( $_GET['wu'] == 'percent' ) ? '%' : 'px';
 		$this->rwd_columns_basic = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
 		$this->rwd_class_prepend = ( !isset($this->rwd_class_prepend) ) ? 'box-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_class_prepend) );
 		$this->rwd_columns_prepend = ( !isset($this->rwd_columns_prepend) ) ? 'column-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_columns_prepend) );
@@ -125,8 +127,8 @@ class wflux_layout {
 	 */
 	function grid_containers() {
 
-		echo '.container { ' . 'width:' . $this->rwd_width . '%; margin:0 auto; }' . $this->rwd_minify
-		. '.row { ' . 'width:100%; margin:0 auto; }' . $this->rwd_minify_2;
+		echo '.container { ' . 'width:' . $this->rwd_width . $this->rwd_width_units . '; margin:0 auto; }'
+		. $this->rwd_minify . '.row { ' . 'width:100%; margin:0 auto; }' . $this->rwd_minify_2;
 
 	}
 

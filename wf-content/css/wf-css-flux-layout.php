@@ -3,19 +3,21 @@
  *
  * Flux Layout
  *
- * A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
- * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
+ * A dynamic percentage based CSS layout engine - https://github.com/Jonnyauk/flux-layout
+ * Built for the Wonderflux WordPress theme framework - https://github.com/Jonnyauk/Wonderflux
  *
  * Free to use on any project and released under the GPLv2 license
  * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
  *
+ * !DANGER WILL ROBINSON!
  * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
  *
  * @package Wonderflux
  * @since Wonderflux 2.0
  *
  */
+
 
 <?php
 
@@ -127,6 +129,8 @@ class wflux_layout {
 	 */
 	function grid_containers() {
 
+		echo '/********** Core containers **********/' . $this->rwd_minify_2 . $this->rwd_minify;
+
 		echo '.container { ' . 'width:' . $this->rwd_width . $this->rwd_width_units . '; margin:0 auto; }'
 		. $this->rwd_minify . '.row { ' . 'width:100%; margin:0 auto; }' . $this->rwd_minify_2;
 
@@ -158,7 +162,7 @@ class wflux_layout {
 	 */
 	function grid_columns() {
 
-		echo '/******** Traditional columns ********/' . $this->rwd_minify_2;
+		echo '/********** Traditional columns **********/' . $this->rwd_minify_2 . $this->rwd_minify;
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->rwd_columns_prepend . '"] { '
@@ -232,6 +236,7 @@ class wflux_layout {
 		foreach ( $this->rwd_relative as $size ) {
 
 			if ( intval($size) >= 1 && intval($size) < 101 ) {
+		echo '/********** Grid boxes **********/' . $this->rwd_minify_2 . $this->rwd_minify;
 
 				// Only get secondary named classes
 				switch ( intval($size) ) {
@@ -291,6 +296,8 @@ class wflux_layout {
 
 		}
 
+		echo $this->rwd_minify;
+
 	}
 
 	/**
@@ -314,7 +321,7 @@ class wflux_layout {
 
 		$all_defs_count = count( $all_defs );
 
-		echo '/******** Media Queries ********/' . $this->rwd_minify_2;
+		echo '/********** Media Queries **********/' . $this->rwd_minify_2 . $this->rwd_minify;
 
 		// CSS attribute wildcard selectors
 		$w_count = 2;

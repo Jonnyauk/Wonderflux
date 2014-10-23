@@ -24,7 +24,7 @@
 /* DO IT! Just for testing and development */
 $wf_grid = new wflux_layout;
 $wf_grid->grid_containers();
-$wf_grid->grid_blocks();
+//$wf_grid->grid_blocks();
 //$wf_grid->grid_space_loops();
 //$wf_grid->grid_push_loops();
 $wf_grid->grid_relative_loops();
@@ -138,24 +138,22 @@ class wflux_layout {
 
 	/**
 	 * Outputs percent widths for blocks
+	 * REMOVED FOR THE MOMENT - avoid alternative CSS definitions and repeated code
 	 */
-	function grid_blocks() {
+	//function grid_blocks() {
 
-		echo '/******** Grid boxes ********/' . $this->rwd_minify_2;
-
-		// CSS attribute wildcard selectors
-		echo 'div[class*="' . $this->rwd_class_prepend . '"] { '
-		. 'float:left; margin: 0; }'
-		 . $this->rwd_minify_2;
+		//echo '/********** Grid boxes **********/' . $this->rwd_minify_2;
 
 		// Main output
+		/*
 		for ( $limit=1; $limit <= $this->rwd_columns_basic; $limit++ ) {
 			echo '.' . $this->rwd_class_prepend . $limit . ' { width: '
 			. $this->rwd_column_width * $limit . '%; }' . $this->rwd_minify;
 		}
 		echo $this->rwd_minify;
+		*/
 
-	}
+	//}
 
 	/**
 	 * Outputs columns rules
@@ -233,57 +231,28 @@ class wflux_layout {
 
 		if ( !is_array($this->rwd_relative) ) return;
 
+		echo '/********** Grid boxes **********/' . $this->rwd_minify_2 . $this->rwd_minify;
+
+		// CSS attribute wildcard selectors
+		echo 'div[class*="' . $this->rwd_class_prepend . '"] { '
+		. 'float:left; margin: 0; }'
+		. $this->rwd_minify_2;
+
 		foreach ( $this->rwd_relative as $size ) {
 
 			if ( intval($size) >= 1 && intval($size) < 101 ) {
-		echo '/********** Grid boxes **********/' . $this->rwd_minify_2 . $this->rwd_minify;
-
-				// Only get secondary named classes
-				switch ( intval($size) ) {
-					case 1: $def = array( 1, 'full' ); break;
-					case 2: $def = array( 2, 'half' ); break;
-					case 3: $def = array( 3, 'third' ); break;
-					case 4: $def = array( 4, 'forth' ); break;
-					case 5: $def = array( 5, 'fifth' ); break;
-					case 6: $def = array( 6, 'sixth' ); break;
-					case 7: $def = array( 7, 'seventh' ); break;
-					case 8: $def = array( 8, 'eighth' ); break;
-					case 9: $def = array( 9, 'ninth' ); break;
-					case 10: $def = array( 10, 'tenth' ); break;
-					case 11: $def = array( 11, 'eleventh' ); break;
-					case 12: $def = array( 12, 'twelfth' ); break;
-					case 13: $def = array( 13, 'thirteenth' ); break;
-					case 14: $def = array( 14, 'fourteenth' ); break;
-					case 15: $def = array( 15, 'fifteenth' ); break;
-					case 16: $def = array( 16, 'sixteenth' ); break;
-					case 17: $def = array( 17, 'seventeenth' ); break;
-					case 18: $def = array( 18, 'eightteenth' ); break;
-					case 19: $def = array( 19, 'nineteenth' ); break;
-					case 20: $def = array( 20, 'twentieth' ); break;
-					default: $def = array( intval($size), '' ); break;
-				}
-
-			}
-
-			if ( isset($def) ) {
-
-				echo '/* ' . $def[0];
-				echo ( $def[0] > 1 ) ? ' columns' : ' column';
-				echo ( !empty($def[1]) ) ? ' - ' . $def[1] : '';
-				echo ' */' . $this->rwd_minify;
 
 				if ( $size == 1 ){
 
 					echo '.' . $this->rwd_class_prepend . '1-1'
-					//. ', .' . $this->rwd_class_prepend . $def[1]
 					.' { width:100%; }' . $this->rwd_minify;
 
 				} else {
 
 					for ( $limit=1; $limit < $size; $limit++ ) {
 
-						echo '.' . $this->rwd_class_prepend . $limit . '-' . $def[0];
-						//echo ( !empty($def[1]) ) ? ', .' . $this->rwd_class_prepend . $limit . '-' . $def[1] : '';
+						echo '.' . $this->rwd_class_prepend . $limit . '-' . $size;
+						echo ( $size == $this->rwd_columns_basic ) ? ', .' . $this->rwd_class_prepend . $limit : '';
 						echo ' { width:' . $limit * ( 100 / $size ) . '%; }' . $this->rwd_minify;
 
 					}

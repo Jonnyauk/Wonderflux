@@ -64,23 +64,23 @@ class wflux_layout {
 		$this->rwd_columns_prepend = ( !isset($this->rwd_columns_prepend) ) ? 'column-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_columns_prepend) );
 
 		// Loops of output
-		$this->rwd_relative = array(1,2,3,4,8);
+		$this->rwd_relative = array(1,2,4,5,8,10);
 		// Add core column option to box array for output
 		if ( !in_array($this->rwd_columns_basic, $this->rwd_relative) ){
-			sort($this->rwd_relative);
 			array_unshift( $this->rwd_relative, $this->rwd_columns_basic );
+			sort($this->rwd_relative);
 		}
 
-		$this->rwd_columns = array(1,2,3,4,8);
+		$this->rwd_columns = array(1,2,4,5,8,10);
 		// Add core column option to columns array for output
 		if ( !in_array($this->rwd_columns_basic, $this->rwd_columns) ){
-			sort($this->rwd_columns);
 			array_unshift( $this->rwd_columns, $this->rwd_columns_basic );
+			sort($this->rwd_columns);
 		}
 
 		$this->rwd_columns_gutter = 2;
 
-		$this->mq_specific = array(1,2,4,8);
+		$this->mq_specific = array(1,2,4,5,8,10);
 
 		$this->mq_config = array(
 			'tiny'	=> array(
@@ -132,7 +132,7 @@ class wflux_layout {
 		echo '/********** Core containers **********/' . $this->rwd_minify_2 . $this->rwd_minify;
 
 		echo '.container { ' . 'width:' . $this->rwd_width . $this->rwd_width_units . '; margin:0 auto; }'
-		. $this->rwd_minify . '.row { ' . 'width:100%; margin:0 auto; }' . $this->rwd_minify_2;
+		. $this->rwd_minify . '.row { ' . 'width:100%; margin:0 auto; }' . $this->rwd_minify_2 . $this->rwd_minify;
 
 	}
 
@@ -171,17 +171,26 @@ class wflux_layout {
 
 		foreach ( $this->rwd_columns as $size_r ) {
 			if ( intval($size_r) < 101 ) {
+
 				for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {
+
 					if ( $size_r!=1 ){
+
+						$width = (((100 - ($size_r - 1) * $this->rwd_columns_gutter) / $size_r ) * $limit)
+						+ ( $this->rwd_columns_gutter * ($limit - 1) );
 
 						echo '.' . $this->rwd_columns_prepend . $limit . '-' . $size_r
 						. ' { width:'
-						. ((100 - ($size_r - 1) * $this->rwd_columns_gutter) / $size_r ) * $limit
+						. $width
 						. '%; }'
 						. $this->rwd_minify;
 
 					}
+
 				}
+
+				echo $this->rwd_minify;
+
 			}
 		}
 

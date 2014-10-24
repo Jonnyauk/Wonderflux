@@ -46,7 +46,9 @@ class wflux_layout {
 	protected $rwd_columns_gutter;		// INPUT - Target gutter (%)
 	protected $rwd_relative;			// ARRAY - General relative sizes
 	protected $mq_config;				// ARRAY - Media queries cofig
-	protected $mq_specific;				// ARRAY - Media query relative sizes
+	protected $mq_box_sizes;			// ARRAY - Media query box size loops
+	protected $mq_column_sizes;			// ARRAY - Media query column size loops
+
 	protected $rwd_class_space_left;	// INTERNAL - CSS selector - padding left
 	protected $rwd_class_space_right;	// INTERNAL - CSS selector - padding right
 	protected $rwd_class_move_left;		// INTERNAL - CSS selector - margin left
@@ -78,9 +80,15 @@ class wflux_layout {
 			sort($this->rwd_columns);
 		}
 
+		$this->mq_box_sizes = array(1,2,4,5,8,10);
 		$this->rwd_columns_gutter = 2;
 
-		$this->mq_specific = array(1,2,4,5,8,10);
+		if ( isset( $_GET['mq_cols'] ) && is_array($_GET['mq_cols']) ){
+			$this->mq_column_sizes = $_GET['mq_cols'];
+		} else {
+			// Just generate basic grid values
+			$this->mq_column_sizes = array( $this->rwd_columns_basic );
+		}
 
 		$this->mq_config = array(
 			'tiny'	=> array(
@@ -337,8 +345,10 @@ class wflux_layout {
 			}
 			echo '{ display: none; }' . $this->rwd_minify;
 
-			// Specific proportional breakpoint sizers
-			foreach ( $this->mq_specific as $size_r ) {
+			echo ' /***** Boxes *****/' . $this->rwd_minify;
+
+			// Box size loops
+			foreach ( $this->mq_box_sizes as $size_r ) {
 				if ( intval($size_r) < 101 ) {
 					for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {
 
@@ -353,6 +363,31 @@ class wflux_layout {
 						echo '}' . $this->rwd_minify;
 
 					}
+				}
+			}
+
+			echo ' /***** Columns *****/' . $this->rwd_minify;
+
+			// Column size loops
+			foreach ( $this->mq_column_sizes as $size_c ) {
+				if ( intval($size_c) < 101 ) {
+					for ( $limit=1; $limit < $size_c || $limit == 1; $limit++ ) {
+
+						echo ' .' . $size['def'] . '-c-' . $limit . '-' . $size_c;
+
+						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
+							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-c-min-' . $limit . '-' . $size_c : '';
+						}
+
+						$width = (((100 - ($size_c - 1) * $this->rwd_columns_gutter) / $size_c ) * $limit)
+						+ ( $this->rwd_columns_gutter * ($limit - 1) );
+
+						echo ' { width:' . $width . '%; ';
+						//echo ( $size_c == 1 ) ? '' : 'float:left; ';
+						echo '}' . $this->rwd_minify;
+
+					}
+
 				}
 			}
 

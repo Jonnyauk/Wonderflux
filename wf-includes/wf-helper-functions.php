@@ -104,8 +104,17 @@ class wflux_data {
 		// CONTAINER SIZE - 400 to 2000
 		$this->wfx_width = (isset($this->wfx_db_display['container_w']) ) ? $this->wfx_db_display['container_w'] : false;
 		// Validate
-		$wfx_width_out = 950;
-		if (is_numeric ($this->wfx_width) ) { if ($this->wfx_width >= 400 && $this->wfx_width <= 2000) {$wfx_width_out = $this->wfx_width;} }
+
+		/**
+		 * Backpat - define ranges for pixels/percent
+		 */
+		if ( $this->wfx_width_unit == 'pixels' ) {
+			$wfx_width_out = 950;
+			if (is_numeric ($this->wfx_width) ) { if ($this->wfx_width >= 400 && $this->wfx_width <= 2000) {$wfx_width_out = $this->wfx_width;} }
+		} else {
+			$wfx_width_out = 80;
+			if (is_numeric ($this->wfx_width) ) { if ($this->wfx_width >= 5 && $this->wfx_width <= 100) {$wfx_width_out = $this->wfx_width;} }
+		}
 		$this->wfx_width = $wfx_width_out;
 
 		// SITE CONTAINER POSITION - left, middle, right

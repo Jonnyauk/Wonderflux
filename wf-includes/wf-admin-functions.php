@@ -176,7 +176,6 @@ class wflux_admin extends wflux_data {
 
 		//1) Key 2) form label 3) Builder function 4)Page 5)Section
 		add_settings_field('grid_type', esc_attr__('Select CSS layout system','wonderflux'), array($this->admin_forms, 'wf_form_grid_type'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
-		add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		/**
@@ -185,6 +184,7 @@ class wflux_admin extends wflux_data {
 		if ( $this->wfx_grid_type == 'pixels' ) {
 			// Pixel column width
 			add_settings_field('columns_w', esc_attr__('Width of column (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+			add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		}
 
 		/**
@@ -193,8 +193,8 @@ class wflux_admin extends wflux_data {
 		if ( $this->wfx_grid_type == 'percent' ) {
 			// Pixel column width
 			add_settings_field('container_u', esc_attr__('Site container width unit','wonderflux'), array($this->admin_forms, 'wf_form_container_u'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
+			add_settings_field('container_w', esc_attr__('Site container width (percent)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		}
-
 
 		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab', 'style_lab');
@@ -568,7 +568,7 @@ class wflux_admin_forms extends wflux_data {
 			'grid_type'		=> array ('percent','pixels'),
 			'sidebar_d'		=> array ('Y','N'),
 			'container_u'	=> array ('percent','pixels'),
-			'container_w'	=> array ( 950, range(400,2000,10) ),
+			'container_w'	=> ( $this->wfx_width_unit == 'pixels' ) ? array ( 950, range(400,2000,10) ) : array ( 80, range(5,100,5) ),
 			'columns_num'	=> array ( 24, range(2,100,1) ),
 			'columns_w'		=> array ( 30, range(10,200,1) ),
 			'fb_admins'		=> '',
@@ -637,7 +637,6 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N')),''); }
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p'],''); }
 	function wf_form_container_u() { $this->wf_form_helper_ddown_std($this->wfx_width_unit,'container_u',array('percent','pixels'),''); }
-	function wf_form_container_w() { $this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10,''); }
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1,''); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1,''); }
 	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',$this->valid['doc_type'],''); }
@@ -674,6 +673,16 @@ class wflux_admin_forms extends wflux_data {
 
 	function wf_form_fb_admins() { $this->wf_form_helper_text($this->wfx_fb_admins,'fb_admins'); }
 	function wf_form_fb_app() { $this->wf_form_helper_text($this->wfx_fb_app,'fb_app'); }
+
+	function wf_form_container_w() {
+
+		if ( $this->wfx_width_unit == 'pixels' ) {
+			$this->wf_form_helper_ddown_range($this->wfx_width,'container_w',400,2000,10,'');
+		} else {
+			$this->wf_form_helper_ddown_range($this->wfx_width,'container_w',5,100,5,'');
+		}
+
+	}
 
 	/**
 	* Creates a dropdown for options page

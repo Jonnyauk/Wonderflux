@@ -179,20 +179,28 @@ class wflux_admin extends wflux_data {
 		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		/**
-		 * Backpat - remove column width if using Wonderflux v1 pixel grid
+		 * Backpat - add column width if using Wonderflux v1 pixel grid
 		 */
 		if ( $this->wfx_grid_type == 'pixels' ) {
 			// Pixel column width
 			add_settings_field('columns_w', esc_attr__('Width of column (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-			add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		}
 
 		/**
-		 * Backpat - display container units if using Wonderflux v2 percent grid
+		 * Backpat - add container units if using Wonderflux v2 percent grid
 		 */
 		if ( $this->wfx_grid_type == 'percent' ) {
 			// Pixel column width
 			add_settings_field('container_u', esc_attr__('Site container width unit','wonderflux'), array($this->admin_forms, 'wf_form_container_u'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
+		}
+
+		/**
+		 * Backpat - add conditional container width field (unit option)
+		 */
+		if ( $this->wfx_grid_type == 'pixels' ||  $this->wfx_width_unit == 'pixels' ) {
+			// Pixel column width
+			add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		} else {
 			add_settings_field('container_w', esc_attr__('Site container width (percent)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		}
 

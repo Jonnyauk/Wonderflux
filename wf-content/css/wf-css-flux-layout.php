@@ -59,8 +59,14 @@ class wflux_layout {
 	function __construct() {
 
 		// Cleanup all data ready to be used
-		$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
 		$this->rwd_width_units = ( $_GET['wu'] == 'percent' ) ? '%' : 'px';
+
+		if ($this->rwd_width_units == 'px') {
+			$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 4000 ) ? $_GET['w'] : 950;
+		} else {
+			$this->rwd_width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
+		}
+
 		$this->rwd_columns_basic = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
 		$this->rwd_class_prepend = ( !isset($this->rwd_class_prepend) ) ? 'box-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_class_prepend) );
 		$this->rwd_columns_prepend = ( !isset($this->rwd_columns_prepend) ) ? 'column-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->rwd_columns_prepend) );
@@ -93,7 +99,6 @@ class wflux_layout {
 		$this->mq_config = array(
 			'tiny'	=> array(
 							'def'	=> 'mq-tiny',
-							'min'	=> 0,
 							'max'	=> 480,
 							'units'	=> 'px',
 							'note'	=> 'Tiny screens - small portrait phones'

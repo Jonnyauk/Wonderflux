@@ -105,6 +105,7 @@ add_action('get_header', 'wfx_layout_build', 1); // IMPORTANT - Inserts layout d
 add_action('get_header', 'wfx_content_width_embed', 2); // IMPORTANT Sets WordPress $content_width global for oEmbed media
 add_action('get_header', 'wfx_social_meta');
 add_action('wf_head_meta', 'wfx_display_head_char_set', 1);
+add_action('wf_head_meta', 'wfx_display_head_viewport', 2);
 add_action('wf_head_meta', 'wfx_display_head_title', 3);
 add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
 add_action('wf_head_meta', 'wfx_display_css_info');
@@ -333,9 +334,16 @@ if ( !function_exists( 'wfx_display_head_open' ) ) : function wfx_display_head_o
 /**
 * @since 0.931
 * @updated 0.931
-* IMPORTANT Builds the head of the document
+* IMPORTANT Builds the character set of the document
 */
 if ( !function_exists( 'wfx_display_head_char_set' ) ) : function wfx_display_head_char_set($args) { global $wfx; $wfx->head_char_set($args); } endif;
+
+/**
+* @since 2.0
+* @updated 2.0
+* Adds meta viewport meta tag (if not using legacy Wonderflux v1 grid system)
+*/
+if ( !function_exists( 'wfx_display_head_viewport' ) ) : function wfx_display_head_viewport() { global $wfx; $wfx->head_viewport(); } endif;
 
 /**
 * @since 0.71

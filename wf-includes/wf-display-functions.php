@@ -148,6 +148,24 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
+	 * Inserts viewport meta
+	 *
+	 * @since 2.0
+	 * @updated 2.0
+	 * 
+	 */
+	function wf_head_viewport() {
+
+		// Backpat - dont use for Wonderflux 1 pixel grid
+		// Viewport meta is no bueno if its not responsive
+		if ( $this->wfx_grid_type == 'percent' ) {
+			echo '<meta name="viewport" content="'
+			. esc_attr( apply_filters( 'wflux_head_viewport', 'width=device-width, initial-scale=1' ) )
+			. '">' . "\n";
+		}
+	}
+
+	/**
 	* Builds the title in the head of the template
 	*
 	* @since 0.1

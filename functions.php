@@ -3,21 +3,22 @@
  * 
  * Wonderflux is a free open source, GPLv2 licensed theme framework for professional WordPress theme design.
  *
- * I"M NOT MEANT TO BE ACTIVATED DIRECTLY! I'm made to be used with Wonderflux child themes.
+ * I'M NOT MEANT TO BE ACTIVATED DIRECTLY THANKS!
+ * Just put me in your themes folder - I'm made to be used with Wonderflux child themes.
  * Free example child theme:	https://github.com/Jonnyauk/wonderflux-girder
  *
+ * GETTING STARTED GUIDES
  * Information and license:		README.txt
- *
  * Guide and documentation:		http://wonderflux.com/guide
  * Introduction to Wonderflux:	http://wonderflux.com/guide/doc/introduction
  * Wonderflux child themes:		http://wonderflux.com/guide/doc/child-theme-files
  *
+ * GETTING INVOLVED
  * Bugs/improvements/feedback:	https://github.com/Jonnyauk/Wonderflux/issues
  * Official release downloads:	https://github.com/Jonnyauk/Wonderflux/releases
  * Development code:			https://github.com/Jonnyauk/Wonderflux
  *
  * INDEX OF THIS FILE
- *
  * 1 - Add actions to hooks
  * 2 - Helper functions
  * 3 - Display functions

@@ -1,6 +1,6 @@
 <?php
-/*
- * Core Wonderflux no search results returned content template part
+/**
+ * Wonderflux no search results returned content template part
  *
  * Customise this in your child theme by:
  * - Copying this file to your child theme and customising - it will over-ride this file

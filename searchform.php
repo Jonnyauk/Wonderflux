@@ -1,6 +1,6 @@
 <?php
-/*
- * Core Wonderflux searchform content template
+/**
+ * Wonderflux searchform content template
  *
  * Customise this in your child theme by:
  * - Creating a file with the same name in your child theme - it will over-ride this file

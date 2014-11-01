@@ -1,6 +1,6 @@
 <?php
-/*
- * Core Wonderflux 404 content template part
+/**
+ * Wonderflux 404 content template part
  *
  * Customise this in your child theme by:
  * - Copying this file to your child theme and customising - it will over-ride this file

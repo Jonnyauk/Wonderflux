@@ -1,13 +1,16 @@
 <?php
-/*
- * Core Wonderflux archive template
+/**
+ * Wonderflux archive template
+ *
  * Customise this in your child theme by:
  * - Using hooks and your own functions
  * - Using the 'loop' template part 'loop-archive.php' (location specific) or 'loop.php' (fallback if location specific file not available)
  * - Using the 'loop-content' template part 'loop-content-archive.php' or 'loop-content.php' (fallback if location specific file not available)
  * - Copying this file to your child theme and customising - it will over-ride this file
+ *
  * @package Wonderflux
  */
+
 get_header();
 wfmain_before_wrapper(); //WF display hook
 

@@ -1,6 +1,6 @@
 <?php
-/*
- * Core Wonderflux loop template part
+/**
+ * Wonderflux loop template part
  *
  * Customise this in your child theme by:
  * - Using hooks and your own functions

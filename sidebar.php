@@ -1,11 +1,12 @@
 <?php
 /**
- * The core sidebar include
+ * Wonderflux sidebar content template
+ *
  * This will be over-ridden if you create a file of the same name in your child theme
  *
  * @package Wonderflux
- * @since Wonderflux 0.6
  */
+
 wfsidebar_before_all(); //WF display hook
 
 $hook_where = wfx_info_location();

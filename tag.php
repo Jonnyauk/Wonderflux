@@ -1,13 +1,16 @@
 <?php
-/*
- * Core Wonderflux tag template
+/**
+ * Wonderflux tag template
+ *
  * Customise this in your child theme by:
  * - Using hooks and your own functions
  * - Using the 'loop' template part 'loop-tag.php' (location specific) or 'loop.php' (fallback if location specific file not available)
  * - Using the 'loop-content' template part 'loop-content-tag.php' or 'loop-content.php' (fallback if location specific file not available)
  * - Copying this file to your child theme and customising - it will over-ride this file
+ *
  * @package Wonderflux
  */
+
 get_header();
 wfmain_before_wrapper(); //WF display hook
 

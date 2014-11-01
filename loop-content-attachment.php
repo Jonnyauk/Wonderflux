@@ -1,6 +1,6 @@
 <?php
-/*
- * Core Wonderflux loop content attachment template part
+/**
+ * Wonderflux loop content attachment template part
  *
  * Customise this in your child theme by:
  * - Using hooks and your own functions
@@ -16,9 +16,9 @@
 
 	<div class="entry-content">
 
-		<?php 
+		<?php
 		wfx_get_attachments('type=attachment');
-		the_content();		
+		the_content();
 		?>
 
 	</div>

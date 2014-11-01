@@ -1,6 +1,6 @@
 <?php
-/*
- * Core Wonderflux header content template part
+/**
+ * Wonderflux header content template part
  *
  * Customise this in your child theme by:
  * - Using hooks and your own functions

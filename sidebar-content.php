@@ -1,6 +1,6 @@
 <?php
-/*
- * Core Wonderflux sidebar content template
+/**
+ * Wonderflux sidebar content template part
  *
  * Customise this in your child theme by:
  * - Creating a file with the same name in your child theme - it will over-ride this file

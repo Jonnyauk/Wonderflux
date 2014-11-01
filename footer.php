@@ -1,6 +1,6 @@
 <?php
-/*
- * Core Wonderflux footer template
+/**
+ * Wonderflux footer template
  *
  * Customise this in your child theme by:
  * - Using hooks and your own functions

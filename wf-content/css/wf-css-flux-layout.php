@@ -275,6 +275,8 @@ class wflux_layout {
 				if ( $size == 1 ){
 
 					echo '.' . $this->class_prepend . '1-1'
+					. ', .' . $this->class_prepend . $this->columns_basic
+					. ', .box-full'
 					.' { width:100%; }' . $this->minify;
 
 				} else {

@@ -55,6 +55,7 @@ class wflux_layout {
 	protected $rwd_class_move_right;	// INTERNAL - CSS selector - margin right
 	protected $rwd_column_width;		// INTERNAL - Width of columns (%)
 	protected $rwd_minify;				// INTERNAL - CSS selector - column width blocks
+	protected $content_css;			// WONDERFLUX INPUT - #content CSS depending on sidebar admin option
 
 	function __construct() {
 
@@ -143,6 +144,8 @@ class wflux_layout {
 	function grid_containers() {
 
 		echo '/********** Core containers **********/' . $this->rwd_minify_2 . $this->rwd_minify;
+		// WONDERFLUX SPECIFIC
+		echo ( $this->content_css == 'left' ) ? '#content { float: right; }'. $this->minify : '';
 
 		echo '.container { ' . 'width:' . $this->rwd_width . $this->rwd_width_units . '; margin:0 auto; }'
 		. $this->rwd_minify . '.row { ' . 'width:100%; margin:0 auto; }' . $this->rwd_minify_2 . $this->rwd_minify;

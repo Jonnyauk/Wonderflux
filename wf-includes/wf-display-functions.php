@@ -226,13 +226,13 @@ class wflux_display_code extends wflux_data {
 	*/
 	function wf_head_css_structure() {
 
-		if (WF_THEME_FRAMEWORK_REPLACE == false) {
+		if ( WF_THEME_FRAMEWORK_REPLACE == false ) {
 
 			// Backpat - switch source file for core CSS framework
 			$file = ( $this->wfx_grid_type == 'percent' ) ? 'wf-css-flux-layout-core.css' : 'wf-css-core-structure.css';
 
 			$path = WF_CONTENT_URL . '/css/' . $file;
-			$version = WF_VERSION;
+			$version = null;
 			$id = 'wfx-structure';
 
 			// Allow filtering
@@ -240,7 +240,7 @@ class wflux_display_code extends wflux_data {
 			$version = apply_filters( 'wflux_css_structure_version', $version );
 			$id = apply_filters( 'wflux_css_structure_id', $id );
 
-			wp_register_style( $id , $path,'',$version,'screen, projection' );
+			wp_register_style( $id, $path, '', $version, 'screen, projection' );
 			wp_enqueue_style( $id );
 
 		}

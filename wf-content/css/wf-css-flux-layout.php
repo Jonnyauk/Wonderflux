@@ -146,6 +146,39 @@ class wflux_layout {
 	}
 
 	/**
+	 * Returns a nicer size definition (upto 20)
+	 */
+	function nice_size_def($size) {
+
+		switch ( intval($size) ) {
+			case 1: $definition = 'full'; break;
+			case 2: $definition = 'half'; break;
+			case 3: $definition = 'third'; break;
+			case 4: $definition = 'forth'; break;
+			case 5: $definition = 'fifth'; break;
+			case 6: $definition = 'sixth'; break;
+			case 7: $definition = 'seventh'; break;
+			case 8: $definition = 'eighth'; break;
+			case 9: $definition = 'ninth'; break;
+			case 10: $definition = 'tenth'; break;
+			case 11: $definition = 'eleventh'; break;
+			case 12: $definition = 'twelfth'; break;
+			case 13: $definition = 'thirteenth'; break;
+			case 14: $definition = 'fourteenth'; break;
+			case 15: $definition = 'fifteenth'; break;
+			case 16: $definition = 'sixteenth'; break;
+			case 17: $definition = 'seventeenth'; break;
+			case 18: $definition = 'eightteenth'; break;
+			case 19: $definition = 'nineteenth'; break;
+			case 20: $definition = 'twentieth'; break;
+			default: $definition = false; break;
+		}
+
+		return $definition; break;
+
+	}
+
+	/**
 	 * Outputs main site .container and .row classes
 	 */
 	function grid_containers() {
@@ -211,7 +244,10 @@ class wflux_layout {
 		echo '.row.' . rtrim($this->columns_prepend, '-') . ' div:first-child { margin-left: 0; }' . $this->minify;
 
 		foreach ( $this->columns as $size_r ) {
+
 			if ( intval($size_r) < 101 ) {
+
+				$nice_size_c = $this->nice_size_def($size_r);
 
 				for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {
 
@@ -220,11 +256,13 @@ class wflux_layout {
 						$width = (((100 - ($size_r - 1) * $this->columns_gutter) / $size_r ) * $limit)
 						+ ( $this->columns_gutter * ($limit - 1) );
 
-						echo '.' . $this->columns_prepend . $limit . '-' . $size_r
-						. ' { width:'
-						. $width
-						. '%; }'
-						. $this->minify;
+						echo '.' . $this->columns_prepend . $limit . '-' . $size_r;
+
+						if ( !empty($nice_size_c) ){
+							echo ', .' . $this->columns_prepend . $limit . '-' . $nice_size_c;
+						}
+
+						echo ' { width:' . $width . '%; }' . $this->minify;
 
 					}
 
@@ -292,6 +330,8 @@ class wflux_layout {
 
 			if ( intval($size) >= 1 && intval($size) < 101 ) {
 
+				$nice_size = $this->nice_size_def($size);
+
 				if ( $size == 1 ){
 
 					echo '.' . $this->class_prepend . '1-1'
@@ -305,6 +345,11 @@ class wflux_layout {
 
 						echo '.' . $this->class_prepend . $limit . '-' . $size;
 						echo ( $size == $this->columns_basic ) ? ', .' . $this->class_prepend . $limit : '';
+
+						if ( !empty($nice_size) ){
+							echo ', .' . $this->class_prepend . $limit . '-' . $nice_size;
+						}
+
 						echo ' { width:' . $limit * ( 100 / $size ) . '%; }' . $this->minify;
 
 					}

@@ -49,6 +49,7 @@ class wflux_layout {
 	protected $mq_box_sizes;		// ARRAY - Media query box size loops
 	protected $mq_column_sizes;		// ARRAY - Media query column size loops
 	protected $content_css;			// WONDERFLUX INPUT - #content CSS depending on sidebar admin option
+	protected $position;			// WONDERFLUX INPUT - .container position (sets margin)
 
 	protected $class_space_left;	// INTERNAL - CSS selector - padding left
 	protected $class_space_right;	// INTERNAL - CSS selector - padding right
@@ -74,6 +75,9 @@ class wflux_layout {
 
 		// WONDERFLUX SPECIFIC
 		$this->content_css = ( isset($_GET['sbp']) && $_GET['sbp'] == 'right' ) ? false : 'left';
+
+		$position_accept = array('left','middle','right');
+		$this->position = ( isset($_GET['p']) && in_array($_GET['p'], $position_accept) ) ? $_GET['p'] : 'middle';
 
 		// Loops of output
 		$this->relative = array(1,2,4,5,8,10);
@@ -148,7 +152,23 @@ class wflux_layout {
 
 		echo '/********** Core containers **********/' . $this->minify_2 . $this->minify;
 
-		echo '.container { ' . 'width:' . $this->width . $this->width_units . '; margin:0 auto; }' . $this->minify
+		//Setup margin to position main containers
+		switch ($this->position) {
+
+			case 'left':
+				$margin = '0 auto 0 0';
+			break;
+
+			case 'right':
+				$margin = '0 0 0 auto';
+			break;
+
+			default:
+				$margin = '0 auto';
+			break;
+		}
+
+		echo '.container { ' . 'width:' . $this->width . $this->width_units . '; margin:' . $margin . '; }' . $this->minify
 		. '.row { ' . 'width:100%; margin:0 auto; }' . $this->minify;
 		// WONDERFLUX SPECIFIC
 		echo ( $this->content_css == 'left' ) ? '#content { float: right; }'. $this->minify : '';

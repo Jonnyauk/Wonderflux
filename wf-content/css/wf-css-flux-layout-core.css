@@ -52,9 +52,8 @@ html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: 
  */
 .clearfix:after, .container:after, .row:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
 .clearfix, .container, .row { display: block; }
-.clear { clear: both; }
-.clearfix:before, .clearfix:after { content:""; display:table; }
-.clearfix:after { clear:both; }
+.clear, .clearfix:after, .container:after, .row:after { clear:both; }
+.clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after { content:""; display:table; }
 
 /* Viewport height */
 

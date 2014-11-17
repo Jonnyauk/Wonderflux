@@ -188,7 +188,7 @@ class wflux_display_code extends wflux_data {
 		if ( $this->wfx_grid_type == 'percent' ) {
 			echo '<meta name="viewport" content="'
 			. esc_attr( apply_filters( 'wflux_head_viewport', 'width=device-width, height=device-height, initial-scale=1' ) )
-			. '">' . "\n";
+			. '" />' . "\n";
 		}
 	}
 

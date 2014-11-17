@@ -23,31 +23,59 @@ class wflux_display_code extends wflux_data {
 	* Builds the start of the head with doc type declaration
 	*
 	* @since 0.931
-	* @updated 1.2
+	* @updated 2.0
 	*
 	*/
 	function wf_head_open() {
-
 
 		$doctype = $this->wfx_doc_type;
 		$lang = $this->wfx_doc_lang;
 		$content = 'html';
 
-
 		// Language code
-		if ($lang !='en' || strlen( trim($lang) ) < 6): $lang_output = sanitize_key($lang);
+		if ( $lang !='en' || strlen( trim($lang) ) < 6 ): $lang_output = sanitize_key($lang);
 		else: $lang_output = 'en';
 		endif;
 
+		$lang_extra = ( $doctype == 'XHTML/RDFa' ) ? '' : 'lang="'.$lang_output.'" ';
+
+		$this->xml_namespace_build();
+		$namespaces = '';
+		foreach ( $this->xml_namespaces as $key=>$value ) {
+			$namespaces .= $value . ' ';
+		}
+
 		// Document type
 		switch ($doctype) {
-			case 'transitional': $doctype_output = 'XHTML 1.0 Transitional'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-transitional'; break;
-			case 'strict': $doctype_output = 'XHTML 1.0 Strict'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-strict'; break;
-			case 'frameset': $doctype_output = 'XHTML 1.0 Frameset'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-frameset'; break;
-			case '1.1': $doctype_output = 'XHTML 1.1'; $doctype_link_output = 'TR/xhtml11/DTD/xhtml11'; break;
-			case '1.1basic': $doctype_output = 'XHTML Basic 1.1'; $doctype_link_output = 'TR/xhtml-basic/xhtml-basic11'; break;
-			case 'XHTML/RDFa': $doctype_output = 'XHTML+RDFa 1.0'; $doctype_link_output = 'MarkUp/DTD/xhtml-rdfa-1'; break;
-			default: $doctype_output = '1.0 Transitional'; $doctype_link_output = 'TR/xhtml1/DTD/xhtml1-tansitional'; break;
+
+			case 'transitional':
+				$doctype_output = 'XHTML 1.0 Transitional';
+				$doctype_link_output = 'TR/xhtml1/DTD/xhtml1-transitional'; break;
+			case 'strict':
+				$doctype_output = 'XHTML 1.0 Strict';
+				$doctype_link_output = 'TR/xhtml1/DTD/xhtml1-strict';
+			break;
+			case 'frameset':
+				$doctype_output = 'XHTML 1.0 Frameset';
+				$doctype_link_output = 'TR/xhtml1/DTD/xhtml1-frameset';
+			break;
+				case '1.1':
+				$doctype_output = 'XHTML 1.1';
+				$doctype_link_output = 'TR/xhtml11/DTD/xhtml11';
+			break;
+			case '1.1basic':
+				$doctype_output = 'XHTML Basic 1.1';
+				$doctype_link_output = 'TR/xhtml-basic/xhtml-basic11';
+			break;
+			case 'XHTML/RDFa':
+				$doctype_output = 'XHTML+RDFa 1.0';
+				$doctype_link_output = 'MarkUp/DTD/xhtml-rdfa-1';
+			break;
+			default:
+				$doctype_output = '1.0 Transitional';
+				$doctype_link_output = 'TR/xhtml1/DTD/xhtml1-tansitional';
+			break;
+
 		}
 
 		if ($doctype == 'html5'):
@@ -61,19 +89,18 @@ class wflux_display_code extends wflux_data {
 				$content_output = sanitize_key($content, '');
 			else: $content_output = 'html'; endif;
 
-			$this->xml_namespace_build();
-			$namespaces = '';
-			foreach ( $this->xml_namespaces as $key=>$value ) { $namespaces .= $value . ' '; }
-
-			$lang_extra = ( $doctype == 'XHTML/RDFa' ) ? '' : 'lang="'.$lang_output.'" ';
-			$output = '<!DOCTYPE ' . 'html PUBLIC "-//W3C//DTD ' . $doctype_output . '//' . strtoupper($lang_output) . '" "http://www.w3.org/' . $doctype_link_output . '.dtd">';
+			$output = '<!DOCTYPE ' . 'html PUBLIC "-//W3C//DTD ' . $doctype_output . '//'
+			. strtoupper($lang_output) . '" "http://www.w3.org/' . $doctype_link_output . '.dtd">';
 
 		endif;
+
+		// Add data for $output already built & cleaned
+		echo $output;
 
 		$this->lang_attributes = wp_kses( apply_filters('wflux_language_attributes', 'xml:lang="'.$lang_output.'" ' . $lang_extra . $namespaces), '' );
 
 		// Filter core WordPress language attributes
-		add_filter('language_attributes', array($this, 'wf_lang_attributes_filter'));
+		add_filter( 'language_attributes', array($this, 'wf_lang_attributes_filter') );
 
 	}
 

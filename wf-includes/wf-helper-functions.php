@@ -727,11 +727,9 @@ class wflux_helper {
 	 * Only displays for top level site admin by default
 	 *
 	 * @since 1.1
-	 * @lastupdate 1.1
+	 * @lastupdate 2.0
 	 *
-	 * @param string $input The content you wish to debug - a variable or function. Default = ''
-	 *        NOTE: Use string 'wp_query' to access WordPress $wp_query object
-	 *        NOTE: Use string 'wp_posts' to access WordPress $posts object
+	 * @param string $input The content you wish to debug - a variable or function.
 	 * @param string $admin_only Only display to top level site admin not other users. Default=true
 	 * @param bool $role Only display to supplied WordPress role. Default = ''
 	 * @param integer $id Only display to supplied user ID. Default = ''
@@ -756,11 +754,19 @@ class wflux_helper {
 
 			switch ( $input ) {
 				case 'wp_query':
-					$input_type = 'object - WordPress core $wp_query';
+					$input_type = 'WordPress core $wp_query';
 				break;
 
 				case 'wp_posts':
-					$input_type = 'object - WordPress core $posts';
+					$input_type = 'WordPress core $posts';
+				break;
+
+				case 'wp_queried':
+					$input_type = 'Currently queried object';
+				break;
+
+				case 'wp_all_taxonomies':
+					$input_type = 'All taxonomies';
 				break;
 
 				default:
@@ -774,9 +780,9 @@ class wflux_helper {
 			} elseif ( $input === 'wp_posts' ) {
 				global $posts;
 				$input = $posts;
-			} elseif ( $input === 'get_queried' ) {
+			} elseif ( $input === 'wp_queried' ) {
 				$input = get_queried_object();
-			} elseif ( $input === 'wp_taxonomies' ) {
+			} elseif ( $input === 'wp_all_taxonomies' ) {
 				global $wp_taxonomies;
 				$input = $wp_taxonomies;
 			}

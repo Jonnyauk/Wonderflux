@@ -791,7 +791,7 @@ class wflux_helper {
 			if (is_array($input) || is_object($input)) {
 	   			$o .= '<pre>' . print_r($input,true) . '</pre>';
 			} else {
-				$o .= '<p>' . $input . '</p>';
+				$o .= '<p style="color:#770000;">' . $input . '</p>';
 			}
 		}
 		$o .= '</div>';

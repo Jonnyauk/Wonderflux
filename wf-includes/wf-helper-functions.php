@@ -730,11 +730,12 @@ class wflux_helper {
 	 * @lastupdate 2.0
 	 *
 	 * @param string $input The content you wish to debug - a variable or function.
-	 * @param string $admin_only Only display to top level site admin not other users. Default=true
-	 * @param bool $role Only display to supplied WordPress role. Default = ''
-	 * @param integer $id Only display to supplied user ID. Default = ''
+	 * @param string $label Added to top of output to help identify if required.
+	 * @param string $admin_only Only display to top level site admin not other users.
+	 * @param bool $role Only display to supplied WordPress role.
+	 * @param integer $id Only display to supplied user ID.
 	 */
-	function wf_debug( $input='', $admin_only=true, $role=false, $id=false ) {
+	function wf_debug( $input='', $label='', $admin_only=true, $role=false, $id=false ) {
 
 		// Check against top level admin
 		if ( $admin_only && !is_super_admin() )
@@ -747,9 +748,9 @@ class wflux_helper {
 			return;
 
 		$o = '<div style="color:#000; padding:5px; overflow:auto; border: 4px solid #ff0a0a; background-color: #fec9c9;" class="wfx_debug_output">';
-
+		$o .= ( !empty($label) ) ? '<pre style="color:#ff0a0a;"><strong>' . esc_html($label) . '</strong></pre>' : '';
 		if ( empty($input) ) {
-			$o .= '<pre>' . esc_attr__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
+			$o .= '<pre>' . esc_html__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
 		} else {
 
 			switch ( $input ) {
@@ -787,7 +788,7 @@ class wflux_helper {
 				$input = $wp_taxonomies;
 			}
 
-			$o .= '<pre><strong>' . esc_attr__('Debug output for data type:', 'wonderflux') . '</strong> ' . $input_type . '</pre>';
+			$o .= '<pre><strong>' . esc_html__('Debug output for data type:', 'wonderflux') . '</strong> ' . $input_type . '</pre>';
 			if (is_array($input) || is_object($input)) {
 	   			$o .= '<pre>' . print_r($input,true) . '</pre>';
 			} else {

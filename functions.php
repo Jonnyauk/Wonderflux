@@ -231,10 +231,10 @@ if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; re
 
 /**
  * @since 1.1
- * @updated 1.1
+ * @updated 2.0
  * Displays input in a nicer way for debugging
  */
-if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$admin_only=true,$role=false,$id=false) { global $wfx_helper; $wfx_helper->debug($input,$admin_only,$role,$id); } endif;
+if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$label='',$admin_only=true,$role=false,$id=false) { global $wfx_helper; $wfx_helper->debug($input,$label,$admin_only,$role,$id); } endif;
 
 /**
  * @since 1.1

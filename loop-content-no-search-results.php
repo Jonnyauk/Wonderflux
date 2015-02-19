@@ -15,7 +15,7 @@ $search_val = trim(get_search_query());
 	<h1 class="entry-title">
 	<?php
 	if (!empty($search_val))
-		printf( esc_html__( 'No search results found for: %s', 'wondeflux' ), '<span>' . $search_val . '</span>' );
+		printf( esc_html__( 'No search results found for: %s', 'wonderflux' ), '<span>' . $search_val . '</span>' );
 	else
 		_e( 'No search value entered', 'wonderflux' );
 	?>

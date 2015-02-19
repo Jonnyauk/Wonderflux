@@ -12,7 +12,7 @@
 ?>
 <div id="post-<?php the_ID(); ?>" <?php wfx_post_class(''); ?>>
 
-	<h2 class="entry-title"><?php the_title(); ?></h2>
+	<h1 class="entry-title"><?php the_title(); ?></h1>
 
 	<div class="entry-content">
 

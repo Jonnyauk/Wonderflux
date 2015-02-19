@@ -12,14 +12,14 @@ $search_val = trim(get_search_query());
 ?>
 <div id="post-0" class="post-0 type-error format-standard hentry single-post paged-return-0 first-in-loop last-in-loop">
 
-	<h2 class="entry-title">
+	<h1 class="entry-title">
 	<?php
 	if (!empty($search_val))
 		printf( esc_html__( 'No search results found for: %s', 'wondeflux' ), '<span>' . $search_val . '</span>' );
 	else
 		_e( 'No search value entered', 'wonderflux' );
 	?>
-	</h2>
+	</h1>
 
 	<div class="entry-content">
 		<p>

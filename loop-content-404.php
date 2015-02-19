@@ -10,7 +10,7 @@
 ?>
 <div id="post-0" class="post-0 type-error format-standard hentry single-post paged-return-0 first-in-loop last-in-loop">
 
-	<h2 class="entry-title"><?php _e( 'Sorry', 'wonderflux' ); ?></h2>
+	<h1 class="entry-title"><?php _e( 'Sorry', 'wonderflux' ); ?></h1>
 
 	<div class="entry-content">
 

@@ -748,7 +748,7 @@ if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links(
 /**
  * @since 1.2
  * @updated 1.2
- * Adds files currently in use to the Wondeflux admin bar menu
+ * Adds files currently in use to the Wonderflux admin bar menu
  */
 if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_files_info() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_files_info(); } endif;
 

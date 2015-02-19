@@ -260,7 +260,7 @@ updates in the future. One of the main advantages of using a theme framework
 is the ability to update the core framework to quickly and easily support
 future versions of WordPress and improve performance and functionality.
 
-**There are lots of ways to use Wondeflux from your child theme:**
+**There are lots of ways to use Wonderflux from your child theme:**
 
 1.	Filter the layout values to change the layout configuration
 	at any time (including underlying CSS grid system).

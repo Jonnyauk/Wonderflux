@@ -1058,7 +1058,7 @@ class wflux_wp_core {
 
 
 	/**
-	 * Adds files currently in use to the Wondeflux admin bar menu
+	 * Adds files currently in use to the Wonderflux admin bar menu
 	 * @since 1.2
 	 * @lastupdate 1.2
 	 */

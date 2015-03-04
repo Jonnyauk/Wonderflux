@@ -245,6 +245,9 @@ With the current CSS grid system, you MUST add the parameter *last=Y* to the
 last div in a row, This will hopefully not be required with the new responsive
 grid system in development - *more soon!*
 
+**If you are using Wonderflux v2 and the responsive grid, you do not need 
+to use wfx_css() - documentation coming soon once I have it complete!**
+
 ### More advanced development
 
 The entire grid configuration and all wrapper output can be filtered and

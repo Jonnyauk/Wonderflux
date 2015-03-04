@@ -53,7 +53,7 @@ complete in-line code documentation in the wf-includes directory files for
 your reference if you dig around.
 
 Please note the documentation site is somewhat out of date - I've fallen behind
-a little on working on this unfortunately, due to time contraints. However, once
+a little on working on this unfortunately, due to time constraints. However, once
 I've completed Wonderflux v2.0 I'll be turning my attention back to documentation!
 
 * [All documentation](http://wonderflux.com/guide)
@@ -297,4 +297,4 @@ to find out more. Branches and patches are probably the best way to contribute, 
 if you're not able to do this, do not worry - you can still send over your ideas,
 just [create a new issue on GitHub](https://github.com/Jonnyauk/Wonderflux/issues)
 and explain how you would like to see Wonderflux improved... and I'll do my best to
-accomodate it thanks!
+accommodate it thanks!

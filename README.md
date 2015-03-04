@@ -36,7 +36,7 @@ any a fee, subscription or credit required (but it would be appreciated!)
 
 **Anyone is welcome to suggest ideas or code on GitHub**, the goal is to
 develop a fantastic professional theme framework for everyone to use, for free,
-to make amazing WordPress sites!
+to make amazing WordPress sites! I appreciate any comments or patches - big or small!
 
 * [Project development home](https://github.com/Jonnyauk/Wonderflux)
 * [Ideas and bug reports](https://github.com/Jonnyauk/Wonderflux/issues)

@@ -367,6 +367,104 @@ class wflux_layout {
 	}
 
 	/**
+	 * Media queries output for general rules
+	 * 4 definitions:
+	 * rwd-tiny Tiny screens - small portrait phones
+	 * rwd-small Small screens - Lower spec landscape phones and some portrait tablets
+	 * rwd-medium Medium screens - Standard computers and landscape tablets
+	 * rwd-large Large screens - Swanky hi-res screens
+	 */
+	function media_queries_visibility() {
+
+		// Array of just definitions - used for -hide-except rules
+		$all_defs = array();
+
+		foreach ( $this->mq_config as $size ) {
+
+			$all_defs[] = $size['def']; // Used to exclude in hider media queries
+
+			if ( isset($size['min']) ){
+				$sizes_min[] = $size['min']; // Used to exclude in hider media queries
+			}
+
+			if ( isset($size['max']) ){
+				$sizes_max[] = $size['max']; // Used to exclude in hider media queries
+			}
+			
+		}
+
+		$all_defs_count = count( $all_defs );
+
+		echo '/********** Visibility Media Queries **********/' . $this->minify_2 . $this->minify;
+
+		$sizes_count = 0;
+
+		foreach ( $this->mq_config as $size ) {
+
+			$size_queries = '';
+
+			$units = ( !$size[units] && $size[units] == 'px' ) ? 'px' : substr( $size[units], 0, 2 );
+			//TODO: Extra checks here - need to ensure proper min/max figures
+			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and (min-width:' . $size[min] . $units . ')';
+			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and (max-width:' . $size[max] . $units . ')';
+
+			// Setup size definition string
+			if ( $sizes_count == 0 ) {
+				$size_queries = 'and (max-width:' . min( array_merge($sizes_min, $sizes_max) ) . $units . ')';
+			} else {
+				$size_queries = ( !empty($min) ) ? $min : $max;
+			}
+
+			// Open media query
+			echo '/* ' . $size['def'] . ': ' . $size['note'] . ' */' . $this->minify
+			. '@media screen ' . $size_queries . ' {' . $this->minify;
+
+			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
+				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
+				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
+				echo '.' . $all_defs[$limit] . '-min-show';
+				echo ( $limit == $sizes_count ) ? ' ' : ', ';
+				echo ( $limit == $sizes_count ) ? '{ display:block; }' . "\n" : '';
+
+			}
+
+			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
+				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
+				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
+				echo '.' . $all_defs[$limit] . '-min-hide';
+				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
+				echo ( $limit == ($sizes_count+1) ) ? '{ display:block; }' . "\n" : '';
+
+			}
+
+			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
+				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
+				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
+				echo '.' . $all_defs[$limit] . '-min-show';
+				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
+				echo ( $limit == ($sizes_count+1) ) ? '{ display:none; }' . "\n" : '';
+
+			}
+
+			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
+				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
+				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
+				echo '.' . $all_defs[$limit] . '-min-hide';
+				echo ( $limit == $sizes_count ) ? ' ' : ', ';
+				echo ( $limit == $sizes_count ) ? '{ display:none; }' . "\n" : '';
+
+			}
+
+			// Close media query
+			echo '}' . $this->minify_2 . $this->minify;
+
+			$sizes_count++;
+
+		}
+
+	}
+
+	/**
 	 * Media queries output for different sized screens
 	 * 4 definitions:
 	 * rwd-tiny Tiny screens - small portrait phones

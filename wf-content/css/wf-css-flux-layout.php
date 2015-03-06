@@ -23,13 +23,14 @@
 
 /* DO IT! Just for testing and development */
 $wf_grid = new wflux_layout;
-$wf_grid->grid_containers();
-//$wf_grid->grid_blocks();
-//$wf_grid->grid_space_loops();
-//$wf_grid->grid_push_loops();
-$wf_grid->grid_relative_loops();
-$wf_grid->grid_columns();
-$wf_grid->grid_media_queries();
+$wf_grid->containers();
+//$wf_grid->blocks();
+//$wf_grid->space_loops();
+//$wf_grid->push_loops();
+$wf_grid->relative_loops();
+$wf_grid->columns();
+$wf_grid->media_queries_visibility();
+$wf_grid->media_queries();
 
 /**
  * Percent based CSS and media query layout generator
@@ -181,7 +182,7 @@ class wflux_layout {
 	/**
 	 * Outputs main site .container and .row classes
 	 */
-	function grid_containers() {
+	function containers() {
 
 		echo '/********** Core containers **********/' . $this->minify_2 . $this->minify;
 
@@ -214,7 +215,7 @@ class wflux_layout {
 	 * Outputs percent widths for blocks
 	 * REMOVED FOR THE MOMENT - avoid alternative CSS definitions and repeated code
 	 */
-	//function grid_blocks() {
+	//function blocks() {
 
 		//echo '/********** Grid boxes **********/' . $this->minify_2;
 
@@ -232,7 +233,7 @@ class wflux_layout {
 	/**
 	 * Outputs columns rules
 	 */
-	function grid_columns() {
+	function columns() {
 
 		echo '/********** Traditional columns **********/' . $this->minify_2 . $this->minify;
 
@@ -280,7 +281,7 @@ class wflux_layout {
 	/**
 	 * Outputs margin + padding rules
 	 */
-	function grid_mover( $type, $definition, $direction ) {
+	function mover( $type, $definition, $direction ) {
 
 		$negpos = ( $type == 'push' ) ? '-' : '';
 		$css_type = ( $type == 'push' ) ? 'margin' : 'padding';
@@ -295,18 +296,18 @@ class wflux_layout {
 
 	}
 
-	function grid_space_loops() {
+	function space_loops() {
 
-		$this->grid_mover( 'space', $this->class_space_left, 'l' );
-		$this->grid_mover( 'space', $this->class_space_right, 'r' );
+		$this->mover( 'space', $this->class_space_left, 'l' );
+		$this->mover( 'space', $this->class_space_right, 'r' );
 		echo $this->minify;
 
 	}
 
-	function grid_push_loops() {
+	function push_loops() {
 
-		$this->grid_mover( 'push', $this->class_move_left, 'l' );
-		$this->grid_mover( 'push', $this->class_move_right, 'r' );
+		$this->mover( 'push', $this->class_move_left, 'l' );
+		$this->mover( 'push', $this->class_move_right, 'r' );
 		echo $this->minify;
 
 	}
@@ -315,7 +316,7 @@ class wflux_layout {
 	 * Outputs relative sized CSS
 	 * $sizes = array of integers representing what sizes to output
 	 */
-	function grid_relative_loops() {
+	function relative_loops() {
 
 		if ( !is_array($this->relative) ) return;
 
@@ -472,12 +473,13 @@ class wflux_layout {
 	 * rwd-medium Medium screens - Standard computers and landscape tablets
 	 * rwd-large Large screens - Swanky hi-res screens
 	 */
-	function grid_media_queries() {
+	function media_queries() {
 
 		// Array of just definitions - used for -hide-except rules
 		$all_defs = array();
 
 		foreach ( $this->mq_config as $size ) {
+
 			$all_defs[] = $size['def']; // Used to exclude in hider media queries
 
 			if ( isset($size['min']) ){
@@ -492,7 +494,7 @@ class wflux_layout {
 
 		$all_defs_count = count( $all_defs );
 
-		echo '/********** Media Queries **********/' . $this->minify_2 . $this->minify;
+		echo '/********** Layout Media Queries **********/' . $this->minify_2 . $this->minify;
 
 		// CSS attribute wildcard selectors
 		$w_count = 2;
@@ -507,8 +509,8 @@ class wflux_layout {
 		foreach ( $this->mq_config as $size ) {
 
 			$units = ( !$size[units] && $size[units] == 'px' ) ? 'px' : substr( $size[units], 0, 2 );
-			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and ( min-width:' . $size[min] . $units . ' )';
-			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and ( max-width:' . $size[max] . $units . ' )';
+			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and (min-width:' . $size[min] . $units . ')';
+			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and (max-width:' . $size[max] . $units . ')';
 			$size_queries = ( !empty($min) && !empty($max) ) ? $min . ' ' . $max : $min . $max;
 
 			// Open media query

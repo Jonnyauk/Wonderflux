@@ -381,8 +381,15 @@ class wflux_layout {
 
 		foreach ( $this->mq_config as $size ) {
 			$all_defs[] = $size['def']; // Used to exclude in hider media queries
-			$sizes_min[] = $size['min']; // Used to exclude in hider media queries
-			$sizes_max[] = $size['max']; // Used to exclude in hider media queries
+
+			if ( isset($size['min']) ){
+				$sizes_min[] = $size['min']; // Used to exclude in hider media queries
+			}
+
+			if ( isset($size['max']) ){
+				$sizes_max[] = $size['max']; // Used to exclude in hider media queries
+			}
+			
 		}
 
 		$all_defs_count = count( $all_defs );

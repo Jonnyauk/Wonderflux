@@ -24,6 +24,11 @@ html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: 
 
 *, *:before, *:after { box-sizing: inherit; }
 
+/* Override normalise top margin */
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0;
+}
+
 /*** Containers and alignment ***/
 
 .pad-tiny, .pad-small, .pad-medium, .pad-large { margin: 0; }

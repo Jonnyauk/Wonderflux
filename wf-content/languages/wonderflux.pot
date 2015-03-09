@@ -1,20 +1,19 @@
 # This file is distributed under the same license as the Wonderflux theme framework - please refer to readme.txt
 msgid ""
 msgstr ""
-"Project-Id-Version: Wonderflux\n"
-"Report-Msgid-Bugs-To: https://github.com/Jonnyauk/Wonderflux/issueslist\n"
-"POT-Creation-Date: 2014-09-15 00:06-0000\n"
-"PO-Revision-Date: 2014-09-15 00:06-0000\n"
+"Project-Id-Version: Wonderflux v2\n"
+"POT-Creation-Date: 2015-03-09 15:45-0000\n"
+"PO-Revision-Date: 2015-03-09 15:46-0000\n"
 "Last-Translator: Jonny Allbut [Jonnyauk] <jonny@wonderflux.com>\n"
-"Language-Team: Wonderflux Development Team <devteam@wonderflux.com>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-KeywordsList: _;__;esc_attr__;esc_attr_e;_e\n"
+"X-Generator: Poedit 1.7.4\n"
 "X-Poedit-Basepath: ../\n"
-"X-Generator: Poedit 1.6.8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: _;__;esc_attr__;esc_attr_e;_e\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../buddypress/activity/activity-loop.php:28
@@ -1046,7 +1045,7 @@ msgstr ""
 msgid "%s's Profile"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:15 ../comments.php:93
+#: ../buddypress/members/single/profile/profile-wp.php:15 ../comments.php:95
 msgid "Name"
 msgstr ""
 
@@ -1054,7 +1053,7 @@ msgstr ""
 msgid "About Me"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:33 ../comments.php:97
+#: ../buddypress/members/single/profile/profile-wp.php:33 ../comments.php:99
 msgid "Website"
 msgstr ""
 
@@ -1132,40 +1131,40 @@ msgstr ""
 msgid "Send a notification by email when:"
 msgstr ""
 
-#: ../comments.php:21
+#: ../comments.php:23
 msgid ""
 "This post is password protected. Enter the password to view any comments."
 msgstr ""
 
-#: ../comments.php:44 ../comments.php:65
+#: ../comments.php:46 ../comments.php:67
 msgid "<span class=\"meta-nav\">&larr;</span> Older Comments"
 msgstr ""
 
-#: ../comments.php:45 ../comments.php:66
+#: ../comments.php:47 ../comments.php:68
 msgid "Newer Comments <span class=\"meta-nav\">&rarr;</span>"
 msgstr ""
 
-#: ../comments.php:95
+#: ../comments.php:97
 msgid "Email"
 msgstr ""
 
-#: ../comments.php:106
+#: ../comments.php:108
 msgid "Your comment"
 msgstr ""
 
-#: ../functions.php:753
+#: ../functions.php:773
 msgid "Above sidebar"
 msgstr ""
 
-#: ../functions.php:754
+#: ../functions.php:774
 msgid "Drag widgets into here to include them above the sidebar on your site."
 msgstr ""
 
-#: ../functions.php:759
+#: ../functions.php:779
 msgid "Below sidebar"
 msgstr ""
 
-#: ../functions.php:760
+#: ../functions.php:780
 msgid "Drag widgets into here to include them below the sidebar on your site."
 msgstr ""
 
@@ -1209,66 +1208,56 @@ msgid ""
 "between different sites by following the instructions below."
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-core.php:8
+#: ../wf-includes/admin-pages/wf-page-core.php:7
 msgid "Welcome to Wonderflux"
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-core.php:11
+#: ../wf-includes/admin-pages/wf-page-core.php:10
 msgid ""
 "Wonderflux is an advanced, open source theme framework (sometimes known as a "
 "parent theme). "
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-core.php:14
+#: ../wf-includes/admin-pages/wf-page-core.php:13
 msgid ""
 "It gives you a reliable and easy to update platform for creating your own "
 "bespoke Wonderflux child themes for WordPress."
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-core.php:16
+#: ../wf-includes/admin-pages/wf-page-core.php:15
 msgid ""
 "Explore the links in the help and support section below to find out more."
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-core.php:26
+#: ../wf-includes/admin-pages/wf-page-core.php:25
 msgid "Current Wonderflux Child Theme"
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-core.php:35
+#: ../wf-includes/admin-pages/wf-page-core.php:34
 #, php-format
 msgid "%1$s %2$s by %3$s"
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-core.php:37
+#: ../wf-includes/admin-pages/wf-page-core.php:36
 msgid "The theme files are located in"
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-style.php:3
+#: ../wf-includes/admin-pages/wf-page-style.php:5
 msgid "Theme layout configuration"
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-style.php:6
+#: ../wf-includes/admin-pages/wf-page-style.php:10
 msgid ""
-"It is currently possible to set layout sizes that do not work correctly in "
-"the layout cloumn/grid settings. For suggested size configurations, click on "
-"the help tab top right."
+"Configure dynamic CSS layout rules (note that filters over-ride these "
+"options.)"
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-style.php:9
-msgid ""
-"NOTE: For suggested size configurations, click on the help tab top right."
+#: ../wf-includes/admin-pages/wf-page-style.php:20
+msgid "Save core configuration"
 msgstr ""
 
-#: ../wf-includes/admin-pages/wf-page-style.php:12
-msgid ""
-"You can filter most of these values in your child theme, allowing finer "
-"grain control (for instance, conditional on page/type of view). Filters will "
-"over-ride any values set here."
-msgstr ""
-
-#: ../wf-includes/admin-pages/wf-page-style.php:16
-#: ../wf-includes/admin-pages/wf-page-style.php:26
-msgid "Save Template settings"
+#: ../wf-includes/admin-pages/wf-page-style.php:30
+msgid "Save settings"
 msgstr ""
 
 #: ../wf-includes/admin-pages/wf-page-system.php:5
@@ -1306,328 +1295,337 @@ msgstr ""
 msgid "Wonderflux URL path: %s"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:31
+#: ../wf-includes/wf-admin-functions.php:34
 msgid "Wonderflux main options"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:31
-#: ../wf-includes/wf-helper-functions.php:935
-#: ../wf-includes/wf-helper-functions.php:954
+#: ../wf-includes/wf-admin-functions.php:34
+#: ../wf-includes/wf-helper-functions.php:1044
 msgid "Wonderflux"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:32
+#: ../wf-includes/wf-admin-functions.php:35
 msgid "Wonderflux Style Lab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:32
+#: ../wf-includes/wf-admin-functions.php:35
 msgid "Style Lab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:33
-#: ../wf-includes/wf-admin-functions.php:43
+#: ../wf-includes/wf-admin-functions.php:36
+#: ../wf-includes/wf-admin-functions.php:46
 msgid "Wonderflux Advanced"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:33
-#: ../wf-includes/wf-admin-functions.php:87
+#: ../wf-includes/wf-admin-functions.php:36
+#: ../wf-includes/wf-admin-functions.php:90
 msgid "Advanced"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:34
-#: ../wf-includes/wf-admin-functions.php:44
+#: ../wf-includes/wf-admin-functions.php:37
+#: ../wf-includes/wf-admin-functions.php:47
 msgid "Wonderflux System Information"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:34
+#: ../wf-includes/wf-admin-functions.php:37
 msgid "System Information"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:35
-#: ../wf-includes/wf-admin-functions.php:45
+#: ../wf-includes/wf-admin-functions.php:38
+#: ../wf-includes/wf-admin-functions.php:48
 msgid "Wonderflux Options Backup"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:35
+#: ../wf-includes/wf-admin-functions.php:38
 msgid "Options Backup"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:41
-#: ../wf-includes/wf-admin-functions.php:79
+#: ../wf-includes/wf-admin-functions.php:44
+#: ../wf-includes/wf-admin-functions.php:82
 msgid "Wonderflux Home"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:42
-#: ../wf-includes/wf-helper-functions.php:933
-#: ../wf-includes/wf-helper-functions.php:952
+#: ../wf-includes/wf-admin-functions.php:45
+#: ../wf-includes/wf-helper-functions.php:1042
 msgid "Wonderflux Stylelab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:83
-#: ../wf-includes/wf-helper-functions.php:937
-#: ../wf-includes/wf-helper-functions.php:956
+#: ../wf-includes/wf-admin-functions.php:86
+#: ../wf-includes/wf-helper-functions.php:1046
 msgid "Stylelab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:91
+#: ../wf-includes/wf-admin-functions.php:94
 msgid "System"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:95
+#: ../wf-includes/wf-admin-functions.php:98
 msgid "Backup/Restore"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:100
+#: ../wf-includes/wf-admin-functions.php:103
 msgid "Settings updated successfully."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:101
+#: ../wf-includes/wf-admin-functions.php:104
 msgid ""
 "Import aborted - no settings changed. Sorry - looks like thats the wrong "
 "file you tried to import."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:102
+#: ../wf-includes/wf-admin-functions.php:105
 msgid "Import complete - Wonderflux theme settings restored."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:115
+#: ../wf-includes/wf-admin-functions.php:125
 msgid "Ooops, you could be doing so much more with Wonderflux!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:116
+#: ../wf-includes/wf-admin-functions.php:126
 msgid ""
 "Wonderflux is a theme framework. It can be directly activated like this and "
 "will work perfectly - but you are really missing out on all the cool stuff "
 "Wonderflux can do!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:118
+#: ../wf-includes/wf-admin-functions.php:128
 msgid "To get the most out of Wonderflux, you should take a quick read over"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:120
+#: ../wf-includes/wf-admin-functions.php:130
 msgid "Read the Wonderflux overview guide"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:122
+#: ../wf-includes/wf-admin-functions.php:132
 msgid "the Wonderflux introduction"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:124
+#: ../wf-includes/wf-admin-functions.php:134
 msgid ""
 "- also be sure to check out the documentation links below to learn about how "
 "to use the various aspects of Wonderflux."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:128
+#: ../wf-includes/wf-admin-functions.php:138
 msgid "You can also"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:130
+#: ../wf-includes/wf-admin-functions.php:140
 msgid "Download the free Girder Wonderflux child theme"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:132
+#: ../wf-includes/wf-admin-functions.php:142
 msgid "download the free example Wonderflux child theme call Girder"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:134
+#: ../wf-includes/wf-admin-functions.php:144
 msgid ""
 " - take a look at the layout code and especially the theme functions.php "
 "file for references on using Wonderflux."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:145
+#: ../wf-includes/wf-admin-functions.php:155
 msgid "Help and support"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:148
+#: ../wf-includes/wf-admin-functions.php:158
 msgid "Visit the Wonderflux guide"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:150
+#: ../wf-includes/wf-admin-functions.php:160
 msgid "The Wonderflux guide"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:152
+#: ../wf-includes/wf-admin-functions.php:162
 msgid ""
 "is the official (work in progress!) documentation site for Wonderflux. Click "
 "on the direct links below to find relevant content."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:176
-msgid "Site container width (pixels)"
+#: ../wf-includes/wf-admin-functions.php:185
+msgid "Select CSS layout system"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:177
+#: ../wf-includes/wf-admin-functions.php:186
 msgid "Vertical columns (number - inside site container)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:178
+#: ../wf-includes/wf-admin-functions.php:193
 msgid "Width of column (pixels)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:179
+#: ../wf-includes/wf-admin-functions.php:201
+msgid "Site container width unit"
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:209
+msgid "Site container width (pixels)"
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:211
+msgid "Site container width (percent)"
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:214
 msgid "Site container position"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:180
+#: ../wf-includes/wf-admin-functions.php:215
 msgid ""
 "Media width (pixels - used as WordPress $content_width for auto-embedding "
 "YouTube etc)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:181
+#: ../wf-includes/wf-admin-functions.php:216
 msgid "Content width (relative size)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:182
+#: ../wf-includes/wf-admin-functions.php:217
 msgid "Sidebar width (relative size)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:183
+#: ../wf-includes/wf-admin-functions.php:218
 msgid "Sidebar display"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:184
+#: ../wf-includes/wf-admin-functions.php:219
 msgid "Sidebar position"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:185
+#: ../wf-includes/wf-admin-functions.php:220
 msgid "Document type"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:186
+#: ../wf-includes/wf-admin-functions.php:221
 msgid "Document language"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:187
+#: ../wf-includes/wf-admin-functions.php:222
 msgid "Document character set"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:188
+#: ../wf-includes/wf-admin-functions.php:223
 msgid "Facebook ID(s)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:189
+#: ../wf-includes/wf-admin-functions.php:224
 msgid "Facebook Application ID"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:215
+#: ../wf-includes/wf-admin-functions.php:250
 msgid "Sorry, update check not currently available."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:245
+#: ../wf-includes/wf-admin-functions.php:280
 msgid "update"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:247
+#: ../wf-includes/wf-admin-functions.php:282
 msgid "development"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:267
+#: ../wf-includes/wf-admin-functions.php:302
 msgid "Wonderflux framework update available!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:268
+#: ../wf-includes/wf-admin-functions.php:303
 #, php-format
 msgid "You are running v%1$s, the current latest release is v%2$s"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:270
+#: ../wf-includes/wf-admin-functions.php:305
 msgid ""
 "There is an update available to Wonderflux. Please read the update notes to "
 "check-up on how this may effect your theme BEFORE updating!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:271
+#: ../wf-includes/wf-admin-functions.php:306
 msgid "Download the latest Wonderflux update here"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:271
+#: ../wf-includes/wf-admin-functions.php:306
 msgid "download the latest Wonderflux update here"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:279
+#: ../wf-includes/wf-admin-functions.php:314
 msgid "Development version installed"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:280
+#: ../wf-includes/wf-admin-functions.php:315
 msgid "You are running a development version of Wonderflux, cool!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:280
+#: ../wf-includes/wf-admin-functions.php:315
 msgid "You should probably NOT be using this on live sites."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:281
+#: ../wf-includes/wf-admin-functions.php:316
 msgid ""
 "It may contain code thats not finished just yet, or new functionality that "
 "may conflict with your current Wonderflux child theme."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:282
+#: ../wf-includes/wf-admin-functions.php:317
 msgid "If you are not a developer, advanced designer or tester"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:283
+#: ../wf-includes/wf-admin-functions.php:318
 #, php-format
 msgid ""
 "you will probably be better off using <a href=\"%1$s\" title=\"%2$s\">%3$s</"
 "a>"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:283
+#: ../wf-includes/wf-admin-functions.php:318
 msgid "Download the latest stable Wonderflux release here"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:283
+#: ../wf-includes/wf-admin-functions.php:318
 msgid "the latest stable version of Wonderflux."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:303
+#: ../wf-includes/wf-admin-functions.php:338
 msgid "WF_THEME_FRAMEWORK_REPLACE documentation"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:303
+#: ../wf-includes/wf-admin-functions.php:338
 msgid "WF_THEME_FRAMEWORK_REPLACE"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:304
+#: ../wf-includes/wf-admin-functions.php:339
 msgid ""
 " - A Wonderflux theme constant that removes the core stylesheet CSS files."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:328
-#: ../wf-includes/wf-admin-functions.php:349
+#: ../wf-includes/wf-admin-functions.php:363
+#: ../wf-includes/wf-admin-functions.php:384
 msgid "Wonderflux documentation"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:328
+#: ../wf-includes/wf-admin-functions.php:363
 msgid "http://wonderflux.com/guide"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:329
+#: ../wf-includes/wf-admin-functions.php:364
 msgid " - All Wonderflux documentation and user guides."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:332
+#: ../wf-includes/wf-admin-functions.php:367
 msgid "Get involved!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:335
+#: ../wf-includes/wf-admin-functions.php:370
 msgid ""
 "A huge amount of resource has been poured into this project since it began "
 "in January 2010. If you have ideas on how Wonderflux could improve, why not "
 "think about contributing to the development of Wonderflux?"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:338
+#: ../wf-includes/wf-admin-functions.php:373
 msgid "Remember, Wonderflux is free, open source code just like WordPress"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:340
+#: ../wf-includes/wf-admin-functions.php:375
 msgid ""
 " - so your ideas can help make a great theme framework for the whole "
 "community to use. Some ideas on how you could help include bug hunting, "
@@ -1635,455 +1633,469 @@ msgid ""
 "more than welcome!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:343
+#: ../wf-includes/wf-admin-functions.php:378
 msgid "GitHub code repository"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:344
+#: ../wf-includes/wf-admin-functions.php:379
 msgid ""
 "- Git development code repository (for developers and testers - NOT to be "
 "used on live sites!)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:346
+#: ../wf-includes/wf-admin-functions.php:381
 msgid "GitHub issue tracking list"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:347
+#: ../wf-includes/wf-admin-functions.php:382
 msgid "- Development list (for contributors, bug reports and feature requests)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:350
+#: ../wf-includes/wf-admin-functions.php:385
 msgid ""
 " - Official documentation site (API documentation and quick start guides)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:357
+#: ../wf-includes/wf-admin-functions.php:392
 msgid "Wonderflux Help - Main Options"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:358
+#: ../wf-includes/wf-admin-functions.php:393
 msgid "Wonderflux Help - Stylelab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:359
+#: ../wf-includes/wf-admin-functions.php:394
 msgid "Wonderflux Help - Advanced"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:360
+#: ../wf-includes/wf-admin-functions.php:395
 msgid "Wonderflux Help - System"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:361
+#: ../wf-includes/wf-admin-functions.php:396
 msgid "Wonderflux Help - Backup"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:423
+#: ../wf-includes/wf-admin-functions.php:458
 msgid "Quick start guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:424
+#: ../wf-includes/wf-admin-functions.php:459
 msgid "Hook guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:425
+#: ../wf-includes/wf-admin-functions.php:460
 msgid "Function guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:426
+#: ../wf-includes/wf-admin-functions.php:461
 msgid "Filter guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:427
+#: ../wf-includes/wf-admin-functions.php:462
 msgid "Constant guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:428
+#: ../wf-includes/wf-admin-functions.php:463
 msgid "File guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:432
+#: ../wf-includes/wf-admin-functions.php:467
 msgid "Wonderflux help and documentation"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:434
+#: ../wf-includes/wf-admin-functions.php:469
 msgid " | "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:435
+#: ../wf-includes/wf-admin-functions.php:470
 msgid "View all Wonderflux "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:437
+#: ../wf-includes/wf-admin-functions.php:472
 msgid " (documented so far!)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:466
+#: ../wf-includes/wf-admin-functions.php:501
 msgid "Full"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:467
+#: ../wf-includes/wf-admin-functions.php:502
 msgid "Half"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:468
+#: ../wf-includes/wf-admin-functions.php:503
 msgid "1 Third"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:469
+#: ../wf-includes/wf-admin-functions.php:504
 msgid "- 2 Thirds"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:470
+#: ../wf-includes/wf-admin-functions.php:505
 msgid "1 Quarter"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:471
+#: ../wf-includes/wf-admin-functions.php:506
 msgid "- 2 Quarters"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:472
+#: ../wf-includes/wf-admin-functions.php:507
 msgid "- 3 Quarters"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:473
+#: ../wf-includes/wf-admin-functions.php:508
 msgid "1 Fifth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:474
+#: ../wf-includes/wf-admin-functions.php:509
 msgid "- 2 Fifths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:475
+#: ../wf-includes/wf-admin-functions.php:510
 msgid "- 3 Fifths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:476
+#: ../wf-includes/wf-admin-functions.php:511
 msgid "- 4 Fifths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:477
+#: ../wf-includes/wf-admin-functions.php:512
 msgid "1 Sixth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:478
+#: ../wf-includes/wf-admin-functions.php:513
 msgid "- 2 Sixths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:479
+#: ../wf-includes/wf-admin-functions.php:514
 msgid "- 3 Sixths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:480
+#: ../wf-includes/wf-admin-functions.php:515
 msgid "- 4 Sixths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:481
+#: ../wf-includes/wf-admin-functions.php:516
 msgid "- 5 Sixths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:482
+#: ../wf-includes/wf-admin-functions.php:517
 msgid "1 Seventh"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:483
+#: ../wf-includes/wf-admin-functions.php:518
 msgid "- 2 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:484
+#: ../wf-includes/wf-admin-functions.php:519
 msgid "- 3 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:485
+#: ../wf-includes/wf-admin-functions.php:520
 msgid "- 4 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:486
+#: ../wf-includes/wf-admin-functions.php:521
 msgid "- 5 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:487
+#: ../wf-includes/wf-admin-functions.php:522
 msgid "- 6 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:488
+#: ../wf-includes/wf-admin-functions.php:523
 msgid "1 Eigth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:489
+#: ../wf-includes/wf-admin-functions.php:524
 msgid "- 2 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:490
+#: ../wf-includes/wf-admin-functions.php:525
 msgid "- 3 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:491
+#: ../wf-includes/wf-admin-functions.php:526
 msgid "- 4 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:492
+#: ../wf-includes/wf-admin-functions.php:527
 msgid "- 5 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:493
+#: ../wf-includes/wf-admin-functions.php:528
 msgid "- 6 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:494
+#: ../wf-includes/wf-admin-functions.php:529
 msgid "- 7 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:495
+#: ../wf-includes/wf-admin-functions.php:530
 msgid "1 Ninth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:496
+#: ../wf-includes/wf-admin-functions.php:531
 msgid "- 2 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:497
+#: ../wf-includes/wf-admin-functions.php:532
 msgid "- 3 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:498
+#: ../wf-includes/wf-admin-functions.php:533
 msgid "- 4 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:499
+#: ../wf-includes/wf-admin-functions.php:534
 msgid "- 5 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:500
+#: ../wf-includes/wf-admin-functions.php:535
 msgid "- 6 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:501
+#: ../wf-includes/wf-admin-functions.php:536
 msgid "- 7 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:502
+#: ../wf-includes/wf-admin-functions.php:537
 msgid "- 8 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:503
+#: ../wf-includes/wf-admin-functions.php:538
 msgid "1 Tenth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:504
+#: ../wf-includes/wf-admin-functions.php:539
 msgid "- 2 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:505
+#: ../wf-includes/wf-admin-functions.php:540
 msgid "- 3 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:506
+#: ../wf-includes/wf-admin-functions.php:541
 msgid "- 4 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:507
+#: ../wf-includes/wf-admin-functions.php:542
 msgid "- 5 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:508
+#: ../wf-includes/wf-admin-functions.php:543
 msgid "- 6 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:509
+#: ../wf-includes/wf-admin-functions.php:544
 msgid "- 7 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:510
+#: ../wf-includes/wf-admin-functions.php:545
 msgid "- 8 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:511
+#: ../wf-includes/wf-admin-functions.php:546
 msgid "- 9 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:512
+#: ../wf-includes/wf-admin-functions.php:547
 msgid "1 Eleventh"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:513
+#: ../wf-includes/wf-admin-functions.php:548
 msgid "- 2 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:514
+#: ../wf-includes/wf-admin-functions.php:549
 msgid "- 3 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:515
+#: ../wf-includes/wf-admin-functions.php:550
 msgid "- 4 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:516
+#: ../wf-includes/wf-admin-functions.php:551
 msgid "- 5 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:517
+#: ../wf-includes/wf-admin-functions.php:552
 msgid "- 6 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:518
+#: ../wf-includes/wf-admin-functions.php:553
 msgid "- 7 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:519
+#: ../wf-includes/wf-admin-functions.php:554
 msgid "- 8 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:520
+#: ../wf-includes/wf-admin-functions.php:555
 msgid "- 9 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:521
+#: ../wf-includes/wf-admin-functions.php:556
 msgid "- 10 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:522
+#: ../wf-includes/wf-admin-functions.php:557
 msgid "1 Twelveth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:523
+#: ../wf-includes/wf-admin-functions.php:558
 msgid "- 2 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:524
+#: ../wf-includes/wf-admin-functions.php:559
 msgid "- 3 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:525
+#: ../wf-includes/wf-admin-functions.php:560
 msgid "- 4 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:526
+#: ../wf-includes/wf-admin-functions.php:561
 msgid "- 5 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:527
+#: ../wf-includes/wf-admin-functions.php:562
 msgid "- 6 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:528
+#: ../wf-includes/wf-admin-functions.php:563
 msgid "- 7 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:529
+#: ../wf-includes/wf-admin-functions.php:564
 msgid "- 8 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:530
+#: ../wf-includes/wf-admin-functions.php:565
 msgid "- 9 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:531
+#: ../wf-includes/wf-admin-functions.php:566
 msgid "- 10 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:532
+#: ../wf-includes/wf-admin-functions.php:567
 msgid "- 11 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:592
+#: ../wf-includes/wf-admin-functions.php:628
+msgid "CSS grid/column core configuration"
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:630
+msgid "Options must be set before further grid configuration."
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:631
+msgid ""
+"Use percent for responsive (Wonderflux v2) system or pixels for legacy non-"
+"responsive (Wonderflux v1) system."
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:635
 msgid "CSS grid/column settings"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:594
+#: ../wf-includes/wf-admin-functions.php:637
 msgid "Setup the dimensions of the CSS layout columns (grid system)."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:597
+#: ../wf-includes/wf-admin-functions.php:641
 msgid "Main content and sidebar settings"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:599
+#: ../wf-includes/wf-admin-functions.php:643
 msgid "Setup the dimensions of your main content area and sidebar."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:619
+#: ../wf-includes/wf-admin-functions.php:663
 msgid "Document output"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:622
+#: ../wf-includes/wf-admin-functions.php:666
 msgid ""
 "Use these controls to set avanced document type and language attributes."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:623
+#: ../wf-includes/wf-admin-functions.php:667
 msgid "WARNING - "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:624
+#: ../wf-includes/wf-admin-functions.php:668
 msgid ""
 "These settings should generally be left as default (transitional, en, UTF-8)."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:625
+#: ../wf-includes/wf-admin-functions.php:669
 msgid ""
 "If you are using the Facebook features, you must use document type XHTML/"
 "RDFa."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:630
+#: ../wf-includes/wf-admin-functions.php:674
 msgid "Facebook connect"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:632
+#: ../wf-includes/wf-admin-functions.php:676
 msgid ""
 "Connect your site with Facebook to allow advanced interaction and sharing. "
 "Required if you are using the Facebook share display function. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:633
+#: ../wf-includes/wf-admin-functions.php:677
 msgid ""
 "You can assign multiple Facebook ID&rsquo;s by comma seperation (name1,"
 "name2) and a single (optional) application ID. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:634
+#: ../wf-includes/wf-admin-functions.php:678
 msgid ""
 "NOTE - You are required to fill-in at-least your Facebook ID to use the "
 "Facebook sharing features. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:635
+#: ../wf-includes/wf-admin-functions.php:679
 msgid ""
 "Get your Facebook ID number by logging into Facebook, and clicking on the "
 "'profile' tab. If you look at the URL in the address bar, you will see "
 "something like: "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:636
+#: ../wf-includes/wf-admin-functions.php:680
 msgid "http://www.facebook.com/profile.php?id=123456789012345"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:637
+#: ../wf-includes/wf-admin-functions.php:681
 msgid ""
 "The string of numbers after 'id=' is your Facebook ID number - copy and "
 "paste this into the filed below. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:638
+#: ../wf-includes/wf-admin-functions.php:682
 msgid "Application ID is optional (advanced users). "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:639
+#: ../wf-includes/wf-admin-functions.php:683
 msgid "Login to Facebook to get your application ID if required."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:639
+#: ../wf-includes/wf-admin-functions.php:683
 msgid "Get your application ID if required"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:640
+#: ../wf-includes/wf-admin-functions.php:684
 msgid ""
 "IMPORTANT - When entering and using any of these details, your site document "
 "type is automatically switched to XHTML/RDFa. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:641
+#: ../wf-includes/wf-admin-functions.php:685
 msgid ""
 "Relevant Facebook and Open Graph meta tags are generated and XML namespace "
 "attributes are added. Whilst active, it is manditory to keep the document "
@@ -2092,11 +2104,13 @@ msgid ""
 "with Internet Explorer."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:733
-msgid "CSS override files"
+#: ../wf-includes/wf-admin-functions.php:786
+#: ../wf-includes/wf-admin-functions.php:855
+msgid "Override Wonderflux CSS files"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:734
+#: ../wf-includes/wf-admin-functions.php:787
+#: ../wf-includes/wf-admin-functions.php:856
 msgid ""
 "Advanced users may wish to remove the default stylesheets that are usually "
 "inserted for you when using Wonderflux. The code below is all of the "
@@ -2104,351 +2118,374 @@ msgid ""
 "<head> of your site output, using your current saved configuration."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:735
+#: ../wf-includes/wf-admin-functions.php:788
+#: ../wf-includes/wf-admin-functions.php:857
 msgid ""
 "By setting the constant in your child theme functions.php file with the "
 "single line:"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:737
+#: ../wf-includes/wf-admin-functions.php:790
 msgid ""
 "you will remove the Wonderflux css files: 'wf-css-core-structure', 'wf-css-"
-"dynamic-columns' and the conditional 'wf-css-dynamic-core-ie', leaving only "
-"your theme.css file in the document <head>. "
+"dynamic-columns' and the conditional 'wf-css-dynamic-core-ie'. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:738
+#: ../wf-includes/wf-admin-functions.php:791
 msgid "When you set "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:740
+#: ../wf-includes/wf-admin-functions.php:793
 msgid "to "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:742
+#: ../wf-includes/wf-admin-functions.php:795
 msgid ""
 "Wonderflux automatically inserts style-framework.css and style-framework-ie."
 "css for you, with the IE file wrapped in a conditional comment, before "
 "loading your main theme CSS file."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:743
+#: ../wf-includes/wf-admin-functions.php:796
 msgid ""
 "IMPORTANT - you will need to create 2 new files in your theme directory to "
 "use this functionality."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:744
+#: ../wf-includes/wf-admin-functions.php:797
 msgid ""
 "1 - Copy and paste the code from BOX 1 into a file called 'style-framework."
 "css' and save it to your child theme directory."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:745
+#: ../wf-includes/wf-admin-functions.php:798
 msgid ""
 "2 - Copy and paste the code from BOX 2 into a file called 'style-framework-"
 "ie.css' and save it to your child theme directory."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:746
+#: ../wf-includes/wf-admin-functions.php:799
 msgid ""
 "IMPORTANT - If you are using the override files as described and change your "
 "grid configuration or layout options, please revisit this page and update "
 "your files accordingly."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:748
+#: ../wf-includes/wf-admin-functions.php:801
 msgid "1 - Code for your style-framework.css file"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:754
+#: ../wf-includes/wf-admin-functions.php:807
 msgid "2 - Code for your style-framework-ie.css file"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:768
+#: ../wf-includes/wf-admin-functions.php:859
+msgid ""
+"you will remove the Wonderflux css files: 'wf-css-flux-layout-core' and 'wf-"
+"css-flux-layout'. "
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:860
+msgid ""
+"Wonderflux then automatically inserts the file 'flux-layout-generated.css' "
+"for you (if it exists in your child theme), before loading your main child "
+"theme style.css file."
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:861
+msgid ""
+"IMPORTANT - you will need to create 1 new file in your theme directory to "
+"use this functionality."
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:862
+msgid ""
+"1 - Copy and paste the code from the text box below into a new file called "
+"'flux-layout-generated.css' and save it to your child theme directory."
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:863
+msgid ""
+"IMPORTANT - If you are using the override files as described and change your "
+"grid configuration or layout options, please revisit this page and update "
+"your files accordingly with the new generated code."
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:865
+msgid "Code for your flux-layout-generated.css file"
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:880
 msgid "GRID CONFIGURATION"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:932
+#: ../wf-includes/wf-admin-functions.php:1044
 msgid ""
 " Wonderflux theme framework dynamic column core (legacy IE support) * http://"
 "wonderflux.com * @package Wonderflux * @since Wonderflux 0.2"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:187
+#: ../wf-includes/wf-display-functions.php:232
 #, php-format
 msgid "Search results for  %1$s from %2$s"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:491
+#: ../wf-includes/wf-display-functions.php:574
 #, php-format
 msgid "%1$s queries in %2$s seconds"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:504
+#: ../wf-includes/wf-display-functions.php:587
 msgid "Powered by WordPress and the Wonderflux theme framework"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:795
+#: ../wf-includes/wf-display-functions.php:880
 msgid "WONDERFLUX LAYOUT DESIGN HELPER"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:797
+#: ../wf-includes/wf-display-functions.php:882
 msgid "Full width: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:799
+#: ../wf-includes/wf-display-functions.php:884
 msgid "Columns: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:801
+#: ../wf-includes/wf-display-functions.php:886
 msgid "Single column: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:803
+#: ../wf-includes/wf-display-functions.php:888
 msgid "Half: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:811
+#: ../wf-includes/wf-display-functions.php:896
 msgid "Third: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:813
+#: ../wf-includes/wf-display-functions.php:898
 msgid "Two Third: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:818
+#: ../wf-includes/wf-display-functions.php:903
 msgid ""
 "Your column configuration is not compatible with thirds. Avoid using these "
 "in your template designs, or reconfigure options."
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:826
+#: ../wf-includes/wf-display-functions.php:911
 msgid "Quarter: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:828
+#: ../wf-includes/wf-display-functions.php:913
 msgid "Two Quarters: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:830
+#: ../wf-includes/wf-display-functions.php:915
 msgid "Three Quarters: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:835
+#: ../wf-includes/wf-display-functions.php:920
 msgid ""
 "Your column configuration is not compatible with quarters. Avoid using these "
 "in your template designs, or reconfigure options."
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:841
+#: ../wf-includes/wf-display-functions.php:926
 msgid "Small: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1075
+#: ../wf-includes/wf-display-functions.php:1212
 msgid "Powered by "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1075
+#: ../wf-includes/wf-display-functions.php:1212
 msgid "WordPress"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1077
+#: ../wf-includes/wf-display-functions.php:1214
 msgid "Built with "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1077
+#: ../wf-includes/wf-display-functions.php:1214
 msgid "Wonderflux WordPress theme framework"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1077
+#: ../wf-includes/wf-display-functions.php:1214
 msgid "Wonderflux Framework"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1218
+#: ../wf-includes/wf-display-functions.php:1353
 msgid "Read about"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1289
+#: ../wf-includes/wf-display-functions.php:1424
 msgid "Welcome"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1353
+#: ../wf-includes/wf-display-functions.php:1488
 msgid "Edit this content"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1358
+#: ../wf-includes/wf-display-functions.php:1493
 msgid "POSTS:"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1358
+#: ../wf-includes/wf-display-functions.php:1493
 msgid "Create a new post"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1358
-#: ../wf-includes/wf-display-functions.php:1362
+#: ../wf-includes/wf-display-functions.php:1493
+#: ../wf-includes/wf-display-functions.php:1497
 msgid "New"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1358
+#: ../wf-includes/wf-display-functions.php:1493
 msgid "Edit existing posts"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1358
-#: ../wf-includes/wf-display-functions.php:1362
+#: ../wf-includes/wf-display-functions.php:1493
+#: ../wf-includes/wf-display-functions.php:1497
 msgid "Edit"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1362
+#: ../wf-includes/wf-display-functions.php:1497
 msgid "PAGES:"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1362
+#: ../wf-includes/wf-display-functions.php:1497
 msgid "Create new page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1362
+#: ../wf-includes/wf-display-functions.php:1497
 msgid "Edit existing pages"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1366
+#: ../wf-includes/wf-display-functions.php:1501
 msgid "Website admin area"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1366
+#: ../wf-includes/wf-display-functions.php:1501
 msgid "Admin area"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1370
+#: ../wf-includes/wf-display-functions.php:1505
 msgid "Edit website widget areas"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1370
+#: ../wf-includes/wf-display-functions.php:1505
 msgid "Edit widgets"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1374
+#: ../wf-includes/wf-display-functions.php:1509
 msgid "Wonderflux theme framework options"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1374
+#: ../wf-includes/wf-display-functions.php:1509
 msgid "Theme options"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1378
+#: ../wf-includes/wf-display-functions.php:1513
 msgid "Log out of website"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1378
+#: ../wf-includes/wf-display-functions.php:1513
 msgid "Log out"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1425
+#: ../wf-includes/wf-display-functions.php:1560
 msgid "Read"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1519
+#: ../wf-includes/wf-display-functions.php:1654
 msgid "Login"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1520
+#: ../wf-includes/wf-display-functions.php:1655
 msgid "Login to site"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1521
+#: ../wf-includes/wf-display-functions.php:1656
 msgid "Logout"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1522
+#: ../wf-includes/wf-display-functions.php:1657
 msgid "Logout of site"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1764
-#: ../wf-includes/wf-display-functions.php:1805
+#: ../wf-includes/wf-display-functions.php:1899
+#: ../wf-includes/wf-display-functions.php:1940
 #, php-format
 msgid "Download %1$s (.%2$s file)"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1765
-#: ../wf-includes/wf-display-functions.php:1806
+#: ../wf-includes/wf-display-functions.php:1900
+#: ../wf-includes/wf-display-functions.php:1941
 #, php-format
 msgid " (%1$s .%2$s file)"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1855
+#: ../wf-includes/wf-display-functions.php:1990
 msgid "Page "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1856
+#: ../wf-includes/wf-display-functions.php:1991
 msgid " of "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1949
+#: ../wf-includes/wf-display-functions.php:2084
 msgid "&laquo; Previous Page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1980
+#: ../wf-includes/wf-display-functions.php:2115
 msgid "&raquo; Next Page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2031
+#: ../wf-includes/wf-display-functions.php:2166
 msgid "cached-part-start"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2032
+#: ../wf-includes/wf-display-functions.php:2167
 msgid "cached-part-end"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:648
-msgid "No data returned or false/empty/null"
-msgstr ""
-
-#: ../wf-includes/wf-helper-functions.php:678
-msgid "Debug output for data type:"
-msgstr ""
-
-#: ../wf-includes/wf-helper-functions.php:710
+#: ../wf-includes/wf-helper-functions.php:823
 #, php-format
 msgid "(This message was added in version %s.)"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:711
+#: ../wf-includes/wf-helper-functions.php:824
 msgid ""
 "Please see <a href=\"http://wonderflux.com/guide/\">The Wonderflux Guide</a> "
 "for more information."
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:712
+#: ../wf-includes/wf-helper-functions.php:825
 #, php-format
 msgid "%1$s was called <strong>incorrectly</strong>. %2$s %3$s"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:936
-#: ../wf-includes/wf-helper-functions.php:955
+#: ../wf-includes/wf-helper-functions.php:1045
 msgid "Wonderflux home"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:938
-#: ../wf-includes/wf-helper-functions.php:957
+#: ../wf-includes/wf-helper-functions.php:1047
 msgid "Advanced options"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:939
-#: ../wf-includes/wf-helper-functions.php:958
+#: ../wf-includes/wf-helper-functions.php:1048
 msgid "System information"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:940
-#: ../wf-includes/wf-helper-functions.php:959
+#: ../wf-includes/wf-helper-functions.php:1049
 msgid "Backup/restore"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:941
-#: ../wf-includes/wf-helper-functions.php:960
+#: ../wf-includes/wf-helper-functions.php:1050
 msgid "API/documentation"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:988
+#: ../wf-includes/wf-helper-functions.php:1075
 msgid "Wonderflux template parts in use"
 msgstr ""
 
@@ -2458,4 +2495,24 @@ msgstr ""
 
 #: ../wf-includes/wf-theme-core.php:70
 msgid "Drag widgets into here to include them in your site."
+msgstr ""
+
+#: ../wf-content/js/jquery/1.8.1/jquery.min.js:2
+msgid "radio"
+msgstr ""
+
+#: ../wf-content/js/jquery/1.8.1/jquery.min.js:2
+msgid "checkbox"
+msgstr ""
+
+#: ../wf-content/js/jquery/1.8.1/jquery.min.js:2
+msgid "file"
+msgstr ""
+
+#: ../wf-content/js/jquery/1.8.1/jquery.min.js:2
+msgid "password"
+msgstr ""
+
+#: ../wf-content/js/jquery/1.8.1/jquery.min.js:2
+msgid "image"
 msgstr ""

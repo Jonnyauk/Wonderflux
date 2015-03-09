@@ -1,4 +1,9 @@
-<?php header("Content-type: text/css"); ?>
+<?php 
+// Needed for export functions
+if ( !isset($_GET['export_raw']) ) {
+	header("Content-type: text/css"); 
+}
+?>
 /**
  *
  * Flux Layout

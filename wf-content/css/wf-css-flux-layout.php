@@ -67,15 +67,15 @@ class wflux_layout {
 	function __construct() {
 
 		// Cleanup all data ready to be used
-		$this->width_units = ( $_GET['wu'] == 'percent' ) ? '%' : 'px';
+		$this->width_units = ( isset($_GET['wu']) && $_GET['wu'] == 'percent' ) ? '%' : 'px';
 
 		if ($this->width_units == 'px') {
-			$this->width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 4000 ) ? $_GET['w'] : 950;
+			$this->width = ( isset($_GET['w']) && is_numeric( $_GET['w'] ) && $_GET['w'] <= 4000 ) ? $_GET['w'] : 950;
 		} else {
-			$this->width = ( is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
+			$this->width = ( isset($_GET['w']) && is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
 		}
 
-		$this->columns_basic = ( is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
+		$this->columns_basic = ( isset($_GET['c']) && is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
 		$this->class_prepend = ( !isset($this->class_prepend) ) ? 'box-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->class_prepend) );
 		$this->columns_prepend = ( !isset($this->columns_prepend) ) ? 'column-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->columns_prepend) );
 
@@ -409,10 +409,10 @@ class wflux_layout {
 
 			$size_queries = '';
 
-			$units = ( !$size[units] && $size[units] == 'px' ) ? 'px' : substr( $size[units], 0, 2 );
+			$units = ( !$size['units'] && $size['units'] == 'px' ) ? 'px' : substr( $size['units'], 0, 2 );
 			//TODO: Extra checks here - need to ensure proper min/max figures
-			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and (min-width:' . $size[min] . $units . ')';
-			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and (max-width:' . $size[max] . $units . ')';
+			$min = ( !isset($size['min']) ) ? '' : 'and (min-width:' . $size['min'] . $units . ')';
+			$max = ( !isset($size['max']) ) ? '' : 'and (max-width:' . $size['max'] . $units . ')';
 
 			// Setup size definition string
 			if ( $sizes_count == 0 ) {
@@ -513,9 +513,9 @@ class wflux_layout {
 
 		foreach ( $this->mq_config as $size ) {
 
-			$units = ( !$size[units] && $size[units] == 'px' ) ? 'px' : substr( $size[units], 0, 2 );
-			$min = ( !$size[min] && !is_numeric($size[min]) ) ? '' : 'and (min-width:' . $size[min] . $units . ')';
-			$max = ( !$size[max] && !is_numeric($size[max]) ) ? '' : 'and (max-width:' . $size[max] . $units . ')';
+			$units = ( !isset($size['units']) ) ? 'px' : substr( $size['units'], 0, 2 );
+			$min = ( !isset($size['min']) ) ? '' : 'and (min-width:' . $size['min'] . $units . ')';
+			$max = ( !isset($size['max']) ) ? '' : 'and (max-width:' . $size['max'] . $units . ')';
 			$size_queries = ( !empty($min) && !empty($max) ) ? $min . ' ' . $max : $min . $max;
 
 			// Open media query

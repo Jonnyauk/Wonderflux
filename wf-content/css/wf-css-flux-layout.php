@@ -506,7 +506,7 @@ class wflux_layout {
 		foreach ( $all_defs as $def ) {
 			$seperator = ( ($all_defs_count) == $w_count-1 ) ? ' ' : ', ';
 			//echo '.' . $def . '-' . $prepend;
-			echo 'div[class*="' . $def . '-' . $prepend . '"]' . $seperator;
+			echo 'div[class*="' . $def . '-' . $this->class_prepend . '"]' . $seperator;
 			$w_count = ( $def != $size['def'] ) ? $w_count+1 : $w_count;
 		}
 		echo '{ float:left; }' . $this->minify_2;
@@ -544,10 +544,10 @@ class wflux_layout {
 				if ( intval($size_r) < 101 ) {
 					for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {
 
-						echo ' .' . $size['def'] . '-' . $limit . '-' . $size_r;
+						echo ' .' . $size['def'] . '-' . $this->class_prepend . $limit . '-' . $size_r;
 
 						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
-							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-' . $limit . '-' . $size_r : '';
+							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-' . $this->class_prepend . 'min-' . $limit . '-' . $size_r : '';
 						}
 
 						echo ' { width:' . ( 100/$size_r ) * $limit . '%; ';

@@ -106,9 +106,16 @@ class wflux_admin extends wflux_data {
 
 		require('admin-pages/wf-page-'.$include.'.php');
 
-		if ($include == 'advanced'): $this->admin_forms->wf_form_helper_file_css_combine('css/wf-css-core-structure.css','Y'); endif;
-
 		if ($include == 'backup'): $this->admin_backup->wf_backup_form(); endif;
+
+		// Include relevant output depending on grid system
+		if ($include == 'advanced'){
+			if ( $this->wfx_grid_type == 'pixels' ) {
+				$this->admin_forms->wf_form_helper_file_css_combine('css/wf-css-core-structure.css','Y');
+			} else {
+				$this->admin_forms->wf_form_helper_file_css_combine_2('css/wf-css-flux-layout-core.css','Y');
+			}
+		}
 
 		// Backpat - depreciated function get_current_theme() in WordPress 3.4
 		$wf_current_theme = wp_get_theme()->Name;
@@ -754,7 +761,8 @@ class wflux_admin_forms extends wflux_data {
 
 
 	/**
-	* Creates a text area populated with a file
+	* Creates a text area populated with CSS grid output
+	* For Wonderflux v1.x pixel grid system
 	* @since 0.93
 	* @updated 1.1
 	*/
@@ -770,18 +778,16 @@ class wflux_admin_forms extends wflux_data {
 
 		// Remove white space
 		$content = ( $cleanup == 'Y' ) ? preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $content) : $content;
-		$content = esc_textarea( $content );
 
 		//$content_grid = esc_textarea( $this->wf_css_framework_build() );
 
 		$content_grid = ( $cleanup == 'Y' ) ? preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $this->wf_css_framework_build()) : $this->wf_css_framework_build();
-		$content_grid = esc_textarea( $content_grid );
 
-		$output = '<h2>' . esc_attr__( "CSS override files", "wonderflux" ) . '</h2>';
+		$output = '<h2>' . esc_attr__( "Override Wonderflux CSS files", "wonderflux" ) . '</h2>';
 		$output .= '<p>' . esc_attr__( "Advanced users may wish to remove the default stylesheets that are usually inserted for you when using Wonderflux. The code below is all of the Wonderflux framework CSS file content that is normally inserted into the <head> of your site output, using your current saved configuration.", "wonderflux" ) . '</p>';
 		$output .= '<p>' . esc_attr__( "By setting the constant in your child theme functions.php file with the single line:", "wonderflux" );
 		$output .= ' <strong>' . 'define( \'WF_THEME_FRAMEWORK_REPLACE\', true);' . '</strong> ';
-		$output .= esc_attr__( "you will remove the Wonderflux css files: 'wf-css-core-structure', 'wf-css-dynamic-columns' and the conditional 'wf-css-dynamic-core-ie', leaving only your theme.css file in the document <head>. ", "wonderflux" );
+		$output .= esc_attr__( "you will remove the Wonderflux css files: 'wf-css-core-structure', 'wf-css-dynamic-columns' and the conditional 'wf-css-dynamic-core-ie'. ", "wonderflux" );
 		$output .= esc_attr__( "When you set ", "wonderflux" );
 		$output .= '<strong>WF_THEME_FRAMEWORK_REPLACE</strong> ';
 		$output .= esc_attr__("to ","wonderflux");
@@ -794,13 +800,72 @@ class wflux_admin_forms extends wflux_data {
 
 		$output .= '<h3>' . esc_attr__( "1 - Code for your style-framework.css file", "wonderflux" ) . '</h3>';
 		$output .= '<form name="form1" method="post" action="" >';
-		$output .= '<textarea cols="100" rows="20" name="newcontent" id="css-wfx-framework" tabindex="1" onclick="this.select()">'.$content.$content_grid.'</textarea>';
+		$output .= '<textarea cols="100" rows="20" name="newcontent" id="css-wfx-framework" tabindex="1" onclick="this.select()">'.esc_textarea($content.$content_grid).'</textarea>';
 
 		$content_ie = $this->wf_css_framework_build_ie();
 
 		$output .= '<h3>' . esc_attr__( "2 - Code for your style-framework-ie.css file", "wonderflux" ) . '</h3>';
-		$output .= '<textarea cols="100" rows="20" name="newcontent2" id="css-wfx-framework-ie" tabindex="2" onclick="this.select()">'.$content_ie.'</textarea>';
+		$output .= '<textarea cols="100" rows="20" name="newcontent2" id="css-wfx-framework-ie" tabindex="2" onclick="this.select()">'.esc_textarea($content_ie).'</textarea>';
 		$output .= '</form>';
+		echo $output;
+	}
+
+
+	/**
+	* Creates a text area populated with CSS grid output
+	* For Wonderflux v2.x responsive grid system
+	* @since 2.0
+	* @updated 2.0
+	*/
+	function wf_form_helper_file_css_combine_2($file,$cleanup) {
+
+		$cleanup = ($cleanup == 'Y') ? 'Y' : 'N';
+		$file_accept = array ('css/wf-css-flux-layout-core.css');
+		if (in_array ($file,$file_accept)) { $file = WF_CONTENT_DIR . '/' . $file; } else { $file = WF_CONTENT_DIR . '/css/wf-css-flux-layout-core.css'; }
+
+		// Core
+		$content = '';
+		$content = fread( fopen($file, 'r'), filesize($file) );
+		// Remove comments
+		$content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content);
+		// Remove white space
+		$content = ( $cleanup == 'Y' ) ? preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $content) : $content;
+
+		// Grid framework
+		$content_grid = '';
+
+		// Get grid system with user params
+		ob_start();
+		$_GET['w'] = $this->wfx_width;
+		$_GET['wu'] = $this->wfx_width_unit;
+		$_GET['p'] = $this->wfx_position;
+		$_GET['sbp'] = $this->wfx_sidebar_primary_position;
+		$_GET['c'] = $this->wfx_columns;
+		// IMPORTANT - Only used here - need to remove header CSS file info to import correctly
+		$_GET['export_raw']=true;
+
+    	include ( WF_CONTENT_DIR . '/css/wf-css-flux-layout.php' );
+
+    	$content_grid = ob_get_clean();
+		// Remove comments
+		$content_grid = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content_grid);
+		// Remove white space
+		$content_grid = ( $cleanup == 'Y' ) ? preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $content_grid) : $content_grid;
+
+		$output = '<h2>' . esc_attr__( "Override Wonderflux CSS files", "wonderflux" ) . '</h2>';
+		$output .= '<p>' . esc_attr__( "Advanced users may wish to remove the default stylesheets that are usually inserted for you when using Wonderflux. The code below is all of the Wonderflux framework CSS file content that is normally inserted into the <head> of your site output, using your current saved configuration.", "wonderflux" ) . '</p>';
+		$output .= '<p>' . esc_attr__( "By setting the constant in your child theme functions.php file with the single line:", "wonderflux" );
+		$output .= ' <strong>' . 'define( \'WF_THEME_FRAMEWORK_REPLACE\', true);' . '</strong> ';
+		$output .= esc_attr__( "you will remove the Wonderflux css files: 'wf-css-core-structure' and 'wf-css-dynamic-columns'. ", "wonderflux" );
+		$output .= esc_attr__( "Wonderflux then automatically inserts the file flux-layout-generated.css for you (if it exists in your child theme), before loading your main child theme style.css file.", "wonderflux" ) . '</p>';
+		$output .= '<p><strong>' . esc_attr__( "IMPORTANT - you will need to create 1 new file in your theme directory to use this functionality.", "wonderflux" ) . '</strong><br />';
+		$output .= esc_attr__( "1 - Copy and paste the code from the text box below into a new file called 'flux-layout-generated.css' and save it to your child theme directory.", "wonderflux" ) . '<br />';
+		$output .= '<p><strong>' . esc_attr__( "IMPORTANT - If you are using the override files as described and change your grid configuration or layout options, please revisit this page and update your files accordingly with the new generated code.", "wonderflux" ) . '</strong></p>';
+
+		$output .= '<h3>' . esc_attr__( "Code for your flux-layout-generated.css file", "wonderflux" ) . '</h3>';
+		$output .= '<form name="form1" method="post" action="" >';
+		$output .= '<textarea cols="100" rows="20" name="newcontent" id="css-wfx-framework" tabindex="1" onclick="this.select()">'.esc_textarea(trim($content.$content_grid)).'</textarea>';
+
 		echo $output;
 	}
 

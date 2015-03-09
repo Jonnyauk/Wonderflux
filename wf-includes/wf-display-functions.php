@@ -391,13 +391,15 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.93
-	* @updated 0.93
+	* @updated 2.0
 	* VERY IMPORTANT!
 	* Removes functionality if child theme override file in place
+	* Define constant in child theme functions file: 
+	* define( 'WF_THEME_FRAMEWORK_REPLACE', true);
 	* Requires at least 'style-framework.css' and optionally 'style-framework-ie,css' in your child theme directory
 	*/
 	function wf_head_css_replace() {
-		$path = WF_THEME_URL.'/style-framework.css';
+		$path = ( $this->wfx_grid_type == 'pixels' ) ? WF_THEME_URL.'/style-framework.css' : WF_THEME_URL.'/flux-layout-merged.css';
 		$path_ie = WF_THEME_URL.'/style-framework-ie.css';
 		$version = $this->wfx_mytheme_version_clean;
 		$id = 'framework';
@@ -410,11 +412,13 @@ class wflux_display_code extends wflux_data {
 		wp_register_style( $id, $path,'', $version, $media );
 		wp_enqueue_style( $id );
 
-		wp_register_style( $id_ie, $path_ie,'', $version, $media );
-		wp_enqueue_style( $id_ie );
-
-		// IMPORTANT - Add conditional IE wrapper
-		$GLOBALS['wp_styles']->add_data( $id_ie, 'conditional', 'lt IE 8' );
+		// Only add IE specific CSS if using Wonderflux v1.0 pixel grid system
+		if ( $this->wfx_grid_type == 'pixels' ) {
+			wp_register_style( $id_ie, $path_ie,'', $version, $media );
+			wp_enqueue_style( $id_ie );
+			// IMPORTANT - Add conditional IE wrapper
+			$GLOBALS['wp_styles']->add_data( $id_ie, 'conditional', 'lt IE 8' );
+		}
 	}
 
 

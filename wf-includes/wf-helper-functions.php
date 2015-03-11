@@ -753,39 +753,23 @@ class wflux_helper {
 			$o .= '<pre>' . esc_html__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
 		} else {
 
-			switch ( $input ) {
-				case 'wp_query':
-					$input_type = 'WordPress core $wp_query';
-				break;
-
-				case 'wp_posts':
-					$input_type = 'WordPress core $posts';
-				break;
-
-				case 'wp_queried':
-					$input_type = 'Currently queried object';
-				break;
-
-				case 'wp_all_taxonomies':
-					$input_type = 'All taxonomies';
-				break;
-
-				default:
-					$input_type = gettype($input);
-				break;
-			}
-
 			if ( $input === 'wp_query' ) {
+				$input_type = 'WordPress core $wp_query';
 				global $wp_query;
 				$input = $wp_query;
 			} elseif ( $input === 'wp_posts' ) {
+				$input_type = 'WordPress core $posts';
 				global $posts;
 				$input = $posts;
 			} elseif ( $input === 'wp_queried' ) {
+				$input_type = 'Currently queried object';
 				$input = get_queried_object();
 			} elseif ( $input === 'wp_all_taxonomies' ) {
+				$input_type = 'All taxonomies';
 				global $wp_taxonomies;
 				$input = $wp_taxonomies;
+			} else {
+				$input_type = gettype($input);
 			}
 
 			$o .= '<pre><strong>' . esc_html__('Debug output for data type:', 'wonderflux') . '</strong> ' . $input_type . '</pre>';

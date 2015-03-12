@@ -64,7 +64,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .height-full { height: 100vh; }
 .height-half { height: 50vh; }
-.height-third { height: 33.3333h; }
+.height-third { height: 33.3333vh; }
 .height-quarter { height: 25vh; }
 .height-fifth { height: 20vh; }
 .height-sixth { height: 16.6666vh; }

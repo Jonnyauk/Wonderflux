@@ -1,7 +1,7 @@
 /**
  *
  * Flux Layout - core reset and base rules
- *    
+ *
  * A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
  * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
  *
@@ -31,22 +31,29 @@ h1, h2, h3, h4, h5, h6 {
 
 /*** Containers and alignment ***/
 
-.pad-tiny, .pad-small, .pad-medium, .pad-large { margin: 0; }
-.pad-tiny { padding: 5px; }
-.pad-small { padding: 10px; }
-.pad-medium { padding: 20px; }
-.pad-large { padding: 40px; }
+.pad-tiny { margin: 0; padding: 5px; }
+.pad-small { margin: 0; padding: 10px; }
+.pad-medium { margin: 0; padding: 20px; }
+.pad-large { margin: 0; padding: 40px; }
+
+.pad-left { margin: 0; padding: 0 0 0 20px; }
+.pad-right { margin: 0; padding: 0 20px 0 0; }
+.pad-left-right { margin: 0; padding: 0 20px 0 20px; }
+.pad-top { margin: 0; padding: 20px 0 0 0; }
+.pad-bottom { margin: 0; padding: 0 0 20px 0; }
+.pad-top-bottom { margin: 0; padding: 20px 0 20px 0; }
 
 .alignright, .align-right { float: right; margin: 0 0 5px 20px; }
 .alignleft, .align-left { float: left; margin: 0 20px 5px 0; }
 .aligncenter, .align-center { text-align: center; margin: 5px auto; }
+.content-left { text-align: left; }
+.content-center { text-align: center; }
+.content-right { text-align: right; }
+
 .first, .flush-left { margin-left: 0; padding-left: 0; }
 .last, .flush-right { margin-right: 0; padding-right: 0; }
 .top, .flush-top { margin-top: 0; padding-top: 0; }
 .bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
-.content-left { text-align: left; }
-.content-center { text-align: center; }
-.content-right { text-align: right; }
 
 /**
  * Wonderflux v1.x legacy clearfix

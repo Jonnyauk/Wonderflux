@@ -1981,7 +1981,7 @@ class wflux_display_extras {
 	 * @param container_class - Container CSS class [page-counter-navigation]
 	 *
 	 * @since 0.93
-	 * @updated 2.0
+	 * @updated 1.1
 	 */
 	function wf_page_counter($args) {
 
@@ -2030,6 +2030,8 @@ class wflux_display_extras {
 			$container = ($container == 'Y') ? 'Y' : 'N';
 			$container_class = ($container_class == 'page-counter-navigation') ? $container_class : wp_kses_data($container_class, '');
 
+
+
 			// get total number of pages
 			global $wp_query;
 			$total = $wp_query->max_num_pages;
@@ -2048,12 +2050,6 @@ class wflux_display_extras {
 			$output .= ($navigation == 'N') ? '' : $navigation_span . $this->wf_next_posts_link($next) . $navigation_span_close;
 			$output .= ($element == '') ? '' : '</'. $element .'>';
 			$output .= ($container == 'Y') ? '</div>' : '';
-
-			// is_search() will not trigger on empty search string - WordPress wants all the posts
-			// We want to use loop-content-no-search-results.php and do something smarter
-			if ( isset($_GET['s']) && empty($_GET['s']) && $query->is_main_query() ){
-				$output = false;
-			}
 
 			// Always show results, even if just one page
 			if ( $always_show == 'Y' ) {

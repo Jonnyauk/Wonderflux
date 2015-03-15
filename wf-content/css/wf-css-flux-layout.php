@@ -101,6 +101,11 @@ class wflux_layout {
 		}
 
 		$this->mq_box_sizes = array(1,2,4,5,8,10);
+		// Add core column option to media query array for output
+		if ( !in_array($this->columns_basic, $this->mq_box_sizes) ){
+			array_unshift( $this->mq_box_sizes, $this->columns_basic );
+			sort($this->mq_box_sizes);
+		}
 		$this->columns_gutter = 2;
 
 		if ( isset( $_GET['mq_cols'] ) && is_array($_GET['mq_cols']) ){

@@ -563,8 +563,14 @@ class wflux_layout {
 				}
 			}
 
-			echo ' /***** Columns *****/' . $this->minify;
+			/*
+			Responsive columns removed for the moment
+			Need to work out how to deal with gutter (maybe need additional .first override + .mq-{size}-gutter)
+			 */
 
+			//echo ' /***** Columns *****/' . $this->minify;
+
+			/*
 			// Column size loops
 			foreach ( $this->mq_column_sizes as $size_c ) {
 				if ( intval($size_c) < 101 ) {
@@ -587,6 +593,7 @@ class wflux_layout {
 
 				}
 			}
+			*/
 
 			// Close media query
 			echo '}' . $this->minify_2;

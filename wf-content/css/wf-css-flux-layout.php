@@ -552,7 +552,7 @@ class wflux_layout {
 						echo ' .' . $size['def'] . '-' . $this->class_prepend . $limit . '-' . $size_r;
 
 						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
-							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-' . $this->class_prepend . 'min-' . $limit . '-' . $size_r : '';
+							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-' . $this->class_prepend . $limit . '-' . $size_r : '';
 						}
 
 						echo ' { width:' . ( 100/$size_r ) * $limit . '%; ';

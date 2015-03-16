@@ -2053,7 +2053,7 @@ class wflux_display_extras {
 
 			// is_search() will not trigger on empty search string - WordPress wants all the posts
 			// We want to use loop-content-no-search-results.php and do something smarter
-			if ( isset($_GET['s']) && empty($_GET['s']) ){
+			if ( isset($_GET['s']) && trim($_GET['s']) == '' ){
 				$output = false;
 			}
 

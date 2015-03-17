@@ -334,7 +334,7 @@ class wflux_layout {
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->class_prepend . '"] { '
-		. 'float:left; margin: 0; }'
+		. 'float:left; }'
 		. $this->minify_2;
 
 		foreach ( $this->relative as $size ) {

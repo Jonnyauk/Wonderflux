@@ -128,7 +128,7 @@ class wflux_data {
 		// NUMBER OF COLUMNS - min 2, max 100
 		$this->wfx_columns = (isset($this->wfx_db_display['columns_num']) ) ? $this->wfx_db_display['columns_num'] : false;
 		// Validate
-		$wfx_columns_out = 24;
+		$wfx_columns_out = 16;
 		if (is_numeric ($this->wfx_columns) ) { if ($this->wfx_columns >= 2 && $this->wfx_columns <= 100) {$wfx_columns_out = $this->wfx_columns;} }
 		$this->wfx_columns = $wfx_columns_out;
 

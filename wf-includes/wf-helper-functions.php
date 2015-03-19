@@ -34,10 +34,10 @@ class wflux_data {
 
 		//// DOCUMENT CONFIGURATION ////
 
-		// GRID TYPE - 'pixels (old)','percent (Experimental Responsive)'
+		// GRID TYPE - 'percent' (Responsive - Flux Layout), 'pixels' (old Wonderflux v1 grid)
 		$this->wfx_grid_type = ( isset($this->wfx_db_display['grid_type']) ) ? $this->wfx_db_display['grid_type'] : false;
 		// Validate - first value is default
-		$grid_type_accept = array('pixels','percent');
+		$grid_type_accept = array('percent','pixels');
 		$this->wfx_grid_type = ( !$this->wfx_grid_type || !in_array($this->wfx_grid_type,$grid_type_accept) ) ? $grid_type_accept[0] : $this->wfx_grid_type;
 
 		// DOCTYPE - 'transitional','strict','frameset','1.1','1.1basic'

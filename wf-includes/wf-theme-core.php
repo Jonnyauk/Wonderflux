@@ -50,7 +50,7 @@ class wflux_theme_core {
 	* endif;
 	*
 	* @since 0.891
-	* @updated 0.931
+	* @updated 2.0
 	*
 	*
 	*/
@@ -68,7 +68,7 @@ class wflux_theme_core {
 			$defaults = array (
 			"name" => esc_attr__('Widget area ','wonderflux') . $wf_widget_num,
 			"description" => esc_attr__('Drag widgets into here to include them in your site.','wonderflux'),
-			"location" => "wfsidebar_after_all",
+			"location" => "",
 			"container" => "div",
 			"containerclass" => "widget-box",
 			"containerid" => "",
@@ -104,7 +104,8 @@ class wflux_theme_core {
 			// Insert the widget area using Wonderflux display hooks
 			// IMPORTANT: If you wish to insert the widget area manually into your theme supply 'my_theme_code' as the 'location' parameter.
 			// You will then need to insert your widget area using the name parameter into your theme manually using standard WordPress theme code.
-			if ($location != 'my_theme_code') {
+
+			if ( $location != 'my_theme_code' || empty($location) ) {
 				$priority = (is_numeric($priority)) ? $priority : 3;
 				add_action( $location, create_function( '$name', "dynamic_sidebar( '$name' );" ), $priority );
 			}

@@ -1,15 +1,15 @@
 /*
 Theme Name: Wonderflux Framework
 Theme URI: http://wonderflux.com
-Description: DEVELOPMENT VERSION - A theme design framework for professional WordPress and BuddyPress website development. IMPORTANT - REQUIRES WORDPRESS 3.4 or above.
-Version: 2.0alpha
-Author: Jonny Allbut/Team Wonderflux
-Author URI: http://wonderflux.com
-Tags: one-column, two-columns, left-sidebar, right-sidebar, fixed-layout, fluid-layout, theme-options, buddypress, translation-ready
+Description: BETA VERSION - A responsive theme framework for professional WordPress and BuddyPress website development. IMPORTANT - REQUIRES WORDPRESS 3.4 or above.
+Version: v2.0b01
+Author: Jonny Allbut
+Author URI: http://jonnya.net
+Tags: buddypress, responsive-layout, full-width-template, fixed-layout, fluid-layout, one-column, two-columns, left-sidebar, right-sidebar, theme-options, translation-ready
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-NOTE: Wonderflux is designed to be used with child themes, you should not activate Wonderflux directly and therefore never need this stylesheet
+NOTE: Wonderflux is designed to be used with child themes, you should not activate Wonderflux directly and therefore never see this stylesheet
 */
 
 h2.entry-title a { text-decoration: none; }

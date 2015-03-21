@@ -2,7 +2,7 @@
 
 ====================================
 #### Wonderflux WordPress theme framework
-#### Version v2.0b01 - DEVELOPMENT VERSION
+#### Version v2.0 - DEVELOPMENT VERSION
 #### Stable/production releases: https://github.com/Jonnyauk/Wonderflux/releases
 #### Copyright (c)2014 Jonny Allbut
 #### http://jonnya.net / @Jonnyauk

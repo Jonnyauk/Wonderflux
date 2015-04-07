@@ -250,17 +250,19 @@ following feedback from users and testing - this is a beta after all!
 
 ### More advanced development
 
-The entire grid configuration and all wrapper output can be filtered and
-removed if required - remember this is a framework! Oh and if you spot
-somewhere that needs a filter or more flexibility, just let me know on the
+The entire grid configuration and all wrapper output can be 
+[filtered](http://wonderflux.com/guide/filter/) and 
+[removed if required](http://wonderflux.com/guide/constant/wf_theme_framework_replace/) 
+- remember this is a framework! Oh and if you spot somewhere 
+that needs a filter or more flexibility, just let me know on the 
 [GitHub issues page](https://github.com/Jonnyauk/Wonderflux/issues).
 
 DON'T hack Wonderflux!
 ----------------------------------------------------------------------
 
-You should not modify the Wonderflux theme framework to avoid issues with
-updates in the future. One of the main advantages of using a theme framework
-is the ability to update the core framework to quickly and easily support
+You should not modify the Wonderflux theme framework to avoid issues with 
+updates in the future. One of the main advantages of using a theme framework 
+is the ability to update the core framework to quickly and easily support 
 future versions of WordPress and improve performance and functionality.
 
 **There are lots of ways to use Wonderflux from your child theme:**

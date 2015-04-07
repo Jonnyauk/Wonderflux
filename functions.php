@@ -83,13 +83,15 @@ if ( function_exists( 'my_wfx_scripts' ) ) { if ( !is_admin() ) : add_action('in
 
 //// 1.3 // Columns functionality
 
-// Allow full removal of the core CSS in one swoop
-if (WF_THEME_FRAMEWORK_REPLACE == false) {
+// Allow full removal of the framework CSS system or minified version
+if ( WF_THEME_FRAMEWORK_NONE == true ) {
+	// Silence is golden
+} elseif ( WF_THEME_FRAMEWORK_REPLACE == true ) {
+	add_action('wf_head_meta', 'wfx_head_css_replace', 2);
+} else {
 	add_action('wf_head_meta', 'wfx_display_head_css_structure', 2);
 	add_action('wf_head_meta', 'wfx_display_head_css_columns', 2);
 	add_action('wf_head_meta', 'wfx_display_head_css_ie', 2);
-} elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
-	add_action('wf_head_meta', 'wfx_head_css_replace', 2);
 }
 
 //// 1.4 // If Wonderflux activated directly with no child theme

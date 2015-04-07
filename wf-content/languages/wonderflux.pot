@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Wonderflux v2\n"
 "POT-Creation-Date: 2015-03-09 15:45-0000\n"
-"PO-Revision-Date: 2015-03-09 15:46-0000\n"
+"PO-Revision-Date: 2015-04-07 16:27-0000\n"
 "Last-Translator: Jonny Allbut [Jonnyauk]\n"
 "Language-Team: Wonderflux Development Team <devteam@wonderflux.com>\n"
 "Language: en_GB\n"
@@ -2188,7 +2188,7 @@ msgstr ""
 
 #: ../wf-includes/wf-admin-functions.php:860
 msgid ""
-"Wonderflux then automatically inserts the file 'flux-layout-generated.css' "
+"Wonderflux then automatically inserts the file 'flux-layout-merged.css' "
 "for you (if it exists in your child theme), before loading your main child "
 "theme style.css file."
 msgstr ""
@@ -2202,7 +2202,7 @@ msgstr ""
 #: ../wf-includes/wf-admin-functions.php:862
 msgid ""
 "1 - Copy and paste the code from the text box below into a new file called "
-"'flux-layout-generated.css' and save it to your child theme directory."
+"'flux-layout-merged.css' and save it to your child theme directory."
 msgstr ""
 
 #: ../wf-includes/wf-admin-functions.php:863
@@ -2213,7 +2213,7 @@ msgid ""
 msgstr ""
 
 #: ../wf-includes/wf-admin-functions.php:865
-msgid "Code for your flux-layout-generated.css file"
+msgid "Code for your flux-layout-merged.css file"
 msgstr ""
 
 #: ../wf-includes/wf-admin-functions.php:880

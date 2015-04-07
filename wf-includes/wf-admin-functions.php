@@ -857,12 +857,12 @@ class wflux_admin_forms extends wflux_data {
 		$output .= '<p>' . esc_attr__( "By setting the constant in your child theme functions.php file with the single line:", "wonderflux" );
 		$output .= ' <strong>' . 'define( \'WF_THEME_FRAMEWORK_REPLACE\', true);' . '</strong> ';
 		$output .= esc_attr__( "you will remove the Wonderflux css files: 'wf-css-flux-layout-core' and 'wf-css-flux-layout'. ", "wonderflux" );
-		$output .= esc_attr__( "Wonderflux then automatically inserts the file 'flux-layout-generated.css' for you (if it exists in your child theme), before loading your main child theme style.css file.", "wonderflux" ) . '</p>';
+		$output .= esc_attr__( "Wonderflux then automatically inserts the file 'flux-layout-merged.css' for you (if it exists in your child theme), before loading your main child theme style.css file.", "wonderflux" ) . '</p>';
 		$output .= '<p><strong>' . esc_attr__( "IMPORTANT - you will need to create 1 new file in your theme directory to use this functionality.", "wonderflux" ) . '</strong><br />';
-		$output .= esc_attr__( "1 - Copy and paste the code from the text box below into a new file called 'flux-layout-generated.css' and save it to your child theme directory.", "wonderflux" ) . '<br />';
+		$output .= esc_attr__( "1 - Copy and paste the code from the text box below into a new file called 'flux-layout-merged.css' and save it to your child theme directory.", "wonderflux" ) . '<br />';
 		$output .= '<p><strong>' . esc_attr__( "IMPORTANT - If you are using the override files as described and change your grid configuration or layout options, please revisit this page and update your files accordingly with the new generated code.", "wonderflux" ) . '</strong></p>';
 
-		$output .= '<h3>' . esc_attr__( "Code for your flux-layout-generated.css file", "wonderflux" ) . '</h3>';
+		$output .= '<h3>' . esc_attr__( "Code for your flux-layout-merged.css file", "wonderflux" ) . '</h3>';
 		$output .= '<form name="form1" method="post" action="" >';
 		$output .= '<textarea cols="100" rows="20" name="newcontent" id="css-wfx-framework" tabindex="1" onclick="this.select()">'.esc_textarea(trim($content.$content_grid)).'</textarea>';
 

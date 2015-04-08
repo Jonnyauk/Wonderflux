@@ -63,6 +63,19 @@ I've completed Wonderflux v2.0 I'll be turning my attention back to documentatio
 * [Constants](http://wonderflux.com/guide/constant)
 * [Files](http://wonderflux.com/guide/file)
 
+Quickstart
+----------------------------------------------------------------------
+
+**Getting bored already and want to dive in - lets go!**
+
+1.  [Download the latest stable release of Wonderflux.](https://github.com/Jonnyauk/Wonderflux/releases) 
+    NOTE: Ensure directory is called *wonderflux* if downloading straight from GitHub master branch (not wonderflux-master).
+2.  [Download WFX Girder demo child theme.](https://github.com/Jonnyauk/wonderflux-girder/releases) 
+    NOTE: You can rename this directory to anything you wish.
+3.  Unzip and install both directories to wp-content/themes directory.
+4.  Activate WFX Girder demo child theme.
+5.  Take a look at the source code of WFX Girder child theme to learn more!
+
 Getting started
 ----------------------------------------------------------------------
 
@@ -104,7 +117,7 @@ There are lots of comments in each file to get you started.
 WFX Girder is not only a good way to learn Wonderflux, but also provides a
 solid base starter child theme for you to build your own themes with.
 
-[Download WFX Girder theme](https://github.com/Jonnyauk/wonderflux-girder)
+[Download WFX Girder theme](https://github.com/Jonnyauk/wonderflux-girder/releases)
 
 [Live demo of WFX Girder theme](http://wonderflux.com/demo-girder/)
 

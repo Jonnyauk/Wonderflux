@@ -69,7 +69,7 @@ Quickstart
 **Getting bored already and want to dive in - lets go!**
 
 1.  [Download the latest stable release of Wonderflux.](https://github.com/Jonnyauk/Wonderflux/releases) 
-    NOTE: Ensure directory is called *wonderflux* if downloading straight from GitHub master branch (not wonderflux-master).
+    NOTE: Ensure directory is called *wonderflux* if downloading straight from GitHub master branch (not Wonderflux-master).
 2.  [Download WFX Girder demo child theme.](https://github.com/Jonnyauk/wonderflux-girder/releases) 
     NOTE: You can rename this directory to anything you wish.
 3.  Unzip and install both directories to wp-content/themes directory.
@@ -280,24 +280,23 @@ future versions of WordPress and improve performance and functionality.
 
 **There are lots of ways to use Wonderflux from your child theme:**
 
-1.	Filter the layout values to change the layout configuration
-	at any time (including underlying CSS grid system).
+1.	Filter the layout values to change the layout configuration 
+    at any time (including underlying CSS grid system).
 
-2.	Create a main template file with the same name in your child
-	theme - this will be used instead of the core Wonderflux file.
+2.	Create a main template file with the same name in your child 
+    theme - this will be used instead of the core Wonderflux file.
 
-3.	Create a function with the same name as a core Wonderflux
-	display function in your child theme - this will be used
-	instead of the core Wonderflux function.
+3.	Create a function with the same name as a core Wonderflux 
+    display function in your child theme - this will be used 
+    instead of the core Wonderflux function.
 
-4.	Remove a core Wonderflux action in your child theme
-	functions.php file with the remove_action():
-	remove_action('wf_hook_name','wf_function_name',priority);
+4.	Remove a core Wonderflux action in your child theme 
+    functions.php file with the remove_action().
 
 5.	Add a filter to change or add to the code Wonderflux outputs.
 
-6.	Use over 100 location-aware hooks to detect what type of
-	content is being viewed and automatically add unique content.
+6.	Use over 100 location-aware hooks to detect what type of 
+    content is being viewed and automatically add unique content.
 
 Still feel the need to hack Wonderflux?
 ----------------------------------------------------------------------

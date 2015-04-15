@@ -16,6 +16,7 @@ class wflux_data {
 	protected $wfx_columns; // Number of columns
 	protected $wfx_columns_width; // Width of columns
 	protected $wfx_sidebar_primary_position; // Primary sidebar position
+	protected $wfx_page_templates; // Primary sidebar position
 
 	protected $wfx_content_1_display; // Display of main content - EXPERIMENTAL, needs extra coding in core
 	protected $wfx_content_1_size; // Relative 'size' of main content area eg 'three_quarter'
@@ -146,6 +147,12 @@ class wflux_data {
 		$wfx_sidebar_pp_accept = array('left','right');
 		if ( in_array($this->wfx_sidebar_primary_position,$wfx_sidebar_pp_accept) ) { $wfx_sidebar_pp_out = $this->wfx_sidebar_primary_position; }
 		$this->wfx_sidebar_primary_position = $wfx_sidebar_pp_out;
+
+		// PAGE TEMPLATES - saved options hide templates
+		$this->wfx_page_templates = (isset($this->wfx_db_display['page_t']) ) ? $this->wfx_db_display['page_t'] : false;
+		// Validate - first value is default
+		$page_t_accept = array('', 'no-sidebar');
+		$this->wfx_page_templates = ( !$this->wfx_page_templates || !in_array($this->wfx_page_templates,$page_t_accept) ) ? $page_t_accept[0] : $this->wfx_page_templates;
 
 		//// CONTAINERS CONFIGURATION ////
 

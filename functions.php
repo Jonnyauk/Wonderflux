@@ -19,15 +19,16 @@
  * Development code:			https://github.com/Jonnyauk/Wonderflux
  *
  * INDEX OF THIS FILE
- * 1 - Add actions to hooks
- * 2 - Helper functions
- * 3 - Display functions
- * 4 - Theme display functions
- * 5 - Social functions
- * 6 - Theme configuration functions
- * 7 - Script support functions
- * 8 - Admin functions
- * 9 - Wonderflux Core
+ * 1  -  Add actions to hooks
+ * 2  -  Helper functions
+ * 3  -  Display functions
+ * 4  -  Theme display functions
+ * 5  -  Social functions
+ * 6  -  Theme configuration functions
+ * 7  -  Script support functions
+ * 8  -  Admin functions
+ * 9  -  Admin post functions
+ * 10 -  Wonderflux Core
  *
  * DON'T HACK ME! You should NOT modify the Wonderflux theme framework to avoid issues with updates in the future.
  * It's designed to offer lots of flexibility to manipulate from your child theme, like:
@@ -118,6 +119,7 @@ add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
 add_action('wffooter_after_content', 'wfx_display_credit', 1);
 add_action('wf_footer', 'wfx_display_code_credit', 3);
 add_action('auth_redirect', 'wfx_admin_menus');
+add_filter('theme_page_templates','wfx_remove_page_templates');
 
 //// 1.6 // Wonderflux debug functionality
 
@@ -755,7 +757,19 @@ if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links(
 if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_files_info() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_files_info(); } endif;
 
 
-//  9  //////////// WONDERFLUX CORE
+//  9  //////////// ADMIN POST FUNCTIONS
+
+
+/**
+ * @since 2.0
+ * @updated 2.0
+ * Remove page templates if required
+ * Sadly can't load this on load-(page) hook as the filter doesn't work - too early I think
+ */
+if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_page_templates($input) { global $wfx_admin_post; return $wfx_admin_post->remove_page_templates($input); } endif;
+
+
+//  10  //////////// WONDERFLUX CORE
 
 
 // For when Wonderflux gets activated directly

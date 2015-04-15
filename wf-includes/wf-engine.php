@@ -5,6 +5,7 @@ load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
 load_template(WF_INCLUDES_DIR . '/wf-data-management.php');
 load_template(WF_INCLUDES_DIR . '/wf-theme-support.php');
 
+
 //// FUNCTIONALITY REQUIRED BEFORE INIT HOOK
 
 
@@ -32,6 +33,7 @@ class wflux_early_all {
 
 
 //// ADMIN FUNCTIONS
+
 
 if (is_admin()) {
 	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php');
@@ -62,6 +64,42 @@ if (is_admin()) {
 		}
 
 		function admin_menus(){ $this->wflux_admin_do->wf_admin_menus(); }
+
+	}
+}
+
+
+//// ADMIN POST FUNCTIONS
+
+
+if (is_admin()) {
+	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php', true);
+
+	/**
+	* @since 2.0
+	* @updated 2.0
+	* Sets up all Wonderflux post admin functions
+	*/
+	function wflux_capacitor_admin_post() {
+		global $wfx_admin_post;
+		$wfx_admin_post = new wflux_admin_post_all;
+	}
+	add_action('admin_init','wflux_capacitor_admin_post', 1);
+
+	/**
+	* @since 2.0
+	* @updated 2.0
+	* Creates relevant Wonderflux post admin functions
+	*/
+	class wflux_admin_post_all {
+
+		public $wflux_admin_post_do;
+
+		function __construct(){
+			$this->wflux_admin_post_do = new wflux_admin_post;
+		}
+
+		function remove_page_templates($input){ return $this->wflux_admin_post_do->wf_remove_page_templates($input); }
 
 	}
 }

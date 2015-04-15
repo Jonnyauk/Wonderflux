@@ -23,6 +23,7 @@
 			<?php
 			do_settings_sections('wonderflux_stylelab_grid');
 			do_settings_sections('wonderflux_stylelab');
+			do_settings_sections('wonderflux_page_templates');
 			?>
 		</div>
 

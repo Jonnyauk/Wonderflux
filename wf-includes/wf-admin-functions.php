@@ -2,7 +2,7 @@
 
 /**
 * @since 0.3
-* @updated 1.2
+* @updated 2.0
 * Admin area functions for options pages and menus
 */
 class wflux_admin extends wflux_data {
@@ -169,7 +169,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Sets up and configures options and form fields
 	* @since 0.81
-	* @updated 1.2
+	* @updated 2.0
 	*/
 	function wf_register_settings(){
 
@@ -178,6 +178,7 @@ class wflux_admin extends wflux_data {
 		add_settings_section('style_lab', '', array($this->admin_forms, 'wf_form_intro_main'), 'wonderflux_stylelab');
 		add_settings_section('style_lab_grid_core', '', array($this->admin_forms, 'wf_form_intro_grid_core'), 'wonderflux_stylelab_grid_core');
 		add_settings_section('style_lab_grid', '', array($this->admin_forms, 'wf_form_intro_grid'), 'wonderflux_stylelab_grid');
+		add_settings_section('style_lab_p_templates', '', array($this->admin_forms, 'wf_form_intro_p_templates'), 'wonderflux_page_templates');
 		add_settings_section('style_lab_doc', '', array($this->admin_forms, 'wf_form_intro_doc'), 'wonderflux_stylelab_doc');
 		add_settings_section('style_lab_fb', '', array($this->admin_forms, 'wf_form_intro_fb'), 'wonderflux_stylelab_fb');
 
@@ -217,6 +218,7 @@ class wflux_admin extends wflux_data {
 		add_settings_field('sidebar_s', esc_attr__('Sidebar width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('page_t', esc_attr__('Page templates','wonderflux'), array($this->admin_forms, 'wf_form_p_template'), 'wonderflux_page_templates', 'style_lab_p_templates');
 		add_settings_field('doc_type', esc_attr__('Document type','wonderflux'), array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_lang', esc_attr__('Document language','wonderflux'), array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_charset', esc_attr__('Document character set','wonderflux'), array($this->admin_forms, 'wf_form_doc_charset'), 'wonderflux_stylelab_doc', 'style_lab_doc');
@@ -586,6 +588,7 @@ class wflux_admin_forms extends wflux_data {
 			'container_w'	=> ( $this->wfx_width_unit == 'pixels' ) ? array ( 950, range(400,2000,10) ) : array ( 80, range(5,100,5) ),
 			'columns_num'	=> array ( 24, range(2,100,1) ),
 			'columns_w'		=> array ( 30, range(10,200,1) ),
+			'page_t'		=> array ( '','no-sidebar' ),
 			'fb_admins'		=> '',
 			'fb_app'		=> '',
 		);
@@ -643,6 +646,12 @@ class wflux_admin_forms extends wflux_data {
 		echo '<p>' . esc_attr__('Setup the dimensions of your main content area and sidebar.','wonderflux') . '</p>';
 	}
 
+	function wf_form_intro_p_templates() {
+		echo '<h2>' . esc_attr__('Wonderflux core page templates','wonderflux') . '</h2>';
+		echo '<div class="clear"></div>';
+		echo '<p>' . esc_attr__('Tick to hide the specific page template if it does not suit your child theme, it will be removed from page template dropdown option.','wonderflux') . '</p>';
+	}
+
 	function wf_form_grid_type() { $this->wf_form_helper_ddown_std($this->wfx_grid_type,'grid_type',$this->valid['grid_type'],''); }
 
 	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p'],''); }
@@ -654,6 +663,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_container_u() { $this->wf_form_helper_ddown_std($this->wfx_width_unit,'container_u',array('percent','pixels'),''); }
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1,''); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1,''); }
+	function wf_form_p_template() { $this->wf_form_helper_cbox($this->wfx_page_templates,'page_t', $this->valid['page_t'],''); }
 	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',$this->valid['doc_type'],''); }
 	function wf_form_doc_lang() { $this->wf_form_helper_ddown_std($this->wfx_doc_lang,'doc_lang',$this->valid['doc_lang'],''); }
 	function wf_form_doc_charset() { $this->wf_form_helper_ddown_std($this->wfx_doc_charset,'doc_charset',$this->valid['doc_charset'],''); }
@@ -757,6 +767,31 @@ class wflux_admin_forms extends wflux_data {
 		echo "</select>";
 		echo ( !empty($label_note) ) ? ' ' . esc_html( $label_note ) : '';
 		echo "\n";
+	}
+
+
+	/**
+	* Creates checkboxes
+	* @since 2.0
+	* @updated 2.0
+	*/
+	function wf_form_helper_cbox($data, $definition, $valid, $label_note) {
+
+		$output = '';
+		foreach ( $valid as $key => $val ) {
+
+			if ( !empty($val) ){
+				// Use empty field to detect no value saved
+				$output .= '<input type="hidden" name="wonderflux_display['.$definition.']" value="">';
+				$output .= '<label for="' . esc_attr( 'multiple_checkboxes' . '_' . $key )
+				. '" class="checkbox_multi"><input type="checkbox" '
+				. checked( ( $data == $val ), true, false ) . ' name="' . esc_attr( 'wonderflux_display[page_t]' )
+				. '" value="' . esc_attr( $val ) . '" id="' . esc_attr( $definition . '_' . $key ) . '" /> ' . $val . '</label> ';
+			}
+
+		}
+		echo $output;
+
 	}
 
 
@@ -1176,5 +1211,54 @@ class wflux_admin_backup {
 
 
 //END wflux_admin_backup class
+}
+
+
+/**
+* @since 2.0
+* @updated 2.0
+* Admin post control
+*/
+class wflux_admin_post extends wflux_data {
+
+	/**
+	 *
+	 * Used to filter out unwanted page templates from page attributes dropdown
+	 *
+	 * @since 2.0
+	 * @updated 2.0
+	 *
+	 */
+	function wf_remove_page_templates($input) {
+
+		// Sadly can't load this on load-(page) hook as the filter doesn't work
+		$this_screen = get_current_screen();
+		if ( isset($this_screen->parent_base) && $this_screen->parent_base != 'edit') return;
+
+		if ( is_array($this->wfx_page_templates) ){
+
+			foreach ( $this->wfx_page_templates as $val ) {
+				foreach ($input as $key => $value) {
+					if ( $key == 'page-templates/page-template-' . $this->wfx_page_templates . '.php' ) {
+						unset( $input['page-templates/page-template-' . $this->wfx_page_templates . '.php'] );
+					}
+				}
+			}
+
+		} else {
+
+			foreach ( $input as $key => $value ) {
+				if ( $key == 'page-templates/page-template-' . $this->wfx_page_templates . '.php' ) {
+					unset( $input['page-templates/page-template-' . $this->wfx_page_templates . '.php'] );
+				}
+			}
+
+		}
+
+		return $input;
+
+	}
+
+//END wflux_admin_post class
 }
 ?>

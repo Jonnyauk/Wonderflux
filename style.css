@@ -12,9 +12,8 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 NOTE: Wonderflux is designed to be used with child themes, you should not activate Wonderflux directly and therefore never see this stylesheet
 */
 
-h2.entry-title a { text-decoration: none; }
+.entry-title a { text-decoration: none; }
 
-.sidebar-title { margin: 0; }
 .sidebar-box ul { margin: 0; }
 .sidebar-box ul li { list-style-type: none; }
 .sidebar-box ul li ul { margin: 0 0 0 10px; }

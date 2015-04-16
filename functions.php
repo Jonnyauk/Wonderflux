@@ -802,4 +802,21 @@ function wfx_core_default_widgets() {
 	);
 
 }
+
+/**
+ * Adds '.wrapper' div around content blocks
+ * Only for when Wonderflux is activated directly
+ *
+ * @since 2.0
+ * @updated 2.0
+ */
+function wfx_core_default_wrappers() {
+
+	// Add 'wrapper' divs around content
+	//wfx_background_divs('depth=1&location=site');
+	wfx_background_divs('depth=1&location=header');
+	wfx_background_divs('depth=1&location=main');
+	wfx_background_divs('depth=1&location=footer');
+
+}
 ?>

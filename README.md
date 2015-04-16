@@ -68,9 +68,12 @@ Quickstart
 
 **Getting bored already and want to dive in - lets go!**
 
-1.  [Download the latest stable release of Wonderflux.](https://github.com/Jonnyauk/Wonderflux/releases) 
-    NOTE: Ensure directory is called *wonderflux* if downloading straight from GitHub master branch (not Wonderflux-master).
-2.  [Download WFX Girder demo child theme.](https://github.com/Jonnyauk/wonderflux-girder/releases) 
+1.  [Download the latest stable release of Wonderflux.]
+    (https://github.com/Jonnyauk/Wonderflux/releases) 
+    NOTE: Ensure directory is called *wonderflux* 
+    if downloading straight from GitHub master branch (not Wonderflux-master).
+2.  [Download WFX Girder demo child theme.]
+    (https://github.com/Jonnyauk/wonderflux-girder/releases) 
     NOTE: You can rename this directory to anything you wish.
 3.  Unzip and install both directories to wp-content/themes directory.
 4.  Activate WFX Girder demo child theme.

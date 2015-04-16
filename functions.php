@@ -1,22 +1,24 @@
 <?php
 /**
  *
- * Wonderflux is a free open source, GPLv2 licensed theme framework for professional WordPress theme design.
+ * Wonderflux is a free open source, theme framework for professional WordPress theme design.
+ * License: GNU General Public License v2.0
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  *
  * I'M NOT MEANT TO BE ACTIVATED DIRECTLY THANKS - IM A THEME FRAMEWORK!
  * Put me in your themes folder along with a Wonderflux child theme, then activate child theme, not me!
- * Free example child theme:	https://github.com/Jonnyauk/wonderflux-girder
+ * Free example child theme:		https://github.com/Jonnyauk/wonderflux-girder
  *
  * GETTING STARTED GUIDES
- * Information and license:		README.txt
- * Guide and documentation:		http://wonderflux.com/guide
- * Introduction to Wonderflux:	http://wonderflux.com/guide/doc/introduction
- * Wonderflux child themes:		http://wonderflux.com/guide/doc/child-theme-files
+ * Information and license:			README.txt
+ * Guide and documentation:			http://wonderflux.com/guide
+ * Introduction to Wonderflux:		http://wonderflux.com/guide/doc/introduction
+ * Wonderflux child themes:			http://wonderflux.com/guide/doc/child-theme-files
  *
  * GETTING INVOLVED
- * Bugs/improvements/feedback:	https://github.com/Jonnyauk/Wonderflux/issues
- * Official release downloads:	https://github.com/Jonnyauk/Wonderflux/releases
- * Development code:			https://github.com/Jonnyauk/Wonderflux
+ * Bugs/improvements/feedback:		https://github.com/Jonnyauk/Wonderflux/issues
+ * Official release downloads:		https://github.com/Jonnyauk/Wonderflux/releases
+ * Development code:				https://github.com/Jonnyauk/Wonderflux
  *
  * INDEX OF THIS FILE
  * 1  -  Core framework setup & deployment

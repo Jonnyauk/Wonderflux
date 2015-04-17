@@ -114,7 +114,7 @@ add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
 add_action('wf_head_meta', 'wfx_display_css_info');
 add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
 add_action('wffooter_after_content', 'wfx_display_credit', 1);
-add_action('wf_footer', 'wfx_display_code_credit', 3);
+add_action('wp_print_footer_scripts', 'wfx_display_code_credit', 10);
 add_action('auth_redirect', 'wfx_admin_menus');
 add_filter('theme_page_templates','wfx_remove_page_templates');
 

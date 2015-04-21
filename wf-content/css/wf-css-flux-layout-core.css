@@ -97,6 +97,47 @@ img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%
  */
 .gm-style img, .gm-style img[width], .gm-style img[height] { max-width: none; }
 
+/*** WordPress responsive embed media ***/
+
+.responsive-embed.media-youtube {
+    height: 0;
+    position: relative;
+    padding-bottom: 61%;
+    overflow: hidden;
+	margin-bottom: 1.5em;
+}
+ 
+.responsive-embed.media-slideshare {
+    height: 0;
+    position: relative;
+    padding-bottom: 79.5%;
+    overflow: hidden;
+	margin-bottom: 1.5em;
+}
+
+.responsive-embed.media-soundcloud {
+    position: relative;
+    padding-bottom: 90%;
+    overflow: hidden;
+	margin-bottom: 1.5em;
+}
+
+.responsive-embed.media-soundcloud-small {
+    position: relative;
+    padding-bottom: 13%;
+    overflow: hidden;
+	margin-bottom: 1.5em;
+}
+
+.responsive-embed iframe {
+	position: absolute;
+	top:0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
 /*** WordPress Specific ***/
 
 /* Media */

@@ -94,6 +94,7 @@ class wflux_theme_core {
 			// Setup this widget using our options WordPress stylee
 			register_sidebar(array(
 				'name'=> $name,
+				'id'=> $clean_name,
 				'description' => $description,
 				'before_widget' => esc_attr($before) . '<' . esc_attr($container) . ' class="'. esc_attr($containerclass) . ' widget-' . esc_attr($clean_name) .'"' . esc_attr($containerid) . '>',
 				'after_widget' => '</' . esc_attr($container) . '>' . esc_attr($after),

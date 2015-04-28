@@ -94,6 +94,7 @@ if ( WF_THEME_FRAMEWORK_NONE == true ) {
 //// 1.4 // If Wonderflux activated directly with no child theme
 
 if ( wp_get_theme()->Name == 'Wonderflux Framework' ) {
+	add_action( 'after_setup_theme', 'wfx_core_default_setup', 2);
 	add_action('wp_loaded', 'wfx_core_default_widgets', 1);
 	add_action('get_header', 'wfx_core_default_wrappers', 1);
 }
@@ -890,6 +891,18 @@ if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_pag
 	Direct activation fallbacks
 */
 
+/**
+ * Defines basic theme functionality
+ * Only for when Wonderflux is activated directly
+ *
+ * @since 2.0
+ * @updated 2.0
+ */
+function wfx_core_default_setup() {
+
+	add_theme_support( 'post-thumbnails' );
+
+}
 
 /**
  * Configures basic layout

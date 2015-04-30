@@ -630,7 +630,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_intro_grid_core() {
 		echo '<h2>' . esc_attr__('CSS grid/column core configuration','wonderflux') . '</h2>';
 		echo '<div class="clear"></div>';
-		echo '<p><strong>' . esc_attr__('Options must be set before further grid configuration.', 'wonderflux') . '</strong></p>';
+		echo '<p><strong>' . esc_attr__('IMPORTANT: Core configuration options must be saved first before configuring other options.', 'wonderflux') . '</strong></p>';
 		echo '<p>' . esc_attr__('Use percent for responsive (Wonderflux v2) system or pixels for legacy non-responsive (Wonderflux v1) system.', 'wonderflux') . '</p>';
 	}
 
@@ -649,7 +649,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_intro_p_templates() {
 		echo '<h2>' . esc_attr__('Wonderflux core page templates','wonderflux') . '</h2>';
 		echo '<div class="clear"></div>';
-		echo '<p>' . esc_attr__('Tick to hide the specific page template if it does not suit your child theme, it will be removed from page template dropdown option.','wonderflux') . '</p>';
+		echo '<p>' . esc_attr__('Tick to hide the specific page template if it does not suit your child theme (it will be removed from page template dropdown option.)','wonderflux') . '</p>';
 	}
 
 	function wf_form_grid_type() { $this->wf_form_helper_ddown_std($this->wfx_grid_type,'grid_type',$this->valid['grid_type'],''); }

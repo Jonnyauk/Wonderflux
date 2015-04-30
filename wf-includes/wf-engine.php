@@ -22,13 +22,14 @@ add_action('after_setup_theme','wflux_capacitor_early', 2);
 
 /**
  * @since 1.1
- * @updated 1.1
+ * @updated 2.0
  * Theme support and early call functionality required before init hook
 */
 class wflux_early_all {
 	public $wflux_theme_support_do;
 	function __construct(){ $this->wflux_theme_support_do = new wflux_theme_support; }
-	function core_feeds(){ return $this->wflux_theme_support_do->wf_core_feeds(); }
+	function core_feed_links(){ return $this->wflux_theme_support_do->wf_core_feed_links(); }
+	function core_title_tag(){ return $this->wflux_theme_support_do->wf_core_title_tag(); }
 }
 
 

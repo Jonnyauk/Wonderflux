@@ -179,7 +179,7 @@ class wflux_display_code extends wflux_data {
 	 *
 	 * @since 2.0
 	 * @updated 2.0
-	 * 
+	 *
 	 */
 	function wf_head_viewport() {
 
@@ -192,55 +192,23 @@ class wflux_display_code extends wflux_data {
 		}
 	}
 
+
 	/**
-	* Builds the title in the head of the template
-	*
-	* @since 0.1
-	* @updated 1.0
-	*/
+	 * Builds the title in the head of the template
+	 * NOTE: When using WordPress 4.1 or above - uses add_theme_support( 'title-tag' ) instead
+	 *
+	 * @since 0.1
+	 * @updated 2.0
+	 */
 	function wf_head_title($args) {
 
-		echo '<title>';
-
-		// If YOAST WordPress SEO plugin active let it manage titles as it does a great job!
-		if ( defined('WPSEO_BASENAME') ) {
-			wp_title('', true, 'right');
-
-		} else {
-
-			if (is_home() || is_front_page()) {
-
-				echo get_bloginfo( 'name', 'display' );
-
-				$this_desc = esc_attr( get_bloginfo( 'description', 'display' ) );
-
-				if ($this_desc == 'Just another WordPress site') {
-					//Silence is golden - site has default description which we dont want to show
-				} else {
-					//Proper site description in options
-					echo ' - ';
-					echo esc_attr( get_bloginfo( 'description', 'display' ) );
-				}
-			}
-
-			// If it's a feed, lets add that into the title
-			elseif ( is_feed() ) {
-				echo get_bloginfo( 'name', 'display' ) . ' feed';
-			}
-
-			elseif ( is_search() ) {
-				printf( __( 'Search results for  %1$s from %2$s', 'wonderflux' ), get_search_query(), get_bloginfo( 'name', 'display' ) );
-			}
-
-			//DEFAULT FALLBACK
-			else {
-				wp_title(' - ', true, 'right');
-				bloginfo( 'name' );
-			}
+		// Backpat < WordPress 4.1
+		// This is replaced with add_theme_support( 'title-tag' )
+		if ( !function_exists( '_wp_render_title_tag' ) ) {
+			?>
+			<title><?php wp_title( '|', true, 'right' ); ?></title>
+			<?php
 		}
-
-		echo '</title>';
-		echo "\n";
 
 	}
 

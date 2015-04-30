@@ -67,7 +67,8 @@ load_template(get_template_directory() . '/wf-includes/wf-engine.php');
 
 //// 1.1 // Early setup (before init)
 
-add_action('after_setup_theme', 'wfx_core_feeds', 3);
+add_action('after_setup_theme', 'wfx_core_feed_links', 2);
+add_action('after_setup_theme', 'wfx_core_title_tag', 2);
 
 //// 1.2 // Special child theme functions
 
@@ -305,12 +306,21 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 */
 
 /**
- * Inserts WordPress automatic feed links
+ * Adds 'automatic-feed-links' WordPress theme support
  *
  * @since 1.1
- * @updated 1.1
+ * @updated 2.0
  */
-if ( !function_exists( 'wfx_core_feeds' ) ) : function wfx_core_feeds() { global $wfx_theme_support; $wfx_theme_support->core_feeds(); } endif;
+if ( !function_exists( 'wfx_core_feed_links' ) ) : function wfx_core_feed_links() { global $wfx_theme_support; $wfx_theme_support->core_feed_links(); } endif;
+
+/**
+ * Adds 'title-tag' WordPress theme support - Requires WordPress 4.1+
+ * Backpat - Original fallback function still works if title-tag not supported
+ *
+ * @since 2.0
+ * @updated 2.0
+ */
+if ( !function_exists( 'wfx_core_title_tag' ) ) : function wfx_core_title_tag() { global $wfx_theme_support; $wfx_theme_support->core_title_tag(); } endif;
 
 /**
  * Core WordPress threaded comment reply Javascript

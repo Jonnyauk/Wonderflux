@@ -2,15 +2,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Wonderflux v2\n"
-"POT-Creation-Date: 2015-04-16 18:10-0000\n"
-"PO-Revision-Date: 2015-04-16 18:11-0000\n"
+"POT-Creation-Date: 2015-04-30 21:34-0000\n"
+"PO-Revision-Date: 2015-04-30 21:34-0000\n"
 "Last-Translator: Jonny Allbut [Jonnyauk]\n"
 "Language-Team: Wonderflux Development Team <devteam@wonderflux.com>\n"
 "Language: en_GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -1153,19 +1153,19 @@ msgstr ""
 msgid "Your comment"
 msgstr ""
 
-#: ../functions.php:789
+#: ../functions.php:930
 msgid "Above sidebar"
 msgstr ""
 
-#: ../functions.php:790
+#: ../functions.php:931
 msgid "Drag widgets into here to include them above the sidebar on your site."
 msgstr ""
 
-#: ../functions.php:795
+#: ../functions.php:936
 msgid "Below sidebar"
 msgstr ""
 
-#: ../functions.php:796
+#: ../functions.php:937
 msgid "Drag widgets into here to include them below the sidebar on your site."
 msgstr ""
 
@@ -1215,8 +1215,8 @@ msgstr ""
 
 #: ../wf-includes/admin-pages/wf-page-core.php:10
 msgid ""
-"Wonderflux is an advanced, open source theme framework (sometimes known as a "
-"parent theme). "
+"Wonderflux is an advanced, open source theme framework which you use as a "
+"parent theme. "
 msgstr ""
 
 #: ../wf-includes/admin-pages/wf-page-core.php:13
@@ -1249,7 +1249,7 @@ msgstr ""
 
 #: ../wf-includes/admin-pages/wf-page-style.php:10
 msgid ""
-"Configure dynamic CSS layout rules (note that filters over-ride these "
+"Configure dynamic CSS layout rules (note that filters override these "
 "options.)"
 msgstr ""
 
@@ -1959,7 +1959,9 @@ msgid "CSS grid/column core configuration"
 msgstr ""
 
 #: ../wf-includes/wf-admin-functions.php:633
-msgid "Options must be set before further grid configuration."
+msgid ""
+"IMPORTANT: Core configuration options must be saved first before configuring "
+"other options."
 msgstr ""
 
 #: ../wf-includes/wf-admin-functions.php:634
@@ -1990,8 +1992,8 @@ msgstr ""
 
 #: ../wf-includes/wf-admin-functions.php:652
 msgid ""
-"Tick to hide the specific page template if it does not suit your child "
-"theme, it will be removed from page template dropdown option."
+"Tick to hide the specific page template if it does not suit your child theme "
+"(it will be removed from page template dropdown option.)"
 msgstr ""
 
 #: ../wf-includes/wf-admin-functions.php:673
@@ -2205,227 +2207,222 @@ msgid ""
 "wonderflux.com * @package Wonderflux * @since Wonderflux 0.2"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:232
-#, php-format
-msgid "Search results for  %1$s from %2$s"
-msgstr ""
-
-#: ../wf-includes/wf-display-functions.php:574
+#: ../wf-includes/wf-display-functions.php:542
 #, php-format
 msgid "%1$s queries in %2$s seconds"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:587
+#: ../wf-includes/wf-display-functions.php:555
 msgid "Powered by WordPress and the Wonderflux theme framework"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:880
+#: ../wf-includes/wf-display-functions.php:848
 msgid "WONDERFLUX LAYOUT DESIGN HELPER"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:882
+#: ../wf-includes/wf-display-functions.php:850
 msgid "Full width: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:884
+#: ../wf-includes/wf-display-functions.php:852
 msgid "Columns: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:886
+#: ../wf-includes/wf-display-functions.php:854
 msgid "Single column: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:888
+#: ../wf-includes/wf-display-functions.php:856
 msgid "Half: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:896
+#: ../wf-includes/wf-display-functions.php:864
 msgid "Third: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:898
+#: ../wf-includes/wf-display-functions.php:866
 msgid "Two Third: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:903
+#: ../wf-includes/wf-display-functions.php:871
 msgid ""
 "Your column configuration is not compatible with thirds. Avoid using these "
 "in your template designs, or reconfigure options."
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:911
+#: ../wf-includes/wf-display-functions.php:879
 msgid "Quarter: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:913
+#: ../wf-includes/wf-display-functions.php:881
 msgid "Two Quarters: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:915
+#: ../wf-includes/wf-display-functions.php:883
 msgid "Three Quarters: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:920
+#: ../wf-includes/wf-display-functions.php:888
 msgid ""
 "Your column configuration is not compatible with quarters. Avoid using these "
 "in your template designs, or reconfigure options."
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:926
+#: ../wf-includes/wf-display-functions.php:894
 msgid "Small: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1212
+#: ../wf-includes/wf-display-functions.php:1180
 msgid "Powered by "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1212
+#: ../wf-includes/wf-display-functions.php:1180
 msgid "WordPress"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1214
+#: ../wf-includes/wf-display-functions.php:1182
 msgid "Built with "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1214
+#: ../wf-includes/wf-display-functions.php:1182
 msgid "Wonderflux WordPress theme framework"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1214
+#: ../wf-includes/wf-display-functions.php:1182
 msgid "Wonderflux Framework"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1353
+#: ../wf-includes/wf-display-functions.php:1321
 msgid "Read about"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1424
+#: ../wf-includes/wf-display-functions.php:1392
 msgid "Welcome"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1488
+#: ../wf-includes/wf-display-functions.php:1456
 msgid "Edit this content"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1493
+#: ../wf-includes/wf-display-functions.php:1461
 msgid "POSTS:"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1493
+#: ../wf-includes/wf-display-functions.php:1461
 msgid "Create a new post"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1493
-#: ../wf-includes/wf-display-functions.php:1497
+#: ../wf-includes/wf-display-functions.php:1461
+#: ../wf-includes/wf-display-functions.php:1465
 msgid "New"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1493
+#: ../wf-includes/wf-display-functions.php:1461
 msgid "Edit existing posts"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1493
-#: ../wf-includes/wf-display-functions.php:1497
+#: ../wf-includes/wf-display-functions.php:1461
+#: ../wf-includes/wf-display-functions.php:1465
 msgid "Edit"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1497
+#: ../wf-includes/wf-display-functions.php:1465
 msgid "PAGES:"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1497
+#: ../wf-includes/wf-display-functions.php:1465
 msgid "Create new page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1497
+#: ../wf-includes/wf-display-functions.php:1465
 msgid "Edit existing pages"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1501
+#: ../wf-includes/wf-display-functions.php:1469
 msgid "Website admin area"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1501
+#: ../wf-includes/wf-display-functions.php:1469
 msgid "Admin area"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1505
+#: ../wf-includes/wf-display-functions.php:1473
 msgid "Edit website widget areas"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1505
+#: ../wf-includes/wf-display-functions.php:1473
 msgid "Edit widgets"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1509
+#: ../wf-includes/wf-display-functions.php:1477
 msgid "Wonderflux theme framework options"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1509
+#: ../wf-includes/wf-display-functions.php:1477
 msgid "Theme options"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1513
+#: ../wf-includes/wf-display-functions.php:1481
 msgid "Log out of website"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1513
+#: ../wf-includes/wf-display-functions.php:1481
 msgid "Log out"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1560
+#: ../wf-includes/wf-display-functions.php:1528
 msgid "Read"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1654
+#: ../wf-includes/wf-display-functions.php:1622
 msgid "Login"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1655
+#: ../wf-includes/wf-display-functions.php:1623
 msgid "Login to site"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1656
+#: ../wf-includes/wf-display-functions.php:1624
 msgid "Logout"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1657
+#: ../wf-includes/wf-display-functions.php:1625
 msgid "Logout of site"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1899
-#: ../wf-includes/wf-display-functions.php:1940
+#: ../wf-includes/wf-display-functions.php:1867
+#: ../wf-includes/wf-display-functions.php:1908
 #, php-format
 msgid "Download %1$s (.%2$s file)"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1900
-#: ../wf-includes/wf-display-functions.php:1941
+#: ../wf-includes/wf-display-functions.php:1868
+#: ../wf-includes/wf-display-functions.php:1909
 #, php-format
 msgid " (%1$s .%2$s file)"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1990
+#: ../wf-includes/wf-display-functions.php:1958
 msgid "Page "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1991
+#: ../wf-includes/wf-display-functions.php:1959
 msgid " of "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2090
+#: ../wf-includes/wf-display-functions.php:2058
 msgid "&laquo; Previous Page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2121
+#: ../wf-includes/wf-display-functions.php:2089
 msgid "&raquo; Next Page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2172
+#: ../wf-includes/wf-display-functions.php:2140
 msgid "cached-part-start"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2173
+#: ../wf-includes/wf-display-functions.php:2141
 msgid "cached-part-end"
 msgstr ""
 

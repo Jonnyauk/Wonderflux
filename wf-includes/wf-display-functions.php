@@ -195,7 +195,7 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	 * Builds the title in the head of the template
-	 * NOTE: When using WordPress 4.1 or above - uses add_theme_support( 'title-tag' ) instead
+	 * NOTE: When using WordPress 4.1 or above add_theme_support( 'title-tag' ) is automatically used instead
 	 *
 	 * @since 0.1
 	 * @updated 2.0
@@ -204,6 +204,8 @@ class wflux_display_code extends wflux_data {
 
 		// Backpat < WordPress 4.1
 		// This is replaced with add_theme_support( 'title-tag' )
+		// Code is untidy but requried to pass WordPress core theme check - reported but wont be resolved sadly.
+		// See report and response: https://wordpress.org/support/topic/too-aggressive-check-for-wp_title
 		if ( !function_exists( '_wp_render_title_tag' ) ) {
 			?>
 			<title><?php wp_title( '|', true, 'right' ); ?></title>

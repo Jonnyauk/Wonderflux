@@ -548,13 +548,13 @@ class wflux_display_code extends wflux_data {
 	/**
 	*
 	* @since 0.71
-	* @updated 0.931
+	* @updated 2.1
 	*
 	* Footer code comment credit
 	*
 	*/
 	function wf_code_credit() {
-		echo '<!-- ' . apply_filters( 'wflux_comment_code_credit', __('Powered by WordPress and the Wonderflux theme framework', 'wonderflux') ) . ' -->' . "\n";
+		echo "\n" . '<!-- ' . apply_filters( 'wflux_comment_code_credit', __('Powered by WordPress and the Wonderflux theme framework', 'wonderflux') ) . ' -->' . "\n";
 	}
 
 

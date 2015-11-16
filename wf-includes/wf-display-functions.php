@@ -516,6 +516,7 @@ class wflux_display_code extends wflux_data {
 
 		if ( !is_singular() ){
 			$post_class_out = $post_class_out . ' ' . apply_filters( 'wflux_post_class_multiple', 'multiple-posts' );
+			$post_class_out = ( $wp_query->current_post % 2 == 0 ) ? $post_class_out . ' archive-row-even' : $post_class_out . ' archive-row-odd';
 			$post_class_out = $post_class_out . ' ' . 'paged-return-' . $wp_query->current_post;
 			$post_class_out = ( $wp_query->current_post != 0 ) ? $post_class_out : $post_class_out . ' ' . apply_filters( 'wflux_post_class_first', 'first-in-loop' );
 			$post_class_out = ( ($wp_query->current_post+1) != $wp_query->post_count ) ? $post_class_out : $post_class_out . ' ' . apply_filters( 'wflux_post_class_last', 'last-in-loop' );

@@ -47,7 +47,7 @@ td,th { padding: 5px; }
 
 .alignright, .align-right { float: right; margin: 0 0 5px 20px; }
 .alignleft, .align-left { float: left; margin: 0 20px 5px 0; }
-.aligncenter, .align-center { text-align: center; margin: 5px auto; }
+.aligncenter, .align-center { display: block; margin-right: auto; margin-left: auto; }
 .content-left { text-align: left; }
 .content-center { text-align: center; }
 .content-right { text-align: right; }

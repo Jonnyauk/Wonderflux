@@ -4,7 +4,7 @@
  *
  * @package Wonderflux
  * @since 0.1
- * @updated 2.0
+ * @updated 2.1
  */
 
 /*** Positioning and styling ***/
@@ -15,7 +15,7 @@ html { font-size: 100.01%; }
 body { font-size: 75%; color: #222; background: #fff; font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; }
 .alignright, .align-right { float: right; margin: 0 0 5px 20px; }
 .alignleft, .align-left { float: left; margin: 0 20px 5px 0; }
-.aligncenter, .align-center { text-align: center; margin: 5px auto; }
+.aligncenter, .align-center { display: block; margin-right: auto; margin-left: auto; }
 .first, .flush-left { margin-left: 0; padding-left: 0; }
 .last, .flush-right { margin-right: 0; padding-right: 0; }
 .top, .flush-top { margin-top: 0; padding-top: 0; }

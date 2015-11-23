@@ -394,7 +394,7 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	* @since 0.931
-	* @updated 1.2
+	* @updated 2.1
 	*
 	* @filter wflux_body_class_browser : Filter for the browser detection CSS class output
 	* @filter wflux_body_class_layout : Filter for Wonderflux layout description classes
@@ -409,6 +409,8 @@ class wflux_display_code extends wflux_data {
 		global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
 		$browser = 'browser-';
 
+		$is_mobile = ( wp_is_mobile() ) ? ' is-mobile' : ' is-not-mobile';
+
 		switch (TRUE){
 			case $is_lynx: $browser .= 'lynx'; break;
 			case $is_gecko: $browser .= 'gecko'; break;
@@ -421,11 +423,11 @@ class wflux_display_code extends wflux_data {
 			default: $browser .= 'browser-not-defined'; break;
 		}
 
-		$this->head_classes[] = apply_filters( 'wflux_body_class_browser', $browser );
+		$this->head_classes[] = apply_filters( 'wflux_body_class_browser', esc_attr($browser . $is_mobile) );
 
 		// Setup additional layout classes
 		$layout_classes = array();
-		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' ) ? 'content-with-sidebar-1' : 'content-no-sidebar-1';
+		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' ) ? ' content-with-sidebar-1' : ' content-no-sidebar-1';
 		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? ' sidebar-1-left' : '';
 		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'right' ) ? ' sidebar-1-right' : '';
 		$layout_classes[] = ' width-'.$this->wfx_width;
@@ -439,7 +441,7 @@ class wflux_display_code extends wflux_data {
 		$this->head_classes[] = $layout_classes_str;
 
 		// Put it all together and filter body_class
-		add_filter( 'body_class', array($this, 'wf_body_tag_filter') );
+		add_filter( 'body_class', array($this, esc_attr('wf_body_tag_filter')) );
 
 	}
 

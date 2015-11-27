@@ -127,11 +127,15 @@ class wflux_data {
 		$this->wfx_position = $wfx_container_p_out;
 
 		// NUMBER OF COLUMNS - min 2, max 100
-		$this->wfx_columns = (isset($this->wfx_db_display['columns_num']) ) ? $this->wfx_db_display['columns_num'] : false;
+		$this->wfx_columns = 16;
+		$this->wfx_columns = ( isset($this->wfx_db_display['columns_num']) ) ? $this->wfx_db_display['columns_num'] : false;
+		$this->wfx_columns = apply_filters( 'wflux_columns_num', $this->wfx_columns );
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() && has_filter('wflux_columns_num') ) {
+			$this->wfx_columns = $this->wfx_db_display['columns_num'];
+		}
 		// Validate
-		$wfx_columns_out = 16;
-		if (is_numeric ($this->wfx_columns) ) { if ($this->wfx_columns >= 2 && $this->wfx_columns <= 100) {$wfx_columns_out = $this->wfx_columns;} }
-		$this->wfx_columns = $wfx_columns_out;
+		$this->wfx_columns = ( is_numeric ($this->wfx_columns) && ($this->wfx_columns >= 2 && $this->wfx_columns <= 100) ) ? $this->wfx_columns : 16;
 
 		// COLUMN WIDTH - min 10, max 1000
 		$this->wfx_columns_width = (isset($this->wfx_db_display['columns_w']) ) ? $this->wfx_db_display['columns_w'] : false;

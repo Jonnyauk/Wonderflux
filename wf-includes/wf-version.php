@@ -16,10 +16,10 @@ define( 'WF_VERSION', '2.1' );
 /**
  * The minimum recommended version of WordPress for running this version of Wonderflux
  */
-define( 'WF_WORDPRESS_MIN', '3.4' );
+define( 'WF_WORDPRESS_MIN', '4.0' );
 
 /**
  * The optimum recommended version of WordPress for running this version of Wonderflux
  */
-define( 'WF_WORDPRESS_OPTI', '4.2' );
+define( 'WF_WORDPRESS_OPTI', '4.4' );
 ?>

@@ -1,7 +1,7 @@
-<?php 
+<?php
 // Needed for export functions
 if ( !isset($_GET['export_raw']) ) {
-	header("Content-type: text/css"); 
+	header("Content-type: text/css");
 }
 ?>
 /**
@@ -401,7 +401,7 @@ class wflux_layout {
 			if ( isset($size['max']) ){
 				$sizes_max[] = $size['max']; // Used to exclude in hider media queries
 			}
-			
+
 		}
 
 		$all_defs_count = count( $all_defs );
@@ -499,7 +499,7 @@ class wflux_layout {
 			if ( isset($size['max']) ){
 				$sizes_max[] = $size['max']; // Used to exclude in hider media queries
 			}
-			
+
 		}
 
 		$all_defs_count = count( $all_defs );

@@ -427,9 +427,9 @@ class wflux_display_code extends wflux_data {
 
 		// Setup additional layout classes
 		$layout_classes = array();
-		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' ) ? ' content-with-sidebar-1' : ' content-no-sidebar-1';
-		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? ' sidebar-1-left' : '';
-		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'right' ) ? ' sidebar-1-right' : '';
+		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' ) ? 'content-with-sidebar-1' : 'content-no-sidebar-1';
+		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'left' ) ? 'sidebar-1-left' : '';
+		$layout_classes[] = ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_primary_position == 'right' ) ? 'sidebar-1-right' : '';
 		$layout_classes[] = ' width-'.$this->wfx_width;
 
 		// Split back to string for use in wf_body_tag_filter

@@ -453,7 +453,11 @@ if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
  * @since 2.1
  * @updated 2.1
  */
-if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_class() { global $wfx; $wfx->filter_post_class(); } endif;
+if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_class() {
+	if ( !is_admin() ) {
+		global $wfx; $wfx->filter_post_class();
+	}
+} endif;
 
 /**
  * Displays debug in code comment

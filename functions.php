@@ -106,6 +106,7 @@ add_action('init', 'wfx_config_language');
 add_action('wp_enqueue_scripts', 'wfx_core_comment_js', 2);
 add_action('get_header', 'wfx_display_head_open', 1);
 add_action('get_header', 'wfx_display_body_tag', 1);
+add_action('the_post', 'wfx_filter_post_class', 2);
 add_action('get_header', 'wfx_layout_build', 1);
 add_action('get_header', 'wfx_content_width_embed', 2);
 add_action('get_header', 'wfx_social_meta');
@@ -428,6 +429,7 @@ if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_ta
 
 /**
  * A more flexible post class function - especially compared to get_post_class()
+ * DEPRECIATED - to be removed - use standard WordPress post_class() instead in your themes!
  *
  * @since 1.0RC3
  * @updated 1.0RC3
@@ -443,6 +445,15 @@ if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
 	else { return $wfx->post_class($args); }
 
 } endif;
+
+/**
+ * Filters standard WordPress post_class() instead, do it the WordPress way!
+ * IMPORTANT - Replaces wfx_post_class(), stop using it in your themes!!
+ *
+ * @since 2.1
+ * @updated 2.1
+ */
+if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_class() { global $wfx; $wfx->filter_post_class(); } endif;
 
 /**
  * Displays debug in code comment

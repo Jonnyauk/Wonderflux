@@ -9,7 +9,7 @@
  */
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php wfx_post_class(''); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<div class="entry-content">
 

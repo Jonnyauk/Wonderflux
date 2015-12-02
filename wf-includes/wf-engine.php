@@ -280,7 +280,7 @@ add_action('get_header','wflux_capacitor_display', 1);
 
 /**
 * @since 0.913
-* @updated 1.1
+* @updated 2.1
 * Creates all Wonderflux display functions
 */
 class wflux_display_all {
@@ -311,6 +311,7 @@ class wflux_display_all {
 	function head_css_replace($args){ $this->wflux_display_code_do->wf_head_css_replace($args); }
 	function body_tag(){ $this->wflux_display_code_do->wf_body_tag(); }
 	function post_class($args){ return $this->wflux_display_code_do->wf_post_class($args); }
+	function filter_post_class(){ $this->wflux_display_code_do->wf_filter_post_class(); }
 
 	function debug_performance($args){ $this->wflux_display_code_do->wf_performance($args); }
 	function code_credit($args){ $this->wflux_display_code_do->wf_code_credit($args); }

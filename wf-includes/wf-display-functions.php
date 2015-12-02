@@ -9,12 +9,14 @@ class wflux_display_code extends wflux_data {
 
 	protected $xml_namespaces;
 	protected $head_classes;
+	protected $post_classes;
 	protected $lang_attributes;
 
 	function __construct() {
 		parent::__construct();
 		$this->xml_namespaces = array(); // Holds all XML namespaces to build into head
 		$this->head_classes = array(); // Holds all additional classes that will be added to head
+		$this->post_classes = array(); // Holds all additional classes that will be added to post class
 		$this->lang_attributes = ''; // Holds all additional attributes added to <html>
 
 	}
@@ -403,7 +405,7 @@ class wflux_display_code extends wflux_data {
 	* WARNING - Browser detection is fairly basic!
 	* Add to by using core WordPress filter 'body_class' or override whole function
 	*/
-	function wf_body_tag(){
+	function wf_body_tag() {
 
 		// Setup using WordPress standard browser detection globals - fairly basic
 		global $is_lynx, $is_gecko, $is_IE, $is_opera, $is_NS4, $is_safari, $is_chrome, $is_iphone;
@@ -451,7 +453,7 @@ class wflux_display_code extends wflux_data {
 	 * @updated 1.2
 	 * Used in wf_body_tag() to filter body_class
 	 */
-	function wf_body_tag_filter($classes){
+	function wf_body_tag_filter( $classes ) {
 
 		// Add browser info to start of body class
 		array_unshift( $classes, $this->head_classes[0] );
@@ -466,9 +468,11 @@ class wflux_display_code extends wflux_data {
 	/**
 	 *
 	 * A more flexible post class function
+	 * DEPRECIATED - to be removed - use standard WordPress post_class() instead in your themes!
+	 * See wf_filter_post_class - which filters WP post_class() instead
 	 *
 	 * @since 1.0RC3
-	 * @updated 1.0RC3
+	 * @updated 2.1
 	 *
 	 * @param $extra (string) : Comma seperated, extra CSS classes you wish to add
 	 * @param $extra_position (string) : 'after' or 'before' - position of your additional $extra CSS classes
@@ -485,7 +489,7 @@ class wflux_display_code extends wflux_data {
 	 * $post_class[] = 'my-new-class' Add an item to the array (Can also be done with the $extra param in function if required - which is simpler!)
 	 *
 	*/
-	function wf_post_class($args){
+	function wf_post_class( $args ) {
 
 		$defaults = array (
 			'extra' => '',
@@ -531,6 +535,56 @@ class wflux_display_code extends wflux_data {
 		}
 
 		return ( $just_string == 'N' ) ? 'class="' . $post_class_out . '"': $post_class_out;
+
+	}
+
+
+	/**
+	 *
+	 * @since 2.1
+	 * @updated 2.1
+	 *
+	 * Filters standard WordPress post_class() instead, do it the WordPress way!
+	 * IMPORTANT - Stop using wfx_post_class() it in your themes!!
+	 *
+	 * @filter wflux_post_class_single : Extra CSS class added to a single post view (default 'single-post')
+	 * @filter wflux_post_class_multiple : Extra CSS class added to multiple post/archive views (default 'multiple-posts')
+	 * @filter wflux_post_class_first : Extra CSS class added to first post in loop (default 'first-in-loop')
+	 * @filter wflux_post_class_last : Extra CSS class added to first post in loop (default 'last-in-loop')
+	 *
+	 */
+	function wf_filter_post_class() {
+
+		global $wp_query;
+
+		unset( $this->post_classes );
+
+		if ( !is_singular() ){
+			$this->post_classes[] = apply_filters( 'wflux_post_class_multiple', 'multiple-posts' );
+			$this->post_classes[] = ( $wp_query->current_post % 2 == 0 ) ? 'archive-row-odd' : 'archive-row-even';
+			$this->post_classes[] = 'paged-return-' . ( intval($wp_query->current_post) + 1 );
+			$this->post_classes[] = ( $wp_query->current_post != 0 ) ? '' : apply_filters( 'wflux_post_class_first', 'first-in-loop' );
+			$this->post_classes[] = ( ($wp_query->current_post +1 ) != $wp_query->post_count ) ? '' : apply_filters( 'wflux_post_class_last', 'last-in-loop' );
+		} else {
+			$this->post_classes[] = apply_filters( 'wflux_post_class_single', 'single-post' );
+		}
+
+		// Put it all together and filter body_class
+		add_filter( 'post_class', array($this, esc_attr('wf_filter_post_class_do')) );
+
+	}
+
+
+	/**
+	 * @since 0.931
+	 * @updated 2.2
+	 * Used in wf_body_tag() to filter body_class
+	 */
+	function wf_filter_post_class_do( $classes ) {
+
+		// Clean up and merge our extra CSS post classes
+		$classes = ( !empty($this->post_classes) ) ? array_merge( $classes, array_filter($this->post_classes) ) : $classes;
+		return $classes;
 
 	}
 

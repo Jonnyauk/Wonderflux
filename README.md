@@ -2,7 +2,7 @@
 
 ====================================
 #### Wonderflux WordPress theme framework
-#### Version v2.1 - DEVELOPMENT VERSION
+#### Version v2.1 - DEVELOPMENT VERSION - NOT FOR LIVE PRODUCTION ENVIRONMENTS!
 #### Stable/production releases: https://github.com/Jonnyauk/Wonderflux/releases
 #### Copyright (c)2014 Jonny Allbut
 #### http://jonnya.net / @Jonnyauk
@@ -27,7 +27,7 @@ You may also view the license online: http://www.gnu.org/licenses/gpl-2.0.html
 Welcome to Wonderflux
 ----------------------------------------------------------------------
 
-### A free, professional Open Source theme framework for WordPress & BuddyPress
+### A free, professional Open Source responsive theme framework for WordPress & BuddyPress
 
 Wonderflux is distributed under the GPL v2 license and just like WordPress is
 free to download, use and modify. YES, you can use Wonderflux on as many
@@ -92,7 +92,7 @@ giving you a powerful toolkit and dynamic CSS layout system to rapidly
 develop bespoke WordPress themes for any purpose.
 
 What makes a child theme work is a single line in the top section of 
-style.css - 'Template: Wonderflux'. This lets WordPress know you want 
+style.css - 'Template: wonderflux'. This lets WordPress know you want 
 to use Wonderflux as a parent theme.
 
 Child themes can be as simple as a single style.css file, or include any
@@ -160,7 +160,16 @@ otherwise it falls back to using the default file (the last listed). You will
 see the files shown below in the order, or *cascade* of files that will be
 used in given locations. We are using template part loop-content.php as an
 example template part, but this will work with any main template part, or
-indeed your own files if you use the wfx_get_template_part() function:
+indeed your own files if you use the wfx_get_template_part() function.
+
+New to Wonderflux v2.1 and above is expansion of loop-content-archive.php 
+template part, this is now used as a fallback when viewing category, tag, 
+taxonomy, date or other archive views for a consistent archive experience.
+
+Also new to Wonderflux 2.1 and above is basic non-desktop/mobile/tablet detection. 
+Create unique non-desktop optimised screen alternative template parts by creating an 
+additional file with '-mobile' appended, like: loop-content-single-mobile.php which 
+will be used instead on non-desktop devices.
 
 * **SINGLE POST (INCLUDING CUSTOM POST TYPES)**
   *NOTE: Normal 'post' post type uses loop-content-single.php
@@ -172,30 +181,34 @@ indeed your own files if you use the wfx_get_template_part() function:
 * **CATEGORY ARCHIVE**
   1. loop-content-category-{CATEGORY-SLUG}.php
   2. loop-content-category.php
-  3. loop-content.php
+  3. loop-content-archive.php (common archive template)
+  4. loop-content.php
 
 * **TAXONOMY ARCHIVE**
   1. loop-content-taxonomy-{taxonomy-name}-{taxonomy-term}.php
   2. loop-content-taxonomy-{taxonomy-name}.php
   3. loop-content-taxonomy.php
-  4. loop-content.php
+  4. loop-content-archive.php (common archive template)
+  5. loop-content.php
 
 * **TAG ARCHIVE**
   1. loop-content-tag-{tag-slug}.php
   2. loop-content-tag.php
-  3. loop-content.php
+  3. loop-content-archive.php (common archive template)
+  4. loop-content.php
 
 * **DATE ARCHIVE**
   *NOTE: 4 digit year, 2 digit month with leading zero if less than 10*
-  1. loop-content-date-{YEAR}-{MONTH}.php
-  2. loop-content-date-{YEAR}.php
+  1. loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than ).
+  2. loop-content-date-{YEAR}.php (4 digit year)
   3. loop-content-date.php
-  4. loop-content.php
+  4. loop-content-archive.php (common archive template)
+  5. loop-content.php
 
 * **POST ARCHIVE**
   *NOTE: especially useful for custom post type archives - introduced in v2.0!*
 	1. loop-content-archive-{post-type-slug}.php
-	2. loop-content-archive.php
+	2. loop-content-archive.php (common archive template)
 	3. loop-content.php
 
 * **AUTHOR**

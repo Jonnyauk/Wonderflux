@@ -344,8 +344,8 @@ class wflux_helper {
 	* Turbo-charged get_template_part file include
 	* Appends various location information and uses those files if available in your theme folder
 	*
-	* Can also use small screen alternative template parts for small screen devices
-	* by creating an additional file with '-small' appended, like: loop-content-single-small.php
+	* Can also use mobile optimised screen alternative template parts for non-desktop devices (like phones or tablets)
+	* by creating an additional file with '-mobile' appended, like: loop-content-single-mobile.php
 	*
 	* EXAMPLES
 	* All examples are with $part='loop-content' and shows the order of priority of files
@@ -359,28 +359,32 @@ class wflux_helper {
 	* CATEGORY ARCHIVE
 	* 1 loop-content-category-{CATEGORY-SLUG}.php
 	* 2 loop-content-category.php
-	* 3 loop-content.php
+	* 3 loop-content-archive.php (common archive template)
+	* 4 loop-content.php
 	*
 	* TAXONOMY ARCHIVE
 	* 1 loop-content-taxonomy-{taxonomy-name}-{taxonomy-term}.php
 	* 2 loop-content-taxonomy-{taxonomy-name}.php
 	* 3 loop-content-taxonomy.php
-	* 4 loop-content.php
+	* 4 loop-content-archive.php (common archive template)
+	* 5 loop-content.php
 	*
 	* TAG ARCHIVE
 	* 1 loop-content-tag-{tag-slug}.php
 	* 2 loop-content-tag.php
-	* 3 loop-content.php
+	* 3 loop-content-archive.php (common archive template)
+	* 4 loop-content.php
 	*
 	* DATE ARCHIVE
 	* 1 loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than 10)
 	* 2 loop-content-date-{YEAR}.php (4 digit year)
 	* 3 loop-content-date.php
-	* 4 loop-content.php
+	* 4 loop-content-archive.php (common archive template)
+	* 5 loop-content.php
 	*
 	* POST ARCHIVE (especially useful for custom post type archives!)
 	* 1 loop-content-archive-{post-type-slug}.php
-	* 2 loop-content-archive.php
+	* 2 loop-content-archive.php (common archive template)
 	* 3 loop-content.php
 	*
 	* AUTHOR TODO: Do username template drill
@@ -570,7 +574,28 @@ class wflux_helper {
 
 		}
 
-		$part_get = ( !empty($part_get) ) ? $part_get : $this_location;
+		// Use general [PART]-archive.php template part if we need to
+		$archive_views = array('category', 'tag', 'taxonomy', 'date', 'archive');
+		if ( in_array($this_location, $archive_views) ) {
+
+			if ( $this->wfx_is_small_screen == true ){
+				if ( locate_template( $part . '-' . $this_location . '-mobile.php', false ) !='' ):
+					$part_get = $this_location . '-mobile';
+				endif;
+			}
+
+			if ( empty($part_get) ){
+				if ( locate_template( $part . '-' . $this_location . '.php', false ) !='' ):
+					$part_get = $this_location;
+				else:
+					$part_get = 'archive';
+				endif;
+			}
+
+		}
+
+		// Covers all other eventualities
+		$part_get = ( empty($part_get) ) ? $this_location : $part_get;
 
 		get_template_part( $part, sanitize_html_class($part_get) );
 

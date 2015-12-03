@@ -413,7 +413,7 @@ class wflux_helper {
 	* TODO: Extend the simple WP core $is_mobile detection
 	*
 	* @since 0.881
-	* @lastupdate 2.0
+	* @lastupdate 2.1
 	*
 	* @param string $part REQUIRED The slug name for the generic template
 	*
@@ -441,8 +441,8 @@ class wflux_helper {
 				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
 
 				if ( $this->wfx_is_small_screen == true ){
-					if ( locate_template( $part . '-' . $slug_depth_1 . 'small.php', false ) !='' ):
-						$part_get = $slug_depth_1 . 'small';
+					if ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
+						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
@@ -461,8 +461,8 @@ class wflux_helper {
 				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
 
 				if ( $this->wfx_is_small_screen == true ){
-					if ( locate_template( $part . '-' . $slug_depth_1 . 'small.php', false ) !='' ):
-						$part_get = $slug_depth_1 . 'small';
+					if ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
+						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
@@ -481,8 +481,8 @@ class wflux_helper {
 				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
 
 				if ( $this->wfx_is_small_screen == true ){
-					if ( locate_template( $part . '-' . $slug_depth_1 . 'small.php', false ) !='' ):
-						$part_get = $slug_depth_1 . 'small';
+					if ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
+						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
@@ -502,10 +502,10 @@ class wflux_helper {
 				$slug_depth_2 = ( isset($this_q->slug) ) ? $this_location . '-' . $this_q->taxonomy . '-' . $this_q->slug : false;
 
 				if ( $this->wfx_is_small_screen == true ){
-					if ( locate_template($part . '-' . $slug_depth_2 . '-small.php', false) !='' ):
-						$part_get = $slug_depth_2 . '-small';
-					elseif ( locate_template($part . '-' . $slug_depth_1 . '-small.php', false) !='' ):
-						$part_get = $slug_depth_1 . '-small';
+					if ( locate_template($part . '-' . $slug_depth_2 . '-mobile.php', false) !='' ):
+						$part_get = $slug_depth_2 . '-mobile';
+					elseif ( locate_template($part . '-' . $slug_depth_1 . '-mobile.php', false) !='' ):
+						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
@@ -527,10 +527,10 @@ class wflux_helper {
 				$slug_2 = ( !empty($month) ) ? ($month < 10) ? sprintf( '-%02d', $month ) : '-' . $month : false;
 
 				if ( $this->wfx_is_small_screen == true ){
-					if ( locate_template( $part . '-' . $this_location . $slug_1 . $slug_2 . '-small.php', false) !='' ):
-						$part_get = $this_location . $slug_1 . $slug_2 . '-small';
-					elseif ( locate_template($part . '-' . $this_location . $slug_1 . '-small.php', false) !='' ):
-						$part_get = $this_location . $slug_1 . '-small';
+					if ( locate_template( $part . '-' . $this_location . $slug_1 . $slug_2 . '-mobile.php', false) !='' ):
+						$part_get = $this_location . $slug_1 . $slug_2 . '-mobile';
+					elseif ( locate_template($part . '-' . $this_location . $slug_1 . '-mobile.php', false) !='' ):
+						$part_get = $this_location . $slug_1 . '-mobile';
 					endif;
 				}
 
@@ -551,8 +551,8 @@ class wflux_helper {
 				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
 
 				if ( $this->wfx_is_small_screen == true ){
-					if ( locate_template( $part . '-' . $slug_depth_1 . 'small.php', false ) !='' ):
-						$part_get = $slug_depth_1 . 'small';
+					if ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
+						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 

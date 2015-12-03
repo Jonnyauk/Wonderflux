@@ -165,10 +165,10 @@ if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { 
 if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { global $wfx_helper; return $wfx_helper->info_single(); } endif;
 
 /**
- * IMPORTANT - Wonderflux get_template_part - like get_template_part but appends location and '-small' for mobile
+ * IMPORTANT - Wonderflux get_template_part - like get_template_part but appends location and '-mobile' for mobile
  *
  * @since 0.913
- * @updated 0.913
+ * @updated 2.1
  */
 if ( !function_exists( 'wfx_get_template_part' ) ) : function wfx_get_template_part($args) { global $wfx_helper; $wfx_helper->gt_part($args); } endif;
 

@@ -199,7 +199,7 @@ will be used instead on non-desktop devices.
 
 * **DATE ARCHIVE**
   *NOTE: 4 digit year, 2 digit month with leading zero if less than 10*
-  1. loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than ).
+  1. loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than 10).
   2. loop-content-date-{YEAR}.php (4 digit year)
   3. loop-content-date.php
   4. loop-content-archive.php (common archive template)

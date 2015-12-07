@@ -5,7 +5,9 @@
 #### Version v2.1 - DEVELOPMENT VERSION - NOT FOR LIVE PRODUCTION ENVIRONMENTS!
 #### Stable/production releases: https://github.com/Jonnyauk/Wonderflux/releases
 #### Copyright (c)2014 Jonny Allbut
-#### http://jonnya.net / @Jonnyauk
+#### [Web: http://jonnya.net](http://jonnya.net)
+#### [GitHub: Jonnyauk](https://github.com/Jonnyauk/)
+#### [Twitter: @Jonnyauk](https://twitter.com/jonnyauk/)
 ====================================
 
 This program is free software; you can redistribute it and/or modify

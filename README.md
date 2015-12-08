@@ -5,7 +5,9 @@
 #### Version v2.1 - DEVELOPMENT VERSION - NOT FOR LIVE PRODUCTION ENVIRONMENTS!
 #### Stable/production releases: https://github.com/Jonnyauk/Wonderflux/releases
 #### Copyright (c)2014 Jonny Allbut
-#### http://jonnya.net / @Jonnyauk
+#### [Web: http://jonnya.net](http://jonnya.net)
+#### [GitHub: Jonnyauk](https://github.com/Jonnyauk/)
+#### [Twitter: @Jonnyauk](https://twitter.com/jonnyauk/)
 ====================================
 
 This program is free software; you can redistribute it and/or modify
@@ -199,7 +201,7 @@ will be used instead on non-desktop devices.
 
 * **DATE ARCHIVE**
   *NOTE: 4 digit year, 2 digit month with leading zero if less than 10*
-  1. loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than ).
+  1. loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than 10).
   2. loop-content-date-{YEAR}.php (4 digit year)
   3. loop-content-date.php
   4. loop-content-archive.php (common archive template)

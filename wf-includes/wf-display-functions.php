@@ -1661,9 +1661,6 @@ class wflux_display_extras {
 
 	/**
 	 * Creates a standalone link (unstyled) that does login/logout with redirect on each
-	 * TODO: Hook up redirect parameters!
-	 * TODO: Allow role redirection
-	 * TODO: Allow containing XHTML element
 	 *
 	 * @param login - The Login text displayed [Login]
 	 * @param logintip - The Login tooltip [Login to site]
@@ -1673,26 +1670,42 @@ class wflux_display_extras {
 	 * @param logoutredirect - Redirect to where on logout [current]
 	 *
 	 * @since 0.901
-	 * @updated 1.1
+	 * @updated 2.1
 	 */
 	function wf_login_logout($args) {
 
 		$defaults = array (
-			'login' => __('Login', 'wonderflux'),
-			'logintip' => __('Login to site', 'wonderflux'),
-			'logout' => __('Logout', 'wonderflux'),
-			'logouttip' => __('Logout of site', 'wonderflux'),
-			'loginredirect' => 'dashboard',
-			'logoutredirect' => 'current'
+			'login' => __( 'Login', 'wonderflux' ),
+			'logintip' => __( 'Login to site', 'wonderflux' ),
+			'logout' => __( 'Logout', 'wonderflux' ),
+			'logouttip' => __( 'Logout of site', 'wonderflux' ),
+			'loginredirect' => 'home',
+			'logoutredirect' => 'home'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
+		switch ( $loginredirect ) {
+
+			case 'current': $loginredirect = get_permalink(); break;
+			case 'home': $loginredirect = home_url(); break;
+			default: $loginredirect = false; break;
+
+		}
+
+		switch ( $logoutredirect ) {
+
+			case 'current': $logoutredirect = get_permalink(); break;
+			case 'home': $logoutredirect = home_url(); break;
+			default: $logoutredirect = false; break;
+
+		}
+
 		if ( is_user_logged_in() ) {
-			echo '<a href="'.wp_logout_url( home_url() ).'" title="'.esc_attr($logouttip).'">'.esc_attr($logout).'</a>';
+			echo '<a class="wfx-login-logout wfx-login-logout-logged-in" href="' . esc_url( wp_logout_url($logoutredirect) ) . '" title="'.esc_attr( $logouttip ) . '">'.esc_attr( $logout ) . '</a>';
 		} else {
-			echo '<a href="'.wp_login_url().'" title="'.esc_attr($logintip).'">'.esc_attr($login).'</a>';
+			echo '<a class="wfx-login-logout" href="' . esc_url( wp_login_url($loginredirect) ) . '" title="'.esc_attr( $logintip ) . '">'.esc_html( $login ) . '</a>';
 		}
 
 	}

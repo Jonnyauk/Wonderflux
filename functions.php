@@ -257,13 +257,6 @@ if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; re
  */
 if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$label='',$admin_only=true,$role=false,$id=false) { global $wfx_helper; $wfx_helper->debug($input,$label,$admin_only,$role,$id); } endif;
 
-/**
- * Adds message to error reporting if WP_DEBUG is true.
- *
- * @since 1.1
- * @updated 1.1
- */
-if ( !function_exists( 'wfx_debug_report' ) ) : function wfx_debug_report($function='', $message='', $version='') { global $wfx_helper; $wfx_helper->debug_report($function, $message, $version); } endif;
 
 /**
  * Reveals the location of all relevant Wonderflux display hooks within your theme.

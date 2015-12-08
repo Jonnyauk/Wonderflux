@@ -168,7 +168,6 @@ class wflux_helper_all {
 	function __Y(){ return $this->wflux_helper_do->wf__Y(); }
 	function __N(){ return $this->wflux_helper_do->wf__N(); }
 	function debug($input,$label,$admin_only,$role,$id) { $this->wflux_helper_do->wf_debug($input,$label,$admin_only,$role,$id); }
-	function debug_report($function, $message, $version) { $this->wflux_helper_do->wf_debug_report($function, $message, $version); }
 	function show_hooks() { $this->wflux_helper_do->wf_show_hooks(); }
 
 }

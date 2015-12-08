@@ -1,35 +1,72 @@
+<?php
+/**
+ * BuddyPress - Groups Admin
+ *
+ * @package Wonderflux
+ * @subpackage BuddyPress template files
+ */
+
+?>
 <div class="item-list-tabs no-ajax" id="subnav" role="navigation">
 	<ul>
 		<?php bp_group_admin_tabs(); ?>
 	</ul>
 </div><!-- .item-list-tabs -->
 
-<form action="<?php bp_group_admin_form_action(); ?>" name="group-settings-form" id="group-settings-form" class="standard-form" method="post" enctype="multipart/form-data" role="main">
+<form action="<?php bp_group_admin_form_action(); ?>" name="group-settings-form" id="group-settings-form" class="standard-form" method="post" enctype="multipart/form-data">
 
-<?php do_action( 'bp_before_group_admin_content' ); ?>
+<?php
+
+/**
+ * Fires inside the group admin form and before the content.
+ *
+ * @since 1.1.0
+ */
+do_action( 'bp_before_group_admin_content' ); ?>
 
 <?php /* Edit Group Details */ ?>
 <?php if ( bp_is_group_admin_screen( 'edit-details' ) ) : ?>
 
-	<?php do_action( 'bp_before_group_details_admin' ); ?>
+	<?php
 
-	<label for="group-name"><?php _e( 'Group Name (required)', 'buddypress' ); ?></label>
+	/**
+	 * Fires before the display of group admin details.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_group_details_admin' ); ?>
+
+	<label for="group-name"><?php _e( 'Group Name (required)', 'wonderflux' ); ?></label>
 	<input type="text" name="group-name" id="group-name" value="<?php bp_group_name(); ?>" aria-required="true" />
 
-	<label for="group-desc"><?php _e( 'Group Description (required)', 'buddypress' ); ?></label>
+	<label for="group-desc"><?php _e( 'Group Description (required)', 'wonderflux' ); ?></label>
 	<textarea name="group-desc" id="group-desc" aria-required="true"><?php bp_group_description_editable(); ?></textarea>
 
-	<?php do_action( 'groups_custom_group_fields_editable' ); ?>
+	<?php
+
+	/**
+	 * Fires after the group description admin details.
+	 *
+	 * @since 1.0.0
+	 */
+	do_action( 'groups_custom_group_fields_editable' ); ?>
 
 	<p>
-		<label for="group-notifiy-members">
-			<input type="checkbox" name="group-notify-members" value="1" /> <?php _e( 'Notify group members of these changes via email', 'buddypress' ); ?>
+		<label for="group-notify-members">
+			<input type="checkbox" name="group-notify-members" id="group-notify-members" value="1" /> <?php _e( 'Notify group members of these changes via email', 'wonderflux' ); ?>
 		</label>
 	</p>
 
-	<?php do_action( 'bp_after_group_details_admin' ); ?>
+	<?php
 
-	<p><input type="submit" value="<?php _e( 'Save Changes', 'buddypress' ); ?>" id="save" name="save" /></p>
+	/**
+	 * Fires after the display of group admin details.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_group_details_admin' ); ?>
+
+	<p><input type="submit" value="<?php esc_attr_e( 'Save Changes', 'wonderflux' ); ?>" id="save" name="save" /></p>
 	<?php wp_nonce_field( 'groups_edit_group_details' ); ?>
 
 <?php endif; ?>
@@ -37,14 +74,21 @@
 <?php /* Manage Group Settings */ ?>
 <?php if ( bp_is_group_admin_screen( 'group-settings' ) ) : ?>
 
-	<?php do_action( 'bp_before_group_settings_admin' ); ?>
+	<?php
+
+	/**
+	 * Fires before the group settings admin display.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_group_settings_admin' ); ?>
 
 	<?php if ( bp_is_active( 'forums' ) ) : ?>
 
 		<?php if ( bp_forums_is_installed_correctly() ) : ?>
 
 			<div class="checkbox">
-				<label><input type="checkbox" name="group-show-forum" id="group-show-forum" value="1"<?php bp_group_show_forum_setting(); ?> /> <?php _e( 'Enable discussion forum', 'buddypress' ); ?></label>
+				<label for="group-show-forum"><input type="checkbox" name="group-show-forum" id="group-show-forum" value="1"<?php bp_group_show_forum_setting(); ?> /> <?php _e( 'Enable discussion forum', 'wonderflux' ); ?></label>
 			</div>
 
 			<hr />
@@ -53,68 +97,64 @@
 
 	<?php endif; ?>
 
-	<h4><?php _e( 'Privacy Options', 'buddypress' ); ?></h4>
+	<h4><?php _e( 'Privacy Options', 'wonderflux' ); ?></h4>
 
 	<div class="radio">
-		<label>
-			<input type="radio" name="group-status" value="public"<?php bp_group_show_status_setting( 'public' ); ?> />
-			<strong><?php _e( 'This is a public group', 'buddypress' ); ?></strong>
-			<ul>
-				<li><?php _e( 'Any site member can join this group.', 'buddypress' ); ?></li>
-				<li><?php _e( 'This group will be listed in the groups directory and in search results.', 'buddypress' ); ?></li>
-				<li><?php _e( 'Group content and activity will be visible to any site member.', 'buddypress' ); ?></li>
-			</ul>
-		</label>
 
-		<label>
-			<input type="radio" name="group-status" value="private"<?php bp_group_show_status_setting( 'private' ); ?> />
-			<strong><?php _e( 'This is a private group', 'buddypress' ); ?></strong>
-			<ul>
-				<li><?php _e( 'Only users who request membership and are accepted can join the group.', 'buddypress' ); ?></li>
-				<li><?php _e( 'This group will be listed in the groups directory and in search results.', 'buddypress' ); ?></li>
-				<li><?php _e( 'Group content and activity will only be visible to members of the group.', 'buddypress' ); ?></li>
-			</ul>
-		</label>
+		<label for="group-status-public"><input type="radio" name="group-status" id="group-status-public" value="public"<?php if ( 'public' == bp_get_new_group_status() || !bp_get_new_group_status() ) { ?> checked="checked"<?php } ?> aria-describedby="public-group-description" /> <?php _e( 'This is a public group', 'wonderflux' ); ?></label>
 
-		<label>
-			<input type="radio" name="group-status" value="hidden"<?php bp_group_show_status_setting( 'hidden' ); ?> />
-			<strong><?php _e( 'This is a hidden group', 'buddypress' ); ?></strong>
-			<ul>
-				<li><?php _e( 'Only users who are invited can join the group.', 'buddypress' ); ?></li>
-				<li><?php _e( 'This group will not be listed in the groups directory or search results.', 'buddypress' ); ?></li>
-				<li><?php _e( 'Group content and activity will only be visible to members of the group.', 'buddypress' ); ?></li>
-			</ul>
-		</label>
+		<ul id="public-group-description">
+			<li><?php _e( 'Any site member can join this group.', 'wonderflux' ); ?></li>
+			<li><?php _e( 'This group will be listed in the groups directory and in search results.', 'wonderflux' ); ?></li>
+			<li><?php _e( 'Group content and activity will be visible to any site member.', 'wonderflux' ); ?></li>
+		</ul>
+
+		<label for="group-status-private"><input type="radio" name="group-status" id="group-status-private" value="private"<?php if ( 'private' == bp_get_new_group_status() ) { ?> checked="checked"<?php } ?> aria-describedby="private-group-description" /> <?php _e( 'This is a private group', 'wonderflux' ); ?></label>
+
+		<ul id="private-group-description">
+			<li><?php _e( 'Only users who request membership and are accepted can join the group.', 'wonderflux' ); ?></li>
+			<li><?php _e( 'This group will be listed in the groups directory and in search results.', 'wonderflux' ); ?></li>
+			<li><?php _e( 'Group content and activity will only be visible to members of the group.', 'wonderflux' ); ?></li>
+		</ul>
+
+		<label for="group-status-hidden"><input type="radio" name="group-status" id="group-status-hidden" value="hidden"<?php if ( 'hidden' == bp_get_new_group_status() ) { ?> checked="checked"<?php } ?> aria-describedby="hidden-group-description" /> <?php _e('This is a hidden group', 'wonderflux' ); ?></label>
+
+		<ul id="hidden-group-description">
+			<li><?php _e( 'Only users who are invited can join the group.', 'wonderflux' ); ?></li>
+			<li><?php _e( 'This group will not be listed in the groups directory or search results.', 'wonderflux' ); ?></li>
+			<li><?php _e( 'Group content and activity will only be visible to members of the group.', 'wonderflux' ); ?></li>
+		</ul>
+
 	</div>
 
 	<hr />
 
-	<h4><?php _e( 'Group Invitations', 'buddypress' ); ?></h4>
+	<h4><?php _e( 'Group Invitations', 'wonderflux' ); ?></h4>
 
-	<p><?php _e( 'Which members of this group are allowed to invite others?', 'buddypress' ); ?></p>
+	<p><?php _e( 'Which members of this group are allowed to invite others?', 'wonderflux' ); ?></p>
 
 	<div class="radio">
-		<label>
-			<input type="radio" name="group-invite-status" value="members"<?php bp_group_show_invite_status_setting( 'members' ); ?> />
-			<strong><?php _e( 'All group members', 'buddypress' ); ?></strong>
-		</label>
 
-		<label>
-			<input type="radio" name="group-invite-status" value="mods"<?php bp_group_show_invite_status_setting( 'mods' ); ?> />
-			<strong><?php _e( 'Group admins and mods only', 'buddypress' ); ?></strong>
-		</label>
+		<label for="group-invite-status-members"><input type="radio" name="group-invite-status" id="group-invite-status-members" value="members"<?php bp_group_show_invite_status_setting( 'members' ); ?> /> <?php _e( 'All group members', 'wonderflux' ); ?></label>
 
-		<label>
-			<input type="radio" name="group-invite-status" value="admins"<?php bp_group_show_invite_status_setting( 'admins' ); ?> />
-			<strong><?php _e( 'Group admins only', 'buddypress' ); ?></strong>
-		</label>
+		<label for="group-invite-status-mods"><input type="radio" name="group-invite-status" id="group-invite-status-mods" value="mods"<?php bp_group_show_invite_status_setting( 'mods' ); ?> /> <?php _e( 'Group admins and mods only', 'wonderflux' ); ?></label>
+
+		<label for="group-invite-status-admins"><input type="radio" name="group-invite-status" id="group-invite-status-admins" value="admins"<?php bp_group_show_invite_status_setting( 'admins' ); ?> /> <?php _e( 'Group admins only', 'wonderflux' ); ?></label>
+
  	</div>
 
 	<hr />
 
-	<?php do_action( 'bp_after_group_settings_admin' ); ?>
+	<?php
 
-	<p><input type="submit" value="<?php _e( 'Save Changes', 'buddypress' ); ?>" id="save" name="save" /></p>
+	/**
+	 * Fires after the group settings admin display.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_group_settings_admin' ); ?>
+
+	<p><input type="submit" value="<?php esc_attr_e( 'Save Changes', 'wonderflux' ); ?>" id="save" name="save" /></p>
 	<?php wp_nonce_field( 'groups_edit_group_settings' ); ?>
 
 <?php endif; ?>
@@ -124,21 +164,30 @@
 
 	<?php if ( 'upload-image' == bp_get_avatar_admin_step() ) : ?>
 
-			<p><?php _e("Upload an image to use as an avatar for this group. The image will be shown on the main group page, and in search results.", 'buddypress' ); ?></p>
+			<p><?php _e("Upload an image to use as a profile photo for this group. The image will be shown on the main group page, and in search results.", 'wonderflux' ); ?></p>
 
 			<p>
+				<label for="file" class="bp-screen-reader-text"><?php _e( 'Select an image', 'wonderflux' ); ?></label>
 				<input type="file" name="file" id="file" />
-				<input type="submit" name="upload" id="upload" value="<?php _e( 'Upload Image', 'buddypress' ); ?>" />
+				<input type="submit" name="upload" id="upload" value="<?php esc_attr_e( 'Upload Image', 'wonderflux' ); ?>" />
 				<input type="hidden" name="action" id="action" value="bp_avatar_upload" />
 			</p>
 
 			<?php if ( bp_get_group_has_avatar() ) : ?>
 
-				<p><?php _e( "If you'd like to remove the existing avatar but not upload a new one, please use the delete avatar button.", 'buddypress' ); ?></p>
+				<p><?php _e( "If you'd like to remove the existing group profile photo but not upload a new one, please use the delete group profile photo button.", 'wonderflux' ); ?></p>
 
-				<?php bp_button( array( 'id' => 'delete_group_avatar', 'component' => 'groups', 'wrapper_id' => 'delete-group-avatar-button', 'link_class' => 'edit', 'link_href' => bp_get_group_avatar_delete_link(), 'link_title' => __( 'Delete Avatar', 'buddypress' ), 'link_text' => __( 'Delete Avatar', 'buddypress' ) ) ); ?>
+				<?php bp_button( array( 'id' => 'delete_group_avatar', 'component' => 'groups', 'wrapper_id' => 'delete-group-avatar-button', 'link_class' => 'edit', 'link_href' => bp_get_group_avatar_delete_link(), 'link_title' => __( 'Delete Group Profile Photo', 'wonderflux' ), 'link_text' => __( 'Delete Group Profile Photo', 'wonderflux' ) ) ); ?>
 
 			<?php endif; ?>
+
+			<?php
+			/**
+			 * Load the Avatar UI templates
+			 *
+			 * @since  2.3.0
+			 */
+			bp_avatar_get_templates(); ?>
 
 			<?php wp_nonce_field( 'bp_avatar_upload' ); ?>
 
@@ -146,15 +195,15 @@
 
 	<?php if ( 'crop-image' == bp_get_avatar_admin_step() ) : ?>
 
-		<h4><?php _e( 'Crop Avatar', 'buddypress' ); ?></h4>
+		<h4><?php _e( 'Crop Profile Photo', 'wonderflux' ); ?></h4>
 
-		<img src="<?php bp_avatar_to_crop(); ?>" id="avatar-to-crop" class="avatar" alt="<?php _e( 'Avatar to crop', 'buddypress' ); ?>" />
+		<img src="<?php bp_avatar_to_crop(); ?>" id="avatar-to-crop" class="avatar" alt="<?php esc_attr_e( 'Profile photo to crop', 'wonderflux' ); ?>" />
 
 		<div id="avatar-crop-pane">
-			<img src="<?php bp_avatar_to_crop(); ?>" id="avatar-crop-preview" class="avatar" alt="<?php _e( 'Avatar preview', 'buddypress' ); ?>" />
+			<img src="<?php bp_avatar_to_crop(); ?>" id="avatar-crop-preview" class="avatar" alt="<?php esc_attr_e( 'Profile photo preview', 'wonderflux' ); ?>" />
 		</div>
 
-		<input type="submit" name="avatar-crop-submit" id="avatar-crop-submit" value="<?php _e( 'Crop Image', 'buddypress' ); ?>" />
+		<input type="submit" name="avatar-crop-submit" id="avatar-crop-submit" value="<?php esc_attr_e( 'Crop Image', 'wonderflux' ); ?>" />
 
 		<input type="hidden" name="image_src" id="image_src" value="<?php bp_avatar_to_crop_src(); ?>" />
 		<input type="hidden" id="x" name="x" />
@@ -168,13 +217,49 @@
 
 <?php endif; ?>
 
+<?php /* Group Cover image Settings */ ?>
+<?php if ( bp_is_group_admin_screen( 'group-cover-image' ) ) : ?>
+
+	<h4><?php _e( 'Change Cover Image', 'wonderflux' ); ?></h4>
+
+	<?php
+
+	/**
+	 * Fires before the display of profile cover image upload content.
+	 *
+	 * @since 2.4.0
+	 */
+	do_action( 'bp_before_group_settings_cover_image' ); ?>
+
+	<p><?php _e( 'The Cover Image will be used to customize the header of your group.', 'wonderflux' ); ?></p>
+
+	<?php bp_attachments_get_template_part( 'cover-images/index' ); ?>
+
+	<?php
+
+	/**
+	 * Fires after the display of group cover image upload content.
+	 *
+	 * @since 2.4.0
+	 */
+	do_action( 'bp_after_group_settings_cover_image' ); ?>
+
+<?php endif; ?>
+
 <?php /* Manage Group Members */ ?>
 <?php if ( bp_is_group_admin_screen( 'manage-members' ) ) : ?>
 
-	<?php do_action( 'bp_before_group_manage_members_admin' ); ?>
+	<?php
+
+	/**
+	 * Fires before the group manage members admin display.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_group_manage_members_admin' ); ?>
 
 	<div class="bp-widget">
-		<h4><?php _e( 'Administrators', 'buddypress' ); ?></h4>
+		<h4><?php _e( 'Administrators', 'wonderflux' ); ?></h4>
 
 		<?php if ( bp_has_members( '&include='. bp_group_admin_ids() ) ) : ?>
 
@@ -182,12 +267,12 @@
 
 			<?php while ( bp_members() ) : bp_the_member(); ?>
 			<li>
-				<?php echo bp_core_fetch_avatar( array( 'item_id' => bp_get_member_user_id(), 'type' => 'thumb', 'width' => 30, 'height' => 30, 'alt' => sprintf( __( 'Profile picture of %s', 'buddypress' ), bp_get_member_name() ) ) ); ?>
+				<?php echo bp_core_fetch_avatar( array( 'item_id' => bp_get_member_user_id(), 'type' => 'thumb', 'width' => 30, 'height' => 30, 'alt' => sprintf( __( 'Profile picture of %s', 'wonderflux' ), bp_get_member_name() ) ) ); ?>
 				<h5>
 					<a href="<?php bp_member_permalink(); ?>"> <?php bp_member_name(); ?></a>
 					<?php if ( count( bp_group_admin_ids( false, 'array' ) ) > 1 ) : ?>
 					<span class="small">
-						<a class="button confirm admin-demote-to-member" href="<?php bp_group_member_demote_link( bp_get_member_user_id() ); ?>"><?php _e( 'Demote to Member', 'buddypress' ); ?></a>
+						<a class="button confirm admin-demote-to-member" href="<?php bp_group_member_demote_link( bp_get_member_user_id() ); ?>"><?php _e( 'Demote to Member', 'wonderflux' ); ?></a>
 					</span>
 					<?php endif; ?>
 				</h5>
@@ -202,19 +287,19 @@
 
 	<?php if ( bp_group_has_moderators() ) : ?>
 		<div class="bp-widget">
-			<h4><?php _e( 'Moderators', 'buddypress' ); ?></h4>
+			<h4><?php _e( 'Moderators', 'wonderflux' ); ?></h4>
 
 			<?php if ( bp_has_members( '&include=' . bp_group_mod_ids() ) ) : ?>
 				<ul id="mods-list" class="item-list single-line">
 
 					<?php while ( bp_members() ) : bp_the_member(); ?>
 					<li>
-						<?php echo bp_core_fetch_avatar( array( 'item_id' => bp_get_member_user_id(), 'type' => 'thumb', 'width' => 30, 'height' => 30, 'alt' => sprintf( __( 'Profile picture of %s', 'buddypress' ), bp_get_member_name() ) ) ); ?>
+						<?php echo bp_core_fetch_avatar( array( 'item_id' => bp_get_member_user_id(), 'type' => 'thumb', 'width' => 30, 'height' => 30, 'alt' => sprintf( __( 'Profile picture of %s', 'wonderflux' ), bp_get_member_name() ) ) ); ?>
 						<h5>
 							<a href="<?php bp_member_permalink(); ?>"> <?php bp_member_name(); ?></a>
 							<span class="small">
-								<a href="<?php bp_group_member_promote_admin_link( array( 'user_id' => bp_get_member_user_id() ) ); ?>" class="button confirm mod-promote-to-admin" title="<?php _e( 'Promote to Admin', 'buddypress' ); ?>"><?php _e( 'Promote to Admin', 'buddypress' ); ?></a>
-								<a class="button confirm mod-demote-to-member" href="<?php bp_group_member_demote_link( bp_get_member_user_id() ); ?>"><?php _e( 'Demote to Member', 'buddypress' ); ?></a>
+								<a href="<?php bp_group_member_promote_admin_link( array( 'user_id' => bp_get_member_user_id() ) ); ?>" class="button confirm mod-promote-to-admin" title="<?php esc_attr_e( 'Promote to Admin', 'wonderflux' ); ?>"><?php _e( 'Promote to Admin', 'wonderflux' ); ?></a>
+								<a class="button confirm mod-demote-to-member" href="<?php bp_group_member_demote_link( bp_get_member_user_id() ); ?>"><?php _e( 'Demote to Member', 'wonderflux' ); ?></a>
 							</span>
 						</h5>
 					</li>
@@ -228,9 +313,9 @@
 
 
 	<div class="bp-widget">
-		<h4><?php _e("Members", "buddypress"); ?></h4>
+		<h4><?php _e( "Members", 'wonderflux' ); ?></h4>
 
-		<?php if ( bp_group_has_members( 'per_page=15&exclude_banned=false' ) ) : ?>
+		<?php if ( bp_group_has_members( 'per_page=15&exclude_banned=0' ) ) : ?>
 
 			<?php if ( bp_group_member_needs_pagination() ) : ?>
 
@@ -257,25 +342,32 @@
 						<h5>
 							<?php bp_group_member_link(); ?>
 
-							<?php if ( bp_get_group_member_is_banned() ) _e( '(banned)', 'buddypress' ); ?>
+							<?php if ( bp_get_group_member_is_banned() ) _e( '(banned)', 'wonderflux' ); ?>
 
 							<span class="small">
 
 							<?php if ( bp_get_group_member_is_banned() ) : ?>
 
-								<a href="<?php bp_group_member_unban_link(); ?>" class="button confirm member-unban" title="<?php _e( 'Unban this member', 'buddypress' ); ?>"><?php _e( 'Remove Ban', 'buddypress' ); ?></a>
+								<a href="<?php bp_group_member_unban_link(); ?>" class="button confirm member-unban" title="<?php esc_attr_e( 'Unban this member', 'wonderflux' ); ?>"><?php _e( 'Remove Ban', 'wonderflux' ); ?></a>
 
 							<?php else : ?>
 
-								<a href="<?php bp_group_member_ban_link(); ?>" class="button confirm member-ban" title="<?php _e( 'Kick and ban this member', 'buddypress' ); ?>"><?php _e( 'Kick &amp; Ban', 'buddypress' ); ?></a>
-								<a href="<?php bp_group_member_promote_mod_link(); ?>" class="button confirm member-promote-to-mod" title="<?php _e( 'Promote to Mod', 'buddypress' ); ?>"><?php _e( 'Promote to Mod', 'buddypress' ); ?></a>
-								<a href="<?php bp_group_member_promote_admin_link(); ?>" class="button confirm member-promote-to-admin" title="<?php _e( 'Promote to Admin', 'buddypress' ); ?>"><?php _e( 'Promote to Admin', 'buddypress' ); ?></a>
+								<a href="<?php bp_group_member_ban_link(); ?>" class="button confirm member-ban" title="<?php esc_attr_e( 'Kick and ban this member', 'wonderflux' ); ?>"><?php _e( 'Kick &amp; Ban', 'wonderflux' ); ?></a>
+								<a href="<?php bp_group_member_promote_mod_link(); ?>" class="button confirm member-promote-to-mod" title="<?php esc_attr_e( 'Promote to Mod', 'wonderflux' ); ?>"><?php _e( 'Promote to Mod', 'wonderflux' ); ?></a>
+								<a href="<?php bp_group_member_promote_admin_link(); ?>" class="button confirm member-promote-to-admin" title="<?php esc_attr_e( 'Promote to Admin', 'wonderflux' ); ?>"><?php _e( 'Promote to Admin', 'wonderflux' ); ?></a>
 
 							<?php endif; ?>
 
-								<a href="<?php bp_group_member_remove_link(); ?>" class="button confirm" title="<?php _e( 'Remove this member', 'buddypress' ); ?>"><?php _e( 'Remove from group', 'buddypress' ); ?></a>
+								<a href="<?php bp_group_member_remove_link(); ?>" class="button confirm" title="<?php esc_attr_e( 'Remove this member', 'wonderflux' ); ?>"><?php _e( 'Remove from group', 'wonderflux' ); ?></a>
 
-								<?php do_action( 'bp_group_manage_members_admin_item' ); ?>
+								<?php
+
+								/**
+								 * Fires inside the display of a member admin item in group management area.
+								 *
+								 * @since 1.1.0
+								 */
+								do_action( 'bp_group_manage_members_admin_item' ); ?>
 
 							</span>
 						</h5>
@@ -287,77 +379,93 @@
 		<?php else: ?>
 
 			<div id="message" class="info">
-				<p><?php _e( 'This group has no members.', 'buddypress' ); ?></p>
+				<p><?php _e( 'This group has no members.', 'wonderflux' ); ?></p>
 			</div>
 
 		<?php endif; ?>
 
 	</div>
 
-	<?php do_action( 'bp_after_group_manage_members_admin' ); ?>
+	<?php
+
+	/**
+	 * Fires after the group manage members admin display.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_group_manage_members_admin' ); ?>
 
 <?php endif; ?>
 
 <?php /* Manage Membership Requests */ ?>
 <?php if ( bp_is_group_admin_screen( 'membership-requests' ) ) : ?>
 
-	<?php do_action( 'bp_before_group_membership_requests_admin' ); ?>
+	<?php
 
-	<?php if ( bp_group_has_membership_requests() ) : ?>
+	/**
+	 * Fires before the display of group membership requests admin.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_group_membership_requests_admin' ); ?>
 
-		<ul id="request-list" class="item-list">
-			<?php while ( bp_group_membership_requests() ) : bp_group_the_membership_request(); ?>
+		<div class="requests">
 
-				<li>
-					<?php bp_group_request_user_avatar_thumb(); ?>
-					<h4><?php bp_group_request_user_link(); ?> <span class="comments"><?php bp_group_request_comment(); ?></span></h4>
-					<span class="activity"><?php bp_group_request_time_since_requested(); ?></span>
+			<?php bp_get_template_part( 'groups/single/requests-loop' ); ?>
 
-					<?php do_action( 'bp_group_membership_requests_admin_item' ); ?>
-
-					<div class="action">
-
-						<?php bp_button( array( 'id' => 'group_membership_accept', 'component' => 'groups', 'wrapper_class' => 'accept', 'link_href' => bp_get_group_request_accept_link(), 'link_title' => __( 'Accept', 'buddypress' ), 'link_text' => __( 'Accept', 'buddypress' ) ) ); ?>
-
-						<?php bp_button( array( 'id' => 'group_membership_reject', 'component' => 'groups', 'wrapper_class' => 'reject', 'link_href' => bp_get_group_request_reject_link(), 'link_title' => __( 'Reject', 'buddypress' ), 'link_text' => __( 'Reject', 'buddypress' ) ) ); ?>
-
-						<?php do_action( 'bp_group_membership_requests_admin_item_action' ); ?>
-
-					</div>
-				</li>
-
-			<?php endwhile; ?>
-		</ul>
-
-	<?php else: ?>
-
-		<div id="message" class="info">
-			<p><?php _e( 'There are no pending membership requests.', 'buddypress' ); ?></p>
 		</div>
 
-	<?php endif; ?>
+	<?php
 
-	<?php do_action( 'bp_after_group_membership_requests_admin' ); ?>
+	/**
+	 * Fires after the display of group membership requests admin.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_group_membership_requests_admin' ); ?>
 
 <?php endif; ?>
 
-<?php do_action( 'groups_custom_edit_steps' ) // Allow plugins to add custom group edit screens ?>
+<?php
+
+/**
+ * Fires inside the group admin template.
+ *
+ * Allows plugins to add custom group edit screens.
+ *
+ * @since 1.1.0
+ */
+do_action( 'groups_custom_edit_steps' ); ?>
 
 <?php /* Delete Group Option */ ?>
 <?php if ( bp_is_group_admin_screen( 'delete-group' ) ) : ?>
 
-	<?php do_action( 'bp_before_group_delete_admin' ); ?>
+	<?php
+
+	/**
+	 * Fires before the display of group delete admin.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_group_delete_admin' ); ?>
 
 	<div id="message" class="info">
-		<p><?php _e( 'WARNING: Deleting this group will completely remove ALL content associated with it. There is no way back, please be careful with this option.', 'buddypress' ); ?></p>
+		<p><?php _e( 'WARNING: Deleting this group will completely remove ALL content associated with it. There is no way back, please be careful with this option.', 'wonderflux' ); ?></p>
 	</div>
 
-	<label><input type="checkbox" name="delete-group-understand" id="delete-group-understand" value="1" onclick="if(this.checked) { document.getElementById('delete-group-button').disabled = ''; } else { document.getElementById('delete-group-button').disabled = 'disabled'; }" /> <?php _e( 'I understand the consequences of deleting this group.', 'buddypress' ); ?></label>
+	<label for="delete-group-understand"><input type="checkbox" name="delete-group-understand" id="delete-group-understand" value="1" onclick="if(this.checked) { document.getElementById('delete-group-button').disabled = ''; } else { document.getElementById('delete-group-button').disabled = 'disabled'; }" /> <?php _e( 'I understand the consequences of deleting this group.', 'wonderflux' ); ?></label>
 
-	<?php do_action( 'bp_after_group_delete_admin' ); ?>
+	<?php
+
+	/**
+	 * Fires after the display of group delete admin.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_group_delete_admin' ); ?>
 
 	<div class="submit">
-		<input type="submit" disabled="disabled" value="<?php _e( 'Delete Group', 'buddypress' ); ?>" id="delete-group-button" name="delete-group-button" />
+		<input type="submit" disabled="disabled" value="<?php esc_attr_e( 'Delete Group', 'wonderflux' ); ?>" id="delete-group-button" name="delete-group-button" />
 	</div>
 
 	<?php wp_nonce_field( 'groups_delete_group' ); ?>
@@ -367,7 +475,14 @@
 <?php /* This is important, don't forget it */ ?>
 	<input type="hidden" name="group-id" id="group-id" value="<?php bp_group_id(); ?>" />
 
-<?php do_action( 'bp_after_group_admin_content' ); ?>
+<?php
+
+/**
+ * Fires inside the group admin form and after the content.
+ *
+ * @since 1.1.0
+ */
+do_action( 'bp_after_group_admin_content' ); ?>
 
 </form><!-- #group-settings-form -->
 

@@ -1,10 +1,9 @@
 <?php
-
 /**
  * BuddyPress - Users Messages
  *
- * @package BuddyPress
- * @subpackage bp-legacy
+ * @package Wonderflux
+ * @subpackage BuddyPress template files
  */
 
 ?>
@@ -15,7 +14,7 @@
 		<?php bp_get_options_nav(); ?>
 
 	</ul>
-	
+
 	<?php if ( bp_is_messages_inbox() || bp_is_messages_sentbox() ) : ?>
 
 		<div class="message-search"><?php bp_message_search_form(); ?></div>
@@ -30,13 +29,26 @@ switch ( bp_current_action() ) :
 	// Inbox/Sentbox
 	case 'inbox'   :
 	case 'sentbox' :
+
+		/**
+		 * Fires before the member messages content for inbox and sentbox.
+		 *
+		 * @since 1.2.0
+		 */
 		do_action( 'bp_before_member_messages_content' ); ?>
 
-		<div class="messages" role="main">
+		<div class="messages">
 			<?php bp_get_template_part( 'members/single/messages/messages-loop' ); ?>
 		</div><!-- .messages -->
 
-		<?php do_action( 'bp_after_member_messages_content' );
+		<?php
+
+		/**
+		 * Fires after the member messages content for inbox and sentbox.
+		 *
+		 * @since 1.2.0
+		 */
+		do_action( 'bp_after_member_messages_content' );
 		break;
 
 	// Single Message View
@@ -51,13 +63,26 @@ switch ( bp_current_action() ) :
 
 	// Sitewide Notices
 	case 'notices' :
+
+		/**
+		 * Fires before the member messages content for notices.
+		 *
+		 * @since 1.2.0
+		 */
 		do_action( 'bp_before_member_messages_content' ); ?>
 
-		<div class="messages" role="main">
-			<?php bp_get_template_part( 'members/single/messages/notices-loop' );; ?>
+		<div class="messages">
+			<?php bp_get_template_part( 'members/single/messages/notices-loop' ); ?>
 		</div><!-- .messages -->
 
-		<?php do_action( 'bp_after_member_messages_content' );
+		<?php
+
+		/**
+		 * Fires after the member messages content for inbox and sentbox.
+		 *
+		 * @since 1.2.0
+		 */
+		do_action( 'bp_after_member_messages_content' );
 		break;
 
 	// Any other

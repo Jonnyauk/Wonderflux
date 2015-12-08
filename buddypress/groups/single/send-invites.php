@@ -1,63 +1,31 @@
-<?php do_action( 'bp_before_group_send_invites_content' ); ?>
+<?php
+/**
+ * BuddyPress - Groups Send Invites
+ *
+ * @package Wonderflux
+ * @subpackage BuddyPress template files
+ */
 
-<?php if ( bp_get_total_friend_count( bp_loggedin_user_id() ) ) : ?>
+/**
+ * Fires before the send invites content.
+ *
+ * @since 1.1.0
+ */
+do_action( 'bp_before_group_send_invites_content' ); ?>
 
-	<form action="<?php bp_group_send_invite_form_action(); ?>" method="post" id="send-invite-form" class="standard-form" role="main">
+<?php
+/* Does the user have friends that could be invited to the group? */
+if ( bp_get_new_group_invite_friend_list() ) : ?>
 
-		<div class="left-menu">
+	<?php /* 'send-invite-form' is important for AJAX support */ ?>
+	<form action="<?php bp_group_send_invite_form_action(); ?>" method="post" id="send-invite-form" class="standard-form">
 
-			<div id="invite-list">
-				<ul>
-					<?php bp_new_group_invite_friend_list(); ?>
-				</ul>
-
-				<?php wp_nonce_field( 'groups_invite_uninvite_user', '_wpnonce_invite_uninvite_user' ); ?>
-			</div>
-
-		</div><!-- .left-menu -->
-
-		<div class="main-column">
-
-			<div id="message" class="info">
-				<p><?php _e('Select people to invite from your friends list.', 'buddypress' ); ?></p>
-			</div>
-
-			<?php do_action( 'bp_before_group_send_invites_list' ); ?>
-
-			<?php /* The ID 'friend-list' is important for AJAX support. */ ?>
-			<ul id="friend-list" class="item-list">
-			<?php if ( bp_group_has_invites() ) : ?>
-
-				<?php while ( bp_group_invites() ) : bp_group_the_invite(); ?>
-
-					<li id="<?php bp_group_invite_item_id(); ?>">
-						<?php bp_group_invite_user_avatar(); ?>
-
-						<h4><?php bp_group_invite_user_link(); ?></h4>
-						<span class="activity"><?php bp_group_invite_user_last_active(); ?></span>
-
-						<?php do_action( 'bp_group_send_invites_item' ); ?>
-
-						<div class="action">
-							<a class="button remove" href="<?php bp_group_invite_user_remove_invite_url(); ?>" id="<?php bp_group_invite_item_id(); ?>"><?php _e( 'Remove Invite', 'buddypress' ); ?></a>
-
-							<?php do_action( 'bp_group_send_invites_item_action' ); ?>
-						</div>
-					</li>
-
-				<?php endwhile; ?>
-
-			<?php endif; ?>
-			</ul><!-- #friend-list -->
-
-			<?php do_action( 'bp_after_group_send_invites_list' ); ?>
-
-		</div><!-- .main-column -->
-
-		<div class="clear"></div>
+		<div class="invite">
+			<?php bp_get_template_part( 'groups/single/invites-loop' ); ?>
+		</div>
 
 		<div class="submit">
-			<input type="submit" name="submit" id="submit" value="<?php _e( 'Send Invites', 'buddypress' ); ?>" />
+			<input type="submit" name="submit" id="submit" value="<?php esc_attr_e( 'Send Invites', 'wonderflux' ); ?>" />
 		</div>
 
 		<?php wp_nonce_field( 'groups_send_invites', '_wpnonce_send_invites' ); ?>
@@ -67,12 +35,30 @@
 
 	</form><!-- #send-invite-form -->
 
-<?php else : ?>
+<?php
+/* No eligible friends? Maybe the user doesn't have any friends yet. */
+elseif ( 0 == bp_get_total_friend_count( bp_loggedin_user_id() ) ) : ?>
 
-	<div id="message" class="info" role="main">
-		<p><?php _e( 'Once you have built up friend connections you will be able to invite others to your group.', 'buddypress' ); ?></p>
+	<div id="message" class="info">
+		<p class="notice"><?php _e( 'Group invitations can only be extended to friends.', 'wonderflux' ); ?></p>
+		<p class="message-body"><?php _e( "Once you've made some friendships, you'll be able to invite those members to this group.", 'wonderflux' ); ?></p>
+	</div>
+
+<?php
+/* The user does have friends, but none are eligible to be invited to this group. */
+else : ?>
+
+	<div id="message" class="info">
+		<p class="notice"><?php _e( 'All of your friends already belong to this group.', 'wonderflux' ); ?></p>
 	</div>
 
 <?php endif; ?>
 
-<?php do_action( 'bp_after_group_send_invites_content' ); ?>
+<?php
+
+/**
+ * Fires after the send invites content.
+ *
+ * @since 1.2.0
+ */
+do_action( 'bp_after_group_send_invites_content' ); ?>

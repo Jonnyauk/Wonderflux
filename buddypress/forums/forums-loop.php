@@ -1,17 +1,23 @@
 <?php
-
 /**
  * BuddyPress - Forums Loop
  *
- * Querystring is set via AJAX in _inc/ajax.php - bp_legacy_theme_object_filter()
+ * Querystring is set via AJAX in _inc/ajax.php - bp_legacy_theme_object_filter().
  *
- * @package BuddyPress
- * @subpackage bp-legacy
+ * @package Wonderflux
+ * @subpackage BuddyPress template files
  */
 
 ?>
 
-<?php do_action( 'bp_before_forums_loop' ); ?>
+<?php
+
+/**
+ * Fires at the start of the forums loop.
+ *
+ * @since 1.2.6
+ */
+do_action( 'bp_before_forums_loop' ); ?>
 
 <?php if ( bp_has_forum_topics( bp_ajax_querystring( 'forums' ) ) ) : ?>
 
@@ -31,16 +37,30 @@
 
 	</div>
 
-	<?php do_action( 'bp_before_directory_forums_list' ); ?>
+	<?php
+
+	/**
+	 * Fires before the display of the forums list.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_directory_forums_list' ); ?>
 
 	<table class="forum">
 		<thead>
 			<tr>
-				<th id="th-title"><?php _e( 'Topic', 'buddypress' ); ?></th>
-				<th id="th-postcount"><?php _e( 'Posts', 'buddypress' ); ?></th>
-				<th id="th-freshness"><?php _e( 'Freshness', 'buddypress' ); ?></th>
+				<th id="th-title"><?php _e( 'Topic', 'wonderflux' ); ?></th>
+				<th id="th-postcount"><?php _e( 'Posts', 'wonderflux' ); ?></th>
+				<th id="th-freshness"><?php _e( 'Freshness', 'wonderflux' ); ?></th>
 
-				<?php do_action( 'bp_directory_forums_extra_cell_head' ); ?>
+				<?php
+
+				/**
+				 * Fires at the end of <tr> row holding the <th> tags.
+				 *
+				 * @since 1.2.4
+				 */
+				do_action( 'bp_directory_forums_extra_cell_head' ); ?>
 
 			</tr>
 		</thead>
@@ -51,14 +71,14 @@
 
 			<tr class="<?php bp_the_topic_css_class(); ?>">
 				<td class="td-title">
-					<a class="topic-title" href="<?php bp_the_topic_permalink(); ?>" title="<?php _e( 'Permanent link to this post', 'buddypress' ); ?>">
+					<a class="topic-title" href="<?php bp_the_topic_permalink(); ?>" title="<?php esc_attr_e( 'Permanent link to this post', 'wonderflux' ); ?>">
 
 						<?php bp_the_topic_title(); ?>
 
 					</a>
 
 					<p class="topic-meta">
-						<span class="topic-by"><?php /* translators: "started by [poster] in [forum]" */ printf( __( 'Started by %1$s', 'buddypress' ), bp_get_the_topic_poster_avatar( 'height=20&width=20') . bp_get_the_topic_poster_name() ); ?></span>
+						<span class="topic-by"><?php /* translators: "started by [poster] in [forum]" */ printf( __( 'Started by %1$s', 'wonderflux' ), bp_get_the_topic_poster_avatar( 'height=20&width=20') . bp_get_the_topic_poster_name() ); ?></span>
 
 						<?php if ( !bp_is_group_forum() ) : ?>
 
@@ -69,7 +89,7 @@
 													'<a href="' . bp_get_the_topic_object_permalink() . '" title="' . bp_get_the_topic_object_name() . '">' . bp_get_the_topic_object_name() .'</a>';
 
 									/* translators: "started by [poster] in [forum]" */
-									printf( __( 'in %1$s', 'buddypress' ), $topic_in );
+									printf( __( 'in %1$s', 'wonderflux' ), $topic_in );
 								?>
 
 							</span>
@@ -91,18 +111,39 @@
 					</p>
 				</td>
 
-				<?php do_action( 'bp_directory_forums_extra_cell' ); ?>
+				<?php
+
+				/**
+				 * Fires at the end of <tr> row holding the <td> tags.
+				 *
+				 * @since 1.1.0
+				 */
+				do_action( 'bp_directory_forums_extra_cell' ); ?>
 
 			</tr>
 
-			<?php do_action( 'bp_directory_forums_extra_row' ); ?>
+			<?php
+
+				/**
+				 * Fires after the <tr> for a forum listing display.
+				 *
+				 * @since 1.1.0
+				 */
+				do_action( 'bp_directory_forums_extra_row' ); ?>
 
 			<?php endwhile; ?>
 
 		</tbody>
 	</table>
 
-	<?php do_action( 'bp_after_directory_forums_list' ); ?>
+	<?php
+
+	/**
+	 * Fires after the display of the forums list.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_directory_forums_list' ); ?>
 
 	<div id="pag-bottom" class="pagination">
 
@@ -119,9 +160,16 @@
 <?php else: ?>
 
 	<div id="message" class="info">
-		<p><?php _e( 'Sorry, there were no forum topics found.', 'buddypress' ); ?></p>
+		<p><?php _e( 'Sorry, there were no forum topics found.', 'wonderflux' ); ?></p>
 	</div>
 
 <?php endif; ?>
 
-<?php do_action( 'bp_after_forums_loop' ); ?>
+<?php
+
+/**
+ * Fires at the end of the forums loop.
+ *
+ * @since 1.2.6
+ */
+do_action( 'bp_after_forums_loop' ); ?>

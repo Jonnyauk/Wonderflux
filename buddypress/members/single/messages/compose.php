@@ -1,8 +1,24 @@
-<form action="<?php bp_messages_form_action('compose' ); ?>" method="post" id="send_message_form" class="standard-form" role="main" enctype="multipart/form-data">
+<?php
+/**
+ * BuddyPress - Members Single Messages Compose
+ *
+ * @package Wonderflux
+ * @subpackage BuddyPress template files
+ */
 
-	<?php do_action( 'bp_before_messages_compose_content' ); ?>
+?>
+<form action="<?php bp_messages_form_action('compose' ); ?>" method="post" id="send_message_form" class="standard-form" enctype="multipart/form-data">
 
-	<label for="send-to-input"><?php _e("Send To (Username or Friend's Name)", 'buddypress' ); ?></label>
+	<?php
+
+	/**
+	 * Fires before the display of message compose content.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_before_messages_compose_content' ); ?>
+
+	<label for="send-to-input"><?php _e("Send To (Username or Friend's Name)", 'wonderflux' ); ?></label>
 	<ul class="first acfb-holder">
 		<li>
 			<?php bp_message_get_recipient_tabs(); ?>
@@ -11,21 +27,28 @@
 	</ul>
 
 	<?php if ( bp_current_user_can( 'bp_moderate' ) ) : ?>
-		<input type="checkbox" id="send-notice" name="send-notice" value="1" /> <?php _e( "This is a notice to all users.", "buddypress" ); ?>
+		<p><label for="send-notice"><input type="checkbox" id="send-notice" name="send-notice" value="1" /> <?php _e( "This is a notice to all users.", 'wonderflux' ); ?></label></p>
 	<?php endif; ?>
 
-	<label for="subject"><?php _e( 'Subject', 'buddypress' ); ?></label>
+	<label for="subject"><?php _e( 'Subject', 'wonderflux' ); ?></label>
 	<input type="text" name="subject" id="subject" value="<?php bp_messages_subject_value(); ?>" />
 
-	<label for="content"><?php _e( 'Message', 'buddypress' ); ?></label>
+	<label for="message_content"><?php _e( 'Message', 'wonderflux' ); ?></label>
 	<textarea name="content" id="message_content" rows="15" cols="40"><?php bp_messages_content_value(); ?></textarea>
 
 	<input type="hidden" name="send_to_usernames" id="send-to-usernames" value="<?php bp_message_get_recipient_usernames(); ?>" class="<?php bp_message_get_recipient_usernames(); ?>" />
 
-	<?php do_action( 'bp_after_messages_compose_content' ); ?>
+	<?php
+
+	/**
+	 * Fires after the display of message compose content.
+	 *
+	 * @since 1.1.0
+	 */
+	do_action( 'bp_after_messages_compose_content' ); ?>
 
 	<div class="submit">
-		<input type="submit" value="<?php _e( "Send Message", 'buddypress' ); ?>" name="send" id="send" />
+		<input type="submit" value="<?php esc_attr_e( "Send Message", 'wonderflux' ); ?>" name="send" id="send" />
 	</div>
 
 	<?php wp_nonce_field( 'messages_send_message' ); ?>

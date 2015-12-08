@@ -6,17 +6,13 @@
 class wflux_data_manage {
 
 	/**
-	 * Returns array of common layout tags to be used with kses or similar
+	 * Returns array of common HTML tags to be used with kses or similar.
+	 * Use filter 'wflux_allowed_tags' to mainpulate allowed tags
 	 *
-	 * @params none
-	 * @filter 'wflux_allowed_tags' to mainpulate allowed tags
+	 * @since	1.1
+	 * @version	1.1
 	 *
-	 * @lastupdate 1.1
-	 * @since 1.1
-	 * @return array
-	 *
-	 * TODO: Expand $type to allow for finer grain control over allowed tags
-	 * TODO: TEST! Are there more tags that should be included?
+	 * @return	[array]				Allowed tags array
 	 */
 	function wf_allowed_tags($args){
 
@@ -414,17 +410,15 @@ class wflux_data_manage {
 
 
 	/**
-	 * Strips white space in html type output
+	 * Strips white space and other cruft in html type output
+	 *
 	 * DOES NOT sanitise $input!
-	 * Thanks to http://stackoverflow.com/questions/6225351/how-to-minify-php-page-html-output
 	 *
-	 * @params input (string)
+	 * @since	1.1
+	 * @version	1.1
 	 *
-	 * @lastupdate 1.1
-	 * @since 1.1
-	 * @return array
-	 *
-	 * TODO: TEST MORE!
+	 * @param	[int] $input 		HTML imput
+	 * @return	[string]			Cleaned-up HTML output
 	 */
 	function wf_strip_whitespace($input){
 		return preg_replace( array( '/ {2,}/', '/<!--.*?-->|\t|(?:\r?\n[ \t]*)+/s'), array(' ',''), $input);

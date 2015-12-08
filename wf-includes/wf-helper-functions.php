@@ -1,7 +1,7 @@
 <?php
 /**
-* Load and prepare the options
-*/
+ * Setup and prepare Wonderflux options with fallbacks.
+ */
 class wflux_data {
 
 	//Size vars
@@ -249,9 +249,9 @@ class wflux_data {
 
 
 /**
-* Core Wonderflux helper functions
-* Used internally by Wonderflux and can be used by theme developers in child themes
-*/
+ * Core Wonderflux helper functions.
+ * Used internally by Wonderflux and can be used by theme developers in child themes.
+ */
 class wflux_helper {
 
 	protected $wfx_is_small_screen; // Basic non-desktop detection
@@ -263,13 +263,14 @@ class wflux_helper {
 	}
 
 	/**
-	 * Returns array containing information about file based on filename
+	 * Creates array of information about file based on filename.
+	 * IMPORTANT - Used internally by Wonderflux.
 	 *
-	 * @since 1.1
-	 * @lastupdate 1.1
-	 * @return array ext,type,nicetype,playable
+	 * @since	1.1
+	 * @version	1.1
 	 *
-	 * TODO: Extend to optionally check for path/existence of file and proper file checking
+	 * @param	[string] $filename		REQUIRED File name with extension
+	 * @return	[array]					ext,type,nicetype,playable
 	 */
 	function wf_info_file( $filename='' ) {
 
@@ -290,12 +291,14 @@ class wflux_helper {
 	}
 
 	/**
-	* Detects what type of content you are currently viewing
-	*
-	* @since 0.881
-	* @lastupdate 1.0RC3
-	* @return text string of location: 'home', 'category', 'tag', 'search', date', 'author', 'taxonomy', 'archive', 'attachment', 'single', 'page', '404', 'index' (default)
-	*/
+	 * Detects what type of content you are currently viewing.
+	 * IMPORTANT - Used internally by Wonderflux.
+	 *
+	 * @since	0.881
+	 * @version	1.0RC3
+	 *
+	 * @return	[string]				Current view - eg 'category'
+	 */
 	function wf_info_location() {
 
 		switch (TRUE) {
@@ -319,15 +322,14 @@ class wflux_helper {
 
 
 	/**
-	* Detects if you are viewing single content - post, page, attachment, author
-	* as opposed to archive type views
-	*
-	* Use core WordPress is_single() for basic single post check
-	*
-	* @since 1.0
-	* @lastupdate 1.1
-	* @return boolean: true | false
-	*/
+	 * Detects if you are viewing single content - post, page, attachment, author
+	 * as opposed to archive or any other type of views, kinda like is_singular() and is_single()
+	 *
+	 * @since	1.0
+	 * @version	1.1
+	 *
+	 * @return	[bool]					true/false
+	 */
 	function wf_info_single() {
 		switch ( $this->wf_info_location() ) {
 			case 'single': $out = true; break;
@@ -341,88 +343,85 @@ class wflux_helper {
 
 
 	/**
-	* Turbo-charged get_template_part file include
-	* Appends various location information and uses those files if available in your theme folder
-	*
-	* Can also use mobile optimised screen alternative template parts for non-desktop devices (like phones or tablets)
-	* by creating an additional file with '-mobile' appended, like: loop-content-single-mobile.php
-	*
-	* EXAMPLES
-	* All examples are with $part='loop-content' and shows the order of priority of files
-	*
-	* SINGLE POST (INCLUDING CUSTOM POST TYPES)
-	* NOTE: Normal 'post' post type uses loop-content-single.php NOT loop-content-single-post.php
-	* 1 loop-content-single-{POST-TYPE-SLUG}.php
-	* 2 loop-content-single.php
-	* 3 loop-content.php
-	*
-	* CATEGORY ARCHIVE
-	* 1 loop-content-category-{CATEGORY-SLUG}.php
-	* 2 loop-content-category.php
-	* 3 loop-content-archive.php (common archive template)
-	* 4 loop-content.php
-	*
-	* TAXONOMY ARCHIVE
-	* 1 loop-content-taxonomy-{taxonomy-name}-{taxonomy-term}.php
-	* 2 loop-content-taxonomy-{taxonomy-name}.php
-	* 3 loop-content-taxonomy.php
-	* 4 loop-content-archive.php (common archive template)
-	* 5 loop-content.php
-	*
-	* TAG ARCHIVE
-	* 1 loop-content-tag-{tag-slug}.php
-	* 2 loop-content-tag.php
-	* 3 loop-content-archive.php (common archive template)
-	* 4 loop-content.php
-	*
-	* DATE ARCHIVE
-	* 1 loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than 10)
-	* 2 loop-content-date-{YEAR}.php (4 digit year)
-	* 3 loop-content-date.php
-	* 4 loop-content-archive.php (common archive template)
-	* 5 loop-content.php
-	*
-	* POST ARCHIVE (especially useful for custom post type archives!)
-	* 1 loop-content-archive-{post-type-slug}.php
-	* 2 loop-content-archive.php (common archive template)
-	* 3 loop-content.php
-	*
-	* AUTHOR TODO: Do username template drill
-	* 1 loop-content-author.php
-	* 2 loop-content.php
-	*
-	* HOMEPAGE
-	* 1 loop-content-home.php
-	* 2 loop-content.php
-	*
-	* SEARCH
-	* 1 loop-content-search.php
-	* 2 loop-content.php
-	*
-	*
-	* ATTACHMENT TODO: Basic range of filetypes support
-	* 1 loop-content-attachment.php
-	* 2 loop-content.php
-	*
-	* PAGE
-	* 1 loop-content-page.php
-	* 2 loop-content.php
-	*
-	* 404 ERROR PAGE
-	* 1 loop-content-404.php
-	* 2 loop-content.php
-	*
-	* IMPORTANT: Used in core template files to setup smarter specific template_parts
-	*
-	* TODO: Extend the simple WP core $is_mobile detection
-	*
-	* @since 0.881
-	* @lastupdate 2.1
-	*
-	* @param string $part REQUIRED The slug name for the generic template
-	*
-	*
-	*/
+	 * Turbo-charged get_template_part file include - loads a template part into a template.
+	 * IMPORTANT: Used by Wonderflux internally to setup smarter specific template parts.
+	 *
+	 * Appends various location information and uses those files if available in your theme folder.
+	 *
+	 * Can also use mobile optimised screen alternative template parts for non-desktop devices (like phones or tablets)
+	 * by creating an additional file with '-mobile' appended, like: loop-content-single-mobile.php
+	 *
+	 * EXAMPLES
+	 * All examples are with $part='loop-content' and shows the order of priority of files
+	 *
+	 * SINGLE POST (INCLUDING CUSTOM POST TYPES)
+	 * NOTE: Normal 'post' post type uses loop-content-single.php NOT loop-content-single-post.php
+	 * 1 loop-content-single-{POST-TYPE-SLUG}.php
+	 * 2 loop-content-single.php
+	 * 3 loop-content.php
+	 *
+	 * CATEGORY ARCHIVE
+	 * 1 loop-content-category-{CATEGORY-SLUG}.php
+	 * 2 loop-content-category.php
+	 * 3 loop-content-archive.php (common archive template)
+	 * 4 loop-content.php
+	 *
+	 * TAXONOMY ARCHIVE
+	 * 1 loop-content-taxonomy-{taxonomy-name}-{taxonomy-term}.php
+	 * 2 loop-content-taxonomy-{taxonomy-name}.php
+	 * 3 loop-content-taxonomy.php
+	 * 4 loop-content-archive.php (common archive template)
+	 * 5 loop-content.php
+	 *
+	 * TAG ARCHIVE
+	 * 1 loop-content-tag-{tag-slug}.php
+	 * 2 loop-content-tag.php
+	 * 3 loop-content-archive.php (common archive template)
+	 * 4 loop-content.php
+	 *
+	 * DATE ARCHIVE
+	 * 1 loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than 10)
+	 * 2 loop-content-date-{YEAR}.php (4 digit year)
+	 * 3 loop-content-date.php
+	 * 4 loop-content-archive.php (common archive template)
+	 * 5 loop-content.php
+	 *
+	 * POST ARCHIVE (especially useful for custom post type archives!)
+	 * 1 loop-content-archive-{post-type-slug}.php
+	 * 2 loop-content-archive.php (common archive template)
+	 * 3 loop-content.php
+	 *
+	 * AUTHOR TODO: Do username template drill
+	 * 1 loop-content-author.php
+	 * 2 loop-content.php
+	 *
+	 * HOMEPAGE
+	 * 1 loop-content-home.php
+	 * 2 loop-content.php
+	 *
+	 * SEARCH
+	 * 1 loop-content-search.php
+	 * 2 loop-content.php
+	 *
+	 *
+	 * ATTACHMENT TODO: Basic range of filetypes support
+	 * 1 loop-content-attachment.php
+	 * 2 loop-content.php
+	 *
+	 * PAGE
+	 * 1 loop-content-page.php
+	 * 2 loop-content.php
+	 *
+	 * 404 ERROR PAGE
+	 * 1 loop-content-404.php
+	 * 2 loop-content.php
+	 *
+	 * @since	0.881
+	 * @version	2.1
+	 *
+	 * @param	[string] $part 			REQUIRED The slug name for the generic template
+	 * @todo 							Extend the simple WP core $is_mobile detection
+	 */
 	function wf_get_template_part( $args ) {
 
 		$defaults = array (
@@ -603,38 +602,47 @@ class wflux_helper {
 
 
 	/**
-	* Returns user role of logged in user
-	*
-	* NOTE: Parameters, echo or return now controlled in core Wonderflux functions.php
-	*
-	* @since 0.62
-	* @lastupdate 0.92
-	* @return text string of user role: 'administrator', 'editor', 'author', 'contributor', subscriber'
-	*/
+	 * Gets user role of logged-in user
+	 * IMPORTANT - Used internally by Wonderflux.
+	 *
+	 * @since	0.62
+	 * @version	2.1
+	 *
+	 * @return	[string]				Current user role, eg 'administrator'
+	 */
 	function wf_user_role() {
 
-		global $current_user;
-		get_currentuserinfo();
-		$theuser = new WP_User( $current_user->ID );
+		if ( is_user_logged_in() ) {
 
-		if ( !empty( $theuser->roles ) && is_array( $theuser->roles ) ) {
-			foreach ( $theuser->roles as $role )
-			$theuserrole = $role;
-			return $theuserrole;
+			global $current_user;
+			get_currentuserinfo();
+			$theuser = new WP_User( $current_user->ID );
+
+			if ( !empty( $theuser->roles ) && is_array( $theuser->roles ) ) {
+				foreach ( $theuser->roles as $role )
+				$theuserrole = $role;
+				return $theuserrole;
+			}
+
+		} else {
+
+			return false;
+
 		}
 
 	}
 
 
 	/**
-	* Gets current page depth
-	*
-	* @since 0.86
-	* @lastupdate 0.92
-	* @params start - (integer 0/1) - The starting figure (root level) - [0]
-	* @params show_all - (Y/N) - Return root level on homepage and search - [N]
-	* @return integer representing page depth
-	*/
+	 * Gets current page 'depth' when using parent/child/grandchild etc page structure.
+	 *
+	 * @since	0.86
+	 * @version	0.92
+	 *
+	 * @param	[int] $start 			Where you would like to start the depth countr from [0]
+	 * @param	[string] $show_all 		Return root level on homepage and search - Y/N [N]
+	 * @return	[int]					Integer representing depth of page
+	 */
 	function wf_page_depth($args) {
 
 		$defaults = array (
@@ -671,21 +679,22 @@ class wflux_helper {
 
 
 	/**
-	* Get a custom field value for the main post being shown
-	*
-	* @params name - (string) - The name of the custom field - [NONE]
-	* @params empty - (string) - If there is no value in custom field, do you want an alternative value? - [NONE]
-	* @params escape - (Y/N) - Do you want the characters HTML escaped (so '<p>' becomes '&lt;p&gt;' - [N]
-	* @params $format - ('string'/'date') - What type of data is it, do you want to change this date format? - ['string']
-	* @params date_style - (string) - PHP date format - [l F j, Y]
-	* @params return_error - (Y/N) - Do you want something returned on search (is_search) and 404 (is_404) ? - [N]
-	* @params trim - (Y/N) - Trim white space characters from start and end of custom field value [N]
-	* @params id - (integer) - function usually returns main loop custom field, setting $id forces function to get custom field from specific post ID [false]
-	*
-	* @since 0.92
-	* @lastupdate 1.1
-	* @return custom field value, can be used inside and outside loop
-	*/
+	 * Get a custom field value for the main queried post.
+	 * Can be used inside or outside the loop.
+	 *
+	 * @since	0.92
+	 * @version	2.1
+	 *
+	 * @param	[string] $name 			REQUIRED The key name of the custom field
+	 * @param	[string] $empty 		If there is no value in custom field, do you want an alternative value? [false]
+	 * @param	[string] $escape 		Do you want the output HTML escaped? - Y/N [N]
+	 * @param	[string] $format 		What type of data is it, do you want to change this date format? - string/date [string]
+	 * @param	[string] $date_style 	PHP date format style [l F j, Y]
+	 * @param	[string] $error 		Do you want something returned on search and 404? - Y/N [N]
+	 * @param	[string] $trim 			Trim white space characters from start and end of custom field value - Y/N [Y]
+	 * @param	[int] $id 				Function usually returns main loop custom field, setting $id forces function to get custom field from specific post ID [false]
+	 * @return	[mixed]					Custom field value
+	 */
 	function wf_custom_field($args) {
 
 		$defaults = array (
@@ -694,8 +703,8 @@ class wflux_helper {
 			'escape' => 'N',
 			'format' => 'string',
 			'date_style' => 'l F j, Y',
-			'return_error' => 'N',
-			'trim' => 'N',
+			'error' => 'N',
+			'trim' => 'Y',
 			'id' => false
 		);
 
@@ -707,9 +716,9 @@ class wflux_helper {
 		// Detect and optionally return useful value if no chance of custom field being here
 		if ( is_admin() ) {
 			// Silence is golden
-		} elseif ( is_404() && $return_error == 'N' ) {
+		} elseif ( is_404() && $error == 'N' ) {
 			return $empty_clean;
-		} elseif ( is_search() && $return_error == 'N' ) {
+		} elseif ( is_search() && $error == 'N' ) {
 			return $empty_clean;
 		} else {
 
@@ -737,39 +746,42 @@ class wflux_helper {
 
 
 	/**
-	* Returns 'Y' - nothing more, nothing less
-	* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme, saves creating a function
-	* @since 0.93
-	* @lastupdate 0.93
-	*
-	* @return Y
-	*/
+	 * Returns 'Y' - nothing more, nothing less!
+	 * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme, saves creating a function
+	 *
+	 * @since	0.93
+	 * @version	0.93
+	 *
+	 * @return	[string]				Y
+	 */
 	function wf__Y() { return 'Y'; }
 
 
 	/**
-	* Returns 'N' - nothing more, nothing less
-	* Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme, saves creating a function
-	* @since 0.93
-	* @lastupdate 0.93
-	*
-	* @return Y
-	*/
+	 * Returns 'N' - nothing more, nothing less!
+	 * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__N' ) in your child theme, saves creating a function
+	 *
+	 * @since	0.93
+	 * @version	0.93
+	 *
+	 * @return	[string]				N
+	 */
 	function wf__N() { return 'N'; }
 
 
 	/**
-	 * Displays input in a nicer way for debugging
-	 * Only displays for top level site admin by default
+	 * Displays input in a nicer, more useful way for debugging.
+	 * Only displays for logged-in administrator level users by default.
+	 * Contains other powerful query debugging functions.
 	 *
-	 * @since 1.1
-	 * @lastupdate 2.0
+	 * @since	1.1
+	 * @version	2.0
 	 *
-	 * @param string $input The content you wish to debug - a variable or function.
-	 * @param string $label Added to top of output to help identify if required.
-	 * @param string $admin_only Only display to top level site admin not other users.
-	 * @param bool $role Only display to supplied WordPress role.
-	 * @param integer $id Only display to supplied user ID.
+	 * @param	[mixed] $input 			REQUIRED What you want to debug!
+	 * @param	[string] $label 		Add a title to top of output to help identify it if using multiple debugs.
+	 * @param	[bool] $admin_only 		Only display to logged-in administrator level users, not other users. true/false [true]
+	 * @param	[string] $show_all 		Only display to supplied WordPress role. true/false [false]
+	 * @param	[int] $id 				Only display to supplied user ID. [false]
 	 */
 	function wf_debug( $input='', $label='', $admin_only=true, $role=false, $id=false ) {
 
@@ -824,6 +836,7 @@ class wflux_helper {
 
 	/**
 	 * Adds message to error reporting if WP_DEBUG is true.
+	 * TODO: Check this out - has been removed from main functions in v2.1
 	 *
 	 * Hook wf_debug_report_run used to get the backtrace up to what file and function
 	 * called the specific function reported.
@@ -847,15 +860,13 @@ class wflux_helper {
 
 
 	/**
-	 * When logged in as a user has capability of manage_options
-	 * (can be override with wflux_debug_show_hooks filter) and
-	 * WF_DEBUG constant defined as true, this plugin reveals the
-	 * location of all relevant Wonderflux display hooks within your theme.
+	 * Reveals all Wonderflux hooks available in current view.
 	 *
-	 * @since 1.2
-	 * @lastupdate 1.2
+	 * When logged in as a user has capability of manage_options (can be override with wflux_debug_show_hooks filter) 
+	 * and WF_DEBUG constant defined as true, this plugin reveals the location of all relevant Wonderflux display hooks within your theme.
 	 *
-	 * @param filter wflux_debug_show_hooks Set to true to override manage_options user capability check
+	 * @since	1.2
+	 * @version	1.2
 	 */
 	function wf_show_hooks(){
 
@@ -1019,13 +1030,13 @@ class wflux_helper {
 		}
 	}
 
+
 	/**
-	 * Used by wf_show_hooks() to display hook
+	 * Internal function to display hooks.
+	 * Used by wf_show_hooks()
 	 *
-	 * @since 1.2
-	 * @lastupdate 1.2
-	 *
-	 * @param filter wflux_debug_show_hooks_css Sets up inline style used for hook display
+	 * @since	1.2
+	 * @version	1.2
 	 */
 	function wf_show_hooks_do(){
 		$debug_style = apply_filters( 'wflux_debug_show_hooks_css', 'display: inline-block; background-color: rgba(127, 127, 127, 0.7); border: 1px solid #212121; margin: 0; padding: 2px; font-size: 0.8em; color: #fff;' );
@@ -1037,17 +1048,17 @@ class wflux_helper {
 
 
 /**
-* Core Wonderflux WordPress admin helper functions
-* Used internally by Wonderflux
-*/
+ * Core Wonderflux WordPress internal admin helper functions.
+ */
 class wflux_wp_core {
 
 
 	/**
-	* Adds Wonderflux links to the WordPress admin bar
-	* @since 0.93
-	* @lastupdate 2.0
-	*/
+	 * Adds Wonderflux links to the WordPress admin bar
+	 *
+	 * @since	0.93
+	 * @version	2.0
+	 */
 	function wf_admin_bar_links() {
 		global $wp_admin_bar;
 		if ( !is_admin_bar_showing() || !current_user_can('manage_options') ) {
@@ -1079,8 +1090,9 @@ class wflux_wp_core {
 
 	/**
 	 * Adds files currently in use to the Wonderflux admin bar menu
-	 * @since 1.2
-	 * @lastupdate 1.2
+	 *
+	 * @since	1.2
+	 * @version	1.2
 	 */
 	function wf_admin_bar_files_info(){
 

@@ -1,12 +1,12 @@
 <?php
 /**
- *
  * Wonderflux is a free open source, theme framework for professional WordPress theme design.
  * License: GNU General Public License v2.0
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  *
  * I'M NOT MEANT TO BE ACTIVATED DIRECTLY THANKS - IM A THEME FRAMEWORK!
  * Put me in your themes folder along with a Wonderflux child theme, then activate child theme, not me!
+ *
  * Free example child theme:		https://github.com/Jonnyauk/wonderflux-girder
  *
  * GETTING STARTED GUIDES
@@ -47,8 +47,8 @@
  * Follow @Wonderflux on Twitter for all code updates and news.
  *
  * @package Wonderflux
- *
  */
+
 
 /*
 	  #
@@ -62,6 +62,7 @@
 	Core framework setup & deployment
 */
 
+
 // Wonderflux, start your engine
 load_template(get_template_directory() . '/wf-includes/wf-engine.php');
 
@@ -69,6 +70,7 @@ load_template(get_template_directory() . '/wf-includes/wf-engine.php');
 
 add_action('after_setup_theme', 'wfx_core_feed_links', 2);
 add_action('after_setup_theme', 'wfx_core_title_tag', 2);
+
 
 //// 1.2 // Special child theme functions
 
@@ -78,6 +80,7 @@ if ( function_exists( 'my_wfx_layout' ) ) { add_action('get_header', 'my_wfx_lay
 // Use this to configure all your Wonderflux child theme script functions like wfx_jquery()
 // Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
 if ( function_exists( 'my_wfx_scripts' ) ) { if ( !is_admin() ) : add_action('init', 'my_wfx_scripts', 1); endif; }
+
 
 //// 1.3 // Columns functionality
 
@@ -92,6 +95,7 @@ if ( WF_THEME_FRAMEWORK_NONE == true ) {
 	add_action('wf_head_meta', 'wfx_display_head_css_ie', 2);
 }
 
+
 //// 1.4 // If Wonderflux activated directly with no child theme
 
 if ( wp_get_theme()->Name == 'Wonderflux Framework' ) {
@@ -99,6 +103,7 @@ if ( wp_get_theme()->Name == 'Wonderflux Framework' ) {
 	add_action('wp_loaded', 'wfx_core_default_widgets', 1);
 	add_action('get_header', 'wfx_core_default_wrappers', 1);
 }
+
 
 //// 1.5 // Wonderflux core functionality
 
@@ -121,12 +126,14 @@ add_action('wf_footer', 'wfx_display_code_credit', 3);
 add_action('auth_redirect', 'wfx_admin_menus');
 add_filter('theme_page_templates','wfx_remove_page_templates');
 
+
 //// 1.6 // Wonderflux debug functionality
 
 if ( WF_DEBUG == true ){
 	add_action('init','wfx_show_hooks');
 	add_action('admin_bar_menu', 'wfx_admin_bar_files_info', 100);
 }
+
 
 /*
 	 #####
@@ -140,44 +147,136 @@ if ( WF_DEBUG == true ){
 	Helper functions
 */
 
+
 /**
- * Returns array of information about a file based on filename
+ * Creates array of information about file based on filename.
+ * IMPORTANT - Used internally by Wonderflux.
  *
- * @since 1.1
- * @updated 1.1
+ * @since	1.1
+ * @version	1.1
+ *
+ * @param	[string] $filename		REQUIRED File name with extension
+ * @return	[array]					ext,type,nicetype,playable
  */
 if ( !function_exists( 'wfx_info_file' ) ) : function wfx_info_file($filename='') { global $wfx_helper; return $wfx_helper->info_file($filename); } endif;
 
+
 /**
- * IMPORTANT - Gets type of view
+ * Detects what type of content you are currently viewing.
+ * IMPORTANT - Used internally by Wonderflux.
  *
- * @since 0.913
- * @updated 1.0
+ * @since	0.881
+ * @version	1.0RC3
+ *
+ * @return	[string]				Current view - eg 'category'
  */
 if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { global $wfx_helper; return $wfx_helper->info_location(); } endif;
 
+
 /**
- * Detects if you are viewing single content - post, page, attachment, author - returns true or false
+ * Detects if you are viewing single content - post, page, attachment, author
+ * as opposed to archive or any other type of views, kinda like is_singular() and is_single()
  *
- * @since 1.0
- * @updated 1.1
+ * @since	1.0
+ * @version	1.1
+ *
+ * @return	[bool]					true/false
  */
 if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { global $wfx_helper; return $wfx_helper->info_single(); } endif;
 
+
 /**
- * IMPORTANT - Wonderflux get_template_part - like get_template_part but appends location and '-mobile' for mobile
+ * Turbo-charged get_template_part file include - loads a template part into a template.
+ * IMPORTANT: Used by Wonderflux internally to setup smarter specific template parts.
  *
- * @since 0.913
- * @updated 2.1
+ * Appends various location information and uses those files if available in your theme folder.
+ *
+ * Can also use mobile optimised screen alternative template parts for non-desktop devices (like phones or tablets)
+ * by creating an additional file with '-mobile' appended, like: loop-content-single-mobile.php
+ *
+ * EXAMPLES
+ * All examples are with $part='loop-content' and shows the order of priority of files
+ *
+ * SINGLE POST (INCLUDING CUSTOM POST TYPES)
+ * NOTE: Normal 'post' post type uses loop-content-single.php NOT loop-content-single-post.php
+ * 1 loop-content-single-{POST-TYPE-SLUG}.php
+ * 2 loop-content-single.php
+ * 3 loop-content.php
+ *
+ * CATEGORY ARCHIVE
+ * 1 loop-content-category-{CATEGORY-SLUG}.php
+ * 2 loop-content-category.php
+ * 3 loop-content-archive.php (common archive template)
+ * 4 loop-content.php
+ *
+ * TAXONOMY ARCHIVE
+ * 1 loop-content-taxonomy-{taxonomy-name}-{taxonomy-term}.php
+ * 2 loop-content-taxonomy-{taxonomy-name}.php
+ * 3 loop-content-taxonomy.php
+ * 4 loop-content-archive.php (common archive template)
+ * 5 loop-content.php
+ *
+ * TAG ARCHIVE
+ * 1 loop-content-tag-{tag-slug}.php
+ * 2 loop-content-tag.php
+ * 3 loop-content-archive.php (common archive template)
+ * 4 loop-content.php
+ *
+ * DATE ARCHIVE
+ * 1 loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than 10)
+ * 2 loop-content-date-{YEAR}.php (4 digit year)
+ * 3 loop-content-date.php
+ * 4 loop-content-archive.php (common archive template)
+ * 5 loop-content.php
+ *
+ * POST ARCHIVE (especially useful for custom post type archives!)
+ * 1 loop-content-archive-{post-type-slug}.php
+ * 2 loop-content-archive.php (common archive template)
+ * 3 loop-content.php
+ *
+ * AUTHOR TODO: Do username template drill
+ * 1 loop-content-author.php
+ * 2 loop-content.php
+ *
+ * HOMEPAGE
+ * 1 loop-content-home.php
+ * 2 loop-content.php
+ *
+ * SEARCH
+ * 1 loop-content-search.php
+ * 2 loop-content.php
+ *
+ *
+ * ATTACHMENT TODO: Basic range of filetypes support
+ * 1 loop-content-attachment.php
+ * 2 loop-content.php
+ *
+ * PAGE
+ * 1 loop-content-page.php
+ * 2 loop-content.php
+ *
+ * 404 ERROR PAGE
+ * 1 loop-content-404.php
+ * 2 loop-content.php
+ *
+ * @since	0.881
+ * @version	2.1
+ *
+ * @param	[string] $part 			REQUIRED The slug name for the generic template
+ * @todo 							Extend the simple WP core $is_mobile detection
  */
 if ( !function_exists( 'wfx_get_template_part' ) ) : function wfx_get_template_part($args) { global $wfx_helper; $wfx_helper->gt_part($args); } endif;
 
+
 /**
- * Gets user role (return or echo)
- * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
+ * Gets user role of logged-in user.
+ * IMPORTANT - Used internally by Wonderflux.
  *
- * @since 0.913
- * @updated 0.92
+ * @since	0.62
+ * @version	2.1
+ *
+ * @param	[string] $echo 			Do you want to echo instead of return? - Y/N [N]
+ * @return	[string]				Current user role, eg 'administrator' or false
  */
 if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
 
@@ -198,19 +297,37 @@ if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
 
 } endif;
 
+
 /**
- * Returns current page depth
+ * Gets current page 'depth' when using parent/child/grandchild etc page structure.
  *
- * @since 0.913
- * @updated 0.92
+ * @since	0.86
+ * @version	0.92
+ *
+ * @param	[int] $start 			Where you would like to start the depth countr from [0]
+ * @param	[string] $show_all 		Return root level on homepage and search - Y/N [N]
+ * @return	[int]					Integer representing depth of page
  */
 if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; return $wfx_helper->page_depth($args); } endif;
 
+
 /**
- * Echo (default) or return custom field value
+ * Get a custom field value for the main queried post.
+ * Can be used inside or outside the loop.
  *
- * @since 0.92
- * @updated 1.1
+ * @since	0.92
+ * @version	2.1
+ *
+ * @param	[string] $name 			REQUIRED The key name of the custom field
+ * @param	[string] $empty 		If there is no value in custom field, do you want an alternative value? [false]
+ * @param	[string] $escape 		Do you want the output HTML escaped? - Y/N [N]
+ * @param	[string] $format 		What type of data is it, do you want to change this date format? - string/date [string]
+ * @param	[string] $date_style 	PHP date format style [l F j, Y]
+ * @param	[string] $error 		Do you want something returned on search and 404? - Y/N [N]
+ * @param	[string] $trim 			Trim white space characters from start and end of custom field value - Y/N [Y]
+ * @param	[int] $id 				Function usually returns main loop custom field, setting $id forces function to get custom field from specific post ID [false]
+ * @param	[string] $echo 			Do you want to echo instead of return? - Y/N [N]
+ * @return	[mixed]					Custom field value
  */
 if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args) {
 
@@ -231,61 +348,89 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
 
 } endif;
 
+
 /**
- * Returns 'Y' - nothing more, nothing less
- * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme
+ * Returns 'Y' - nothing more, nothing less!
+ * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme, saves creating a function
  *
- * @since 0.93
- * @updated 0.93
+ * @since	0.93
+ * @version	0.93
+ *
+ * @return	[string]				Y
  */
 if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; return $wfx_helper->__Y(); } endif;
 
+
 /**
- * Returns 'N' - nothing more, nothing less
- * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__N' ) in your child theme
+ * Returns 'N' - nothing more, nothing less!
+ * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__N' ) in your child theme, saves creating a function
  *
- * @since 0.93
- * @updated 0.93
+ * @since	0.93
+ * @version	0.93
+ *
+ * @return	[string]				N
  */
 if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; return $wfx_helper->__N(); } endif;
 
+
 /**
- * Displays input in a nicer way for debugging
+ * Displays input in a nicer, more useful way for debugging.
+ * Only displays for logged-in administrator level users by default.
+ * Contains other powerful query debugging functions.
  *
- * @since 1.1
- * @updated 2.0
+ * @since	1.1
+ * @version	2.0
+ *
+ * @param	[mixed] $input 			REQUIRED What you want to debug!
+ * @param	[string] $label 		Add a title to top of output to help identify it if using multiple debugs.
+ * @param	[bool] $admin_only 		Only display to logged-in administrator level users, not other users. true/false [true]
+ * @param	[string] $show_all 		Only display to supplied WordPress role. true/false [false]
+ * @param	[int] $id 				Only display to supplied user ID. [false]
  */
 if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$label='',$admin_only=true,$role=false,$id=false) { global $wfx_helper; $wfx_helper->debug($input,$label,$admin_only,$role,$id); } endif;
 
 
 /**
- * Reveals the location of all relevant Wonderflux display hooks within your theme.
+ * Reveals all Wonderflux hooks available in current view.
  *
- * @since 1.2
- * @updated 1.2
+ * When logged in as a user has capability of manage_options (can be override with wflux_debug_show_hooks filter) 
+ * and WF_DEBUG constant defined as true, this plugin reveals the location of all relevant Wonderflux display hooks within your theme.
+ *
+ * @since	1.2
+ * @version	1.2
  */
 if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global $wfx_helper; $wfx_helper->show_hooks(); } endif;
 
+
 /**
- * Returns array of common layout tags to be used with kses or similar
- * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
+ * Returns array of common HTML tags to be used with kses or similar.
+ * Use filter 'wflux_allowed_tags' to mainpulate allowed tags
  *
- * @since 1.1
- * @updated 1.1
+ * @since	1.1
+ * @version	1.1
+ *
+ * @return	[array]				Allowed tags array
  */
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags($args) {
 	 global $wfx_data_manage; return $wfx_data_manage->allowed_tags($args);
 } endif;
 
+
 /**
- * Returns $input with whitespace stripped out
+ * Strips white space and other cruft in html type output
  *
- * @since 1.1
- * @updated 1.1
+ * DOES NOT sanitise $input!
+ *
+ * @since	1.1
+ * @version	1.1
+ *
+ * @param	[int] $input 		HTML imput
+ * @return	[string]			Cleaned-up HTML output
  */
 if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespace($input,$echo='N') {
 	global $wfx_data_manage; return $wfx_data_manage->strip_whitespace($input);
 } endif;
+
 
 /*
 	 #####

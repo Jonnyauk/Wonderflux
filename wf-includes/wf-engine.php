@@ -306,7 +306,7 @@ class wflux_display_all {
 	function head_css_structure($args){ $this->wflux_display_code_do->wf_head_css_structure($args); }
 	function head_css_theme($args){ $this->wflux_display_code_do->wf_head_css_theme($args); }
 	function head_css_columns(){ $this->wflux_display_code_do->wf_head_css_columns(); }
-	function head_css_ie($args){ $this->wflux_display_code_do->wf_head_css_ie($args); }
+	function head_css_ie(){ $this->wflux_display_code_do->wf_head_css_ie(); }
 	function head_css_replace($args){ $this->wflux_display_code_do->wf_head_css_replace($args); }
 	function body_tag(){ $this->wflux_display_code_do->wf_body_tag(); }
 	function post_class($args){ return $this->wflux_display_code_do->wf_post_class($args); }

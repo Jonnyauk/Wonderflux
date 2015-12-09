@@ -536,7 +536,8 @@ if (WF_THEME_FRAMEWORK_REPLACE == false) {
 	 * @since 0.72
 	 * @updated 0.913
 	 */
-	if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie($args) { global $wfx; $wfx->head_css_ie($args); } endif;
+	if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie() { global $wfx; $wfx->head_css_ie(); } endif;
+
 
 } elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
 

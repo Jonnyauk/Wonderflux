@@ -282,7 +282,7 @@ class wflux_display_code extends wflux_data {
 	* @updated 2.0
 	* Core layout grid CSS for legacy Internet Explorer (<IE8)
 	*/
-	function wf_head_css_ie($args) {
+	function wf_head_css_ie() {
 
 		// Backpat - legacy Wonderflux v1 IE additional fallback dynamic grid
 		if ( WF_THEME_FRAMEWORK_REPLACE == false && $this->wfx_grid_type == 'pixels' ) {

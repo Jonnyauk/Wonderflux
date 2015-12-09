@@ -26,17 +26,19 @@ class wflux_admin extends wflux_data {
 
 
 	/**
-	* Build the admin menus
+	* Build the admin menus and page callbacks
 	* @since 0.3
-	* @updated 1.2
+	* @updated 2.1
 	*/
 	function wf_add_pages(){
-		$wflux_core_admin_page_main = add_theme_page( esc_attr__('Wonderflux main options','wonderflux'), esc_attr__('Wonderflux','wonderflux'), 'administrator', 'wonderflux', array($this, 'wf_page_core'));
-		$wflux_core_admin_page_style = add_submenu_page( NULL, esc_attr__('Wonderflux Style Lab','wonderflux'), esc_attr__('Style Lab','wonderflux'), 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab'));
-		$wflux_core_admin_page_advanced = add_submenu_page( NULL, esc_attr__('Wonderflux Advanced','wonderflux'), esc_attr__('Advanced','wonderflux'), 'administrator', 'wonderflux_advanced', array($this, 'wf_page_advanced'));
-		$wflux_core_admin_page_cms = add_submenu_page( NULL, esc_attr__('Wonderflux System Information','wonderflux'), esc_attr__('System Information','wonderflux'), 'administrator', 'wonderflux_system', array($this, 'wf_page_system'));
-		$wflux_core_admin_page_backup = add_submenu_page( NULL, esc_attr__('Wonderflux Options Backup','wonderflux'), esc_attr__('Options Backup','wonderflux'), 'administrator', 'wonderflux_backup', array($this, 'wf_page_backup'));
+
+		$wflux_core_admin_page_main = add_theme_page( esc_attr__('Wonderflux main options', 'wonderflux'), esc_attr__('Wonderflux', 'wonderflux'), 'administrator', 'wonderflux', array($this, 'wf_page_core') );
+		$wflux_core_admin_page_style = add_theme_page( esc_attr__('Wonderflux Style Lab', 'wonderflux'), esc_attr__('WFX Stylelab', 'wonderflux'), 'administrator', 'wonderflux_stylelab', array($this, 'wf_page_stylelab') );
+		$wflux_core_admin_page_advanced = add_theme_page( esc_attr__('Wonderflux Advanced', 'wonderflux'), esc_attr__('WFX Advanced', 'wonderflux'), 'administrator', 'wonderflux_advanced', array($this, 'wf_page_advanced') );
+		$wflux_core_admin_page_cms = add_theme_page( esc_attr__('Wonderflux System Information', 'wonderflux'), esc_attr__('WFX System info', 'wonderflux'), 'administrator', 'wonderflux_system', array($this, 'wf_page_system') );
+		$wflux_core_admin_page_backup = add_theme_page( esc_attr__('Wonderflux Options Backup', 'wonderflux'), esc_attr__('WFX Backup', 'wonderflux'), 'administrator', 'wonderflux_backup', array($this, 'wf_page_backup') );
 		//TODO: If user has wonderflux_edit capability, reveal advanced config menu
+
 	}
 
 

@@ -100,9 +100,23 @@ if ( WF_THEME_FRAMEWORK_NONE == true ) {
 //// 1.4 // If Wonderflux activated directly with no child theme
 
 if ( wp_get_theme()->Name == 'Wonderflux' ) {
+
 	add_action( 'after_setup_theme', 'wfx_core_default_setup', 2 );
 	add_action( 'widgets_init', 'wfx_core_default_widgets', 1 );
 	add_action( 'get_header', 'wfx_core_default_wrappers', 1 );
+
+	// Advised for theme compatibility
+	add_editor_style( 'style.css' );
+
+	$background_defaults = array(
+		'default-color'          => 'ffffff',
+		'wp-head-callback'       => '_custom_background_cb',
+	);
+	add_theme_support( 'custom-background', $background_defaults );
+
+	add_action( 'after_setup_theme', 'wfx_core_register_nav' );
+	add_action('wfmain_before_all_container','wfx_core_insert_primary_nav', 2);
+
 }
 
 
@@ -1196,6 +1210,7 @@ function wfx_core_default_widgets() {
 
 /**
  * Adds '.wrapper' div around content blocks
+ *
  * Only for when Wonderflux is activated directly
  *
  * @since 2.0
@@ -1208,6 +1223,54 @@ function wfx_core_default_wrappers() {
 	wfx_background_divs('depth=1&location=header');
 	wfx_background_divs('depth=1&location=main');
 	wfx_background_divs('depth=1&location=footer');
+
+}
+
+
+/**
+ * Setup menu
+ *
+ * Only for when Wonderflux is activated directly
+ *
+ */
+function wfx_core_register_nav(){
+	register_nav_menus( array(
+		'primary' => __( 'Primary navigation', 'wonderflux' )
+	)
+	);
+}
+
+
+/**
+ * Insert primary navigation in a fancy way by hooking into layout
+ * outside of main container (for full screen width)
+ * NOTE: Won't render a menu if not set (or menu is empty)
+ * admin > Appearance > Menus / Manage locations
+ *
+ * Only for when Wonderflux is activated directly
+ *
+ */
+function wfx_core_insert_primary_nav() {
+
+	// Setup menu data
+	// Check if it has been set or is empty - no-one likes showing all links!
+	$this_menu = wp_nav_menu(
+		array(
+			'container_class'	=> 'header-navigation clearfix',
+			'menu_id'			=> 'primary-header-nav', /*Need to add ID to target for slicknav.js*/
+			'theme_location'	=> 'primary',
+			'echo'				=> false,
+			'fallback_cb'		=> '__return_false'
+		)
+	);
+
+	if ( !empty($this_menu) ){
+		echo '<div class="wrapper header-navigation-container">';
+		echo '<div class="container">';
+		echo $this_menu;
+		echo '</div>';
+		echo '</div>';
+	}
 
 }
 ?>

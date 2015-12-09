@@ -2284,6 +2284,7 @@ class wflux_display_extras {
 				$flush_this = ( isset($_GET['flushcache_all']) && $_GET['flushcache_all'] == 1 ) ? true : false;
 				$flush_this = ( isset($_GET['flushcache_'.$part.'']) && $_GET['flushcache_'.$part.''] == 1 ) ? true : $flush_this;
 		}
+
 		$cached_data = ( !$flush_this ) ? get_transient( $transient_key ) : false;
 
 		$allowed_tags = ( $sanitise_in == 'html' || $sanitise_out == 'html' ) ? $wfx_data_manage->allowed_tags('') : '';
@@ -2306,10 +2307,8 @@ class wflux_display_extras {
 		if ( !empty( $cached_data ) ) {
 
 			$transient_timeout = get_option ( '_transient_timeout_' . $transient_key );
-			//wfx_debug( $transient_timeout - time() );
 
-			$transient_timeout = get_option ( '_transient_timeout_' . $transient_key );
-			$transient_timeout = ( !empty($transient_timeout) ) ? ' - Seconds to cache refresh: ' . ($transient_timeout - time()) : false;
+			$transient_timeout = ( !empty($transient_timeout) ) ? ' - Seconds to cache refresh: ' . ( $transient_timeout - time() ) : false;
 
 			$output_start = '<!-- - - - ' . $output_start . ' - ' . $part . '.' . $file_ext . $transient_timeout . ' - - - -->';
 			$output_end = '<!-- - - - ' . $output_end . ' - ' . $part . '.' . $file_ext . ' - - - -->';

@@ -309,13 +309,13 @@ class wflux_theme_core {
 
 
 	/**
-	 * Core WordPress threaded comment reply Javascript
-	 * THIS IS REQUIRED for WordPress theme repo compliance
+	 * Core WordPress threaded comment reply Javascript.
+	 * THIS IS REQUIRED for WordPress theme repo compliance.
 	 *
-	 * @since 1.1
-	 * @lastupdate 2.0
+	 * @since	1.1
+	 * @version	2.0
 	 */
-	function wf_core_comment_js(){
+	function wf_core_comment_js() {
 		if ( is_singular() && ( comments_open() && get_option('thread_comments')) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}

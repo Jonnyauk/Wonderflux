@@ -464,39 +464,59 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 	Display functions
 */
 
+
 /**
- * Adds 'automatic-feed-links' WordPress theme support
+ * Enables post and site/post comment RSS feed links in head of output.
+ * THIS IS REQUIRED for WordPress theme repo compliance.
+ * Easy to remove by remove_theme_support, remove_action, overload function etc!)
  *
- * @since 1.1
- * @updated 2.0
+ * @since	1.1
+ * @version	2.0
+ *
+ * @param							none
  */
 if ( !function_exists( 'wfx_core_feed_links' ) ) : function wfx_core_feed_links() { global $wfx_theme_support; $wfx_theme_support->core_feed_links(); } endif;
 
+
 /**
- * Adds 'title-tag' WordPress theme support - Requires WordPress 4.1+
- * Backpat - Original fallback function still works if title-tag not supported
+ * Enables title-tag support (available in WordPress 4.1+)
+ * THIS IS REQUIRED for WordPress theme repo compliance.
+ * Easy to remove by remove_theme_support, remove_action, overload function etc!)
  *
- * @since 2.0
- * @updated 2.0
+ * @since	2.0
+ * @version	2.0
+ *
+ * @param							none
  */
 if ( !function_exists( 'wfx_core_title_tag' ) ) : function wfx_core_title_tag() { global $wfx_theme_support; $wfx_theme_support->core_title_tag(); } endif;
 
+
 /**
- * Core WordPress threaded comment reply Javascript
+ * Core WordPress threaded comment reply Javascript.
+ * THIS IS REQUIRED for WordPress theme repo compliance.
  *
- * @since 1.1
- * @updated 1.1
+ * @since	1.1
+ * @version	2.0
+ *
+ * @param							none
  */
 if ( !function_exists( 'wfx_core_comment_js' ) ) : function wfx_core_comment_js() { global $wfx_theme; $wfx_theme->core_comment_js(); } endif;
+
 
 // Only need functions if have child theme overrides
 if (WF_THEME_FRAMEWORK_REPLACE == false) {
 
 	/**
-	 * Inserts the core structure CSS
+	 * Inserts the core structure CSS.
+	 * Use constant WF_THEME_FRAMEWORK_REPLACE to remove.
+	 *
+	 * Filters available:
+	 * wflux_css_structure_path - full path to file
+	 * wflux_css_structure_version - version number appended to file
+	 * wflux_css_structure_id - ID of file
 	 *
 	 * @since 0.72
-	 * @updated 0.913
+	 * @updated 2.0
 	 */
 	if ( !function_exists( 'wfx_display_head_css_structure' ) ) : function wfx_display_head_css_structure($args) { global $wfx; $wfx->head_css_structure($args); } endif;
 

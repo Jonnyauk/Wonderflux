@@ -306,7 +306,7 @@ class wflux_helper {
 	 * @since	0.881
 	 * @version	1.0RC3
 	 *
- 	 * @param							none
+ 	 * @param	none
 	 * @return	[string]				Current view - eg 'category'
 	 */
 	function wf_info_location() {
@@ -338,7 +338,7 @@ class wflux_helper {
 	 * @since	1.0
 	 * @version	1.1
 	 *
- 	 * @param							none
+ 	 * @param	none
 	 * @return	[bool]					true/false
 	 */
 	function wf_info_single() {
@@ -620,7 +620,7 @@ class wflux_helper {
 	 * @since	0.62
 	 * @version	2.1
 	 *
- 	 * @param							none
+ 	 * @param	none
 	 * @return	[string]				Current user role, eg 'administrator'
 	 */
 	function wf_user_role() {
@@ -765,7 +765,7 @@ class wflux_helper {
 	 * @since	0.93
 	 * @version	0.93
 	 *
-	 * @param							none
+	 * @param	none
 	 * @return	[string]				Y
 	 */
 	function wf__Y() { return 'Y'; }
@@ -778,7 +778,7 @@ class wflux_helper {
 	 * @since	0.93
 	 * @version	0.93
  	 *
-	 * @param							none
+	 * @param	none
 	 * @return	[string]				N
 	 */
 	function wf__N() { return 'N'; }
@@ -893,7 +893,7 @@ class wflux_helper {
 	 * @since	1.2
 	 * @version	1.2
 	 *
- 	 * @param							none
+ 	 * @param	none
 	 */
 	function wf_show_hooks(){
 
@@ -1065,7 +1065,7 @@ class wflux_helper {
 	 * @since	1.2
 	 * @version	1.2
 	 *
- 	 * @param							none
+ 	 * @param	none
 	 */
 	function wf_show_hooks_do(){
 		$debug_style = apply_filters( 'wflux_debug_show_hooks_css', 'display: inline-block; background-color: rgba(127, 127, 127, 0.7); border: 1px solid #212121; margin: 0; padding: 2px; font-size: 0.8em; color: #fff;' );

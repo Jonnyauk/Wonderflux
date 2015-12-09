@@ -171,7 +171,7 @@ if ( !function_exists( 'wfx_info_file' ) ) : function wfx_info_file($filename=''
  * @since	0.881
  * @version	1.0RC3
  *
- * @param							none
+ * @param	none
  * @return	[string]				Current view - eg 'category'
  */
 if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { global $wfx_helper; return $wfx_helper->info_location(); } endif;
@@ -184,7 +184,7 @@ if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { 
  * @since	1.0
  * @version	1.1
  *
- * @param							none
+ * @param	none
  * @return	[bool]					true/false
  */
 if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { global $wfx_helper; return $wfx_helper->info_single(); } endif;
@@ -362,7 +362,7 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
  * @since	0.93
  * @version	0.93
  *
- * @param							none
+ * @param	none
  * @return	[string]				Y
  */
 if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; return $wfx_helper->__Y(); } endif;
@@ -375,7 +375,7 @@ if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; re
  * @since	0.93
  * @version	0.93
  *
- * @param							none
+ * @param	none
  * @return	[string]				N
  */
 if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; return $wfx_helper->__N(); } endif;
@@ -416,7 +416,7 @@ if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$label='',
  * @since	1.2
  * @version	1.2
  *
- * @param							none
+ * @param	none
  */
 if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global $wfx_helper; $wfx_helper->show_hooks(); } endif;
 
@@ -428,7 +428,7 @@ if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global
  * @since	1.1
  * @version	1.1
  *
- * @param							none
+ * @param	none
  * @return	[array]					Allowed tags array
  */
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags() {
@@ -473,7 +473,7 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
  * @since	1.1
  * @version	2.0
  *
- * @param							none
+ * @param	none
  */
 if ( !function_exists( 'wfx_core_feed_links' ) ) : function wfx_core_feed_links() { global $wfx_theme_support; $wfx_theme_support->core_feed_links(); } endif;
 
@@ -486,7 +486,7 @@ if ( !function_exists( 'wfx_core_feed_links' ) ) : function wfx_core_feed_links(
  * @since	2.0
  * @version	2.0
  *
- * @param							none
+ * @param	none
  */
 if ( !function_exists( 'wfx_core_title_tag' ) ) : function wfx_core_title_tag() { global $wfx_theme_support; $wfx_theme_support->core_title_tag(); } endif;
 
@@ -498,7 +498,7 @@ if ( !function_exists( 'wfx_core_title_tag' ) ) : function wfx_core_title_tag() 
  * @since	1.1
  * @version	2.0
  *
- * @param							none
+ * @param	none
  */
 if ( !function_exists( 'wfx_core_comment_js' ) ) : function wfx_core_comment_js() { global $wfx_theme; $wfx_theme->core_comment_js(); } endif;
 

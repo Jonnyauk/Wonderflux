@@ -64,22 +64,23 @@
 
 
 // Wonderflux, start your engine
-load_template(get_template_directory() . '/wf-includes/wf-engine.php');
+load_template( get_template_directory() . '/wf-includes/wf-engine.php' );
 
 //// 1.1 // Early setup (before init)
 
-add_action('after_setup_theme', 'wfx_core_feed_links', 2);
-add_action('after_setup_theme', 'wfx_core_title_tag', 2);
+add_action( 'after_setup_theme', 'wfx_core_feed_links', 2 );
+add_action( 'after_setup_theme', 'wfx_core_title_tag', 2 );
 
 
 //// 1.2 // Special child theme functions
 
 // Use this to configure all your Wonderflux child theme layout functions like wfx_background_divs()
 // Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
-if ( function_exists( 'my_wfx_layout' ) ) { add_action('get_header', 'my_wfx_layout', 1); }
+if ( function_exists('my_wfx_layout') ) { add_action( 'get_header', 'my_wfx_layout', 1 ); }
+
 // Use this to configure all your Wonderflux child theme script functions like wfx_jquery()
 // Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
-if ( function_exists( 'my_wfx_scripts' ) ) { if ( !is_admin() ) : add_action('init', 'my_wfx_scripts', 1); endif; }
+if ( function_exists('my_wfx_scripts') ) { if ( !is_admin() ) : add_action( 'init', 'my_wfx_scripts', 1 ); endif; }
 
 
 //// 1.3 // Columns functionality
@@ -88,11 +89,11 @@ if ( function_exists( 'my_wfx_scripts' ) ) { if ( !is_admin() ) : add_action('in
 if ( WF_THEME_FRAMEWORK_NONE == true ) {
 	// Silence is golden
 } elseif ( WF_THEME_FRAMEWORK_REPLACE == true ) {
-	add_action('wf_head_meta', 'wfx_head_css_replace', 2);
+	add_action( 'wf_head_meta', 'wfx_head_css_replace', 2 );
 } else {
-	add_action('wf_head_meta', 'wfx_display_head_css_structure', 2);
-	add_action('wf_head_meta', 'wfx_display_head_css_columns', 2);
-	add_action('wf_head_meta', 'wfx_display_head_css_ie', 2);
+	add_action( 'wf_head_meta', 'wfx_display_head_css_structure', 2 );
+	add_action( 'wf_head_meta', 'wfx_display_head_css_columns', 2 );
+	add_action( 'wf_head_meta', 'wfx_display_head_css_ie', 2 );
 }
 
 
@@ -107,31 +108,31 @@ if ( wp_get_theme()->Name == 'Wonderflux' ) {
 
 //// 1.5 // Wonderflux core functionality
 
-add_action('init', 'wfx_config_language');
-add_action('wp_enqueue_scripts', 'wfx_core_comment_js', 2);
-add_action('get_header', 'wfx_display_head_open', 1);
-add_action('get_header', 'wfx_display_body_tag', 1);
-add_action('the_post', 'wfx_filter_post_class', 2);
-add_action('get_header', 'wfx_layout_build', 1);
-add_action('get_header', 'wfx_content_width_embed', 2);
-add_action('get_header', 'wfx_social_meta');
-add_action('wf_head_meta', 'wfx_display_head_char_set', 1);
-add_action('wf_head_meta', 'wfx_display_head_viewport', 2);
-add_action('wf_head_meta', 'wfx_display_head_title', 3);
-add_action('wf_head_meta', 'wfx_display_head_css_theme', 3);
-add_action('wf_head_meta', 'wfx_display_css_info');
-add_action('admin_bar_menu', 'wfx_admin_bar_links', 100);
-add_action('wffooter_after_content', 'wfx_display_credit', 1);
-add_action('wf_footer', 'wfx_display_code_credit', 3);
-add_action('auth_redirect', 'wfx_admin_menus');
-add_filter('theme_page_templates','wfx_remove_page_templates');
+add_action( 'init', 'wfx_config_language' );
+add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
+add_action( 'get_header', 'wfx_display_head_open', 1 );
+add_action( 'get_header', 'wfx_display_body_tag', 1 );
+add_action( 'the_post', 'wfx_filter_post_class', 2 );
+add_action( 'get_header', 'wfx_layout_build', 1 );
+add_action( 'get_header', 'wfx_content_width_embed', 2 );
+add_action( 'get_header', 'wfx_social_meta' );
+add_action( 'wf_head_meta', 'wfx_display_head_char_set', 1 );
+add_action( 'wf_head_meta', 'wfx_display_head_viewport', 2 );
+add_action( 'wf_head_meta', 'wfx_display_head_title', 3 );
+add_action( 'wf_head_meta', 'wfx_display_head_css_theme', 3 );
+add_action( 'wf_head_meta', 'wfx_display_css_info' );
+add_action( 'admin_bar_menu', 'wfx_admin_bar_links', 100 );
+add_action( 'wffooter_after_content', 'wfx_display_credit', 1 );
+add_action( 'wf_footer', 'wfx_display_code_credit', 3 );
+add_action( 'auth_redirect', 'wfx_admin_menus' );
+add_filter( 'theme_page_templates','wfx_remove_page_templates' );
 
 
 //// 1.6 // Wonderflux debug functionality
 
 if ( WF_DEBUG == true ){
-	add_action('init','wfx_show_hooks');
-	add_action('admin_bar_menu', 'wfx_admin_bar_files_info', 100);
+	add_action( 'init','wfx_show_hooks' );
+	add_action( 'admin_bar_menu', 'wfx_admin_bar_files_info', 100 );
 }
 
 
@@ -1172,7 +1173,8 @@ function wfx_core_default_setup() {
  */
 function wfx_core_default_widgets() {
 
-	// Runs wf_widgets just like any good Wonderflux theme should - define AND insert on any hook quickly and easily.
+	// Runs wf_widgets() just like any good Wonderflux theme should.
+	// Define AND insert on any hook quickly and easily.
 	wfx_widgets(
 		array (
 			array (

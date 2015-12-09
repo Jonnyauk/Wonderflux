@@ -152,10 +152,13 @@ if ( WF_DEBUG == true ){
  * Creates array of information about file based on filename.
  * IMPORTANT - Used internally by Wonderflux.
  *
+ * Filters available:
+ * wflux_ext_img - array of image file extensions
+ *
  * @since	1.1
  * @version	1.1
  *
- * @param	[string] $filename		REQUIRED File name with extension
+ * @param	[string] $filename		REQUIRED File name with extension (no path)
  * @return	[array]					ext,type,nicetype,playable
  */
 if ( !function_exists( 'wfx_info_file' ) ) : function wfx_info_file($filename='') { global $wfx_helper; return $wfx_helper->info_file($filename); } endif;
@@ -168,6 +171,7 @@ if ( !function_exists( 'wfx_info_file' ) ) : function wfx_info_file($filename=''
  * @since	0.881
  * @version	1.0RC3
  *
+ * @param							none
  * @return	[string]				Current view - eg 'category'
  */
 if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { global $wfx_helper; return $wfx_helper->info_location(); } endif;
@@ -180,6 +184,7 @@ if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { 
  * @since	1.0
  * @version	1.1
  *
+ * @param							none
  * @return	[bool]					true/false
  */
 if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { global $wfx_helper; return $wfx_helper->info_single(); } endif;
@@ -263,6 +268,7 @@ if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { glob
  * @version	2.1
  *
  * @param	[string] $part 			REQUIRED The slug name for the generic template
+ *
  * @todo 							Extend the simple WP core $is_mobile detection
  */
 if ( !function_exists( 'wfx_get_template_part' ) ) : function wfx_get_template_part($args) { global $wfx_helper; $wfx_helper->gt_part($args); } endif;
@@ -275,7 +281,7 @@ if ( !function_exists( 'wfx_get_template_part' ) ) : function wfx_get_template_p
  * @since	0.62
  * @version	2.1
  *
- * @param	[string] $echo 			Do you want to echo instead of return? - Y/N [N]
+ * @param	[string] $echo 			Do you want to echo instead of return? Y/N [N]
  * @return	[string]				Current user role, eg 'administrator' or false
  */
 if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
@@ -305,7 +311,7 @@ if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
  * @version	0.92
  *
  * @param	[int] $start 			Where you would like to start the depth countr from [0]
- * @param	[string] $show_all 		Return root level on homepage and search - Y/N [N]
+ * @param	[string] $show_all 		Return root level on homepage and search. Y/N [N]
  * @return	[int]					Integer representing depth of page
  */
 if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; return $wfx_helper->page_depth($args); } endif;
@@ -356,6 +362,7 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
  * @since	0.93
  * @version	0.93
  *
+ * @param							none
  * @return	[string]				Y
  */
 if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; return $wfx_helper->__Y(); } endif;
@@ -368,15 +375,22 @@ if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; re
  * @since	0.93
  * @version	0.93
  *
+ * @param							none
  * @return	[string]				N
  */
 if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; return $wfx_helper->__N(); } endif;
 
 
 /**
- * Displays input in a nicer, more useful way for debugging.
+ * Displays input (or WordPress query information) in a nicer, more useful way for debugging.
  * Only displays for logged-in administrator level users by default.
  * Contains other powerful query debugging functions.
+ *
+ * $input can be set as the following for powerful WordPress debugging:
+ * wp_query - WordPress $wp_query
+ * wp_posts - WordPress $posts
+ * wp_queried - Current queried object
+ * wp_all_taxonomies - All Taxonomies
  *
  * @since	1.1
  * @version	2.0
@@ -396,8 +410,13 @@ if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$label='',
  * When logged in as a user has capability of manage_options (can be override with wflux_debug_show_hooks filter) 
  * and WF_DEBUG constant defined as true, this plugin reveals the location of all relevant Wonderflux display hooks within your theme.
  *
+ * Filters available:
+ * wflux_debug_show_hooks - display hooks information to all levels of users instead of those with manage_options capability.
+ *
  * @since	1.2
  * @version	1.2
+ *
+ * @param							none
  */
 if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global $wfx_helper; $wfx_helper->show_hooks(); } endif;
 
@@ -409,7 +428,8 @@ if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global
  * @since	1.1
  * @version	1.1
  *
- * @return	[array]				Allowed tags array
+ * @param							none
+ * @return	[array]					Allowed tags array
  */
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags() {
 	 global $wfx_data_manage; return $wfx_data_manage->allowed_tags();
@@ -424,8 +444,8 @@ if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags() {
  * @since	1.1
  * @version	1.1
  *
- * @param	[int] $input 		HTML imput
- * @return	[string]			Cleaned-up HTML output
+ * @param	[int] $input 			HTML imput
+ * @return	[string]				Cleaned-up HTML output
  */
 if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespace($input,$echo='N') {
 	global $wfx_data_manage; return $wfx_data_manage->strip_whitespace($input);

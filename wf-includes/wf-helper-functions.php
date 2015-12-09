@@ -1,6 +1,9 @@
 <?php
 /**
  * Setup and prepare Wonderflux options with fallbacks.
+ *
+ * @since	0.62
+ * @version	2.1
  */
 class wflux_data {
 
@@ -251,6 +254,9 @@ class wflux_data {
 /**
  * Core Wonderflux helper functions.
  * Used internally by Wonderflux and can be used by theme developers in child themes.
+ *
+ * @since	0.62
+ * @version	2.1
  */
 class wflux_helper {
 
@@ -266,10 +272,13 @@ class wflux_helper {
 	 * Creates array of information about file based on filename.
 	 * IMPORTANT - Used internally by Wonderflux.
 	 *
+	 * Filters available:
+	 * wflux_ext_img - array of image file extensions
+	 *
 	 * @since	1.1
 	 * @version	1.1
 	 *
-	 * @param	[string] $filename		REQUIRED File name with extension
+	 * @param	[string] $filename		REQUIRED File name with extension (no path)
 	 * @return	[array]					ext,type,nicetype,playable
 	 */
 	function wf_info_file( $filename='' ) {
@@ -297,6 +306,7 @@ class wflux_helper {
 	 * @since	0.881
 	 * @version	1.0RC3
 	 *
+ 	 * @param							none
 	 * @return	[string]				Current view - eg 'category'
 	 */
 	function wf_info_location() {
@@ -328,6 +338,7 @@ class wflux_helper {
 	 * @since	1.0
 	 * @version	1.1
 	 *
+ 	 * @param							none
 	 * @return	[bool]					true/false
 	 */
 	function wf_info_single() {
@@ -420,6 +431,7 @@ class wflux_helper {
 	 * @version	2.1
 	 *
 	 * @param	[string] $part 			REQUIRED The slug name for the generic template
+	 *
 	 * @todo 							Extend the simple WP core $is_mobile detection
 	 */
 	function wf_get_template_part( $args ) {
@@ -608,6 +620,7 @@ class wflux_helper {
 	 * @since	0.62
 	 * @version	2.1
 	 *
+ 	 * @param							none
 	 * @return	[string]				Current user role, eg 'administrator'
 	 */
 	function wf_user_role() {
@@ -752,6 +765,7 @@ class wflux_helper {
 	 * @since	0.93
 	 * @version	0.93
 	 *
+	 * @param							none
 	 * @return	[string]				Y
 	 */
 	function wf__Y() { return 'Y'; }
@@ -763,16 +777,23 @@ class wflux_helper {
 	 *
 	 * @since	0.93
 	 * @version	0.93
-	 *
+ 	 *
+	 * @param							none
 	 * @return	[string]				N
 	 */
 	function wf__N() { return 'N'; }
 
 
 	/**
-	 * Displays input in a nicer, more useful way for debugging.
+	 * Displays input (or WordPress query information) in a nicer, more useful way for debugging.
 	 * Only displays for logged-in administrator level users by default.
 	 * Contains other powerful query debugging functions.
+	 *
+	 * $input can be set as the following for powerful WordPress debugging:
+	 * wp_query - WordPress $wp_query
+	 * wp_posts - WordPress $posts
+	 * wp_queried - Current queried object
+	 * wp_all_taxonomies - All Taxonomies
 	 *
 	 * @since	1.1
 	 * @version	2.0
@@ -836,17 +857,17 @@ class wflux_helper {
 
 	/**
 	 * Adds message to error reporting if WP_DEBUG is true.
-	 * TODO: Check this out - has been removed from main functions in v2.1
 	 *
-	 * Hook wf_debug_report_run used to get the backtrace up to what file and function
-	 * called the specific function reported.
+	 * Hook wf_debug_report_run used to get the backtrace up to what file and function called the specific function reported.
 	 *
-	 * @since 1.1
-	 * @lastupdate 1.2
+	 * @since	1.1
+	 * @version	1.2
 	 *
-	 * @param string $function The function that was called.
-	 * @param string $message A message explaining what has been done incorrectly.
-	 * @param string $version Wonderflux version when the message was added.
+ 	 * @param	[string] $function 			REQUIRED What you want to debug!
+ 	 * @param	[string] $message 			REQUIRED What you want to debug!
+ 	 * @param	[string] $version 			REQUIRED What you want to debug!
+ 	 *
+ 	 * @todo	Check this out - has been removed from main functions in v2.1. Need to hookup into main functions for better debug.
 	 */
 	function wf_debug_report( $function, $message, $version ) {
 
@@ -856,6 +877,7 @@ class wflux_helper {
 			$version = !is_null( $version ) ? '' : sprintf( __( '(This message was added in version %s.)', 'wonderflux' ), $version );
 			$message .= ' ' . __( 'Please see <a href="http://wonderflux.com/guide/">The Wonderflux Guide</a> for more information.', 'wonderflux' );
 			trigger_error( sprintf( __( '%1$s was called <strong>incorrectly</strong>. %2$s %3$s', 'wonderflux' ), $function, $message, $version ) );
+
 	}
 
 
@@ -865,8 +887,13 @@ class wflux_helper {
 	 * When logged in as a user has capability of manage_options (can be override with wflux_debug_show_hooks filter) 
 	 * and WF_DEBUG constant defined as true, this plugin reveals the location of all relevant Wonderflux display hooks within your theme.
 	 *
+	 * Filters available:
+	 * wflux_debug_show_hooks - display hooks information to all levels of users instead of those with manage_options capability.
+	 *
 	 * @since	1.2
 	 * @version	1.2
+	 *
+ 	 * @param							none
 	 */
 	function wf_show_hooks(){
 
@@ -1037,6 +1064,8 @@ class wflux_helper {
 	 *
 	 * @since	1.2
 	 * @version	1.2
+	 *
+ 	 * @param							none
 	 */
 	function wf_show_hooks_do(){
 		$debug_style = apply_filters( 'wflux_debug_show_hooks_css', 'display: inline-block; background-color: rgba(127, 127, 127, 0.7); border: 1px solid #212121; margin: 0; padding: 2px; font-size: 0.8em; color: #fff;' );

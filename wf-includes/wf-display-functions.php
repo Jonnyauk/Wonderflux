@@ -252,7 +252,7 @@ class wflux_display_code extends wflux_data {
 	* @updated 2.0
 	* Dynamic grid builder
 	*/
-	function wf_head_css_columns($args) {
+	function wf_head_css_columns() {
 		if (WF_THEME_FRAMEWORK_REPLACE == false) {
 
 			/* Backpat - switch grid generator source file */

@@ -14,7 +14,7 @@ class wflux_data_manage {
 	 *
 	 * @return	[array]				Allowed tags array
 	 */
-	function wf_allowed_tags($args){
+	function wf_allowed_tags(){
 
 		$allowed = array(
 			'address' => array(),

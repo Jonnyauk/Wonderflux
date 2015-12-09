@@ -411,8 +411,8 @@ if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global
  *
  * @return	[array]				Allowed tags array
  */
-if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags($args) {
-	 global $wfx_data_manage; return $wfx_data_manage->allowed_tags($args);
+if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags() {
+	 global $wfx_data_manage; return $wfx_data_manage->allowed_tags();
 } endif;
 
 

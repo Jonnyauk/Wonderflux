@@ -84,17 +84,23 @@ Quickstart
 Getting started
 ----------------------------------------------------------------------
 
+If you've used WordPress much, you are going to be right at home here!
+Wonderflux is developed to be similar to WordPress - it uses many of the
+same principles like actions and filters. It also features strong compliance
+with the latest WordPress theme standards (unlike most other frameworks!)
+and does pretty-much everything the *WordPress way*.
+
 Wonderflux is a theme framework (sometimes called a *parent theme*) that you
 use by building your own child themes. You simply have both Wonderflux and
 your child theme uploaded to your normal WordPress theme directory.
 
 By activating your child theme in the WordPress admin area just like a normal
 theme, it will automatically use files and functionality from Wonderflux,
-giving you a powerful toolkit and dynamic CSS layout system to rapidly 
+giving you a powerful toolkit and dynamic CSS layout system to rapidly
 develop bespoke WordPress themes for any purpose.
 
-What makes a child theme work is a single line in the top section of 
-style.css - 'Template: wonderflux'. This lets WordPress know you want 
+What makes a child theme work is a single line in the top section of
+style.css - 'Template: wonderflux'. This lets WordPress know you want
 to use Wonderflux as a parent theme.
 
 Child themes can be as simple as a single style.css file, or include any

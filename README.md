@@ -48,7 +48,7 @@ to make amazing WordPress sites! I appreciate any comments or patches - big or s
 Help and documentation
 ----------------------------------------------------------------------
 
-The Wonderflux documentation site is a (slowly!) growing reference of all the 
+The Wonderflux documentation site is a (slowly!) growing reference of all the
 files, functions, hooks & filters you can use in your child themes. Apologies,
 coding is much more fun than writing documentation, but there is fairly
 complete in-line code documentation in the wf-includes directory files for
@@ -71,11 +71,11 @@ Quickstart
 **Getting bored already and want to dive in - lets go!**
 
 1.  [Download the latest stable release of Wonderflux.]
-    (https://github.com/Jonnyauk/Wonderflux/releases) 
-    NOTE: Ensure directory is called *wonderflux* 
+    (https://github.com/Jonnyauk/Wonderflux/releases)
+    NOTE: Ensure directory is called *wonderflux*
     if downloading straight from GitHub master branch (not Wonderflux-master).
 2.  [Download WFX Girder demo child theme.]
-    (https://github.com/Jonnyauk/wonderflux-girder/releases) 
+    (https://github.com/Jonnyauk/wonderflux-girder/releases)
     NOTE: You can rename this directory to anything you wish.
 3.  Unzip and install both directories to wp-content/themes directory.
 4.  Activate WFX Girder demo child theme.
@@ -170,13 +170,13 @@ used in given locations. We are using template part loop-content.php as an
 example template part, but this will work with any main template part, or
 indeed your own files if you use the wfx_get_template_part() function.
 
-New to Wonderflux v2.1 and above is expansion of loop-content-archive.php 
-template part, this is now used as a fallback when viewing category, tag, 
+New to Wonderflux v2.1 and above is expansion of loop-content-archive.php
+template part, this is now used as a fallback when viewing category, tag,
 taxonomy, date or other archive views for a consistent archive experience.
 
-Also new to Wonderflux 2.1 and above is basic non-desktop/mobile/tablet detection. 
-Create unique non-desktop optimised screen alternative template parts by creating an 
-additional file with '-mobile' appended, like: loop-content-single-mobile.php which 
+Also new to Wonderflux 2.1 and above is basic non-desktop/mobile/tablet detection.
+Create unique non-desktop optimised screen alternative template parts by creating an
+additional file with '-mobile' appended, like: loop-content-single-mobile.php which
 will be used instead on non-desktop devices.
 
 * **SINGLE POST (INCLUDING CUSTOM POST TYPES)**
@@ -246,12 +246,12 @@ will be used instead on non-desktop devices.
 The dynamic CSS grid layout system
 ----------------------------------------------------------------------
 
-Wonderflux generates a complete responsive CSS layout system built with 
-[Flux Layout](https://github.com/Jonnyauk/flux-layout). This replaces the 
-pixel based system in Wonderflux v1 and generates a number of useful media 
+Wonderflux generates a complete responsive CSS layout system built with
+[Flux Layout](https://github.com/Jonnyauk/flux-layout). This replaces the
+pixel based system in Wonderflux v1 and generates a number of useful media
 queries media queries based on your options (set in Appearance > Wonderflux).
 
-Your Flux Layout system is generated from the following values 
+Your Flux Layout system is generated from the following values
 set on the Wonderflux Stylelab options page:
 
 * Site container width unit (default size)
@@ -263,63 +263,63 @@ set on the Wonderflux Stylelab options page:
 
 ### Column systems
 
-Flux Layout deals with responsive layout design by generating a complete 
-custom grid system based on percentage values. In addition to the columns 
-you set, it also generates half, quarter, fifth, eighth and tenth column systems. 
+Flux Layout deals with responsive layout design by generating a complete
+custom grid system based on percentage values. In addition to the columns
+you set, it also generates half, quarter, fifth, eighth and tenth column systems.
 
 ###  Responsive media queries
 
-Wonderflux 2 also simplifies the creation of layout code in your theme files 
-compared to version 1. IMPORTANT: wfx_css() function is no longer required, 
+Wonderflux 2 also simplifies the creation of layout code in your theme files
+compared to version 1. IMPORTANT: wfx_css() function is no longer required,
 you simply use normal CSS rules as defined in the Flux Layout system.
 
-It is built with two files, which are included by default when you activate 
-any Wonderflux child theme. Documentation to come, but in the meantime the 
-easiest thing to do is to have a look at the file output and look at WFX Girder 
+It is built with two files, which are included by default when you activate
+any Wonderflux child theme. Documentation to come, but in the meantime the
+easiest thing to do is to have a look at the file output and look at WFX Girder
 child theme demo. See the <head> output of your document:
 
 * wf-css-flux-layout-core.css - basic rules and reset
 * wf-css-flux-layout.php - dynamic generated CSS layout rules
 
-I have some more development planned for the Flux Layout system and how it 
-integrates with Wonderflux. Also be aware that things may change a-little 
+I have some more development planned for the Flux Layout system and how it
+integrates with Wonderflux. Also be aware that things may change a-little
 following feedback from users and testing - this is a beta after all!
 
 ### More advanced development
 
-The entire grid configuration and all wrapper output can be 
-[filtered](http://wonderflux.com/guide/filter/) and 
-[removed if required](http://wonderflux.com/guide/constant/wf_theme_framework_replace/) 
-- remember this is a framework! Oh and if you spot somewhere 
-that needs a filter or more flexibility, just let me know on the 
+The entire grid configuration and all wrapper output can be
+[filtered](http://wonderflux.com/guide/filter/) and
+[removed if required](http://wonderflux.com/guide/constant/wf_theme_framework_replace/).
+Remember this is a framework! Oh and if you spot somewhere
+that needs a filter or more flexibility, just let me know on the
 [GitHub issues page](https://github.com/Jonnyauk/Wonderflux/issues).
 
 DON'T hack Wonderflux!
 ----------------------------------------------------------------------
 
-You should not modify the Wonderflux theme framework to avoid issues with 
-updates in the future. One of the main advantages of using a theme framework 
-is the ability to update the core framework to quickly and easily support 
+You should not modify the Wonderflux theme framework to avoid issues with
+updates in the future. One of the main advantages of using a theme framework
+is the ability to update the core framework to quickly and easily support
 future versions of WordPress and improve performance and functionality.
 
 **There are lots of ways to use Wonderflux from your child theme:**
 
-1.	Filter the layout values to change the layout configuration 
+1.	Filter the layout values to change the layout configuration
     at any time (including underlying CSS grid system).
 
-2.	Create a main template file with the same name in your child 
+2.	Create a main template file with the same name in your child
     theme - this will be used instead of the core Wonderflux file.
 
-3.	Create a function with the same name as a core Wonderflux 
-    display function in your child theme - this will be used 
+3.	Create a function with the same name as a core Wonderflux
+    display function in your child theme - this will be used
     instead of the core Wonderflux function.
 
-4.	Remove a core Wonderflux action in your child theme 
+4.	Remove a core Wonderflux action in your child theme
     functions.php file with the remove_action().
 
 5.	Add a filter to change or add to the code Wonderflux outputs.
 
-6.	Use over 100 location-aware hooks to detect what type of 
+6.	Use over 100 location-aware hooks to detect what type of
     content is being viewed and automatically add unique content.
 
 Still feel the need to hack Wonderflux?

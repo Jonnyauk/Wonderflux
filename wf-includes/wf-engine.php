@@ -209,7 +209,7 @@ class wflux_wp_helper_all {
 
 /**
 * @since 0.913
-* @updated 0.913
+* @updated 2.1
 * Sets up all Wonderflux theme building functions
 */
 function wflux_capacitor_theme() {
@@ -222,7 +222,7 @@ function wflux_capacitor_theme() {
 	//EXPERIMENTAL
 	//wfcode_after_theme_config(); //WF code hook
 }
-add_action('init','wflux_capacitor_theme', 1);
+add_action( 'after_setup_theme', 'wflux_capacitor_theme', 1 );
 
 
 /**

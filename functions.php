@@ -98,10 +98,10 @@ if ( WF_THEME_FRAMEWORK_NONE == true ) {
 
 //// 1.4 // If Wonderflux activated directly with no child theme
 
-if ( wp_get_theme()->Name == 'Wonderflux Framework' ) {
-	add_action( 'after_setup_theme', 'wfx_core_default_setup', 2);
-	add_action('wp_loaded', 'wfx_core_default_widgets', 1);
-	add_action('get_header', 'wfx_core_default_wrappers', 1);
+if ( wp_get_theme()->Name == 'Wonderflux' ) {
+	add_action( 'after_setup_theme', 'wfx_core_default_setup', 2 );
+	add_action( 'widgets_init', 'wfx_core_default_widgets', 1 );
+	add_action( 'get_header', 'wfx_core_default_wrappers', 1 );
 }
 
 

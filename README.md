@@ -50,13 +50,12 @@ Help and documentation
 
 The Wonderflux documentation site is a (slowly!) growing reference of all the
 files, functions, hooks & filters you can use in your child themes. Apologies,
-coding is much more fun than writing documentation, but there is fairly
-complete in-line code documentation in the wf-includes directory files for
-your reference if you dig around.
+coding is much more fun than writing documentation, but there is complete
+in-line code documentation (PHPDoc format) in functions.php to refer to.
 
-Please note the documentation site is somewhat out of date - I've fallen behind
-a little on working on this unfortunately, due to my normal work. However, once
-I've completed Wonderflux v2.0 I'll be turning my attention back to documentation!
+Please note the documentation website is somewhat out of date - I've fallen behind
+a little on working on this unfortunately, due to my normal (paid!) work. However,
+once I've completed Wonderflux v2.0 I'll be turning my attention back to documentation!
 
 * [All documentation](http://wonderflux.com/guide)
 * [Hooks](http://wonderflux.com/guide/hook)

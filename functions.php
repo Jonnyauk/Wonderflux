@@ -928,7 +928,7 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
  */
 if ( !function_exists( 'wfx_get_cached_part' ) ) : function wfx_get_cached_part($args) {
 	wp_parse_str($args, $echo_do);
-	$echo = (isset($echo_do['echo']) && $echo_do['echo'] == 'Y') ? 'Y' : 'N';
+	$echo = (isset($echo_do['echo']) && $echo_do['echo'] == 'N') ? 'N' : 'Y';
 	global $wfx;
 	if ($echo == 'Y') {
 		 echo $wfx->get_cached_part($args);

@@ -2239,10 +2239,11 @@ class wflux_display_extras {
 	 * @filter wflux_allowed_cached_tags - array of allowed output tags used with kses
 	 *
 	 * @since 1.1
-	 * @lastupdate 1.1
+	 * @lastupdate 2.1
 	 *
 	 * TODO: Extend $sanitise_in and sanitise_out with more options
 	 * TODO: Should this be made location aware?
+	 * TODO: Think about multisite integration - set_site_transient() - test!
 	 * NOTES: Deeper transient key length - only 64 chars allowed in options table name? Use 45 characters or 32 max?? - Watch _transient_timeout_{$transient_key}
 	 */
 	function wf_get_cached_part($args) {
@@ -2252,12 +2253,12 @@ class wflux_display_extras {
 			'file_ext' => 'php',
 			'expire' => 360,
 			'sanitise_in' => 'html',
-			'sanitise_out' => '',
+			'sanitise_out' => 'html',
 			'mimify' => 'Y',
 			'transient_key' => '',
 			'flushable' => 'Y',
-			'output_start' => '<!--' . __('cached-part-start', 'wonderflux') . '-->',
-			'output_end' => '<!--' . __('cached-part-end', 'wonderflux') . '-->'
+			'output_start' => __('CACHED PART START', 'wonderflux'),
+			'output_end' => __('CACHED PART END', 'wonderflux')
 		);
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
@@ -2268,13 +2269,13 @@ class wflux_display_extras {
 		global $wfx_data_manage;
 
 		$cached_data = false;
-		$expire = ( (is_numeric($expire)) ? $expire : 1 )*60; // Set to minutes
+		$expire = ( (is_numeric($expire) ) ? $expire : 1 )*60; // Set to minutes
 		$sanitise_in = ( $sanitise_in == 'html' ) ? 'html' : 'none';
 		$sanitise_out = ( $sanitise_out == 'html' ) ? 'html' : 'none';
 
 		// TODO: Transient key reported upto 32 characters max - have tested upto 45, 46 was stormy waters!
 		// Best to play on safe side until further teting done (32)
-		$transient_key = mb_substr( empty($transient_key) ? $this->get_clean_theme_name() . '_c_' . $part : $transient_key , 0, 32);
+		$transient_key = mb_substr( empty($transient_key) ? $this->get_clean_theme_name() . '_c_' . $part : $transient_key , 0, 32 );
 
 		// Cache flush control/load data
 		$flush_this = false;
@@ -2283,33 +2284,50 @@ class wflux_display_extras {
 				$flush_this = ( isset($_GET['flushcache_all']) && $_GET['flushcache_all'] == 1 ) ? true : false;
 				$flush_this = ( isset($_GET['flushcache_'.$part.'']) && $_GET['flushcache_'.$part.''] == 1 ) ? true : $flush_this;
 		}
-		$cached_data = ( !$flush_this ) ? get_transient($transient_key) : false;
+		$cached_data = ( !$flush_this ) ? get_transient( $transient_key ) : false;
+
 		$allowed_tags = ( $sanitise_in == 'html' || $sanitise_out == 'html' ) ? $wfx_data_manage->allowed_tags('') : '';
 
 		// Refresh cache
-		if( empty( $cached_data ) ){
-			ob_start();
-				locate_template( $part.'.'.$file_ext, true, false );
-				switch ($sanitise_in){
-					case 'html': $cached_data = wp_kses( ob_get_contents(), apply_filters( 'wflux_allowed_cached_tags', $allowed_tags ) );
-					default: $cached_data = ob_get_contents();
-				}
-			ob_end_clean();
-			set_transient( $transient_key, ($mimify == 'Y') ? $wfx_data_manage->strip_whitespace($cached_data) : $cached_data, $expire );
+		if( empty( $cached_data ) ) {
+
+			// Have to include this if outside of admin for file operations
+			require_once(ABSPATH . 'wp-admin/includes/file.php');
+			WP_Filesystem();
+			global $wp_filesystem;
+
+			$cached_data = $wp_filesystem->get_contents( WF_THEME_URL . '/' . $part . '.' . $file_ext );
+			$cached_data = ( $sanitise_in == 'html' ) ? wp_kses( $cached_data, apply_filters('wflux_allowed_cached_tags', $allowed_tags) ) : $cached_data;
+			set_transient( $transient_key, ($mimify == 'Y') ? $wfx_data_manage->strip_whitespace( $cached_data ) : $cached_data, $expire );
+
 		}
 
 		// Output
-		if ( !empty( $cached_data ) ){
-			switch ( $sanitise_out ){
+		if ( !empty( $cached_data ) ) {
+
+			$transient_timeout = get_option ( '_transient_timeout_' . $transient_key );
+			//wfx_debug( $transient_timeout - time() );
+
+			$transient_timeout = get_option ( '_transient_timeout_' . $transient_key );
+			$transient_timeout = ( !empty($transient_timeout) ) ? ' - Seconds to cache refresh: ' . ($transient_timeout - time()) : false;
+
+			$output_start = '<!-- - - - ' . $output_start . ' - ' . $part . '.' . $file_ext . $transient_timeout . ' - - - -->';
+			$output_end = '<!-- - - - ' . $output_end . ' - ' . $part . '.' . $file_ext . ' - - - -->';
+
+			// By default we deep clean output with wp_kses just to be sure
+			switch ( $sanitise_out ) {
 				case 'html':
 					return "\n" . wp_kses( $output_start . $cached_data . $output_end, apply_filters( 'wflux_allowed_cached_tags', $allowed_tags ) ) . "\n";
 					break;
 				default:
-					return "\n" . $output_start . $cached_data . $output_end . "\n";
+					return "\n" . esc_attr($output_start) . $cached_data . esc_attr($output_end) . "\n";
 				break;
 			}
+
 		} else {
+
 			return false;
+
 		};
 
 	}

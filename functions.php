@@ -557,7 +557,7 @@ if (WF_THEME_FRAMEWORK_REPLACE == false) {
  * @since 0.913
  * @updated 0.913
  */
-if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language($args) { global $wfx_theme; $wfx_theme->language_pack($args); } endif;
+if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language() { global $wfx_theme; $wfx_theme->language_pack(); } endif;
 
 /**
  * IMPORTANT Builds the head of the document

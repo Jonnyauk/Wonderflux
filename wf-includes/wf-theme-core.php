@@ -136,7 +136,7 @@ class wflux_theme_core {
 	* @since 0.913
 	* @updated 1.1
 	*/
-	function wf_language_pack($args) {
+	function wf_language_pack() {
 		load_theme_textdomain( 'wonderflux', WF_MAIN_DIR . '/wf-content/languages' );
 		$locale = get_locale();
 		$locale_file = WF_MAIN_DIR . "/wf-content/languages/$locale.php";

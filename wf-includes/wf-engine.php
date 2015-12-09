@@ -242,7 +242,7 @@ class wflux_theme_all {
 
 	// Main theme config
 	function widgets($args){ $this->wflux_theme_core_do->wf_widgets($args); }
-	function language_pack($args){ $this->wflux_theme_core_do->wf_language_pack($args); } //ALPHA DEVELOPMENT - NEEDS TESTING!
+	function language_pack(){ $this->wflux_theme_core_do->wf_language_pack(); } //ALPHA DEVELOPMENT - NEEDS TESTING!
 	function background_divs($args){ $this->wflux_theme_core_do->wf_background_divs($args); }
 
 	// Javascript goodness

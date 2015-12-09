@@ -841,9 +841,9 @@ class wflux_helper {
 				$input_type = gettype($input);
 			}
 
-			$o .= '<pre><strong>' . esc_html__('Debug output for data type:', 'wonderflux') . '</strong> ' . $input_type . '</pre>';
-			if (is_array($input) || is_object($input)) {
-	   			$o .= '<pre>' . print_r($input,true) . '</pre>';
+			$o .= '<pre><strong>' . esc_html__( 'Debug output for data type:', 'wonderflux' ) . '</strong> ' . $input_type . '</pre>';
+			if ( is_array($input) || is_object($input) ) {
+	   			$o .= '<pre>' . esc_html( print_r($input,true) ) . '</pre>';
 			} else {
 				$o .= '<p style="color:#770000;">' . $input . '</p>';
 			}

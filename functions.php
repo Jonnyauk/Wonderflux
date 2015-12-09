@@ -10,7 +10,7 @@
  * Free example child theme:		https://github.com/Jonnyauk/wonderflux-girder
  *
  * GETTING STARTED GUIDES
- * Information and license:			README.txt
+ * Information and license:			README.md
  * Guide and documentation:			http://wonderflux.com/guide
  * Introduction to Wonderflux:		http://wonderflux.com/guide/doc/introduction
  * Wonderflux child themes:			http://wonderflux.com/guide/doc/child-theme-files
@@ -504,84 +504,137 @@ if ( !function_exists( 'wfx_core_comment_js' ) ) : function wfx_core_comment_js(
 
 
 // Only need functions if have child theme overrides
-if (WF_THEME_FRAMEWORK_REPLACE == false) {
+if ( WF_THEME_FRAMEWORK_REPLACE == false ) {
 
 	/**
-	 * Inserts the core structure CSS.
-	 * Use constant WF_THEME_FRAMEWORK_REPLACE to remove.
+	 * Inserts the core structure static CSS.
+	 * Switches automatically between old pixel based and new Flux Layout systems.
+	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to remove.
 	 *
 	 * Filters available:
 	 * wflux_css_structure_path - full path to file
 	 * wflux_css_structure_version - version number appended to file
 	 * wflux_css_structure_id - ID of file
 	 *
-	 * @since 0.72
-	 * @updated 2.0
+	 * @since	0.72
+	 * @version	2.0
+	 *
+	 * @param	none
 	 */
 	if ( !function_exists( 'wfx_display_head_css_structure' ) ) : function wfx_display_head_css_structure($args) { global $wfx; $wfx->head_css_structure($args); } endif;
 
+
 	/**
-	 * Inserts the dynamic layout system CSS
+	 * Inserts the core structure dynamic layout CSS.
+	 * Switches automatically between old pixel based and new Flux Layout systems.
+	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to remove.
 	 *
-	 * @since 0.72
-	 * @updated 0.913
+	 * Filters available:
+	 * wflux_css_columns_path - full path to file
+	 * wflux_css_columns_version - version number appended to file
+	 * wflux_css_columns_id - ID of file
+	 * wflux_css_columns_media - Media type
+	 *
+	 * @since	0.72
+	 * @version	2.0
+	 *
+	 * @param	none
 	 */
 	if ( !function_exists( 'wfx_display_head_css_columns' ) ) : function wfx_display_head_css_columns() { global $wfx; $wfx->head_css_columns(); } endif;
 
 
 	/**
-	 * Inserts the core IE CSS
- 	 * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
- 	 *
-	 * @since 0.72
-	 * @updated 0.913
+	 * Inserts pixel based legacy Internet Explorer CSS (<IE8).
+	 * Only deployed if you are using old pixel based layout system.
+	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to remove.
+	 * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future.
+	 *
+	 * Filters available:
+	 * wflux_css_ie_path - full path to file
+	 * wflux_css_ie_id - ID of file
+	 * wflux_css_ie_media - Media type
+	 *
+	 * @since	0.72
+	 * @version	2.0
+	 *
+	 * @param	none
 	 */
 	if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie() { global $wfx; $wfx->head_css_ie(); } endif;
-
 
 } elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
 
 	/**
-	 * Replace core CSS with static versions
+	 * Replaces framework CSS files (core and dynamic layout system).
+	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to use.
+	 * Create the following files in your child theme folder (see Wonderflux Advanced tab to generate output).
+	 * For pixel based system - 'style-framework.css' and optionally 'style-framework-ie.css'.
+	 * For % based system (Flux Layout) - 'flux-layout-merged.css'.
 	 *
-	 * @since 0.93
-	 * @updated 0.93
+	 * Filters available:
+	 * wflux_css_theme_framework_media - Media type
+	 *
+	 * @since	0.93
+	 * @version	2.0
+	 *
+	 * @param	none
 	 */
 	if ( !function_exists( 'wfx_head_css_replace' ) ) : function wfx_head_css_replace($args) { global $wfx; $wfx->head_css_replace($args); } endif;
 
 }
 
+
 /**
- * IMPORTANT Sets up Wonderflux for translation
+ * Setup for WordPress language packs for translators.
+ * THIS IS REQUIRED for WordPress theme repo compliance.
  *
- * @since 0.913
- * @updated 0.913
+ * @since	0.913
+ * @version	1.1
+ *
+ * @param	none
+ *
+ * @todo EXPERIMENTAL FIRST PASS - needs testing!
  */
 if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language() { global $wfx_theme; $wfx_theme->language_pack(); } endif;
 
+
 /**
- * IMPORTANT Builds the head of the document
+ * Builds the start of the head with doc type declaration.
  *
- * @since 0.931
- * @updated 0.931
+ * @since	0.931
+ * @version	2.0
+ *
+ * @param	none
  */
 if ( !function_exists( 'wfx_display_head_open' ) ) : function wfx_display_head_open() { global $wfx; $wfx->head_open(); } endif;
 
+
 /**
- * IMPORTANT Builds the character set of the document
+ * Inserts the Content-Type/charset meta tag.
  *
- * @since 0.931
- * @updated 0.931
+ * @since	0.931
+ * @version	0.931
+ *
+ * @param	[string] $doctype 		Document type transitional/strict/frameset/1.1/1.1basic/html5 [transitional]
+ * @param	[string] $content 		Document content [html]
+ * @param	[string] $charset		Character encoding [utf8]
  */
 if ( !function_exists( 'wfx_display_head_char_set' ) ) : function wfx_display_head_char_set($args) { global $wfx; $wfx->head_char_set($args); } endif;
 
+
 /**
- * Adds meta viewport meta tag (if not using legacy Wonderflux v1 grid system)
+ * Inserts viewport meta tag.
+ * Only deployed if you are using new % based layout system (Flux Layout).
  *
- * @since 2.0
- * @updated 2.0
+ * Filters available:
+ * wflux_head_viewport - Viewport meta content.
+ *
+ * @since	2.0
+ * @version	2.0
+ *
+ * @param	none
  */
 if ( !function_exists( 'wfx_display_head_viewport' ) ) : function wfx_display_head_viewport() { global $wfx; $wfx->head_viewport(); } endif;
+
 
 /**
  * IMPORTANT Builds the title of the document
@@ -590,6 +643,7 @@ if ( !function_exists( 'wfx_display_head_viewport' ) ) : function wfx_display_he
  * @updated 1.0
  */
 if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_title($args) { global $wfx; $wfx->head_title($args); } endif;
+
 
 /**
  * Inserts the core theme CSS

@@ -1,15 +1,11 @@
 <?php
 
-//// The Wonderflux core theme functionality
-
 /**
-*
-* @since 0.891
-* @updated 2.0
-*
-* Core template functions
-*
-*/
+ * Wonderflux core theme functionality
+ *
+ * @since	0.891
+ * @version	2.0
+ */
 class wflux_theme_core {
 
 	public $wfx_count_bg_divs;
@@ -131,11 +127,16 @@ class wflux_theme_core {
 
 
 	/**
-	* Sets up WordPress for language packs
-	* EXPERIMENTAL FIRST PASS - needs testing and filters!
-	* @since 0.913
-	* @updated 1.1
-	*/
+	 * Setup for WordPress language packs for translators.
+	 * THIS IS REQUIRED for WordPress theme repo compliance.
+	 *
+	 * @since	0.913
+	 * @version	1.1
+	 *
+	 * @param	none
+	 *
+	 * @todo EXPERIMENTAL FIRST PASS - needs testing!
+	 */
 	function wf_language_pack() {
 		load_theme_textdomain( 'wonderflux', WF_MAIN_DIR . '/wf-content/languages' );
 		$locale = get_locale();
@@ -326,13 +327,11 @@ class wflux_theme_core {
 
 
 /**
-*
-* @since 0.913
-* @updated 0.913
-*
-* Extra display support elements for Internet Explorer, in particular IE6 - the party pooper at the web designers party!
-*
-*/
+ * Extra display support elements for Internet Explorer, in particular IE6 - the party pooper at the web designers party!
+ *
+ * @since	0.86
+ * @version	0.913
+ */
 class wflux_theme_ie {
 
 	function wf_ie6_png($args) {

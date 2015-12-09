@@ -1,10 +1,12 @@
 <?php
-//TODO: Setup for translation
 /**
-* @since 0.913
-* @updated 2.0
-* Core display functions that output code
-*/
+ * Core display functions that output code
+ *
+ * @since	0.913
+ * @version	2.0
+ *
+ * @todo Check translation setup
+ */
 class wflux_display_code extends wflux_data {
 
 	protected $xml_namespaces;
@@ -22,12 +24,13 @@ class wflux_display_code extends wflux_data {
 	}
 
 	/**
-	* Builds the start of the head with doc type declaration
-	*
-	* @since 0.931
-	* @updated 2.0
-	*
-	*/
+	 * Builds the start of the head with doc type declaration.
+	 *
+	 * @since	0.931
+	 * @version	2.0
+	 *
+	 * @param	none
+	 */
 	function wf_head_open() {
 
 		$doctype = $this->wfx_doc_type;
@@ -106,13 +109,15 @@ class wflux_display_code extends wflux_data {
 
 	}
 
+
 	/**
+	 * Internal function used in wf_head_open() to filter language_attributes.
+	 * Note - data already checked/filtered on output $this->lang_attributes set in wf_head_open()
 	 *
-	 * Used in wf_head_open() to filter language_attributes
-	 * Note - data already checked/filtered when $this->lang_attributes set in wf_head_open()
+	 * @since	0.931
+	 * @version	2.0
 	 *
-	 * @since 1.2
-	 * @updated 1.2
+	 * @param	none
 	 */
 	function wf_lang_attributes_filter($attributes){
 		return $this->lang_attributes;
@@ -139,15 +144,15 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* Inserts the Content-Type/charset meta tag
-	*
-	* @since 0.931
-	* @updated 0.931
-	*
-	* @param $doctype (limited variable string) : Document type : 'transitional' (default), 'strict', 'frameset', '1.1', '1.1basic', 'html5'
-	* @param $content : Document content : 'html' (default)
-	* @param $charset (user variable string) : Character encoding : 'utf8' (default), USER INPUT
-	*/
+	 * Inserts the Content-Type/charset meta tag.
+	 *
+	 * @since	0.931
+	 * @version	0.931
+	 *
+	 * @param	[string] $doctype 		Document type transitional/strict/frameset/1.1/1.1basic/html5 [transitional]
+	 * @param	[string] $content 		Document content [html]
+	 * @param	[string] $charset		Character encoding [utf8]
+	 */
 	function wf_head_char_set($args) {
 
 		$defaults = array (
@@ -177,11 +182,16 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	 * Inserts viewport meta
+	 * Inserts viewport meta tag.
+	 * Only deployed if you are using new % based layout system (Flux Layout).
 	 *
-	 * @since 2.0
-	 * @updated 2.0
+	 * Filters available:
+	 * wflux_head_viewport - Viewport meta content.
 	 *
+	 * @since	2.0
+	 * @version	2.0
+	 *
+	 * @param	none
 	 */
 	function wf_head_viewport() {
 
@@ -218,11 +228,20 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* Inserts core structure CSS
-	*
-	* @since 0.72
-	* @updated 2.0
-	*/
+	 * Inserts the core structure static CSS.
+	 * Switches between old pixel based and new Flux Layout systems.
+	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to remove.
+	 *
+	 * Filters available:
+	 * wflux_css_structure_path - full path to file
+	 * wflux_css_structure_version - version number appended to file
+	 * wflux_css_structure_id - ID of file
+	 *
+	 * @since	0.72
+	 * @version	2.0
+	 *
+	 * @param	none
+	 */
 	function wf_head_css_structure() {
 
 		if ( WF_THEME_FRAMEWORK_REPLACE == false ) {
@@ -248,10 +267,21 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* @since 0.72
-	* @updated 2.0
-	* Dynamic grid builder
-	*/
+	 * Inserts the core structure dynamic layout CSS.
+	 * Switches between old pixel based and new Flux Layout systems.
+	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to remove.
+	 *
+	 * Filters available:
+	 * wflux_css_columns_path - full path to file
+	 * wflux_css_columns_version - version number appended to file
+	 * wflux_css_columns_id - ID of file
+	 * wflux_css_columns_media - Media type
+	 *
+	 * @since	0.72
+	 * @version	2.0
+	 *
+	 * @param	none
+	 */
 	function wf_head_css_columns() {
 		if (WF_THEME_FRAMEWORK_REPLACE == false) {
 
@@ -278,10 +308,21 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* @since 0.80
-	* @updated 2.0
-	* Core layout grid CSS for legacy Internet Explorer (<IE8)
-	*/
+	 * Inserts pixel based legacy Internet Explorer CSS (<IE8).
+	 * Only deployed if you are using old pixel based layout system.
+	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to remove.
+	 * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future.
+	 *
+	 * Filters available:
+	 * wflux_css_ie_path - full path to file
+	 * wflux_css_ie_id - ID of file
+	 * wflux_css_ie_media - Media type
+	 *
+	 * @since	0.72
+	 * @version	2.0
+	 *
+	 * @param	none
+	 */
 	function wf_head_css_ie() {
 
 		// Backpat - legacy Wonderflux v1 IE additional fallback dynamic grid
@@ -362,14 +403,20 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* @since 0.93
-	* @updated 2.0
-	* VERY IMPORTANT!
-	* Removes functionality if child theme override file in place
-	* Define constant in child theme functions file: 
-	* define( 'WF_THEME_FRAMEWORK_REPLACE', true);
-	* Requires at least 'style-framework.css' and optionally 'style-framework-ie,css' in your child theme directory
-	*/
+	 * Replaces framework CSS files (core and dynamic layout system).
+	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to use.
+	 * Create the following files in your child theme folder (see Wonderflux Advanced tab to generate output).
+	 * For pixel based system - 'style-framework.css' and optionally 'style-framework-ie.css'.
+	 * For % based system (Flux Layout) - 'flux-layout-merged.css'.
+	 *
+	 * Filters available:
+	 * wflux_css_theme_framework_media - Media type
+	 *
+	 * @since	0.93
+	 * @version	2.0
+	 *
+	 * @param	none
+	 */
 	function wf_head_css_replace() {
 		$path = ( $this->wfx_grid_type == 'pixels' ) ? WF_THEME_URL.'/style-framework.css' : WF_THEME_URL.'/flux-layout-merged.css';
 		$path_ie = WF_THEME_URL.'/style-framework-ie.css';

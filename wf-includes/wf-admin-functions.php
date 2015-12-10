@@ -801,20 +801,22 @@ class wflux_admin_forms extends wflux_data {
 	* Creates a text area populated with CSS grid output
 	* For Wonderflux v1.x pixel grid system
 	* @since 0.93
-	* @updated 1.1
+	* @updated 2.1
 	*/
 	function wf_form_helper_file_css_combine($file,$cleanup) {
+
+		WP_Filesystem();
+		global $wp_filesystem;
 
 		$cleanup = ($cleanup == 'Y') ? 'Y' : 'N';
 		$file_accept = array ('css/wf-css-core-structure.css');
 		if (in_array ($file,$file_accept)) { $file = WF_CONTENT_DIR . '/' . $file; } else { $file = WF_CONTENT_DIR . '/css/wf-css-core-structure.css'; }
 
 		$content = '';
-		$f = fopen($file, 'r');
-		$content = fread($f, filesize($file));
+		$content = $wp_filesystem->get_contents( esc_url($file) );
 
 		// Remove white space
-		$content = ( $cleanup == 'Y' ) ? preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $content) : $content;
+		$content = ( $cleanup == 'Y' ) ? preg_replace( array('/\s{2,}/', '/[\t\n]/'), ' ', $content ) : $content;
 
 		//$content_grid = esc_textarea( $this->wf_css_framework_build() );
 
@@ -842,7 +844,7 @@ class wflux_admin_forms extends wflux_data {
 		$content_ie = $this->wf_css_framework_build_ie();
 
 		$output .= '<h3>' . esc_attr__( "2 - Code for your style-framework-ie.css file", "wonderflux" ) . '</h3>';
-		$output .= '<textarea cols="100" rows="20" name="newcontent2" id="css-wfx-framework-ie" tabindex="2" onclick="this.select()">'.esc_textarea($content_ie).'</textarea>';
+		$output .= '<textarea cols="100" rows="20" name="newcontent2" id="css-wfx-framework-ie" tabindex="2" onclick="this.select()">' . esc_textarea($content_ie) . '</textarea>';
 		$output .= '</form>';
 		echo $output;
 	}
@@ -852,9 +854,12 @@ class wflux_admin_forms extends wflux_data {
 	* Creates a text area populated with CSS grid output
 	* For Wonderflux v2.x responsive grid system
 	* @since 2.0
-	* @updated 2.0
+	* @updated 2.1
 	*/
 	function wf_form_helper_file_css_combine_2($file,$cleanup) {
+
+		WP_Filesystem();
+		global $wp_filesystem;
 
 		$cleanup = ($cleanup == 'Y') ? 'Y' : 'N';
 		$file_accept = array ('css/wf-css-flux-layout-core.css');
@@ -862,11 +867,11 @@ class wflux_admin_forms extends wflux_data {
 
 		// Core
 		$content = '';
-		$content = fread( fopen($file, 'r'), filesize($file) );
+		$content = $wp_filesystem->get_contents( esc_url($file) );
 		// Remove comments
 		$content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content);
 		// Remove white space
-		$content = ( $cleanup == 'Y' ) ? preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $content) : $content;
+		$content = ( $cleanup == 'Y' ) ? preg_replace( array('/\s{2,}/', '/[\t\n]/'), ' ', $content ) : $content;
 
 		// Grid framework
 		$content_grid = '';
@@ -901,7 +906,7 @@ class wflux_admin_forms extends wflux_data {
 
 		$output .= '<h3>' . esc_attr__( "Code for your flux-layout-merged.css file", "wonderflux" ) . '</h3>';
 		$output .= '<form name="form1" method="post" action="" >';
-		$output .= '<textarea cols="100" rows="20" name="newcontent" id="css-wfx-framework" tabindex="1" onclick="this.select()">'.esc_textarea(trim($content.$content_grid)).'</textarea>';
+		$output .= '<textarea cols="100" rows="20" name="newcontent" id="css-wfx-framework" tabindex="1" onclick="this.select()">' . esc_textarea( trim($content.$content_grid) ) . '</textarea>';
 
 		echo $output;
 	}
@@ -1139,41 +1144,62 @@ class wflux_admin_forms extends wflux_data {
 
 /**
  * @since 1.2
- * @updated 1.2
+ * @updated 2.1
  * Admin area theme backup functions
  */
 class wflux_admin_backup {
 
 
 	function wf_import_export() {
-		//$reporting = '&backuperror=true';
-		if (isset($_GET['action']) && ($_GET['action'] == 'download')) {
-			header("Cache-Control: public, must-revalidate");
-			header("Pragma: hack");
-			header("Content-Type: text/plain");
-			header('Content-Disposition: attachment; filename="wonderflux-theme-options-'.date("dSMY").'.dat"');
-			echo serialize($this->_get_options());
+
+		$reporting = '&backuperror=true';
+
+		if ( isset($_GET['action']) && ($_GET['action'] == 'download') ) {
+
+			header( "Cache-Control: public, must-revalidate" );
+			header( "Pragma: hack" );
+			header( "Content-Type: text/plain" );
+			header( 'Content-Disposition: attachment; filename="wonderflux-theme-options-' . date("dSMY") . '.dat"' );
+			echo serialize( $this->_get_options() );
 			die();
+
 		}
-		if (isset($_POST['upload']) && check_admin_referer('wfx_options_backuprestore', 'wfx_options_backuprestore')) {
-			if ($_FILES["file"]["error"] > 0) {
+
+		if ( isset($_POST['upload']) && check_admin_referer('wfx_options_backuprestore', 'wfx_options_backuprestore') ) {
+
+			if ( $_FILES["file"]["error"] > 0 ) {
+
 				$reporting = '&backuperror=true';
+
 			} else {
-				$options = unserialize(file_get_contents($_FILES["file"]["tmp_name"]));
-				if ($options) {
-					foreach ($options as $option) {
+
+				WP_Filesystem();
+				global $wp_filesystem;
+
+				$options = $wp_filesystem->get_contents( $_FILES["file"]["tmp_name"] );
+
+				if ( isset($options) && is_serialized($options) ) {
+
+					$options = unserialize( $options );
+
+					foreach ( $options as $option ) {
+
 						if ($option->option_name == 'wonderflux_display') {
-							update_option($option->option_name, unserialize($option->option_value));
+							update_option( $option->option_name, unserialize($option->option_value) );
 							$reporting = '&backupsuccess=true';
 						} else {
 							$reporting = '&backuperror=true';
 						}
 
 					}
+
 				}
+
 			}
-			wp_redirect(admin_url('admin.php?page=wonderflux_backup'.$reporting));
+
+			wp_redirect( admin_url('admin.php?page=wonderflux_backup' . $reporting) );
 			exit;
+
 		}
 	}
 
@@ -1187,7 +1213,7 @@ class wflux_admin_backup {
 				echo '<tr><td>';
 						echo '<h3>Backup/Export</h3>';
 						echo '<p>Current saved settings for the Wonderflux theme framework:</p>';
-						echo '<p><textarea class="widefat code" rows="20" cols="100" onclick="this.select()">'. serialize($this->_get_options()) . '</textarea></p>';
+						echo '<p><textarea class="widefat code" rows="20" cols="100" onclick="this.select()">'. serialize( $this->_get_options() ) . '</textarea></p>';
 						echo '<p><a href="?page=wonderflux_backup&action=download" class="button-secondary">Download as file</a></p>';
 					echo '</td><td>';
 						echo '<h3>Restore/Import</h3>';
@@ -1202,13 +1228,14 @@ class wflux_admin_backup {
 
 
 	function _display_options() {
-		$options = unserialize($this->_get_options());
+		$options = unserialize( $this->_get_options() );
 	}
 
 
 	function _get_options() {
 		global $wpdb;
-		return $wpdb->get_results("SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name = 'wonderflux_display'");
+		return $wpdb->get_results( "SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name = 'wonderflux_display'" );
+		//return get_option('wonderflux_display');
 	}
 
 

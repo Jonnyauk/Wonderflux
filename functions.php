@@ -652,36 +652,73 @@ if ( !function_exists( 'wfx_display_head_viewport' ) ) : function wfx_display_he
 
 
 /**
- * IMPORTANT Builds the title of the document
+ * Builds the title in the head of the document.
+ * BACKPAT: When using WordPress 4.1 or above add_theme_support( 'title-tag' ) is automatically used instead.
  *
- * @since 0.71
- * @updated 1.0
+ * @since	0.1
+ * @version	2.0
+ *
+ * @param	none
  */
 if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_title($args) { global $wfx; $wfx->head_title($args); } endif;
 
 
 /**
- * Inserts the core theme CSS
+ * Inserts (enqueue) child theme CSS - style.css
+ * BACKPAT: When using WordPress 4.1 or above add_theme_support( 'title-tag' ) is automatically used instead.
  *
- * @since 0.72
- * @updated 1.1
+ * Filters available:
+ * wflux_css_theme_id - ID of file (main-theme)
+ * wflux_css_theme_path - full path to file
+ * wflux_css_theme_media - Media type
+ *
+ * @since	0.72
+ * @version	1.1
+ *
+ * @param	none
  */
 if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_head_css_theme($args) { global $wfx; $wfx->head_css_theme($args); } endif;
 
+
 /**
- * Inserts opening dynamic body tag in output - adds Extra Wonderflux CSS classes and basic browser detection
+ * Adds extra CSS classes to the body tag via WordPress filter.
+ * Classes added describe your Wonderflux layout config, basic mobile and browser detection.
+ * Add more classes by using core WordPress filter 'body_class' or override whole function.
  *
- * @since 0.931
- * @updated 1.1
+ * Filters available:
+ * wflux_body_class_browser - Browser detection CSS class output
+ * wflux_body_class_layout - Wonderflux layout description classes
+ *
+ * @since	0.931
+ * @version	2.1
+ *
+ * @param	none
  */
 if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag() { global $wfx; $wfx->body_tag(); } endif;
 
+
 /**
- * A more flexible post class function - especially compared to get_post_class()
- * DEPRECIATED - to be removed - use standard WordPress post_class() instead in your themes!
+ * A more flexible post_class() function.
+ * DEPRECIATED - to be removed - use standard WordPress post_class() instead in your template files!
+ * See wfx_filter_post_class - which filters WP post_class() instead!
  *
- * @since 1.0RC3
- * @updated 1.0RC3
+ * NOTES on 'wflux_post_class' filter:
+ * Use $post_class var in your filter function if you want access to core WP post classes.
+ * You can then do things like:
+ * unset($post_class[0]) Remove an item from the array (where [0] is the index/key in the array of WP class values)
+ * $post_class[] = 'my-new-class' Add an item to the array (Can also be done with the $extra param in function if required - which is simpler!)
+ *
+ * Filters available:
+ * wflux_body_class_browser - Browser detection CSS class output
+ * wflux_body_class_layout - Wonderflux layout description classes
+ *
+ * @since	1.0RC3
+ * @version	2.1
+ *
+ * @param	[string] $echo			Echo or return output
+ * @param	[string] $extra 		Comma seperated, extra CSS classes you wish to add
+ * @param	[string] $position		Position of your additional $extra CSS classes. after/before [after]
+ * @param	[string] $just_string 	Just string of classes or wrap the output in 'class=""' like normal WordPress? Y/N [N]
  */
 if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
 
@@ -695,12 +732,21 @@ if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
 
 } endif;
 
+
 /**
- * Filters standard WordPress post_class() instead, do it the WordPress way!
- * IMPORTANT - Replaces wfx_post_class(), stop using it in your themes!!
+ * Adds extra CSS classes to post class via WordPress filter.
+ * IMPORTANT - Stop using wfx_post_class() it in your child themes!!
  *
- * @since 2.1
- * @updated 2.1
+ * Filters available:
+ * wflux_post_class_single : Extra CSS class added to a single post view
+ * wflux_post_class_multiple : Extra CSS class added to multiple post/archive views
+ * wflux_post_class_first : Extra CSS class added to first post in loop
+ * wflux_post_class_last : Extra CSS class added to first post in loop
+ *
+ * @since	2.1
+ * @version	2.1
+ *
+ * @param	none
  */
 if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_class() {
 	if ( !is_admin() ) {
@@ -708,19 +754,35 @@ if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_cl
 	}
 } endif;
 
-/**
- * Displays debug in code comment
- *
- * @since 0.72
- * @updated 0.913
- */
-if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performance($args) { global $wfx; $wfx->debug_performance($args); } endif;
 
 /**
- * Displays Wonderflux credit in source code of site
+ * Displays performance information as a HTML code comment: xx queries in xx seconds.
  *
- * @since 0.71
- * @updated 0.913
+ * @since	0.3
+ * @version	0.931
+ *
+ * @param	none
+ *
+ * @todo Extend with other debug information? wfx_debug() is more useful I guess for this?
+ */
+if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performance() { global $wfx; $wfx->debug_performance(); } endif;
+
+
+/**
+ * Output credit in footer of site - show your support and love for WordPress and Wonderflux!
+ *
+ * Filters available:
+ * wflux_footer_credit_format : HTML tag to surround output with.
+ * wflux_footer_credit_wp : WordPress credit text.
+ * wflux_footer_divider : Divider between credt text.
+ * wflux_footer_credit_wf : Wonderflux credit text.
+ * wflux_footer_credit_content : Entire credit text.
+ * wflux_footer_credit_div : Surround content with a div?
+ *
+ * @since	0.3
+ * @version	2.1
+ *
+ * @param	none
  */
 if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit() { global $wfx; $wfx->code_credit(); } endif;
 
@@ -731,6 +793,8 @@ if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code
  * @since 0.71
  * @updated 0.913
  */
+
+
 if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($args) { global $wfx; $wfx->display_credit($args); } endif;
 
 /**

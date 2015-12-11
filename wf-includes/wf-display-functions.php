@@ -1302,6 +1302,7 @@ class wflux_display extends wflux_display_css {
 	 * @version	2.1
 	 *
 	 * @param	none
+	 * @todo Review code and santization
 	 */
 	function wf_credit() {
 
@@ -1326,7 +1327,7 @@ class wflux_display extends wflux_display_css {
 		//We are setup for a custom div
 		if ($footer_credit_div !='') {
 			echo '<div class="';
-			echo apply_filters( 'wflux_footer_credit_div', $footer_credit_div );
+			echo apply_filters( 'wflux_footer_credit_div', esc_attr($footer_credit_div) );
 			echo '" id="wf-footer-credit">';
 		} else {
 			wfx_css('size=full&id=footer-wfx-credit&divoutput=Y');
@@ -1336,10 +1337,10 @@ class wflux_display extends wflux_display_css {
 
 		//Filter to overide all of wflux_footer_credit_content - but keep inside CSS formatting
 		$footer_credit .= apply_filters( 'wflux_footer_credit_content', $footer_credit_content );
-		$footer_credit .= '</' . $footer_credit_format . '>';
+		$footer_credit .= '</' .  esc_attr( $footer_credit_format ) . '>';
 
 		//Filter to overide all of wflux_footer_credit
-		echo apply_filters( 'wflux_footer_credit', $footer_credit );
+		echo apply_filters( 'wflux_footer_credit', wp_kses_post($footer_credit) );
 		echo "\n";
 
 		//Now close the div we opened

@@ -783,6 +783,7 @@ if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performa
  * @version	2.1
  *
  * @param	none
+ * @todo Review code and santization
  */
 if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit() { global $wfx; $wfx->code_credit(); } endif;
 

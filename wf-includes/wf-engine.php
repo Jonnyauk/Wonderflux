@@ -313,7 +313,7 @@ class wflux_display_all {
 	function filter_post_class(){ $this->wflux_display_code_do->wf_filter_post_class(); }
 
 	function debug_performance(){ $this->wflux_display_code_do->wf_performance(); }
-	function code_credit($args){ $this->wflux_display_code_do->wf_code_credit($args); }
+	function code_credit(){ $this->wflux_display_code_do->wf_code_credit(); }
 	function get_dimensions($args){ return $this->wflux_display_code_do->wf_get_dimensions($args); }
 	function content_width_embed(){ $this->wflux_display_code_do->wf_content_width(); }
 

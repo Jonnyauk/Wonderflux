@@ -312,7 +312,7 @@ class wflux_display_all {
 	function post_class($args){ return $this->wflux_display_code_do->wf_post_class($args); }
 	function filter_post_class(){ $this->wflux_display_code_do->wf_filter_post_class(); }
 
-	function debug_performance($args){ $this->wflux_display_code_do->wf_performance($args); }
+	function debug_performance(){ $this->wflux_display_code_do->wf_performance(); }
 	function code_credit($args){ $this->wflux_display_code_do->wf_code_credit($args); }
 	function get_dimensions($args){ return $this->wflux_display_code_do->wf_get_dimensions($args); }
 	function content_width_embed(){ $this->wflux_display_code_do->wf_content_width(); }
@@ -326,7 +326,7 @@ class wflux_display_all {
 
 	// Display functions
 	function get_sidebar($args){ $this->wflux_display_do->wf_get_sidebar($args); }
-	function display_credit($args){ $this->wflux_display_do->wf_credit($args); }
+	function display_credit(){ $this->wflux_display_do->wf_credit(); }
 
 	// Wonderflux direct activation functions
 	function default_layout($args){ $this->wflux_display_code_do->wf_default_layout($args); }

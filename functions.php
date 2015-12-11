@@ -722,7 +722,8 @@ if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performa
  * @since 0.71
  * @updated 0.913
  */
-if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit($args) { global $wfx; $wfx->code_credit($args); } endif;
+if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit() { global $wfx; $wfx->code_credit(); } endif;
+
 
 /**
  * Displays a credit, show your support for Wonderflux!

@@ -1296,6 +1296,7 @@ class wflux_display extends wflux_display_css {
 	 * wflux_footer_credit_wp : WordPress credit text.
 	 * wflux_footer_divider : Divider between credt text.
 	 * wflux_footer_credit_wf : Wonderflux credit text.
+	 * wflux_footer_credit_content : Entire credit text.
 	 * wflux_footer_credit_div : Surround content with a div?
 	 *
 	 * @since	0.3

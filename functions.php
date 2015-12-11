@@ -769,6 +769,20 @@ if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performa
 
 
 /**
+ * Output footer HTML code credit comment.
+ *
+ * Filters available:
+ * wflux_comment_code_credit : Text inside code credit
+ *
+ * @since	0.71
+ * @version	2.1
+ *
+ * @param	none
+ */
+if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit() { global $wfx; $wfx->code_credit(); } endif;
+
+
+/**
  * Output credit in footer of site - show your support and love for WordPress and Wonderflux!
  *
  * Filters available:
@@ -785,18 +799,8 @@ if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performa
  * @param	none
  * @todo Review code and santization
  */
-if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit() { global $wfx; $wfx->code_credit(); } endif;
-
-
-/**
- * Displays a credit, show your support for Wonderflux!
- *
- * @since 0.71
- * @updated 0.913
- */
-
-
 if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($args) { global $wfx; $wfx->display_credit($args); } endif;
+
 
 /**
  * Displays CSS info for designers as a comment in the head source code

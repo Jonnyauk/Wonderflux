@@ -680,13 +680,15 @@ class wflux_display_code extends wflux_data {
 
 
 	/**
-	* Returns values as set
-	* Useful when doing conditional layout functionality to test against conditions
-	* @since 0.93
-	* @lastupdate 0.93
-	* TODO: Build rest of elements for output
-	* @return string
-	*/
+	 * Returns saved Wonderflux option value from main options array.
+	 *
+	 * @since	0.93
+	 * @version	0.93
+	 *
+	 * @param	[string] $size			Option you wish to return. site-width/columns/column-width/sidebar-1-position [site-width]
+	 *
+	 * @todo 	Build rest of output options.
+	 */
 	function wf_get_dimensions($size) {
 		switch ($size) {
 			case 'site-width': return $this->wfx_width;
@@ -697,11 +699,18 @@ class wflux_display_code extends wflux_data {
 		}
 	}
 
+
 	/**
-	* @since 1.1
-	* @updated 1.1
-	* IMPORTANT - Configures WordPress $content_width global for embeded media such as YouTube video
-	*/
+	 * IMPORTANT - Configures WordPress $content_width.
+	 * Sets the maximum allowed width for any content in the theme, like oEmbeds and images added to posts.
+	 *
+	 * @since	1.1
+	 * @version	1.1
+	 *
+	 * @param	none
+	 *
+	 * @todo 	Check over this functionality, Flux Layout deals with responsive content well already - it's been a while!
+	 */
 	function wf_content_width() {
 		global $content_width;
 		if ( !isset( $content_width ) ) $content_width = $this->wfx_content_size_px;
@@ -711,36 +720,38 @@ class wflux_display_code extends wflux_data {
 
 
 /**
-* @since 0.913
-* @updated 2.0
-* Core display functions that output CSS
-*/
+ * CSS display functions.
+ *
+ * @since	0.2
+ * @version	2.0
+ *
+ */
 class wflux_display_css extends wflux_display_code {
 
 	/**
-	*
-	* @since 0.2
-	* @updated 2.0
-	*
-	* Defines size conventions to use in template grid systems to avoid putting actual numbers into templates
-	* By using this function to define containers, you can dynamically resize the whole layout
-	* The only thing to watch out for is using definitions like:
-	* - 'quarter' when your columns arent divisible by 4
-	* - 'third' when your columns arent divisible by 3
-	* - By checking the output of the wf_css_info function in the head of your document, you can find out lots of useful info!
-	*
-	* You dont have to use these and can just use the normal blueprint CSS style definitions if you like which is generated from your Stylelab options
-	* NOTE: If you don't use this function and revert back to normal BlueprintCSS div sizing, you will loose ability to 'resize' your layout
-	*
-	* @param size = Relative size definition to full width of site - eg 'half', 'quarter', 'twothird'
-	* @param class = Extra CSS classes you want to include in definition, uses spaces if more than one CSS class
-	* @param id = CSS div ID if required
-	* @param last = Put on last container inside row, eg half, half LAST
-	* @param move = Push and pull a div, not using at moment
-	* @param divoutput = Wraps output in opening and closing div tags - useful for blocks of code
-	* @param columns = Size of div in columns, if set over-rides $size
-	*
-	*/
+	 * Creates dynamic CSS grid class definition - used in Wonderflux pixel layout system v1.
+	 * DEPRECIATED in Wonderflux v2.0, will likely be removed in the future!
+	 * Just use the normal CSS classes created by Flux Layout - this is over-engineered!
+	 *
+	 * By using this function to define containers, you can dynamically resize the whole layout.
+	 * The only thing to watch out for is using definitions like:
+	 * - 'quarter' when your columns arent divisible by 4.
+	 * - 'third' when your columns arent divisible by 3.
+	 * - By checking the output of the wf_css_info() function in the head of your document, you can find out lots of useful info!
+	 *
+	 * @since	0.2
+	 * @version	2.0
+	 *
+	 * @param	[string] $size			Relative size definition to full width of site - eg 'half', 'quarter'. Various values [full]
+	 * @param	[string] $class			Additional CSS classes. [none]
+	 * @param	[string] $id			Optional ID. [none]
+	 * @param	[string] $last			Put on last container inside a row, adds .last CSS class. Y/N [N]
+	 * @param	[string] $move			Push and pull a div - not used at moment.
+	 * @param	[string] $divoutput		Wraps output in opening and closing div tags - useful for blocks of code. Y/N [N]
+	 * @param	[int] $columns			Size of div in columns, overrides $size. [0]
+	 *
+	 * @todo 	Remove and move to legacy support plugin.
+	 */
 	function wf_css($args) {
 
 		$defaults = array (
@@ -922,21 +933,31 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	*
-	* @since 0.913
-	* @updated 0.913
-	*/
+	 * Just echos </div> - nothing more nothing less, kinda lazy huh?
+	 * DEPRECIATED in Wonderflux v2.0, will likely be removed in the future!
+	 *
+	 * @since	0.913
+	 * @version	0.913
+	 *
+	 * @param	none
+	 *
+	 * @todo 	Remove and move to legacy support plugin.
+	 */
 	function wf_css_close() {
 		echo '</div>';
 	}
 
 
 	/**
-	* @since 0.4
-	* @updated 0.931
-	* Builds comment for head of document displaying current Wonderflux layout config
-	* TODO: Build this function properly!
-	*/
+	 * Displays CSS info for designers as a HTML code comment in the <head>.
+	 *
+	 * @since	0.4
+	 * @version	0.931
+	 *
+	 * @param	none
+	 *
+	 * @todo 	Review code and update for Flux Layout - currently only works with old % based layout system.
+	 */
 	function wf_css_info($args) {
 
 		$defaults = array (
@@ -1022,12 +1043,17 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	 * @since 1.1
-	 * @updated 1.2
-	 * Generates a repeating pattern of columns for testing the grid layout system
+	 * EXPERIMENTAL - generates a repeating pattern of columns for testing the grid layout system.
 	 *
-	 * @param rows (integer) Maximum number of rows of divs you wish to output. [12]
-	 * @param type (string) Type of column definitions to use to build output - raw column classes 'columns', or nice definitions. 'relative' [relative]
+	 * @since	1.1
+	 * @version	1.2
+	 *
+	 * @param	[int] $rows				Maximum number of rows of divs you wish to output.
+	 * @param	[string] $type			Type of column definitions to use to build output - raw column classes 'columns', or nice definitions 'relative'.
+	 * @param	[string] $split			Undocumented (sorry - needs testing and code review!)
+	 * @param	[string] $compatibility	Undocumented (sorry - needs testing and code review!)
+	 *
+	 * @todo 	Review code and build a bester testing pattern!
 	 */
 	function wf_css_test_pattern( $args ){
 
@@ -1156,14 +1182,17 @@ class wflux_display_css extends wflux_display_code {
 
 
 	/**
-	* @since 0.93
-	* @updated 0.93
-	* Encloses the main site areas in specified layout divs, only when required
-	* NOTE: Inserted at hooks priority 2 or 9, to allow you to hook in with your own functions at:
-	* priority 1 for before everything
-	* priority 4+ if using Wonderflux widgets auto-inserted on a hook
-	*
-	*/
+	 * IMPORTANT - Creates layout wrappers around content and sidebar if begin used.
+	 *
+	 * NOTE: Inserted at hooks priority 2 or 9, to allow you to hook in with your own functions at:
+	 * - priority 1 for before wrappers
+	 * - priority 3+ inside wrappers
+	 *
+	 * @since	0.93
+	 * @version	0.93
+	 *
+	 * @param	none
+	 */
 	function wf_layout_build() {
 
 		// Main content
@@ -1175,7 +1204,7 @@ class wflux_display_css extends wflux_display_code {
 		} elseif ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'N' ) {
 				add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_no_sb1'), 2 );
 				add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
-		// Experimental - needs more work to remove content display, but this removes the CSS!
+		// Experimental edge case - needs more work to remove content display, but this removes the CSS!
 		} elseif ( $this->wfx_content_1_display == 'N' && $this->wfx_sidebar_1_display == 'Y' ) {
 				add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1_no_content'), 2 );
 				add_action( 'wfsidebar_after_all', array ($this, 'wf_css_close'), 9 );
@@ -1267,24 +1296,33 @@ class wflux_display_css extends wflux_display_code {
 
 
 /**
-* @since 0.1
-* @updated 0.93
-* Core display functions that output visible items rendered to page
-*/
+ * Wonderflux display functions.
+ *
+ * @since	0.1
+ * @version	2.1
+ */
 class wflux_display extends wflux_display_css {
 
 
 	/**
-	* @since 0.93
-	* @updated 0.93
-	* Sets up Sidebar content
-	*/
+	 * Includes sidebar template file.
+	 * Uses get_sidebar() and checks for Wonderflux option/filter.
+	 *
+	 * @since	0.93
+	 * @version	0.93
+	 *
+	 * @param	none
+	 *
+	 * @todo 	Check over this functionality, should we be extending get_sidebar() rather than replacing?
+	 */
 	function wf_get_sidebar($args) {
+
 		if ( $this->wfx_sidebar_1_display == 'Y' ) {
 			get_sidebar($args);
 		} else {
 			// Silence is golden - more sidebars to come!
 		}
+
 	}
 
 
@@ -1377,17 +1415,15 @@ class wflux_display_extras {
 
 
 	/**
-	 * Function for displaying the excerpt with just a certain number of words
-	 * Can be used inside loop or custom wp_query
-	 * @return sanitised text string
+	 * Display excerpt of post content inside the loop or custom query.
 	 *
-	 * ARGUMENTS
-	 * $limit = Number of words. Default = '20'
-	 * $excerpt_end = String of characters after the end of the excerpt. Default '...'
-	 * $trim = Trim off punctuation from end of excerpt - good when you don't want it to bump into your excerpt end. Default 'Y'
+	 * @since	0.85
+	 * @version	1.1
 	 *
-	 * @since 0.85
-	 * @updated 1.1
+	 * @param	[string] $echo			Echo or return output. [Y]
+	 * @param	[int] $limit			Number of words. [20]
+	 * @param	[string] $excerpt_end 	Characters to add to end of the excerpt. [...]
+	 * @param	[string] $trim			Trim off punctuation from end of excerpt - good when you don't want it to bump into your excerpt end. Y/N [Y]
 	 */
 	function wf_excerpt($args) {
 
@@ -1625,39 +1661,39 @@ class wflux_display_extras {
 
 
 	/**
-	 * Gets a single wordpress post/page and displays the content
-	 * TODO: Convert this to core WF core widget
+	 * Displays a single post/page/whatever.
 	 *
-	 * @param id - ID of the content you want [2]
-	 * @param titlestyle - Title CSS style [h4]
-	 * @param contentstyle - Content CSS style [p]
-	 * @param title - Display title [Y]
-	 * @param titlelink - Link title to page [N]
-	 * @param exerptlimit - Limit number of words in content [25]
-	 * @param exerptend - Optional characters at the end of the content [...]
-	 * @param morelink - Display read more link [N]
-	 * @param morelinktext - Text used for read more link [Read]
-	 * @param morelinkclass - CSS class of more link [wfx-get-page-loop-more]
-	 * @param boxclass - Main containing div CSS class [wfx-get-page-loop]
-	 * @param contentclass - Content containing div CSS class [wfx-get-page-loop-content]
-	 * @output HTML formatted content
+	 * @since	0.85
+	 * @version	1.2
 	 *
-	 * @since 0.85
-	 * @updated 1.2
+	 * @param	[int] $id				REQUIRED, ID of the content you want. [false]
+	 * @param	[string] $titlestyle	Title element definition. [h4]
+	 * @param	[string] $contentstyle	Content element definition. [p]
+	 * @param	[string] $title			Display title. Y/N [Y]
+	 * @param	[string] $titlelink		Link title to content? Y/N [N]
+	 * @param	[int] $exerptlimit		Limit number of words in post content. [20]
+	 * @param	[string] $exerptend		Characters to add to end of the excerpt. [...]
+	 * @param	[string] $morelink		Display read more link. Y/N [N]
+	 * @param	[string] $morelinktext	Text used for read more link. [More]
+	 * @param	[string] $morelinkclass	CSS class added to read more link. [wfx-get-page-loop-more]
+	 * @param	[string] $boxclass		CSS class added to container div. [wfx-get-page-loop]
+	 * @param	[string] $contentclass	CSS class added to content div. [wfx-get-page-loop-content]
+	 *
+	 * @todo 	Review code, make smarter and deploy into Wonderflux widget.
 	 */
 	function wf_get_single_content($args) {
 
 		$defaults = array (
-			'id' => 2,
+			'id' => false,
 			'titlestyle' => 'h4',
 			'titleclass' => '',
 			'contentstyle' => 'p',
 			'title' => 'Y',
 			'titlelink' => 'N',
-			'exerptlimit' => '25',
+			'exerptlimit' => '20',
 			'exerptend' => '...',
 			'morelink' => 'N',
-			'morelinktext' => __('Read', 'wonderflux'),
+			'morelinktext' => __('More', 'wonderflux'),
 			'morelinkclass' => 'wfx-get-page-loop-more',
 			'boxclass' => 'wfx-get-page-loop',
 			'contentclass' => 'wfx-get-page-loop-content'
@@ -1665,6 +1701,8 @@ class wflux_display_extras {
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
+
+		if ( !is_numeric($id) ) return;
 
 		// Prepare user input for output
 		$titlestyle = wp_kses_data($titlestyle);

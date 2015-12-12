@@ -576,14 +576,17 @@ if ( WF_THEME_FRAMEWORK_REPLACE == false ) {
 	 */
 	if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie() { global $wfx; $wfx->head_css_ie(); } endif;
 
-} elseif (WF_THEME_FRAMEWORK_REPLACE == true) {
+} elseif ( WF_THEME_FRAMEWORK_REPLACE == true ) {
 
 	/**
 	 * Replaces framework CSS files (core and dynamic layout system).
 	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to use.
-	 * Create the following files in your child theme folder (see Wonderflux Advanced tab to generate output).
-	 * For pixel based system - 'style-framework.css' and optionally 'style-framework-ie.css'.
-	 * For % based system (Flux Layout) - 'flux-layout-merged.css'.
+	 * Use this to optimise your site - once you have your layout generated you are unlikely to need to change it usually!
+	 * 
+	 * Create the following files in your child theme folder (see Wonderflux Advanced tab to generate output):
+	 * - For pixel based system - 'style-framework.css' and optionally 'style-framework-ie.css'.
+	 * - For % based system (Flux Layout) - 'flux-layout-merged.css'.
+	 * If the file exists in your child theme, it will then be added (registered and enqueued) automatically - cool!
 	 *
 	 * Filters available:
 	 * wflux_css_theme_framework_media - Media type

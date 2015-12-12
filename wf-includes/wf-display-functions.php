@@ -415,9 +415,12 @@ class wflux_display_code extends wflux_data {
 	/**
 	 * Replaces framework CSS files (core and dynamic layout system).
 	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to use.
-	 * Create the following files in your child theme folder (see Wonderflux Advanced tab to generate output).
-	 * For pixel based system - 'style-framework.css' and optionally 'style-framework-ie.css'.
-	 * For % based system (Flux Layout) - 'flux-layout-merged.css'.
+	 * Use this to optimise your site - once you have your layout generated you are unlikely to need to change it usually!
+	 * 
+	 * Create the following files in your child theme folder (see Wonderflux Advanced tab to generate output):
+	 * - For pixel based system - 'style-framework.css' and optionally 'style-framework-ie.css'.
+	 * - For % based system (Flux Layout) - 'flux-layout-merged.css'.
+	 * If the file exists in your child theme, it will then be added (registered and enqueued) automatically - cool!
 	 *
 	 * Filters available:
 	 * wflux_css_theme_framework_media - Media type

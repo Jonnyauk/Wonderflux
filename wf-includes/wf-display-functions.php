@@ -926,7 +926,7 @@ class wflux_display_css extends wflux_display_code {
 	* @since 0.913
 	* @updated 0.913
 	*/
-	function wf_css_close($args) {
+	function wf_css_close() {
 		echo '</div>';
 	}
 
@@ -1164,7 +1164,7 @@ class wflux_display_css extends wflux_display_code {
 	* priority 4+ if using Wonderflux widgets auto-inserted on a hook
 	*
 	*/
-	function wf_layout_build($args) {
+	function wf_layout_build() {
 
 		// Main content
 		if ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'Y' ) {

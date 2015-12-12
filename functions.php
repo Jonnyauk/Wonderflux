@@ -867,7 +867,8 @@ if ( !function_exists( 'wfx_css' ) ) : function wfx_css($args) {
  * @since 0.913
  * @updated 0.913
  */
-if ( !function_exists( 'wfx_css_close' ) ) : function wfx_css_close($args) { global $wfx; $wfx->css_close($args); } endif;
+if ( !function_exists( 'wfx_css_close' ) ) : function wfx_css_close() { global $wfx; $wfx->css_close(); } endif;
+
 
 /**
  * IMPORTANT - Creates layout wrappers around content and sidebar
@@ -875,7 +876,8 @@ if ( !function_exists( 'wfx_css_close' ) ) : function wfx_css_close($args) { glo
  * @since 0.93
  * @updated 0.93
  */
-if ( !function_exists( 'wfx_layout_build' ) ) : function wfx_layout_build($args) { global $wfx; $wfx->layout_build($args); } endif;
+if ( !function_exists( 'wfx_layout_build' ) ) : function wfx_layout_build() { global $wfx; $wfx->layout_build(); } endif;
+
 
 /**
  * Creates a clean excerpt

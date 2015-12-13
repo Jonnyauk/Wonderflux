@@ -1290,6 +1290,7 @@ if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_f
  */
 if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_page_templates($input) { global $wfx_admin_post; return $wfx_admin_post->remove_page_templates($input); } endif;
 
+
 /*
 	 #####
 	#     #
@@ -1302,12 +1303,15 @@ if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_pag
 	Direct activation fallbacks
 */
 
+
 /**
- * Defines basic theme functionality
- * Only for when Wonderflux is activated directly
+ * Add basic theme support.
+ * ONLY USED WHEN WONDERFLUX ACTIVATED DIRECTLY.
  *
- * @since 2.0
- * @updated 2.0
+ * @since	2.0
+ * @version	2.0
+ *
+ * @param	none
  */
 function wfx_core_default_setup() {
 
@@ -1315,12 +1319,15 @@ function wfx_core_default_setup() {
 
 }
 
+
 /**
- * Configures basic layout
- * Only for when Wonderflux is activated directly
+ * Add basic widgets.
+ * ONLY USED WHEN WONDERFLUX ACTIVATED DIRECTLY.
  *
- * @since 0.902
- * @updated 2.0
+ * @since	0.902
+ * @version	2.1
+ *
+ * @param	none
  */
 function wfx_core_default_widgets() {
 
@@ -1345,13 +1352,16 @@ function wfx_core_default_widgets() {
 
 }
 
+
 /**
  * Adds '.wrapper' div around content blocks
+ * Use for background styling without messing with template files.
+ * ONLY USED WHEN WONDERFLUX ACTIVATED DIRECTLY.
  *
- * Only for when Wonderflux is activated directly
+ * @since	2.0
+ * @version	2.0
  *
- * @since 2.0
- * @updated 2.0
+ * @param	none
  */
 function wfx_core_default_wrappers() {
 
@@ -1365,27 +1375,33 @@ function wfx_core_default_wrappers() {
 
 
 /**
- * Setup menu
+ * Add basic editable menu support.
+ * ONLY USED WHEN WONDERFLUX ACTIVATED DIRECTLY.
  *
- * Only for when Wonderflux is activated directly
+ * @since	2.0
+ * @version	2.0
  *
+ * @param	none
  */
 function wfx_core_register_nav(){
+
 	register_nav_menus( array(
 		'primary' => __( 'Primary navigation', 'wonderflux' )
-	)
+		)
 	);
+
 }
 
 
 /**
- * Insert primary navigation in a fancy way by hooking into layout
- * outside of main container (for full screen width)
- * NOTE: Won't render a menu if not set (or menu is empty)
- * admin > Appearance > Menus / Manage locations
+ * Insert primary navigation.
+ * Creates full-width container by hooking into layout outside main container.
+ * ONLY USED WHEN WONDERFLUX ACTIVATED DIRECTLY.
  *
- * Only for when Wonderflux is activated directly
+ * @since	2.0
+ * @version	2.0
  *
+ * @param	none
  */
 function wfx_core_insert_primary_nav() {
 

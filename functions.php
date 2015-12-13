@@ -1187,7 +1187,6 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
 	Theme configuration functions
 */
 
-
 /**
  * IMPORTANT Sets up widgets
  *
@@ -1203,15 +1202,6 @@ if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global 
  * @updated 0.92
  */
 if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs($args) { global $wfx_theme; $wfx_theme->background_divs($args); } endif;
-
-/**
- * Setup IE6 PNG fix - yea, sometimes you still need it (pesky budgets!)
- * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
- *
- * @since 0.913
- * @updated 0.913
- */
-if ( !function_exists( 'wfx_ie6_png' ) ) : function wfx_ie6_png($args) { global $wfx_theme; $wfx_theme->ie6_png($args); } endif;
 
 /*
 	 #####

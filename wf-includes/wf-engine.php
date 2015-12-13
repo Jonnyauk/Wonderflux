@@ -233,11 +233,9 @@ add_action( 'after_setup_theme', 'wflux_capacitor_theme', 1 );
 class wflux_theme_all {
 
 	public $wflux_theme_core_do;
-	public $wflux_theme_ie_do;
 
 	function __construct(){
 		$this->wflux_theme_core_do = new wflux_theme_core;
-		$this->wflux_theme_ie_do = new wflux_theme_ie;
 	}
 
 	// Main theme config
@@ -251,9 +249,6 @@ class wflux_theme_all {
 
 	// Core WordPress stuff
 	function core_comment_js(){ $this->wflux_theme_core_do->wf_core_comment_js(); }
-
-	// Internet Explorer (Pesky IE!)
-	function ie6_png($args){ $this->wflux_theme_ie_do->wf_ie6_png($args); }
 
 }
 

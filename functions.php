@@ -997,15 +997,6 @@ if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_co
 
 
 /**
- * Creates an image link to the post displayed
- * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
- *
- * @since 0.913
- * @updated 1.1
- */
-if ( !function_exists( 'wfx_perma_img' ) ) : function wfx_perma_img($args) { global $wfx; $wfx->perma_img($args); } endif;
-
-/**
  * Creates a configurable list of admin links etc
  *
  * @since 0.913

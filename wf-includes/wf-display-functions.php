@@ -1470,68 +1470,6 @@ class wflux_display_extras {
 
 
 	/**
-	 * Displays an image that leads to the individual post/page/content
-	 * Can be used inside loop or custom wp_query
-	 *
-	 * @param intro - Text string used in image title and description [Read about]
-	 * @param showtitle - Do you want to show the title of the content in image title and description? If set to 'N' also doesn't display seperator (even if set) [Y]
-	 * @param seperator - Text string that seperates 'intro' and title of content [ - ]
-	 * @param imgclass - CSS class used on button image [button-more]
-	 * @param imgpath - Path in child theme dir to where image is, DONT need full path - already puts you inside your child theme dir! [images]
-	 * @param imgname - Filename of image to be used [button-read-more.png]
-	 * @param imgwidth - Width of image in pixels [150]
-	 * @param imgheight - Height of image in pixels [30]
-	 * @output HTML formatted content
-	 *
-	 * @since 0.85
-	 * @updated 1.1
-	 */
-	function wf_perma_img($args) {
-
-		$defaults = array (
-			'intro' =>  __('Read about', 'wonderflux'),
-			'title' => 'Y',
-			'seperator' => ' - ',
-			'class' => 'button-more',
-			'path' => 'images',
-			'img' => 'button-read-more.png',
-			'width' => 150,
-			'height' => 30
-		);
-
-		$args = wp_parse_args( $args, $defaults );
-		extract( $args, EXTR_SKIP );
-
-		// Tidy up ready for use
-		$intro = wp_kses_data($intro, '');
-		if ( $title == 'Y' ) { $intro .= wp_kses_data($seperator, '') . get_the_title(); }
-		$class = wp_kses_data($class, '');
-		$path = wp_kses_data($path, '');
-		$img = wp_kses_data($img, '');
-		if (!is_numeric($width)) { $width = 150; } // Checking if a number is light weight
-		if (!is_numeric($height)) { $height = 30; } // Checking if a number is light weight
-
-		$output = '<a href="' . get_permalink() . '" title="' . esc_attr($intro) . '">';
-		$output .= '<img class="';
-		$output .= esc_attr($class);
-		$output .= '" src="';
-		$output .= WF_THEME_URL;
-		$output .= '/' . esc_attr($path) . '/';
-		$output .= esc_attr($img);
-		$output .= '" alt="';
-		$output .= esc_attr($intro);
-		$output .= '" width="';
-		$output .= $width;
-		$output .= '" height="';
-		$output .= $height;
-		$output .= '"/></a>';
-
-		echo $output;
-
-	}
-
-
-	/**
 	 * Inserts (Mostly) WordPress admin editor links
 	 *
 	 * TODO: Convert this to core WF core widget

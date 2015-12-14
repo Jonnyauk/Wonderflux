@@ -1510,8 +1510,7 @@ class wflux_display_extras {
 			'ulclass' => 'wf-edit-meta',
 			'liclass' => 'wf-edit-meta-links',
 			'div' => 'N',
-			'divclass' => 'wf-edit-meta-box',
-			'wpadminbar' => 'Y'
+			'divclass' => 'wf-edit-meta-box'
 		);
 
 		$args = wp_parse_args( $args, $defaults );

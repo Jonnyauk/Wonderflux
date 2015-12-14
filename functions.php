@@ -1291,10 +1291,25 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
 */
 
 /**
- * IMPORTANT Sets up widgets
+ * Creates WordPress widget areas and optionally inserts using Wonderflux hook system, plus a couple of other tricks!
  *
- * @since 0.913
- * @updated 0.931
+ * @since	0.891
+ * @version	2.1
+ *
+ * @param	[string] $name			The name of the widget area (shows in admin widget editor). [Widget area x]
+ * @param	[string] $description	Description of widget (shows in admin widget editor). [Drag widgets into here to include them in your site]
+ * @param	[string] $location		Wonderflux display hook to add widget area to - supply value 'my_theme_code' to turn this off. [wfsidebar_after_all]
+ * @param	[string] $contain		Widget container - eg div, li. [div]
+ * @param	[string] $containclass	Widget Container CSS class. [widget-box]
+ * @param	[string] $containid		ADVANCED - Sets CSS ID for container (Only use this if your widget area has one widget - otherwise the IDs are repeated, which is not good and breaks validation for obvious reasons!) []
+ * @param	[string] $titlestyle	What tag to use to wrap the title in. [h3]
+ * @param	[string] $titleclass	CSS class for title. [widget-title]
+ * @param	[string] $titleid		ADVANCED - Sets CSS ID for title (Only use this if your widget area has one widget - otherwise the IDs are repeated, which is not good and breaks validation for obvious reasons!) []
+ * @param	[string] $before		Output before the widget. [small]
+ * @param	[string] $after			Output after the widget. [small]
+ * @param	[string] $priority		Wonderflux hook priority - NOTE default CSS containers insert at priority 2 and 9. [3]
+ *
+ * @todo Deal with multiple widgets with ID's by appending number?
  */
 if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global $wfx_theme; $wfx_theme->widgets($args); } endif;
 

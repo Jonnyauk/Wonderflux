@@ -17,39 +17,26 @@ class wflux_theme_core {
 	}
 
 	/**
-	*
-	* Sets up WordPress widgets and optionally inserts into template using Wonderflux hook system, plus a couple of other tricks!
-	*
-	* @param $name - The name of the widget (shows in admin widget editor area) [Incremental number]
-	* @param $description - Description of widget (shows in admin widget editor area) [Drag widgets into here to include them in your site]
-	* @param $location - Inserts the widget using Wonderflux display hooks - supply value "my_theme_code" to turn this off [wfsidebar_after_all]
-	* @param $container - What do you want the Widget to be contained in - eg "div", "li" [div]
-	* @param $containerclass - Container CSS class [widget-box]
-	* @param $containerid - ADVANCED USE ONLY - Sets CSS ID (Only use this if your widget area has one widget - otherwise the ID's are repeated, which is not good and breaks validation for obvious reasons!) [NONE]
-	* @param $titlestyle - Title CSS [h3]
-	* @param $titleclass - Title CSS class [widget-title]
-	* @param $titleid - ADVANCED USE ONLY - Sets CSS ID (Only use this if your widget area has one widget - otherwise the ID's are repeated, which is not good and breaks validation for obvious reasons!) [NONE]
-	* @param $before - Anything you want before the widget [NONE]
-	* @param $after - Anything you want after the widget [NONE]
-	* @param $priority - Insertion hook priority - NOTE default CSS containers insert at priority 2 and 9 [3]
-	*
-	* NOTE:
-	* Easiest way to insert a widget into your theme code rather than use a Wonderflux hook is:
-	* (where widget name was set as 'Front Page Sidebar')
-	* if ( !dynamic_sidebar('front-page-sidebar') ) : echo 'no widget content';
-	*
-	* Also of use is:
-	* if ( is_active_sidebar('front-page-sidebar') ) :
-	*   echo 'has active widgets in widget area';
-	* else :
-	*   echo 'no active widgets';
-	* endif;
-	*
-	* @since 0.891
-	* @updated 2.0
-	*
-	*
-	*/
+	 * Creates WordPress widget areas and optionally inserts using Wonderflux hook system, plus a couple of other tricks!
+	 *
+	 * @since	0.891
+	 * @version	2.1
+	 *
+	 * @param	[string] $name			The name of the widget area (shows in admin widget editor). [Widget area x]
+	 * @param	[string] $description	Description of widget (shows in admin widget editor). [Drag widgets into here to include them in your site]
+	 * @param	[string] $location		Wonderflux display hook to add widget area to - supply value 'my_theme_code' to turn this off. [wfsidebar_after_all]
+	 * @param	[string] $contain		Widget container - eg div, li. [div]
+	 * @param	[string] $containclass	Widget Container CSS class. [widget-box]
+	 * @param	[string] $containid		ADVANCED - Sets CSS ID for container (Only use this if your widget area has one widget - otherwise the IDs are repeated, which is not good and breaks validation for obvious reasons!) []
+	 * @param	[string] $titlestyle	What tag to use to wrap the title in. [h3]
+	 * @param	[string] $titleclass	CSS class for title. [widget-title]
+	 * @param	[string] $titleid		ADVANCED - Sets CSS ID for title (Only use this if your widget area has one widget - otherwise the IDs are repeated, which is not good and breaks validation for obvious reasons!) []
+	 * @param	[string] $before		Output before the widget. [small]
+	 * @param	[string] $after			Output after the widget. [small]
+	 * @param	[string] $priority		Wonderflux hook priority - NOTE default CSS containers insert at priority 2 and 9. [3]
+	 *
+	 * @todo Deal with multiple widgets with ID's by appending number?
+	 */
 	function wf_widgets($args) {
 
 		// Need a unique id number to use in name if not set, otherwise its stormy waters!
@@ -65,9 +52,9 @@ class wflux_theme_core {
 			"name" => esc_attr__('Widget area ','wonderflux') . $wf_widget_num,
 			"description" => esc_attr__('Drag widgets into here to include them in your site.','wonderflux'),
 			"location" => "",
-			"container" => "div",
-			"containerclass" => "widget-box",
-			"containerid" => "",
+			"contain" => "div",
+			"containclass" => "widget-box",
+			"containid" => "",
 			"titlestyle" => "h3",
 			"titleclass" => "widget-title",
 			"titleid" => "",
@@ -81,7 +68,7 @@ class wflux_theme_core {
 
 			// If a specific container or title ID has been supplied, set it up ready to show
 			//If none supplied, it doesnt put an ID in at all
-			if ($containerid !="") { $containerid = ' id="' . esc_attr($containerid) . '"'; }
+			if ($containid !="") { $containid = ' id="' . esc_attr($containid) . '"'; }
 
 			if ($titleid !="") { $titleid = ' id="' . esc_attr($titleid) . '"'; }
 
@@ -92,8 +79,8 @@ class wflux_theme_core {
 				'name'=> $name,
 				'id'=> $clean_name,
 				'description' => $description,
-				'before_widget' => esc_attr($before) . '<' . esc_attr($container) . ' class="'. esc_attr($containerclass) . ' widget-' . esc_attr($clean_name) .'"' . esc_attr($containerid) . '>',
-				'after_widget' => '</' . esc_attr($container) . '>' . esc_attr($after),
+				'before_widget' => esc_attr($before) . '<' . esc_attr($contain) . ' class="'. esc_attr($containclass) . ' widget-' . esc_attr($clean_name) .'"' . esc_attr($containid) . '>',
+				'after_widget' => '</' . esc_attr($contain) . '>' . esc_attr($after),
 				'before_title' => '<' . esc_attr($titlestyle) . ' class="'. esc_attr($titleclass) .'"' . esc_attr($titleid) . '>',
 				'after_title' => '</' . esc_attr($titlestyle) . '>',
 			));
@@ -111,9 +98,9 @@ class wflux_theme_core {
 			unset($name);
 			unset($description);
 			unset($location);
-			unset($container);
-			unset($containerclass);
-			unset($containerid);
+			unset($contain);
+			unset($containclass);
+			unset($containid);
 			unset($titlestyle);
 			unset($titleclass);
 			unset($titleid);

@@ -1098,7 +1098,6 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
  * Example 1 - flush all files www.mydomain.com/?flushcache_all=1
  * Example 2 - flush individual cached element www.mydomain.com/?flushcache_NAME_OF_INCLUDE=1
  *
- *
  * Filters available:
  * wflux_allowed_cached_tags : array of allowed output tags used with kses.
  *
@@ -1208,42 +1207,74 @@ if ( !function_exists( 'wfx_array_to_delimited_string' ) ) : function wfx_array_
 */
 
 /**
- * Displays Google Plus 1 button
+ * Outputs a Google Plus 1 button.
+ * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
  *
- * @since 0.931
- * @updated 0.931
+ * @since	1.1
+ * @version	1.2
+ *
+ * @param	[string] $size			Size of social button. small/medium/standard/tall [medium]
+ * @param	[string] $count			Show count of shares or not ($size=tall always shows count). no_count/show_count [show_count]
+ * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
+ *
+ * @todo	Review code!
  */
 if ( !function_exists( 'wfx_social_google_plus_1' ) ) : function wfx_social_google_plus_1($args='') { global $wfx; $wfx->g_plus_1($args); } endif;
 
 /**
- * Displays Facebook Like button
+ * Outputs a Facebook like button with counter.
+ * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
  *
- * @since 0.931
- * @updated 0.931
+ * @since	 0.931
+ * @version  0.931
+ *
+ * @param	[string] $size			Size of social button. small/tall [small]
+ * @param	[bool] $send			Show additional send button. true/false [false]
+ * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
+ *
+ * @todo	Review code!
  */
 if ( !function_exists( 'wfx_social_facebook_like' ) ) : function wfx_social_facebook_like($args='') { global $wfx; $wfx->fb_like($args); } endif;
 
 /**
- * Displays Twitter share button
+ * Outputs a Twitter share button with counter.
+ * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
  *
- * @since 0.931
- * @updated 0.931
+ * @since	0.931
+ * @version	0.931
+ *
+ * @param	[string] $size			Size of social button. small/tall [small]
+ * @param	[string] $count			Show count of shares or not (no count only available on small). no_count/show_count [show_count]
+ * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
+ *
+ * @todo	Review code!
  */
 if ( !function_exists( 'wfx_social_twitter_share' ) ) : function wfx_social_twitter_share($args='') { global $wfx; $wfx->twit_share($args); } endif;
 
 /**
- * Displays LinkedIn share button
+ * Outputs a LinkedIn share button with counter.
+ * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
  *
- * @since 1.0rc2
- * @updated 1.0rc2
+ * @since	1.0rc2
+ * @version	1.0rc2
+ *
+ * @param	[string] $size			Size of social button. small/tall [small]
+ * @param	[string] $count			Show count of shares or not (no count only available on small). no_count/show_count [show_count]
+ * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
+ *
+ * @todo	Review code!
  */
 if ( !function_exists( 'wfx_social_linkedin_share' ) ) : function wfx_social_linkedin_share($args='') { global $wfx; $wfx->linkedin_share($args); } endif;
 
 /**
- * Builds social associated meta tags (Facebook ect)
+ * Inserts associated social sharing related (Open Graph) meta tags in <head> if required.
  *
- * @since 0.931
- * @updated 0.931
+ * @since	0.931
+ * @version	0.931
+ *
+ * @param	none
+ *
+ * @todo	Test and dont use if using Yoast SEO to control this.
  */
 if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args='') { global $wfx; $wfx->social_meta($args); } endif;
 

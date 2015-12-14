@@ -2221,7 +2221,6 @@ class wflux_display_extras {
 	 * Example 1 - flush all files www.mydomain.com/?flushcache_all=1
 	 * Example 2 - flush individual cached element www.mydomain.com/?flushcache_NAME_OF_INCLUDE=1
 	 *
-	 *
 	 * Filters available:
 	 * wflux_allowed_cached_tags : array of allowed output tags used with kses.
 	 *
@@ -2444,10 +2443,13 @@ class wflux_display_extras {
 
 
 /**
-* @since 0.931
-* @updated 1.2
-* Social networking functionality
-*/
+ * Social networking functionality.
+ *
+ * @since	0.931
+ * @version	1.2
+ *
+ * @todo Check over more recent sharing code.
+ */
 class wflux_display_social extends wflux_data {
 
 	protected $share_url; // Common sharing URL
@@ -2489,10 +2491,14 @@ class wflux_display_social extends wflux_data {
 
 
 	/**
-	 * Inserts associated social related meta tags in <head> if required.
+	 * Inserts associated social sharing related (Open Graph) meta tags in <head> if required.
 	 *
-	 * @since 0.931
-	 * @updated 0.931
+	 * @since	0.931
+	 * @version	0.931
+	 *
+	 * @param	none
+	 *
+	 * @todo	Test and dont use if using Yoast SEO to control this.
 	 */
 	function wf_social_meta() {
 		if ( $this->wfx_doc_type == 'XHTML/RDFa' ):
@@ -2528,13 +2534,17 @@ class wflux_display_social extends wflux_data {
 
 
 	/**
-	 * Displays a Facebook like button.
-	 * @param size - Size of share button. 'small', 'tall' [small]
-	 * @param send - Show additional send button. 'true', 'false' [false]
-	 * @param url - URL to like/share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
+	 * Outputs a Facebook like button with counter.
+	 * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
 	 *
-	 * @since 0.931
-	 * @updated 0.931
+	 * @since	 0.931
+	 * @version  0.931
+	 *
+	 * @param	[string] $size			Size of social button. small/tall [small]
+	 * @param	[bool] $send			Show additional send button. true/false [false]
+	 * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
+	 *
+	 * @todo	Review code!
 	 */
 	function wf_fb_like( $args ) {
 
@@ -2615,15 +2625,17 @@ class wflux_display_social extends wflux_data {
 
 
 	/**
-	 * Displays a Google Plus 1 button with fully valid XHTML rendering.
+	 * Outputs a Google Plus 1 button with fully valid XHTML rendering.
 	 * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
-	 * @param size - Size of plus 1 button. 'small', 'medium', 'standard', 'tall' [medium]
-	 * @param count - Show count or not. NOTE: Tall size always shows count. 'no_count', 'show_count' [show_count]
-	 * @param url - URL to plus 1 - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
-	 * @filter wflux_social_gplus_target - Sets the target name that's added to the start of the unique ID. Used in div ID and Javascript output. [social-link-gplus]
 	 *
-	 * @since 0.931
-	 * @updated 1.2
+	 * @since	1.1
+	 * @version	1.2
+	 *
+	 * @param	[string] $size			Size of social button. small/medium/standard/tall [medium]
+	 * @param	[string] $count			Show count of shares or not ($size=tall always shows count). no_count/show_count [show_count]
+	 * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
+	 *
+	 * @todo	Review code!
 	 */
 	function wf_g_plus_1( $args ) {
 
@@ -2710,13 +2722,17 @@ class wflux_display_social extends wflux_data {
 
 
 	/**
-	 * Displays a Twitter button with counter.
-	 * @param size - Size of share button. 'small', 'tall' [small]
-	 * @param count - Show count or not. NOTE: Defaults to small - no count only available on small. 'no_count' [show_count]
-	 * @param url - URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
+	 * Outputs a Twitter share button with counter.
+	 * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
 	 *
-	 * @since 0.931
-	 * @updated 0.931
+	 * @since	0.931
+	 * @version	0.931
+	 *
+	 * @param	[string] $size			Size of social button. small/tall [small]
+	 * @param	[string] $count			Show count of shares or not (no count only available on small). no_count/show_count [show_count]
+	 * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
+	 *
+	 * @todo	Review code!
 	 */
 	function wf_twit_share( $args ) {
 
@@ -2797,13 +2813,17 @@ class wflux_display_social extends wflux_data {
 
 
 	/**
-	 * Displays a LinkedIn button with counter.
-	 * @param size - Size of share button. 'small', 'tall' [small]
-	 * @param count - Show count or not. NOTE: Defaults to small 'no_count' [show_count]
-	 * @param url - URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'.
+	 * Outputs a LinkedIn share button with counter.
+	 * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
 	 *
-	 * @since 1.0rc2
-	 * @updated 1.0rc2
+	 * @since	1.0rc2
+	 * @version	1.0rc2
+	 *
+	 * @param	[string] $size			Size of social button. small/tall [small]
+	 * @param	[string] $count			Show count of shares or not (no count only available on small). no_count/show_count [show_count]
+	 * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
+	 *
+	 * @todo	Review code!
 	 */
 	function wf_linkedin_share( $args ) {
 

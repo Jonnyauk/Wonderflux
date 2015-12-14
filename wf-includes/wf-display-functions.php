@@ -1,11 +1,11 @@
 <?php
 /**
- * Core display functions that output code
+ * Core display functions that output code.
  *
  * @since	0.913
  * @version	2.0
  *
- * @todo Check translation setup
+ * @todo Check translation setup.
  */
 class wflux_display_code extends wflux_data {
 
@@ -416,7 +416,7 @@ class wflux_display_code extends wflux_data {
 	 * Replaces framework CSS files (core and dynamic layout system).
 	 * Set constant WF_THEME_FRAMEWORK_REPLACE to true to use.
 	 * Use this to optimise your site - once you have your layout generated you are unlikely to need to change it usually!
-	 * 
+	 *
 	 * Create the following files in your child theme folder (see Wonderflux Advanced tab to generate output):
 	 * - For pixel based system - 'style-framework.css' and optionally 'style-framework-ie.css'.
 	 * - For % based system (Flux Layout) - 'flux-layout-merged.css'.
@@ -1394,10 +1394,13 @@ class wflux_display extends wflux_display_css {
 
 
 /**
-* @since 0.85
-* @updated 2.0
-* Extra core display functions for theme designers
-*/
+ * Extra core display functions for theme developers.
+ *
+ * @since	0.85
+ * @version	2.1
+ *
+ * @todo Check translation setup.
+ */
 class wflux_display_extras {
 
 	private $clean_theme_name = null;
@@ -1423,7 +1426,6 @@ class wflux_display_extras {
 	 * @since	0.85
 	 * @version	1.1
 	 *
-	 * @param	[string] $echo			Echo or return output. [Y]
 	 * @param	[int] $limit			Number of words. [20]
 	 * @param	[string] $excerpt_end 	Characters to add to end of the excerpt. [...]
 	 * @param	[string] $trim			Trim off punctuation from end of excerpt - good when you don't want it to bump into your excerpt end. Y/N [Y]
@@ -1470,30 +1472,28 @@ class wflux_display_extras {
 
 
 	/**
-	 * Inserts (Mostly) WordPress admin editor links
+	 * Adds admin/editing links.
+	 * Creates un-ordered list inside an optional div.
 	 *
-	 * TODO: Convert this to core WF core widget
-	 * TODO: Extend further to accomodate display functionality when a user is NOT logged in (like WordPress Meta widget stylee!)
-	 * TODO: Extend for user profiles, editing taxonomies etc
+	 * @since	0.85
+	 * @version	2.1
 	 *
-	 * @param userintro - Text string in first list item [Welcome]
-	 * @param username - Display username after intro (Within same list item) [Y]
-	 * @param intro - Display intro [Y]
-	 * @param postcontrols - Show post controls [Y]
-	 * @param pagecontrols - Show page controls [Y]
-	 * @param adminlink - Show admin link [Y]
-	 * @param widgetslink - Show edit widgets link [Y]
-	 * @param wfcontrols - Show Wonderflux admin link [N]
-	 * @param logoutlink - Show WordPress logout link [N]
-	 * @param ulclass - Containing ul CSS class [wf-edit-meta-main]
-	 * @param liclass - Individual li CSS class [wf-edit-meta-links]
-	 * @param div - Insert div around output [N]
-	 * @param divclass - CSS class of div [wf-edit-meta-box]
-	 * @param wpadminbar - Show WordPress 3.1 admin bar [N]
-	 * @output <ul><li>list items of various admin links inside optional CSS DIV
+	 * @param	[string] $userintro		Text string in first list item. [Welcome]
+	 * @param	[string] $username		Display username after intro (within same list item). Y/N [Y]
+	 * @param	[string] $intro			Display intro. Y/N [Y]
+	 * @param	[string] $postcontrols	Show post controls. Y/N [Y]
+	 * @param	[string] $pagecontrols	Show page controls. Y/N [Y]
+	 * @param	[string] $adminlink		Show admin area link. Y/N [Y]
+	 * @param	[string] $widgetslink	Show edit widgets link. Y/N [N]
+	 * @param	[string] $logoutlink	Show WordPress logout link. Y/N [N]
+	 * @param	[string] $ulclass		<ul> class. [wf-edit-meta-main]
+	 * @param	[string] $liclass		<li> class. Y/N [wf-edit-meta-links]
+	 * @param	[string] $div			Wrap output in containing <div>. Y/N [N]
+	 * @param	[string] $divclass		Containing <div> class if used. [wf-edit-meta-box]
 	 *
-	 * @since 0.85
-	 * @updated 0.931
+	 * @todo 	Review code, make smarter and deploy into Wonderflux widget.
+	 * @todo	Extend further to accomodate when a user is NOT logged in (like WordPress Meta widget stylee!)
+	 * @todo	Extend for user profiles, editing taxonomies etc.
 	 */
 	function wf_edit_meta($args) {
 
@@ -1711,17 +1711,20 @@ class wflux_display_extras {
 
 
 	/**
-	 * Creates a standalone link (unstyled) that does login/logout with redirect on each
+	 * Creates a login/logout link with redirect options.
 	 *
-	 * @param login - The Login text displayed [Login]
-	 * @param logintip - The Login tooltip [Login to site]
-	 * @param logout - The Logout text displayed [Logout]
-	 * @param logouttip - The Logout tooltip [Logout of site]
-	 * @param loginredirect - Redirect to where on login [dashboard]
-	 * @param logoutredirect - Redirect to where on logout [current]
+	 * @since	0.901
+	 * @version	2.1
 	 *
-	 * @since 0.901
-	 * @updated 2.1
+	 * @param	[string] $login			Logout link text. [Login]
+	 * @param	[string] $logintip		Login link title/tooltip. [Login to site]
+	 * @param	[string] $logout		Logout link text. [Logout]
+	 * @param	[string] $logouttip		Logout link title/tooltip. [Logout of site]
+	 * @param	[string] $loginurl		Re-direct on login either to current view or home. current/home [current]
+	 * @param	[string] $logouturl		Re-direct on logout either to current view or home. current/home [home]
+	 *
+	 * @todo 	Review code, make smarter and deploy into Wonderflux widget.
+	 * @todo	Extend further to accomodate other re-directs.
 	 */
 	function wf_login_logout($args) {
 
@@ -1730,52 +1733,48 @@ class wflux_display_extras {
 			'logintip' => __( 'Login to site', 'wonderflux' ),
 			'logout' => __( 'Logout', 'wonderflux' ),
 			'logouttip' => __( 'Logout of site', 'wonderflux' ),
-			'loginredirect' => 'home',
-			'logoutredirect' => 'home'
+			'loginurl' => 'current',
+			'logouturl' => 'home'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		switch ( $loginredirect ) {
+		switch ( $loginurl ) {
 
-			case 'current': $loginredirect = get_permalink(); break;
-			case 'home': $loginredirect = home_url(); break;
-			default: $loginredirect = false; break;
+			case 'current': $loginurl = get_permalink(); break;
+			case 'home': $loginurl = home_url(); break;
+			default: $loginurl = false; break;
 
 		}
 
-		switch ( $logoutredirect ) {
+		switch ( $logouturl ) {
 
-			case 'current': $logoutredirect = get_permalink(); break;
-			case 'home': $logoutredirect = home_url(); break;
-			default: $logoutredirect = false; break;
+			case 'current': $logouturl = get_permalink(); break;
+			case 'home': $logouturl = home_url(); break;
+			default: $logouturl = false; break;
 
 		}
 
 		if ( is_user_logged_in() ) {
-			echo '<a class="wfx-login-logout wfx-login-logout-logged-in" href="' . esc_url( wp_logout_url($logoutredirect) ) . '" title="'.esc_attr( $logouttip ) . '">'.esc_attr( $logout ) . '</a>';
+			echo '<a class="wfx-login-logout wfx-login-logout-logged-in" href="' . esc_url( wp_logout_url($logouturl) ) . '" title="'.esc_attr( $logouttip ) . '">'.esc_attr( $logout ) . '</a>';
 		} else {
-			echo '<a class="wfx-login-logout" href="' . esc_url( wp_login_url($loginredirect) ) . '" title="'.esc_attr( $logintip ) . '">'.esc_html( $login ) . '</a>';
+			echo '<a class="wfx-login-logout" href="' . esc_url( wp_login_url($loginurl) ) . '" title="'.esc_attr( $logintip ) . '">'.esc_html( $login ) . '</a>';
 		}
 
 	}
 
 
 	/**
-	 * If you really need to hard-code your site page or category navigation,
-	 * this function adds 'current_page_item' CSS class when page/category is viewed
+	 * Adds 'current_page_item' CSS class when post ID is current post/page/whatever being viewed.
+	 * For when you really need to code a static navigation.
 	 *
-	 * You really should use wp_list_pages() and wp_list_categories() wherever possible
-	 * Check the WordPress Codex pages on these
+	 * @since	0.901
+	 * @version	0.913
 	 *
-	 * TODO: Tidy up!
+	 * @param	[int] $id				ID of post. []
 	 *
-	 * @param pageid - Page ID [NONE]
-	 * @param catid - Category ID [NONE]
-	 *
-	 * @since 0.901
-	 * @updated 0.913
+	 * @todo 	Review code, make smarter!
 	 */
 	function wf_static_highlight($args) {
 
@@ -1851,40 +1850,31 @@ class wflux_display_extras {
 
 
 	/**
-	 * Gets attachment(s) or featured images of main post query
-	 * Used in loop-content-attachment.php - will try and playback files or create nice links
-	 * Can be used inside or outside the loop
+	 * Gets attachment(s) or featured images of main post query (inside or outside the loop).
+	 * Will try and playback files or create nice links.
+	 * IMPORTANT - used in loop-content-attachment.php
 	 *
-	 * @since 0.901
-	 * @updated 1.1
+	 * @since	0.901
+	 * @version	0.913
 	 *
-	 * TODO: Extend with ID control for any post ID
-	 * TODO: Extend media playback control
+	 * @param	[string] $type			Type of output. all/featured_image/attachment [all]
+	 * @param	[string] $mime_type		Limit to certain mime type (only used if $type=all). []
+	 * @param	[int] $amount			Limit number of attachments (only used if $type=all). [-1]
+	 * @param	[string] $order			Order attachments (only used if $type=all). ASC/DESC [ASC]
+	 * @param	[string] $output		What tag to use to wrap attachment output. p/ul/ol [ul]
+	 * @param	[string] $img_size		Registered image size definition (only used if $type=featured_image). [large]
+	 * @param	[bool] $div_wrap		Wrap all output in optional div. true/false [false]
+	 * @param	[string] $div_class		CSS classes used on wrapper div (only used if $div_wrap=true). [box-get-attachment]
+	 * @param	[string] $element_class	CSS classes used on media output. [get-attachment-file]
+	 * @param	[string] $link_class	CSS classes used on link output. [get-attachment-link]
+	 * @param	[string] $img_class		CSS classes used on image output. [attachment-single responsive-full-width]
+	 * @param	[string] $output_start	Text show before text links [Download]
+	 * @param	[string] $output_end	Text shown after text links. [false]
+	 * @param	[string] $meta_key		Used for more advanced attachment queries - see WP core get_children() [false]
+	 * @param	[string] $meta_value	Used for more advanced attachment queries - see WP core get_children() [false]
 	 *
-	 * @param strg	$type Type of output:
-	 *				'all' for all attachments (note extra params for this)
-	 *				'featured_image' for featured post thumbnail
-	 * 				'attachment' for single attachment pages
-	 * @param strg	$mime_type Limit to certain mime type
-	 * 				only used if $type=all
-	 * @param intg	$amount Limit the amount of attachments
-	 * 				only used if $type=all
-	 * @param strg	$order Order of attachments (by date)
-	 * 				only used if $type=all
-	 * @param strg	$output p|ul|ol - What element to use to wrap individual attachment(s) in
-	 * @param strg	$img_size Image size (including registered custom sizes)
-	 * 				only used if $type=featured_image
-	 * @param bool	$div_wrap true|false Wrap all output in optional div
-	 * @param strg	$div_class CSS class used on wrapper div
-	 * 				only used if $div_wrap=true
-	 * @param strg	$element_class Add your own additional CSS class(es) to the $output
-	 * @param strg	$link_class Add your own additional CSS class(es) to download links
-	 * @param strg	$img_class CSS class added to image attachments
-	 * @param strg	$output_start Text show before text links - default is 'Download '
-	 * @param strg	$output_end Text shown after text links - default is none
-	 * @param strg	$meta_key Used for more advanced attachment queries - see WP core get_children()
-	 * @param strg	$meta_value Used for more advanced attachment queries - see WP core get_children()
-	 *
+	 * @todo	Extend with ID control for any post ID.
+	 * @todo	Extend media playback control.
 	 */
 	function wf_get_attachments($args) {
 
@@ -2060,7 +2050,6 @@ class wflux_display_extras {
 	 * @since	0.93
 	 * @version	2.0
 	 *
-	 * @param	[string] $echo			Echo or return output. Y/N [Y]
 	 * @param	[string] $element		What tag to use to wrap output (can be empty to setup at template level). [p]
 	 * @param	[string] $start			Opening text string. [Page ]
 	 * @param	[string] $seperator		Seperator between pages. [ of ]
@@ -2221,37 +2210,41 @@ class wflux_display_extras {
 
 
 	/**
-	 * Include a theme template file and cache generated output for desired time
+	 * Powerful template part fragment cache for output optimisation.
+	 * WARNING: This is kinda experimental and might change - keep an eye on development if using in production or why not patch?!
+	 * Include a theme template file and cache include output as transient option for desired time in minutes.
 	 * Works with most things, but may not work with more advanced functions/plugins that inject CSS or JS into header/footer or do other funky stuff!
 	 *
-	 * Transient option saved as Child_Theme_Name_c_$part
+	 * NOTE: Transient option saved as 'Child_Theme_Name_c_$part'.
 	 *
-	 * If you wish to flush the cached files, append your site url as follows using either of these examples (for logged-in users who can edit theme options):
+	 * To flush cache append the following onto URL:
 	 * Example 1 - flush all files www.mydomain.com/?flushcache_all=1
 	 * Example 2 - flush individual cached element www.mydomain.com/?flushcache_NAME_OF_INCLUDE=1
 	 *
-	 * WARNING: This is kinda experimental and might change - dont use in production just yet!
 	 *
-	 * @param part - (string) REQUIRED - Name of the file in active theme directory you want to include and cache, without file extension.
-	 * @param file_ext - (string) DEFAULT: 'php' - File extension of the file you want to cache (WITHOUT the '.'!)
-	 * @param expire - (integer) DEFAULT: 360 - Length of time (in minutes) that the cache persists.
-	 * @param sanitise_in - ('html'/'none') DEFAULT: 'html' - Sanitises before saving to cache
-	 * @param sanitise_out - ('html'/'none') DEFAULT: 'none' - Optional sanitisation before outputting to screen
-	 * @param mimify - (Y/N) DEFAULT: 'Y' - Remove whitespace before saving as transient
-	 * @param transient_key - (string) OPTIONAL Set different transient option name (NOTE: will be trimmed to 32 characters max)
-	 * @param flushable - (Y/N) DEFAULT: 'Y' - Can the cached item be force flushed/refreshed via url, user must have edit_theme_options capability
-	 * @param output_start - DEFAULT: '<!--cached-part-start-->' - Added to start of output (not saved in transient, runs through output sanitisation if set)
-	 * @param output_end - DEFAULT: '<!--cached-part-end-->' - Added to end of output (not saved in transient, runs through output sanitisation if set)
+	 * Filters available:
+	 * wflux_allowed_cached_tags : array of allowed output tags used with kses.
 	 *
-	 * @filter wflux_allowed_cached_tags - array of allowed output tags used with kses
+	 * @since	1.1
+	 * @version	2.1
 	 *
-	 * @since 1.1
-	 * @lastupdate 2.1
+	 * @param	[string] $part			REQUIRED - name of the file in active theme directory you want to include and cache, without file extension. []
+	 * @param	[string] $file_ext		File extension of the file you want to cache (without '.'!). [php]
+	 * @param	[int] $expire			Length of time (in minutes) that the cache persists. [360]
+	 * @param	[string] $sanitise_in	Sanitises before saving to cache. html/none [html]
+	 * @param	[string] $sanitise_out	Sanitises on output. html/none [html]
+	 * @param	[string] $mimify		Remove whitespace before saving as transient. Y/N [Y]
+	 * @param	[string] $transient_key	Define optional custom transient option name (NOTE: will be trimmed to 32 characters max). []
+	 * @param	[string] $flushable		Can the cached item be force flushed/refreshed via url, user must have edit_theme_options capability. Y/N [Y]
+	 * @param	[string] $output_start	Added to start of output (not saved in transient, runs through output sanitisation if set). [<!--cached-part-start-->]
+	 * @param	[string] $output_end	Added to end of output (not saved in transient, runs through output sanitisation if set). [<!--cached-part-end-->]
+	 * @param	[string] $echo			Echo or return output. Y/N [Y]
 	 *
-	 * TODO: Extend $sanitise_in and sanitise_out with more options
-	 * TODO: Should this be made location aware?
-	 * TODO: Think about multisite integration - set_site_transient() - test!
-	 * NOTES: Deeper transient key length - only 64 chars allowed in options table name? Use 45 characters or 32 max?? - Watch _transient_timeout_{$transient_key}
+	 * @todo	Extend $sanitise_in and sanitise_out with more options.
+	 * @todo	Should this be made location aware?
+	 * @todo	Think about multisite integration - set_site_transient() - test!
+	 * @todo	Extend $sanitise_in and sanitise_out with more options.
+	 * @todo	Deeper transient key length - only 64 chars allowed in options table name? Use 45 characters or 32 max?? - Watch _transient_timeout_{$transient_key}
 	 */
 	function wf_get_cached_part($args) {
 
@@ -2340,23 +2333,23 @@ class wflux_display_extras {
 
 
 	/**
+	 * Builds a clickable link from supplied data.
 	 *
-	 * Builds a clickable link from supplied data
+	 * @since	1.1
+	 * @version	1.1
 	 *
-	 * @since 1.1
-	 * @updated 1.1
+	 * @param	[string] $url			REQUIRED - URL for link. []
+	 * @param	[string] $title			Link title/tooltip. []
+	 * @param	[string] $target		Link target attribute. []
+	 * @param	[string] $class			CSS class for link. []
+	 * @param	[string] $id			CSS ID for link. []
+	 * @param	[string] $text			Text to show in link (defaults to $url if none supplied). []
+	 * @param	[bool] $span			Wrap $text in optional <span>. true/false [false]
+	 * @param	[string] $span_class	Adds CSS class to optional <span>. []
+	 * @param	[string] $type			Type of link resource. eg: application/pdf. []
+	 * @param	[string] $rel			Relationship of link to current view/context. []
 	 *
-	 * @param $url | string | REQUIRED | Full url of where you want to link to
-	 * @param $title | string | optional | Title attribute/tooltip (default is none = not shown)
-	 * @param $target | string | optional | Target attribute (default is none = not shown)
-	 * @param $class | string | optional | CSS class for link (default is none = not shown)
-	 * @param $id | string | optional | CSS ID for link (default is none = not shown)
-	 * @param $text | string | optional | Text to show in link (defaults to $url if none supplied)
-	 * @param $span | bool - true/false | optional | Wrap $text in optional <span></span> if true (default is false - not shown)
-	 * @param $span_class | string | optional | Adds CSS class to optional <span></span> around $title (default is none - not shown)
-	 * @param $type | string | optional | Type of link resource. For example: application/pdf (default is none - not shown)
-	 * @param $rel | string | optional | Relationship from the current document to the resource specified by the href (default is none - not shown)
-	 *
+	 * @todo	Review code, make smarter!
 	 */
 	function wf_build_hyperlink($args){
 
@@ -2400,28 +2393,27 @@ class wflux_display_extras {
 
 
 	/**
+	 * Outputs an array as a string with a seperator in-between each.
+	 * Doesn't add to last item - useful for comma sperated output.
 	 *
-	 * Builds a text string from a basic array
-	 * Separates each value with an optional delimiter (but not the last one!)
+	 * @since	1.1
+	 * @version	1.2
 	 *
-	 * @since 1.1
-	 * @updated 1.2
-	 *
-	 * @param $values | array | REQUIRED | Basic array of values
-	 * @param $seperator | string | optional | What you want in-between each item in array
-	 * @param $start | string | optional | Text string at start of array
-	 * @param $end | string | optional | Text string at end of array
-	 * @param $esc | bool | optional | Use esc_html on $values and $seperator output
+	 * @param	[array] $values			REQUIRED - Input array (single dimenional).
+	 * @param	[string] $seperator		Seperator between items output from array. [, ]
+	 * @param	[string] $start			Text string at start of each item output. []
+	 * @param	[string] $end			Text string at end of each item output. []
+	 * @param	[bool] $esc				Use esc_html() on $values and $seperator output. [true]
 	 *
 	 */
-	function wf_array_to_delimited_string($args){
+	function wf_array_to_delimited_string( $args ) {
 
 		$defaults = array (
-		'values'	=> '',
-		'seperator'	=> ', ',
-		'start'		=> '',
-		'end'		=> '',
-		'esc'		=> true
+			'values'	=> '',
+			'seperator'	=> ', ',
+			'start'		=> '',
+			'end'		=> '',
+			'esc'		=> true
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -2429,19 +2421,21 @@ class wflux_display_extras {
 
 		if ( !is_array($values) || empty($values) ) return;
 
-		$count_all = count($values);
+		$count_all = count( $values );
 		$counter = 1;
 		$output = '';
 
 		foreach( $values as $key => $value ) {
+
 			if ( !empty($value) ){
 				$output .= $value;
 				$output .= ( $counter != $count_all ) ? $seperator : '';
+				$counter++;
 			}
-			$counter++;
+
 		}
 
-		return ($esc == true) ? $start . esc_html($output) . $end : $start.$output.$end;
+		return ( $esc == true ) ? $start . esc_html( $output ) . $end : $start . $output . $end;
 
 	}
 

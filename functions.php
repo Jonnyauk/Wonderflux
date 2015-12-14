@@ -1305,10 +1305,11 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
  * @param	[string] $titlestyle	What tag to use to wrap the title in. [h3]
  * @param	[string] $titleclass	CSS class for title. [widget-title]
  * @param	[string] $titleid		ADVANCED - Sets CSS ID for title (Only use this if your widget area has one widget - otherwise the IDs are repeated, which is not good and breaks validation for obvious reasons!) []
- * @param	[string] $before		Output before the widget. [small]
- * @param	[string] $after			Output after the widget. [small]
- * @param	[string] $priority		Wonderflux hook priority - NOTE default CSS containers insert at priority 2 and 9. [3]
+ * @param	[string] $before		Output before the widget. []
+ * @param	[string] $after			Output after the widget. []
+ * @param	[int] $priority			Wonderflux hook priority - NOTE default CSS containers insert at priority 2 and 9. [3]
  *
+ * @todo Review code!
  * @todo Deal with multiple widgets with ID's by appending number?
  */
 if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global $wfx_theme; $wfx_theme->widgets($args); } endif;

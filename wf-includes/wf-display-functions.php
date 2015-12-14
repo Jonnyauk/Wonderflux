@@ -2055,24 +2055,27 @@ class wflux_display_extras {
 
 
 	/**
-	 * Creates 'page x of x' output for lists of results like category view and others
-	 * TODO: Add in wp_link_pages type functionality so it can function with paged single pages, not just query lists
+	 * Creates page navigation for lists of results like archive or query views.
 	 *
-	 * @param element - The containing overall XHTML element, if blank, no containing element (setup your own in your theme) [p]
-	 * @param start - The opening text string [Page ]
-	 * @param seperator - The string that seperates the two numbers [ of ]
-	 * @param current_span - CSS span class around current page number (set to blank to remove span) [page_num_current]
-	 * @param total_span - CSS span class around total page number (set to blank to remove span) [page_num_total]
-	 * @param always_show - No output is shown if there is only 1 page of results, setting this to 'Y' will make the counter always show (ie page 1 of 1) [N]
-	 * @param navigation - Display next and previous navigation either side of the page display [N]
-	 * @param navigation_span - CSS span class around current page number (set to blank to remove span) [page_num_nav]
-	 * @param previous - The string that represents the previous link (and space) [&lt; ]
-	 * @param next - The string that represents the next link (and space) [ &gt;]
-	 * @param container - Puts the output inside a div [Y]
-	 * @param container_class - Container CSS class [page-counter-navigation]
+	 * @since	0.93
+	 * @version	2.0
 	 *
-	 * @since 0.93
-	 * @updated 2.0
+	 * @param	[string] $echo			Echo or return output. Y/N [Y]
+	 * @param	[string] $element		What tag to use to wrap output (can be empty to setup at template level). [p]
+	 * @param	[string] $start			Opening text string. [Page ]
+	 * @param	[string] $seperator		Seperator between pages. [ of ]
+	 * @param	[string] $current_span	CSS span class around current page number (set to blank to remove span). [page-counter-current]
+	 * @param	[string] $total_span	CSS span class around total page number (set to blank to remove span). [page-counter-total]
+	 * @param	[string] $always_show	No output is shown if there is only 1 page of results, setting to 'Y' to always show (ie page 1 of 1). Y/N [N]
+	 * @param	[string] $navigation	Display next and previous navigation either side of the page display. Y/N [N]
+	 * @param	[string] $nav_span		CSS span class around totalnavigation links (set to blank to remove span). Y/N [page-counter-navigation]
+	 * @param	[string] $previous		Text for previous link. [&lt; ]
+	 * @param	[string] $next			Text for next link. Y/N [ &gt;]
+	 * @param	[string] $div			Wrap output in containing <div>. Y/N [Y]
+	 * @param	[string] $div_class		Containing <div> class if used. [page-counter]
+	 *
+	 * @todo	Review code, make smarter!
+	 * @todo	Extend with wp_link_pages() type functionality so it can function with paged single pages, not just query lists.
 	 */
 	function wf_page_counter($args) {
 
@@ -2084,11 +2087,11 @@ class wflux_display_extras {
 			'total_span' => 'page-counter-total',
 			'always_show' => 'N',
 			'navigation' => 'N',
-			'navigation_span' => 'page-counter-navigation',
+			'nav_span' => 'page-counter-navigation',
 			'previous' => '&lt; ',
 			'next' => ' &gt;',
-			'container' => 'Y',
-			'container_class' => 'page-counter'
+			'div' => 'Y',
+			'div_class' => 'page-counter'
 		);
 
 		// Dont show navigation if this is a single post
@@ -2107,19 +2110,19 @@ class wflux_display_extras {
 			$total_span = ($total_span == ' of ') ? $total_span : wp_kses_data($total_span, '');
 			$always_show = ($always_show == 'N') ? $always_show : 'Y';
 			$navigation = ($total_span == 'N') ? $navigation : wp_kses_data($navigation, '');
-			$navigation_span = ($total_span == 'page_num_nav') ? $navigation_span : wp_kses_data($navigation_span, '');
+			$nav_span = ($total_span == 'page_num_nav') ? $nav_span : wp_kses_data($nav_span, '');
 			$previous = ($previous == '&lt; ') ? $previous : wp_kses_data($previous, '');
 			$next = ($next == ' &gt;') ? $next : wp_kses_data($next, '');
 			// If someone has removed the span CSS classes definition, dont render to screen
 			$current_span = (!$current_span == '') ? '<span class="'.$current_span.'">' : '';
 			$current_span_close = (!$current_span == '') ? '</span>' : '';
-			$navigation_span = ($navigation_span == '') ? '<span class="'.$navigation_span.'">' : '';
-			$navigation_span = (!$navigation_span == '') ? '</span>' : '';
-			$navigation_span_close = (!$navigation_span == '') ? '</span>' : '';
+			$nav_span = ($nav_span == '') ? '<span class="'.$nav_span.'">' : '';
+			$nav_span = (!$nav_span == '') ? '</span>' : '';
+			$nav_span_close = (!$nav_span == '') ? '</span>' : '';
 			$total_span = (!$total_span == '') ? '<span class="'.$total_span.'">' : '';
 			$total_span_close = (!$current_span == '') ? '</span>' : '';
-			$container = ($container == 'Y') ? 'Y' : 'N';
-			$container_class = ($container_class == 'page-counter-navigation') ? $container_class : wp_kses_data($container_class, '');
+			$div = ($div == 'Y') ? 'Y' : 'N';
+			$div_class = ($div_class == 'page-counter-navigation') ? $div_class : wp_kses_data($div_class, '');
 
 
 
@@ -2131,16 +2134,16 @@ class wflux_display_extras {
 			$current = 1;
 			$wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
 
-			$output = ($container == 'Y') ? '<div class="' . $container_class . '">' : '';
+			$output = ($div == 'Y') ? '<div class="' . $div_class . '">' : '';
 			$output .= ($element == '') ? '' : '<'.$element.'>';
-			$output .= ($navigation == 'N') ? '' : $navigation_span . $this->wf_previous_posts_link($previous) . $navigation_span_close;
+			$output .= ($navigation == 'N') ? '' : $nav_span . $this->wf_previous_posts_link($previous) . $nav_span_close;
 			$output .= esc_html( $start );
 			$output .= $current_span . $current.$current_span_close;
 			$output .= esc_html( $seperator );
 			$output .= $total_span . $total.$total_span_close;
-			$output .= ($navigation == 'N') ? '' : $navigation_span . $this->wf_next_posts_link($next) . $navigation_span_close;
+			$output .= ($navigation == 'N') ? '' : $nav_span . $this->wf_next_posts_link($next) . $nav_span_close;
 			$output .= ($element == '') ? '' : '</'. $element .'>';
-			$output .= ($container == 'Y') ? '</div>' : '';
+			$output .= ($div == 'Y') ? '</div>' : '';
 
 			// is_search() will not trigger on empty search string - WordPress wants all the posts
 			// We want to use loop-content-no-search-results.php and do something smarter

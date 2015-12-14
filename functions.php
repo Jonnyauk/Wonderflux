@@ -994,10 +994,27 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
 } endif;
 
 /**
- * Creates 'page x of x' output for lists of posts like archive or query views
+ * Creates page navigation for lists of results like archive or query views.
  *
- * @since 0.93
- * @updated 0.93
+ * @since	0.93
+ * @version	2.0
+ *
+ * @param	[string] $echo			Echo or return output. Y/N [Y]
+ * @param	[string] $element		What tag to use to wrap output (can be empty to setup at template level). [p]
+ * @param	[string] $start			Opening text string. [Page ]
+ * @param	[string] $seperator		Seperator between pages. [ of ]
+ * @param	[string] $current_span	CSS span class around current page number (set to blank to remove span). [page-counter-current]
+ * @param	[string] $total_span	CSS span class around total page number (set to blank to remove span). [page-counter-total]
+ * @param	[string] $always_show	No output is shown if there is only 1 page of results, setting to 'Y' to always show (ie page 1 of 1). Y/N [N]
+ * @param	[string] $navigation	Display next and previous navigation either side of the page display. Y/N [N]
+ * @param	[string] $nav_span		CSS span class around totalnavigation links (set to blank to remove span). Y/N [page-counter-navigation]
+ * @param	[string] $previous		Text for previous link. [&lt; ]
+ * @param	[string] $next			Text for next link. Y/N [ &gt;]
+ * @param	[string] $div			Wrap output in containing <div>. Y/N [Y]
+ * @param	[string] $div_class		Containing <div> class if used. [page-counter]
+ *
+ * @todo	Review code, make smarter!
+ * @todo	Extend with wp_link_pages() type functionality so it can function with paged single pages, not just query lists.
  */
 if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args) {
 

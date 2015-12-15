@@ -16,8 +16,6 @@
 
 	<div class="entry-content">
 
-		<h2 class="archive-title"><a href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'Read %s', 'wonderflux' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_title(); ?></a></h2>
-
 		<p><?php wfx_excerpt( 'limit=40&excerpt_end=...' ); ?></p>
 
 		<p><a class="button-sml" href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( 'View %s', 'wonderflux' ), the_title_attribute( 'echo=0' ) ); ?>"><?php esc_html_e( 'View', 'wonderflux' ) ?></a></p>

@@ -1299,6 +1299,9 @@ class wflux_display_css extends wflux_display_code {
 	 * IMPORTANT - Adds additional CSS classes to sidebar and content for media query breakpoints.
 	 * Designed to work with Flux Layout - configured in Wonderflux layout options.
 	 *
+	 * Filters available:
+	 * wflux_rwd_full_width : Additional generated CSS classes added to sidebar and main content (in helper function).
+	 *
 	 * @since	2.1
 	 * @version	2.1
 	 *
@@ -1328,7 +1331,6 @@ class wflux_display_css extends wflux_display_code {
 	function wf_rwd_full_width_do( $input ) {
 
 		return esc_attr( $input . apply_filters('wflux_rwd_full_width', ' mq-' . $this->wfx_rwd_full . '-min-box-1-1') );
-		//return esc_attr( $input . apply_filters('wflux_rwd_full_width', ' mq-' . '-min-box-1-1') );
 
 	}
 

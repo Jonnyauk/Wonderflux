@@ -240,7 +240,7 @@ class wflux_theme_all {
 
 	// Main theme config
 	function widgets($args){ $this->wflux_theme_core_do->wf_widgets($args); }
-	function language_pack(){ $this->wflux_theme_core_do->wf_language_pack(); } //ALPHA DEVELOPMENT - NEEDS TESTING!
+	function language_pack(){ $this->wflux_theme_core_do->wf_language_pack(); }
 	function background_divs($args){ $this->wflux_theme_core_do->wf_background_divs($args); }
 
 	// Javascript goodness
@@ -318,6 +318,7 @@ class wflux_display_all {
 	function test_pattern($args){ $this->wflux_display_css_do->wf_css_test_pattern($args); }
 	function css_close(){ $this->wflux_display_css_do->wf_css_close(); }
 	function layout_build(){ $this->wflux_display_css_do->wf_layout_build(); }
+	function rwd_full_width(){ $this->wflux_display_css_do->wf_rwd_full_width(); }
 
 	// Display functions
 	function get_sidebar($args){ $this->wflux_display_do->wf_get_sidebar($args); }

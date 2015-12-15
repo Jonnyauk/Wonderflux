@@ -197,11 +197,16 @@ class wflux_admin extends wflux_data {
 		}
 
 		/**
-		 * Backpat - add container units if using Wonderflux v2 percent grid
+		 * Backpat - add Flux Layout specific fields if using v2 grid system
+		 * - container units
+		 * - Full width breakpoint for sidebar and main content
 		 */
 		if ( $this->wfx_grid_type == 'percent' ) {
 			// Pixel column width
 			add_settings_field('container_u', esc_attr__('Site container width unit','wonderflux'), array($this->admin_forms, 'wf_form_container_u'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
+
+			add_settings_field('rwd_full', esc_attr__('Sidebar/main content full width breakpoint for smaller screens','wonderflux'), array($this->admin_forms, 'wf_form_rwd_full'), 'wonderflux_stylelab', 'style_lab');
+
 		}
 
 		/**
@@ -214,19 +219,20 @@ class wflux_admin extends wflux_data {
 			add_settings_field('container_w', esc_attr__('Site container width (percent)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		}
 
+
+
 		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('content_s', esc_attr__('Content width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_s', esc_attr__('Sidebar width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('page_t', esc_attr__('Page templates','wonderflux'), array($this->admin_forms, 'wf_form_p_template'), 'wonderflux_page_templates', 'style_lab_p_templates');
 		add_settings_field('doc_type', esc_attr__('Document type','wonderflux'), array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_lang', esc_attr__('Document language','wonderflux'), array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_charset', esc_attr__('Document character set','wonderflux'), array($this->admin_forms, 'wf_form_doc_charset'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('fb_admins', esc_attr__('Facebook ID(s)','wonderflux'), array($this->admin_forms, 'wf_form_fb_admins'), 'wonderflux_stylelab_fb', 'style_lab_fb');
 		add_settings_field('fb_app', esc_attr__('Facebook Application ID','wonderflux'), array($this->admin_forms, 'wf_form_fb_app'), 'wonderflux_stylelab_fb', 'style_lab_fb');
-
 	}
 
 
@@ -596,6 +602,7 @@ class wflux_admin_forms extends wflux_data {
 			'columns_num'	=> array ( 24, range(2,100,1) ),
 			'columns_w'		=> array ( 30, range(10,200,1) ),
 			'page_t'		=> array ( '','no-sidebar' ),
+			'rwd_full'		=> array ( 'tiny','small','medium', 'large' ),
 			'fb_admins'		=> '',
 			'fb_app'		=> '',
 		);
@@ -667,6 +674,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->common_size,''); }
 	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N')),''); }
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p'],''); }
+	function wf_form_rwd_full() { $this->wf_form_helper_ddown_std($this->wfx_rwd_full,'rwd_full',$this->valid['rwd_full'],''); }
 	function wf_form_container_u() { $this->wf_form_helper_ddown_std($this->wfx_width_unit,'container_u',array('percent','pixels'),''); }
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1,''); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1,''); }

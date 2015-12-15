@@ -19,8 +19,8 @@ class wflux_data {
 	protected $wfx_columns; // Number of columns
 	protected $wfx_columns_width; // Width of columns
 	protected $wfx_sidebar_primary_position; // Primary sidebar position
-	protected $wfx_page_templates; // Primary sidebar position
-
+	protected $wfx_page_templates; // Page templates to hide
+	protected $wfx_rwd_full; // At what responsive breakpoint to collapse sidebar(s)/content to full width.
 	protected $wfx_content_1_display; // Display of main content - EXPERIMENTAL, needs extra coding in core
 	protected $wfx_content_1_size; // Relative 'size' of main content area eg 'three_quarter'
 	protected $wfx_content_1_id; // CSS ID of main content container div
@@ -154,6 +154,12 @@ class wflux_data {
 		$wfx_sidebar_pp_accept = array('left','right');
 		if ( in_array($this->wfx_sidebar_primary_position,$wfx_sidebar_pp_accept) ) { $wfx_sidebar_pp_out = $this->wfx_sidebar_primary_position; }
 		$this->wfx_sidebar_primary_position = $wfx_sidebar_pp_out;
+
+		// RESPONSIVE WRAPPER CLASSES - Set media query definition to add extra Flux Layout CSS classes to make sidebar(s)/content full width - tiny/small/medium/large
+		$this->wfx_rwd_full = ( isset($this->wfx_db_display['rwd_full']) ) ? $this->wfx_db_display['rwd_full'] : false;
+		// Validate - second value is default
+		$rwd_full_width_accept = array( 'tiny', 'small', 'medium', 'large' );
+		$this->wfx_rwd_full = ( !$this->wfx_rwd_full || !in_array($this->wfx_rwd_full, $rwd_full_width_accept) ) ? $rwd_full_width_accept[1] : $this->wfx_rwd_full;
 
 		// PAGE TEMPLATES - saved options hide templates
 		$this->wfx_page_templates = (isset($this->wfx_db_display['page_t']) ) ? $this->wfx_db_display['page_t'] : false;

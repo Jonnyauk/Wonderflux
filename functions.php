@@ -134,6 +134,7 @@ add_action( 'the_post', 'wfx_filter_post_class', 2 );
 add_action( 'get_header', 'wfx_layout_build', 1 );
 add_action( 'get_header', 'wfx_content_width_embed', 2 );
 add_action( 'get_header', 'wfx_social_meta' );
+add_action( 'get_header', 'wfx_rwd_full_width', 2 );
 add_action( 'wf_head_meta', 'wfx_display_head_char_set', 1 );
 add_action( 'wf_head_meta', 'wfx_display_head_viewport', 2 );
 add_action( 'wf_head_meta', 'wfx_display_head_title', 3 );
@@ -946,6 +947,21 @@ if ( !function_exists( 'wfx_css_close' ) ) : function wfx_css_close() { global $
  * @param	none
  */
 if ( !function_exists( 'wfx_layout_build' ) ) : function wfx_layout_build() { global $wfx; $wfx->layout_build(); } endif;
+
+
+/**
+ * IMPORTANT - Adds additional CSS classes to sidebar and content for media query breakpoints.
+ * Designed to work with Flux Layout - configured in Wonderflux layout options.
+ *
+ * Filters available:
+ * wflux_rwd_full_width : Additional generated CSS classes added to sidebar and main content (in helper function).
+ *
+ * @since	2.1
+ * @version	2.1
+ *
+ * @param	none
+ */
+if ( !function_exists( 'wfx_rwd_full_width' ) ) : function wfx_rwd_full_width() { global $wfx; $wfx->rwd_full_width(); } endif;
 
 
 /**

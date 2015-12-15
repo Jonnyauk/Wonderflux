@@ -1,8 +1,9 @@
 # This file is distributed under the same license as the Wonderflux theme framework - please refer to readme.txt
+#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: Wonderflux v2\n"
-"POT-Creation-Date: 2015-04-30 21:34-0000\n"
+"POT-Creation-Date: 2015-12-15 09:23+0000\n"
 "PO-Revision-Date: 2015-04-30 21:34-0000\n"
 "Last-Translator: Jonny Allbut [Jonnyauk]\n"
 "Language-Team: Wonderflux Development Team <devteam@wonderflux.com>\n"
@@ -10,334 +11,342 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
-"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.8.6\n"
+"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;__;esc_attr__;esc_attr_e;_e\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../buddypress/activity/activity-loop.php:28
+#: ../buddypress/activity/activity-loop.php:33
 msgid "Load More"
 msgstr ""
 
-#: ../buddypress/activity/activity-loop.php:42
+#: ../buddypress/activity/activity-loop.php:47
 msgid "Sorry, there was no activity found. Please try a different filter."
 msgstr ""
 
-#: ../buddypress/activity/comment.php:27
+#: ../buddypress/activity/comment.php:29
 #, php-format
 msgid ""
 "<a href=\"%1$s\">%2$s</a> replied <a href=\"%3$s\" class=\"activity-time-"
 "since\"><span class=\"time-since\">%4$s</span></a>"
 msgstr ""
 
-#: ../buddypress/activity/comment.php:37
-#: ../buddypress/groups/single/forum/edit.php:10
+#: ../buddypress/activity/comment.php:39
+#: ../buddypress/groups/single/forum/edit.php:23
+#: ../buddypress/groups/single/forum/topic.php:189
 msgid "Reply"
 msgstr ""
 
-#: ../buddypress/activity/comment.php:43
-#: ../buddypress/members/single/messages/messages-loop.php:51
-#: ../buddypress/members/single/messages/single.php:24
+#: ../buddypress/activity/comment.php:45
+#: ../buddypress/members/single/messages/messages-loop.php:133
+#: ../buddypress/members/single/messages/single.php:44
 msgid "Delete"
 msgstr ""
 
-#: ../buddypress/activity/entry.php:50
+#: ../buddypress/activity/entry.php:59
 msgid "View Conversation"
 msgstr ""
 
-#: ../buddypress/activity/entry.php:58
+#: ../buddypress/activity/entry.php:67
 #, php-format
-msgid "Comment <span>%s</span>"
+msgid "Comment %s"
 msgstr ""
 
-#: ../buddypress/activity/entry.php:66
+#: ../buddypress/activity/entry.php:75
 msgid "Mark as Favorite"
 msgstr ""
 
-#: ../buddypress/activity/entry.php:66
+#: ../buddypress/activity/entry.php:75
 msgid "Favorite"
 msgstr ""
 
-#: ../buddypress/activity/entry.php:70
+#: ../buddypress/activity/entry.php:79
 msgid "Remove Favorite"
 msgstr ""
 
-#: ../buddypress/activity/entry.php:102
+#: ../buddypress/activity/entry.php:123
+msgid "Comment"
+msgstr ""
+
+#: ../buddypress/activity/entry.php:126
 msgid "Post"
 msgstr ""
 
-#: ../buddypress/activity/entry.php:102 ../buddypress/forums/index.php:116
+#: ../buddypress/activity/entry.php:126 ../buddypress/forums/index.php:205
 msgid "Cancel"
 msgstr ""
 
-#: ../buddypress/activity/index.php:19
+#: ../buddypress/activity/index.php:55
 msgid "The public activity for everyone on this site."
 msgstr ""
 
-#: ../buddypress/activity/index.php:19 ../buddypress/members/index.php:19
+#: ../buddypress/activity/index.php:55 ../buddypress/members/index.php:53
 #, php-format
-msgid "All Members <span>%s</span>"
+msgid "All Members %s"
 msgstr ""
 
-#: ../buddypress/activity/index.php:29
+#: ../buddypress/activity/index.php:72
 msgid "The activity of my friends only."
 msgstr ""
 
-#: ../buddypress/activity/index.php:29 ../buddypress/members/index.php:22
+#: ../buddypress/activity/index.php:72 ../buddypress/members/index.php:56
 #, php-format
-msgid "My Friends <span>%s</span>"
-msgstr ""
-
-#: ../buddypress/activity/index.php:41
-msgid "The activity of groups I am a member of."
-msgstr ""
-
-#: ../buddypress/activity/index.php:41 ../buddypress/groups/index.php:22
-#, php-format
-msgid "My Groups <span>%s</span>"
-msgstr ""
-
-#: ../buddypress/activity/index.php:51
-msgid "The activity I've marked as a favorite."
-msgstr ""
-
-#: ../buddypress/activity/index.php:51
-#, php-format
-msgid "My Favorites <span>%s</span>"
-msgstr ""
-
-#: ../buddypress/activity/index.php:59
-msgid "Activity that I have been mentioned in."
-msgstr ""
-
-#: ../buddypress/activity/index.php:59
-msgid "Mentions"
-msgstr ""
-
-#: ../buddypress/activity/index.php:71
-#: ../buddypress/groups/single/activity.php:3
-msgid "RSS Feed"
-msgstr ""
-
-#: ../buddypress/activity/index.php:71
-#: ../buddypress/groups/single/activity.php:3
-msgid "RSS"
-msgstr ""
-
-#: ../buddypress/activity/index.php:76
-#: ../buddypress/groups/single/activity.php:8
-#: ../buddypress/members/single/activity.php:18
-msgid "Show:"
-msgstr ""
-
-#: ../buddypress/activity/index.php:78
-#: ../buddypress/groups/single/activity.php:10
-#: ../buddypress/members/single/activity.php:20
-msgid "Everything"
-msgstr ""
-
-#: ../buddypress/activity/index.php:79
-#: ../buddypress/groups/single/activity.php:11
-#: ../buddypress/members/single/activity.php:21
-msgid "Updates"
-msgstr ""
-
-#: ../buddypress/activity/index.php:83 ../buddypress/forums/forums-loop.php:40
-#: ../buddypress/members/single/activity.php:27
-msgid "Posts"
-msgstr ""
-
-#: ../buddypress/activity/index.php:84
-#: ../buddypress/members/single/activity.php:28
-msgid "Comments"
-msgstr ""
-
-#: ../buddypress/activity/index.php:90
-#: ../buddypress/groups/single/activity.php:14
-#: ../buddypress/members/single/activity.php:43
-msgid "Forum Topics"
+msgid "My Friends %s"
 msgstr ""
 
 #: ../buddypress/activity/index.php:91
-#: ../buddypress/groups/single/activity.php:15
-#: ../buddypress/members/single/activity.php:44
-msgid "Forum Replies"
+msgid "The activity of groups I am a member of."
 msgstr ""
 
-#: ../buddypress/activity/index.php:97
-#: ../buddypress/members/single/activity.php:50
-msgid "New Groups"
-msgstr ""
-
-#: ../buddypress/activity/index.php:98
-#: ../buddypress/groups/single/activity.php:18
-#: ../buddypress/members/single/activity.php:51
-msgid "Group Memberships"
-msgstr ""
-
-#: ../buddypress/activity/index.php:104
-#: ../buddypress/members/single/activity.php:35
-msgid "Friendships"
+#: ../buddypress/activity/index.php:91 ../buddypress/groups/index.php:52
+#, php-format
+msgid "My Groups %s"
 msgstr ""
 
 #: ../buddypress/activity/index.php:108
-msgid "New Members"
+msgid "The activity I've marked as a favorite."
 msgstr ""
 
-#: ../buddypress/activity/post-form.php:23
+#: ../buddypress/activity/index.php:108
+#, php-format
+msgid "My Favorites %s"
+msgstr ""
+
+#: ../buddypress/activity/index.php:123
+msgid "Activity that I have been mentioned in."
+msgstr ""
+
+#: ../buddypress/activity/index.php:123
+msgid "Mentions"
+msgstr ""
+
+#: ../buddypress/activity/index.php:142
+#: ../buddypress/groups/single/activity.php:12
+msgid "RSS Feed"
+msgstr ""
+
+#: ../buddypress/activity/index.php:142
+#: ../buddypress/groups/single/activity.php:12
+msgid "RSS"
+msgstr ""
+
+#: ../buddypress/activity/index.php:154
+#: ../buddypress/groups/single/activity.php:24
+#: ../buddypress/members/single/activity.php:17
+msgid "Show:"
+msgstr ""
+
+#: ../buddypress/activity/index.php:156
+#: ../buddypress/groups/single/activity.php:26
+#: ../buddypress/members/single/activity.php:19
+msgid "&mdash; Everything &mdash;"
+msgstr ""
+
+#: ../buddypress/activity/post-form.php:29
 #, php-format
 msgid "What's new in %s, %s?"
 msgstr ""
 
-#: ../buddypress/activity/post-form.php:25
+#: ../buddypress/activity/post-form.php:31
 #, php-format
 msgid "What's new, %s?"
 msgstr ""
 
-#: ../buddypress/activity/post-form.php:35
+#: ../buddypress/activity/post-form.php:36
+msgid "Post what's new"
+msgstr ""
+
+#: ../buddypress/activity/post-form.php:44
 msgid "Post Update"
 msgstr ""
 
-#: ../buddypress/activity/post-form.php:42
+#: ../buddypress/activity/post-form.php:51
+#: ../buddypress/activity/post-form.php:53
 msgid "Post in"
 msgstr ""
 
-#: ../buddypress/activity/post-form.php:45
-#: ../buddypress/members/single/profile/profile-wp.php:8
+#: ../buddypress/activity/post-form.php:55
+#: ../buddypress/members/single/profile/profile-wp.php:28
 msgid "My Profile"
 msgstr ""
 
-#: ../buddypress/blogs/blogs-loop.php:90
+#: ../buddypress/assets/_attachments/avatars/index.php:37
+#: ../buddypress/members/single/profile/change-avatar.php:41
+msgid ""
+"If you'd like to delete your current profile photo but not upload a new one, "
+"please use the delete profile photo button."
+msgstr ""
+
+#: ../buddypress/assets/_attachments/avatars/index.php:38
+#: ../buddypress/members/single/profile/change-avatar.php:42
+msgid "Delete Profile Photo"
+msgstr ""
+
+#: ../buddypress/assets/_attachments/avatars/index.php:40
+#: ../buddypress/groups/single/admin.php:178
+msgid ""
+"If you'd like to remove the existing group profile photo but not upload a "
+"new one, please use the delete group profile photo button."
+msgstr ""
+
+#: ../buddypress/assets/_attachments/avatars/index.php:41
+#: ../buddypress/groups/single/admin.php:180
+msgid "Delete Group Profile Photo"
+msgstr ""
+
+#: ../buddypress/assets/_attachments/cover-images/index.php:26
+msgid ""
+"If you'd like to delete your current cover image but not upload a new one, "
+"please use the delete Cover Image button."
+msgstr ""
+
+#: ../buddypress/assets/_attachments/cover-images/index.php:27
+#: ../buddypress/assets/_attachments/cover-images/index.php:30
+msgid "Delete Cover Image"
+msgstr ""
+
+#: ../buddypress/assets/_attachments/cover-images/index.php:29
+msgid ""
+"If you'd like to remove the existing group cover image but not upload a new "
+"one, please use the delete group cover image button."
+msgstr ""
+
+#: ../buddypress/assets/_attachments/uploader.php:25
+msgid "Select your File"
+msgstr ""
+
+#: ../buddypress/blogs/blogs-loop.php:120
 msgid "Sorry, there were no sites found."
 msgstr ""
 
-#: ../buddypress/blogs/create.php:14
+#: ../buddypress/blogs/create.php:37
 msgid "Site registration is currently disabled"
 msgstr ""
 
-#: ../buddypress/blogs/index.php:16
+#: ../buddypress/blogs/index.php:53
 #, php-format
-msgid "All Sites <span>%s</span>"
+msgid "All Sites %s"
 msgstr ""
 
-#: ../buddypress/blogs/index.php:20
+#: ../buddypress/blogs/index.php:57
 #, php-format
-msgid "My Sites <span>%s</span>"
+msgid "My Sites %s"
 msgstr ""
 
-#: ../buddypress/blogs/index.php:36 ../buddypress/forums/index.php:42
-#: ../buddypress/groups/index.php:36 ../buddypress/groups/single/forum.php:36
-#: ../buddypress/members/index.php:35
-#: ../buddypress/members/single/blogs.php:19
-#: ../buddypress/members/single/forums.php:18
-#: ../buddypress/members/single/friends.php:20
-#: ../buddypress/members/single/groups.php:20
+#: ../buddypress/blogs/index.php:87 ../buddypress/forums/index.php:86
+#: ../buddypress/groups/index.php:80 ../buddypress/groups/single/forum.php:50
+#: ../buddypress/members/index.php:83 ../buddypress/members/single/blogs.php:18
+#: ../buddypress/members/single/forums.php:17
+#: ../buddypress/members/single/friends.php:19
+#: ../buddypress/members/single/groups.php:19
 msgid "Order By:"
 msgstr ""
 
-#: ../buddypress/blogs/index.php:38 ../buddypress/forums/index.php:44
-#: ../buddypress/groups/index.php:39 ../buddypress/groups/single/forum.php:38
-#: ../buddypress/members/index.php:37
-#: ../buddypress/members/single/blogs.php:21
-#: ../buddypress/members/single/forums.php:20
-#: ../buddypress/members/single/friends.php:22
-#: ../buddypress/members/single/groups.php:22
+#: ../buddypress/blogs/index.php:89 ../buddypress/forums/index.php:88
+#: ../buddypress/groups/index.php:83 ../buddypress/groups/single/forum.php:52
+#: ../buddypress/members/index.php:85 ../buddypress/members/single/blogs.php:20
+#: ../buddypress/members/single/forums.php:19
+#: ../buddypress/members/single/friends.php:21
+#: ../buddypress/members/single/groups.php:21
 msgid "Last Active"
 msgstr ""
 
-#: ../buddypress/blogs/index.php:39 ../buddypress/members/single/blogs.php:22
+#: ../buddypress/blogs/index.php:90 ../buddypress/members/single/blogs.php:21
 msgid "Newest"
 msgstr ""
 
-#: ../buddypress/blogs/index.php:40 ../buddypress/groups/index.php:42
-#: ../buddypress/members/index.php:41
-#: ../buddypress/members/single/blogs.php:23
-#: ../buddypress/members/single/friends.php:24
-#: ../buddypress/members/single/groups.php:25
+#: ../buddypress/blogs/index.php:91 ../buddypress/groups/index.php:86
+#: ../buddypress/members/index.php:89 ../buddypress/members/single/blogs.php:22
+#: ../buddypress/members/single/friends.php:23
+#: ../buddypress/members/single/groups.php:24
 msgid "Alphabetical"
 msgstr ""
 
-#: ../buddypress/forums/forums-loop.php:39
+#: ../buddypress/forums/forums-loop.php:52
 msgid "Topic"
 msgstr ""
 
-#: ../buddypress/forums/forums-loop.php:41
-msgid "Freshness"
+#: ../buddypress/forums/forums-loop.php:53
+msgid "Posts"
 msgstr ""
 
 #: ../buddypress/forums/forums-loop.php:54
-#: ../buddypress/groups/single/forum/topic.php:95
+msgid "Freshness"
+msgstr ""
+
+#: ../buddypress/forums/forums-loop.php:74
+#: ../buddypress/groups/single/forum/topic.php:129
 msgid "Permanent link to this post"
 msgstr ""
 
-#: ../buddypress/forums/forums-loop.php:61
+#: ../buddypress/forums/forums-loop.php:81
 #, php-format
 msgid "Started by %1$s"
 msgstr ""
 
-#: ../buddypress/forums/forums-loop.php:72
+#: ../buddypress/forums/forums-loop.php:92
 #, php-format
 msgid "in %1$s"
 msgstr ""
 
-#: ../buddypress/forums/forums-loop.php:122
+#: ../buddypress/forums/forums-loop.php:163
 msgid "Sorry, there were no forum topics found."
 msgstr ""
 
-#: ../buddypress/forums/index.php:22
+#: ../buddypress/forums/index.php:52
 #, php-format
-msgid "All Topics <span>%s</span>"
+msgid "All Topics %s"
 msgstr ""
 
-#: ../buddypress/forums/index.php:26
+#: ../buddypress/forums/index.php:56
 #, php-format
-msgid "My Topics <span>%s</span>"
+msgid "My Topics %s"
 msgstr ""
 
-#: ../buddypress/forums/index.php:45 ../buddypress/groups/single/forum.php:39
-#: ../buddypress/members/single/forums.php:21
+#: ../buddypress/forums/index.php:89 ../buddypress/groups/single/forum.php:53
+#: ../buddypress/members/single/forums.php:20
 msgid "Most Posts"
 msgstr ""
 
-#: ../buddypress/forums/index.php:46 ../buddypress/groups/single/forum.php:40
-#: ../buddypress/members/single/forums.php:22
+#: ../buddypress/forums/index.php:90 ../buddypress/groups/single/forum.php:54
+#: ../buddypress/members/single/forums.php:21
 msgid "Unreplied"
 msgstr ""
 
-#: ../buddypress/forums/index.php:82
+#: ../buddypress/forums/index.php:161
 msgid "Create New Topic:"
 msgstr ""
 
-#: ../buddypress/forums/index.php:86 ../buddypress/groups/single/forum.php:75
-#: ../buddypress/groups/single/forum/edit.php:47
+#: ../buddypress/forums/index.php:168 ../buddypress/groups/single/forum.php:106
+#: ../buddypress/groups/single/forum/edit.php:74
 msgid "Title:"
 msgstr ""
 
-#: ../buddypress/forums/index.php:89 ../buddypress/groups/single/forum.php:78
-#: ../buddypress/groups/single/forum/edit.php:50
+#: ../buddypress/forums/index.php:171 ../buddypress/groups/single/forum.php:109
+#: ../buddypress/groups/single/forum/edit.php:77
 msgid "Content:"
 msgstr ""
 
-#: ../buddypress/forums/index.php:92 ../buddypress/groups/single/forum.php:81
-#: ../buddypress/groups/single/forum/edit.php:53
+#: ../buddypress/forums/index.php:174 ../buddypress/groups/single/forum.php:112
+#: ../buddypress/groups/single/forum/edit.php:80
 msgid "Tags (comma separated):"
 msgstr ""
 
-#: ../buddypress/forums/index.php:95
+#: ../buddypress/forums/index.php:177
 msgid "Post In Group Forum:"
 msgstr ""
 
-#: ../buddypress/forums/index.php:98
+#: ../buddypress/forums/index.php:180
 msgid "----"
 msgstr ""
 
-#: ../buddypress/forums/index.php:115 ../buddypress/groups/single/forum.php:87
+#: ../buddypress/forums/index.php:204 ../buddypress/groups/single/forum.php:125
 msgid "Post Topic"
 msgstr ""
 
-#: ../buddypress/forums/index.php:127
+#: ../buddypress/forums/index.php:216
 #, php-format
 msgid ""
 "You are not a member of any groups so you don't have any group forums you "
@@ -347,789 +356,883 @@ msgid ""
 "you can post your topic in that group's forum."
 msgstr ""
 
-#: ../buddypress/groups/create.php:29 ../buddypress/groups/single/admin.php:16
+#: ../buddypress/groups/create.php:66 ../buddypress/groups/single/admin.php:39
 msgid "Group Name (required)"
 msgstr ""
 
-#: ../buddypress/groups/create.php:34 ../buddypress/groups/single/admin.php:19
+#: ../buddypress/groups/create.php:71 ../buddypress/groups/single/admin.php:42
 msgid "Group Description (required)"
 msgstr ""
 
-#: ../buddypress/groups/create.php:51 ../buddypress/groups/single/admin.php:56
+#: ../buddypress/groups/create.php:101
+#: ../buddypress/groups/single/admin.php:100
 msgid "Privacy Options"
 msgstr ""
 
-#: ../buddypress/groups/create.php:55 ../buddypress/groups/single/admin.php:61
+#: ../buddypress/groups/create.php:105
+#: ../buddypress/groups/single/admin.php:104
 msgid "This is a public group"
 msgstr ""
 
-#: ../buddypress/groups/create.php:57 ../buddypress/groups/single/admin.php:63
+#: ../buddypress/groups/create.php:108
+#: ../buddypress/groups/single/admin.php:107
 msgid "Any site member can join this group."
 msgstr ""
 
-#: ../buddypress/groups/create.php:58 ../buddypress/groups/create.php:67
-#: ../buddypress/groups/single/admin.php:64
-#: ../buddypress/groups/single/admin.php:74
+#: ../buddypress/groups/create.php:109 ../buddypress/groups/create.php:118
+#: ../buddypress/groups/single/admin.php:108
+#: ../buddypress/groups/single/admin.php:116
 msgid ""
 "This group will be listed in the groups directory and in search results."
 msgstr ""
 
-#: ../buddypress/groups/create.php:59 ../buddypress/groups/single/admin.php:65
+#: ../buddypress/groups/create.php:110
+#: ../buddypress/groups/single/admin.php:109
 msgid "Group content and activity will be visible to any site member."
 msgstr ""
 
-#: ../buddypress/groups/create.php:64 ../buddypress/groups/single/admin.php:71
+#: ../buddypress/groups/create.php:114
+#: ../buddypress/groups/single/admin.php:112
 msgid "This is a private group"
 msgstr ""
 
-#: ../buddypress/groups/create.php:66 ../buddypress/groups/single/admin.php:73
+#: ../buddypress/groups/create.php:117
+#: ../buddypress/groups/single/admin.php:115
 msgid "Only users who request membership and are accepted can join the group."
 msgstr ""
 
-#: ../buddypress/groups/create.php:68 ../buddypress/groups/create.php:77
-#: ../buddypress/groups/single/admin.php:75
-#: ../buddypress/groups/single/admin.php:85
+#: ../buddypress/groups/create.php:119 ../buddypress/groups/create.php:128
+#: ../buddypress/groups/single/admin.php:117
+#: ../buddypress/groups/single/admin.php:125
 msgid ""
 "Group content and activity will only be visible to members of the group."
 msgstr ""
 
-#: ../buddypress/groups/create.php:73 ../buddypress/groups/single/admin.php:81
+#: ../buddypress/groups/create.php:123
+#: ../buddypress/groups/single/admin.php:120
 msgid "This is a hidden group"
 msgstr ""
 
-#: ../buddypress/groups/create.php:75 ../buddypress/groups/single/admin.php:83
+#: ../buddypress/groups/create.php:126
+#: ../buddypress/groups/single/admin.php:123
 msgid "Only users who are invited can join the group."
 msgstr ""
 
-#: ../buddypress/groups/create.php:76 ../buddypress/groups/single/admin.php:84
+#: ../buddypress/groups/create.php:127
+#: ../buddypress/groups/single/admin.php:124
 msgid ""
 "This group will not be listed in the groups directory or search results."
 msgstr ""
 
-#: ../buddypress/groups/create.php:82 ../buddypress/groups/single/admin.php:92
+#: ../buddypress/groups/create.php:133
+#: ../buddypress/groups/single/admin.php:132
 msgid "Group Invitations"
 msgstr ""
 
-#: ../buddypress/groups/create.php:84 ../buddypress/groups/single/admin.php:94
+#: ../buddypress/groups/create.php:135
+#: ../buddypress/groups/single/admin.php:134
 msgid "Which members of this group are allowed to invite others?"
 msgstr ""
 
-#: ../buddypress/groups/create.php:89 ../buddypress/groups/single/admin.php:99
+#: ../buddypress/groups/create.php:139
+#: ../buddypress/groups/single/admin.php:138
 msgid "All group members"
 msgstr ""
 
-#: ../buddypress/groups/create.php:94
-#: ../buddypress/groups/single/admin.php:104
+#: ../buddypress/groups/create.php:141
+#: ../buddypress/groups/single/admin.php:140
 msgid "Group admins and mods only"
 msgstr ""
 
-#: ../buddypress/groups/create.php:99
-#: ../buddypress/groups/single/admin.php:109
+#: ../buddypress/groups/create.php:143
+#: ../buddypress/groups/single/admin.php:142
 msgid "Group admins only"
 msgstr ""
 
-#: ../buddypress/groups/create.php:105
+#: ../buddypress/groups/create.php:149
 msgid "Group Forums"
 msgstr ""
 
-#: ../buddypress/groups/create.php:109
+#: ../buddypress/groups/create.php:153
 msgid "Should this group have a forum?"
 msgstr ""
 
-#: ../buddypress/groups/create.php:112
-#: ../buddypress/groups/single/admin.php:47
+#: ../buddypress/groups/create.php:156 ../buddypress/groups/single/admin.php:91
 msgid "Enable discussion forum"
 msgstr ""
 
-#: ../buddypress/groups/create.php:116
+#: ../buddypress/groups/create.php:160
 #, php-format
 msgid ""
 "<strong>Attention Site Admin:</strong> Group forums require the <a href=\"%s"
 "\">correct setup and configuration</a> of a bbPress installation."
 msgstr ""
 
-#: ../buddypress/groups/create.php:142
-#: ../buddypress/groups/single/admin.php:127
+#: ../buddypress/groups/create.php:200
+#: ../buddypress/groups/single/admin.php:167
 msgid ""
-"Upload an image to use as an avatar for this group. The image will be shown "
-"on the main group page, and in search results."
+"Upload an image to use as a profile photo for this group. The image will be "
+"shown on the main group page, and in search results."
 msgstr ""
 
-#: ../buddypress/groups/create.php:146
-#: ../buddypress/groups/single/admin.php:131
-#: ../buddypress/members/single/profile/change-avatar.php:18
+#: ../buddypress/groups/create.php:203
+#: ../buddypress/groups/single/admin.php:170
+#: ../buddypress/members/single/profile/change-avatar.php:34
+msgid "Select an image"
+msgstr ""
+
+#: ../buddypress/groups/create.php:205
+#: ../buddypress/groups/single/admin.php:172
+#: ../buddypress/members/single/profile/change-avatar.php:36
 msgid "Upload Image"
 msgstr ""
 
-#: ../buddypress/groups/create.php:150
-msgid "To skip the avatar upload process, hit the \"Next Step\" button."
+#: ../buddypress/groups/create.php:209
+msgid ""
+"To skip the group profile photo upload process, hit the \"Next Step\" button."
 msgstr ""
 
-#: ../buddypress/groups/create.php:157
-msgid "Crop Group Avatar"
+#: ../buddypress/groups/create.php:224
+msgid "Crop Group Profile Photo"
 msgstr ""
 
-#: ../buddypress/groups/create.php:159
-#: ../buddypress/groups/single/admin.php:151
-#: ../buddypress/members/single/profile/change-avatar.php:33
-msgid "Avatar to crop"
+#: ../buddypress/groups/create.php:226
+#: ../buddypress/groups/single/admin.php:200
+#: ../buddypress/members/single/profile/change-avatar.php:51
+msgid "Profile photo to crop"
 msgstr ""
 
-#: ../buddypress/groups/create.php:162
-#: ../buddypress/groups/single/admin.php:154
-#: ../buddypress/members/single/profile/change-avatar.php:36
-msgid "Avatar preview"
+#: ../buddypress/groups/create.php:229
+#: ../buddypress/groups/single/admin.php:203
+#: ../buddypress/members/single/profile/change-avatar.php:54
+msgid "Profile photo preview"
 msgstr ""
 
-#: ../buddypress/groups/create.php:165
-#: ../buddypress/groups/single/admin.php:157
-#: ../buddypress/members/single/profile/change-avatar.php:39
+#: ../buddypress/groups/create.php:232
+#: ../buddypress/groups/single/admin.php:206
+#: ../buddypress/members/single/profile/change-avatar.php:57
 msgid "Crop Image"
 msgstr ""
 
-#: ../buddypress/groups/create.php:204
-#: ../buddypress/groups/single/send-invites.php:22
+#: ../buddypress/groups/create.php:270
+#: ../buddypress/groups/single/admin.php:234
+msgid "The Cover Image will be used to customize the header of your group."
+msgstr ""
+
+#: ../buddypress/groups/create.php:316
 msgid "Select people to invite from your friends list."
 msgstr ""
 
-#: ../buddypress/groups/create.php:222
-#: ../buddypress/groups/single/send-invites.php:42
+#: ../buddypress/groups/create.php:334
+#: ../buddypress/groups/single/invites-loop.php:74
 msgid "Remove Invite"
 msgstr ""
 
-#: ../buddypress/groups/create.php:239
-#: ../buddypress/groups/single/send-invites.php:73
+#: ../buddypress/groups/create.php:351
 msgid ""
 "Once you have built up friend connections you will be able to invite others "
 "to your group."
 msgstr ""
 
-#: ../buddypress/groups/create.php:261
+#: ../buddypress/groups/create.php:396
 msgid "Back to Previous Step"
 msgstr ""
 
-#: ../buddypress/groups/create.php:268
+#: ../buddypress/groups/create.php:403
 msgid "Next Step"
 msgstr ""
 
-#: ../buddypress/groups/create.php:275
+#: ../buddypress/groups/create.php:410
 msgid "Create Group and Continue"
 msgstr ""
 
-#: ../buddypress/groups/create.php:282
+#: ../buddypress/groups/create.php:417
 msgid "Finish"
 msgstr ""
 
-#: ../buddypress/groups/groups-loop.php:47
-#: ../buddypress/groups/single/group-header.php:42
+#: ../buddypress/groups/groups-loop.php:62
+#: ../buddypress/groups/single/cover-image-header.php:62
+#: ../buddypress/groups/single/group-header.php:71
 #, php-format
 msgid "active %s"
 msgstr ""
 
-#: ../buddypress/groups/groups-loop.php:95
+#: ../buddypress/groups/groups-loop.php:131
 msgid "There were no groups found."
 msgstr ""
 
-#: ../buddypress/groups/index.php:19
+#: ../buddypress/groups/index.php:49
 #, php-format
-msgid "All Groups <span>%s</span>"
+msgid "All Groups %s"
 msgstr ""
 
-#: ../buddypress/groups/index.php:40
-#: ../buddypress/members/single/groups.php:23
+#: ../buddypress/groups/index.php:84 ../buddypress/members/single/groups.php:22
 msgid "Most Members"
 msgstr ""
 
-#: ../buddypress/groups/index.php:41
-#: ../buddypress/members/single/groups.php:24
+#: ../buddypress/groups/index.php:85 ../buddypress/members/single/groups.php:23
 msgid "Newly Created"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:26
+#: ../buddypress/groups/single/admin.php:56
 msgid "Notify group members of these changes via email"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:32
-#: ../buddypress/groups/single/admin.php:117
-#: ../buddypress/groups/single/forum/edit.php:58
-#: ../buddypress/groups/single/forum/edit.php:74
-#: ../buddypress/members/single/profile/edit.php:148
-#: ../buddypress/members/single/settings/general.php:22
-#: ../buddypress/members/single/settings/notifications.php:11
+#: ../buddypress/groups/single/admin.php:69
+#: ../buddypress/groups/single/admin.php:157
+#: ../buddypress/groups/single/forum/edit.php:92
+#: ../buddypress/groups/single/forum/edit.php:123
+#: ../buddypress/members/single/profile/edit.php:105
+#: ../buddypress/members/single/settings/general.php:40
+#: ../buddypress/members/single/settings/notifications.php:34
 msgid "Save Changes"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:137
-msgid ""
-"If you'd like to remove the existing avatar but not upload a new one, please "
-"use the delete avatar button."
+#: ../buddypress/groups/single/admin.php:198
+msgid "Crop Profile Photo"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:139
-#: ../buddypress/members/single/profile/change-avatar.php:24
-msgid "Delete Avatar"
+#: ../buddypress/groups/single/admin.php:223
+#: ../buddypress/members/single/profile/change-cover-image.php:11
+msgid "Change Cover Image"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:149
-msgid "Crop Avatar"
-msgstr ""
-
-#: ../buddypress/groups/single/admin.php:177
+#: ../buddypress/groups/single/admin.php:262
 msgid "Administrators"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:185
-#: ../buddypress/groups/single/admin.php:212
+#: ../buddypress/groups/single/admin.php:270
+#: ../buddypress/groups/single/admin.php:297
 #, php-format
 msgid "Profile picture of %s"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:190
-#: ../buddypress/groups/single/admin.php:217
+#: ../buddypress/groups/single/admin.php:275
+#: ../buddypress/groups/single/admin.php:302
 msgid "Demote to Member"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:205
+#: ../buddypress/groups/single/admin.php:290
 msgid "Moderators"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:216
-#: ../buddypress/groups/single/admin.php:272
+#: ../buddypress/groups/single/admin.php:301
+#: ../buddypress/groups/single/admin.php:357
 msgid "Promote to Admin"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:231
+#: ../buddypress/groups/single/admin.php:316
 msgid "Members"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:260
+#: ../buddypress/groups/single/admin.php:345
 msgid "(banned)"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:266
+#: ../buddypress/groups/single/admin.php:351
 msgid "Unban this member"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:266
+#: ../buddypress/groups/single/admin.php:351
 msgid "Remove Ban"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:270
+#: ../buddypress/groups/single/admin.php:355
 msgid "Kick and ban this member"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:270
+#: ../buddypress/groups/single/admin.php:355
 msgid "Kick &amp; Ban"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:271
+#: ../buddypress/groups/single/admin.php:356
 msgid "Promote to Mod"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:276
+#: ../buddypress/groups/single/admin.php:361
 msgid "Remove this member"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:276
+#: ../buddypress/groups/single/admin.php:361
 msgid "Remove from group"
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:290
-#: ../buddypress/groups/single/members.php:87
+#: ../buddypress/groups/single/admin.php:382
 msgid "This group has no members."
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:320
-#: ../buddypress/members/single/friends/requests.php:37
-#: ../buddypress/members/single/groups/invites.php:23
-msgid "Accept"
-msgstr ""
-
-#: ../buddypress/groups/single/admin.php:322
-#: ../buddypress/members/single/friends/requests.php:38
-#: ../buddypress/members/single/groups/invites.php:24
-msgid "Reject"
-msgstr ""
-
-#: ../buddypress/groups/single/admin.php:335
-msgid "There are no pending membership requests."
-msgstr ""
-
-#: ../buddypress/groups/single/admin.php:352
+#: ../buddypress/groups/single/admin.php:453
 msgid ""
 "WARNING: Deleting this group will completely remove ALL content associated "
 "with it. There is no way back, please be careful with this option."
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:355
+#: ../buddypress/groups/single/admin.php:456
 msgid "I understand the consequences of deleting this group."
 msgstr ""
 
-#: ../buddypress/groups/single/admin.php:360
+#: ../buddypress/groups/single/admin.php:468
 msgid "Delete Group"
 msgstr ""
 
-#: ../buddypress/groups/single/forum.php:19
+#: ../buddypress/groups/single/cover-image-header.php:73
+#: ../buddypress/groups/single/group-header.php:22
+msgid "Group Admins"
+msgstr ""
+
+#: ../buddypress/groups/single/cover-image-header.php:93
+#: ../buddypress/groups/single/group-header.php:42
+msgid "Group Mods"
+msgstr ""
+
+#: ../buddypress/groups/single/forum.php:30
 msgid "New Topic"
 msgstr ""
 
-#: ../buddypress/groups/single/forum.php:27
-#: ../buddypress/groups/single/forum/edit.php:16
-#: ../buddypress/groups/single/forum/topic.php:17
+#: ../buddypress/groups/single/forum.php:38
+#: ../buddypress/groups/single/forum/edit.php:29
+#: ../buddypress/groups/single/forum/topic.php:30
 msgid "Forum Directory"
 msgstr ""
 
-#: ../buddypress/groups/single/forum.php:69
+#: ../buddypress/groups/single/forum.php:100
 msgid "You will auto join this group when you start a new topic."
 msgstr ""
 
-#: ../buddypress/groups/single/forum.php:73
+#: ../buddypress/groups/single/forum.php:104
 msgid "Post a New Topic:"
 msgstr ""
 
-#: ../buddypress/groups/single/forum/edit.php:25
+#: ../buddypress/groups/single/forum/edit.php:38
 msgid "Edit:"
 msgstr ""
 
-#: ../buddypress/groups/single/forum/edit.php:87
+#: ../buddypress/groups/single/forum/edit.php:111
+msgid "Edit text"
+msgstr ""
+
+#: ../buddypress/groups/single/forum/edit.php:136
 msgid "This topic does not exist."
 msgstr ""
 
-#: ../buddypress/groups/single/forum/topic.php:9
+#: ../buddypress/groups/single/forum/topic.php:22
 msgid "New Reply"
 msgstr ""
 
-#: ../buddypress/groups/single/forum/topic.php:32
+#: ../buddypress/groups/single/forum/topic.php:45
 msgid "Topic tags:"
 msgstr ""
 
-#: ../buddypress/groups/single/forum/topic.php:81
+#: ../buddypress/groups/single/forum/topic.php:108
 #, php-format
 msgid "%1$s said %2$s:"
 msgstr ""
 
-#: ../buddypress/groups/single/forum/topic.php:119
+#: ../buddypress/groups/single/forum/topic.php:160
 msgid "There are no posts for this topic."
 msgstr ""
 
-#: ../buddypress/groups/single/forum/topic.php:134
+#: ../buddypress/groups/single/forum/topic.php:175
 msgid "You will auto join this group when you reply to this topic."
 msgstr ""
 
-#: ../buddypress/groups/single/forum/topic.php:139
+#: ../buddypress/groups/single/forum/topic.php:187
 msgid "Add a reply:"
 msgstr ""
 
-#: ../buddypress/groups/single/forum/topic.php:144
+#: ../buddypress/groups/single/forum/topic.php:193
 msgid "Post Reply"
 msgstr ""
 
-#: ../buddypress/groups/single/forum/topic.php:155
+#: ../buddypress/groups/single/forum/topic.php:211
 msgid "This topic is closed, replies are no longer accepted."
 msgstr ""
 
-#: ../buddypress/groups/single/group-header.php:11
-msgid "Group Admins"
+#: ../buddypress/groups/single/invites-loop.php:110
+msgid "Select friends to invite."
 msgstr ""
 
-#: ../buddypress/groups/single/group-header.php:20
-msgid "Group Mods"
+#: ../buddypress/groups/single/members.php:131
+msgid "No members were found."
 msgstr ""
 
-#: ../buddypress/groups/single/request-membership.php:4
+#: ../buddypress/groups/single/request-membership.php:17
 #, php-format
 msgid "You are requesting to become a member of the group '%s'."
 msgstr ""
 
-#: ../buddypress/groups/single/request-membership.php:7
+#: ../buddypress/groups/single/request-membership.php:20
 msgid "Comments (optional)"
 msgstr ""
 
-#: ../buddypress/groups/single/request-membership.php:12
+#: ../buddypress/groups/single/request-membership.php:32
 msgid "Send Request"
 msgstr ""
 
-#: ../buddypress/groups/single/send-invites.php:60
+#: ../buddypress/groups/single/requests-loop.php:48
+#: ../buddypress/members/single/friends/requests.php:57
+#: ../buddypress/members/single/groups/invites.php:45
+msgid "Accept"
+msgstr ""
+
+#: ../buddypress/groups/single/requests-loop.php:50
+#: ../buddypress/members/single/friends/requests.php:58
+#: ../buddypress/members/single/groups/invites.php:46
+msgid "Reject"
+msgstr ""
+
+#: ../buddypress/groups/single/requests-loop.php:86
+msgid "There are no pending membership requests."
+msgstr ""
+
+#: ../buddypress/groups/single/send-invites.php:28
 msgid "Send Invites"
 msgstr ""
 
-#: ../buddypress/members/activate.php:14
+#: ../buddypress/groups/single/send-invites.php:43
+msgid "Group invitations can only be extended to friends."
+msgstr ""
+
+#: ../buddypress/groups/single/send-invites.php:44
+msgid ""
+"Once you've made some friendships, you'll be able to invite those members to "
+"this group."
+msgstr ""
+
+#: ../buddypress/groups/single/send-invites.php:52
+msgid "All of your friends already belong to this group."
+msgstr ""
+
+#: ../buddypress/members/activate.php:41
 msgid ""
 "Your account was activated successfully! Your account details have been sent "
 "to you in a separate email."
 msgstr ""
 
-#: ../buddypress/members/activate.php:16
+#: ../buddypress/members/activate.php:43
 #, php-format
 msgid ""
 "Your account was activated successfully! You can now <a href=\"%s\">log in</"
 "a> with the username and password you provided when you signed up."
 msgstr ""
 
-#: ../buddypress/members/activate.php:21
+#: ../buddypress/members/activate.php:48
 msgid "Please provide a valid activation key."
 msgstr ""
 
-#: ../buddypress/members/activate.php:25
+#: ../buddypress/members/activate.php:52
 msgid "Activation Key:"
 msgstr ""
 
-#: ../buddypress/members/activate.php:29
+#: ../buddypress/members/activate.php:56
 msgid "Activate"
 msgstr ""
 
-#: ../buddypress/members/index.php:38
-#: ../buddypress/members/single/friends.php:23
+#: ../buddypress/members/index.php:86
+#: ../buddypress/members/single/friends.php:22
 msgid "Newest Registered"
 msgstr ""
 
-#: ../buddypress/members/members-loop.php:108
+#: ../buddypress/members/members-loop.php:142
 msgid "Sorry, no members were found."
 msgstr ""
 
-#: ../buddypress/members/register.php:13
+#: ../buddypress/members/register.php:40
 msgid "User registration is currently not allowed."
 msgstr ""
 
-#: ../buddypress/members/register.php:22
+#: ../buddypress/members/register.php:59
 msgid ""
 "Registering for this site is easy. Just fill in the fields below, and we'll "
 "get a new account set up for you in no time."
 msgstr ""
 
-#: ../buddypress/members/register.php:30
+#: ../buddypress/members/register.php:74
 msgid "Account Details"
 msgstr ""
 
-#: ../buddypress/members/register.php:32
+#: ../buddypress/members/register.php:76
 msgid "Username"
 msgstr ""
 
-#: ../buddypress/members/register.php:32 ../buddypress/members/register.php:36
-#: ../buddypress/members/register.php:40 ../buddypress/members/register.php:44
-#: ../buddypress/members/register.php:71 ../buddypress/members/register.php:79
-#: ../buddypress/members/register.php:87 ../buddypress/members/register.php:97
-#: ../buddypress/members/register.php:108
-#: ../buddypress/members/register.php:123
-#: ../buddypress/members/register.php:134
-#: ../buddypress/members/register.php:207
-#: ../buddypress/members/register.php:216
-#: ../buddypress/members/single/profile/edit.php:26
-#: ../buddypress/members/single/profile/edit.php:33
-#: ../buddypress/members/single/profile/edit.php:40
-#: ../buddypress/members/single/profile/edit.php:49
-#: ../buddypress/members/single/profile/edit.php:67
-#: ../buddypress/members/single/profile/edit.php:83
-#: ../buddypress/members/single/profile/edit.php:93
+#: ../buddypress/members/register.php:76 ../buddypress/members/register.php:87
+#: ../buddypress/members/register.php:98 ../buddypress/members/register.php:110
+#: ../buddypress/members/register.php:270
+#: ../buddypress/members/register.php:286
 msgid "(required)"
 msgstr ""
 
-#: ../buddypress/members/register.php:36
+#: ../buddypress/members/register.php:87
 msgid "Email Address"
 msgstr ""
 
-#: ../buddypress/members/register.php:40
+#: ../buddypress/members/register.php:98
 msgid "Choose a Password"
 msgstr ""
 
-#: ../buddypress/members/register.php:44
+#: ../buddypress/members/register.php:110
 msgid "Confirm Password"
 msgstr ""
 
-#: ../buddypress/members/register.php:60
+#: ../buddypress/members/register.php:156
 msgid "Profile Details"
 msgstr ""
 
-#: ../buddypress/members/register.php:114
+#: ../buddypress/members/register.php:180
+#: ../buddypress/members/register.php:201
 #: ../buddypress/members/single/profile/edit.php:58
-#: ../buddypress/members/single/profile/edit.php:73
-msgid "Clear"
-msgstr ""
-
-#: ../buddypress/members/register.php:156
-#: ../buddypress/members/register.php:171
-#: ../buddypress/members/single/profile/edit.php:120
-#: ../buddypress/members/single/profile/edit.php:134
+#: ../buddypress/members/single/profile/edit.php:78
 #, php-format
-msgid ""
-"This field can be seen by: <span class=\"current-visibility-level\">%s</span>"
+msgid "This field can be seen by: %s"
 msgstr ""
 
-#: ../buddypress/members/register.php:161
-#: ../buddypress/members/single/profile/edit.php:125
+#: ../buddypress/members/register.php:189
+#: ../buddypress/members/single/profile/edit.php:67
 msgid "Who can see this field?"
 msgstr ""
 
-#: ../buddypress/members/register.php:166
-#: ../buddypress/members/single/profile/edit.php:130
+#: ../buddypress/members/register.php:194
+#: ../buddypress/members/single/profile/edit.php:72
 msgid "Close"
 msgstr ""
 
-#: ../buddypress/members/register.php:201
+#: ../buddypress/members/register.php:264
 msgid "Blog Details"
 msgstr ""
 
-#: ../buddypress/members/register.php:203
+#: ../buddypress/members/register.php:266
 msgid "Yes, I'd like to create a new site"
 msgstr ""
 
-#: ../buddypress/members/register.php:207
+#: ../buddypress/members/register.php:270
 msgid "Blog URL"
 msgstr ""
 
-#: ../buddypress/members/register.php:216
+#: ../buddypress/members/register.php:286
 msgid "Site Title"
 msgstr ""
 
-#: ../buddypress/members/register.php:220
+#: ../buddypress/members/register.php:297
 msgid ""
 "I would like my site to appear in search engines, and in public listings "
 "around this network."
 msgstr ""
 
-#: ../buddypress/members/register.php:223
+#: ../buddypress/members/register.php:307
 msgid "Yes"
 msgstr ""
 
-#: ../buddypress/members/register.php:224
+#: ../buddypress/members/register.php:308
 msgid "No"
 msgstr ""
 
-#: ../buddypress/members/register.php:237
+#: ../buddypress/members/register.php:344
 msgid "Complete Sign Up"
 msgstr ""
 
-#: ../buddypress/members/register.php:252
+#: ../buddypress/members/register.php:376
 msgid ""
 "You have successfully created your account! To begin using this site you "
 "will need to activate your account via the email we have just sent to your "
 "address."
 msgstr ""
 
-#: ../buddypress/members/register.php:254
+#: ../buddypress/members/register.php:378
 msgid ""
 "You have successfully created your account! Please log in using the username "
 "and password you have just created."
 msgstr ""
 
-#: ../buddypress/members/single/friends/requests.php:68
+#: ../buddypress/members/single/friends/requests.php:102
 msgid "You have no pending friendship requests."
 msgstr ""
 
-#: ../buddypress/members/single/groups/invites.php:14
-#, php-format
-msgid "%s members"
-msgstr ""
-
-#: ../buddypress/members/single/groups/invites.php:37
+#: ../buddypress/members/single/groups/invites.php:66
 msgid "You have no outstanding group invites."
 msgstr ""
 
-#: ../buddypress/members/single/messages/compose.php:5
+#: ../buddypress/members/single/messages/compose.php:21
 msgid "Send To (Username or Friend's Name)"
 msgstr ""
 
-#: ../buddypress/members/single/messages/compose.php:14
+#: ../buddypress/members/single/messages/compose.php:30
 msgid "This is a notice to all users."
 msgstr ""
 
-#: ../buddypress/members/single/messages/compose.php:17
+#: ../buddypress/members/single/messages/compose.php:33
+#: ../buddypress/members/single/messages/messages-loop.php:56
 msgid "Subject"
 msgstr ""
 
-#: ../buddypress/members/single/messages/compose.php:20
+#: ../buddypress/members/single/messages/compose.php:36
 msgid "Message"
 msgstr ""
 
-#: ../buddypress/members/single/messages/compose.php:28
+#: ../buddypress/members/single/messages/compose.php:51
 msgid "Send Message"
 msgstr ""
 
-#: ../buddypress/members/single/messages/messages-loop.php:32
+#: ../buddypress/members/single/messages/messages-loop.php:54
+#: ../buddypress/members/single/notifications/notifications-loop.php:15
+msgid "Select all"
+msgstr ""
+
+#: ../buddypress/members/single/messages/messages-loop.php:55
+msgid "From"
+msgstr ""
+
+#: ../buddypress/members/single/messages/messages-loop.php:71
+msgid "Star"
+msgstr ""
+
+#: ../buddypress/members/single/messages/messages-loop.php:74
+#: ../buddypress/members/single/notifications/notifications-loop.php:18
+msgid "Actions"
+msgstr ""
+
+#: ../buddypress/members/single/messages/messages-loop.php:84
+msgid "Select this message"
+msgstr ""
+
+#: ../buddypress/members/single/messages/messages-loop.php:90
 msgid "From:"
 msgstr ""
 
-#: ../buddypress/members/single/messages/messages-loop.php:37
+#: ../buddypress/members/single/messages/messages-loop.php:97
 msgid "To:"
 msgstr ""
 
-#: ../buddypress/members/single/messages/messages-loop.php:43
+#: ../buddypress/members/single/messages/messages-loop.php:104
 msgid "View Message"
 msgstr ""
 
-#: ../buddypress/members/single/messages/messages-loop.php:51
-#: ../buddypress/members/single/messages/notices-loop.php:43
-#: ../buddypress/members/single/messages/single.php:24
-msgid "Delete Message"
+#: ../buddypress/members/single/messages/messages-loop.php:128
+msgid "Read"
 msgstr ""
 
-#: ../buddypress/members/single/messages/messages-loop.php:69
+#: ../buddypress/members/single/messages/messages-loop.php:130
+msgid "Unread"
+msgstr ""
+
+#: ../buddypress/members/single/messages/messages-loop.php:171
 msgid "Sorry, no messages were found."
 msgstr ""
 
-#: ../buddypress/members/single/messages/notices-loop.php:36
+#: ../buddypress/members/single/messages/notices-loop.php:63
 msgid "Sent:"
 msgstr ""
 
-#: ../buddypress/members/single/messages/notices-loop.php:54
+#: ../buddypress/members/single/messages/notices-loop.php:77
+msgid "Delete Message"
+msgstr ""
+
+#: ../buddypress/members/single/messages/notices-loop.php:95
 msgid "Sorry, no notices were found."
 msgstr ""
 
-#: ../buddypress/members/single/messages/single.php:14
+#: ../buddypress/members/single/messages/single.php:30
 msgid "You are alone in this conversation."
 msgstr ""
 
-#: ../buddypress/members/single/messages/single.php:18
+#: ../buddypress/members/single/messages/single.php:34
+#, php-format
+msgid "Conversation between %s recipients."
+msgstr ""
+
+#: ../buddypress/members/single/messages/single.php:38
 #, php-format
 msgid "Conversation between %s and you."
 msgstr ""
 
-#: ../buddypress/members/single/messages/single.php:86
+#: ../buddypress/members/single/messages/single.php:44
+msgid "Delete Conversation"
+msgstr ""
+
+#: ../buddypress/members/single/messages/single.php:92
 msgid "Send a Reply"
 msgstr ""
 
-#: ../buddypress/members/single/messages/single.php:102
+#: ../buddypress/members/single/messages/single.php:113
+msgid "Reply to Message"
+msgstr ""
+
+#: ../buddypress/members/single/messages/single.php:126
 msgid "Send Reply"
 msgstr ""
 
-#: ../buddypress/members/single/profile/change-avatar.php:1
-msgid "Change Avatar"
+#: ../buddypress/members/single/notifications/feedback-no-notifications.php:16
+msgid "You have no unread notifications."
 msgstr ""
 
-#: ../buddypress/members/single/profile/change-avatar.php:7
+#: ../buddypress/members/single/notifications/feedback-no-notifications.php:20
+msgid "This member has no unread notifications."
+msgstr ""
+
+#: ../buddypress/members/single/notifications/feedback-no-notifications.php:28
+msgid "You have no notifications."
+msgstr ""
+
+#: ../buddypress/members/single/notifications/feedback-no-notifications.php:32
+msgid "This member has no notifications."
+msgstr ""
+
+#: ../buddypress/members/single/notifications/notifications-loop.php:16
+msgid "Notification"
+msgstr ""
+
+#: ../buddypress/members/single/notifications/notifications-loop.php:17
+msgid "Date Received"
+msgstr ""
+
+#: ../buddypress/members/single/notifications/notifications-loop.php:28
+msgid "Select this notification"
+msgstr ""
+
+#: ../buddypress/members/single/profile/change-avatar.php:11
+msgid "Change Profile Photo"
+msgstr ""
+
+#: ../buddypress/members/single/profile/change-avatar.php:24
 msgid ""
-"Your avatar will be used on your profile and throughout the site. If there "
-"is a <a href=\"http://gravatar.com\">Gravatar</a> associated with your "
+"Your profile photo will be used on your profile and throughout the site. If "
+"there is a <a href=\"http://gravatar.com\">Gravatar</a> associated with your "
 "account email we will use that, or you can upload an image from your "
 "computer."
 msgstr ""
 
-#: ../buddypress/members/single/profile/change-avatar.php:14
+#: ../buddypress/members/single/profile/change-avatar.php:31
 msgid ""
 "Click below to select a JPG, GIF or PNG format photo from your computer and "
 "then click 'Upload Image' to proceed."
 msgstr ""
 
-#: ../buddypress/members/single/profile/change-avatar.php:23
+#: ../buddypress/members/single/profile/change-avatar.php:42
+msgid "Delete My Profile Photo"
+msgstr ""
+
+#: ../buddypress/members/single/profile/change-avatar.php:49
+msgid "Crop Your New Profile Photo"
+msgstr ""
+
+#: ../buddypress/members/single/profile/change-avatar.php:81
 msgid ""
-"If you'd like to delete your current avatar but not upload a new one, please "
-"use the delete avatar button."
+"Your profile photo will be used on your profile and throughout the site. To "
+"change your profile photo, please create an account with <a href=\"http://"
+"gravatar.com\">Gravatar</a> using the same email address as you used to "
+"register with this site."
 msgstr ""
 
-#: ../buddypress/members/single/profile/change-avatar.php:24
-msgid "Delete My Avatar"
+#: ../buddypress/members/single/profile/change-cover-image.php:22
+msgid "Your Cover Image will be used to customize the header of your profile."
 msgstr ""
 
-#: ../buddypress/members/single/profile/change-avatar.php:31
-msgid "Crop Your New Avatar"
-msgstr ""
-
-#: ../buddypress/members/single/profile/change-avatar.php:55
-msgid ""
-"Your avatar will be used on your profile and throughout the site. To change "
-"your avatar, please create an account with <a href=\"http://gravatar.com"
-"\">Gravatar</a> using the same email address as you used to register with "
-"this site."
-msgstr ""
-
-#: ../buddypress/members/single/profile/edit.php:10
+#: ../buddypress/members/single/profile/edit.php:26
 #, php-format
 msgid "Editing '%s' Profile Group"
 msgstr ""
 
-#: ../buddypress/members/single/profile/edit.php:120
+#: ../buddypress/members/single/profile/edit.php:62
 msgid "Change"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:8
+#: ../buddypress/members/single/profile/profile-wp.php:28
 #, php-format
 msgid "%s's Profile"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:15 ../comments.php:95
+#: ../buddypress/members/single/profile/profile-wp.php:35 ../comments.php:95
 msgid "Name"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:24
+#: ../buddypress/members/single/profile/profile-wp.php:44
 msgid "About Me"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:33 ../comments.php:99
+#: ../buddypress/members/single/profile/profile-wp.php:53 ../comments.php:99
 msgid "Website"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:42
+#: ../buddypress/members/single/profile/profile-wp.php:62
 msgid "Jabber"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:51
+#: ../buddypress/members/single/profile/profile-wp.php:71
 msgid "AOL Messenger"
 msgstr ""
 
-#: ../buddypress/members/single/profile/profile-wp.php:60
+#: ../buddypress/members/single/profile/profile-wp.php:80
 msgid "Yahoo Messenger"
 msgstr ""
 
-#: ../buddypress/members/single/settings/capabilities.php:9
+#: ../buddypress/members/single/settings/capabilities.php:25
 msgid "This user is a spammer."
 msgstr ""
 
-#: ../buddypress/members/single/settings/capabilities.php:13
+#: ../buddypress/members/single/settings/capabilities.php:29
 msgid "Save"
 msgstr ""
 
-#: ../buddypress/members/single/settings/delete-account.php:7
+#: ../buddypress/members/single/settings/delete-account.php:16
 msgid ""
 "Deleting your account will delete all of the content you have created. It "
 "will be completely irrecoverable."
 msgstr ""
 
-#: ../buddypress/members/single/settings/delete-account.php:11
+#: ../buddypress/members/single/settings/delete-account.php:20
 msgid ""
 "Deleting this account will delete all of the content it has created. It will "
 "be completely irrecoverable."
 msgstr ""
 
-#: ../buddypress/members/single/settings/delete-account.php:23
+#: ../buddypress/members/single/settings/delete-account.php:39
 msgid "I understand the consequences."
 msgstr ""
 
-#: ../buddypress/members/single/settings/delete-account.php:27
+#: ../buddypress/members/single/settings/delete-account.php:43
 msgid "Delete Account"
 msgstr ""
 
-#: ../buddypress/members/single/settings/general.php:7
+#: ../buddypress/members/single/settings/general.php:16
 msgid ""
 "Current Password <span>(required to update email or change current "
 "password)</span>"
 msgstr ""
 
-#: ../buddypress/members/single/settings/general.php:8
+#: ../buddypress/members/single/settings/general.php:17
 msgid "Password Lost and Found"
 msgstr ""
 
-#: ../buddypress/members/single/settings/general.php:8
+#: ../buddypress/members/single/settings/general.php:17
 msgid "Lost your password?"
 msgstr ""
 
-#: ../buddypress/members/single/settings/general.php:12
+#: ../buddypress/members/single/settings/general.php:21
 msgid "Account Email"
 msgstr ""
 
-#: ../buddypress/members/single/settings/general.php:15
+#: ../buddypress/members/single/settings/general.php:24
 msgid "Change Password <span>(leave blank for no change)</span>"
 msgstr ""
 
-#: ../buddypress/members/single/settings/general.php:16
+#: ../buddypress/members/single/settings/general.php:25
 msgid "New Password"
 msgstr ""
 
-#: ../buddypress/members/single/settings/general.php:17
+#: ../buddypress/members/single/settings/general.php:27
+#: ../buddypress/members/single/settings/general.php:28
 msgid "Repeat New Password"
 msgstr ""
 
-#: ../buddypress/members/single/settings/notifications.php:4
-msgid "Send a notification by email when:"
+#: ../buddypress/members/single/settings/notifications.php:13
+msgid "Send an email notice when:"
+msgstr ""
+
+#: ../buddypress/members/single/settings/profile.php:28
+msgid "Visibility"
+msgstr ""
+
+#: ../buddypress/members/single/settings/profile.php:62
+msgid "Save Settings"
 msgstr ""
 
 #: ../comments.php:23
@@ -1153,33 +1256,43 @@ msgstr ""
 msgid "Your comment"
 msgstr ""
 
-#: ../functions.php:930
+#: ../functions.php:1589
 msgid "Above sidebar"
 msgstr ""
 
-#: ../functions.php:931
+#: ../functions.php:1590
 msgid "Drag widgets into here to include them above the sidebar on your site."
 msgstr ""
 
-#: ../functions.php:936
+#: ../functions.php:1595
 msgid "Below sidebar"
 msgstr ""
 
-#: ../functions.php:937
+#: ../functions.php:1596
 msgid "Drag widgets into here to include them below the sidebar on your site."
+msgstr ""
+
+#: ../functions.php:1639
+msgid "Primary navigation"
 msgstr ""
 
 #: ../loop-content-404.php:13
 msgid "Sorry"
 msgstr ""
 
-#: ../loop-content-no-search-results.php:20
-msgid "No search value entered"
-msgstr ""
-
+#: ../loop-content-archive.php:15 ../loop-content-search.php:23
 #: ../loop-content.php:15
 #, php-format
 msgid "Read %s"
+msgstr ""
+
+#: ../loop-content-archive.php:21 ../loop-content-search.php:27
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#: ../loop-content-no-search-results.php:20
+msgid "No search value entered"
 msgstr ""
 
 #: ../loop-content.php:18
@@ -1261,341 +1374,344 @@ msgstr ""
 msgid "Save settings"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:34
+#: ../wf-includes/wf-admin-functions.php:35
 msgid "Wonderflux main options"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:34
-#: ../wf-includes/wf-helper-functions.php:1035
+#: ../wf-includes/wf-admin-functions.php:35
+#: ../wf-includes/wf-helper-functions.php:1108
 msgid "Wonderflux"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:35
+#: ../wf-includes/wf-admin-functions.php:36
 msgid "Wonderflux Style Lab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:35
-msgid "Style Lab"
+#: ../wf-includes/wf-admin-functions.php:36
+msgid "WFX Stylelab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:36
-#: ../wf-includes/wf-admin-functions.php:46
+#: ../wf-includes/wf-admin-functions.php:37
+#: ../wf-includes/wf-admin-functions.php:48
 msgid "Wonderflux Advanced"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:36
-#: ../wf-includes/wf-admin-functions.php:90
-msgid "Advanced"
+#: ../wf-includes/wf-admin-functions.php:37
+msgid "WFX Advanced"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:37
-#: ../wf-includes/wf-admin-functions.php:47
+#: ../wf-includes/wf-admin-functions.php:38
+#: ../wf-includes/wf-admin-functions.php:49
 msgid "Wonderflux System Information"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:37
-msgid "System Information"
+#: ../wf-includes/wf-admin-functions.php:38
+msgid "WFX System info"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:38
-#: ../wf-includes/wf-admin-functions.php:48
+#: ../wf-includes/wf-admin-functions.php:39
+#: ../wf-includes/wf-admin-functions.php:50
 msgid "Wonderflux Options Backup"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:38
-msgid "Options Backup"
+#: ../wf-includes/wf-admin-functions.php:39
+msgid "WFX Backup"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:44
-#: ../wf-includes/wf-admin-functions.php:82
+#: ../wf-includes/wf-admin-functions.php:46
+#: ../wf-includes/wf-admin-functions.php:84
 msgid "Wonderflux Home"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:45
-#: ../wf-includes/wf-helper-functions.php:1033
+#: ../wf-includes/wf-admin-functions.php:47
+#: ../wf-includes/wf-helper-functions.php:1106
 msgid "Wonderflux Stylelab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:86
-#: ../wf-includes/wf-helper-functions.php:1037
+#: ../wf-includes/wf-admin-functions.php:88
+#: ../wf-includes/wf-helper-functions.php:1110
 msgid "Stylelab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:94
+#: ../wf-includes/wf-admin-functions.php:92
+msgid "Advanced"
+msgstr ""
+
+#: ../wf-includes/wf-admin-functions.php:96
 msgid "System"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:98
+#: ../wf-includes/wf-admin-functions.php:100
 msgid "Backup/Restore"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:103
+#: ../wf-includes/wf-admin-functions.php:105
 msgid "Settings updated successfully."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:104
+#: ../wf-includes/wf-admin-functions.php:106
 msgid ""
 "Import aborted - no settings changed. Sorry - looks like thats the wrong "
 "file you tried to import."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:105
+#: ../wf-includes/wf-admin-functions.php:107
 msgid "Import complete - Wonderflux theme settings restored."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:125
+#: ../wf-includes/wf-admin-functions.php:127
 msgid "Ooops, you could be doing so much more with Wonderflux!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:126
+#: ../wf-includes/wf-admin-functions.php:128
 msgid ""
 "Wonderflux is a theme framework. It can be directly activated like this and "
 "will work perfectly - but you are really missing out on all the cool stuff "
 "Wonderflux can do!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:128
+#: ../wf-includes/wf-admin-functions.php:130
 msgid "To get the most out of Wonderflux, you should take a quick read over"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:130
+#: ../wf-includes/wf-admin-functions.php:132
 msgid "Read the Wonderflux overview guide"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:132
+#: ../wf-includes/wf-admin-functions.php:134
 msgid "the Wonderflux introduction"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:134
+#: ../wf-includes/wf-admin-functions.php:136
 msgid ""
 "- also be sure to check out the documentation links below to learn about how "
 "to use the various aspects of Wonderflux."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:138
+#: ../wf-includes/wf-admin-functions.php:140
 msgid "You can also"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:140
+#: ../wf-includes/wf-admin-functions.php:142
 msgid "Download the free Girder Wonderflux child theme"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:142
+#: ../wf-includes/wf-admin-functions.php:144
 msgid "download the free example Wonderflux child theme call Girder"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:144
+#: ../wf-includes/wf-admin-functions.php:146
 msgid ""
 " - take a look at the layout code and especially the theme functions.php "
 "file for references on using Wonderflux."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:155
+#: ../wf-includes/wf-admin-functions.php:157
 msgid "Help and support"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:158
+#: ../wf-includes/wf-admin-functions.php:160
 msgid "Visit the Wonderflux guide"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:160
+#: ../wf-includes/wf-admin-functions.php:162
 msgid "The Wonderflux guide"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:162
+#: ../wf-includes/wf-admin-functions.php:164
 msgid ""
 "is the official (work in progress!) documentation site for Wonderflux. Click "
 "on the direct links below to find relevant content."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:186
+#: ../wf-includes/wf-admin-functions.php:188
 msgid "Select CSS layout system"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:187
+#: ../wf-includes/wf-admin-functions.php:189
 msgid "Vertical columns (number - inside site container)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:194
+#: ../wf-includes/wf-admin-functions.php:196
 msgid "Width of column (pixels)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:202
+#: ../wf-includes/wf-admin-functions.php:204
 msgid "Site container width unit"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:210
+#: ../wf-includes/wf-admin-functions.php:212
 msgid "Site container width (pixels)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:212
+#: ../wf-includes/wf-admin-functions.php:214
 msgid "Site container width (percent)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:215
+#: ../wf-includes/wf-admin-functions.php:217
 msgid "Site container position"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:216
+#: ../wf-includes/wf-admin-functions.php:218
 msgid ""
 "Media width (pixels - used as WordPress $content_width for auto-embedding "
 "YouTube etc)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:217
+#: ../wf-includes/wf-admin-functions.php:219
 msgid "Content width (relative size)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:218
+#: ../wf-includes/wf-admin-functions.php:220
 msgid "Sidebar width (relative size)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:219
+#: ../wf-includes/wf-admin-functions.php:221
 msgid "Sidebar display"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:220
+#: ../wf-includes/wf-admin-functions.php:222
 msgid "Sidebar position"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:221
+#: ../wf-includes/wf-admin-functions.php:223
 msgid "Page templates"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:222
+#: ../wf-includes/wf-admin-functions.php:224
 msgid "Document type"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:223
+#: ../wf-includes/wf-admin-functions.php:225
 msgid "Document language"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:224
+#: ../wf-includes/wf-admin-functions.php:226
 msgid "Document character set"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:225
+#: ../wf-includes/wf-admin-functions.php:227
 msgid "Facebook ID(s)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:226
+#: ../wf-includes/wf-admin-functions.php:228
 msgid "Facebook Application ID"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:252
+#: ../wf-includes/wf-admin-functions.php:254
 msgid "Sorry, update check not currently available."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:282
+#: ../wf-includes/wf-admin-functions.php:284
 msgid "update"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:284
+#: ../wf-includes/wf-admin-functions.php:286
 msgid "development"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:304
+#: ../wf-includes/wf-admin-functions.php:306
 msgid "Wonderflux framework update available!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:305
+#: ../wf-includes/wf-admin-functions.php:307
 #, php-format
 msgid "You are running v%1$s, the current latest release is v%2$s"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:307
+#: ../wf-includes/wf-admin-functions.php:309
 msgid ""
 "There is an update available to Wonderflux. Please read the update notes to "
 "check-up on how this may effect your theme BEFORE updating!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:308
+#: ../wf-includes/wf-admin-functions.php:310
 msgid "Download the latest Wonderflux update here"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:308
+#: ../wf-includes/wf-admin-functions.php:310
 msgid "download the latest Wonderflux update here"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:316
+#: ../wf-includes/wf-admin-functions.php:318
 msgid "Development version installed"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:317
+#: ../wf-includes/wf-admin-functions.php:319
 msgid "You are running a development version of Wonderflux, cool!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:317
+#: ../wf-includes/wf-admin-functions.php:319
 msgid "You should probably NOT be using this on live sites."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:318
+#: ../wf-includes/wf-admin-functions.php:320
 msgid ""
 "It may contain code thats not finished just yet, or new functionality that "
 "may conflict with your current Wonderflux child theme."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:319
+#: ../wf-includes/wf-admin-functions.php:321
 msgid "If you are not a developer, advanced designer or tester"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:320
+#: ../wf-includes/wf-admin-functions.php:322
 #, php-format
 msgid ""
 "you will probably be better off using <a href=\"%1$s\" title=\"%2$s\">%3$s</"
 "a>"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:320
+#: ../wf-includes/wf-admin-functions.php:322
 msgid "Download the latest stable Wonderflux release here"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:320
+#: ../wf-includes/wf-admin-functions.php:322
 msgid "the latest stable version of Wonderflux."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:340
+#: ../wf-includes/wf-admin-functions.php:342
 msgid "WF_THEME_FRAMEWORK_REPLACE documentation"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:340
+#: ../wf-includes/wf-admin-functions.php:342
 msgid "WF_THEME_FRAMEWORK_REPLACE"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:341
+#: ../wf-includes/wf-admin-functions.php:343
 msgid ""
 " - A Wonderflux theme constant that removes the core stylesheet CSS files."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:365
-#: ../wf-includes/wf-admin-functions.php:386
+#: ../wf-includes/wf-admin-functions.php:367
+#: ../wf-includes/wf-admin-functions.php:388
 msgid "Wonderflux documentation"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:365
+#: ../wf-includes/wf-admin-functions.php:367
 msgid "http://wonderflux.com/guide"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:366
+#: ../wf-includes/wf-admin-functions.php:368
 msgid " - All Wonderflux documentation and user guides."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:369
+#: ../wf-includes/wf-admin-functions.php:371
 msgid "Get involved!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:372
+#: ../wf-includes/wf-admin-functions.php:374
 msgid ""
 "A huge amount of resource has been poured into this project since it began "
 "in January 2010. If you have ideas on how Wonderflux could improve, why not "
 "think about contributing to the development of Wonderflux?"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:375
+#: ../wf-includes/wf-admin-functions.php:377
 msgid "Remember, Wonderflux is free, open source code just like WordPress"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:377
+#: ../wf-includes/wf-admin-functions.php:379
 msgid ""
 " - so your ideas can help make a great theme framework for the whole "
 "community to use. Some ideas on how you could help include bug hunting, "
@@ -1603,481 +1719,481 @@ msgid ""
 "more than welcome!"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:380
+#: ../wf-includes/wf-admin-functions.php:382
 msgid "GitHub code repository"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:381
+#: ../wf-includes/wf-admin-functions.php:383
 msgid ""
 "- Git development code repository (for developers and testers - NOT to be "
 "used on live sites!)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:383
+#: ../wf-includes/wf-admin-functions.php:385
 msgid "GitHub issue tracking list"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:384
+#: ../wf-includes/wf-admin-functions.php:386
 msgid "- Development list (for contributors, bug reports and feature requests)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:387
+#: ../wf-includes/wf-admin-functions.php:389
 msgid ""
 " - Official documentation site (API documentation and quick start guides)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:394
+#: ../wf-includes/wf-admin-functions.php:396
 msgid "Wonderflux Help - Main Options"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:395
+#: ../wf-includes/wf-admin-functions.php:397
 msgid "Wonderflux Help - Stylelab"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:396
+#: ../wf-includes/wf-admin-functions.php:398
 msgid "Wonderflux Help - Advanced"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:397
+#: ../wf-includes/wf-admin-functions.php:399
 msgid "Wonderflux Help - System"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:398
+#: ../wf-includes/wf-admin-functions.php:400
 msgid "Wonderflux Help - Backup"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:460
+#: ../wf-includes/wf-admin-functions.php:467
 msgid "Quick start guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:461
+#: ../wf-includes/wf-admin-functions.php:468
 msgid "Hook guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:462
+#: ../wf-includes/wf-admin-functions.php:469
 msgid "Function guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:463
+#: ../wf-includes/wf-admin-functions.php:470
 msgid "Filter guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:464
+#: ../wf-includes/wf-admin-functions.php:471
 msgid "Constant guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:465
+#: ../wf-includes/wf-admin-functions.php:472
 msgid "File guides"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:469
+#: ../wf-includes/wf-admin-functions.php:476
 msgid "Wonderflux help and documentation"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:471
+#: ../wf-includes/wf-admin-functions.php:478
 msgid " | "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:472
+#: ../wf-includes/wf-admin-functions.php:479
 msgid "View all Wonderflux "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:474
+#: ../wf-includes/wf-admin-functions.php:481
 msgid " (documented so far!)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:503
+#: ../wf-includes/wf-admin-functions.php:510
 msgid "Full"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:504
+#: ../wf-includes/wf-admin-functions.php:511
 msgid "Half"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:505
+#: ../wf-includes/wf-admin-functions.php:512
 msgid "1 Third"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:506
+#: ../wf-includes/wf-admin-functions.php:513
 msgid "- 2 Thirds"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:507
+#: ../wf-includes/wf-admin-functions.php:514
 msgid "1 Quarter"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:508
+#: ../wf-includes/wf-admin-functions.php:515
 msgid "- 2 Quarters"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:509
+#: ../wf-includes/wf-admin-functions.php:516
 msgid "- 3 Quarters"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:510
+#: ../wf-includes/wf-admin-functions.php:517
 msgid "1 Fifth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:511
+#: ../wf-includes/wf-admin-functions.php:518
 msgid "- 2 Fifths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:512
+#: ../wf-includes/wf-admin-functions.php:519
 msgid "- 3 Fifths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:513
+#: ../wf-includes/wf-admin-functions.php:520
 msgid "- 4 Fifths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:514
+#: ../wf-includes/wf-admin-functions.php:521
 msgid "1 Sixth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:515
+#: ../wf-includes/wf-admin-functions.php:522
 msgid "- 2 Sixths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:516
+#: ../wf-includes/wf-admin-functions.php:523
 msgid "- 3 Sixths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:517
+#: ../wf-includes/wf-admin-functions.php:524
 msgid "- 4 Sixths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:518
+#: ../wf-includes/wf-admin-functions.php:525
 msgid "- 5 Sixths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:519
+#: ../wf-includes/wf-admin-functions.php:526
 msgid "1 Seventh"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:520
+#: ../wf-includes/wf-admin-functions.php:527
 msgid "- 2 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:521
+#: ../wf-includes/wf-admin-functions.php:528
 msgid "- 3 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:522
+#: ../wf-includes/wf-admin-functions.php:529
 msgid "- 4 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:523
+#: ../wf-includes/wf-admin-functions.php:530
 msgid "- 5 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:524
+#: ../wf-includes/wf-admin-functions.php:531
 msgid "- 6 Sevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:525
+#: ../wf-includes/wf-admin-functions.php:532
 msgid "1 Eigth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:526
+#: ../wf-includes/wf-admin-functions.php:533
 msgid "- 2 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:527
+#: ../wf-includes/wf-admin-functions.php:534
 msgid "- 3 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:528
+#: ../wf-includes/wf-admin-functions.php:535
 msgid "- 4 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:529
+#: ../wf-includes/wf-admin-functions.php:536
 msgid "- 5 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:530
+#: ../wf-includes/wf-admin-functions.php:537
 msgid "- 6 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:531
+#: ../wf-includes/wf-admin-functions.php:538
 msgid "- 7 Eigths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:532
+#: ../wf-includes/wf-admin-functions.php:539
 msgid "1 Ninth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:533
+#: ../wf-includes/wf-admin-functions.php:540
 msgid "- 2 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:534
+#: ../wf-includes/wf-admin-functions.php:541
 msgid "- 3 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:535
+#: ../wf-includes/wf-admin-functions.php:542
 msgid "- 4 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:536
+#: ../wf-includes/wf-admin-functions.php:543
 msgid "- 5 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:537
+#: ../wf-includes/wf-admin-functions.php:544
 msgid "- 6 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:538
+#: ../wf-includes/wf-admin-functions.php:545
 msgid "- 7 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:539
+#: ../wf-includes/wf-admin-functions.php:546
 msgid "- 8 Ninths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:540
+#: ../wf-includes/wf-admin-functions.php:547
 msgid "1 Tenth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:541
+#: ../wf-includes/wf-admin-functions.php:548
 msgid "- 2 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:542
+#: ../wf-includes/wf-admin-functions.php:549
 msgid "- 3 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:543
+#: ../wf-includes/wf-admin-functions.php:550
 msgid "- 4 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:544
+#: ../wf-includes/wf-admin-functions.php:551
 msgid "- 5 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:545
+#: ../wf-includes/wf-admin-functions.php:552
 msgid "- 6 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:546
+#: ../wf-includes/wf-admin-functions.php:553
 msgid "- 7 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:547
+#: ../wf-includes/wf-admin-functions.php:554
 msgid "- 8 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:548
+#: ../wf-includes/wf-admin-functions.php:555
 msgid "- 9 Tenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:549
+#: ../wf-includes/wf-admin-functions.php:556
 msgid "1 Eleventh"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:550
+#: ../wf-includes/wf-admin-functions.php:557
 msgid "- 2 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:551
+#: ../wf-includes/wf-admin-functions.php:558
 msgid "- 3 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:552
+#: ../wf-includes/wf-admin-functions.php:559
 msgid "- 4 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:553
+#: ../wf-includes/wf-admin-functions.php:560
 msgid "- 5 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:554
+#: ../wf-includes/wf-admin-functions.php:561
 msgid "- 6 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:555
+#: ../wf-includes/wf-admin-functions.php:562
 msgid "- 7 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:556
+#: ../wf-includes/wf-admin-functions.php:563
 msgid "- 8 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:557
+#: ../wf-includes/wf-admin-functions.php:564
 msgid "- 9 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:558
+#: ../wf-includes/wf-admin-functions.php:565
 msgid "- 10 Elevenths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:559
+#: ../wf-includes/wf-admin-functions.php:566
 msgid "1 Twelveth"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:560
+#: ../wf-includes/wf-admin-functions.php:567
 msgid "- 2 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:561
+#: ../wf-includes/wf-admin-functions.php:568
 msgid "- 3 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:562
+#: ../wf-includes/wf-admin-functions.php:569
 msgid "- 4 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:563
+#: ../wf-includes/wf-admin-functions.php:570
 msgid "- 5 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:564
+#: ../wf-includes/wf-admin-functions.php:571
 msgid "- 6 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:565
+#: ../wf-includes/wf-admin-functions.php:572
 msgid "- 7 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:566
+#: ../wf-includes/wf-admin-functions.php:573
 msgid "- 8 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:567
+#: ../wf-includes/wf-admin-functions.php:574
 msgid "- 9 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:568
+#: ../wf-includes/wf-admin-functions.php:575
 msgid "- 10 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:569
+#: ../wf-includes/wf-admin-functions.php:576
 msgid "- 11 Twelveths"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:631
+#: ../wf-includes/wf-admin-functions.php:638
 msgid "CSS grid/column core configuration"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:633
+#: ../wf-includes/wf-admin-functions.php:640
 msgid ""
 "IMPORTANT: Core configuration options must be saved first before configuring "
 "other options."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:634
+#: ../wf-includes/wf-admin-functions.php:641
 msgid ""
 "Use percent for responsive (Wonderflux v2) system or pixels for legacy non-"
 "responsive (Wonderflux v1) system."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:638
+#: ../wf-includes/wf-admin-functions.php:645
 msgid "CSS grid/column settings"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:640
+#: ../wf-includes/wf-admin-functions.php:647
 msgid "Setup the dimensions of the CSS layout columns (grid system)."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:644
+#: ../wf-includes/wf-admin-functions.php:651
 msgid "Main content and sidebar settings"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:646
+#: ../wf-includes/wf-admin-functions.php:653
 msgid "Setup the dimensions of your main content area and sidebar."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:650
+#: ../wf-includes/wf-admin-functions.php:657
 msgid "Wonderflux core page templates"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:652
+#: ../wf-includes/wf-admin-functions.php:659
 msgid ""
 "Tick to hide the specific page template if it does not suit your child theme "
 "(it will be removed from page template dropdown option.)"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:673
+#: ../wf-includes/wf-admin-functions.php:680
 msgid "Document output"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:676
+#: ../wf-includes/wf-admin-functions.php:683
 msgid ""
 "Use these controls to set avanced document type and language attributes."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:677
+#: ../wf-includes/wf-admin-functions.php:684
 msgid "WARNING - "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:678
+#: ../wf-includes/wf-admin-functions.php:685
 msgid ""
 "These settings should generally be left as default (transitional, en, UTF-8)."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:679
+#: ../wf-includes/wf-admin-functions.php:686
 msgid ""
 "If you are using the Facebook features, you must use document type XHTML/"
 "RDFa."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:684
+#: ../wf-includes/wf-admin-functions.php:691
 msgid "Facebook connect"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:686
+#: ../wf-includes/wf-admin-functions.php:693
 msgid ""
 "Connect your site with Facebook to allow advanced interaction and sharing. "
 "Required if you are using the Facebook share display function. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:687
+#: ../wf-includes/wf-admin-functions.php:694
 msgid ""
 "You can assign multiple Facebook ID&rsquo;s by comma seperation (name1,"
 "name2) and a single (optional) application ID. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:688
+#: ../wf-includes/wf-admin-functions.php:695
 msgid ""
 "NOTE - You are required to fill-in at-least your Facebook ID to use the "
 "Facebook sharing features. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:689
+#: ../wf-includes/wf-admin-functions.php:696
 msgid ""
 "Get your Facebook ID number by logging into Facebook, and clicking on the "
 "'profile' tab. If you look at the URL in the address bar, you will see "
 "something like: "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:690
+#: ../wf-includes/wf-admin-functions.php:697
 msgid "http://www.facebook.com/profile.php?id=123456789012345"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:691
+#: ../wf-includes/wf-admin-functions.php:698
 msgid ""
 "The string of numbers after 'id=' is your Facebook ID number - copy and "
 "paste this into the filed below. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:692
+#: ../wf-includes/wf-admin-functions.php:699
 msgid "Application ID is optional (advanced users). "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:693
+#: ../wf-includes/wf-admin-functions.php:700
 msgid "Login to Facebook to get your application ID if required."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:693
+#: ../wf-includes/wf-admin-functions.php:700
 msgid "Get your application ID if required"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:694
+#: ../wf-includes/wf-admin-functions.php:701
 msgid ""
 "IMPORTANT - When entering and using any of these details, your site document "
 "type is automatically switched to XHTML/RDFa. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:695
+#: ../wf-includes/wf-admin-functions.php:702
 msgid ""
 "Relevant Facebook and Open Graph meta tags are generated and XML namespace "
 "attributes are added. Whilst active, it is manditory to keep the document "
@@ -2086,13 +2202,13 @@ msgid ""
 "with Internet Explorer."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:821
-#: ../wf-includes/wf-admin-functions.php:890
+#: ../wf-includes/wf-admin-functions.php:830
+#: ../wf-includes/wf-admin-functions.php:902
 msgid "Override Wonderflux CSS files"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:822
-#: ../wf-includes/wf-admin-functions.php:891
+#: ../wf-includes/wf-admin-functions.php:831
+#: ../wf-includes/wf-admin-functions.php:903
 msgid ""
 "Advanced users may wish to remove the default stylesheets that are usually "
 "inserted for you when using Wonderflux. The code below is all of the "
@@ -2100,377 +2216,369 @@ msgid ""
 "<head> of your site output, using your current saved configuration."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:823
-#: ../wf-includes/wf-admin-functions.php:892
+#: ../wf-includes/wf-admin-functions.php:832
+#: ../wf-includes/wf-admin-functions.php:904
 msgid ""
 "By setting the constant in your child theme functions.php file with the "
 "single line:"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:825
+#: ../wf-includes/wf-admin-functions.php:834
 msgid ""
 "you will remove the Wonderflux css files: 'wf-css-core-structure', 'wf-css-"
 "dynamic-columns' and the conditional 'wf-css-dynamic-core-ie'. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:826
+#: ../wf-includes/wf-admin-functions.php:835
 msgid "When you set "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:828
+#: ../wf-includes/wf-admin-functions.php:837
 msgid "to "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:830
+#: ../wf-includes/wf-admin-functions.php:839
 msgid ""
 "Wonderflux automatically inserts style-framework.css and style-framework-ie."
 "css for you, with the IE file wrapped in a conditional comment, before "
 "loading your main theme CSS file."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:831
+#: ../wf-includes/wf-admin-functions.php:840
 msgid ""
 "IMPORTANT - you will need to create 2 new files in your theme directory to "
 "use this functionality."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:832
+#: ../wf-includes/wf-admin-functions.php:841
 msgid ""
 "1 - Copy and paste the code from BOX 1 into a file called 'style-framework."
 "css' and save it to your child theme directory."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:833
+#: ../wf-includes/wf-admin-functions.php:842
 msgid ""
 "2 - Copy and paste the code from BOX 2 into a file called 'style-framework-"
 "ie.css' and save it to your child theme directory."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:834
+#: ../wf-includes/wf-admin-functions.php:843
 msgid ""
 "IMPORTANT - If you are using the override files as described and change your "
 "grid configuration or layout options, please revisit this page and update "
 "your files accordingly."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:836
+#: ../wf-includes/wf-admin-functions.php:845
 msgid "1 - Code for your style-framework.css file"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:842
+#: ../wf-includes/wf-admin-functions.php:851
 msgid "2 - Code for your style-framework-ie.css file"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:894
+#: ../wf-includes/wf-admin-functions.php:906
 msgid ""
 "you will remove the Wonderflux css files: 'wf-css-flux-layout-core' and 'wf-"
 "css-flux-layout'. "
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:895
+#: ../wf-includes/wf-admin-functions.php:907
 msgid ""
 "Wonderflux then automatically inserts the file 'flux-layout-merged.css' for "
 "you (if it exists in your child theme), before loading your main child theme "
 "style.css file."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:896
+#: ../wf-includes/wf-admin-functions.php:908
 msgid ""
 "IMPORTANT - you will need to create 1 new file in your theme directory to "
 "use this functionality."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:897
+#: ../wf-includes/wf-admin-functions.php:909
 msgid ""
 "1 - Copy and paste the code from the text box below into a new file called "
 "'flux-layout-merged.css' and save it to your child theme directory."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:898
+#: ../wf-includes/wf-admin-functions.php:910
 msgid ""
 "IMPORTANT - If you are using the override files as described and change your "
 "grid configuration or layout options, please revisit this page and update "
 "your files accordingly with the new generated code."
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:900
+#: ../wf-includes/wf-admin-functions.php:912
 msgid "Code for your flux-layout-merged.css file"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:915
+#: ../wf-includes/wf-admin-functions.php:927
 msgid "GRID CONFIGURATION"
 msgstr ""
 
-#: ../wf-includes/wf-admin-functions.php:1079
+#: ../wf-includes/wf-admin-functions.php:1091
 msgid ""
 " Wonderflux theme framework dynamic column core (legacy IE support) * http://"
 "wonderflux.com * @package Wonderflux * @since Wonderflux 0.2"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:542
+#: ../wf-includes/wf-display-functions.php:665
 #, php-format
 msgid "%1$s queries in %2$s seconds"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:555
-msgid "Powered by WordPress and the Wonderflux theme framework"
-msgstr ""
-
-#: ../wf-includes/wf-display-functions.php:848
+#: ../wf-includes/wf-display-functions.php:995
 msgid "WONDERFLUX LAYOUT DESIGN HELPER"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:850
+#: ../wf-includes/wf-display-functions.php:997
 msgid "Full width: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:852
+#: ../wf-includes/wf-display-functions.php:999
 msgid "Columns: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:854
+#: ../wf-includes/wf-display-functions.php:1001
 msgid "Single column: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:856
+#: ../wf-includes/wf-display-functions.php:1003
 msgid "Half: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:864
+#: ../wf-includes/wf-display-functions.php:1011
 msgid "Third: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:866
+#: ../wf-includes/wf-display-functions.php:1013
 msgid "Two Third: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:871
+#: ../wf-includes/wf-display-functions.php:1018
 msgid ""
 "Your column configuration is not compatible with thirds. Avoid using these "
 "in your template designs, or reconfigure options."
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:879
+#: ../wf-includes/wf-display-functions.php:1026
 msgid "Quarter: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:881
+#: ../wf-includes/wf-display-functions.php:1028
 msgid "Two Quarters: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:883
+#: ../wf-includes/wf-display-functions.php:1030
 msgid "Three Quarters: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:888
+#: ../wf-includes/wf-display-functions.php:1035
 msgid ""
 "Your column configuration is not compatible with quarters. Avoid using these "
 "in your template designs, or reconfigure options."
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:894
+#: ../wf-includes/wf-display-functions.php:1041
 msgid "Small: "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1180
+#: ../wf-includes/wf-display-functions.php:1353
 msgid "Powered by "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1180
+#: ../wf-includes/wf-display-functions.php:1353
 msgid "WordPress"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1182
+#: ../wf-includes/wf-display-functions.php:1355
 msgid "Built with "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1182
+#: ../wf-includes/wf-display-functions.php:1355
 msgid "Wonderflux WordPress theme framework"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1182
+#: ../wf-includes/wf-display-functions.php:1355
 msgid "Wonderflux Framework"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1321
-msgid "Read about"
-msgstr ""
-
-#: ../wf-includes/wf-display-functions.php:1392
+#: ../wf-includes/wf-display-functions.php:1501
 msgid "Welcome"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1456
+#: ../wf-includes/wf-display-functions.php:1564
 msgid "Edit this content"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1461
+#: ../wf-includes/wf-display-functions.php:1569
 msgid "POSTS:"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1461
+#: ../wf-includes/wf-display-functions.php:1569
 msgid "Create a new post"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1461
-#: ../wf-includes/wf-display-functions.php:1465
+#: ../wf-includes/wf-display-functions.php:1569
+#: ../wf-includes/wf-display-functions.php:1573
 msgid "New"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1461
+#: ../wf-includes/wf-display-functions.php:1569
 msgid "Edit existing posts"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1461
-#: ../wf-includes/wf-display-functions.php:1465
+#: ../wf-includes/wf-display-functions.php:1569
+#: ../wf-includes/wf-display-functions.php:1573
 msgid "Edit"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1465
+#: ../wf-includes/wf-display-functions.php:1573
 msgid "PAGES:"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1465
+#: ../wf-includes/wf-display-functions.php:1573
 msgid "Create new page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1465
+#: ../wf-includes/wf-display-functions.php:1573
 msgid "Edit existing pages"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1469
+#: ../wf-includes/wf-display-functions.php:1577
 msgid "Website admin area"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1469
+#: ../wf-includes/wf-display-functions.php:1577
 msgid "Admin area"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1473
+#: ../wf-includes/wf-display-functions.php:1581
 msgid "Edit website widget areas"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1473
+#: ../wf-includes/wf-display-functions.php:1581
 msgid "Edit widgets"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1477
+#: ../wf-includes/wf-display-functions.php:1585
 msgid "Wonderflux theme framework options"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1477
+#: ../wf-includes/wf-display-functions.php:1585
 msgid "Theme options"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1481
+#: ../wf-includes/wf-display-functions.php:1589
 msgid "Log out of website"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1481
+#: ../wf-includes/wf-display-functions.php:1589
 msgid "Log out"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1528
-msgid "Read"
+#: ../wf-includes/wf-display-functions.php:1636
+msgid "More"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1622
+#: ../wf-includes/wf-display-functions.php:1732
 msgid "Login"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1623
+#: ../wf-includes/wf-display-functions.php:1733
 msgid "Login to site"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1624
+#: ../wf-includes/wf-display-functions.php:1734
 msgid "Logout"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1625
+#: ../wf-includes/wf-display-functions.php:1735
 msgid "Logout of site"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1867
-#: ../wf-includes/wf-display-functions.php:1908
+#: ../wf-includes/wf-display-functions.php:1980
+#: ../wf-includes/wf-display-functions.php:2021
 #, php-format
 msgid "Download %1$s (.%2$s file)"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1868
-#: ../wf-includes/wf-display-functions.php:1909
+#: ../wf-includes/wf-display-functions.php:1981
+#: ../wf-includes/wf-display-functions.php:2022
 #, php-format
 msgid " (%1$s .%2$s file)"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1958
+#: ../wf-includes/wf-display-functions.php:2073
 msgid "Page "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:1959
+#: ../wf-includes/wf-display-functions.php:2074
 msgid " of "
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2058
+#: ../wf-includes/wf-display-functions.php:2173
 msgid "&laquo; Previous Page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2089
+#: ../wf-includes/wf-display-functions.php:2204
 msgid "&raquo; Next Page"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2140
-msgid "cached-part-start"
+#: ../wf-includes/wf-display-functions.php:2259
+msgid "CACHED PART START"
 msgstr ""
 
-#: ../wf-includes/wf-display-functions.php:2141
-msgid "cached-part-end"
+#: ../wf-includes/wf-display-functions.php:2260
+msgid "CACHED PART END"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:814
+#: ../wf-includes/wf-helper-functions.php:877
 #, php-format
 msgid "(This message was added in version %s.)"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:815
+#: ../wf-includes/wf-helper-functions.php:878
 msgid ""
 "Please see <a href=\"http://wonderflux.com/guide/\">The Wonderflux Guide</a> "
 "for more information."
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:816
+#: ../wf-includes/wf-helper-functions.php:879
 #, php-format
 msgid "%1$s was called <strong>incorrectly</strong>. %2$s %3$s"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:1036
+#: ../wf-includes/wf-helper-functions.php:1109
 msgid "Wonderflux home"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:1038
+#: ../wf-includes/wf-helper-functions.php:1111
 msgid "Advanced options"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:1039
+#: ../wf-includes/wf-helper-functions.php:1112
 msgid "System information"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:1040
+#: ../wf-includes/wf-helper-functions.php:1113
 msgid "Backup/restore"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:1041
+#: ../wf-includes/wf-helper-functions.php:1114
 msgid "API/documentation"
 msgstr ""
 
-#: ../wf-includes/wf-helper-functions.php:1066
+#: ../wf-includes/wf-helper-functions.php:1146
 msgid "Wonderflux template parts in use"
 msgstr ""
 
-#: ../wf-includes/wf-theme-core.php:69
+#: ../wf-includes/wf-theme-core.php:53
 msgid "Widget area "
 msgstr ""
 
-#: ../wf-includes/wf-theme-core.php:70
+#: ../wf-includes/wf-theme-core.php:54
 msgid "Drag widgets into here to include them in your site."
 msgstr ""
 

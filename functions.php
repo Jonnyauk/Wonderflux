@@ -126,7 +126,7 @@ if ( wp_get_theme()->Name == 'Wonderflux' ) {
 //// 1.5 // Wonderflux core functionality
 
 
-add_action( 'init', 'wfx_config_language' );
+add_action( 'after_setup_theme', 'wfx_config_language' );
 add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
 add_action( 'get_header', 'wfx_display_head_open', 1 );
 add_action( 'get_header', 'wfx_display_body_tag', 1 );

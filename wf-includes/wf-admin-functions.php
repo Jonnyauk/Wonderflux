@@ -3,7 +3,7 @@
  * Admin area functions for options pages and menus.
  *
  * @since	0.3
- * @version	2.0
+ * @version	2.1
  */
 class wflux_admin extends wflux_data {
 
@@ -21,7 +21,9 @@ class wflux_admin extends wflux_data {
 
 		$this->admin_forms = new wflux_admin_forms;
 		$this->admin_backup = new wflux_admin_backup;
-		add_action("load-admin_page_wonderflux_backup", array($this->admin_backup, 'wf_import_export'));
+		add_action('load-appearance_page_wonderflux_backup', array($this->admin_backup, 'wf_import_export'));
+		add_action('wfx_admin_notices', array( $this, 'wf_admin_notices') );
+
 	}
 
 
@@ -151,9 +153,6 @@ class wflux_admin extends wflux_data {
 			// Silence is golden
 			//echo '<p>' . esc_attr__('You are using the','wonderflux') . ' ' . esc_attr($wf_current_theme) . ' ' . esc_attr__('Wonderflux child theme','wonderflux') . '</p>';
 		}
-
-
-
 		$output = '<h2>' . esc_attr__('Help and support','wonderflux') . '</h2>';
 		$output .= '<p>';
 		$output .= ' <a href="http://wonderflux.com/guide/" title="';
@@ -1167,7 +1166,7 @@ class wflux_admin_backup {
 
 		$reporting = '&backuperror=true';
 
-		if ( isset($_GET['action']) && ($_GET['action'] == 'download') ) {
+		if ( current_user_can('administrator') && isset($_GET['action']) && ($_GET['action'] == 'download') ) {
 
 			header( "Cache-Control: public, must-revalidate" );
 			header( "Pragma: hack" );
@@ -1178,7 +1177,7 @@ class wflux_admin_backup {
 
 		}
 
-		if ( isset($_POST['upload']) && check_admin_referer('wfx_options_backuprestore', 'wfx_options_backuprestore') ) {
+		if ( current_user_can('administrator') && isset($_POST['upload']) && check_admin_referer('wfx_options_backuprestore', 'wfx_options_backuprestore') ) {
 
 			if ( $_FILES["file"]["error"] > 0 ) {
 

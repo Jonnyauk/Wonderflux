@@ -1083,10 +1083,14 @@ class wflux_wp_core {
 
 
 	/**
-	 * Adds Wonderflux links to the WordPress admin bar
+	 * Adds Wonderflux links to WordPress admin bar.
 	 *
 	 * @since	0.93
 	 * @version	2.0
+	 *
+	 * @param	none
+	 *
+	 * @todo	Will need to review all admin options when they are moved to Customizer!
 	 */
 	function wf_admin_bar_links() {
 		global $wp_admin_bar;
@@ -1118,10 +1122,16 @@ class wflux_wp_core {
 
 
 	/**
-	 * Adds files currently in use to the Wonderflux admin bar menu
+	 * Adds files currently used to render view to the Wonderflux admin bar menu.
+	 * Set constant WF_DEBUG to true to enable.
+	 * Incredibly useful for debugging - shows which files are your child themes and which are Wonderflux core.
 	 *
-	 * @since	1.2
-	 * @version	1.2
+	 * @since	0.93
+	 * @version	2.0
+	 *
+	 * @param	none
+	 *
+	 * @todo	Will need to review all admin options when they are moved to Customizer!
 	 */
 	function wf_admin_bar_files_info(){
 

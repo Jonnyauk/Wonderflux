@@ -1,10 +1,10 @@
 <?php
-
 /**
-* @since 0.3
-* @updated 2.0
-* Admin area functions for options pages and menus
-*/
+ * Admin area functions for options pages and menus.
+ *
+ * @since	0.3
+ * @version	2.0
+ */
 class wflux_admin extends wflux_data {
 
 
@@ -405,11 +405,16 @@ class wflux_admin extends wflux_data {
 	}
 
 
- 	/**
-	* Controls access to the Wonderflux admin menus
-	* @since 0.93
-	* @updated 0.93
-	*/
+	/**
+	 * Adds Wonderflux admin menus, registers settings and setsup contextual help.
+	 *
+	 * @since	0.93
+	 * @version	0.93
+	 *
+	 * @param	none
+	 *
+	 * @todo	Will need to review all admin options when they are moved to Customizer!
+	 */
 	function wf_admin_menus() {
 
 		if ( WF_ADMIN_ACCESS == 'none' ) {
@@ -1244,19 +1249,21 @@ class wflux_admin_backup {
 
 
 /**
-* @since 2.0
-* @updated 2.0
-* Admin post control
-*/
+ * Admin post control.
+ *
+ * @since	2.0
+ * @version	2.0
+ */
 class wflux_admin_post extends wflux_data {
 
 	/**
+	 * Remove unwanted page templates from page attributes dropdown as set in Wonderflux options.
+	 * Filters theme_page_templates.
 	 *
-	 * Used to filter out unwanted page templates from page attributes dropdown
+	 * @since	2.0
+	 * @version	2.0
 	 *
-	 * @since 2.0
-	 * @updated 2.0
-	 *
+	 * @param	[array] $input			Pass through WordPress page template array for manipulation via filter.
 	 */
 	function wf_remove_page_templates($input) {
 

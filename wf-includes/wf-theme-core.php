@@ -135,10 +135,23 @@ class wflux_theme_core {
 
 
 	/**
-	* @since 0.92
-	* @updated 0.92
-	* Sets up required background divs and inserts them using Wonderflux hooks
-	*/
+	 * Creates background wrapper <div>s around different areas of the layout.
+	 * Saves having to amend template files and great for setting up backgrounds or multiple backgrounds.
+	 *
+	 * Outputput formatted like:
+	 * <div class="wrapper" id="header-bg-1">
+	 * <div class="wrapper" id="header-bg-2">
+	 * <div class="wrapper" id="header-bg-3">
+	 *
+	 * Closes <div> automatically for you of-course!
+	 *
+	 * @since	0.92
+	 * @version	0.92
+	 *
+	 * @param	[int] $depth			How many wrappers to create. [1]
+	 * @param	[string] $location		Location of wrapper. site/main/header/footer/container-header/container-content/container-footer [site]
+	 *
+	 */
 	function wf_background_divs($args) {
 
 		$defaults = array (
@@ -185,16 +198,19 @@ class wflux_theme_core {
 
 
 	/**
-	* Inserts JQuery into your theme
-	*
-	* @param $host Where your JQuery is hosted - Default = 'wonderflux' ['wordpress','wonderflux','google','microsoft','jquery']
-	* @param $version Which version of JQuery to use (No effect if $host = 'wordpress') Default = '1.8.1' [ Various versions, use exact for CDN or '1.6','1.7','1.8' to get latest versions of each from Wonderflux core ]
-	* @param $location Where you want your JQuery inserted in the code - Default = 'header' ['header,'footer']
-	* @param $host Do you need https? - Default = false [true,false] NOTE: JQuery CDN doesnt support https
-	*
-	* @since 0.92
-	* @updated 1.1
-	*/
+	 * Add Jquery to your theme in various ways.
+	 * DEPRECIATED in Wonderflux v2.0, will likely be removed in the future!
+	 *
+	 * @since	0.92
+	 * @version	1.1
+	 *
+	 * @param	[string] $host			Where your JQuery is hosted - select from CDN if required. wordpress/wonderflux/google/microsoft/jquery [wordpress]
+	 * @param	[string] $version		Which version of JQuery to use (No effect if $host = 'wordpress', use exact version string for CDN version). [1]
+	 * @param	[string] $location		Where to insert JQuery. header/footer [header]
+	 * @param	[bool] $https			Do you want https? true/false [false]
+	 *
+	 * @todo 	Remove and move to legacy support plugin.
+	 */
 	function wf_js_jquery($args) {
 
 		$latest_jquery = '1.8.1'; // Latest version bundled in Wonderflux
@@ -243,13 +259,22 @@ class wflux_theme_core {
 
 
 	/**
-	* Sets up Cycle Jquery plugin
-	*
-	* @param To document
-	*
-	* @since 0.92
-	* @updated 0.931
-	*/
+	 * Add Jquery Cycle to your theme in various ways.
+	 * DEPRECIATED in Wonderflux v2.0, will likely be removed in the future!
+	 * Just wp_register_script() and wp_enqueue_script() your own!
+	 * I rather like http://kenwheeler.github.io/slick/ instead these days for a carousel ;)
+	 *
+	 * @since	0.92
+	 * @version	0.931
+	 *
+	 * @param	[string] $host			Where your Cycle script is hosted - select from CDN if required. wonderflux/theme/microsoft [wonderflux]
+	 * @param	[string] $type			Which type of Cycle script to use. lite/normal/all [normal]
+	 * @param	[string] $theme_dir		URL to your themes cycle config file. (with slash at the start). [/js/cycle]
+	 * @param	[string] $location		Where do you want to insert Cycle? header/footer [header]
+	 * @param	[string] $config		Do you want to use the standard Wonderflux cycle config or your themes? wonderflux/theme [wonderflux]
+	 *
+	 * @todo 	Remove and move to legacy support plugin.
+	 */
 	function wf_js_cycle($args) {
 
 		if ( !is_admin() ) {

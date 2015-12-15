@@ -2508,10 +2508,15 @@ class wflux_display_social extends wflux_data {
 
 
 	/**
-	 * Builds Open Graph Meta data (used by Facebook and others)
+	 * Builds Open Graph meta tags in <head> if required.
+	 * Used by wf_social_meta()
 	 *
-	 * @since 0.931
-	 * @updated 0.931
+	 * @since	0.931
+	 * @version	0.931
+	 *
+	 * @param	none
+	 *
+	 * @todo	Test and dont use if using Yoast SEO to control this.
 	 */
 	function wf_og_meta() {
 		//TODO: build extra og:type support

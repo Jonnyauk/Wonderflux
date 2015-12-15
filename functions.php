@@ -61,25 +61,31 @@
 	Core framework setup & deployment
 */
 
+
 // Wonderflux, start your engine
 load_template( get_template_directory() . '/wf-includes/wf-engine.php' );
 
+
 //// 1.1 // Early setup (before init)
+
 
 add_action( 'after_setup_theme', 'wfx_core_feed_links', 2 );
 add_action( 'after_setup_theme', 'wfx_core_title_tag', 2 );
 
+
 //// 1.2 // Special child theme functions
+
 
 // Use this to configure all your Wonderflux child theme layout functions like wfx_background_divs()
 // Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
 if ( function_exists('my_wfx_layout') ) { add_action( 'get_header', 'my_wfx_layout', 1 ); }
-
 // Use this to configure all your Wonderflux child theme script functions like wfx_jquery()
 // Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
 if ( function_exists('my_wfx_scripts') ) { if ( !is_admin() ) : add_action( 'init', 'my_wfx_scripts', 1 ); endif; }
 
+
 //// 1.3 // Columns functionality
+
 
 // Allow full removal of the framework CSS system or minified version
 if ( WF_THEME_FRAMEWORK_NONE == true ) {
@@ -92,7 +98,9 @@ if ( WF_THEME_FRAMEWORK_NONE == true ) {
 	add_action( 'wf_head_meta', 'wfx_display_head_css_ie', 2 );
 }
 
+
 //// 1.4 // If Wonderflux activated directly with no child theme
+
 
 if ( wp_get_theme()->Name == 'Wonderflux' ) {
 
@@ -114,7 +122,9 @@ if ( wp_get_theme()->Name == 'Wonderflux' ) {
 
 }
 
+
 //// 1.5 // Wonderflux core functionality
+
 
 add_action( 'init', 'wfx_config_language' );
 add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
@@ -135,12 +145,15 @@ add_action( 'wf_footer', 'wfx_display_code_credit', 3 );
 add_action( 'auth_redirect', 'wfx_admin_menus' );
 add_filter( 'theme_page_templates','wfx_remove_page_templates' );
 
+
 //// 1.6 // Wonderflux debug functionality
+
 
 if ( WF_DEBUG == true ){
 	add_action( 'init','wfx_show_hooks' );
 	add_action( 'admin_bar_menu', 'wfx_admin_bar_files_info', 100 );
 }
+
 
 /*
 	 #####
@@ -153,6 +166,7 @@ if ( WF_DEBUG == true ){
 
 	Helper functions
 */
+
 
 /**
  * Creates array of information about file based on filename.
@@ -169,6 +183,7 @@ if ( WF_DEBUG == true ){
  */
 if ( !function_exists( 'wfx_info_file' ) ) : function wfx_info_file($filename='') { global $wfx_helper; return $wfx_helper->info_file($filename); } endif;
 
+
 /**
  * Detects what type of content you are currently viewing.
  * IMPORTANT - Used internally by Wonderflux.
@@ -181,6 +196,7 @@ if ( !function_exists( 'wfx_info_file' ) ) : function wfx_info_file($filename=''
  */
 if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { global $wfx_helper; return $wfx_helper->info_location(); } endif;
 
+
 /**
  * Detects if you are viewing single content - post, page, attachment, author
  * as opposed to archive or any other type of views, kinda like is_singular() and is_single()
@@ -192,6 +208,7 @@ if ( !function_exists( 'wfx_info_location' ) ) : function wfx_info_location() { 
  * @return	[bool]					true/false
  */
 if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { global $wfx_helper; return $wfx_helper->info_single(); } endif;
+
 
 /**
  * Turbo-charged get_template_part file include - loads a template part into a template.
@@ -276,6 +293,7 @@ if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { glob
  */
 if ( !function_exists( 'wfx_get_template_part' ) ) : function wfx_get_template_part($args) { global $wfx_helper; $wfx_helper->gt_part($args); } endif;
 
+
 /**
  * Gets user role of logged-in user.
  * IMPORTANT - Used internally by Wonderflux.
@@ -305,6 +323,7 @@ if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
 
 } endif;
 
+
 /**
  * Gets current page 'depth' when using parent/child/grandchild etc page structure.
  *
@@ -316,6 +335,7 @@ if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
  * @return	[int]					Integer representing depth of page
  */
 if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; return $wfx_helper->page_depth($args); } endif;
+
 
 /**
  * Get a custom field value for the main queried post.
@@ -354,6 +374,7 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
 
 } endif;
 
+
 /**
  * Returns 'Y' - nothing more, nothing less!
  * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__Y' ) in your child theme, saves creating a function
@@ -366,6 +387,7 @@ if ( !function_exists( 'wfx_custom_field' ) ) : function wfx_custom_field($args)
  */
 if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; return $wfx_helper->__Y(); } endif;
 
+
 /**
  * Returns 'N' - nothing more, nothing less!
  * Useful for setting values ie add_filter( 'wflux_sidebar_1_display', 'wfx__N' ) in your child theme, saves creating a function
@@ -377,6 +399,7 @@ if ( !function_exists( 'wfx__Y' ) ) : function wfx__Y() { global $wfx_helper; re
  * @return	[string]				N
  */
 if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; return $wfx_helper->__N(); } endif;
+
 
 /**
  * Displays input (or WordPress query information) in a nicer, more useful way for debugging.
@@ -400,6 +423,7 @@ if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; re
  */
 if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$label='',$admin_only=true,$role=false,$id=false) { global $wfx_helper; $wfx_helper->debug($input,$label,$admin_only,$role,$id); } endif;
 
+
 /**
  * Reveals all Wonderflux hooks available in current view.
  *
@@ -416,6 +440,7 @@ if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$label='',
  */
 if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global $wfx_helper; $wfx_helper->show_hooks(); } endif;
 
+
 /**
  * Returns array of common HTML tags to be used with kses or similar.
  * Use filter 'wflux_allowed_tags' to mainpulate allowed tags
@@ -429,6 +454,7 @@ if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags() {
 	 global $wfx_data_manage; return $wfx_data_manage->allowed_tags();
 } endif;
+
 
 /**
  * Strips white space and other cruft in html type output
@@ -445,6 +471,7 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 	global $wfx_data_manage; return $wfx_data_manage->strip_whitespace($input);
 } endif;
 
+
 /*
 	 #####
 	#     #
@@ -456,6 +483,7 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 
 	Display functions
 */
+
 
 /**
  * Enables post and site/post comment RSS feed links in head of output.
@@ -469,6 +497,7 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
  */
 if ( !function_exists( 'wfx_core_feed_links' ) ) : function wfx_core_feed_links() { global $wfx_theme_support; $wfx_theme_support->core_feed_links(); } endif;
 
+
 /**
  * Enables title-tag support (available in WordPress 4.1+)
  * THIS IS REQUIRED for WordPress theme repo compliance.
@@ -481,6 +510,7 @@ if ( !function_exists( 'wfx_core_feed_links' ) ) : function wfx_core_feed_links(
  */
 if ( !function_exists( 'wfx_core_title_tag' ) ) : function wfx_core_title_tag() { global $wfx_theme_support; $wfx_theme_support->core_title_tag(); } endif;
 
+
 /**
  * Core WordPress threaded comment reply Javascript.
  * THIS IS REQUIRED for WordPress theme repo compliance.
@@ -492,8 +522,10 @@ if ( !function_exists( 'wfx_core_title_tag' ) ) : function wfx_core_title_tag() 
  */
 if ( !function_exists( 'wfx_core_comment_js' ) ) : function wfx_core_comment_js() { global $wfx_theme; $wfx_theme->core_comment_js(); } endif;
 
+
 // Only need functions if have child theme overrides
 if ( WF_THEME_FRAMEWORK_REPLACE == false ) {
+
 
 	/**
 	 * Inserts the core structure static CSS.
@@ -548,7 +580,9 @@ if ( WF_THEME_FRAMEWORK_REPLACE == false ) {
 	 */
 	if ( !function_exists( 'wfx_display_head_css_ie' ) ) : function wfx_display_head_css_ie() { global $wfx; $wfx->head_css_ie(); } endif;
 
+
 } elseif ( WF_THEME_FRAMEWORK_REPLACE == true ) {
+
 
 	/**
 	 * Replaces framework CSS files (core and dynamic layout system).
@@ -570,7 +604,9 @@ if ( WF_THEME_FRAMEWORK_REPLACE == false ) {
 	 */
 	if ( !function_exists( 'wfx_head_css_replace' ) ) : function wfx_head_css_replace($args) { global $wfx; $wfx->head_css_replace($args); } endif;
 
+
 }
+
 
 /**
  * Setup for WordPress language packs for translators.
@@ -585,6 +621,7 @@ if ( WF_THEME_FRAMEWORK_REPLACE == false ) {
  */
 if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language() { global $wfx_theme; $wfx_theme->language_pack(); } endif;
 
+
 /**
  * Builds the start of the head with doc type declaration.
  *
@@ -594,6 +631,7 @@ if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language(
  * @param	none
  */
 if ( !function_exists( 'wfx_display_head_open' ) ) : function wfx_display_head_open() { global $wfx; $wfx->head_open(); } endif;
+
 
 /**
  * Inserts the Content-Type/charset meta tag.
@@ -606,6 +644,7 @@ if ( !function_exists( 'wfx_display_head_open' ) ) : function wfx_display_head_o
  * @param	[string] $charset		Character encoding [utf8]
  */
 if ( !function_exists( 'wfx_display_head_char_set' ) ) : function wfx_display_head_char_set($args) { global $wfx; $wfx->head_char_set($args); } endif;
+
 
 /**
  * Inserts viewport meta tag.
@@ -621,6 +660,7 @@ if ( !function_exists( 'wfx_display_head_char_set' ) ) : function wfx_display_he
  */
 if ( !function_exists( 'wfx_display_head_viewport' ) ) : function wfx_display_head_viewport() { global $wfx; $wfx->head_viewport(); } endif;
 
+
 /**
  * Builds the title in the head of the document.
  * BACKPAT: When using WordPress 4.1 or above add_theme_support( 'title-tag' ) is automatically used instead.
@@ -631,6 +671,7 @@ if ( !function_exists( 'wfx_display_head_viewport' ) ) : function wfx_display_he
  * @param	none
  */
 if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_title($args) { global $wfx; $wfx->head_title($args); } endif;
+
 
 /**
  * Inserts (enqueue) child theme CSS - style.css
@@ -648,6 +689,7 @@ if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_
  */
 if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_head_css_theme($args) { global $wfx; $wfx->head_css_theme($args); } endif;
 
+
 /**
  * Adds extra CSS classes to the body tag via WordPress filter.
  * Classes added describe your Wonderflux layout config, basic mobile and browser detection.
@@ -663,6 +705,7 @@ if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_h
  * @param	none
  */
 if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag() { global $wfx; $wfx->body_tag(); } endif;
+
 
 /**
  * A more flexible post_class() function.
@@ -699,6 +742,7 @@ if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
 
 } endif;
 
+
 /**
  * Adds extra CSS classes to post class via WordPress filter.
  * IMPORTANT - Stop using wfx_post_class() it in your child themes!!
@@ -720,6 +764,7 @@ if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_cl
 	}
 } endif;
 
+
 /**
  * Displays performance information as a HTML code comment: xx queries in xx seconds.
  *
@@ -731,6 +776,7 @@ if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_cl
  * @todo Extend with other debug information? wfx_debug() is more useful I guess for this?
  */
 if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performance() { global $wfx; $wfx->debug_performance(); } endif;
+
 
 /**
  * Output footer HTML code credit comment.
@@ -744,6 +790,7 @@ if ( !function_exists( 'wfx_debug_performance' ) ) : function wfx_debug_performa
  * @param	none
  */
 if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code_credit() { global $wfx; $wfx->code_credit(); } endif;
+
 
 /**
  * Output credit in footer of site - show your support and love for WordPress and Wonderflux!
@@ -764,6 +811,7 @@ if ( !function_exists( 'wfx_display_code_credit' ) ) : function wfx_display_code
  */
 if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($args) { global $wfx; $wfx->display_credit($args); } endif;
 
+
 /**
  * Displays CSS info for designers as a HTML code comment in the <head>.
  *
@@ -775,6 +823,7 @@ if ( !function_exists( 'wfx_display_credit' ) ) : function wfx_display_credit($a
  * @todo 	Review code and update for Flux Layout - currently only works with old % based layout system.
  */
 if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_info($args) { global $wfx; $wfx->css_info($args); } endif;
+
 
 /**
  * EXPERIMENTAL - generates a repeating pattern of columns for testing the grid layout system.
@@ -791,6 +840,7 @@ if ( !function_exists( 'wfx_display_css_info' ) ) : function wfx_display_css_inf
  */
 if ( !function_exists( 'wfx_display_test_pattern' ) ) : function wfx_display_test_pattern($args) { global $wfx; $wfx->test_pattern($args); } endif;
 
+
 /**
  * Returns saved Wonderflux option value from main options array.
  *
@@ -802,6 +852,7 @@ if ( !function_exists( 'wfx_display_test_pattern' ) ) : function wfx_display_tes
  * @todo 	Build rest of output options.
  */
 if ( !function_exists( 'wfx_get_dimensions' ) ) : function wfx_get_dimensions($args) { global $wfx; return $wfx->get_dimensions($args); } endif;
+
 
 /**
  * IMPORTANT - Configures WordPress $content_width.
@@ -816,6 +867,7 @@ if ( !function_exists( 'wfx_get_dimensions' ) ) : function wfx_get_dimensions($a
  */
 if ( !function_exists( 'wfx_content_width_embed' ) ) : function wfx_content_width_embed() { global $wfx; $wfx->content_width_embed(); } endif;
 
+
 /**
  * Includes sidebar template file.
  * Uses get_sidebar() and checks for Wonderflux option/filter.
@@ -828,6 +880,7 @@ if ( !function_exists( 'wfx_content_width_embed' ) ) : function wfx_content_widt
  * @todo 	Check over this functionality, should we be extending get_sidebar() rather than replacing?
  */
 if ( !function_exists( 'wfx_get_sidebar' ) ) : function wfx_get_sidebar($args) { global $wfx; $wfx->get_sidebar($args); } endif;
+
 
 /**
  * Creates dynamic CSS grid class definition - used in Wonderflux pixel layout system v1.
@@ -865,6 +918,7 @@ if ( !function_exists( 'wfx_css' ) ) : function wfx_css($args) {
 	}
 } endif;
 
+
 /**
  * Just echos </div> - nothing more nothing less, kinda lazy huh?
  * DEPRECIATED in Wonderflux v2.0, will likely be removed in the future!
@@ -877,6 +931,7 @@ if ( !function_exists( 'wfx_css' ) ) : function wfx_css($args) {
  * @todo 	Remove and move to legacy support plugin.
  */
 if ( !function_exists( 'wfx_css_close' ) ) : function wfx_css_close() { global $wfx; $wfx->css_close(); } endif;
+
 
 /**
  * IMPORTANT - Creates layout wrappers around content and sidebar if begin used.
@@ -891,6 +946,7 @@ if ( !function_exists( 'wfx_css_close' ) ) : function wfx_css_close() { global $
  * @param	none
  */
 if ( !function_exists( 'wfx_layout_build' ) ) : function wfx_layout_build() { global $wfx; $wfx->layout_build(); } endif;
+
 
 /**
  * Display excerpt of post content inside the loop or custom query.
@@ -922,6 +978,7 @@ if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
 
 } endif;
 
+
 /**
  * Displays a single post/page/whatever.
  *
@@ -944,6 +1001,7 @@ if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
  * @todo 	Review code, make smarter and deploy into Wonderflux widget.
  */
 if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_content($args) { global $wfx; $wfx->get_single_content($args); } endif;
+
 
 /**
  * Adds admin/editing links.
@@ -971,6 +1029,7 @@ if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_co
  */
 if ( !function_exists( 'wfx_edit_meta' ) ) : function wfx_edit_meta($args) { global $wfx; $wfx->edit_meta($args); } endif;
 
+
 /**
  * Creates a login/logout link with redirect options.
  *
@@ -989,6 +1048,7 @@ if ( !function_exists( 'wfx_edit_meta' ) ) : function wfx_edit_meta($args) { glo
  */
 if ( !function_exists( 'wfx_login_logout' ) ) : function wfx_login_logout($args) { global $wfx; $wfx->login_logout($args); } endif;
 
+
 /**
  * Adds 'current_page_item' CSS class when post ID is current post/page/whatever being viewed.
  * For when you really need to code a static navigation.
@@ -1001,6 +1061,7 @@ if ( !function_exists( 'wfx_login_logout' ) ) : function wfx_login_logout($args)
  * @todo 	Review code, make smarter!
  */
 if ( !function_exists( 'wfx_static_highlight' ) ) : function wfx_static_highlight($args) { global $wfx; $wfx->static_highlight($args); } endif;
+
 
 /**
  * Gets attachment(s) or featured images of main post query (inside or outside the loop).
@@ -1046,6 +1107,7 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
 
 } endif;
 
+
 /**
  * Creates page navigation for lists of results like archive or query views.
  *
@@ -1085,6 +1147,7 @@ if ( !function_exists( 'wfx_page_counter' ) ) : function wfx_page_counter($args)
 	}
 
 } endif;
+
 
 /**
  * Powerful template part fragment cache for output optimisation.
@@ -1133,6 +1196,7 @@ if ( !function_exists( 'wfx_get_cached_part' ) ) : function wfx_get_cached_part(
 	}
 } endif;
 
+
 /**
  * Builds a clickable link from supplied data.
  *
@@ -1166,6 +1230,7 @@ if ( !function_exists( 'wfx_build_hyperlink' ) ) : function wfx_build_hyperlink(
 
 } endif;
 
+
 /**
  * Outputs an array as a string with a seperator in-between each.
  * Doesn't add to last item - useful for comma sperated output.
@@ -1194,6 +1259,7 @@ if ( !function_exists( 'wfx_array_to_delimited_string' ) ) : function wfx_array_
 
 } endif;
 
+
 /*
 	#
 	#    #
@@ -1205,6 +1271,7 @@ if ( !function_exists( 'wfx_array_to_delimited_string' ) ) : function wfx_array_
 
 	Social functions
 */
+
 
 /**
  * Outputs a Google Plus 1 button.
@@ -1221,6 +1288,7 @@ if ( !function_exists( 'wfx_array_to_delimited_string' ) ) : function wfx_array_
  */
 if ( !function_exists( 'wfx_social_google_plus_1' ) ) : function wfx_social_google_plus_1($args='') { global $wfx; $wfx->g_plus_1($args); } endif;
 
+
 /**
  * Outputs a Facebook like button with counter.
  * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
@@ -1235,6 +1303,7 @@ if ( !function_exists( 'wfx_social_google_plus_1' ) ) : function wfx_social_goog
  * @todo	Review code!
  */
 if ( !function_exists( 'wfx_social_facebook_like' ) ) : function wfx_social_facebook_like($args='') { global $wfx; $wfx->fb_like($args); } endif;
+
 
 /**
  * Outputs a Twitter share button with counter.
@@ -1251,6 +1320,7 @@ if ( !function_exists( 'wfx_social_facebook_like' ) ) : function wfx_social_face
  */
 if ( !function_exists( 'wfx_social_twitter_share' ) ) : function wfx_social_twitter_share($args='') { global $wfx; $wfx->twit_share($args); } endif;
 
+
 /**
  * Outputs a LinkedIn share button with counter.
  * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
@@ -1266,8 +1336,10 @@ if ( !function_exists( 'wfx_social_twitter_share' ) ) : function wfx_social_twit
  */
 if ( !function_exists( 'wfx_social_linkedin_share' ) ) : function wfx_social_linkedin_share($args='') { global $wfx; $wfx->linkedin_share($args); } endif;
 
+
 /**
  * Inserts associated social sharing related (Open Graph) meta tags in <head> if required.
+ * Can just remove_action or change function too of-course - it's a framework don't you know!
  *
  * @since	0.931
  * @version	0.931
@@ -1277,6 +1349,7 @@ if ( !function_exists( 'wfx_social_linkedin_share' ) ) : function wfx_social_lin
  * @todo	Test and dont use if using Yoast SEO to control this.
  */
 if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args='') { global $wfx; $wfx->social_meta($args); } endif;
+
 
 /*
 	#######
@@ -1289,6 +1362,7 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
 
 	Theme configuration functions
 */
+
 
 /**
  * Creates WordPress widget areas and optionally inserts using Wonderflux hook system, plus a couple of other tricks!
@@ -1314,13 +1388,27 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
  */
 if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global $wfx_theme; $wfx_theme->widgets($args); } endif;
 
+
 /**
- * IMPORTANT Sets up background divs
+ * Creates background wrapper <div>s around different areas of the layout.
+ * Saves having to amend template files and great for setting up backgrounds or multiple backgrounds.
  *
- * @since 0.92
- * @updated 0.92
+ * Outputput formatted like:
+ * <div class="wrapper" id="header-bg-1">
+ * <div class="wrapper" id="header-bg-2">
+ * <div class="wrapper" id="header-bg-3">
+ *
+ * Closes <div> automatically for you of-course!
+ *
+ * @since	0.92
+ * @version	0.92
+ *
+ * @param	[int] $depth			How many wrappers to create. [1]
+ * @param	[string] $location		Location of wrapper. site/main/header/footer/container-header/container-content/container-footer [site]
+ *
  */
 if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs($args) { global $wfx_theme; $wfx_theme->background_divs($args); } endif;
+
 
 /*
 	 #####
@@ -1334,23 +1422,45 @@ if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs(
 	Javascript support functions
 */
 
+
 /**
- * Setup and insert JQuery
- * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
+ * Add Jquery to your theme in various ways.
+ * DEPRECIATED in Wonderflux v2.0, will likely be removed in the future!
+ * Just wp_register_script() and wp_enqueue_script() your own!
  *
- * @since 0.92
- * @updated 1.1
+ * @since	0.92
+ * @version	1.1
+ *
+ * @param	[string] $host			Where your JQuery is hosted - select from CDN if required. wordpress/wonderflux/google/microsoft/jquery [wordpress]
+ * @param	[string] $version		Which version of JQuery to use (No effect if $host = 'wordpress', use exact version string for CDN version). [1]
+ * @param	[string] $location		Where to insert JQuery. header/footer [header]
+ * @param	[bool] $https			Do you want https? true/false [false]
+ *
+ * @todo 	Remove and move to legacy support plugin.
+ * @todo 	Check through and update any Wonderflux functions that may be using this.
  */
 if ( !function_exists( 'wfx_jquery' ) ) : function wfx_jquery($args='') { global $wfx_theme; $wfx_theme->jquery($args); } endif;
 
+
 /**
- * Setup JQuery Cycle how you want it
- * Legacy function - deprecated in Wonderflux 2.0, will likely be removed in the future
+ * Add Jquery Cycle to your theme in various ways.
+ * DEPRECIATED in Wonderflux v2.0, will likely be removed in the future!
+ * Just wp_register_script() and wp_enqueue_script() your own!
+ * I rather like http://kenwheeler.github.io/slick/ instead these days for a carousel ;)
  *
- * @since 0.92
- * @updated 0.931
+ * @since	0.92
+ * @version	0.931
+ *
+ * @param	[string] $host			Where your Cycle script is hosted - select from CDN if required. wonderflux/theme/microsoft [wonderflux]
+ * @param	[string] $type			Which type of Cycle script to use. lite/normal/all [normal]
+ * @param	[string] $theme_dir		URL to your themes cycle config file. (with slash at the start). [/js/cycle]
+ * @param	[string] $location		Where do you want to insert Cycle? header/footer [header]
+ * @param	[string] $config		Do you want to use the standard Wonderflux cycle config or your themes? wonderflux/theme [wonderflux]
+ *
+ * @todo 	Remove and move to legacy support plugin.
  */
 if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { global $wfx_theme; $wfx_theme->cycle($args); } endif;
+
 
 /*
 	#######
@@ -1364,29 +1474,47 @@ if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { gl
 	Admin functions
 */
 
+
 /**
- * Control the display of Wonderflux admin menus
+ * Adds Wonderflux admin menus, registers settings and setsup contextual help.
  *
- * @since 0.93
- * @updated 0.93
+ * @since	0.93
+ * @version	0.93
+ *
+ * @param	none
+ *
+ * @todo	Will need to review all admin options when they are moved to Customizer!
  */
 if ( !function_exists( 'wfx_admin_menus' ) ) : function wfx_admin_menus() { global $wfx_admin; $wfx_admin->admin_menus(); } endif;
 
+
 /**
- * Adds Wonderflux options to appearance menu (respects WF_ADMIN_ACCESS)
+ * Adds Wonderflux links to WordPress admin bar.
  *
- * @since 0.93
- * @updated 0.93
+ * @since	0.93
+ * @version	2.0
+ *
+ * @param	none
+ *
+ * @todo	Will need to review all admin options when they are moved to Customizer!
  */
 if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_links(); } endif;
 
+
 /**
- * Adds files currently in use to the Wonderflux admin bar menu
+ * Adds files currently used to render view to the Wonderflux admin bar menu.
+ * Set constant WF_DEBUG to true to enable.
+ * Incredibly useful for debugging - shows which files are your child themes and which are Wonderflux core.
  *
- * @since 1.2
- * @updated 1.2
+ * @since	0.93
+ * @version	2.0
+ *
+ * @param	none
+ *
+ * @todo	Will need to review all admin options when they are moved to Customizer!
  */
 if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_files_info() { global $wfx_wp_helper; $wfx_wp_helper->admin_bar_files_info(); } endif;
+
 
 /*
 	 #####
@@ -1400,14 +1528,18 @@ if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_f
 	Admin post/content functions
 */
 
+
 /**
- * Remove page templates if required
- * Sadly can't load this on load-(page) hook as the filter doesn't work - too early I think
+ * Remove unwanted page templates from page attributes dropdown as set in Wonderflux options.
+ * Filters theme_page_templates.
  *
- * @since 2.0
- * @updated 2.0
+ * @since	2.0
+ * @version	2.0
+ *
+ * @param	[array] $input			Pass through WordPress page template array for manipulation via filter.
  */
 if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_page_templates($input) { global $wfx_admin_post; return $wfx_admin_post->remove_page_templates($input); } endif;
+
 
 /*
 	 #####
@@ -1420,6 +1552,7 @@ if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_pag
 
 	Direct activation fallbacks
 */
+
 
 /**
  * Add basic theme support.
@@ -1435,6 +1568,7 @@ function wfx_core_default_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 }
+
 
 /**
  * Add basic widgets.
@@ -1468,6 +1602,7 @@ function wfx_core_default_widgets() {
 
 }
 
+
 /**
  * Adds '.wrapper' div around content blocks
  * Use for background styling without messing with template files.
@@ -1488,6 +1623,7 @@ function wfx_core_default_wrappers() {
 
 }
 
+
 /**
  * Add basic editable menu support.
  * ONLY USED WHEN WONDERFLUX ACTIVATED DIRECTLY.
@@ -1505,6 +1641,7 @@ function wfx_core_register_nav(){
 	);
 
 }
+
 
 /**
  * Insert primary navigation.

@@ -400,10 +400,10 @@ class wflux_admin extends wflux_data {
 
 		switch ($this_wfx_screen->id) {
 			case 'appearance_page_wonderflux' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Main Options', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'admin_page_wonderflux_stylelab' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $style_help . $generic_help; break;
-			case 'admin_page_wonderflux_advanced' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
-			case 'admin_page_wonderflux_system' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
-			case 'admin_page_wonderflux_backup' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Backup', 'wonderflux' ) . '</h3>' . $backup_help . $generic_help; break;
+			case 'appearance_page_wonderflux_stylelab' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Stylelab', 'wonderflux' ) . '</h3>' . $style_help . $generic_help; break;
+			case 'appearance_page_wonderflux_advanced' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Advanced', 'wonderflux' ) . '</h3>' . $adv_help . $generic_help; break;
+			case 'appearance_page_wonderflux_system' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - System', 'wonderflux' ) . '</h3>' . $generic_help; break;
+			case 'appearance_page_wonderflux_backup' : $this_help = '<h3>' . esc_attr__( 'Wonderflux Help - Backup', 'wonderflux' ) . '</h3>' . $backup_help . $generic_help; break;
 			default : return false;
 		}
 

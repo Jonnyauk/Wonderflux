@@ -15,9 +15,6 @@ if ( !isset($_GET['export_raw']) ) {
  * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
  *
- * !DANGER WILL ROBINSON!
- * THIS IS AN EXPERIMENTAL - NOT FOR PRODUCTION JUST YET!!
- *
  * @package Wonderflux
  * @since Wonderflux 2.0
  *

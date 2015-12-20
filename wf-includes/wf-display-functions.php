@@ -476,6 +476,8 @@ class wflux_display_code extends wflux_data {
 
 		$is_mobile = ( wp_is_mobile() ) ? ' is-mobile' : ' is-not-mobile';
 
+		$is_ios = ( (strstr($_SERVER['HTTP_USER_AGENT'],'iPhone') || strstr($_SERVER['HTTP_USER_AGENT'],'iPod')  || strstr($_SERVER['HTTP_USER_AGENT'],'iPad')) ) ? ' ios-browser' : ' non-ios-browser';
+
 		switch (TRUE){
 			case $is_lynx: $browser .= 'lynx'; break;
 			case $is_gecko: $browser .= 'gecko'; break;
@@ -488,7 +490,7 @@ class wflux_display_code extends wflux_data {
 			default: $browser .= 'browser-not-defined'; break;
 		}
 
-		$this->head_classes[] = apply_filters( 'wflux_body_class_browser', esc_attr($browser . $is_mobile) );
+		$this->head_classes[] = apply_filters( 'wflux_body_class_browser', esc_attr($browser . $is_mobile . $is_ios) );
 
 		// Setup additional layout classes
 		$layout_classes = array();

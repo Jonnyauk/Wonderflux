@@ -80,6 +80,32 @@ Quickstart
 4.  Activate WFX Girder demo child theme.
 5.  Take a look at the source code of WFX Girder child theme to learn more!
 
+Layout and configuration options
+----------------------------------------------------------------------
+
+Any active child theme of Wonderflux automatically has access to a number of theme
+configuration options (almost all are filterable on individual view too - cool!)
+
+* Number of vertical columns
+* Main content width
+* Main container position
+* Content width
+* Sidebar width
+* Sidebar position
+* Sidebar/main content responsive breakpoint for full width
+* Sidebar display
+* Media content width
+* Hide Wonderflux page templates
+* Document type
+* Document language
+* Document character set
+
+Other features availabler in admin area:
+
+* Generate a single compressed/minified Flux Layout CSS file, less than 6k Gzipped!
+* Full server environmental system report
+* Backup and restore Wonderflux options
+
 Getting started
 ----------------------------------------------------------------------
 

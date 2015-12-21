@@ -88,9 +88,9 @@ configuration options (almost all are filterable on individual view too - cool!)
 
 You'll find these in the admin area under 'Appearance'.
 
-**Feeling brave?** Beta testers can try out the shiny new Customizer options by installing
-the [WP Flux Layout plugin](http://wonderflux.com/guide/function) plugin. It automatically
-interacts with Wonderflux if you have a child theme active - cute!
+**Feeling brave?** Beta testers can try out the shiny new Customizer options by
+installing the [WP Flux Layout plugin](https://github.com/Wider-uk/wp-flux-layout) plugin.
+It automatically interacts with Wonderflux if you have a child theme active - cute!
 
 * Number of vertical columns
 * Main content width

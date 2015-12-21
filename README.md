@@ -248,7 +248,7 @@ The dynamic CSS grid layout system
 Wonderflux generates a complete responsive CSS layout system built with
 [Flux Layout](https://github.com/Jonnyauk/flux-layout). This replaces the
 pixel based system in Wonderflux v1 and generates a number of useful media
-queries media queries based on your options (set in Appearance > Wonderflux).
+queries based on your options (set in Appearance > Wonderflux).
 
 Your Flux Layout system is generated from the following values
 set on the Wonderflux Stylelab options page:

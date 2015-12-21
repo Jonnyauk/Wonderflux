@@ -86,6 +86,12 @@ Layout and configuration options
 Any active child theme of Wonderflux automatically has access to a number of theme
 configuration options (almost all are filterable on individual view too - cool!)
 
+You'll find these in the admin area under 'Appearance'.
+
+**Feeling brave?** Beta testers can try out the shiny new Customizer options by installing
+the [WP Flux Layout plugin](http://wonderflux.com/guide/function) plugin. It automatically
+interacts with Wonderflux if you have a child theme active - cute!
+
 * Number of vertical columns
 * Main content width
 * Main container position
@@ -100,7 +106,7 @@ configuration options (almost all are filterable on individual view too - cool!)
 * Document language
 * Document character set
 
-Other features availabler in admin area:
+Other features available in admin area:
 
 * Generate a single compressed/minified Flux Layout CSS file, less than 6k Gzipped!
 * Full server environmental system report

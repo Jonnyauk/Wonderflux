@@ -1069,12 +1069,12 @@ class wflux_helper {
 	 * Used by wf_show_hooks()
 	 *
 	 * @since	1.2
-	 * @version	1.2
+	 * @version	2.2
 	 *
  	 * @param	none
 	 */
 	function wf_show_hooks_do(){
-		$debug_style = apply_filters( 'wflux_debug_show_hooks_css', 'display: inline-block; background-color: rgba(127, 127, 127, 0.7); border: 1px solid #212121; margin: 0; padding: 2px; font-size: 0.8em; color: #fff;' );
+		$debug_style = apply_filters( 'wflux_debug_show_hooks_css', 'display: block; background-color: rgba(127, 127, 127, 0.7); border: 1px solid #212121; margin: 0; padding: 2px; font-size: 0.8em; color: #fff; clear:both;' );
 		echo '<p style="'.esc_attr($debug_style).'">Wonderflux hook: &#x27;' . current_filter() . '&#x27;</p>';
 	}
 

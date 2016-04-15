@@ -54,6 +54,7 @@ class wflux_data {
 
 		// LANGUAGE CODE
 		$this->wfx_doc_lang = (isset($this->wfx_db_display['doc_lang']) ) ? $this->wfx_db_display['doc_lang'] : false;
+		$this->wfx_doc_lang = apply_filters( 'wflux_doc_lang', $this->wfx_doc_lang );
 		// Validate
 		$wfx_doc_lang_out = 'en';
 		// Too many language codes to validate against - lets just check for length

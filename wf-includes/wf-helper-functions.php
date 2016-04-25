@@ -621,21 +621,31 @@ class wflux_helper {
 
 
 	/**
-	 * Gets user role of logged-in user
+	 * Gets user role of logged-in user.
 	 * IMPORTANT - Used internally by Wonderflux.
 	 *
-	 * @since	0.62
-	 * @version	2.1
+	 * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+	 * is used instead of get_currentuserinfo() (function deprecated)
 	 *
- 	 * @param	none
-	 * @return	[string]				Current user role, eg 'administrator'
+	 * @since	0.62
+	 * @version	2.2
+	 *
+	 * @param	[string] $echo 			Do you want to echo instead of return? Y/N [N]
+	 * @return	[string]				Current user role, eg 'administrator' or false
 	 */
 	function wf_user_role() {
 
 		if ( is_user_logged_in() ) {
 
 			global $current_user;
-			get_currentuserinfo();
+
+			// BACKPAT: get_currentuserinfo() is deprecated in version 4.5
+			if ( WF_WORDPRESS_VERSION < 4.5 ) {
+				get_currentuserinfo();
+			} else {
+				wp_get_current_user();
+			}
+
 			$theuser = new WP_User( $current_user->ID );
 
 			if ( !empty( $theuser->roles ) && is_array( $theuser->roles ) ) {

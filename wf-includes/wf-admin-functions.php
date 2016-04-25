@@ -413,8 +413,11 @@ class wflux_admin extends wflux_data {
 	/**
 	 * Adds Wonderflux admin menus, registers settings and setsup contextual help.
 	 *
+	 * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+	 * is used instead of get_currentuserinfo() (function deprecated)
+	 *
 	 * @since	0.93
-	 * @version	0.93
+	 * @version	2.2
 	 *
 	 * @param	none
 	 *
@@ -444,7 +447,14 @@ class wflux_admin extends wflux_data {
 
 				// Must be array of user ID's supplied
 				global $current_user;
-				get_currentuserinfo();
+
+				// BACKPAT: get_currentuserinfo() is deprecated in version 4.5
+				if ( WF_WORDPRESS_VERSION < 4.5 ) {
+					get_currentuserinfo();
+				} else {
+					wp_get_current_user();
+				}
+
 				foreach ($input as $key=>$user_id) {
 					if ( $user_id == $current_user->ID && current_user_can('manage_options') ) {
 						// Build admin menus

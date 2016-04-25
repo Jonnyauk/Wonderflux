@@ -299,8 +299,11 @@ if ( !function_exists( 'wfx_get_template_part' ) ) : function wfx_get_template_p
  * Gets user role of logged-in user.
  * IMPORTANT - Used internally by Wonderflux.
  *
+ * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+ * is used instead of get_currentuserinfo() (function deprecated)
+ *
  * @since	0.62
- * @version	2.1
+ * @version	2.2
  *
  * @param	[string] $echo 			Do you want to echo instead of return? Y/N [N]
  * @return	[string]				Current user role, eg 'administrator' or false
@@ -1023,8 +1026,11 @@ if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_co
  * Adds admin/editing links.
  * Creates un-ordered list inside an optional div.
  *
+ * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+ * is used instead of get_currentuserinfo() (function deprecated)
+ *
  * @since	0.85
- * @version	2.1
+ * @version	2.2
  *
  * @param	[string] $userintro		Text string in first list item. [Welcome]
  * @param	[string] $username		Display username after intro (within same list item). Y/N [Y]
@@ -1494,8 +1500,11 @@ if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { gl
 /**
  * Adds Wonderflux admin menus, registers settings and setsup contextual help.
  *
+ * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+ * is used instead of get_currentuserinfo() (function deprecated)
+ *
  * @since	0.93
- * @version	0.93
+ * @version	2.2
  *
  * @param	none
  *

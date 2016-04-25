@@ -1517,8 +1517,11 @@ class wflux_display_extras {
 	 * Adds admin/editing links.
 	 * Creates un-ordered list inside an optional div.
 	 *
+	 * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+	 * is used instead of get_currentuserinfo() (function deprecated)
+	 *
 	 * @since	0.85
-	 * @version	2.1
+	 * @version	2.2
 	 *
 	 * @param	[string] $userintro		Text string in first list item. [Welcome]
 	 * @param	[string] $username		Display username after intro (within same list item). Y/N [Y]
@@ -1560,7 +1563,13 @@ class wflux_display_extras {
 
 		if ( is_user_logged_in() ):
 			global $current_user;
-			get_currentuserinfo();
+
+			// BACKPAT: get_currentuserinfo() is deprecated in version 4.5
+			if ( WF_WORDPRESS_VERSION < 4.5 ) {
+				get_currentuserinfo();
+			} else {
+				wp_get_current_user();
+			}
 
 			// Prepare user input for output
 			$userintro = wp_kses_data($userintro);

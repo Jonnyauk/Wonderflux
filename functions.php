@@ -476,6 +476,56 @@ if ( !function_exists( 'wfx_strip_whitespace' ) ) : function wfx_strip_whitespac
 } endif;
 
 
+/**
+ * Basic(ish) URL validation
+ *
+ * @since	2.2
+ * @version	2.2
+ *
+ * @param	[string] $input 		URL
+ * @return	[mixed]					Input URL/false
+ */
+if ( !function_exists( 'wfx_valid_url' ) ) : function wfx_valid_url( $input ) {
+
+	global $wfx_data_manage; return $wfx_data_manage->valid_url( $input );
+
+} endif;
+
+
+/**
+ * Check if input starts with a string
+ *
+ * @since	2.2
+ * @version	2.2
+ *
+ * @param	[string] $needle 		String to search for
+ * @param	[string] $haystack 		Input
+ * @return	[bool]					true/false
+ */
+if ( !function_exists( 'wfx_starts_with' ) ) : function wfx_starts_with( $needle, $haystack ) {
+
+	global $wfx_data_manage; return $wfx_data_manage->starts_with( $needle, $haystack );
+
+} endif;
+
+
+/**
+ * Check if input ends with a string
+ *
+ * @since	2.2
+ * @version	2.2
+ *
+ * @param	[string] $needle 		String to search for
+ * @param	[string] $haystack 		Input
+ * @return	[bool]					true/false
+ */
+if ( !function_exists( 'wfx_ends_with' ) ) : function wfx_ends_with( $needle, $haystack ) {
+
+	global $wfx_data_manage; return $wfx_data_manage->ends_with( $needle, $haystack );
+
+} endif;
+
+
 /*
 	 #####
 	#     #

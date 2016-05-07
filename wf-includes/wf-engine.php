@@ -122,7 +122,7 @@ add_action('init','wflux_capacitor_data_manage', 1);
 
 /**
 * @since 1.1
-* @updated 2.1
+* @updated 2.2
 * Creates all Wonderflux core data handling/cleaning functions
 */
 class wflux_data_manage_all {
@@ -130,6 +130,9 @@ class wflux_data_manage_all {
 	function __construct(){ $this->wflux_data_manage_do = new wflux_data_manage; }
 	function allowed_tags(){ return $this->wflux_data_manage_do->wf_allowed_tags(); }
 	function strip_whitespace($input){ return $this->wflux_data_manage_do->wf_strip_whitespace($input); }
+	function valid_url($input){ return $this->wflux_data_manage_do->wf_valid_url($input); }
+	function starts_with($needle, $haystack){ return $this->wflux_data_manage_do->wf_starts_with($needle, $haystack); }
+	function ends_with($needle, $haystack){ return $this->wflux_data_manage_do->wf_ends_with($needle, $haystack); }
 }
 
 

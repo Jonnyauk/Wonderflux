@@ -425,5 +425,56 @@ class wflux_data_manage {
 	}
 
 
+	/**
+	 * Basic(ish) URL validation
+	 *
+	 * @since	2.2
+	 * @version	2.2
+	 *
+	 * @param	[string] $input 		URL
+	 * @return	[mixed]					Input URL/false
+	 */
+	function wf_valid_url($input){
+
+		$input = trim( filter_var($input, FILTER_SANITIZE_STRING) );
+		return ( substr($input, 0, 4) == 'http' ) ? filter_var( $input, FILTER_VALIDATE_URL ) : false;
+
+	}
+
+
+	/**
+	 * Check if input starts with a string
+	 *
+	 * @since	2.2
+	 * @version	2.2
+	 *
+	 * @param	[string] $needle 		String to search for
+	 * @param	[string] $haystack 		Input
+	 * @return	[bool]					true/false
+	 */
+	function wf_starts_with($needle, $haystack){
+
+	    return $needle === '' || strrpos($haystack, $needle, -strlen($haystack)) !== false;
+
+	}
+
+
+	/**
+	 * Check if input ends with a string
+	 *
+	 * @since	2.2
+	 * @version	2.2
+	 *
+	 * @param	[string] $needle 		String to search for
+	 * @param	[string] $haystack 		Input
+	 * @return	[bool]					true/false
+	 */
+	function wf_ends_with($needle, $haystack){
+
+		return $needle === '' || (($temp = strlen($haystack) - strlen($needle)) >= 0 && strpos($haystack, $needle, $temp) !== false);
+
+	}
+
+
 }
 ?>

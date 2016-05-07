@@ -2445,9 +2445,10 @@ class wflux_display_extras {
 	/**
 	 * Outputs an array as a string with a seperator in-between each.
 	 * Doesn't add to last item - useful for comma sperated output.
+ 	 * Will remove flase/empty values from array - cool!
 	 *
 	 * @since	1.1
-	 * @version	1.2
+	 * @version	2.2
 	 *
 	 * @param	[array] $values			REQUIRED - Input array (single dimenional).
 	 * @param	[string] $seperator		Seperator between items output from array. [, ]
@@ -2470,6 +2471,9 @@ class wflux_display_extras {
 		extract( $args, EXTR_SKIP );
 
 		if ( !is_array($values) || empty($values) ) return;
+
+		// Remove false/empty values
+		$values = array_filter( $values );
 
 		$count_all = count( $values );
 		$counter = 1;

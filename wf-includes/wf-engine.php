@@ -131,6 +131,7 @@ class wflux_data_manage_all {
 	function allowed_tags(){ return $this->wflux_data_manage_do->wf_allowed_tags(); }
 	function strip_whitespace($input){ return $this->wflux_data_manage_do->wf_strip_whitespace($input); }
 	function valid_url($input){ return $this->wflux_data_manage_do->wf_valid_url($input); }
+	function valid_hex_colour($input){ return $this->wflux_data_manage_do->wf_valid_hex_colour($input); }
 	function starts_with($needle, $haystack){ return $this->wflux_data_manage_do->wf_starts_with($needle, $haystack); }
 	function ends_with($needle, $haystack){ return $this->wflux_data_manage_do->wf_ends_with($needle, $haystack); }
 }

@@ -493,6 +493,23 @@ if ( !function_exists( 'wfx_valid_url' ) ) : function wfx_valid_url( $input ) {
 
 
 /**
+ * Check if input is valid 6 character hexidecimal colour value (plus additional #)
+ * Output escaping example $bg_colour = strip_tags( stripslashes( $bg_colour ) );
+ *
+ * @since	2.2
+ * @version	2.2
+ *
+ * @param	[string] $input 		Text string including #
+ * @return	[bool]					true/false
+ */
+if ( !function_exists( 'wfx_valid_hex_colour' ) ) : function wfx_valid_hex_colour( $input ) {
+
+	global $wfx_data_manage; return $wfx_data_manage->valid_hex_colour( $input );
+
+} endif;
+
+
+/**
  * Check if input starts with a string
  *
  * @since	2.2

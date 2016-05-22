@@ -443,6 +443,23 @@ class wflux_data_manage {
 
 
 	/**
+	 * Check if input is valid 6 character hexidecimal colour value (plus additional #)
+	 * Output escaping example $bg_colour = strip_tags( stripslashes( $bg_colour ) );
+	 *
+	 * @since	2.2
+	 * @version	2.2
+	 *
+	 * @param	[string] $input 		Text string including #
+	 * @return	[bool]					true/false
+	 */
+	function wf_valid_hex_colour($input){
+
+		return ( preg_match( '/^#[a-f0-9]{6}$/i', $input ) ) ? true : false;
+
+	}
+
+
+	/**
 	 * Check if input starts with a string
 	 *
 	 * @since	2.2

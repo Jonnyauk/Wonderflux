@@ -7,6 +7,7 @@ if ( !isset($_GET['export_raw']) ) {
 /**
  *
  * Flux Layout
+ * Version 1.1
  *
  * A dynamic percentage based CSS layout engine - https://github.com/Jonnyauk/flux-layout
  * Built for the Wonderflux WordPress theme framework - https://github.com/Jonnyauk/Wonderflux
@@ -32,7 +33,7 @@ $wf_grid->containers();
 $wf_grid->relative_loops();
 $wf_grid->relative_push_pull();
 $wf_grid->columns();
-$wf_grid->media_queries_visibility();
+$wf_grid->media_queries_utility();
 $wf_grid->media_queries();
 
 /**
@@ -114,6 +115,7 @@ class wflux_layout {
 		}
 
 		$this->mq_config = array(
+
 			'tiny'	=> array(
 							'def'	=> 'mq-tiny',
 							'max'	=> 480,
@@ -192,7 +194,7 @@ class wflux_layout {
 	 */
 	function containers() {
 
-		echo '/********** Core containers **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Core containers *****/' . $this->minify_2 . $this->minify;
 
 		//Setup margin to position main containers
 		switch ($this->position) {
@@ -225,7 +227,7 @@ class wflux_layout {
 	 */
 	//function blocks() {
 
-		//echo '/********** Grid boxes **********/' . $this->minify_2;
+		//echo '/***** Grid boxes *****/' . $this->minify_2;
 
 		// Main output
 		/*
@@ -243,7 +245,7 @@ class wflux_layout {
 	 */
 	function columns() {
 
-		echo '/********** Traditional columns **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Traditional columns *****/' . $this->minify_2 . $this->minify;
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->columns_prepend . '"] { '
@@ -328,7 +330,7 @@ class wflux_layout {
 
 		if ( !is_array($this->relative) ) return;
 
-		echo '/********** Grid boxes **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Grid boxes *****/' . $this->minify_2 . $this->minify;
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->class_prepend . '"] { '
@@ -376,14 +378,13 @@ class wflux_layout {
 	}
 
 	/**
-	 * Outputs relative sized CSS
-	 * $sizes = array of integers representing what sizes to output
+	 * Outputs push and pull classes
 	 */
 	function relative_push_pull() {
 
 		if ( !is_array($this->relative) ) return;
 
-		echo '/********** Push and pull **********/' . $this->minify . $this->minify_2;
+		echo '/***** Push and pull *****/' . $this->minify . $this->minify_2;
 
 		foreach ( $this->relative as $size ) {
 
@@ -414,14 +415,10 @@ class wflux_layout {
 	}
 
 	/**
-	 * Media queries output for general rules
-	 * 4 definitions:
-	 * rwd-tiny Tiny screens - small portrait phones
-	 * rwd-small Small screens - Lower spec landscape phones and some portrait tablets
-	 * rwd-medium Medium screens - Standard computers and landscape tablets
-	 * rwd-large Large screens - Swanky hi-res screens
+	 * Media query output utilities
+	 * Visibility and margin clearers when using push and pull classes
 	 */
-	function media_queries_visibility() {
+	function media_queries_utility() {
 
 		// Array of just definitions - used for -hide-except rules
 		$all_defs = array();
@@ -442,7 +439,7 @@ class wflux_layout {
 
 		$all_defs_count = count( $all_defs );
 
-		echo '/********** Visibility Media Queries **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Visibility & Utility Media Queries *****/' . $this->minify_2 . $this->minify;
 
 		$sizes_count = 0;
 
@@ -465,6 +462,9 @@ class wflux_layout {
 			// Open media query
 			echo '/* ' . $size['def'] . ': ' . $size['note'] . ' */' . $this->minify
 			. '@media screen ' . $size_queries . ' {' . $this->minify;
+
+			// Margin clearer
+			echo '.' . $size['def'] . '-min-no-margins { margin: 0; }' . $this->minify;
 
 			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
 				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
@@ -540,7 +540,7 @@ class wflux_layout {
 
 		$all_defs_count = count( $all_defs );
 
-		echo '/********** Layout Media Queries **********/' . $this->minify_2 . $this->minify;
+		echo '/***** Layout Media Queries *****/' . $this->minify_2 . $this->minify;
 
 		// CSS attribute wildcard selectors
 		$w_count = 2;

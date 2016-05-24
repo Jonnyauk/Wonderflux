@@ -7,7 +7,7 @@ if ( !isset($_GET['export_raw']) ) {
 /**
  *
  * Flux Layout
- * Version 1.1
+ * Version 1.1beta
  *
  * A dynamic percentage based CSS layout engine - https://github.com/Jonnyauk/flux-layout
  * Built for the Wonderflux WordPress theme framework - https://github.com/Jonnyauk/Wonderflux
@@ -394,13 +394,17 @@ class wflux_layout {
 
 					for ( $limit=1; $limit < $size; $limit++ ) {
 
-						echo '.push-' . $limit . '-' . $size . ' { margin-left:' . $limit * ( 100 / $size ) . '%; }' . $this->minify;
+						$push_val = $limit * ( 100 / $size );
+
+						echo '.push-' . $limit . '-' . $size . ' { margin-left:' . $push_val . '%; width:' . ( 100 - $push_val ) . '%; }' . $this->minify;
 
 					}
 
 					for ( $limit=1; $limit < $size; $limit++ ) {
 
-						echo '.pull-' . $limit . '-' . $size . ' { margin-left:-' . $limit * ( 100 / $size ) . '%; }' . $this->minify;
+						$pull_val = $limit * ( 100 / $size );
+
+						echo '.pull-' . $limit . '-' . $size . ' { margin-left:-' . $pull_val . '%; width:' . ( 100 - $pull_val ) . '%; }' . $this->minify;
 
 					}
 

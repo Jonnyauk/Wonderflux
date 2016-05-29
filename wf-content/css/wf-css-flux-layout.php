@@ -603,37 +603,76 @@ class wflux_layout {
 				}
 			}
 
-			/*
-			Responsive columns removed for the moment
-			Need to work out how to deal with gutter (maybe need additional .first override + .mq-{size}-gutter)
-			 */
+			echo ' /***** Responsive push and pull classes *****/' . $this->minify;
 
-			//echo ' /***** Columns *****/' . $this->minify;
+			// Push/pull general
+			foreach ( $this->mq_box_sizes as $size_r ) {
+				if ( intval($size_r) > 1 && intval($size_r) < 5 ) {
+					for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {
 
-			/*
-			// Column size loops
+						// Push
+						echo ' .' . $size['def'] . '-push-' . $limit . '-' . $size_r;
+
+						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
+							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-push-' . $limit . '-' . $size_r : '';
+						}
+
+						$push_val = $limit * ( 100 / $size_r );
+
+						//echo ' { width:' . ( 100/$size_r ) * $limit . '%; ';
+						echo ' { margin-left:' . $push_val . '%; width:' . ( 100 - $push_val ) . '%;';
+						//echo ( $size_r == 1 ) ? '' : 'float:left; ';
+						echo ' }' . $this->minify;
+
+						// Pull
+						echo ' .' . $size['def'] . '-pull-' . $limit . '-' . $size_r;
+
+						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
+							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-pull-' . $limit . '-' . $size_r : '';
+						}
+
+						echo ' { margin-left: -' . $push_val . '%; width:' . ( 100 - $push_val ) . '%;';
+						//echo ( $size_r == 1 ) ? '' : 'float:left; ';
+						echo ' }' . $this->minify;
+
+					}
+				}
+			}
+
+			// Push/pull for number of user columns configured
 			foreach ( $this->mq_column_sizes as $size_c ) {
 				if ( intval($size_c) < 101 ) {
 					for ( $limit=1; $limit < $size_c || $limit == 1; $limit++ ) {
 
-						echo ' .' . $size['def'] . '-c-' . $limit . '-' . $size_c;
+						// Push
+						echo ' .' . $size['def'] . '-push-' . $limit . '-' . $size_c;
 
 						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
-							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-c-min-' . $limit . '-' . $size_c : '';
+							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-push-' . $limit . '-' . $size_c : '';
 						}
 
-						$width = ( ((100 - ($size_c - 1) * $this->columns_gutter) / $size_c) * $limit )
-						+ ( $this->columns_gutter * ($limit - 1) );
+						$push_val = $limit * ( 100 / $size_c );
 
-						echo ' { width:' . $width . '%; ';
+						echo ' { margin-left:' . $push_val . '%; width:' . ( 100 - $push_val ) . '%;';
 						//echo ( $size_c == 1 ) ? '' : 'float:left; ';
-						echo '}' . $this->minify;
+						echo ' }' . $this->minify;
+
+						// Pull
+						echo ' .' . $size['def'] . '-pull-' . $limit . '-' . $size_c;
+
+						for ( $limit_def=0; $limit_def < ($all_defs_count); $limit_def++ ) {
+							echo ( $all_defs[$limit_def] <= $size['def'] ) ? ', .' . $all_defs[$limit_def] . '-min-pull-' . $limit . '-' . $size_c : '';
+						}
+
+						$pull_val = $limit * ( 100 / $size_c );
+
+						echo ' { margin-left: -' . $pull_val . '%; width:' . ( 100 - $pull_val ) . '%;';
+						//echo ( $size_c == 1 ) ? '' : 'float:left; ';
+						echo ' }' . $this->minify;
 
 					}
-
 				}
 			}
-			*/
 
 			// Close media query
 			echo '}' . $this->minify_2;

@@ -607,7 +607,7 @@ class wflux_layout {
 
 			// Push/pull general
 			foreach ( $this->mq_box_sizes as $size_r ) {
-				if ( intval($size_r) > 1 && intval($size_r) < 5 ) {
+				if ( intval($size_r) > 1 && intval($size_r) < 6 ) {
 					for ( $limit=1; $limit < $size_r || $limit == 1; $limit++ ) {
 
 						// Push

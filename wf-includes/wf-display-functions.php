@@ -3,7 +3,7 @@
  * Core display functions that output code.
  *
  * @since	0.913
- * @version	2.0
+ * @version	2.3
  *
  * @todo Check translation setup.
  */
@@ -384,7 +384,7 @@ class wflux_display_code extends wflux_data {
 	* Appends Wonderflux size URL params
 	*
 	* @since 0.93
-	* @updated 2.0
+	* @updated 2.3
 	*/
 	function wf_head_css_add_args($input) {
 
@@ -395,7 +395,8 @@ class wflux_display_code extends wflux_data {
 			. '&amp;wu=' . $this->wfx_width_unit
 			. '&amp;p=' . $this->wfx_position
 			. '&amp;sbp=' . $this->wfx_sidebar_primary_position
-			. '&amp;c=' . $this->wfx_columns;
+			. '&amp;c=' . $this->wfx_columns
+			. '&amp;r=' . $this->wfx_range_core;
 
 		} else {
 

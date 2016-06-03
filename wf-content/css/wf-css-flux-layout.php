@@ -24,7 +24,7 @@ if ( !isset($_GET['export_raw']) ) {
 
 <?php
 
-/* DO IT! Just for testing and development */
+/* DO IT! Will make smarter in the future! */
 $wf_grid = new wflux_layout;
 $wf_grid->containers();
 //$wf_grid->blocks();
@@ -47,6 +47,7 @@ class wflux_layout {
 	protected $columns_basic;		// INPUT - Number of basic (no gutter) columns in layout
 	protected $class_prepend;		// INPUT - Prepend all CSS main selectors
 	protected $columns_prepend;		// INPUT - Prepend all CSS column selectors
+	protected $range;				// INPUT - Hyphen (-) delimited string of sizing definitions to generate output
 	protected $columns;				// ARRAY - Advanced columns with gutters
 	protected $columns_gutter;		// INPUT - Target gutter (%)
 	protected $relative;			// ARRAY - General relative sizes
@@ -69,14 +70,39 @@ class wflux_layout {
 		$this->width_units = ( isset($_GET['wu']) && $_GET['wu'] == 'percent' ) ? '%' : 'px';
 
 		if ($this->width_units == 'px') {
+
 			$this->width = ( isset($_GET['w']) && is_numeric( $_GET['w'] ) && $_GET['w'] <= 4000 ) ? $_GET['w'] : 950;
+
 		} else {
+
 			$this->width = ( isset($_GET['w']) && is_numeric( $_GET['w'] ) && $_GET['w'] <= 101 ) ? $_GET['w'] : 80;
+
 		}
 
 		$this->columns_basic = ( isset($_GET['c']) && is_numeric( $_GET['c'] ) && $_GET['c'] <= 101 ) ? $_GET['c'] : 16;
 		$this->class_prepend = ( !isset($this->class_prepend) ) ? 'box-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->class_prepend) );
 		$this->columns_prepend = ( !isset($this->columns_prepend) ) ? 'column-' : strtolower( preg_replace('/[^a-z0-9_\-]/', '', $this->columns_prepend) );
+
+		if ( isset($_GET['r']) ) {
+
+			$this->range = explode('-', $_GET['r']);
+
+			if ( is_array($this->range) ) {
+				foreach ( $this->range as $key => $value ) {
+					$value = trim($value);
+					if ( !is_numeric($value) ) {
+						unset( $this->range[$key] );
+					}
+				}
+			}
+
+			if ( !in_array(1, $this->range) ) {
+				$this->range[] = 1;
+			}
+
+			sort($this->range);
+
+		}
 
 		// WONDERFLUX SPECIFIC
 		$this->content_css = ( isset($_GET['sbp']) && $_GET['sbp'] == 'right' ) ? false : 'left';
@@ -85,27 +111,28 @@ class wflux_layout {
 		$this->position = ( isset($_GET['p']) && in_array($_GET['p'], $position_accept) ) ? $_GET['p'] : 'middle';
 
 		// Loops of output
-		$this->relative = array(1,2,4,5,8,10);
+		$this->relative = $this->range;
 		// Add core column option to box array for output
 		if ( !in_array($this->columns_basic, $this->relative) ){
 			array_unshift( $this->relative, $this->columns_basic );
 			sort($this->relative);
 		}
 
-		$this->columns = array(1,2,4,5,8,10);
+		$this->columns = $this->range; /* TODO: Extend with own param for extra control instead of just common setting! */
 		// Add core column option to columns array for output
 		if ( !in_array($this->columns_basic, $this->columns) ){
 			array_unshift( $this->columns, $this->columns_basic );
 			sort($this->columns);
 		}
 
-		$this->mq_box_sizes = array(1,2,4,5,8,10);
+		$this->columns_gutter = 2;
+
+		$this->mq_box_sizes = $this->range; /* TODO: Extend with own param for extra control instead of just common setting! */
 		// Add core column option to media query array for output
 		if ( !in_array($this->columns_basic, $this->mq_box_sizes) ){
 			array_unshift( $this->mq_box_sizes, $this->columns_basic );
 			sort($this->mq_box_sizes);
 		}
-		$this->columns_gutter = 2;
 
 		if ( isset( $_GET['mq_cols'] ) && is_array($_GET['mq_cols']) ){
 			$this->mq_column_sizes = $_GET['mq_cols'];

@@ -3,7 +3,7 @@
  * Setup and prepare Wonderflux options with fallbacks.
  *
  * @since	0.62
- * @version	2.1
+ * @version	2.3
  */
 class wflux_data {
 
@@ -16,6 +16,7 @@ class wflux_data {
 	protected $wfx_width_type; // Width unit of main site container (px or %)
 	protected $wfx_width; // Width of main site container
 	protected $wfx_position; // Position of main site container
+	protected $wfx_range_core; // Range of different size definitions for Flux Layout
 	protected $wfx_columns; // Number of columns
 	protected $wfx_columns_width; // Width of columns
 	protected $wfx_sidebar_primary_position; // Primary sidebar position
@@ -129,6 +130,16 @@ class wflux_data {
 		$wfx_container_p_accept = array('left','middle','right');
 		if ( in_array($this->wfx_position,$wfx_container_p_accept) ) { $wfx_container_p_out = $this->wfx_position; }
 		$this->wfx_position = $wfx_container_p_out;
+
+		// SIZE RANGE - Range of different size definitions
+		// TODO: Allow filtering!
+		$this->wfx_range_core = (isset($this->wfx_db_display['range_core']) ) ? $this->wfx_db_display['range_core'] : false;
+		// Validate
+		$wfx_range_core_out = '1-2-4-5-8-10';
+		if ( is_string($this->wfx_range_core) && ($this->wfx_range_core != $wfx_range_core_out) ) {
+			$wfx_range_core_out = preg_replace( '/\s+/', '', esc_attr($this->wfx_range_core) );
+		}
+		$this->wfx_range_core = $wfx_range_core_out;
 
 		// NUMBER OF COLUMNS - min 2, max 100
 		$this->wfx_columns = 16;

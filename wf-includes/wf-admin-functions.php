@@ -660,7 +660,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_intro_grid() {
 		echo '<h2>' . esc_attr__('CSS grid/column settings','wonderflux') . '</h2>';
 		echo '<div class="clear"></div>';
-		echo '<p>' . esc_attr__('Setup the dimensions of the CSS layout columns (grid system). The additional size definitions control defines additional gird/column systems to be generated (along with their associated media query equivalents). Define as a hyphen (-) seperated list of numbers. Original values are 2-4-5-8-10.', 'wonderflux') . '</p>';
+		echo '<p>' . esc_attr__('Setup the dimensions of the CSS layout columns (grid system). The additional size definitions control defines additional gird/column systems to be generated (along with their associated media query equivalents). Define as a hyphen (-) seperated list of numbers. Original value is 2-4-5-8-10.', 'wonderflux') . '</p>';
 	}
 
 	function wf_form_intro_main() {

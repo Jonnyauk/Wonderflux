@@ -906,6 +906,7 @@ class wflux_admin_forms extends wflux_data {
 		$_GET['p'] = $this->wfx_position;
 		$_GET['sbp'] = $this->wfx_sidebar_primary_position;
 		$_GET['c'] = $this->wfx_columns;
+		$_GET['r'] = $this->wfx_range_core;
 		// IMPORTANT - Only used here - need to remove header CSS file info to import correctly
 		$_GET['export_raw']=true;
 

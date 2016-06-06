@@ -877,7 +877,7 @@ class wflux_admin_forms extends wflux_data {
 	* Creates a text area populated with CSS grid output
 	* For Wonderflux v2.x responsive grid system
 	* @since 2.0
-	* @updated 2.1
+	* @updated 2.3
 	*/
 	function wf_form_helper_file_css_combine_2($file,$cleanup) {
 

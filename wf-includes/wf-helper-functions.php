@@ -136,7 +136,7 @@ class wflux_data {
 		$this->wfx_range_core = (isset($this->wfx_db_display['range_core']) ) ? $this->wfx_db_display['range_core'] : false;
 		// Validate
 		$wfx_range_core_out = '1-2-4-5-8-10';
-		if ( is_string($this->wfx_range_core) && ($this->wfx_range_core != $wfx_range_core_out) ) {
+		if ( !empty($this->wfx_range_core) && is_string($this->wfx_range_core) && ($this->wfx_range_core != $wfx_range_core_out) ) {
 			$wfx_range_core_out = preg_replace( '/\s+/', '', esc_attr($this->wfx_range_core) );
 			$wfx_range_core_out = preg_replace( '/-[a-z]/i', '', $wfx_range_core_out );
 		}

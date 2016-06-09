@@ -4,7 +4,7 @@
  *
  * @package Wonderflux
  * @since 0.1
- * @updated 2.1
+ * @updated 2.3
  */
 
 /*** Positioning and styling ***/
@@ -22,6 +22,7 @@ body { font-size: 75%; color: #222; background: #fff; font-family: "Helvetica Ne
 .bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
 .content-left { text-align: left; }
 .content-right { text-align: right; }
+.content-center { text-align: center; }
 /* Clearing floats without extra markup Based on How To Clear Floats Without Structural Markup by PiE [http://www.positioniseverything.net/easyclearing.html] */
 .clearfix:after, .container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
 .clearfix, .container { display: block; }

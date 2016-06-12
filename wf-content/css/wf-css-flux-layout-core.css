@@ -8,6 +8,7 @@
  * Free to use on any project and released under the GPLv2 license
  * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
+ * How To Clear Floats Without Structural Markup by PiE
  *
  * @package Wonderflux
  * @since Wonderflux 2.0
@@ -57,17 +58,10 @@ td,th { padding: 5px; }
 .top, .flush-top { margin-top: 0; padding-top: 0; }
 .bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
 
-/**
- * Wonderflux v1.x legacy clearfix
- * Clearing floats without extra markup
- * Based on How To Clear Floats Without Structural Markup
- * by PiE [http://www.positioniseverything.net/easyclearing.html]
- *
- */
-.clearfix:after, .container:after, .row:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
-.clearfix, .container, .row { display: block; }
-.clear, .clearfix:after, .container:after, .row:after { clear:both; }
-.clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after { content:""; display:table; }
+.clearfix:after, .container:after, .row:after, .row-columns:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
+.clearfix, .container, .row, .row-columns { display: block; }
+.clear, .clearfix:after, .container:after, .row:after, .row-columns:after { clear:both; }
+.clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after, .row-columns:before, .row-columns:after { content:""; display:table; }
 
 /*** Viewport height ***/
 

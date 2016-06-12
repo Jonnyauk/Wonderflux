@@ -48,8 +48,8 @@ class wflux_layout {
 	protected $class_prepend;		// INPUT - Prepend all CSS main selectors
 	protected $columns_prepend;		// INPUT - Prepend all CSS column selectors
 	protected $range;				// INPUT - Hyphen (-) delimited string of sizing definitions to generate output
-	protected $columns;				// ARRAY - Advanced columns with gutters
-	protected $columns_gutter;		// INPUT - Target gutter (%)
+	protected $columns;				// ARRAY - Traditional columns with gutters
+	protected $columns_gutter;		// INPUT - Columns gutter (%)
 	protected $relative;			// ARRAY - General relative sizes
 	protected $mq_config;			// ARRAY - Media queries cofig
 	protected $mq_box_sizes;		// ARRAY - Media query box size loops
@@ -125,8 +125,6 @@ class wflux_layout {
 			sort($this->columns);
 		}
 
-		$this->columns_gutter = 2;
-
 		$this->mq_box_sizes = $this->range; /* TODO: Extend with own param for extra control instead of just common setting! */
 		// Add core column option to media query array for output
 		if ( !in_array($this->columns_basic, $this->mq_box_sizes) ){
@@ -174,6 +172,7 @@ class wflux_layout {
 
 		// Internal values
 		$this->column_width = 100 / $this->columns_basic;
+		$this->columns_gutter = 2;
 		$this->class_space_left = $this->class_prepend . 'pad-left';
 		$this->class_space_right = $this->class_prepend . 'pad-right';
 		$this->class_move_left = $this->class_prepend . 'move-left';
@@ -276,10 +275,11 @@ class wflux_layout {
 
 		// CSS attribute wildcard selectors
 		echo 'div[class*="' . $this->columns_prepend . '"] { '
-		. 'float:left; margin-left: ' . $this->columns_gutter . '%; }'
+		. 'float:left; margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: ' . $this->columns_gutter / 2 . '%; }'
 		 . $this->minify;
 
-		echo '.row.' . rtrim($this->columns_prepend, '-') . ' div:first-child { margin-left: 0; }' . $this->minify;
+		echo '.row-' . rtrim($this->columns_prepend, '-') . ' div:first-of-type { margin-left: 0; margin-right: ' . $this->columns_gutter / 2 . '%; }' . $this->minify;
+		echo '.row-' . rtrim($this->columns_prepend, '-') . ' div:last-of-type { margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: 0; }' . $this->minify;
 
 		foreach ( $this->columns as $size_r ) {
 

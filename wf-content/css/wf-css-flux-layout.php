@@ -7,7 +7,7 @@ if ( !isset($_GET['export_raw']) ) {
 /**
  *
  * Flux Layout
- * Version 1.1beta
+ * Version 2.0beta
  *
  * A dynamic percentage based CSS layout engine - https://github.com/Jonnyauk/flux-layout
  * Built for the Wonderflux WordPress theme framework - https://github.com/Jonnyauk/Wonderflux
@@ -248,26 +248,7 @@ class wflux_layout {
 	}
 
 	/**
-	 * Outputs percent widths for blocks
-	 * REMOVED FOR THE MOMENT - avoid alternative CSS definitions and repeated code
-	 */
-	//function blocks() {
-
-		//echo '/***** Grid boxes *****/' . $this->minify_2;
-
-		// Main output
-		/*
-		for ( $limit=1; $limit <= $this->columns_basic; $limit++ ) {
-			echo '.' . $this->class_prepend . $limit . ' { width: '
-			. $this->column_width * $limit . '%; }' . $this->minify;
-		}
-		echo $this->minify;
-		*/
-
-	//}
-
-	/**
-	 * Outputs columns rules
+	 * Outputs column rules
 	 */
 	function columns() {
 

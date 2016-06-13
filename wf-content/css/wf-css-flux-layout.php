@@ -31,8 +31,8 @@ $wf_grid->containers();
 //$wf_grid->space_loops();
 //$wf_grid->push_loops();
 $wf_grid->relative_loops();
-$wf_grid->relative_push_pull();
 $wf_grid->columns();
+$wf_grid->relative_push_pull();
 $wf_grid->media_queries_utility();
 $wf_grid->media_queries();
 
@@ -259,8 +259,8 @@ class wflux_layout {
 		. 'float:left; margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: ' . $this->columns_gutter / 2 . '%; }'
 		 . $this->minify;
 
-		echo '.row-' . rtrim($this->columns_prepend, '-') . ' div:first-of-type { margin-left: 0; margin-right: ' . $this->columns_gutter / 2 . '%; }' . $this->minify;
-		echo '.row-' . rtrim($this->columns_prepend, '-') . ' div:last-of-type { margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: 0; }' . $this->minify;
+		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:first-child { margin-left: 0; margin-right: ' . $this->columns_gutter / 2 . '%; }' . $this->minify;
+		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:last-child { margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: 0; }' . $this->minify;
 
 		foreach ( $this->columns as $size_r ) {
 

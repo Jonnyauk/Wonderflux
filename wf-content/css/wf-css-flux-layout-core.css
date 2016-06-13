@@ -59,10 +59,10 @@ td,th { padding: 5px; }
 .top, .flush-top { margin-top: 0; padding-top: 0; }
 .bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
 
-.clearfix:after, .container:after, .row:after, .row-columns:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
-.clearfix, .container, .row, .row-columns { display: block; }
-.clear, .clearfix:after, .container:after, .row:after, .row-columns:after { clear:both; }
-.clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after, .row-columns:before, .row-columns:after { content:""; display:table; }
+.clearfix:after, .container:after, .row:after, .row-column:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
+.clearfix, .container, .row, .row-column { display: block; }
+.clear, .clearfix:after, .container:after, .row:after, .row-column:after { clear:both; }
+.clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after, .row-column:before, .row-column:after { content:""; display:table; }
 
 /*** Viewport height ***/
 

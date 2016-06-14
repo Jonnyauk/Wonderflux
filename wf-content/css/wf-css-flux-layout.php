@@ -125,6 +125,8 @@ class wflux_layout {
 			sort($this->columns);
 		}
 
+		$this->columns_gutter = ( isset($_GET['g']) && is_numeric( $_GET['g'] ) && $_GET['g'] <= 25 ) ? (int)$_GET['g'] : 2;
+
 		$this->mq_box_sizes = $this->range; /* TODO: Extend with own param for extra control instead of just common setting! */
 		// Add core column option to media query array for output
 		if ( !in_array($this->columns_basic, $this->mq_box_sizes) ){
@@ -172,7 +174,6 @@ class wflux_layout {
 
 		// Internal values
 		$this->column_width = 100 / $this->columns_basic;
-		$this->columns_gutter = 2;
 		$this->class_space_left = $this->class_prepend . 'pad-left';
 		$this->class_space_right = $this->class_prepend . 'pad-right';
 		$this->class_move_left = $this->class_prepend . 'move-left';

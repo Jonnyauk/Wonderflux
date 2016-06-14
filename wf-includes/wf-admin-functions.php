@@ -55,7 +55,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Builds Wonderflux admin pages
 	* @since 0.1
-	* @updated 1.2
+	* @updated 2.3
 	*
 	*	@params
 	*
@@ -170,7 +170,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Sets up and configures options and form fields
 	* @since 0.81
-	* @updated 2.0
+	* @updated 2.3
 	*/
 	function wf_register_settings(){
 
@@ -209,6 +209,7 @@ class wflux_admin extends wflux_data {
 		}
 
 		add_settings_field('range_core', esc_attr__('Additional column definitions','wonderflux'), array($this->admin_forms, 'wf_form_range_core'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('gutter', esc_attr__('Column gutter width (percent)','wonderflux'), array($this->admin_forms, 'wf_form_gutter'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		/**
 		 * Backpat - add conditional container width field (unit option)
@@ -610,6 +611,7 @@ class wflux_admin_forms extends wflux_data {
 			'container_u'	=> array ('percent','pixels'),
 			'container_w'	=> ( $this->wfx_width_unit == 'pixels' ) ? array ( 950, range(400,2000,10) ) : array ( 80, range(5,100,5) ),
 			'columns_num'	=> array ( 24, range(2,100,1) ),
+			'gutter'		=> array ( 2, range(1,25,1) ),
 			'columns_w'		=> array ( 30, range(10,200,1) ),
 			'page_t'		=> array ( '','no-sidebar' ),
 			'rwd_full'		=> array ( 'tiny','small','medium', 'large' ),
@@ -688,6 +690,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_rwd_full() { $this->wf_form_helper_ddown_std($this->wfx_rwd_full,'rwd_full',$this->valid['rwd_full'],''); }
 	function wf_form_container_u() { $this->wf_form_helper_ddown_std($this->wfx_width_unit,'container_u',array('percent','pixels'),''); }
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1,''); }
+	function wf_form_gutter() { $this->wf_form_helper_ddown_range($this->wfx_gutter,'gutter',1,25,1,''); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1,''); }
 	function wf_form_p_template() { $this->wf_form_helper_cbox($this->wfx_page_templates,'page_t', $this->valid['page_t'],''); }
 	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',$this->valid['doc_type'],''); }

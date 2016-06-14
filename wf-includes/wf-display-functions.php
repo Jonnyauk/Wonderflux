@@ -396,6 +396,7 @@ class wflux_display_code extends wflux_data {
 			. '&amp;p=' . $this->wfx_position
 			. '&amp;sbp=' . $this->wfx_sidebar_primary_position
 			. '&amp;c=' . $this->wfx_columns
+			. '&amp;g=' . $this->wfx_gutter
 			. '&amp;r=' . $this->wfx_range_core;
 
 		} else {

@@ -1200,8 +1200,11 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
 /**
  * Creates page navigation for lists of results like archive or query views.
  *
+ * Filters available:
+ * wflux_page_counter_div - class of containing div.
+ *
  * @since	0.93
- * @version	2.0
+ * @version	2.3
  *
  * @param	[string] $element		What tag to use to wrap output (can be empty to setup at template level). [p]
  * @param	[string] $start			Opening text string. [Page ]
@@ -1214,7 +1217,7 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
  * @param	[string] $previous		Text for previous link. [&lt; ]
  * @param	[string] $next			Text for next link. Y/N [ &gt;]
  * @param	[string] $div			Wrap output in containing <div>. Y/N [Y]
- * @param	[string] $div_class		Containing <div> class if used. [page-counter]
+ * @param	[string] $div_class		Containing <div> class if used. [row page-counter]
  * @param	[string] $echo			Echo or return output. Y/N [Y]
  *
  * @todo	Review code, make smarter!

@@ -1441,7 +1441,7 @@ class wflux_display extends wflux_display_css {
  * Extra core display functions for theme developers.
  *
  * @since	0.85
- * @version	2.1
+ * @version	2.3
  *
  * @todo Check translation setup.
  */
@@ -2100,8 +2100,11 @@ class wflux_display_extras {
 	/**
 	 * Creates page navigation for lists of results like archive or query views.
 	 *
+	 * Filters available:
+	 * wflux_page_counter_div - class of containing div.
+	 *
 	 * @since	0.93
-	 * @version	2.0
+	 * @version	2.3
 	 *
 	 * @param	[string] $element		What tag to use to wrap output (can be empty to setup at template level). [p]
 	 * @param	[string] $start			Opening text string. [Page ]
@@ -2114,7 +2117,7 @@ class wflux_display_extras {
 	 * @param	[string] $previous		Text for previous link. [&lt; ]
 	 * @param	[string] $next			Text for next link. Y/N [ &gt;]
 	 * @param	[string] $div			Wrap output in containing <div>. Y/N [Y]
-	 * @param	[string] $div_class		Containing <div> class if used. [page-counter]
+	 * @param	[string] $div_class		Containing <div> class if used. [row page-counter]
 	 *
 	 * @todo	Review code, make smarter!
 	 * @todo	Extend with wp_link_pages() type functionality so it can function with paged single pages, not just query lists.
@@ -2133,7 +2136,7 @@ class wflux_display_extras {
 			'previous' => '&lt; ',
 			'next' => ' &gt;',
 			'div' => 'Y',
-			'div_class' => 'page-counter'
+			'div_class' => 'row page-counter'
 		);
 
 		// Dont show navigation if this is a single post
@@ -2164,9 +2167,7 @@ class wflux_display_extras {
 			$total_span = (!$total_span == '') ? '<span class="'.$total_span.'">' : '';
 			$total_span_close = (!$current_span == '') ? '</span>' : '';
 			$div = ($div == 'Y') ? 'Y' : 'N';
-			$div_class = ($div_class == 'page-counter-navigation') ? $div_class : wp_kses_data($div_class, '');
-
-
+			$div_class = apply_filters( 'wflux_page_counter_div', esc_attr($div_class) );
 
 			// get total number of pages
 			global $wp_query;

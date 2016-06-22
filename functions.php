@@ -447,16 +447,39 @@ if ( !function_exists( 'wfx_show_hooks' ) ) : function wfx_show_hooks() { global
 
 /**
  * Returns array of common HTML tags to be used with kses or similar.
- * Use filter 'wflux_allowed_tags' to mainpulate allowed tags
+ * You shouldn't use wp_kses() much - it can be a-little intensive!
+ * However, sometimes we need it to clean user input to only allow certain tags so there is no funny business!
+ *
+ * Filters available:
+ * wflux_allowed_tags - Array containing allowed tags
  *
  * @since	1.1
  * @version	1.1
  *
  * @param	none
- * @return	[array]					Allowed tags array
+ * @return	[array]					Allowed tags
  */
 if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags() {
 	 global $wfx_data_manage; return $wfx_data_manage->allowed_tags();
+} endif;
+
+
+/**
+ * Returns array of limited HTML tags to be used with kses or similar.
+ * You shouldn't use wp_kses() much - it can be a-little intensive!
+ * However, sometimes we need it to clean user input to only allow certain tags so there is no funny business!
+ *
+ * @since	2.3
+ * @version	2.3
+ *
+ * @param	[string] $type 			Required - Type of tags to return text/simple/headings [text]
+ *                          		- text     => Sutable for wrapping inside your own block level elements - a, br, span, b, strong and i
+ *                          		- simple   => Similar to 'text' param, much more limited, no links or text styling tags = span, br
+ *                          		- headings => Just headings, nothing else = h1, h2, h3, h4, h5, h6
+ * @return	[array]					Allowed tags
+ */
+if ( !function_exists( 'wfx_allowed_simple_tags' ) ) : function wfx_allowed_simple_tags($input) {
+	 global $wfx_data_manage; return $wfx_data_manage->allowed_simple_tags($input);
 } endif;
 
 

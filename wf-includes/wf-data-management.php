@@ -5,14 +5,20 @@
  */
 class wflux_data_manage {
 
+
 	/**
 	 * Returns array of common HTML tags to be used with kses or similar.
-	 * Use filter 'wflux_allowed_tags' to mainpulate allowed tags
+	 * You shouldn't use wp_kses() much - it can be a-little intensive!
+	 * However, sometimes we need it to clean user input to only allow certain tags so there is no funny business!
+	 *
+	 * Filters available:
+	 * wflux_allowed_tags - Array containing allowed tags
 	 *
 	 * @since	1.1
 	 * @version	1.1
 	 *
-	 * @return	[array]				Allowed tags array
+	 * @param	none
+	 * @return	[array]					Allowed tags
 	 */
 	function wf_allowed_tags(){
 
@@ -405,6 +411,120 @@ class wflux_data_manage {
 		);
 
 		return apply_filters( 'wflux_allowed_tags', $allowed );
+
+	}
+
+
+	/**
+	 * Returns array of limited HTML tags to be used with kses or similar.
+	 * You shouldn't use wp_kses() much - it can be a-little intensive!
+	 * However, sometimes we need it to clean user input to only allow certain tags so there is no funny business!
+	 *
+	 * @since	2.3
+	 * @version	2.3
+	 *
+	 * @param	[string] $type 			Required - Type of tags to return text/simple/headings [text]
+	 *                          		- text     => Sutable for wrapping inside your own block level elements - a, br, span, b, strong and i
+	 *                          		- simple   => Similar to 'text' param, much more limited, no links or text styling tags = span, br
+	 *                          		- headings => Just headings, nothing else = h1, h2, h3, h4, h5, h6
+	 * @return	[array]					Allowed tags
+	 */
+	function wf_allowed_simple_tags( $input='text' ) {
+
+		// Default is first in array
+		$types = array(
+			'text',
+			'notags',
+			'simple',
+			'headings'
+		);
+
+		$input = ( !isset($input) ) ? $types[0] : $input;
+
+		$type = ( !in_array($input, $types) ) ? $types[0] : $input;
+
+		switch ( $type ) {
+
+			case 'simple':
+
+				$output = array (
+					'span' => array(
+						'class'=>array(),
+						'id'=>array()
+					),
+					'br' => array()
+				);
+
+			break;
+
+			case 'headings':
+
+				$output = array (
+					'h1' => array(
+						'align' => true,
+						'class' => true,
+						'id'    => true,
+						'style' => true
+					),
+					'h2' => array (
+						'align' => true,
+						'class' => true,
+						'id'    => true,
+						'style' => true
+					),
+					'h3' => array (
+						'align' => true,
+						'class' => true,
+						'id'    => true,
+						'style' => true
+					),
+					'h4' => array (
+						'align' => true,
+						'class' => true,
+						'id'    => true,
+						'style' => true
+					),
+					'h5' => array (
+						'align' => true,
+						'class' => true,
+						'id'    => true,
+						'style' => true
+					),
+					'h6' => array (
+						'align' => true,
+						'class' => true,
+						'id'    => true,
+						'style' => true
+					)
+				);
+
+			break;
+
+			default:
+
+				// text
+				$output = array(
+					'a' => array(
+						'href'=> array(),
+						'title'=> array(),
+						'class'=>array(),
+						'id'=>array()
+					),
+					'span' => array(
+						'class'=>array(),
+						'id'=>array()
+					),
+					'br' => array(),
+					'b' => array(),
+					'strong' => array(),
+					'i' => array()
+				);
+
+			break;
+
+		}
+
+		return $output;
 
 	}
 

@@ -1172,7 +1172,7 @@ class wflux_admin_forms extends wflux_data {
 
 /**
  * @since 1.2
- * @updated 2.1
+ * @updated 2.3
  * Admin area theme backup functions
  */
 class wflux_admin_backup {
@@ -1234,6 +1234,9 @@ class wflux_admin_backup {
 
 	function wf_backup_form() {
 
+		$opts = $this->_get_options();
+
+		$opts = ( !empty($opts) ) ? serialize( $this->_get_options() ) : esc_html__( 'No settings to export - currently using Wonderflux defaults!', 'wonderflux' );
 
 		echo '<form action="" method="POST" enctype="multipart/form-data">';
 			echo '<style>#backup-options td { display: block; margin-bottom: 20px; }</style>';
@@ -1247,6 +1250,7 @@ class wflux_admin_backup {
 						echo '<h3>Restore/Import</h3>';
 						echo '<p><label class="description" for="upload">Restore a previous backup</label></p>';
 						echo '<p><input type="file" name="file" /> <input type="submit" name="upload" id="upload" class="button-primary" value="Upload file" /></p>';
+						echo '<p><textarea class="widefat code" rows="20" cols="100" onclick="this.select()">'. $opts . '</textarea></p>';
 						wp_nonce_field('wfx_options_backuprestore', 'wfx_options_backuprestore');
 					echo '</td></tr>';
 			echo '</table>';

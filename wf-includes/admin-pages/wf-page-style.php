@@ -7,7 +7,7 @@
 		<div class="clear"></div>
 
 		<p>
-		<?php esc_attr_e('Configure dynamic CSS layout rules (note that filters override these options.)', 'wonderflux'); ?>
+		<?php esc_attr_e('Configure dynamic CSS layout rules (note that filters can override these options.)', 'wonderflux'); ?>
 		</p>
 
 		<div id="wfx_fields_display">

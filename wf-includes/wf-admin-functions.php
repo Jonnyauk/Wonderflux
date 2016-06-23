@@ -185,7 +185,7 @@ class wflux_admin extends wflux_data {
 
 		//1) Key 2) form label 3) Builder function 4)Page 5)Section
 		add_settings_field('grid_type', esc_attr__('Select CSS layout system','wonderflux'), array($this->admin_forms, 'wf_form_grid_type'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
-		add_settings_field('columns_num', esc_attr__('Vertical columns (number - inside site container)','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('columns_num', esc_attr__('Number of columns','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		/**
 		 * Backpat - add column width if using Wonderflux v1 pixel grid
@@ -663,7 +663,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_intro_grid() {
 		echo '<h2>' . esc_attr__('CSS grid/column settings','wonderflux') . '</h2>';
 		echo '<div class="clear"></div>';
-		echo '<p>' . esc_attr__('Setup the dimensions of the CSS layout columns (grid system). The additional column definitions control defines extra grid/column systems to be generated in addition to your core choice (along with their associated media query equivalents). Define as a hyphen (-) seperated list of numbers. Original value is 2-4-5-8-10.', 'wonderflux') . '</p>';
+		echo '<p>' . esc_attr__('Setup the configuration of the CSS layout columns (grid system). The additional column definitions control defines extra grid/column systems to be generated in addition to your core choice (along with their associated media query equivalents). Define as a hyphen (-) seperated list of numbers. Original value is 2-4-5-8-10.', 'wonderflux') . '</p>';
 	}
 
 	function wf_form_intro_main() {

@@ -848,7 +848,7 @@ if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
  * wflux_post_class_last : Extra CSS class added to first post in loop
  *
  * @since	2.1
- * @version	2.1
+ * @version	2.3
  *
  * @param	none
  */

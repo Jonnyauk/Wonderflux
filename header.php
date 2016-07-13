@@ -3,10 +3,11 @@
  * Wonderflux header template
  *
  * Customise this in your child theme by:
- * - Using hooks and your own functions
+ * - Using the Wonderflux hooks in this file - there are file specific and general ones
  * - Using the 'header-content' template part
  * - For example 'header-content-category.php' for category view or 'header-content.php' (fallback if location specific file not available)
- * - Copying this file to your child theme and customising - it will over-ride this file
+ * - Copying this file to your child theme and amending - it will automatically be used instead of this file
+ * - IMPORTANT - if you do this, ensure you keep all Wonderflux hooks intact!
  *
  * @package Wonderflux
  */

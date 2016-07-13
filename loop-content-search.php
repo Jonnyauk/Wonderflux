@@ -3,7 +3,7 @@
  * Wonderflux search results loop content template part
  *
  * Customise this in your child theme by:
- * - Copying this file to your child theme and customising - it will over-ride this file
+ * - Copying this file to your child theme and amending - it will automatically be used instead of this file
  *
  * @package Wonderflux
  */

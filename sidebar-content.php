@@ -3,7 +3,7 @@
  * Wonderflux sidebar content template part
  *
  * Customise this in your child theme by:
- * - Creating a file with the same name in your child theme - it will over-ride this file
+ * - Copying this file to your child theme and amending - it will automatically be used instead of this file
  * - Creating a 'sidebar-content' location aware template part file - 'sidebar-content-page.php' or 'sidebar-content-category.php' to be used only in those locations
  *
  * @package Wonderflux

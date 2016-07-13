@@ -4,8 +4,9 @@
  * Used when you dont have a category/taxonomy/tag/date/post type template part
  *
  * Customise this in your child theme by:
- * - Using hooks and your own functions
- * - Copying this file to your child theme and customising - it will over-ride this file
+ * - Using the Wonderflux hooks in this file - there are file specific and general ones
+ * - Copying this file to your child theme and amending - it will automatically be used instead of this file
+ * - IMPORTANT - if you do this, ensure you keep all Wonderflux hooks intact!
  *
  * @package Wonderflux
  */

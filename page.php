@@ -3,10 +3,11 @@
  * Wonderflux page template
  *
  * Customise this in your child theme by:
- * - Using hooks and your own functions
+ * - Using the Wonderflux hooks in this file - there are file specific and general ones
  * - Using the 'loop' template part 'loop-page.php' (location specific) or 'loop.php' (fallback if location specific file not available)
  * - Using the 'loop-content' template part 'loop-content-page.php' or 'loop-content.php' (fallback if location specific file not available)
- * - Copying this file to your child theme and customising - it will over-ride this file
+ * - Copying this file to your child theme and amending - it will automatically be used instead of this file
+ * - IMPORTANT - if you do this, ensure you keep all Wonderflux hooks intact!
  *
  * @package Wonderflux
  */

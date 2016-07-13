@@ -3,7 +3,7 @@
  * Wonderflux searchform content template
  *
  * Customise this in your child theme by:
- * - Creating a file with the same name in your child theme - it will over-ride this file
+ * - Copying this file to your child theme and amending - it will automatically be used instead of this file
  *
  * @package Wonderflux
  */

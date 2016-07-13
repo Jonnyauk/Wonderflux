@@ -1,17 +1,19 @@
 <?php
 /*
  * Core Wonderflux BuddyPress template
+ * Acts as a 'wrapper' around BuddyPress content
+
  * Customise this in your child theme by:
- * - Using hooks and your own functions
- * - Copying this file to your child theme - it will over-ride this file
- * - IMPORTANT: DUPLICATE DIRECTORY STRUCTURE in your child theme buddypress/buddypress.php
- * - This file acts as a 'wrapper' around 
- * 
- * - Want to do more with BuddyPress? 
+ * - Using the Wonderflux hooks in this file - there are file specific and general ones
+ * - Copying this file to your child theme and amending - it will automatically be used instead of this file
+ * - IMPORTANT - if you do this, ensure you keep all Wonderflux hooks intact!
+ * - IMPORTANT - duplicate directory structure in your child theme - /buddypress/buddypress.php
+ *
+ * - Want to do more with BuddyPress?
  * - Duplicate the following directories to amend core CSS and JS:
  * - buddypress/css
  * - buddypress/js
- * 
+ *
  * - Want to do even more with BuddyPress template files?
  * - Duplicate the following directories into your child theme and have fun!
  * - buddypress/activity
@@ -19,7 +21,7 @@
  * - buddypress/forums
  * - buddypress/groups
  * - buddypress/members
- * 
+ *
  * @package Wonderflux
  */
 

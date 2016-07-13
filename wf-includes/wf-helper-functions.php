@@ -835,7 +835,7 @@ class wflux_helper {
 	 * wp_all_taxonomies - All Taxonomies
 	 *
 	 * @since	1.1
-	 * @version	2.0
+	 * @version	2.3
 	 *
 	 * @param	[mixed] $input 			REQUIRED What you want to debug!
 	 * @param	[string] $label 		Add a title to top of output to help identify it if using multiple debugs.
@@ -857,7 +857,7 @@ class wflux_helper {
 
 		$o = '<div style="color:#000; padding:5px; overflow:auto; border: 4px solid #ff0a0a; background-color: #fec9c9;" class="wfx_debug_output">';
 		$o .= ( !empty($label) ) ? '<pre style="color:#ff0a0a;"><strong>' . esc_html($label) . '</strong></pre>' : '';
-		if ( empty($input) ) {
+		if ( empty($input) && intval($input) != 0 ) {
 			$o .= '<pre>' . esc_html__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
 		} else {
 

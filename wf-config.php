@@ -15,9 +15,6 @@ if ( !defined('WF_CONTENT_URL') ) { define( 'WF_CONTENT_URL', WF_MAIN_URL . '/wf
 if ( !defined('WF_INCLUDES_DIR') ) { define( 'WF_INCLUDES_DIR', WF_MAIN_DIR . '/wf-includes' ); }
 if ( !defined('WF_INCLUDES_URL') ) { define( 'WF_INCLUDES_URL', WF_MAIN_URL . '/wf-includes' ); }
 
-// Backpat - NOTICE -> Will be removed in Wonderflux v1.1
-// STOP USING WF_THEME - USE WF_THEME_URL INTEAD!
-if ( !defined('WF_THEME') ) { define( 'WF_THEME', get_stylesheet_directory_uri() ); }
 if ( !defined('WF_THEME_URL') ) { define( 'WF_THEME_URL', get_stylesheet_directory_uri() ); }
 if ( !defined('WF_THEME_DIR') ) { define( 'WF_THEME_DIR', get_stylesheet_directory() ); }
 

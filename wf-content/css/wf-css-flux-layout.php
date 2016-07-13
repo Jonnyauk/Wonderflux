@@ -476,12 +476,16 @@ class wflux_layout {
 			echo '/* ' . $size['def'] . ': ' . $size['note'] . ' */' . $this->minify
 			. '@media screen ' . $size_queries . ' {' . $this->minify;
 
-			// Margin clearer
-			echo '.' . $size['def'] . '-min-no-margins { margin: 0; }' . $this->minify;
+			// Margin clearers
+			echo '.' . $size['def'] . '-no-margins, ';
+			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
+				echo '.' . $all_defs[$limit] . '-min-no-margins';
+				echo ( $limit == $sizes_count ) ? ' ' : ', ';
+				echo ( $limit == $sizes_count ) ? '{ margin: 0; }' . "\n" : '';
+
+			}
 
 			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
-				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
-				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
 				echo '.' . $all_defs[$limit] . '-min-show';
 				echo ( $limit == $sizes_count ) ? ' ' : ', ';
 				echo ( $limit == $sizes_count ) ? '{ display:block; }' . "\n" : '';
@@ -489,8 +493,6 @@ class wflux_layout {
 			}
 
 			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
-				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
-				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
 				echo '.' . $all_defs[$limit] . '-min-hide';
 				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
 				echo ( $limit == ($sizes_count+1) ) ? '{ display:block; }' . "\n" : '';
@@ -498,8 +500,6 @@ class wflux_layout {
 			}
 
 			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
-				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
-				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
 				echo '.' . $all_defs[$limit] . '-min-show';
 				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
 				echo ( $limit == ($sizes_count+1) ) ? '{ display:none; }' . "\n" : '';
@@ -507,8 +507,6 @@ class wflux_layout {
 			}
 
 			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
-				//echo '.' . $definition . '-' . $limit . ' ' . $css_1
-				//. $this->column_width * $limit . '%' . $css_2 . '}' . $this->minify;
 				echo '.' . $all_defs[$limit] . '-min-hide';
 				echo ( $limit == $sizes_count ) ? ' ' : ', ';
 				echo ( $limit == $sizes_count ) ? '{ display:none; }' . "\n" : '';

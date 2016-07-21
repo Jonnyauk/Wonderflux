@@ -30,6 +30,7 @@ class wflux_early_all {
 	function __construct(){ $this->wflux_theme_support_do = new wflux_theme_support; }
 	function core_feed_links(){ return $this->wflux_theme_support_do->wf_core_feed_links(); }
 	function core_title_tag(){ return $this->wflux_theme_support_do->wf_core_title_tag(); }
+	function core_support_html5(){ return $this->wflux_theme_support_do->wf_core_support_html5(); }
 }
 
 

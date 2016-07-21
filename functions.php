@@ -71,6 +71,7 @@ load_template( get_template_directory() . '/wf-includes/wf-engine.php' );
 
 add_action( 'after_setup_theme', 'wfx_core_feed_links', 2 );
 add_action( 'after_setup_theme', 'wfx_core_title_tag', 2 );
+add_action( 'after_setup_theme', 'wfx_core_support_html5', 2 );
 
 
 //// 1.2 // Special child theme functions
@@ -591,6 +592,18 @@ if ( !function_exists( 'wfx_ends_with' ) ) : function wfx_ends_with( $needle, $h
  * @param	none
  */
 if ( !function_exists( 'wfx_core_feed_links' ) ) : function wfx_core_feed_links() { global $wfx_theme_support; $wfx_theme_support->core_feed_links(); } endif;
+
+
+/**
+ * Enables HTML5 support (the WordPress way!)
+ * Easy to remove by remove_theme_support, remove_action, overload function etc!)
+ *
+ * @since	2.3
+ * @version	2.3
+ *
+ * @param	none
+ */
+if ( !function_exists( 'wfx_core_support_html5' ) ) : function wfx_core_support_html5() { global $wfx_theme_support; $wfx_theme_support->core_support_html5(); } endif;
 
 
 /**

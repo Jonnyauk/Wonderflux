@@ -1257,7 +1257,7 @@ class wflux_admin_backup {
 						esc_html_e( 'Restore/Import', 'wonderflux' );
 						echo '</h3>';
 						echo '<p><label class="description" for="upload">';
-						esc_html_e( 'Restore a previous backup', 'wonderflux' );
+						esc_html_e( 'Restore a previous backup by uploading a Wonderflux options export file.', 'wonderflux' );
 						echo '</label></p>';
 						echo '<p><input type="file" name="file" /> <input type="submit" name="upload" id="upload" class="button-primary" value="' . esc_html__( 'Upload file', 'wonderflux' ) . '" /></p>';
 						wp_nonce_field('wfx_options_backuprestore', 'wfx_options_backuprestore');

@@ -17,6 +17,7 @@ wf_output_start(); //WF display hook
 ?>
 
 <html <?php language_attributes(); ?>>
+
 <head>
 <?php
 wf_head_meta();

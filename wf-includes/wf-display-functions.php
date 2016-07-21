@@ -25,9 +25,10 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	 * Builds the start of the head with doc type declaration.
+	 * Filters WordPress 'language_attributes'.
 	 *
 	 * @since	0.931
-	 * @version	2.0
+	 * @version	2.3
 	 *
 	 * @param	none
 	 */
@@ -42,7 +43,7 @@ class wflux_display_code extends wflux_data {
 		else: $lang_output = 'en';
 		endif;
 
-		$lang_extra = ( $doctype == 'XHTML/RDFa' ) ? '' : 'lang="'.$lang_output.'" ';
+		$lang_extra = ( $doctype == 'XHTML/RDFa' ) ? '' : 'lang="' . $lang_output . '" ';
 
 		$this->xml_namespace_build();
 		$namespaces = '';
@@ -85,7 +86,8 @@ class wflux_display_code extends wflux_data {
 
 		if ($doctype == 'html5'):
 
-			$output = '<!DOCTYPE html>' . "\n" . '<html lang="'.$lang_output.'">' . "\n";
+			$output = '<!DOCTYPE html>';
+		 	$lang_filter = 'lang="' . $lang_output . '"';
 
 		else:
 
@@ -97,12 +99,14 @@ class wflux_display_code extends wflux_data {
 			$output = '<!DOCTYPE ' . 'html PUBLIC "-//W3C//DTD ' . $doctype_output . '//'
 			. strtoupper($lang_output) . '" "http://www.w3.org/' . $doctype_link_output . '.dtd">';
 
+			$lang_filter = 'xml:lang="' . $lang_output . '" ' . $lang_extra . $namespaces;
+
 		endif;
 
-		// Add data for $output already built & cleaned
+		// Output start
 		echo $output;
 
-		$this->lang_attributes = wp_kses( apply_filters('wflux_language_attributes', 'xml:lang="'.$lang_output.'" ' . $lang_extra . $namespaces), '' );
+		$this->lang_attributes = wp_kses( apply_filters('wflux_language_attributes', $lang_filter, ''), '' );
 
 		// Filter core WordPress language attributes
 		add_filter( 'language_attributes', array($this, 'wf_lang_attributes_filter') );

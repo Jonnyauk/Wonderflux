@@ -719,9 +719,10 @@ if ( !function_exists( 'wfx_config_language' ) ) : function wfx_config_language(
 
 /**
  * Builds the start of the head with doc type declaration.
+ * Filters WordPress 'language_attributes'.
  *
  * @since	0.931
- * @version	2.0
+ * @version	2.3
  *
  * @param	none
  */

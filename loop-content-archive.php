@@ -1,7 +1,7 @@
 <?php
 /**
  * Wonderflux loop content archive template part
- * Used when you dont have a category/taxonomy/tag/date/post type template part
+ * Used when you dont have a category/taxonomy/tag/date/search type template part
  *
  * Customise this in your child theme by:
  * - Using the Wonderflux hooks in this file - there are file specific and general ones

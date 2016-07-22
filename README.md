@@ -260,7 +260,8 @@ will be used instead on non-desktop devices.
 
 * **SEARCH**
   1. loop-content-search.php
-  2. loop-content.php
+  2. loop-content-archive.php (common archive template)
+  3. loop-content.php
 
 * **ATTACHMENT**
   1. loop-content-attachment.php

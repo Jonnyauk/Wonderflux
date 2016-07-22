@@ -271,8 +271,8 @@ if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { glob
  *
  * SEARCH
  * 1 loop-content-search.php
- * 2 loop-content.php
- *
+ * 2 loop-content-archive.php (common archive template)
+ * 3 loop-content.php
  *
  * ATTACHMENT TODO: Basic range of filetypes support
  * 1 loop-content-attachment.php
@@ -287,7 +287,7 @@ if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { glob
  * 2 loop-content.php
  *
  * @since	0.881
- * @version	2.1
+ * @version	2.3
  *
  * @param	[string] $part 			REQUIRED The slug name for the generic template
  *

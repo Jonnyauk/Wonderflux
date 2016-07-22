@@ -441,8 +441,8 @@ class wflux_helper {
 	 *
 	 * SEARCH
 	 * 1 loop-content-search.php
-	 * 2 loop-content.php
-	 *
+	 * 2 loop-content-archive.php (common archive template)
+	 * 3 loop-content.php
 	 *
 	 * ATTACHMENT TODO: Basic range of filetypes support
 	 * 1 loop-content-attachment.php
@@ -457,7 +457,7 @@ class wflux_helper {
 	 * 2 loop-content.php
 	 *
 	 * @since	0.881
-	 * @version	2.1
+	 * @version	2.3
 	 *
 	 * @param	[string] $part 			REQUIRED The slug name for the generic template
 	 *
@@ -615,7 +615,15 @@ class wflux_helper {
 		}
 
 		// Use general [PART]-archive.php template part if we need to
-		$archive_views = array('category', 'tag', 'taxonomy', 'date', 'archive');
+		$archive_views = array(
+			'category',
+			'tag',
+			'taxonomy',
+			'date',
+			'archive',
+			'search'
+		);
+
 		if ( in_array($this_location, $archive_views) ) {
 
 			if ( $this->wfx_is_small_screen == true ){
@@ -624,7 +632,7 @@ class wflux_helper {
 				endif;
 			}
 
-			if ( empty($part_get) ){
+			if ( empty($part_get) || $part_get == 'search' ){
 				if ( locate_template( $part . '-' . $this_location . '.php', false ) !='' ):
 					$part_get = $this_location;
 				else:

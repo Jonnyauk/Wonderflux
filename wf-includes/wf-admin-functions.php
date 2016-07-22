@@ -158,9 +158,10 @@ class wflux_admin extends wflux_data {
 		$output .= ' <a href="http://wonderflux.com/guide/" title="';
 		$output .= esc_attr__('Visit the Wonderflux guide','wonderflux');
 		$output .= '">';
-		$output .= esc_attr__('The Wonderflux guide','wonderflux');
+		$output .= esc_attr__('Wonderflux documentation','wonderflux');
 		$output .= '</a> ';
-		$output .= esc_attr__('is the official (work in progress!) documentation site for Wonderflux. Click on the direct links below to find relevant content.','wonderflux');
+		$output .= esc_attr__(' - Click on the links below to find relevant content:','wonderflux');
+		$output .= '</p>';
 		echo $output;
 		echo $this->wf_common_help();
 		echo '</div>'; // close themes-php wrap div
@@ -324,7 +325,7 @@ class wflux_admin extends wflux_data {
 			$output .= '<h3>' . esc_attr__('Development version installed', 'wonderflux') . '</h3>';
 			$output .= '<p>' . esc_attr__('You are running a development version of Wonderflux, cool!', 'wonderflux') . ' <strong>' . esc_attr__('You should probably NOT be using this on live sites.', 'wonderflux') . '</strong></p>';
 			$output .= '<p>' . esc_attr__('It may contain code thats not finished just yet, or new functionality that may conflict with your current Wonderflux child theme.', 'wonderflux') . '</p>';
-			$output .= '<p><strong>' . esc_attr__('If you are not a developer, advanced designer or tester', 'wonderflux') . '</strong> ';
+			$output .= '<p><strong>' . esc_attr__('If you are NOT a developer, advanced designer or tester', 'wonderflux') . '</strong> ';
 			$output .= sprintf( __( 'you will probably be better off using <a href="%1$s" title="%2$s">%3$s</a>', 'wonderflux' ), 'https://github.com/Jonnyauk/Wonderflux/releases/' , __('Download the latest stable Wonderflux release here', 'wonderflux'), esc_attr__('the latest stable version of Wonderflux.', 'wonderflux') );
 			$output .= '</div>';
 
@@ -481,11 +482,11 @@ class wflux_admin extends wflux_data {
 	function wf_common_help() {
 		$items = array(
 			'doc'=>esc_attr__('Quick start guides','wonderflux'),
-			'hook'=>esc_attr__('Hook guides','wonderflux'),
-			'function'=>esc_attr__('Function guides','wonderflux'),
-			'filter'=>esc_attr__('Filter guides','wonderflux'),
-			'constant'=>esc_attr__('Constant guides','wonderflux'),
-			'file'=>esc_attr__('File guides','wonderflux')
+			'hook'=>esc_attr__('Hooks','wonderflux'),
+			'function'=>esc_attr__('Functions','wonderflux'),
+			'filter'=>esc_attr__('Filters','wonderflux'),
+			'constant'=>esc_attr__('Constants','wonderflux'),
+			'file'=>esc_attr__('Files','wonderflux')
 		);
 
 		$output = '<p><strong>';
@@ -675,7 +676,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_intro_p_templates() {
 		echo '<h2>' . esc_attr__('Wonderflux core page templates','wonderflux') . '</h2>';
 		echo '<div class="clear"></div>';
-		echo '<p>' . esc_attr__('Tick to hide the specific page template if it does not suit your child theme (it will be removed from page template dropdown option.)','wonderflux') . '</p>';
+		echo '<p>' . esc_attr__('Tick to hide page templates that don\'t suit your child theme.','wonderflux') . '</p>';
 	}
 
 	function wf_form_grid_type() { $this->wf_form_helper_ddown_std($this->wfx_grid_type,'grid_type',$this->valid['grid_type'],''); }

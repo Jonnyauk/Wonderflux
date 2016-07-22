@@ -1470,14 +1470,12 @@ if ( !function_exists( 'wfx_social_linkedin_share' ) ) : function wfx_social_lin
 
 /**
  * Inserts associated social sharing related (Open Graph) meta tags in <head> if required.
- * Can just remove_action or change function too of-course - it's a framework don't you know!
  *
  * @since	0.931
- * @version	0.931
+ * @version	2.3
  *
  * @param	none
  *
- * @todo	Test and dont use if using Yoast SEO to control this.
  */
 if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args='') { global $wfx; $wfx->social_meta($args); } endif;
 

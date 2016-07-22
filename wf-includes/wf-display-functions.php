@@ -2509,7 +2509,7 @@ class wflux_display_extras {
  * Social networking functionality.
  *
  * @since	0.931
- * @version	1.2
+ * @version	2.3
  *
  * @todo Check over more recent sharing code.
  */
@@ -2557,14 +2557,14 @@ class wflux_display_social extends wflux_data {
 	 * Inserts associated social sharing related (Open Graph) meta tags in <head> if required.
 	 *
 	 * @since	0.931
-	 * @version	0.931
+	 * @version	2.3
 	 *
 	 * @param	none
 	 *
-	 * @todo	Test and dont use if using Yoast SEO to control this.
 	 */
 	function wf_social_meta() {
-		if ( $this->wfx_doc_type == 'XHTML/RDFa' ):
+
+		if ( !defined('WPSEO_VERSION') && $this->wfx_doc_type == 'XHTML/RDFa' ):
 			add_action( 'wp_head', array( $this, 'wf_og_meta' ), 4 );
 		endif;
 	}
@@ -2579,7 +2579,6 @@ class wflux_display_social extends wflux_data {
 	 *
 	 * @param	none
 	 *
-	 * @todo	Test and dont use if using Yoast SEO to control this.
 	 */
 	function wf_og_meta() {
 		//TODO: build extra og:type support

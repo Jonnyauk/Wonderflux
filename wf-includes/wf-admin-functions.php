@@ -706,7 +706,7 @@ class wflux_admin_forms extends wflux_data {
 		$output .= esc_attr__("Use these controls to set avanced document type and language attributes.","wonderflux");
 		$output .= '<br /><strong>' . esc_attr__("WARNING - ","wonderflux") . '</strong>';
 		$output .= esc_attr__("These settings should generally be left as default (transitional, en, UTF-8).","wonderflux") . '</p>';
-		$output .= '<p><strong>' . esc_attr__("If you are using the Facebook features, you must use document type XHTML/RDFa.","wonderflux") . '</strong></p>';
+		$output .= '<p><strong>' . esc_attr__("If you are using the Facebook/Open Graph meta tags, you must use document type XHTML/RDFa.","wonderflux") . '</strong></p>';
 		echo $output;
 	}
 

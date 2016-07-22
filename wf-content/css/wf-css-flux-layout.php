@@ -476,15 +476,6 @@ class wflux_layout {
 			echo '/* ' . $size['def'] . ': ' . $size['note'] . ' */' . $this->minify
 			. '@media screen ' . $size_queries . ' {' . $this->minify;
 
-			// Margin clearers
-			echo '.' . $size['def'] . '-no-margins, ';
-			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
-				echo '.' . $all_defs[$limit] . '-min-no-margins';
-				echo ( $limit == $sizes_count ) ? ' ' : ', ';
-				echo ( $limit == $sizes_count ) ? '{ margin: 0; }' . "\n" : '';
-
-			}
-
 			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
 				echo '.' . $all_defs[$limit] . '-min-show';
 				echo ( $limit == $sizes_count ) ? ' ' : ', ';

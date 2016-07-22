@@ -6,7 +6,6 @@
  * Customise this in your child theme by:
  * - Using the Wonderflux hooks in this file - there are file specific and general ones
  * - Copying this file to your child theme and amending - it will automatically be used instead of this file
- * - IMPORTANT - if you do this, ensure you keep all Wonderflux hooks intact!
  *
  * @package Wonderflux
  */

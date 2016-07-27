@@ -19,6 +19,7 @@ class wflux_data {
 	protected $wfx_range_core; // Range of different size definitions for Flux Layout
 	protected $wfx_columns; // Number of columns
 	protected $wfx_gutter; // Number of columns
+	protected $wfx_mquery_m; // Media query optimisation
 	protected $wfx_columns_width; // Width of columns
 	protected $wfx_sidebar_primary_position; // Primary sidebar position
 	protected $wfx_page_templates; // Page templates to hide
@@ -157,11 +158,18 @@ class wflux_data {
 		// GUTTER - min 1, max 25
 		// TODO: Allow filtering!
 		$wfx_gutter_out = 2;
-		if ( isset($this->wfx_db_display['gutter']) && is_numeric ($this->wfx_db_display['gutter']) ) { 
-			if ($this->wfx_db_display['gutter'] >= 1 && $this->wfx_db_display['gutter'] <= 25) {$wfx_gutter_out = $this->wfx_db_display['gutter'];} 
+		if ( isset($this->wfx_db_display['gutter']) && is_numeric ($this->wfx_db_display['gutter']) ) {
+			if ($this->wfx_db_display['gutter'] >= 1 && $this->wfx_db_display['gutter'] <= 25) {$wfx_gutter_out = $this->wfx_db_display['gutter'];}
 		}
 		$this->wfx_gutter = $wfx_gutter_out;
 
+		// MEDIA QUERY OPTIMISATION - y, n
+		$this->wfx_mquery_m = (isset($this->wfx_db_display['mquery_m']) ) ? $this->wfx_db_display['mquery_m'] : false;
+		// Validate
+		$wfx_mquery_m_out = 'y';
+		$wfx_mquery_m_accept = array('y','n');
+		if ( in_array($this->wfx_mquery_m,$wfx_mquery_m_accept) ) { $wfx_mquery_m_out = $this->wfx_mquery_m; }
+		$this->wfx_mquery_m = $wfx_mquery_m_out;
 
 		// COLUMN WIDTH - min 10, max 1000
 		$this->wfx_columns_width = (isset($this->wfx_db_display['columns_w']) ) ? $this->wfx_db_display['columns_w'] : false;

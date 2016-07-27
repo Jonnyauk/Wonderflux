@@ -52,7 +52,7 @@ class wflux_layout {
 	protected $columns;				// ARRAY - Traditional columns with gutters
 	protected $columns_gutter;		// INPUT - Columns gutter (%)
 	protected $relative;			// ARRAY - General relative sizes
-	protected $mq_config;			// ARRAY - Media queries cofig
+	protected $mq_config;			// ARRAY - Media queries config
 	protected $mq_box_sizes;		// ARRAY - Media query box size loops
 	protected $mq_column_sizes;		// ARRAY - Media query column size loops
 	protected $content_css;			// WONDERFLUX INPUT - #content CSS depending on sidebar admin option
@@ -119,7 +119,7 @@ class wflux_layout {
 			sort($this->relative);
 		}
 
-		$this->columns = $this->range; /* TODO: Extend with own param for extra control instead of just common setting! */
+		$this->columns = $this->range;
 		// Add core column option to columns array for output
 		if ( !in_array($this->columns_basic, $this->columns) ){
 			array_unshift( $this->columns, $this->columns_basic );
@@ -128,7 +128,7 @@ class wflux_layout {
 
 		$this->columns_gutter = ( isset($_GET['g']) && is_numeric( $_GET['g'] ) && $_GET['g'] <= 25 ) ? (int)$_GET['g'] : 2;
 
-		$this->mq_box_sizes = $this->range; /* TODO: Extend with own param for extra control instead of just common setting! */
+		$this->mq_box_sizes = $this->range;
 		// Add core column option to media query array for output
 		if ( !in_array($this->columns_basic, $this->mq_box_sizes) ){
 			array_unshift( $this->mq_box_sizes, $this->columns_basic );
@@ -604,7 +604,7 @@ class wflux_layout {
 				}
 			}
 
-			if ( $this->mq_min == 'y' ) {
+			if ( $this->mq_min == 'n' ) {
 
 				echo ' /***** Responsive push and pull classes *****/' . $this->minify;
 

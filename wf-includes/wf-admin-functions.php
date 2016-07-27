@@ -223,6 +223,7 @@ class wflux_admin extends wflux_data {
 		}
 
 		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('mquery_m', esc_attr__('Optimise media queries by removing rarely used CSS rules','wonderflux'), array($this->admin_forms, 'wf_form_mquery_m'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('content_s', esc_attr__('Content width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_s', esc_attr__('Sidebar width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
@@ -613,6 +614,7 @@ class wflux_admin_forms extends wflux_data {
 			'container_w'	=> ( $this->wfx_width_unit == 'pixels' ) ? array ( 950, range(400,2000,10) ) : array ( 80, range(5,100,5) ),
 			'columns_num'	=> array ( 24, range(2,100,1) ),
 			'gutter'		=> array ( 2, range(1,25,1) ),
+			'mquery_m'		=> array ('y','n'),
 			'columns_w'		=> array ( 30, range(10,200,1) ),
 			'page_t'		=> array ( '','no-sidebar' ),
 			'rwd_full'		=> array ( 'tiny','small','medium', 'large' ),
@@ -692,6 +694,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_container_u() { $this->wf_form_helper_ddown_std($this->wfx_width_unit,'container_u',array('percent','pixels'),''); }
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1,''); }
 	function wf_form_gutter() { $this->wf_form_helper_ddown_range($this->wfx_gutter,'gutter',1,25,1,''); }
+	function wf_form_mquery_m() { $this->wf_form_helper_ddown_std($this->wfx_mquery_m,'mquery_m',array(array('yes'=>'y'), array('no'=>'n')),''); }
 	function wf_form_columns_w() { $this->wf_form_helper_ddown_range($this->wfx_columns_width,'columns_w',10,200,1,''); }
 	function wf_form_p_template() { $this->wf_form_helper_cbox($this->wfx_page_templates,'page_t', $this->valid['page_t'],''); }
 	function wf_form_doc_type() { $this->wf_form_helper_ddown_std($this->wfx_doc_type,'doc_type',$this->valid['doc_type'],''); }

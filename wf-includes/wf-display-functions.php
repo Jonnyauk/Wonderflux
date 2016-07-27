@@ -401,7 +401,8 @@ class wflux_display_code extends wflux_data {
 			. '&amp;sbp=' . $this->wfx_sidebar_primary_position
 			. '&amp;c=' . $this->wfx_columns
 			. '&amp;g=' . $this->wfx_gutter
-			. '&amp;r=' . $this->wfx_range_core;
+			. '&amp;r=' . $this->wfx_range_core
+			. '&amp;mqmin=' . $this->wfx_mquery_m;
 
 		} else {
 

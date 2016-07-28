@@ -1141,19 +1141,21 @@ class wflux_wp_core {
 	 * Adds Wonderflux links to WordPress admin bar.
 	 *
 	 * @since	0.93
-	 * @version	2.0
+	 * @version	2.4
 	 *
 	 * @param	none
 	 *
 	 * @todo	Will need to review all admin options when they are moved to Customizer!
 	 */
 	function wf_admin_bar_links() {
-		global $wp_admin_bar;
+
 		if ( !is_admin_bar_showing() || !current_user_can('manage_options') ) {
 			return;
 		} elseif ( WF_ADMIN_ACCESS == 'none') {
 			return;
 		} elseif ( WF_ADMIN_ACCESS !='' ) {
+
+			global $wp_admin_bar;
 
 			if ( WF_ADMIN_ACCESS == wfx_user_role('') ) {
 				//Backpat < WordPress 3.3
@@ -1173,16 +1175,16 @@ class wflux_wp_core {
 		} else {
 			// Silence is golden
 		}
+
 	}
 
 
 	/**
 	 * Adds files currently used to render view to the Wonderflux admin bar menu.
-	 * Set constant WF_DEBUG to true to enable.
 	 * Incredibly useful for debugging - shows which files are your child themes and which are Wonderflux core.
 	 *
 	 * @since	0.93
-	 * @version	2.0
+	 * @version	2.4
 	 *
 	 * @param	none
 	 *
@@ -1190,60 +1192,72 @@ class wflux_wp_core {
 	 */
 	function wf_admin_bar_files_info(){
 
-		global $wp_admin_bar;
+		if ( !is_admin_bar_showing() || !current_user_can('manage_options') || is_admin() ) {
+			return;
+		} elseif ( WF_ADMIN_ACCESS == 'none') {
+			return;
+		} elseif ( WF_ADMIN_ACCESS !='' ) {
 
-		// Setup first menu item
-		$wp_admin_bar->add_menu( array(
-			'id'    => 'wfx-file-menu',
-			'parent'=> 'wonderflux-admin-bar-menu',
-			'title' => 'Files in use',
-			'meta'  => array(
-				'title' => __('Wonderflux template parts in use', 'wonderflux'),
-			),
-		));
+			if ( WF_ADMIN_ACCESS == wfx_user_role('') ) {
 
-		// Get file data
-		$included_files = get_included_files();
-		$stylesheet_dir = str_replace( '\\', '/', get_stylesheet_directory() );
-		$template_dir = str_replace( '\\', '/', get_template_directory() );
+				global $wp_admin_bar;
 
-		foreach ( $included_files as $key => $path ) {
+				// Setup first menu item
+				$wp_admin_bar->add_menu( array(
+					'id'    => 'wfx-file-menu',
+					'parent'=> 'wonderflux-admin-bar-menu',
+					'title' => 'Files in use',
+					'meta'  => array(
+						'title' => __('Wonderflux template parts in use', 'wonderflux'),
+					),
+				));
 
-		    $path = str_replace( '\\', '/', $path );
-			// Strip out non-template includes and other bits
-		    if ( strpos( $path, $stylesheet_dir ) === false && strpos( $path, $template_dir ) === false ){
-		        unset( $included_files[$key] );
-		    } elseif ( strpos($path, 'wf-includes') || strpos($path, 'functions.php') || strpos($path, 'wf-config.php') ){
-		        unset( $included_files[$key] );
-		    }
+				// Get file data
+				$included_files = get_included_files();
+				$stylesheet_dir = str_replace( '\\', '/', get_stylesheet_directory() );
+				$template_dir = str_replace( '\\', '/', get_template_directory() );
 
-		}
+				foreach ( $included_files as $key => $path ) {
 
-		// Reformat for display output
-		$nice_includes = array();
-		$includes_count = 0;
+				    $path = str_replace( '\\', '/', $path );
+					// Strip out non-template includes and other bits
+				    if ( strpos( $path, $stylesheet_dir ) === false && strpos( $path, $template_dir ) === false ){
+				        unset( $included_files[$key] );
+				    } elseif ( strpos($path, 'wf-includes') || strpos($path, 'functions.php') || strpos($path, 'wf-config.php') ){
+				        unset( $included_files[$key] );
+				    }
 
-		foreach ( $included_files as $file ) {
-			$urlParts = explode( '/', $file );
-			$parts_count = count( $urlParts );
-			$file_1 = ( $includes_count == 0 ) ? 'Main file > ' . $urlParts[$parts_count-1] : $urlParts[$parts_count-1];
-			$nice_includes[$includes_count] = $file_1 . ' (' . $urlParts[$parts_count-2] . ')';
-			$includes_count ++;
-		}
+				}
 
-		foreach ( $nice_includes as $menu_item ) {
-			//TODO: Add in links to Wonderflux guide for relevant template parts
-			$wp_admin_bar->add_menu( array(
-				'id'    => esc_attr( $menu_item ),
-				'parent' => 'wfx-file-menu',
-				'title' => esc_html( $menu_item ),
-				/*'href'  => '#',*/
-				/*'meta'  => array(
-					'title' => __('My Sub Menu Item'),
-					'target' => '_blank',
-					'class' => 'my_menu_item_class'
-				),*/
-			));
+				// Reformat for display output
+				$nice_includes = array();
+				$includes_count = 0;
+
+				foreach ( $included_files as $file ) {
+					$urlParts = explode( '/', $file );
+					$parts_count = count( $urlParts );
+					$file_1 = ( $includes_count == 0 ) ? 'Main file > ' . $urlParts[$parts_count-1] : $urlParts[$parts_count-1];
+					$nice_includes[$includes_count] = $file_1 . ' (' . $urlParts[$parts_count-2] . ')';
+					$includes_count ++;
+				}
+
+				foreach ( $nice_includes as $menu_item ) {
+					//TODO: Add in links to Wonderflux guide for relevant template parts
+					$wp_admin_bar->add_menu( array(
+						'id'    => esc_attr( $menu_item ),
+						'parent' => 'wfx-file-menu',
+						'title' => esc_html( $menu_item ),
+						/*'href'  => '#',*/
+						/*'meta'  => array(
+							'title' => __('My Sub Menu Item'),
+							'target' => '_blank',
+							'class' => 'my_menu_item_class'
+						),*/
+					));
+				}
+
+			}
+
 		}
 
 	}

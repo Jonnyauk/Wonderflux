@@ -150,11 +150,8 @@ add_filter( 'theme_page_templates','wfx_remove_page_templates' );
 
 //// 1.6 // Wonderflux debug functionality
 
-
-if ( WF_DEBUG == true ){
-	add_action( 'init','wfx_show_hooks' );
-	add_action( 'admin_bar_menu', 'wfx_admin_bar_files_info', 100 );
-}
+add_action( 'admin_bar_menu', 'wfx_admin_bar_files_info', 100 );
+if ( WF_DEBUG == true ) { add_action( 'init','wfx_show_hooks' ); }
 
 
 /*

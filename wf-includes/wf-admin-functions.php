@@ -934,14 +934,18 @@ class wflux_admin_forms extends wflux_data {
 		$output .= '<p>' . esc_attr__( "Advanced users may wish to remove the default stylesheets that are usually inserted for you when using Wonderflux. The code below is all of the Wonderflux framework CSS file content that is normally inserted into the <head> of your site output, using your current saved configuration.", "wonderflux" ) . '</p>';
 		$output .= '<p><strong>' . esc_attr__( "OPTION 1 - WF_THEME_FRAMEWORK_REPLACE constant", "wonderflux" ) . '</strong></p>';
 		$output .= '<p>' . esc_attr__( "By setting the constant in your child theme functions.php file with the single line:", "wonderflux" );
-		$output .= ' <strong>' . 'define( \'WF_THEME_FRAMEWORK_REPLACE\', true);' . '</strong> ';
-		$output .= esc_attr__( "you will remove the Wonderflux css files: 'wf-css-flux-layout-core' and 'wf-css-flux-layout'. ", "wonderflux" );
-		$output .= esc_attr__( "Wonderflux then automatically inserts the file 'flux-layout-merged.css' for you (if it exists in your child theme), before loading your main child theme style.css file.", "wonderflux" ) . '</p>';
+		$output .= '<br/>';
+		$output .= ' <code>' . 'define( \'WF_THEME_FRAMEWORK_REPLACE\', true );' . '</code> ';
+		$output .= '<br/>';
+		$output .= esc_attr__( "Wonderflux will remove the css files: 'wf-css-flux-layout-core' and 'wf-css-flux-layout'. ", "wonderflux" );
+		$output .= esc_attr__( "Wonderflux will then automatically enqueue/insert the file 'flux-layout-merged.css' for you (if it exists in your child theme), before loading your main child theme style.css file.", "wonderflux" ) . '</p>';
 		$output .= '<p><strong>' . esc_attr__( "You will need to create 1 new file in your theme directory to use this functionality.", "wonderflux" ) . '</strong> ';
 		$output .= esc_attr__( "Copy and paste the code from the text box below into a new file called 'flux-layout-merged.css' and save it to your child theme directory.", "wonderflux" ) . '</p>';
 		$output .= '<p><strong>' . esc_attr__( "OPTION 2 - WF_THEME_FRAMEWORK_NONE constant", "wonderflux" ) . '</strong></p>';
-			$output .= '<p>' . esc_attr__( "By setting the constant in your child theme functions.php file with the single line:", "wonderflux" );
-		$output .= ' <strong>' . 'define( \'WF_THEME_FRAMEWORK_NONE\', true);' . '</strong> ';
+		$output .= '<p>' . esc_attr__( "By setting the constant in your child theme functions.php file with the single line:", "wonderflux" );
+		$output .= '<br/>';
+		$output .= ' <code>' . 'define( \'WF_THEME_FRAMEWORK_NONE\', true );' . '</code> ';
+		$output .= '<br/>';
 		$output .= esc_attr__( "you will remove the Wonderflux css files: 'wf-css-flux-layout-core' and 'wf-css-flux-layout'. No files will be inserted, you will need to copy and paste the code from the text box below and insert it at the top of your style.css file in your child theme. This is the most code efficient way as you only load your single style.css file.", "wonderflux" );
 		$output .= '<p><strong>' . esc_attr__( "IMPORTANT - If you are using the constants as described and either change your grid configuration or layout options, or update Wonderflux, please revisit this page and update your files accordingly with the new generated code.", "wonderflux" ) . '</strong></p>';
 

@@ -3,7 +3,7 @@
  * Setup and prepare Wonderflux options with fallbacks.
  *
  * @since	0.62
- * @version	2.3
+ * @version	2.4
  */
 class wflux_data {
 

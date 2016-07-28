@@ -388,7 +388,7 @@ class wflux_display_code extends wflux_data {
 	* Appends Wonderflux size URL params
 	*
 	* @since 0.93
-	* @updated 2.3
+	* @updated 2.4
 	*/
 	function wf_head_css_add_args($input) {
 

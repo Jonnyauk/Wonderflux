@@ -901,13 +901,14 @@ class wflux_admin_forms extends wflux_data {
 		$content = $wp_filesystem->get_contents( esc_url($file) );
 		// Remove comments
 		$content = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content);
-		// Remove white space
+		// Remove white space/tabs etc
 		$content = ( $cleanup == 'Y' ) ? preg_replace( array('/\s{2,}/', '/[\t\n]/'), ' ', $content ) : $content;
 
 		// Grid framework
 		$content_grid = '';
 
 		// Get grid system with user params
+		// ENSURE ALL URL PARAMS ARE PUT IN HERE WHEN THEY ARE UPDATED!!
 		ob_start();
 		$_GET['w'] = $this->wfx_width;
 		$_GET['wu'] = $this->wfx_width_unit;
@@ -915,6 +916,9 @@ class wflux_admin_forms extends wflux_data {
 		$_GET['sbp'] = $this->wfx_sidebar_primary_position;
 		$_GET['c'] = $this->wfx_columns;
 		$_GET['r'] = $this->wfx_range_core;
+		$_GET['g'] = $this->wfx_gutter;
+		$_GET['mqmin'] = $this->wfx_mquery_m;
+
 		// IMPORTANT - Only used here - need to remove header CSS file info to import correctly
 		$_GET['export_raw']=true;
 
@@ -923,7 +927,7 @@ class wflux_admin_forms extends wflux_data {
     	$content_grid = ob_get_clean();
 		// Remove comments
 		$content_grid = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $content_grid);
-		// Remove white space
+		// Remove white space/tabs etc
 		$content_grid = ( $cleanup == 'Y' ) ? preg_replace(array('/\s{2,}/', '/[\t\n]/'), ' ', $content_grid) : $content_grid;
 
 		$output = '<h2>' . esc_attr__( "Override Wonderflux CSS files", "wonderflux" ) . '</h2>';

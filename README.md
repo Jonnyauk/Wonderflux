@@ -131,10 +131,10 @@ giving you a powerful toolkit and dynamic CSS layout system to rapidly
 develop bespoke WordPress themes for any purpose.
 
 What makes a child theme work is a single line in the top section of
-style.css - 'Template: wonderflux'. This lets WordPress know you want
+style.css - `Template: wonderflux`. This lets WordPress know you want
 to use Wonderflux as a parent theme.
 
-Child themes can be as simple as a single style.css file, or include any
+Child themes can be as simple as a single `style.css` file, or include any
 number of files that override or add functionality to Wonderflux or your
 website. A simple rule to remember is that if a core Wonderflux theme
 layout file exists in your child theme directory (eg header-content.php)

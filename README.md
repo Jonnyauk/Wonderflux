@@ -86,15 +86,14 @@ Layout and configuration options
 Any active child theme of Wonderflux automatically has access to a number of theme
 configuration options (almost all are filterable on individual view too - cool!)
 
-You'll find these in the admin area under 'Appearance'.
-
-**Feeling brave?** Beta testers can try out the shiny new Customizer options by
-installing the [WP Flux Layout plugin](https://github.com/Wider-uk/wp-flux-layout) plugin.
-It automatically interacts with Wonderflux if you have a child theme active - cute!
+You'll find these in the admin area under 'Appearance > WFX Stylelab'.
 
 * Number of vertical columns
+* Create additional multiple column layout definition sets
+* Column system gutter width
 * Main content width
 * Main container position
+* Optimise media queries (remove rarely used CSS rules = huge reduction in file output)
 * Content width
 * Sidebar width
 * Sidebar position
@@ -111,6 +110,11 @@ Other features available in admin area:
 * Generate a single compressed/minified Flux Layout CSS file, less than 6k Gzipped!
 * Full server environmental system report
 * Backup and restore Wonderflux options
+
+**Feeling brave?** Beta testers can try out the shiny new Customizer options by
+installing the [WP Flux Layout plugin](https://github.com/Wider-uk/wp-flux-layout) plugin.
+It's a work in progress right now and is not complete (may be missing options!), but
+when installed it automatically interacts with Wonderflux options - cute!
 
 Getting started
 ----------------------------------------------------------------------

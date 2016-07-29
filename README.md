@@ -177,76 +177,76 @@ one file, or see below on optionally extending with *location awareness*
 for more complex configurations.
 
 If you have not worked with theme frameworks, parent themes or
-get_template_part() before - welcome to the future of WordPress
+`get_template_part()` before - welcome to the future of WordPress
 theme development... and this barely scratches the surface of what
 Wonderflux can do for you!
 
 **Any file that has '-content' in the name is a template part:**
-* header-content-php
-* loop-content.php (used to display main content)
-* sidebar-content.php
-* footer-content.php
+* `header-content-php`
+* `loop-content.php` (used to display main content)
+* `sidebar-content.php`
+* `footer-content.php`
 
 ### Extend template parts with location awareness
 
 Wonderflux extends the principle of *template parts* by adding
 *location awareness*. This automatically adds the ability to use
 files such as header-content-category.php which will override
-header-content.php when viewing a category archive.
+`header-content.php` when viewing a category archive.
 
 **Location awareness works automatically** - if the file exists it gets used,
 otherwise it falls back to using the default file (the last listed). You will
 see the files shown below in the order, or *cascade* of files that will be
-used in given locations. We are using template part loop-content.php as an
+used in given locations. We are using template part `loop-content.php` as an
 example template part, but this will work with any main template part, or
-indeed your own files if you use the wfx_get_template_part() function.
+indeed your own files if you use the `wfx_get_template_part()` function.
 
-New to Wonderflux v2.1 and above is expansion of loop-content-archive.php
+New to Wonderflux v2.1 and above is expansion of `loop-content-archive.php`
 template part, this is now used as a fallback when viewing category, tag,
 taxonomy, date or other archive views for a consistent archive experience.
 
 Also new to Wonderflux 2.1 and above is basic non-desktop/mobile/tablet detection.
 Create unique non-desktop optimised screen alternative template parts by creating an
-additional file with '-mobile' appended, like: loop-content-single-mobile.php which
+additional file with '-mobile' appended, like: `loop-content-single-mobile.php` which
 will be used instead on non-desktop devices.
 
 * **SINGLE POST (INCLUDING CUSTOM POST TYPES)**
   *NOTE: Normal 'post' post type uses loop-content-single.php
   NOT loop-content-single-post.php*
-  1. loop-content-single-{POST-TYPE-SLUG}.php
+  1. loop-content-single-your-post-type-slug.php
   2. loop-content-single.php
   3. loop-content.php
 
 * **CATEGORY ARCHIVE**
-  1. loop-content-category-{CATEGORY-SLUG}.php
+  1. loop-content-category-your-category-slug.php
   2. loop-content-category.php
   3. loop-content-archive.php (common archive template)
   4. loop-content.php
 
 * **TAXONOMY ARCHIVE**
-  1. loop-content-taxonomy-{taxonomy-name}-{taxonomy-term}.php
-  2. loop-content-taxonomy-{taxonomy-name}.php
+  1. loop-content-taxonomy-your-taxonomy-name-your-taxonomy-term.php
+  2. loop-content-taxonomy-your-taxonomy-name.php
   3. loop-content-taxonomy.php
   4. loop-content-archive.php (common archive template)
   5. loop-content.php
 
 * **TAG ARCHIVE**
-  1. loop-content-tag-{tag-slug}.php
+  1. loop-content-tag-your-tag-slug.php
   2. loop-content-tag.php
   3. loop-content-archive.php (common archive template)
   4. loop-content.php
 
 * **DATE ARCHIVE**
   *NOTE: 4 digit year, 2 digit month with leading zero if less than 10*
-  1. loop-content-date-{YEAR}-{MONTH}.php (4 digit year, 2 digit month with leading zero if less than 10).
-  2. loop-content-date-{YEAR}.php (4 digit year)
+  1. loop-content-date-your-year-your-month.php (4 digit year, 2 digit month with leading zero if less than 10).
+  2. loop-content-date-your-year.php (4 digit year)
   3. loop-content-date.php
   4. loop-content-archive.php (common archive template)
   5. loop-content.php
 
 * **POST ARCHIVE**
   *NOTE: especially useful for custom post type archives - introduced in v2.0!*
-	1. loop-content-archive-{post-type-slug}.php
+	1. loop-content-archive-your-post-type-slug.php
 	2. loop-content-archive.php (common archive template)
 	3. loop-content.php
 
@@ -310,8 +310,8 @@ any Wonderflux child theme. Documentation to come, but in the meantime the
 easiest thing to do is to have a look at the file output and look at WFX Girder
 child theme demo. See the <head> output of your document:
 
-* wf-css-flux-layout-core.css - basic rules and reset
-* wf-css-flux-layout.php - dynamic generated CSS layout rules
+* `wf-css-flux-layout-core.css` - basic rules and reset
+* `wf-css-flux-layout.php` - dynamic generated CSS layout rules
 
 I have some more development planned for the Flux Layout system and how it
 integrates with Wonderflux. Also be aware that things may change a-little

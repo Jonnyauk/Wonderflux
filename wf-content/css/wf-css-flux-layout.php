@@ -6,21 +6,21 @@ if ( !isset($_GET['export_raw']) ) {
 ?>
 /**
  *
- * Flux Layout
+ * Flux Layout - dynamic grid system
  * Version 2.0beta
  *
- * A dynamic percentage based CSS layout engine - https://github.com/Jonnyauk/flux-layout
- * Built for the Wonderflux WordPress theme framework - https://github.com/Jonnyauk/Wonderflux
+ * A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
+ * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
  *
  * Free to use on any project and released under the GPLv2 license
- * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
+ * Created by Jonny Allbut Copyright (c)2014-2016. Exceptions include, but are not limited to:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
+ * How To Clear Floats Without Structural Markup by PiE
  *
  * @package Wonderflux
  * @since Wonderflux 2.0
  *
  */
-
 
 <?php
 

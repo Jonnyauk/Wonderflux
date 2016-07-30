@@ -7,7 +7,7 @@
  * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
  *
  * Free to use on any project and released under the GPLv2 license
- * Created by Jonny Allbut (copyright 2014). Exceptions include, but are not limited to:
+ * Created by Jonny Allbut Copyright (c)2014-2016. Exceptions include, but are not limited to:
  * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
  * How To Clear Floats Without Structural Markup by PiE
  *
@@ -101,7 +101,7 @@ img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%
     overflow: hidden;
 	margin-bottom: 1.5em;
 }
- 
+
 .responsive-embed.media-slideshare {
     height: 0;
     position: relative;

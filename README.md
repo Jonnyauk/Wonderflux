@@ -330,6 +330,23 @@ Remember this is a framework! Oh and if you spot somewhere
 that needs a filter or more flexibility, just let me know on the
 [GitHub issues page](https://github.com/Jonnyauk/Wonderflux/issues).
 
+
+Wonderflux template hooks
+----------------------------------------------------------------------
+
+Wonderflux features over 100 hooks allowing you to run a function in your
+child theme at specific output points when a page is rendered. There are general
+ones that will display across the entire site, and location specific ones that
+run only in specific locations or views, such as 'page' or 'category'.
+
+You'll see the hooks available in each template file in Wonderflux, if you'd
+like to see every hook available, check out the file:
+`wf-includes/wf-display-hooks.php`
+
+Also, if you are logged-in as an admin level user, you can set a constant in
+your child theme functions.php file to reveal all hooks in the current view:
+`define( 'WF_DEBUG', true );`
+
 DON'T hack Wonderflux!
 ----------------------------------------------------------------------
 

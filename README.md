@@ -205,14 +205,16 @@ used in given locations. We are using template part `loop-content.php` as an
 example template part, but this will work with any main template part, or
 indeed your own files if you use the `wfx_get_template_part()` function.
 
-New to Wonderflux v2.1 and above is expansion of `loop-content-archive.php`
-template part, this is now used as a fallback when viewing category, tag,
-taxonomy, date or other archive views for a consistent archive experience.
+The `loop-content-archive.php` template part, is an useful (optional) file
+for child theme developers. It's used as a common fallback file when viewing
+category, tag, taxonomy, date and search archives views for a consistent
+archive display experience. You can of-course create files such as
+`loop-content-date.php` or `loop-content-search.php` to override this.
 
-Also new to Wonderflux 2.1 and above is basic non-desktop/mobile/tablet detection.
-Create unique non-desktop optimised screen alternative template parts by creating an
-additional file with '-mobile' appended, like: `loop-content-single-mobile.php` which
-will be used instead on non-desktop devices.
+Wonderflux also feature basic non-desktop/mobile/tablet detection for
+template parts. Create unique non-desktop optimised screen alternative template
+parts by creating an additional file with '-mobile' appended, like:
+`loop-content-single-mobile.php` which will be used instead on non-desktop devices.
 
 * **SINGLE POST (INCLUDING CUSTOM POST TYPES)**
   *NOTE: Normal 'post' post type uses loop-content-single.php

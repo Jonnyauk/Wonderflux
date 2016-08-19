@@ -860,12 +860,12 @@ if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
  * wflux_post_class_last : Extra CSS class added to first post in loop
  *
  * @since	2.1
- * @version	2.3
+ * @version	2.4
  *
  * @param	none
  */
 if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_class() {
-	if ( !is_admin() ) {
+	if ( !is_admin() && !is_feed() ) {
 		global $wfx; $wfx->filter_post_class();
 	}
 } endif;

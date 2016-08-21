@@ -21,5 +21,5 @@ define( 'WF_WORDPRESS_MIN', '4.0' );
 /**
  * The optimum recommended version of WordPress for running this version of Wonderflux
  */
-define( 'WF_WORDPRESS_OPTI', '4.5' );
+define( 'WF_WORDPRESS_OPTI', '4.6' );
 ?>

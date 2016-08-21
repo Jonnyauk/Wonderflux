@@ -1,7 +1,7 @@
 /*
 Theme Name: Wonderflux
 Theme URI: http://wonderflux.com
-Description: DEVELOPMENT VERSION - A responsive theme framework for professional WordPress and BuddyPress website development. IMPORTANT - REQUIRES WORDPRESS 3.4 or above.
+Description: DEVELOPMENT VERSION - A responsive theme framework for professional WordPress and BuddyPress website development. IMPORTANT - REQUIRES WORDPRESS 4.0 or above.
 Version: 2.4
 Author: Jonny Allbut
 Author URI: http://jonnya.net
@@ -10,7 +10,7 @@ Text Domain: wonderflux
 License: GNU General Public License v2.0
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-NOTE: Wonderflux is designed to be used with child themes, you should not activate Wonderflux directly and therefore never see this stylesheet
+NOTE: Wonderflux is designed to be used with child themes, you should not activate Wonderflux directly and therefore never see this stylesheet thanks!
 */
 
 .entry-title a { text-decoration: none; }

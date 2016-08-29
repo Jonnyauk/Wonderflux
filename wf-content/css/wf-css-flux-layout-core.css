@@ -22,11 +22,13 @@ html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:1
 
 /*** Additional resets ***/
 
+.no-decoration, a.no-decoration:hover { text-decoration: none; }
+
 /* Force box-sizing */
 html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
 
-/* Just a few overrides for normalise.css */
+/* A few overrides for normalise.css */
 h1, h2, h3, h4, h5, h6 { margin-top: 0; -ms-word-wrap: break-word; word-wrap: break-word; }
 p { margin-top: 0; }
 ul, ol, dl { margin: 0em 1em 1em; padding: 0 0 1em; }
@@ -131,7 +133,6 @@ img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%
 	width: 100%;
 	height: 100%;
 }
-
 
 /*** WordPress Specific ***/
 

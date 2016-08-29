@@ -94,8 +94,10 @@ img.size-full, img.size-large, img.wp-post-image { height: auto; max-width: 100%
  */
 .gm-style img, .gm-style img[width], .gm-style img[height] { max-width: none; }
 
-/*** WordPress responsive embed media ***/
-
+/**
+ *  WordPress responsive embed media
+ *  Add a div or block level element with these classes around your oEmbed code
+ */
 .responsive-embed.media-youtube {
     height: 0;
     position: relative;
@@ -153,7 +155,7 @@ ol.commentlist p { margin-bottom: 0; }
 
 .sticky { font-weight: bold; }
 
-/* Text meant only for screen readers. */
+/* Text meant only for screen readers */
 
 .screen-reader-text {
     clip: rect(1px, 1px, 1px, 1px);
@@ -164,7 +166,7 @@ ol.commentlist p { margin-bottom: 0; }
 }
 
 .screen-reader-text:focus {
-background-color: #f1f1f1;
+    background-color: #f1f1f1;
     border-radius: 3px;
     box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
     clip: auto !important;

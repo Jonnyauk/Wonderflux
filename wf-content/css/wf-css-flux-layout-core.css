@@ -30,7 +30,7 @@ html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: 
 h1, h2, h3, h4, h5, h6 { margin-top: 0; -ms-word-wrap: break-word; word-wrap: break-word; }
 p { margin-top: 0; }
 ul, ol, dl { margin: 0em 1em 1em; padding: 0 0 1em; }
-li, dt, dd { padding: 0; }*/
+li, dt, dd { padding: 0; }
 td,th { padding: 5px; }
 
 /*** Containers and alignment ***/

@@ -205,12 +205,12 @@ class wflux_admin extends wflux_data {
 			// Pixel column width
 			add_settings_field('container_u', esc_attr__('Site container width unit','wonderflux'), array($this->admin_forms, 'wf_form_container_u'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
 
-			add_settings_field('rwd_full', esc_attr__('Sidebar/main content full width breakpoint for smaller screens','wonderflux'), array($this->admin_forms, 'wf_form_rwd_full'), 'wonderflux_stylelab', 'style_lab');
+			add_settings_field('rwd_full', esc_attr__('Full width breakpoint for smaller screens','wonderflux'), array($this->admin_forms, 'wf_form_rwd_full'), 'wonderflux_stylelab', 'style_lab');
 
 		}
 
-		add_settings_field('range_core', esc_attr__('Additional column definitions','wonderflux'), array($this->admin_forms, 'wf_form_range_core'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-		add_settings_field('gutter', esc_attr__('Column gutter width (percent)','wonderflux'), array($this->admin_forms, 'wf_form_gutter'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('range_core', esc_attr__('Additional column sizes','wonderflux'), array($this->admin_forms, 'wf_form_range_core'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('gutter', esc_attr__('Column gutter width %','wonderflux'), array($this->admin_forms, 'wf_form_gutter'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		/**
 		 * Backpat - add conditional container width field (unit option)
@@ -219,16 +219,16 @@ class wflux_admin extends wflux_data {
 			// Pixel column width
 			add_settings_field('container_w', esc_attr__('Site container width (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		} else {
-			add_settings_field('container_w', esc_attr__('Site container width (percent)','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+			add_settings_field('container_w', esc_attr__('Site container width %','wonderflux'), array($this->admin_forms, 'wf_form_container_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		}
 
 		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-		add_settings_field('mquery_m', esc_attr__('Optimise media queries by removing rarely used CSS rules','wonderflux'), array($this->admin_forms, 'wf_form_mquery_m'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-		add_settings_field('content_s', esc_attr__('Content width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('sidebar_s', esc_attr__('Sidebar width (relative size)','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('mquery_m', esc_attr__('Optimise media queries (remove rarely used CSS)','wonderflux'), array($this->admin_forms, 'wf_form_mquery_m'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab_grid', 'style_lab_grid');
+		add_settings_field('content_s', esc_attr__('Content width','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_s', esc_attr__('Sidebar width','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('page_t', esc_attr__('Page templates','wonderflux'), array($this->admin_forms, 'wf_form_p_template'), 'wonderflux_page_templates', 'style_lab_p_templates');
 		add_settings_field('doc_type', esc_attr__('Document type','wonderflux'), array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_lang', esc_attr__('Document language','wonderflux'), array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');
@@ -666,7 +666,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_intro_grid() {
 		echo '<h2>' . esc_attr__('CSS grid/column settings','wonderflux') . '</h2>';
 		echo '<div class="clear"></div>';
-		echo '<p>' . esc_attr__('Setup the configuration of the CSS layout columns (grid system). The additional column definitions control defines extra grid/column systems to be generated in addition to your core choice (along with their associated media query equivalents). Define as a hyphen (-) seperated list of numbers. Original value is 2-4-5-8-10.', 'wonderflux') . '</p>';
+		echo '<p>' . esc_attr__('Setup the configuration of the CSS layout columns (grid system). The additional column definitions control defines extra grid/column systems to be generated in addition to your core choice (along with their associated media query equivalents). Define as a hyphen (-) seperated list of numbers. Original value is 1-2-4-5-8-10.', 'wonderflux') . '</p>';
 	}
 
 	function wf_form_intro_main() {

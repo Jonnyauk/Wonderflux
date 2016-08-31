@@ -215,7 +215,7 @@ class wflux_layout {
 			default: $definition = false; break;
 		}
 
-		return $definition; break;
+		return $definition;
 
 	}
 

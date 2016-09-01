@@ -1271,10 +1271,10 @@ class wflux_admin_backup {
 						echo '<p>';
 						esc_html_e( 'Current saved settings for the Wonderflux theme framework:', 'wonderflux' );
 						echo '</p>';
-						echo '<p><textarea class="widefat code" rows="20" cols="100" onclick="this.select()">'. $opts . '</textarea></p>';
 						echo '<p><a href="?page=wonderflux_backup&action=download" class="button-secondary">';
 						esc_html_e( 'Download backup file', 'wonderflux' );
 						echo '</a></p>';
+						echo '<p><textarea class="widefat code" rows="10" cols="100" onclick="this.select()">'. $opts . '</textarea></p>';
 						echo '</td><td>';
 						echo '<h3>';
 						esc_html_e( 'Restore/Import', 'wonderflux' );

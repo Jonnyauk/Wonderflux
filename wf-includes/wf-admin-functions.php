@@ -3,7 +3,7 @@
  * Admin area functions for options pages and menus.
  *
  * @since	0.3
- * @version	2.1
+ * @version	2.5
  */
 class wflux_admin extends wflux_data {
 
@@ -171,7 +171,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Sets up and configures options and form fields
 	* @since 0.81
-	* @updated 2.4
+	* @updated 2.5
 	*/
 	function wf_register_settings(){
 
@@ -1195,7 +1195,7 @@ class wflux_admin_forms extends wflux_data {
 
 /**
  * @since 1.2
- * @updated 2.3
+ * @updated 2.5
  * Admin area theme backup functions
  */
 class wflux_admin_backup {
@@ -1273,7 +1273,7 @@ class wflux_admin_backup {
 						echo '</p>';
 						echo '<p><textarea class="widefat code" rows="20" cols="100" onclick="this.select()">'. $opts . '</textarea></p>';
 						echo '<p><a href="?page=wonderflux_backup&action=download" class="button-secondary">';
-						esc_html_e( 'Download as file', 'wonderflux' );
+						esc_html_e( 'Download backup file', 'wonderflux' );
 						echo '</a></p>';
 						echo '</td><td>';
 						echo '<h3>';
@@ -1299,7 +1299,6 @@ class wflux_admin_backup {
 	function _get_options() {
 		global $wpdb;
 		return $wpdb->get_results( "SELECT option_name, option_value FROM {$wpdb->options} WHERE option_name = 'wonderflux_display'" );
-		//return get_option('wonderflux_display');
 	}
 
 

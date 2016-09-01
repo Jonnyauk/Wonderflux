@@ -68,7 +68,7 @@ class wflux_layout {
 	function __construct() {
 
 		// Cleanup all data ready to be used
-		$this->width_units = ( isset($_GET['wu']) && $_GET['wu'] == 'percent' ) ? '%' : 'px';
+		$this->width_units = ( isset($_GET['wu']) && $_GET['wu'] == 'pixels' ) ? 'px' : '%';
 
 		if ($this->width_units == 'px') {
 

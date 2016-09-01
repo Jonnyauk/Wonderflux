@@ -189,31 +189,24 @@ class wflux_admin extends wflux_data {
 		add_settings_field('columns_num', esc_attr__('Number of columns','wonderflux'), array($this->admin_forms, 'wf_form_columns_num'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		/**
-		 * Backpat - add column width if using Wonderflux v1 pixel grid
+		 * Backpat - add column width option for Wonderflux v1 pixel grid
 		 */
 		if ( $this->wfx_grid_type == 'pixels' ) {
-			// Pixel column width
 			add_settings_field('columns_w', esc_attr__('Width of column (pixels)','wonderflux'), array($this->admin_forms, 'wf_form_columns_w'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		}
 
 		/**
-		 * Backpat - add Flux Layout specific fields if using v2 grid system
-		 * - container units
-		 * - Full width breakpoint for sidebar and main content
+		 * Backpat - add specific options for Wonderflux v2 percent grid (Flux Layout specific)
 		 */
 		if ( $this->wfx_grid_type == 'percent' ) {
-			// Pixel column width
 			add_settings_field('container_u', esc_attr__('Site container width unit','wonderflux'), array($this->admin_forms, 'wf_form_container_u'), 'wonderflux_stylelab_grid_core', 'style_lab_grid_core');
-
-			add_settings_field('rwd_full', esc_attr__('Full width breakpoint for smaller screens','wonderflux'), array($this->admin_forms, 'wf_form_rwd_full'), 'wonderflux_stylelab', 'style_lab');
-
 		}
 
 		add_settings_field('range_core', esc_attr__('Additional column sizes','wonderflux'), array($this->admin_forms, 'wf_form_range_core'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('gutter', esc_attr__('Column gutter width %','wonderflux'), array($this->admin_forms, 'wf_form_gutter'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 
 		/**
-		 * Backpat - add conditional container width field (unit option)
+		 * Backpat - add correct container width option for Wonderflux v1 pixel grid
 		 */
 		if ( $this->wfx_grid_type == 'pixels' ||  $this->wfx_width_unit == 'pixels' ) {
 			// Pixel column width
@@ -225,10 +218,23 @@ class wflux_admin extends wflux_data {
 		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('mquery_m', esc_attr__('Optimise media queries (remove rarely used CSS)','wonderflux'), array($this->admin_forms, 'wf_form_mquery_m'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-		add_settings_field('content_s', esc_attr__('Content width','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('sidebar_s', esc_attr__('Sidebar width','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
 		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
-		add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
+
+		if ( $this->wfx_sidebar_1_display != 'N' ) {
+
+			/**
+			 * Backpat - add breakpoint option for Wonderflux v2 percent grid (Flux Layout specific)
+			 */
+			if ( $this->wfx_grid_type == 'percent' ) {
+				add_settings_field('rwd_full', esc_attr__('Full width breakpoint for smaller screens','wonderflux'), array($this->admin_forms, 'wf_form_rwd_full'), 'wonderflux_stylelab', 'style_lab');
+			}
+
+			add_settings_field('content_s', esc_attr__('Content width','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
+			add_settings_field('sidebar_s', esc_attr__('Sidebar width','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
+			add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
+
+		}
+
 		add_settings_field('page_t', esc_attr__('Page templates','wonderflux'), array($this->admin_forms, 'wf_form_p_template'), 'wonderflux_page_templates', 'style_lab_p_templates');
 		add_settings_field('doc_type', esc_attr__('Document type','wonderflux'), array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
 		add_settings_field('doc_lang', esc_attr__('Document language','wonderflux'), array($this->admin_forms, 'wf_form_doc_lang'), 'wonderflux_stylelab_doc', 'style_lab_doc');

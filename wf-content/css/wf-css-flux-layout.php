@@ -7,7 +7,7 @@ if ( !isset($_GET['export_raw']) ) {
 /**
  *
  * Flux Layout - dynamic grid system
- * Version 2.0beta
+ * Version 2.0
  *
  * A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
  * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux

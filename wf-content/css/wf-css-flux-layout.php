@@ -482,14 +482,14 @@ class wflux_layout {
 			for ( $limit=0; $limit <= $sizes_count; $limit++ ) {
 				echo '.' . $all_defs[$limit] . '-min-show';
 				echo ( $limit == $sizes_count ) ? ' ' : ', ';
-				echo ( $limit == $sizes_count ) ? '{ display:block; }' . "\n" : '';
+				echo ( $limit == $sizes_count ) ? '{ display:inline-block; }' . "\n" : '';
 
 			}
 
 			for ( $limit=($all_defs_count-1); $limit >= ($sizes_count+1); $limit-- ) {
 				echo '.' . $all_defs[$limit] . '-min-hide';
 				echo ( $limit == ($sizes_count+1) ) ? ' ' : ', ';
-				echo ( $limit == ($sizes_count+1) ) ? '{ display:block; }' . "\n" : '';
+				echo ( $limit == ($sizes_count+1) ) ? '{ display:inline-block; }' . "\n" : '';
 
 			}
 

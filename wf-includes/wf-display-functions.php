@@ -3,7 +3,6 @@
  * Core display functions that output code.
  *
  * @since	0.913
- * @version	2.3
  *
  * @todo Check translation setup.
  */
@@ -736,7 +735,6 @@ class wflux_display_code extends wflux_data {
  * CSS display functions.
  *
  * @since	0.2
- * @version	2.0
  *
  */
 class wflux_display_css extends wflux_display_code {
@@ -1352,7 +1350,6 @@ class wflux_display_css extends wflux_display_code {
  * Wonderflux display functions.
  *
  * @since	0.1
- * @version	2.1
  */
 class wflux_display extends wflux_display_css {
 
@@ -1447,7 +1444,6 @@ class wflux_display extends wflux_display_css {
  * Extra core display functions for theme developers.
  *
  * @since	0.85
- * @version	2.3
  *
  * @todo Check translation setup.
  */
@@ -2510,7 +2506,6 @@ class wflux_display_extras {
  * Social networking functionality.
  *
  * @since	0.931
- * @version	2.3
  *
  * @todo Check over more recent sharing code.
  */

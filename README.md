@@ -354,8 +354,8 @@ Updating Wonderflux
 ----------------------------------------------------------------------
 
 Updating Wonderflux is easy - just download the latest .zip file for the
-relevant release, extract files, and replace the whole wonderflux directory
-in your` wp-content/themes/` directory with the new one.
+relevant release, extract files, and replace the whole `wonderflux` directory
+in your `wp-content/themes/` directory with the new one.
 
 I am careful to outline all new features and anything that could mess with your
 sie when updating Wonderflux - but it goes without saying you should read through
@@ -363,8 +363,8 @@ the release notes and all code changes and **OBVIOUSLY TEST YOUR SITE** with eac
 new version of Wonderflux as it becomes available.
 
 If things go drastically wrong with your update, you should be able to revert
-back to your previous version by replacing the wonderflux folder with an older
-version of Wonderflux whilst working out what the issue is.
+back to your previous version by replacing the `wonderflux` directory with an
+older version of Wonderflux whilst working out what the issue is.
 
 DON'T hack Wonderflux!
 ----------------------------------------------------------------------

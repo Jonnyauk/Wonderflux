@@ -471,7 +471,7 @@ class wflux_display_code extends wflux_data {
 	 * wflux_body_class_layout - Wonderflux layout description classes
 	 *
 	 * @since	0.931
-	 * @version	2.1
+	 * @version	2.51
 	 *
 	 * @param	none
 	 */

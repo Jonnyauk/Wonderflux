@@ -468,11 +468,11 @@ if ( !function_exists( 'wfx_allowed_tags' ) ) : function wfx_allowed_tags() {
  * However, sometimes we need it to clean user input to only allow certain tags so there is no funny business!
  *
  * @since	2.3
- * @version	2.3
+ * @version	2.6
  *
  * @param	[string] $type 			Required - Type of tags to return text/simple/headings [text]
- *                          		- text     		=> Sutable for wrapping inside your own block level elements - a, br, span, b, strong and i
- *                          		- textnolinks	=> Similar to 'text' param, but no links. Sutable for wrapping inside your own block level elements - br, span, b, strong and i
+ *                          		- text     		=> Sutable for wrapping inside your own block level elements - a, br, span, b, strong, i, sup, sub
+ *                          		- textnolinks	=> Similar to 'text' param, but no links. Sutable for wrapping inside your own block level elements - br, span, b, strong, i, sup, sub
  *                          		- simple   		=> Similar to 'text' param, much more limited, no links or text styling tags = span, br
  *                          		- headings 		=> Just headings, nothing else = h1, h2, h3, h4, h5, h6
  * @return	[array]					Allowed tags

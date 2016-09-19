@@ -1071,13 +1071,15 @@ if ( !function_exists( 'wfx_rwd_full_width' ) ) : function wfx_rwd_full_width() 
 
 /**
  * Display excerpt of post content inside the loop or custom query.
+ * Note that output is run through esc_html() already, so no need to escape again thanks!
  *
  * @since	0.85
- * @version	1.1
+ * @version	2.6
  *
  * @param	[int] $limit			Number of words. [20]
  * @param	[string] $excerpt_end 	Characters to add to end of the excerpt. [...]
  * @param	[string] $trim			Trim off punctuation from end of excerpt - good when you don't want it to bump into your excerpt end. Y/N [Y]
+ * @param	[string] $full_excerpt	If an actual excerpt is set (not an excerpt of post content) - display whole except. Ignores $limit, $excerpt_end & $trim params. Y/N [N]
  * @param	[string] $echo			Echo or return output. Y/N [Y]
  */
 if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
@@ -1091,10 +1093,10 @@ if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {
 
 	global $wfx;
 
-	if ($echo == 'Y') {
-		echo $wfx->excerpt($args);
+	if ( $echo == 'Y' ) {
+		echo $wfx->excerpt( $args );
 	} else {
-		return $wfx->excerpt($args);
+		return $wfx->excerpt( $args );
 	}
 
 } endif;

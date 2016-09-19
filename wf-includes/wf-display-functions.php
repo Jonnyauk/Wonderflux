@@ -1468,51 +1468,65 @@ class wflux_display_extras {
 
 	/**
 	 * Display excerpt of post content inside the loop or custom query.
+	 * Note that output is run through esc_html() already, so no need to escape again thanks!
 	 *
 	 * @since	0.85
-	 * @version	1.1
+	 * @version	2.6
 	 *
 	 * @param	[int] $limit			Number of words. [20]
 	 * @param	[string] $excerpt_end 	Characters to add to end of the excerpt. [...]
 	 * @param	[string] $trim			Trim off punctuation from end of excerpt - good when you don't want it to bump into your excerpt end. Y/N [Y]
+	 * @param	[string] $full_excerpt	If an actual excerpt is set (not an excerpt of post content) - display whole except. Ignores $limit, $excerpt_end & $trim params. Y/N [N]
 	 */
 	function wf_excerpt($args) {
 
 		$defaults = array (
 			'limit' => 20,
 			'excerpt_end' => '...',
-			'trim' => 'Y'
+			'trim' => 'Y',
+			'full_excerpt' => 'N'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		// Tidy up ready for use
-		$excerpt_end = wp_kses_data($excerpt_end, '');
 		$content = get_the_excerpt();
 
-		$excerpt = explode(' ', $content, ($limit+1));
+		if ( has_excerpt() && $full_excerpt == 'Y' ) {
 
-		if (count($excerpt)>=$limit) {
-		array_pop($excerpt);
-		$excerpt = implode(" ",$excerpt).'';
+			$excerpt = $content;
+			$excerpt_end = '';
+
 		} else {
-		$excerpt = implode(" ",$excerpt);
+
+			$excerpt = explode( ' ', $content, ($limit+1) );
+
+			$excerpt_length = count( $excerpt );
+
+			if ( $excerpt_length >= $limit ) {
+				array_pop($excerpt);
+				$excerpt = implode( " ",$excerpt ).'';
+			} else {
+				$excerpt = implode( " ",$excerpt );
+			}
+
+			$excerpt = preg_replace( '`\[[^\]]*\]`','',$excerpt) ;
+			$excerpt = trim( $excerpt );
+
+			// Remove punctuation
+			if ( $trim == 'Y' ) {
+				$end_check = substr($excerpt, -1);
+				$punctuation = array( '.',',','-','&minus;','&ndash;','&mdash;','!','?' );
+				if ( in_array($end_check,$punctuation)): $excerpt = substr($excerpt, 0, -1 ); endif;
+			}
+
+			// Dont include excerpt end if there is no excerpt!
+			$excerpt_end = ( !empty($excerpt) && $limit < $excerpt_length ) ? $excerpt_end : '';
+
+
 		}
-		$excerpt = preg_replace('`\[[^\]]*\]`','',$excerpt);
-		$excerpt = trim(wp_kses_data($excerpt, ''));
 
-		// Remove punctuation
-		if ($trim == 'Y') {
-			$end_check = substr($excerpt, -1);
-			$punctuation = array('.',',','-','&minus;','&ndash;','&mdash;','!','?');
-			if (in_array($end_check,$punctuation)): $excerpt = substr($excerpt, 0, -1); endif;
-		}
-
-		// Dont include excerpt end if there is no excerpt!
-		$excerpt_end = ( !empty($excerpt) ) ? $excerpt_end : '';
-
-		return esc_attr($excerpt) . esc_attr($excerpt_end);
+		return esc_html( $excerpt . $excerpt_end );
 
 	}
 

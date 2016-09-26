@@ -263,8 +263,8 @@ class wflux_layout {
 		. 'float:left; margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: ' . $this->columns_gutter / 2 . '%; }'
 		 . $this->minify;
 
-		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:first-child { margin-left: 0; margin-right: ' . $this->columns_gutter / 2 . '%; }' . $this->minify;
 		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:last-child { margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: 0; }' . $this->minify;
+		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:first-child { margin-left: 0; margin-right: ' . $this->columns_gutter / 2 . '%; }' . $this->minify;
 
 		foreach ( $this->columns as $size_r ) {
 

@@ -17,9 +17,6 @@
 	<h4 class="sidebar-title"><?php esc_html_e( 'Categories', 'wonderflux' ); ?></h4>
 	<ul><?php wp_list_categories('show_count=1&title_li='); ?></ul>
 
-	<h4 class="sidebar-title"><?php esc_html_e( 'Archives', 'wonderflux' ); ?></h4>
-	<ul><?php wp_get_archives('type=monthly'); ?></ul>
-
 </div>
 
 <?php wfx_edit_meta('wfcontrols=Y&div=Y&divclass=sidebar-box');?>

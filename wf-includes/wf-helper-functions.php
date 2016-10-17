@@ -15,7 +15,7 @@ class wflux_data {
 	protected $wfx_doc_charset; // Document type
 	protected $wfx_width_type; // Width unit of main site container (px or %)
 	protected $wfx_width; // Width of main site container
-	protected $wfx_position; // Position of main site container
+	protected $wfx_position; // Position of main site container (works in conjunction with sidebar 1)
 	protected $wfx_range_core; // Range of different size definitions for Flux Layout
 	protected $wfx_columns; // Number of columns
 	protected $wfx_gutter; // Number of columns
@@ -28,6 +28,15 @@ class wflux_data {
 	protected $wfx_content_1_size; // Relative 'size' of main content area eg 'three_quarter'
 	protected $wfx_content_1_id; // CSS ID of main content container div
 	protected $wfx_content_1_size_columns; // Size in columns - NOTE overrides _size variable if set
+
+	protected $wfx_sidebar_1_display; // Display sidebar 1
+	protected $wfx_sidebar_1_size; // Sidebar 1 size
+	protected $wfx_sidebar_1_id; // CSS ID of sidebar 1 div
+
+	protected $wfx_sidebar_2_display; // Display sidebar 2
+	protected $wfx_sidebar_2_size; // Sidebar 2 size
+	protected $wfx_sidebar_2_position; // Sidebar 2 position
+	protected $wfx_content_2_id; // CSS ID of sidebar 2 div
 
 	protected $wfx_content_size_px; // For core WordPress $content_width global
 
@@ -247,7 +256,7 @@ class wflux_data {
 		$this->wfx_sidebar_1_display = apply_filters( 'wflux_sidebar_1_display', $this->wfx_sidebar_1_display );
 		// If filtered and in admin, just show original value saved to DB, not filtered values
 		if ( is_admin() ) {
-			if (has_filter('wflux_sidebar_1_display') ) {
+			if ( has_filter('wflux_sidebar_1_display') ) {
 				$this->wfx_sidebar_1_display = $this->wfx_db_display['sidebar_d'];
 			}
 		} elseif ( $this->wfx_sidebar_1_display == false ) {
@@ -270,13 +279,51 @@ class wflux_data {
 		$this->wfx_sidebar_1_id = 'sidebar';
 		$this->wfx_sidebar_1_id = apply_filters( 'wflux_sidebar_1_id', $this->wfx_sidebar_1_id );
 		//if ( !has_filter('wflux_sidebar_1_id') ) { $this->wfx_sidebar_1_id = $this->wfx_db_display['sidebar_i']; // DB ACTION!! }
-		$this->wfx_sidebar_1_id = ( $this->wfx_sidebar_1_id !='sidebar' ) ? wp_kses_data( $this->wfx_sidebar_1_id, '' ) : $this->wfx_sidebar_1_id;
+		$this->wfx_sidebar_1_id = ( $this->wfx_sidebar_1_id !='sidebar' ) ? esc_attr( $this->wfx_sidebar_1_id ) : $this->wfx_sidebar_1_id;
 
 		// SIDEBAR 1 COLUMNS
 		$this->wfx_sidebar_1_size_columns = 0;
 		$this->wfx_sidebar_1_size_columns = apply_filters( 'wflux_sidebar_1_size_columns', $this->wfx_sidebar_1_size_columns );
 		//if ( !has_filter('wflux_sidebar_1_size_columns') ) { $this->wfx_sidebar_1_size_columns = $this->wfx_db_display['sidebar_c']; // DB ACTION!! }
 		$this->wfx_sidebar_1_size_columns = ( is_numeric($this->wfx_sidebar_1_size_columns) ) ? $this->wfx_sidebar_1_size_columns : 0;
+
+		// SIDEBAR 2 DISPLAY
+		// TODO: Check defaults etc!
+		$this->wfx_sidebar_2_display = (isset($this->wfx_db_display['sidebar_2_d']) ) ? $this->wfx_db_display['sidebar_2_d'] : false;
+		$this->wfx_sidebar_2_display = apply_filters( 'wflux_sidebar_2_display', $this->wfx_sidebar_2_display );
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() ) {
+			if ( has_filter('wflux_sidebar_2_display') ) {
+				$this->wfx_sidebar_2_display = $this->wfx_db_display['sidebar_2_d'];
+			}
+		} elseif ( $this->wfx_sidebar_2_display == false ) {
+			$this->wfx_sidebar_1_display = 'Y';
+		}
+
+		// SIDEBAR 2 SIZE
+		$this->wfx_sidebar_2_size = (isset($this->wfx_db_display['sidebar_2_s']) ) ? $this->wfx_db_display['sidebar_2_s'] : false;
+		$this->wfx_sidebar_2_size = apply_filters( 'wflux_sidebar_2_size', $this->wfx_sidebar_2_size );
+		// If filtered and in admin, just show original value saved to DB, not filtered values
+		if ( is_admin() ) {
+			if (has_filter('wflux_sidebar_2_size') ) {
+				$this->wfx_sidebar_2_size = $this->wfx_db_display['sidebar_2_s'];
+			}
+		} elseif ( $this->wfx_sidebar_2_size == false ) {
+			$this->wfx_sidebar_2_size = 'quarter';
+		}
+
+		// SIDEBAR SECONDARY POSITION - left, right
+		$this->wfx_sidebar_2_position = (isset($this->wfx_db_display['sidebar_2_p']) ) ? $this->wfx_db_display['sidebar_2_p'] : false;
+		// Validate
+		$wfx_sidebar_pp_2_out = 'left';
+		$wwfx_sidebar_pp_2_accept = array('left','right');
+		if ( in_array($this->wfx_sidebar_2_position,$wwfx_sidebar_pp_2_accept) ) { $wfx_sidebar_pp_2_out = $this->wfx_sidebar_2_position; }
+		$this->wfx_sidebar_2_position = $wfx_sidebar_pp_2_out;
+
+		// SIDEBAR 2 CSS ID
+		$this->wfx_sidebar_2_id = 'sidebar-secondary';
+		$this->wfx_sidebar_2_id = apply_filters( 'wflux_sidebar_2_id', $this->wfx_sidebar_2_id );
+		$this->wfx_sidebar_2_id = ( $this->wfx_sidebar_2_id !='sidebar-secondary' ) ? esc_attr( $this->wfx_sidebar_2_id ) : $this->wfx_sidebar_2_id;
 
 		//// THEME INFORMATION ////
 

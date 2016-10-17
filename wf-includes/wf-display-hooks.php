@@ -36,6 +36,8 @@ function wffooter_after_wrapper() { do_action('wffooter_after_wrapper'); }
 
 function wfsidebar_before_all() { do_action('wfsidebar_before_all'); }
 function wfsidebar_after_all() { do_action('wfsidebar_after_all'); }
+function wfsidebar_2_before_all() { do_action('wfsidebar_2_before_all'); }
+function wfsidebar_2_after_all() { do_action('wfsidebar_2_after_all'); }
 
 //////// Loop general hooks
 
@@ -66,6 +68,8 @@ function wfmain_after_all_main_content() { do_action('wfmain_after_all_main_cont
 // Index
 function wfsidebar_before_index() { do_action('wfsidebar_before_index'); }
 function wfsidebar_after_index() { do_action('wfsidebar_after_index'); }
+function wfsidebar_2_before_index() { do_action('wfsidebar_2_before_index'); }
+function wfsidebar_2_after_index() { do_action('wfsidebar_2_after_index'); }
 function wfmain_before_index_container() { do_action('wfmain_before_index_container'); }
 function wfmain_before_index_content() { do_action('wfmain_before_index_content'); }
 function wfmain_after_index_content() { do_action('wfmain_after_index_content'); }
@@ -77,6 +81,8 @@ function wfloop_after_found_posts_index() { do_action('wfloop_after_found_posts_
 // Home
 function wfsidebar_before_home() { do_action('wfsidebar_before_home'); }
 function wfsidebar_after_home() { do_action('wfsidebar_after_home'); }
+function wfsidebar_2_before_home() { do_action('wfsidebar_2_before_home'); }
+function wfsidebar_2_after_home() { do_action('wfsidebar_2_after_home'); }
 function wfmain_before_home_container() { do_action('wfmain_before_home_container'); }
 function wfmain_before_home_content() { do_action('wfmain_before_home_content'); }
 function wfmain_after_home_content() { do_action('wfmain_after_home_content'); }
@@ -88,6 +94,8 @@ function wfloop_after_found_posts_home() { do_action('wfloop_after_found_posts_h
 // Page
 function wfsidebar_before_page() { do_action('wfsidebar_before_page'); }
 function wfsidebar_after_page() { do_action('wfsidebar_after_page'); }
+function wfsidebar_2_before_page() { do_action('wfsidebar_2_before_page'); }
+function wfsidebar_2_after_page() { do_action('wfsidebar_2_after_page'); }
 function wfmain_before_page_container() { do_action('wfmain_before_page_container'); }
 function wfmain_before_page_content() { do_action('wfmain_before_page_content'); }
 function wfmain_after_page_content() { do_action('wfmain_after_page_content'); }
@@ -99,6 +107,8 @@ function wfloop_after_found_posts_page() { do_action('wfloop_after_found_posts_p
 // Single
 function wfsidebar_before_single() { do_action('wfsidebar_before_single'); }
 function wfsidebar_after_single() { do_action('wfsidebar_after_single'); }
+function wfsidebar_2_before_single() { do_action('wfsidebar_2_before_single'); }
+function wfsidebar_2_after_single() { do_action('wfsidebar_2_after_single'); }
 function wfmain_before_single_container() { do_action('wfmain_before_single_container'); }
 function wfmain_before_single_content() { do_action('wfmain_before_single_content'); }
 function wfmain_after_single_content() { do_action('wfmain_after_single_content'); }
@@ -110,6 +120,8 @@ function wfloop_after_found_posts_single() { do_action('wfloop_after_found_posts
 // Category
 function wfsidebar_before_category() { do_action('wfsidebar_before_category'); }
 function wfsidebar_after_category() { do_action('wfsidebar_after_category'); }
+function wfsidebar_2_before_category() { do_action('wfsidebar_2_before_category'); }
+function wfsidebar_2_after_category() { do_action('wfsidebar_2_after_category'); }
 function wfmain_before_category_container() { do_action('wfmain_before_category_container'); }
 function wfmain_before_category_content() { do_action('wfmain_before_category_content'); }
 function wfmain_after_category_content() { do_action('wfmain_after_category_content'); }
@@ -121,6 +133,8 @@ function wfloop_after_found_posts_category() { do_action('wfloop_after_found_pos
 // Date
 function wfsidebar_before_date() { do_action('wfsidebar_before_date'); }
 function wfsidebar_after_date() { do_action('wfsidebar_after_date'); }
+function wfsidebar_2_before_date() { do_action('wfsidebar_2_before_date'); }
+function wfsidebar_2_after_date() { do_action('wfsidebar_2_after_date'); }
 function wfmain_before_date_container() { do_action('wfmain_before_date_container'); }
 function wfmain_before_date_content() { do_action('wfmain_before_date_content'); }
 function wfmain_after_date_content() { do_action('wfmain_after_date_content'); }
@@ -132,6 +146,8 @@ function wfloop_after_found_posts_date() { do_action('wfloop_after_found_posts_d
 // Author
 function wfsidebar_before_author() { do_action('wfsidebar_before_author'); }
 function wfsidebar_after_author() { do_action('wfsidebar_after_author'); }
+function wfsidebar_2_before_author() { do_action('wfsidebar_2_before_author'); }
+function wfsidebar_2_after_author() { do_action('wfsidebar_2_after_author'); }
 function wfmain_before_author_container() { do_action('wfmain_before_author_container'); }
 function wfmain_before_author_content() { do_action('wfmain_before_author_content'); }
 function wfmain_after_author_content() { do_action('wfmain_after_author_content'); }
@@ -143,6 +159,8 @@ function wfloop_after_found_posts_author() { do_action('wfloop_after_found_posts
 // Tag
 function wfsidebar_before_tag() { do_action('wfsidebar_before_tag'); }
 function wfsidebar_after_tag() { do_action('wfsidebar_after_tag'); }
+function wfsidebar_2_before_tag() { do_action('wfsidebar_2_before_tag'); }
+function wfsidebar_2_after_tag() { do_action('wfsidebar_2_after_tag'); }
 function wfmain_before_tag_container() { do_action('wfmain_before_tag_container'); }
 function wfmain_before_tag_content() { do_action('wfmain_before_tag_content'); }
 function wfmain_after_tag_content() { do_action('wfmain_after_tag_content'); }
@@ -154,6 +172,8 @@ function wfloop_after_found_posts_tag() { do_action('wfloop_after_found_posts_ta
 // Taxonomy
 function wfsidebar_before_taxonomy() { do_action('wfsidebar_before_taxonomy'); }
 function wfsidebar_after_taxonomy() { do_action('wfsidebar_after_taxonomy'); }
+function wfsidebar_2_before_taxonomy() { do_action('wfsidebar_2_before_taxonomy'); }
+function wfsidebar_2_after_taxonomy() { do_action('wfsidebar_2_after_taxonomy'); }
 function wfmain_before_taxonomy_container() { do_action('wfmain_before_taxonomy_container'); }
 function wfmain_before_taxonomy_content() { do_action('wfmain_before_taxonomy_content'); }
 function wfmain_after_taxonomy_content() { do_action('wfmain_after_taxonomy_content'); }
@@ -165,6 +185,8 @@ function wfloop_after_found_posts_taxonomy() { do_action('wfloop_after_found_pos
 // Archive
 function wfsidebar_before_archive() { do_action('wfsidebar_before_archive'); }
 function wfsidebar_after_archive() { do_action('wfsidebar_after_archive'); }
+function wfsidebar_2_before_archive() { do_action('wfsidebar_2_before_archive'); }
+function wfsidebar_2_after_archive() { do_action('wfsidebar_2_after_archive'); }
 function wfmain_before_archive_container() { do_action('wfmain_before_archive_container'); }
 function wfmain_before_archive_content() { do_action('wfmain_before_archive_content'); }
 function wfmain_after_archive_content() { do_action('wfmain_after_archive_content'); }
@@ -176,6 +198,8 @@ function wfloop_after_found_posts_archive() { do_action('wfloop_after_found_post
 // Search
 function wfsidebar_before_search() { do_action('wfsidebar_before_search'); }
 function wfsidebar_after_search() { do_action('wfsidebar_after_search'); }
+function wfsidebar_2_before_search() { do_action('wfsidebar_2_before_search'); }
+function wfsidebar_2_after_search() { do_action('wfsidebar_2_after_search'); }
 function wfmain_before_search_container() { do_action('wfmain_before_search_container'); }
 function wfmain_before_search_content() { do_action('wfmain_before_search_content'); }
 function wfmain_after_search_content() { do_action('wfmain_after_search_content'); }
@@ -187,6 +211,8 @@ function wfloop_after_found_posts_search() { do_action('wfloop_after_found_posts
 // Attachment
 function wfsidebar_before_attachment() { do_action('wfsidebar_before_attachment'); }
 function wfsidebar_after_attachment() { do_action('wfsidebar_after_attachment'); }
+function wfsidebar_2_before_attachment() { do_action('wfsidebar_2_before_attachment'); }
+function wfsidebar_2_after_attachment() { do_action('wfsidebar_2_after_attachment'); }
 function wfmain_before_attachment_container() { do_action('wfmain_before_attachment_container'); }
 function wfmain_before_attachment_content() { do_action('wfmain_before_attachment_content'); }
 function wfmain_after_attachment_content() { do_action('wfmain_after_attachment_content'); }
@@ -198,6 +224,8 @@ function wfloop_after_found_posts_attachment() { do_action('wfloop_after_found_p
 // 404
 function wfsidebar_before_404() { do_action('wfsidebar_before_404'); }
 function wfsidebar_after_404() { do_action('wfsidebar_after_404'); }
+function wfsidebar_2_before_404() { do_action('wfsidebar_2_before_404'); }
+function wfsidebar_2_after_404() { do_action('wfsidebar_2_after_404'); }
 function wfmain_before_404_container() { do_action('wfmain_before_404_container'); }
 function wfmain_before_404_content() { do_action('wfmain_before_404_content'); }
 function wfmain_after_404_content() { do_action('wfmain_after_404_content'); }

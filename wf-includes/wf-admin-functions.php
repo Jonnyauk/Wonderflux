@@ -218,22 +218,22 @@ class wflux_admin extends wflux_data {
 		add_settings_field('container_p', esc_attr__('Site container position','wonderflux'), array($this->admin_forms, 'wf_form_container_p'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('mquery_m', esc_attr__('Optimise media queries (remove rarely used CSS)','wonderflux'), array($this->admin_forms, 'wf_form_mquery_m'), 'wonderflux_stylelab_grid', 'style_lab_grid');
 		add_settings_field('content_1_s_px', esc_attr__('Media width (pixels - used as WordPress $content_width for auto-embedding YouTube etc)','wonderflux'), array($this->admin_forms, 'wf_form_content_s_px'), 'wonderflux_stylelab_grid', 'style_lab_grid');
-		add_settings_field('sidebar_d', esc_attr__('Sidebar display','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
 
-		if ( $this->wfx_sidebar_1_display != 'N' ) {
-
-			/**
-			 * Backpat - add breakpoint option for Wonderflux v2 percent grid (Flux Layout specific)
-			 */
-			if ( $this->wfx_grid_type == 'percent' ) {
-				add_settings_field('rwd_full', esc_attr__('Full width breakpoint for smaller screens','wonderflux'), array($this->admin_forms, 'wf_form_rwd_full'), 'wonderflux_stylelab', 'style_lab');
-			}
-
-			add_settings_field('content_s', esc_attr__('Content width','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
-			add_settings_field('sidebar_s', esc_attr__('Sidebar width','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
-			add_settings_field('sidebar_p', esc_attr__('Sidebar position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
-
+		/**
+		 * Backpat - add breakpoint option for Wonderflux v2 percent grid (Flux Layout specific)
+		 */
+		if ( $this->wfx_grid_type == 'percent' ) {
+			add_settings_field('rwd_full', esc_attr__('Full width sidebar breakpoint for smaller screens','wonderflux'), array($this->admin_forms, 'wf_form_rwd_full'), 'wonderflux_stylelab', 'style_lab');
 		}
+		add_settings_field('content_s', esc_attr__('Content width','wonderflux'), array($this->admin_forms, 'wf_form_content_s'), 'wonderflux_stylelab', 'style_lab');
+
+		add_settings_field('sidebar_d', esc_attr__('Sidebar primary show','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_d'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_p', esc_attr__('Sidebar primary position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_p'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_s', esc_attr__('Sidebar primary width','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_s'), 'wonderflux_stylelab', 'style_lab');
+
+		add_settings_field('sidebar_2_d', esc_attr__('Sidebar secondary show','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_2_d'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_2_p', esc_attr__('Sidebar secondary position','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_2_p'), 'wonderflux_stylelab', 'style_lab');
+		add_settings_field('sidebar_2_s', esc_attr__('Sidebar secondary width','wonderflux'), array($this->admin_forms, 'wf_form_sidebar_2_s'), 'wonderflux_stylelab', 'style_lab');
 
 		add_settings_field('page_t', esc_attr__('Page templates','wonderflux'), array($this->admin_forms, 'wf_form_p_template'), 'wonderflux_page_templates', 'style_lab_p_templates');
 		add_settings_field('doc_type', esc_attr__('Document type','wonderflux'), array($this->admin_forms, 'wf_form_doc_type'), 'wonderflux_stylelab_doc', 'style_lab_doc');
@@ -616,6 +616,9 @@ class wflux_admin_forms extends wflux_data {
 			'sidebar_p'		=> array ('left','right'),
 			'grid_type'		=> array ('percent','pixels'),
 			'sidebar_d'		=> array ('Y','N'),
+			'sidebar_2_d'	=> array ('Y','N'),
+			'sidebar_2_s'	=> $this->size_accept,
+			'sidebar_2_p'		=> array ('left','right'),
 			'container_u'	=> array ('percent','pixels'),
 			'container_w'	=> ( $this->wfx_width_unit == 'pixels' ) ? array ( 950, range(400,2000,10) ) : array ( 80, range(5,100,5) ),
 			'columns_num'	=> array ( 24, range(2,100,1) ),
@@ -691,11 +694,18 @@ class wflux_admin_forms extends wflux_data {
 
 	function wf_form_container_p() { $this->wf_form_helper_ddown_std($this->wfx_position,'container_p', $this->valid['container_p'],''); }
 	function wf_form_range_core() { $this->wf_form_helper_text($this->wfx_range_core,'range_core'); }
-	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->common_size,''); }
+	function wf_form_content_s() { $this->wf_form_helper_ddown_std($this->wfx_content_1_size,'content_s', $this->common_size,'Ensure that content + sidebar width proportions add up properly!'); }
 	function wf_form_content_s_px() { $this->wf_form_helper_ddown_range($this->wfx_content_size_px,'content_s_px',200,1200,2,''); }
-	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->common_size,''); }
+	function wf_form_sidebar_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_size,'sidebar_s', $this->common_size,'Ensure that content + sidebar width proportions add up properly!'); }
 	function wf_form_sidebar_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_1_display,'sidebar_d',array(array('yes'=>'Y'), array('no'=>'N')),''); }
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p'],''); }
+
+
+	function wf_form_sidebar_2_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_2_display,'sidebar_2_d',array(array('yes'=>'Y'), array('no'=>'N')),''); }
+	function wf_form_sidebar_2_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_2_size,'sidebar_2_s', $this->common_size,'Ensure that content + sidebar width proportions add up properly!'); }
+	function wf_form_sidebar_2_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_2_position,'sidebar_2_p',$this->valid['sidebar_2_p'],''); }
+
+
 	function wf_form_rwd_full() { $this->wf_form_helper_ddown_std($this->wfx_rwd_full,'rwd_full',$this->valid['rwd_full'],''); }
 	function wf_form_container_u() { $this->wf_form_helper_ddown_std($this->wfx_width_unit,'container_u',array('percent','pixels'),''); }
 	function wf_form_columns_num() { $this->wf_form_helper_ddown_range($this->wfx_columns,'columns_num',2,100,1,''); }

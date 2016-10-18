@@ -171,7 +171,7 @@ class wflux_admin extends wflux_data {
 	/**
 	* Sets up and configures options and form fields
 	* @since 0.81
-	* @updated 2.5
+	* @updated 2.6
 	*/
 	function wf_register_settings(){
 
@@ -517,7 +517,7 @@ class wflux_admin extends wflux_data {
 
 /**
 * @since 0.81
-* @updated 2.3
+* @updated 2.6
 * Admin form functions
 */
 class wflux_admin_forms extends wflux_data {

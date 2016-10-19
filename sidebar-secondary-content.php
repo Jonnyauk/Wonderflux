@@ -15,3 +15,10 @@
 	<ul><?php wp_get_archives('type=monthly'); ?></ul>
 
 </div>
+
+<div class="sidebar-box">
+
+	<h4 class="sidebar-title"><?php esc_html_e( 'Search', 'wonderflux' ); ?></h4>
+	<?php get_search_form(); ?>
+
+</div>

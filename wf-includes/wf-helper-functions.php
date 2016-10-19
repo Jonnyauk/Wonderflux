@@ -297,7 +297,7 @@ class wflux_data {
 				$this->wfx_sidebar_2_display = $this->wfx_db_display['sidebar_2_d'];
 			}
 		} elseif ( $this->wfx_sidebar_2_display == false ) {
-			$this->wfx_sidebar_1_display = 'Y';
+			$this->wfx_sidebar_2_display = 'N';
 		}
 
 		// SIDEBAR 2 SIZE

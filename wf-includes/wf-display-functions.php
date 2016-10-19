@@ -1200,26 +1200,98 @@ class wflux_display_css extends wflux_display_code {
 	 * - priority 3+ inside wrappers
 	 *
 	 * @since	0.93
-	 * @version	0.93
+	 * @version	2.6
 	 *
 	 * @param	none
 	 */
 	function wf_layout_build() {
 
 		// Main content
-		if ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'Y' ) {
+		if ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_2_display == 'N' ) {
+
 				add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_sb1'), 2 );
-				add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1'), 2 );
 				add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
+				add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1'), 2 );
 				add_action( 'wfsidebar_after_all', array ($this, 'wf_css_close'), 9 );
+
 		} elseif ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'N' ) {
+
 				add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_no_sb1'), 2 );
 				add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
+
 		// Experimental edge case - needs more work to remove content display, but this removes the CSS!
 		} elseif ( $this->wfx_content_1_display == 'N' && $this->wfx_sidebar_1_display == 'Y' ) {
+
 				add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1_no_content'), 2 );
 				add_action( 'wfsidebar_after_all', array ($this, 'wf_css_close'), 9 );
+
+		} elseif ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_2_display == 'Y' ) {
+
+			// Standard parts
+			add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_sb1'), 2 );
+			add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
+
+			// Insert primary sidebar
+			add_action( 'wfmain_before_all_content', array ($this, 'wf_get_sidebar_1_alt'), 1 );
+			add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1'), 2 );
+			add_action( 'wfsidebar_after_all', array ($this, 'wf_css_close'), 9 );
+
+			// Insert secondary sidebar
+			add_action( 'wfmain_after_all_main_content', array ($this, 'wf_get_sidebar_2'), 9 );
+			add_action( 'wfsidebar_2_before_all', array ($this, 'wf_layout_build_sb2'), 2 );
+			add_action( 'wfsidebar_2_after_all', array ($this, 'wf_css_close'), 9 );
+
 		}
+
+	}
+
+
+	/**
+	* Add secondary sidebar via hook
+	* Used in wf_layout_build()
+	*
+	* @since 2.6
+	* @updated 2.6
+	*/
+	function wf_get_sidebar_2() {
+
+		get_template_part('sidebar-secondary');
+
+	}
+
+
+	/**
+	* If we are using secondary sidebar, we need to hook this into another area of the site
+	* Used in wf_layout_build()
+	*
+	* @since 2.6
+	* @updated 2.6
+	*/
+	function wf_get_sidebar_1_alt() {
+
+		get_sidebar();
+
+	}
+
+
+	/**
+	* @since 0.93
+	* @updated 2.6
+	* Sets up required layout divs for sidebar2
+	*/
+	function wf_layout_build_sb2($args) {
+
+		$args = array(
+			//'columns'   => $this->wfx_sidebar_2_size_columns, removed, we are depreciating px layouts in favour of Flux Layout % layouts?
+			'size'      => $this->wfx_sidebar_2_size,
+			'id'        => $this->wfx_sidebar_2_id,
+			'last'      => 'Y',
+			'divoutput' => 'Y',
+			'class'     => esc_attr( apply_filters( 'wflux_sidebar_2_with_content_1', 'sidebar-2-with-content-2' ) )
+
+		);
+		echo $this->wf_css( $args );
+
 	}
 
 
@@ -1311,7 +1383,7 @@ class wflux_display_css extends wflux_display_code {
 	 * wflux_rwd_full_width : Additional generated CSS classes added to sidebar and main content (in helper function).
 	 *
 	 * @since	2.1
-	 * @version	2.1
+	 * @version	2.6
 	 *
 	 * @param	none
 	 */
@@ -1319,6 +1391,7 @@ class wflux_display_css extends wflux_display_code {
 
 		add_filter( 'wflux_sidebar_1_with_content_1', array($this, 'wf_rwd_full_width_do') );
 		add_filter( 'wflux_content_1_with_sidebar_1', array($this, 'wf_rwd_full_width_do') );
+		add_filter( 'wflux_sidebar_2_with_content_1', array($this, 'wf_rwd_full_width_do') );
 
 	}
 
@@ -1347,19 +1420,21 @@ class wflux_display_css extends wflux_display_code {
 
 
 /**
+ *
  * Wonderflux display functions.
  *
  * @since	0.1
+ *
  */
 class wflux_display extends wflux_display_css {
 
 
 	/**
 	 * Includes sidebar template file.
-	 * Uses get_sidebar() and checks for Wonderflux option/filter.
+	 * Uses wf_get_sidebar_do() and checks for Wonderflux options/filters.
 	 *
 	 * @since	0.93
-	 * @version	0.93
+	 * @version	2.6
 	 *
 	 * @param	none
 	 *
@@ -1367,10 +1442,9 @@ class wflux_display extends wflux_display_css {
 	 */
 	function wf_get_sidebar($args) {
 
-		if ( $this->wfx_sidebar_1_display == 'Y' ) {
-			get_sidebar($args);
-		} else {
-			// Silence is golden - more sidebars to come!
+		// We need to put sidebar 1 before content and change layout arrangement if using sidebar 2
+		if ( $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_2_display == 'N' ) {
+			 get_sidebar( $args );
 		}
 
 	}

@@ -1241,9 +1241,10 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
  * wflux_page_counter_div - class of containing div.
  *
  * @since	0.93
- * @version	2.3
+ * @version	2.6
  *
  * @param	[string] $element		What tag to use to wrap output (can be empty to setup at template level). [p]
+ * @param	[string] $prepend		Text string to be shown before pagination all output. [false]
  * @param	[string] $start			Opening text string. [Page ]
  * @param	[string] $seperator		Seperator between pages. [ of ]
  * @param	[string] $current_span	CSS span class around current page number (set to blank to remove span). [page-counter-current]

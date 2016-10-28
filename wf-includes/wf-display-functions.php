@@ -2194,9 +2194,10 @@ class wflux_display_extras {
 	 * wflux_page_counter_div - class of containing div.
 	 *
 	 * @since	0.93
-	 * @version	2.3
+	 * @version	2.6
 	 *
 	 * @param	[string] $element		What tag to use to wrap output (can be empty to setup at template level). [p]
+	 * @param	[string] $prepend		Text string to be shown before pagination all output. [false]
 	 * @param	[string] $start			Opening text string. [Page ]
 	 * @param	[string] $seperator		Seperator between pages. [ of ]
 	 * @param	[string] $current_span	CSS span class around current page number (set to blank to remove span). [page-counter-current]
@@ -2216,6 +2217,7 @@ class wflux_display_extras {
 
 		$defaults = array (
 			'element' => 'p',
+			'prepend' => false,
 			'start' => esc_attr__('Page ', 'wonderflux'),
 			'seperator' => esc_attr__(' of ', 'wonderflux'),
 			'current_span' => 'page-counter-current',
@@ -2239,6 +2241,7 @@ class wflux_display_extras {
 
 			// Clean up ready to use
 			$element = ($element == 'p') ? $element : wp_kses_data($element, '');
+			$prepend = (!empty(trim($prepend))) ? $prepend : wp_kses_data($prepend, '');
 			$start = ($start == 'Page ') ? $start : wp_kses_data($start, '');
 			$seperator = ($seperator == ' of ') ? $seperator : wp_kses_data($seperator, '');
 			$current_span = ($current_span == ' of ') ? $current_span : wp_kses_data($current_span, '');
@@ -2269,10 +2272,11 @@ class wflux_display_extras {
 
 			$output = ($div == 'Y') ? '<div class="' . $div_class . '">' : '';
 			$output .= ($element == '') ? '' : '<'.$element.'>';
+			$output .= '<span class="page-counter-prepend">' . $prepend . '</span>';
 			$output .= ($navigation == 'N') ? '' : $nav_span . $this->wf_previous_posts_link($previous) . $nav_span_close;
 			$output .= esc_html( $start );
 			$output .= $current_span . $current.$current_span_close;
-			$output .= esc_html( $seperator );
+			$output .= '<span class="page-counter-seperator">' . esc_html( $seperator ) .'</span>';
 			$output .= $total_span . $total.$total_span_close;
 			$output .= ($navigation == 'N') ? '' : $nav_span . $this->wf_next_posts_link($next) . $nav_span_close;
 			$output .= ($element == '') ? '' : '</'. $element .'>';

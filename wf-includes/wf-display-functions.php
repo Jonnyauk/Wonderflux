@@ -392,12 +392,19 @@ class wflux_display_code extends wflux_data {
 	function wf_head_css_add_args($input) {
 
 		// Backpat - config for grid types
-		if ( $this->wfx_grid_type == 'percent' ){
+		if ( $this->wfx_grid_type == 'percent' ) {
+
+			$sb1 = $this->wfx_sidebar_1_display;
+			$sb2 = $this->wfx_sidebar_2_display;
+
+			$sb1 = ( $sb1 == 'N' ) ? 'none' : $this->wfx_sidebar_primary_position;
+			$sb2 = ( $sb2 == 'N' ) ? 'none' : $this->wfx_sidebar_2_position;
 
 			$vars = '&amp;w=' . $this->wfx_width
 			. '&amp;wu=' . $this->wfx_width_unit
 			. '&amp;p=' . $this->wfx_position
-			. '&amp;sbp=' . $this->wfx_sidebar_primary_position
+			. '&amp;sb1=' . $sb1
+			. '&amp;sb2=' . $sb2
 			. '&amp;c=' . $this->wfx_columns
 			. '&amp;g=' . $this->wfx_gutter
 			. '&amp;r=' . $this->wfx_range_core
@@ -1206,38 +1213,56 @@ class wflux_display_css extends wflux_display_code {
 	 */
 	function wf_layout_build() {
 
-		// Main content
+		// Content + SB1
 		if ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_2_display == 'N' ) {
 
-				add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_sb1'), 2 );
-				add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
-				add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1'), 2 );
-				add_action( 'wfsidebar_after_all', array ($this, 'wf_css_close'), 9 );
+			// Content
+			add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_sb1'), 2 );
+			add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
 
-		} elseif ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'N' ) {
+			// Primary sidebar
+			add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1'), 2 );
+			add_action( 'wfsidebar_after_all', array ($this, 'wf_css_close'), 9 );
 
-				add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_no_sb1'), 2 );
-				add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
+		// Content no sidebars
+		} elseif ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'N' && $this->wfx_sidebar_2_display == 'N' ) {
 
-		// Experimental edge case - needs more work to remove content display, but this removes the CSS!
-		} elseif ( $this->wfx_content_1_display == 'N' && $this->wfx_sidebar_1_display == 'Y' ) {
+			// Content
+			add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_no_sb1'), 2 );
+			add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
 
-				add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1_no_content'), 2 );
-				add_action( 'wfsidebar_after_all', array ($this, 'wf_css_close'), 9 );
-
+		// Content + SB1 + SB2
 		} elseif ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'Y' && $this->wfx_sidebar_2_display == 'Y' ) {
 
-			// Standard parts
+			// Content
 			add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_sb1'), 2 );
 			add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
 
 			// Insert primary sidebar
 			add_action( 'wfmain_before_all_content', array ($this, 'wf_get_sidebar_1_alt'), 1 );
+
+			// Primary sidebar
 			add_action( 'wfsidebar_before_all', array ($this, 'wf_layout_build_sb1'), 2 );
 			add_action( 'wfsidebar_after_all', array ($this, 'wf_css_close'), 9 );
 
 			// Insert secondary sidebar
 			add_action( 'wfmain_after_all_main_content', array ($this, 'wf_get_sidebar_2'), 9 );
+
+			// Primary sidebar
+			add_action( 'wfsidebar_2_before_all', array ($this, 'wf_layout_build_sb2'), 2 );
+			add_action( 'wfsidebar_2_after_all', array ($this, 'wf_css_close'), 9 );
+
+		// Content + SB2
+		} elseif ( $this->wfx_content_1_display == 'Y' && $this->wfx_sidebar_1_display == 'N' && $this->wfx_sidebar_2_display == 'Y' ) {
+
+			// Standard parts
+			add_action( 'wfmain_before_all_content', array ($this, 'wf_layout_build_content_sb1'), 2 );
+			add_action( 'wfmain_after_all_content', array ($this, 'wf_css_close'), 9 );
+
+			// Insert secondary sidebar
+			add_action( 'wfmain_after_all_main_content', array ($this, 'wf_get_sidebar_2'), 9 );
+
+			// Secondary sidebar
 			add_action( 'wfsidebar_2_before_all', array ($this, 'wf_layout_build_sb2'), 2 );
 			add_action( 'wfsidebar_2_after_all', array ($this, 'wf_css_close'), 9 );
 

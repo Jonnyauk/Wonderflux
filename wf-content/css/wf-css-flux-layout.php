@@ -55,7 +55,8 @@ class wflux_layout {
 	protected $mq_config;			// ARRAY - Media queries config
 	protected $mq_box_sizes;		// ARRAY - Media query box size loops
 	protected $mq_column_sizes;		// ARRAY - Media query column size loops
-	protected $content_css;			// WONDERFLUX INPUT - #content CSS depending on sidebar admin option
+	protected $sidebar_1;			// WONDERFLUX INPUT - Sidebar 1 position
+	protected $sidebar_2;			// WONDERFLUX INPUT - Sidebar 2 position
 	protected $position;			// WONDERFLUX INPUT - .container position (sets margin)
 
 	protected $class_space_left;	// INTERNAL - CSS selector - padding left
@@ -106,7 +107,9 @@ class wflux_layout {
 		}
 
 		// WONDERFLUX SPECIFIC
-		$this->content_css = ( isset($_GET['sbp']) && $_GET['sbp'] == 'right' ) ? false : 'left';
+		$sidebars_whitelist = array('left', 'right', 'none');
+		$this->sidebar_1 = ( isset($_GET['sb1']) && in_array($_GET['sb1'], $sidebars_whitelist) ) ? $_GET['sb1'] : false;
+		$this->sidebar_2 = ( isset($_GET['sb2']) && in_array($_GET['sb2'], $sidebars_whitelist) ) ? $_GET['sb2'] : false;
 
 		$position_accept = array('left','middle','right');
 		$this->position = ( isset($_GET['p']) && in_array($_GET['p'], $position_accept) ) ? $_GET['p'] : 'middle';
@@ -244,8 +247,18 @@ class wflux_layout {
 
 		echo '.container { ' . 'width:' . $this->width . $this->width_units . '; margin:' . $margin . '; }' . $this->minify
 		. '.row { ' . 'width:100%; margin:0 auto; }' . $this->minify;
+
 		// WONDERFLUX SPECIFIC
-		echo ( $this->content_css == 'left' ) ? '#content { float: right; }'. $this->minify : '';
+		// Setup sidebar/content positioning
+		if ( $this->sidebar_1 == 'left' && $this->sidebar_2 == 'left' ) {
+			echo '#content { float: right; }'. $this->minify;
+		} elseif ( $this->sidebar_1 == 'right' && $this->sidebar_2 == 'right' ) {
+			echo '#content { float: left; }'. $this->minify;
+		} elseif ( $this->sidebar_1 == 'left' && $this->sidebar_2 == 'none' ) {
+			echo '#content { float: right; }'. $this->minify;
+		}
+
+		//echo ( $this->sidebar_1 == 'left' ) ? '#content { float: right; }'. $this->minify : '';
 
 		echo $this->minify_2;
 

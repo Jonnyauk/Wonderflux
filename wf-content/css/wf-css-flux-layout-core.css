@@ -88,6 +88,10 @@ td,th { padding: 5px; }
 .entry-content img, .entry-summary img, .comment-content img[height], img[class*="align"], img[class*="wp-image-"], img[class*="attachment-"], .fluid-content img { height: auto; }
 img.size-full, img.size-large, img.wp-post-image, img.fluid-width { height: auto; max-width: 100%; }
 
+/* Background image fills */
+.img-fill { -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat; background-position: center center; }
+.img-fill-contain { -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain; background-repeat: no-repeat; background-position: center center; }
+
 /*** Third-party services ***/
 
 /**

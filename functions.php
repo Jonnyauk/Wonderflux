@@ -1080,6 +1080,7 @@ if ( !function_exists( 'wfx_rwd_full_width' ) ) : function wfx_rwd_full_width() 
  * @param	[string] $excerpt_end 	Characters to add to end of the excerpt. [...]
  * @param	[string] $trim			Trim off punctuation from end of excerpt - good when you don't want it to bump into your excerpt end. Y/N [Y]
  * @param	[string] $full_excerpt	If an actual excerpt is set (not an excerpt of post content) - display whole except. Ignores $limit, $excerpt_end & $trim params. Y/N [N]
+ * @param	[int] $id				Optional, set specific post ID if using outside the loop - defaults to loop post ID if not set. [null]
  * @param	[string] $echo			Echo or return output. Y/N [Y]
  */
 if ( !function_exists( 'wfx_excerpt' ) ) : function wfx_excerpt($args) {

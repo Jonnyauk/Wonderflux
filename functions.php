@@ -1071,6 +1071,7 @@ if ( !function_exists( 'wfx_rwd_full_width' ) ) : function wfx_rwd_full_width() 
 
 /**
  * Display excerpt of post content inside the loop or custom query.
+ * Can work outside of a loop too by supplying optional $id parameter.
  * Note that output is run through esc_html() already, so no need to escape again thanks!
  *
  * @since	0.85

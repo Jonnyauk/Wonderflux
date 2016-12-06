@@ -1567,6 +1567,7 @@ class wflux_display_extras {
 
 	/**
 	 * Display excerpt of post content inside the loop or custom query.
+	 * Can work outside of a loop too by supplying optional $id parameter.
 	 * Note that output is run through esc_html() already, so no need to escape again thanks!
 	 *
 	 * @since	0.85
@@ -1593,7 +1594,18 @@ class wflux_display_extras {
 
 		$id = ( is_numeric($id) ) ? $id : null;
 
-		$content = get_the_excerpt( $id );
+		// Deal with grabbing the excerpt by ID when outside of a loop
+		if ( !empty($id) ) {
+
+			setup_postdata($id);
+			$content = get_the_excerpt( $id );
+			wp_reset_postdata();
+
+		} else {
+
+			$content = get_the_excerpt( $id );
+
+		}
 
 		if ( has_excerpt() && $full_excerpt == 'Y' ) {
 

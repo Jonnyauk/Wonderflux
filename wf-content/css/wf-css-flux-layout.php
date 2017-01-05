@@ -277,11 +277,18 @@ class wflux_layout {
 		 . $this->minify;
 
 		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:last-child { margin-left: ' . $this->columns_gutter / 2 . '%; margin-right: 0; }' . $this->minify;
-		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:first-child { margin-left: 0; margin-right: ' . $this->columns_gutter / 2 . '%; }' . $this->minify;
+		echo '.row-' . rtrim($this->columns_prepend, '-') . ' > div:first-child { margin-left: 0; margin-right: ' . $this->columns_gutter / 2 . '%; }' . $this->minify . $this->minify;
 
 		foreach ( $this->columns as $size_r ) {
 
-			if ( intval($size_r) < 101 ) {
+			if ( $size_r == 1 ){
+
+				echo '.' . $this->columns_prepend . '1-1'
+				. ', .' . $this->columns_prepend . $this->columns_basic
+				. ', .' . $this->columns_prepend . 'full'
+				.' { width:100%; }' . $this->minify . $this->minify;
+
+			} elseif ( intval($size_r) < 101 ) {
 
 				$nice_size_c = $this->nice_size_def($size_r);
 
@@ -372,7 +379,7 @@ class wflux_layout {
 
 					echo '.' . $this->class_prepend . '1-1'
 					. ', .' . $this->class_prepend . $this->columns_basic
-					. ', .box-full'
+					. ', .' . $this->class_prepend . 'full'
 					.' { width:100%; }' . $this->minify;
 
 				} else {

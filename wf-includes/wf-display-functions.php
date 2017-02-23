@@ -626,7 +626,7 @@ class wflux_display_code extends wflux_data {
 	 * wflux_post_class_last : Extra CSS class added to first post in loop
 	 *
 	 * @since	2.1
-	 * @version	2.3
+	 * @version	2.6
 	 *
 	 * @param	none
 	 */
@@ -639,7 +639,7 @@ class wflux_display_code extends wflux_data {
 		if ( !is_singular() ){
 			$this->post_classes[] = ( array_key_exists('paged', $wp_query->query) ) ? 'archive-page-no-' . $wp_query->query['paged'] : 'archive-page-no-1';
 			$this->post_classes[] = apply_filters( 'wflux_post_class_multiple', 'multiple-posts' );
-			$this->post_classes[] = ( $wp_query->current_post % 2 == 0 ) ? 'archive-row-odd' : 'archive-row-even';
+			$this->post_classes[] = ( $wp_query->current_post % 2 == 0 ) ? 'archive-item-odd' : 'archive-item-even';
 			$this->post_classes[] = 'paged-return-' . ( intval($wp_query->current_post) + 1 );
 			$this->post_classes[] = ( $wp_query->current_post != 0 ) ? '' : apply_filters( 'wflux_post_class_first', 'first-in-loop' );
 			$this->post_classes[] = ( ($wp_query->current_post +1 ) != $wp_query->post_count ) ? '' : apply_filters( 'wflux_post_class_last', 'last-in-loop' );

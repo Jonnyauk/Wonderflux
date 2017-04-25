@@ -74,8 +74,9 @@ if (is_admin()) {
 //// ADMIN POST FUNCTIONS
 
 
-if (is_admin()) {
-	load_template(WF_INCLUDES_DIR . '/wf-admin-functions.php', true);
+if ( is_admin() ) {
+
+	load_template( WF_INCLUDES_DIR . '/wf-admin-functions.php', true );
 
 	/**
 	* @since 2.0
@@ -83,27 +84,27 @@ if (is_admin()) {
 	* Sets up all Wonderflux post admin functions
 	*/
 	function wflux_capacitor_admin_post() {
+
 		global $wfx_admin_post;
 		$wfx_admin_post = new wflux_admin_post_all;
+
 	}
 	add_action('admin_init','wflux_capacitor_admin_post', 1);
 
 	/**
 	* @since 2.0
-	* @updated 2.0
+	* @updated 2.6
 	* Creates relevant Wonderflux post admin functions
 	*/
 	class wflux_admin_post_all {
 
 		public $wflux_admin_post_do;
 
-		function __construct(){
-			$this->wflux_admin_post_do = new wflux_admin_post;
-		}
-
+		function __construct(){ $this->wflux_admin_post_do = new wflux_admin_post; }
 		function remove_page_templates($input){ return $this->wflux_admin_post_do->wf_remove_page_templates($input); }
 
 	}
+
 }
 
 
@@ -280,7 +281,7 @@ add_action('get_header','wflux_capacitor_display', 1);
 
 /**
 * @since 0.913
-* @updated 2.1
+* @updated 2.6
 * Creates all Wonderflux display functions
 */
 class wflux_display_all {
@@ -310,6 +311,7 @@ class wflux_display_all {
 	function head_css_ie(){ $this->wflux_display_code_do->wf_head_css_ie(); }
 	function head_css_replace($args){ $this->wflux_display_code_do->wf_head_css_replace($args); }
 	function body_tag(){ $this->wflux_display_code_do->wf_body_tag(); }
+	function body_js_detect(){ $this->wflux_display_code_do->wf_body_js_detect(); }
 	function post_class($args){ return $this->wflux_display_code_do->wf_post_class($args); }
 	function filter_post_class(){ $this->wflux_display_code_do->wf_filter_post_class(); }
 

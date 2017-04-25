@@ -131,6 +131,7 @@ add_action( 'after_setup_theme', 'wfx_config_language' );
 add_action( 'wp_enqueue_scripts', 'wfx_core_comment_js', 2 );
 add_action( 'get_header', 'wfx_display_head_open', 1 );
 add_action( 'get_header', 'wfx_display_body_tag', 1 );
+add_action( 'wfbody_before_wrapper', 'wfx_body_js_detect', 1 );
 add_action( 'the_post', 'wfx_filter_post_class', 2 );
 add_action( 'get_header', 'wfx_layout_build', 1 );
 add_action( 'get_header', 'wfx_content_width_embed', 2 );
@@ -802,15 +803,27 @@ if ( !function_exists( 'wfx_display_head_css_theme' ) ) : function wfx_display_h
  * Add more classes by using core WordPress filter 'body_class' or override whole function.
  *
  * Filters available:
- * wflux_body_class_browser - Browser detection CSS class output
+ * wflux_body_class_browser - JS and browser detection CSS class output
  * wflux_body_class_layout - Wonderflux layout description classes
  *
  * @since	0.931
- * @version	2.1
+ * @version	2.6
  *
  * @param	none
  */
 if ( !function_exists( 'wfx_display_body_tag' ) ) : function wfx_display_body_tag() { global $wfx; $wfx->body_tag(); } endif;
+
+
+/**
+ * IMPORTANT - Basic body tag Javascript browser detection.
+ * Adds snippet of JS that switches no-js to js if browser supports Javascript
+ *
+ * @since	2.6
+ * @version	2.6
+ *
+ * @param	none
+ */
+if ( !function_exists( 'wfx_body_js_detect' ) ) : function wfx_body_js_detect() { global $wfx; $wfx->body_js_detect(); } endif;
 
 
 /**

@@ -473,11 +473,11 @@ class wflux_display_code extends wflux_data {
 	 * Add more classes by using core WordPress filter 'body_class' or override whole function.
 	 *
 	 * Filters available:
-	 * wflux_body_class_browser - Browser detection CSS class output
+	 * wflux_body_class_browser - JS and browser detection CSS class output
 	 * wflux_body_class_layout - Wonderflux layout description classes
 	 *
 	 * @since	0.931
-	 * @version	2.51
+	 * @version	2.6
 	 *
 	 * @param	none
 	 */
@@ -500,10 +500,10 @@ class wflux_display_code extends wflux_data {
 			case $is_iphone: $browser .= 'iphone'; break;
 			case $is_safari: $browser .= 'safari'; break;
 			case $is_chrome: $browser .= 'chrome'; break;
-			default: $browser .= 'browser-not-defined'; break;
+			default: $browser .= 'not-defined'; break;
 		}
 
-		$this->head_classes[] = apply_filters( 'wflux_body_class_browser', esc_attr($browser . $is_mobile . $is_ios) );
+		$this->head_classes[] = apply_filters( 'wflux_body_class_browser', 'no-js ' . esc_attr($browser . $is_mobile . $is_ios) );
 
 		// Setup additional layout classes
 		$layout_classes = array();
@@ -734,6 +734,24 @@ class wflux_display_code extends wflux_data {
 		global $content_width;
 		if ( !isset( $content_width ) ) $content_width = $this->wfx_content_size_px;
 	}
+
+
+	/**
+	 * Basic body tag Javascript browser detection.
+	 * Adds snippet of JS that switches "no-js" class to "js" if browser supports Javascript
+	 *
+	 * @since	2.6
+	 * @version	2.6
+	 *
+	 * @param	none
+	 *
+	 */
+	function wf_body_js_detect() {
+		echo  '<script type="text/javascript">';
+		echo 'document.getElementsByTagName("body")[0].className = document.getElementsByTagName("body")[0].className.replace("no-js", "js");';
+		echo '</script>' . "\n\n";
+	}
+
 
 }
 

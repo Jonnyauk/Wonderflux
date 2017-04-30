@@ -502,7 +502,10 @@ class wflux_display_code extends wflux_data {
 			default: $browser .= 'not-defined'; break;
 		}
 
-		$this->head_classes[] = apply_filters( 'wflux_body_class_browser', 'no-js ' . esc_attr($browser . $is_mobile . $is_ios) );
+		$js_detect = apply_filters( 'wflux_body_class_js_detect', esc_attr('no-js') );
+		$js_detect = ( !empty(trim($js_detect)) ) ? $js_detect . ' ' : ''; /* Add space if we have a class to prepend */
+
+		$this->head_classes[] = $js_detect . apply_filters( 'wflux_body_class_browser', esc_attr($browser . $is_mobile . $is_ios) );
 
 		// Setup additional layout classes
 		$layout_classes = array();

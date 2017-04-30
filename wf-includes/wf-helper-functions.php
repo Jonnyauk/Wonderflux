@@ -224,7 +224,7 @@ class wflux_data {
 				$this->wfx_content_1_size = $this->wfx_db_display['content_s'];
 			}
 		} elseif ( $this->wfx_content_1_size == false ) {
-			$this->wfx_content_1_size = 'half';
+			$this->wfx_content_1_size = 'three_quarter';
 		}
 
 		// CONTENT SIZE (PIXELS) - 200 to 2000 IMPORTANT USED BY WORDPRESS $content_width GLOBAL
@@ -297,7 +297,7 @@ class wflux_data {
 				$this->wfx_sidebar_2_display = $this->wfx_db_display['sidebar_2_d'];
 			}
 		} elseif ( $this->wfx_sidebar_2_display == false ) {
-			$this->wfx_sidebar_2_display = 'Y';
+			$this->wfx_sidebar_2_display = 'N';
 		}
 
 		// SIDEBAR 2 SIZE

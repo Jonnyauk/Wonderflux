@@ -701,7 +701,7 @@ class wflux_admin_forms extends wflux_data {
 	function wf_form_sidebar_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_primary_position,'sidebar_p',$this->valid['sidebar_p'],''); }
 
 
-	function wf_form_sidebar_2_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_2_display,'sidebar_2_d',array(array('yes'=>'Y'), array('no'=>'N')),''); }
+	function wf_form_sidebar_2_d() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_2_display,'sidebar_2_d',array(array('no'=>'N'), array('Yes'=>'Y')),''); }
 	function wf_form_sidebar_2_s() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_2_size,'sidebar_2_s', $this->common_size,'Ensure that content + sidebar width proportions add up properly!'); }
 	function wf_form_sidebar_2_p() { $this->wf_form_helper_ddown_std($this->wfx_sidebar_2_position,'sidebar_2_p',$this->valid['sidebar_2_p'],''); }
 

@@ -496,7 +496,6 @@ class wflux_display_code extends wflux_data {
 			case $is_gecko: $browser .= 'gecko'; break;
 			case $is_IE: $browser .= 'ie'; break;
 			case $is_opera: $browser .= 'opera'; break;
-			case $is_NS4: $browser .= 'netscape-4'; break;
 			case $is_iphone: $browser .= 'iphone'; break;
 			case $is_safari: $browser .= 'safari'; break;
 			case $is_chrome: $browser .= 'chrome'; break;

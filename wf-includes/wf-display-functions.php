@@ -748,7 +748,7 @@ class wflux_display_code extends wflux_data {
 	 */
 	function wf_body_js_detect() {
 		echo  '<script type="text/javascript">';
-		echo 'document.getElementsByTagName("body")[0].className = document.getElementsByTagName("body")[0].className.replace("no-js", "js");';
+		echo 'document.body.className = document.body.className.replace("no-js", "js");';
 		echo '</script>' . "\n\n";
 	}
 

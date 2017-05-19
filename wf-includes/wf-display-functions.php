@@ -1,10 +1,12 @@
 <?php
 /**
+ *
  * Core display functions that output code.
  *
  * @since	0.913
  *
  * @todo Check translation setup.
+ *
  */
 class wflux_display_code extends wflux_data {
 
@@ -764,6 +766,7 @@ class wflux_display_code extends wflux_data {
 
 
 /**
+ *
  * CSS display functions.
  *
  * @since	0.2
@@ -1565,11 +1568,13 @@ class wflux_display extends wflux_display_css {
 
 
 /**
+ *
  * Extra core display functions for theme developers.
  *
  * @since	0.85
  *
  * @todo Check translation setup.
+ *
  */
 class wflux_display_extras {
 
@@ -2657,15 +2662,207 @@ class wflux_display_extras {
 	}
 
 
+	/**
+	 *
+	 * Outputs supplied text string, auto wraps in relevant tags and/or changes double line-breaks in text to <br/> or wraps in tag.
+ 	 * A turbo-charged version of WP core wpautop() but allows for other tags, not just <p>.
+	 *
+	 * @since	2.6
+	 * @version	2.6
+	 *
+	 * @param	[string] $input			REQUIRED - String of text to be formatted. []
+	 * @param	[string] $type			HTML tag to wrap content with - p,h1,h2,h3,h4,h5,h6. [p]
+	 * @param	[bool] $br				Optional. If set, this will convert all remaining line-breaks after paragraphing. [false]
+	 *
+	 * @return	Text which has been wrapped with given tags.
+	 *
+	 * @todo	Add optional class to tag for more flexibility
+	 *
+	 */
+	function wf_auto_text( $args ) {
+
+		$defaults = array (
+			'input'	=> '',
+			'type'	=> 'p',
+			'br'	=> false
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		if ( empty(trim($input)) ) return '';
+
+		$type_accept = array(
+			'p',
+			'h1',
+			'h2',
+			'h3',
+			'h4',
+			'h5',
+			'h6'
+		);
+
+		$type = in_array( $type, $type_accept ) ? $type : $type_accept[0];
+
+		$pre_tags = array();
+
+		// Just to make things a little easier, pad the end.
+		$input = $input . "\n";
+
+		/*
+		 * Pre tags shouldn't be touched by autop.
+		 * Replace pre tags with placeholders and bring them back after autop.
+		 */
+		if ( strpos($input, '<pre') !== false ) {
+			$input_parts = explode( '</pre>', $input );
+			$last_pee = array_pop($input_parts);
+			$input = '';
+			$i = 0;
+
+			foreach ( $input_parts as $input_part ) {
+				$start = strpos($input_part, '<pre');
+
+				// Malformed html?
+				if ( $start === false ) {
+					$input .= $input_part;
+					continue;
+				}
+
+				$name = "<pre wp-pre-tag-$i></pre>";
+				$pre_tags[$name] = substr( $input_part, $start ) . '</pre>';
+
+				$input .= substr( $input_part, 0, $start ) . $name;
+				$i++;
+			}
+
+			$input .= $last_pee;
+		}
+		// Change multiple <br>s into two line breaks, which will turn into paragraphs.
+		$input = preg_replace('|<br\s*/?>\s*<br\s*/?>|', "\n\n", $input);
+
+		$allblocks = '(?:table|thead|tfoot|caption|col|colgroup|tbody|tr|td|th|div|dl|dd|dt|ul|ol|li|pre|form|map|area|blockquote|address|math|style|p|h[1-6]|hr|fieldset|legend|section|article|aside|hgroup|header|footer|nav|figure|figcaption|details|menu|summary)';
+
+		// Add a single line break above block-level opening tags.
+		$input = preg_replace('!(<' . $allblocks . '[\s/>])!', "\n$1", $input);
+
+		// Add a double line break below block-level closing tags.
+		$input = preg_replace('!(</' . $allblocks . '>)!', "$1\n\n", $input);
+
+		// Standardize newline characters to "\n".
+		$input = str_replace(array("\r\n", "\r"), "\n", $input);
+
+		// Find newlines in all elements and add placeholders.
+		$input = wp_replace_in_html_tags( $input, array( "\n" => " <!-- wpnl --> " ) );
+
+		// Collapse line breaks before and after <option> elements so they don't get autop'd.
+		if ( strpos( $input, '<option' ) !== false ) {
+			$input = preg_replace( '|\s*<option|', '<option', $input );
+			$input = preg_replace( '|</option>\s*|', '</option>', $input );
+		}
+
+		/*
+		 * Collapse line breaks inside <object> elements, before <param> and <embed> elements
+		 * so they don't get autop'd.
+		 */
+		if ( strpos( $input, '</object>' ) !== false ) {
+			$input = preg_replace( '|(<object[^>]*>)\s*|', '$1', $input );
+			$input = preg_replace( '|\s*</object>|', '</object>', $input );
+			$input = preg_replace( '%\s*(</?(?:param|embed)[^>]*>)\s*%', '$1', $input );
+		}
+
+		/*
+		 * Collapse line breaks inside <audio> and <video> elements,
+		 * before and after <source> and <track> elements.
+		 */
+		if ( strpos( $input, '<source' ) !== false || strpos( $input, '<track' ) !== false ) {
+			$input = preg_replace( '%([<\[](?:audio|video)[^>\]]*[>\]])\s*%', '$1', $input );
+			$input = preg_replace( '%\s*([<\[]/(?:audio|video)[>\]])%', '$1', $input );
+			$input = preg_replace( '%\s*(<(?:source|track)[^>]*>)\s*%', '$1', $input );
+		}
+
+		// Remove more than two contiguous line breaks.
+		$input = preg_replace("/\n\n+/", "\n\n", $input);
+
+		// Split up the contents into an array of strings, separated by double line breaks.
+		$inputs = preg_split('/\n\s*\n/', $input, -1, PREG_SPLIT_NO_EMPTY);
+
+		// Reset $input prior to rebuilding.
+		$input = '';
+
+		// Rebuild the content as a string, wrapping every bit with <$type>.
+		foreach ( $inputs as $tinkle ) {
+			$input .= "\n" . '<' . $type . '>' . trim($tinkle, "\n") . '</' . $type . '>';
+		}
+
+		// Under certain strange conditions it could create a P of entirely whitespace.
+		$input = preg_replace('|<' . $type . '>\s*</' . $type . '>|', '', $input);
+
+		// Add a closing <$type> inside <div>, <address>, or <form> tag if missing.
+		$input = preg_replace('!<' . $type . '>([^<]+)</(div|address|form)>!', "<' . $type . '>$1</' . $type . '></$2>", $input);
+
+		// If an opening or closing block element tag is wrapped in a <$type>, unwrap it.
+		$input = preg_replace('!<' . $type . '>\s*(</?' . $allblocks . '[^>]*>)\s*</' . $type . '>!', "$1", $input);
+
+		// In some cases <li> may get wrapped in <$type>, fix them.
+		$input = preg_replace("|<' . $type . '>(<li.+?)</' . $type . '>|", "$1", $input);
+
+		// If a <blockquote> is wrapped with a <$type>, move it inside the <blockquote>.
+		$input = preg_replace('|<' . $type . '><blockquote([^>]*)>|i', "<blockquote$1><' . $type . '>", $input);
+		$input = str_replace('</blockquote></' . $type . '>', '</' . $type . '></blockquote>', $input);
+
+		// If an opening or closing block element tag is preceded by an opening <$type> tag, remove it.
+		$input = preg_replace('!<' . $type . '>\s*(</?' . $allblocks . '[^>]*>)!', "$1", $input);
+
+		// If an opening or closing block element tag is followed by a closing <$type> tag, remove it.
+		$input = preg_replace('!(</?' . $allblocks . '[^>]*>)\s*</' . $type . '>!', "$1", $input);
+
+		// Optionally insert line breaks.
+		if ( $br ) {
+			// Replace newlines that shouldn't be touched with a placeholder.
+			$input = preg_replace_callback('/<(script|style).*?<\/\\1>/s', '_autop_newline_preservation_helper', $input);
+
+			// Normalize <br>
+			$input = str_replace( array( '<br>', '<br/>' ), '<br />', $input );
+
+			// Replace any new line characters that aren't preceded by a <br /> with a <br />.
+			$input = preg_replace('|(?<!<br />)\s*\n|', "<br />\n", $input);
+
+			// Replace newline placeholders with newlines.
+			$input = str_replace('<WPPreserveNewline />', "\n", $input);
+		}
+
+		// If a <br /> tag is after an opening or closing block tag, remove it.
+		$input = preg_replace('!(</?' . $allblocks . '[^>]*>)\s*<br />!', "$1", $input);
+
+		// If a <br /> tag is before a subset of opening or closing block tags, remove it.
+		$input = preg_replace('!<br />(\s*</?(?:p|li|div|dl|dd|dt|th|pre|td|ul|ol)[^>]*>)!', '$1', $input);
+		$input = preg_replace( '|\n</' . $type . '>$|', '</' . $type . '>', $input );
+
+		// Replace placeholder <pre> tags with their original content.
+		if ( !empty($pre_tags) )
+			$input = str_replace(array_keys($pre_tags), array_values($pre_tags), $input);
+
+		// Restore newlines in all elements.
+		if ( false !== strpos( $input, '<!-- wpnl -->' ) ) {
+			$input = str_replace( array( ' <!-- wpnl --> ', '<!-- wpnl -->' ), "\n", $input );
+		}
+
+		return $input;
+
+	}
+
+
 }
 
 
 /**
+ *
  * Social networking functionality.
  *
  * @since	0.931
  *
  * @todo Check over more recent sharing code.
+ *
  */
 class wflux_display_social extends wflux_data {
 

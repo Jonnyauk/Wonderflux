@@ -1406,6 +1406,36 @@ if ( !function_exists( 'wfx_array_to_delimited_string' ) ) : function wfx_array_
 } endif;
 
 
+/**
+ *
+ * Outputs supplied text string, auto wraps in relevant tags and/or changes double line-breaks in text to <br/> or wraps in tag.
+ * A turbo-charged version of WP core wpautop() but allows for other tags, not just <p>.
+ *
+ * @since	2.6
+ * @version	2.6
+ *
+ * @param	[string] $input			REQUIRED - String of text to be formatted. []
+ * @param	[string] $type			HTML tag to wrap content with - p,h1,h2,h3,h4,h5,h6. [p]
+ * @param	[bool] $br				Optional. If set, this will convert all remaining line-breaks after paragraphing. [false]
+ * @param	[string] $echo			Echo or return output. Y/N [Y]
+ *
+ * @todo	Add optional class to tag for more flexibility
+ *
+ */
+if ( !function_exists( 'wfx_auto_text' ) ) : function wfx_auto_text($args) {
+
+	$echo = (isset($args['echo']) && $args['echo'] == 'Y') ? 'Y' : 'N';
+
+	global $wfx;
+	if ($echo == 'Y') {
+		echo $wfx->auto_text($args);
+	} else {
+		return $wfx->auto_text($args);
+	}
+
+} endif;
+
+
 /*
 	#
 	#    #

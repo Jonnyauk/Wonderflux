@@ -2665,13 +2665,14 @@ class wflux_display_extras {
 	/**
 	 *
 	 * Outputs supplied text string, auto wraps in relevant tags and/or changes double line-breaks in text to <br/> or wraps in tag.
- 	 * A turbo-charged version of WP core wpautop() but allows for other tags, not just <p>.
+ 	 * A turbo-charged version of WP core wpautop() but allows for other tags, not just <p> and additional CSS class definitions.
 	 *
 	 * @since	2.6
 	 * @version	2.6
 	 *
 	 * @param	[string] $input			REQUIRED - String of text to be formatted. []
-	 * @param	[string] $type			HTML tag to wrap content with - p,h1,h2,h3,h4,h5,h6. [p]
+	 * @param	[string] $type			HTML tag to wrap content with - p,h1,h2,h3,h4,h5,h6,li. [p]
+	 * @param	[string] $class			Additional CSS class(es) to be added. []
 	 * @param	[bool] $br				Optional. If set, this will convert all remaining line-breaks after paragraphing. [false]
 	 *
 	 * @return	Text which has been wrapped with given tags.
@@ -2684,6 +2685,7 @@ class wflux_display_extras {
 		$defaults = array (
 			'input'	=> '',
 			'type'	=> 'p',
+			'class' => '',
 			'br'	=> false
 		);
 
@@ -2699,10 +2701,14 @@ class wflux_display_extras {
 			'h3',
 			'h4',
 			'h5',
-			'h6'
+			'h6',
+			'li'
 		);
 
 		$type = in_array( $type, $type_accept ) ? $type : $type_accept[0];
+
+		// Add additional CSS class(es) if required
+		$type = ( !empty(trim($class)) ) ? $type . ' class="' . esc_attr( $class ) . '"' : $type;
 
 		$pre_tags = array();
 

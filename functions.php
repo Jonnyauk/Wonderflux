@@ -1409,15 +1409,18 @@ if ( !function_exists( 'wfx_array_to_delimited_string' ) ) : function wfx_array_
 /**
  *
  * Outputs supplied text string, auto wraps in relevant tags and/or changes double line-breaks in text to <br/> or wraps in tag.
- * A turbo-charged version of WP core wpautop() but allows for other tags, not just <p>.
+ * A turbo-charged version of WP core wpautop() but allows for other tags, not just <p> and additional CSS class definitions.
  *
  * @since	2.6
  * @version	2.6
  *
  * @param	[string] $input			REQUIRED - String of text to be formatted. []
- * @param	[string] $type			HTML tag to wrap content with - p,h1,h2,h3,h4,h5,h6. [p]
+ * @param	[string] $type			HTML tag to wrap content with - p,h1,h2,h3,h4,h5,h6,li. [p]
+ * @param	[string] $class			Additional CSS class(es) to be added. []
  * @param	[bool] $br				Optional. If set, this will convert all remaining line-breaks after paragraphing. [false]
  * @param	[string] $echo			Echo or return output. Y/N [Y]
+ *
+ * @return	Text which has been wrapped with given tags.
  *
  * @todo	Add optional class to tag for more flexibility
  *

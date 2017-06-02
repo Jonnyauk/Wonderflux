@@ -63,6 +63,9 @@ td,th { padding: 5px; }
 .top, .flush-top { margin-top: 0; padding-top: 0; }
 .bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
 
+.float-l { float: left; }
+.float-r { float: right; }
+
 .clearfix:after, .container:after, .row:after, .row-column:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
 .clearfix, .container, .row, .row-column { display: block; }
 .clear, .clearfix:after, .container:after, .row:after, .row-column:after { clear:both; }

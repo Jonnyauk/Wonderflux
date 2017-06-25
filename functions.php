@@ -416,7 +416,7 @@ if ( !function_exists( 'wfx__N' ) ) : function wfx__N() { global $wfx_helper; re
  * wp_all_taxonomies - All Taxonomies
  *
  * @since	1.1
- * @version	2.3
+ * @version	2.6
  *
  * @param	[mixed] $input 			REQUIRED What you want to debug!
  * @param	[string] $label 		Add a title to top of output to help identify it if using multiple debugs.

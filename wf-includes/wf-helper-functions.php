@@ -898,7 +898,7 @@ class wflux_helper {
 	 * wp_all_taxonomies - All Taxonomies
 	 *
 	 * @since	1.1
-	 * @version	2.3
+	 * @version	2.6
 	 *
 	 * @param	[mixed] $input 			REQUIRED What you want to debug!
 	 * @param	[string] $label 		Add a title to top of output to help identify it if using multiple debugs.
@@ -909,47 +909,71 @@ class wflux_helper {
 	function wf_debug( $input='', $label='', $admin_only=true, $role=false, $id=false ) {
 
 		// Check against top level admin
-		if ( $admin_only && !is_super_admin() )
-			return;
+		if ( $admin_only && !is_super_admin() ) return;
 		// Check against user role
-		if ( $role && !current_user_can($role) )
-			return;
+		if ( $role && !current_user_can($role) ) return;
 		// Check against user ID
-		if ( is_integer($id) && get_current_user_id() != $id )
-			return;
+		if ( is_integer($id) && get_current_user_id() != $id ) return;
 
 		$o = '<div style="color:#000; padding:5px; overflow:auto; border: 4px solid #ff0a0a; background-color: #fec9c9;" class="wfx_debug_output">';
+
 		$o .= ( !empty($label) ) ? '<pre style="color:#ff0a0a;"><strong>' . esc_html($label) . '</strong></pre>' : '';
-		if ( empty($input) && intval($input) != 0 ) {
-			$o .= '<pre>' . esc_html__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
+
+		if ( $input === 'wp_query' ) {
+
+			$input_type = 'WordPress core $wp_query';
+			global $wp_query;
+			$input = $wp_query;
+
+		} elseif ( $input === 'wp_posts' ) {
+
+			$input_type = 'WordPress core $posts';
+			global $posts;
+			$input = $posts;
+
+		} elseif ( $input === 'wp_queried' ) {
+
+			$input_type = 'Currently queried object';
+			$input = get_queried_object();
+
+		} elseif ( $input === 'wp_all_taxonomies' ) {
+
+			$input_type = 'All taxonomies';
+			global $wp_taxonomies;
+			$input = $wp_taxonomies;
+
 		} else {
 
-			if ( $input === 'wp_query' ) {
-				$input_type = 'WordPress core $wp_query';
-				global $wp_query;
-				$input = $wp_query;
-			} elseif ( $input === 'wp_posts' ) {
-				$input_type = 'WordPress core $posts';
-				global $posts;
-				$input = $posts;
-			} elseif ( $input === 'wp_queried' ) {
-				$input_type = 'Currently queried object';
-				$input = get_queried_object();
-			} elseif ( $input === 'wp_all_taxonomies' ) {
-				$input_type = 'All taxonomies';
-				global $wp_taxonomies;
-				$input = $wp_taxonomies;
+			$input_type = gettype($input);
+
+		}
+
+		$o .= '<pre><strong>' . esc_html__( 'Debug output for data type:', 'wonderflux' ) . '</strong> ' . $input_type . '</pre>';
+
+		if ( is_bool($input) ){
+
+			$o .= '<pre>';
+			$o .= ( $input === true ) ? 'true' : 'false';
+			$o .= '</pre>';
+
+		} elseif ( !empty($input) ){
+
+			if ( is_array($input) || is_object($input) ) {
+
+	   			$o .= '<pre>' . esc_html( print_r($input,true) ) . '</pre>';
+
 			} else {
-				$input_type = gettype($input);
+
+				$o .= '<p style="color:#770000;">' . $input . '</p>';
+
 			}
 
-			$o .= '<pre><strong>' . esc_html__( 'Debug output for data type:', 'wonderflux' ) . '</strong> ' . $input_type . '</pre>';
-			if ( is_array($input) || is_object($input) ) {
-	   			$o .= '<pre>' . esc_html( print_r($input,true) ) . '</pre>';
-			} else {
-				$o .= '<p style="color:#770000;">' . $input . '</p>';
-			}
+		} else {
+
+			$o .= '<pre>' . esc_html__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
+
 		}
+
 		$o .= '</div>';
 
 		echo $o;

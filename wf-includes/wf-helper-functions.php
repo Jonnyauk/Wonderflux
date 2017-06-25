@@ -970,7 +970,7 @@ class wflux_helper {
 
 		} else {
 
-			$o .= '<pre>' . esc_html__('No data returned or false/empty/null', 'wonderflux') . '</pre>';
+			$o .= '<pre>' . esc_html__('No data returned or null', 'wonderflux') . '</pre>';
 
 		}
 

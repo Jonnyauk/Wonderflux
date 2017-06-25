@@ -956,6 +956,12 @@ class wflux_helper {
 			$o .= ( $input === true ) ? 'true' : 'false';
 			$o .= '</pre>';
 
+		} elseif ( $input == 0 ){
+
+			$o .= '<pre>';
+			$o .= '0 ' . esc_html__('(zero)', 'wonderflux');
+			$o .= '</pre>';
+
 		} elseif ( !empty($input) ){
 
 			if ( is_array($input) || is_object($input) ) {

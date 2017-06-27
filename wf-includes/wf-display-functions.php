@@ -2613,7 +2613,7 @@ class wflux_display_extras {
 	/**
 	 * Outputs an array as a string with a seperator in-between each.
 	 * Doesn't add to last item - useful for comma sperated output.
- 	 * Will remove flase/empty values from array - cool!
+ 	 * Will remove false/empty values from array - cool!
 	 *
 	 * @since	1.1
 	 * @version	2.2

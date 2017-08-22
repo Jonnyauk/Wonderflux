@@ -143,12 +143,13 @@ class wflux_data {
 		$this->wfx_position = $wfx_container_p_out;
 
 		// SIZE RANGE - Range of different size definitions
-		// TODO: Allow filtering!
-		$this->wfx_range_core = (isset($this->wfx_db_display['range_core']) ) ? $this->wfx_db_display['range_core'] : false;
-		// Validate
 		$wfx_range_core_out = '1-2-4-5-8-10';
-		if ( !empty($this->wfx_range_core) && is_string($this->wfx_range_core) && ($this->wfx_range_core != $wfx_range_core_out) ) {
-			$wfx_range_core_out = preg_replace( '/\s+/', '', esc_attr($this->wfx_range_core) );
+		$this->wfx_range_core = ( isset( $this->wfx_db_display['range_core'] ) ) ? $this->wfx_db_display['range_core'] : $wfx_range_core_out;
+		// Allow filtering
+		$this->wfx_range_core = apply_filters( 'wflux_range_core', $this->wfx_range_core );
+		// Validate
+		if ( !empty( $this->wfx_range_core ) && is_string( $this->wfx_range_core ) && strlen( $this->wfx_range_core ) < 20 &&( $this->wfx_range_core != $wfx_range_core_out ) ) {
+			$wfx_range_core_out = preg_replace( '/\s+/', '', esc_attr( $this->wfx_range_core ) );
 			$wfx_range_core_out = preg_replace( '/-[a-z]/i', '', $wfx_range_core_out );
 		}
 		$this->wfx_range_core = $wfx_range_core_out;

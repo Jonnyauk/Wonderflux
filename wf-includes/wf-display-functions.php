@@ -265,7 +265,7 @@ class wflux_display_code extends wflux_data {
 			$version = apply_filters( 'wflux_css_structure_version', $version );
 			$id = apply_filters( 'wflux_css_structure_id', $id );
 
-			wp_register_style( $id, $path, '', $version, 'screen, projection' );
+			wp_register_style( $id, $path, '', $version, 'screen' );
 			wp_enqueue_style( $id );
 
 		}
@@ -298,7 +298,7 @@ class wflux_display_code extends wflux_data {
 			$path = WF_CONTENT_URL . '/css/wf-css-' . $file . '.php';
 			$version = 'wfx-dynamic';
 			$id = 'wfx-columns';
-			$media = 'screen, projection';
+			$media = 'screen';
 
 			// Allow filtering
 			$path = apply_filters( 'wflux_css_columns_path', $path );
@@ -338,7 +338,7 @@ class wflux_display_code extends wflux_data {
 			$path = WF_CONTENT_URL . '/css/wf-css-dynamic-core-ie.php';
 			$version = 'wfx-dynamic';
 			$id = 'wfx-ie';
-			$media = 'screen, projection';
+			$media = 'screen';
 
 			// Allow filtering
 			$path = apply_filters( 'wflux_css_ie_path', $path );
@@ -374,7 +374,7 @@ class wflux_display_code extends wflux_data {
 		// Allow filtering
 		$id = apply_filters( 'wflux_css_theme_id', 'main-theme' );
 		$path = apply_filters( 'wflux_css_theme_path', WF_THEME_URL.'/style.css' );
-		$media = apply_filters( 'wflux_css_theme_media', 'screen, projection' );
+		$media = apply_filters( 'wflux_css_theme_media', 'screen' );
 
 		wp_register_style( $id, $path, '', $this->wfx_mytheme_version_clean, $media );
 		wp_enqueue_style( $id );
@@ -451,7 +451,7 @@ class wflux_display_code extends wflux_data {
 		$version = $this->wfx_mytheme_version_clean;
 		$id = 'framework';
 		$id_ie = 'framework-ie';
-		$media = 'screen, projection';
+		$media = 'screen';
 
 		// Allow filtering
 		$media = apply_filters( 'wflux_css_theme_framework_media', $media );

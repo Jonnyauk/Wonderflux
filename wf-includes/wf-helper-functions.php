@@ -61,6 +61,8 @@ class wflux_data {
 		// Validate
 		$wfx_doc_type_out = 'transitional';
 		$wfx_doc_type_accept = array('transitional','strict','frameset','1.1','1.1basic','html5','XHTML/RDFa');
+		// Allow filtering
+		$this->wfx_doc_type = apply_filters( 'wflux_doc_type', $this->wfx_doc_type );
 		if ( in_array($this->wfx_doc_type,$wfx_doc_type_accept) ) { $wfx_doc_type_out = $this->wfx_doc_type; }
 		$this->wfx_doc_type = $wfx_doc_type_out;
 

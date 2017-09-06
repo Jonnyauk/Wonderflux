@@ -959,7 +959,6 @@ class wflux_helper {
 			$o .= ( $input === true ) ? 'true' : 'false';
 			$o .= '</pre>';
 
-		} elseif ( $input == 0 ){
 		} elseif ( is_numeric( $input ) && $input == 0 ) {
 
 			$o .= '<pre>';

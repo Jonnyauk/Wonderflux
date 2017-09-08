@@ -1684,13 +1684,14 @@ class wflux_display_extras {
 	 * is used instead of get_currentuserinfo() (function deprecated)
 	 *
 	 * @since	0.85
-	 * @version	2.2
+	 * @version	2.6
 	 *
 	 * @param	[string] $userintro		Text string in first list item. [Welcome]
 	 * @param	[string] $username		Display username after intro (within same list item). Y/N [Y]
 	 * @param	[string] $intro			Display intro. Y/N [Y]
 	 * @param	[string] $postcontrols	Show post controls. Y/N [Y]
 	 * @param	[string] $pagecontrols	Show page controls. Y/N [Y]
+	 * @param	[string] $usercontrols	Show user controls. Y/N [N]
 	 * @param	[string] $adminlink		Show admin area link. Y/N [Y]
 	 * @param	[string] $widgetslink	Show edit widgets link. Y/N [N]
 	 * @param	[string] $logoutlink	Show WordPress logout link. Y/N [N]
@@ -1699,9 +1700,8 @@ class wflux_display_extras {
 	 * @param	[string] $div			Wrap output in containing <div>. Y/N [N]
 	 * @param	[string] $divclass		Containing <div> class if used. [wf-edit-meta-box]
 	 *
-	 * @todo 	Review code, make smarter and deploy into Wonderflux widget.
 	 * @todo	Extend further to accomodate when a user is NOT logged in (like WordPress Meta widget stylee!)
-	 * @todo	Extend for user profiles, editing taxonomies etc.
+	 * @todo	Extend for editing taxonomies etc.
 	 */
 	function wf_edit_meta($args) {
 
@@ -1711,6 +1711,7 @@ class wflux_display_extras {
 			'intro' => 'Y',
 			'postcontrols' => 'Y',
 			'pagecontrols' => 'Y',
+			'usercontrols' => 'N',
 			'adminlink' => 'Y',
 			'widgetslink' => 'Y',
 			'wfcontrols' => 'N',
@@ -1785,6 +1786,10 @@ class wflux_display_extras {
 
 			if ( current_user_can('edit_pages') && $pagecontrols == 'Y' ) {
 				$output .= $liclass . esc_attr__('PAGES:', 'wonderflux') . ' <a href="' . wp_sanitize_redirect($this_admin) . 'post-new.php?post_type=page" title="' . esc_attr__('Create new page', 'wonderflux') . '">' . esc_attr__('New', 'wonderflux') . '</a> | <a href="' . wp_sanitize_redirect($this_admin) . 'edit.php?post_type=page" title="' . esc_attr__('Edit existing pages', 'wonderflux') . '">' . esc_attr__('Edit', 'wonderflux') . '</a></li>';
+			}
+
+			if ( current_user_can('edit_users') && $usercontrols == 'Y' ) {
+				$output .= $liclass . '<a href="' . wp_sanitize_redirect($this_admin) . 'users.php" title="' . esc_attr__('Edit users', 'wonderflux') . '">' . esc_attr__('Edit users', 'wonderflux') . '</a></li>';
 			}
 
 			if ( current_user_can('publish_posts') && $adminlink == 'Y' ) {

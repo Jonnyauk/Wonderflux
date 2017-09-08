@@ -1149,13 +1149,14 @@ if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_co
  * is used instead of get_currentuserinfo() (function deprecated)
  *
  * @since	0.85
- * @version	2.2
+ * @version	2.6
  *
  * @param	[string] $userintro		Text string in first list item. [Welcome]
  * @param	[string] $username		Display username after intro (within same list item). Y/N [Y]
  * @param	[string] $intro			Display intro. Y/N [Y]
  * @param	[string] $postcontrols	Show post controls. Y/N [Y]
  * @param	[string] $pagecontrols	Show page controls. Y/N [Y]
+ * @param	[string] $usercontrols	Show user controls. Y/N [N]
  * @param	[string] $adminlink		Show admin area link. Y/N [Y]
  * @param	[string] $widgetslink	Show edit widgets link. Y/N [N]
  * @param	[string] $logoutlink	Show WordPress logout link. Y/N [N]
@@ -1164,9 +1165,8 @@ if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_co
  * @param	[string] $div			Wrap output in containing <div>. Y/N [N]
  * @param	[string] $divclass		Containing <div> class if used. [wf-edit-meta-box]
  *
- * @todo 	Review code, make smarter and deploy into Wonderflux widget.
  * @todo	Extend further to accomodate when a user is NOT logged in (like WordPress Meta widget stylee!)
- * @todo	Extend for user profiles, editing taxonomies etc.
+ * @todo	Extend for editing taxonomies etc.
  */
 if ( !function_exists( 'wfx_edit_meta' ) ) : function wfx_edit_meta($args) { global $wfx; $wfx->edit_meta($args); } endif;
 

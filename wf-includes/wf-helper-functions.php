@@ -959,7 +959,7 @@ class wflux_helper {
 			$o .= ( $input === true ) ? 'true' : 'false';
 			$o .= '</pre>';
 
-		} elseif ( is_numeric( $input ) && $input == 0 ) {
+		} elseif ( is_numeric( $input ) && $input === 0 ) {
 
 			$o .= '<pre>';
 			$o .= '0 ' . esc_html__('(zero)', 'wonderflux');

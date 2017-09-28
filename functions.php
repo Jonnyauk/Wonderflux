@@ -1687,7 +1687,7 @@ if ( !function_exists( 'wfx_admin_bar_links' ) ) : function wfx_admin_bar_links(
  * Incredibly useful for debugging - shows which files are your child themes and which are Wonderflux core.
  *
  * @since	0.93
- * @version	2.0
+ * @version	2.6
  *
  * @param	none
  *

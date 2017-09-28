@@ -1324,7 +1324,7 @@ class wflux_wp_core {
 				foreach ( $nice_includes as $menu_item ) {
 					//TODO: Add in links to Wonderflux guide for relevant template parts
 					$wp_admin_bar->add_menu( array(
-						'id'    => esc_attr( $menu_item ),
+						'id'    => sanitize_title( $menu_item ),
 						'parent' => 'wfx-file-menu',
 						'title' => esc_html( $menu_item ),
 						/*'href'  => '#',*/

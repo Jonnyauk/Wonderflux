@@ -411,3 +411,15 @@ if you're not able to do this, do not worry - you can still send over your ideas
 just [create a new issue on GitHub](https://github.com/Jonnyauk/Wonderflux/issues)
 and explain how you would like to see Wonderflux improved... and I'll do my best to
 accommodate it thanks!
+
+BrowserStack - my favourite browser testing platform
+----------------------------------------------------------------------
+
+![wonderflux](http://wonderflux.com/assets/logo-browser-stack.png)
+I am proud to recommend [BrowserStack](https://www.browserstack.com) for browser testing 
+across multiple devices and platforms - it rocks!
+
+It allows realtime browser testing and I use it to test all my websites - best of all 
+they offer a free trial so you can see how awesome it is ;) Stop trying to wrangle multiple 
+virtual machines and take the headache out of browser testing once and for all and make 
+sure your website looks beautiful for all your visitors no matter what they are using!

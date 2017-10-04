@@ -416,6 +416,7 @@ BrowserStack - my favourite browser testing platform
 ----------------------------------------------------------------------
 
 ![wonderflux](http://wonderflux.com/assets/logo-browser-stack.png)
+
 I am proud to recommend [BrowserStack](https://www.browserstack.com) for browser testing 
 across multiple devices and platforms - it rocks!
 

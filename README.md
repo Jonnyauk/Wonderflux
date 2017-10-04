@@ -415,10 +415,10 @@ accommodate it thanks!
 BrowserStack - my favourite browser testing platform
 ----------------------------------------------------------------------
 
-![wonderflux](http://wonderflux.com/assets/logo-browser-stack.png)
+[![BrowserStack](http://wonderflux.com/assets/logo-browser-stack.png)](https://www.browserstack.com)
 
-I am proud to recommend [BrowserStack](https://www.browserstack.com) for browser testing 
-across multiple devices and platforms - it rocks!
+**I am proud to recommend [BrowserStack](https://www.browserstack.com) for browser testing 
+across multiple devices and platforms - it rocks!**
 
 It allows realtime browser testing and I use it to test all my websites - best of all 
 they offer a free trial so you can see how awesome it is ;) Stop trying to wrangle multiple 

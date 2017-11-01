@@ -1327,9 +1327,10 @@ class wflux_admin_post extends wflux_data {
 	/**
 	 * Remove unwanted page templates from page attributes dropdown as set in Wonderflux options.
 	 * Filters theme_page_templates.
+	 * NOTE: Added check for admin in functions.php to stop this breaking WP REST API
 	 *
 	 * @since	2.0
-	 * @version	2.0
+	 * @version	2.6
 	 *
 	 * @param	[array] $input			Pass through WordPress page template array for manipulation via filter.
 	 */

@@ -146,7 +146,7 @@ add_action( 'admin_bar_menu', 'wfx_admin_bar_links', 100 );
 add_action( 'wffooter_after_content', 'wfx_display_credit', 1 );
 add_action( 'wf_footer', 'wfx_display_code_credit', 3 );
 add_action( 'auth_redirect', 'wfx_admin_menus' );
-add_filter( 'theme_page_templates','wfx_remove_page_templates' );
+add_filter( 'theme_page_templates', 'wfx_remove_page_templates' );
 
 
 //// 1.6 // Wonderflux debug functionality
@@ -1712,13 +1712,18 @@ if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_f
 /**
  * Remove unwanted page templates from page attributes dropdown as set in Wonderflux options.
  * Filters theme_page_templates.
+ * NOTE: Added check for admin to stop this breaking WP REST API
  *
  * @since	2.0
- * @version	2.0
+ * @version	2.6
  *
  * @param	[array] $input			Pass through WordPress page template array for manipulation via filter.
  */
-if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_page_templates($input) { global $wfx_admin_post; return $wfx_admin_post->remove_page_templates($input); } endif;
+if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_page_templates($input) {
+	if ( is_admin() ) {
+		global $wfx_admin_post; return $wfx_admin_post->remove_page_templates($input);
+	}
+} endif;
 
 
 /*

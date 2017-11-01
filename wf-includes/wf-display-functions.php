@@ -638,22 +638,42 @@ class wflux_display_code extends wflux_data {
 	 * @version	2.6
 	 *
 	 * @param	none
+	 *
+	 * @todo Figure out how to access rest query - then we can add additional Wonderflux post classes
 	 */
 	function wf_filter_post_class() {
 
-		global $wp_query;
-
 		unset( $this->post_classes );
 
-		if ( !is_singular() ){
-			$this->post_classes[] = ( array_key_exists('paged', $wp_query->query) ) ? 'archive-page-no-' . $wp_query->query['paged'] : 'archive-page-no-1';
-			$this->post_classes[] = apply_filters( 'wflux_post_class_multiple', 'multiple-posts' );
-			$this->post_classes[] = ( $wp_query->current_post % 2 == 0 ) ? 'archive-item-odd' : 'archive-item-even';
-			$this->post_classes[] = 'paged-return-' . ( intval($wp_query->current_post) + 1 );
-			$this->post_classes[] = ( $wp_query->current_post != 0 ) ? '' : apply_filters( 'wflux_post_class_first', 'first-in-loop' );
-			$this->post_classes[] = ( ($wp_query->current_post +1 ) != $wp_query->post_count ) ? '' : apply_filters( 'wflux_post_class_last', 'last-in-loop' );
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+
+			// Silence is golden for the moment
+
+			// These are the values we need from headers!
+			// X-WP-Total
+			// X-WP-TotalPages
+
+			// However, the query is not exposed and also do not seem to be able to access the rest query headers, boo.
+			// Therefore, we will just add in the standard WP post classes for the moment thanks.
+
 		} else {
-			$this->post_classes[] = apply_filters( 'wflux_post_class_single', 'single-post' );
+
+			global $wp_query;
+
+			if ( !is_singular() ){
+				$this->post_classes[] = ( array_key_exists('paged', $wp_query->query) ) ? 'archive-page-no-' . $wp_query->query['paged'] : 'archive-page-no-1';
+				$this->post_classes[] = apply_filters( 'wflux_post_class_multiple', 'multiple-posts' );
+				$this->post_classes[] = ( $wp_query->current_post % 2 == 0 ) ? 'archive-item-odd' : 'archive-item-even';
+				$this->post_classes[] = 'paged-return-' . ( intval($wp_query->current_post) + 1 );
+				$this->post_classes[] = ( $wp_query->current_post != 0 ) ? '' : apply_filters( 'wflux_post_class_first', 'first-in-loop' );
+				$this->post_classes[] = ( ($wp_query->current_post +1 ) != $wp_query->post_count ) ? '' : apply_filters( 'wflux_post_class_last', 'last-in-loop' );
+
+			} else {
+
+				$this->post_classes[] = apply_filters( 'wflux_post_class_single', 'single-post' );
+
+			}
+
 		}
 
 		// Put it all together and filter body_class

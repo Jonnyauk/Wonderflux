@@ -277,7 +277,7 @@ function wflux_capacitor_display() {
 
 }
 add_action('get_header','wflux_capacitor_display', 1);
-
+add_action('rest_api_init','wflux_capacitor_display', 1);
 
 /**
 * @since 0.913
@@ -354,6 +354,39 @@ class wflux_display_all {
 	function twit_share($args){ return $this->wflux_display_social_do->wf_twit_share($args); }
 	function linkedin_share($args){ return $this->wflux_display_social_do->wf_linkedin_share($args); }
 	function social_meta($args){ return $this->wflux_display_social_do->wf_social_meta($args); }
+
+}
+
+
+/**
+* @since 2.6
+* @updated 2.6
+* Sets up all Wonderflux WP REST API functions
+*/
+function wflux_capacitor_restapi() {
+
+	load_template( WF_INCLUDES_DIR . '/wf-rest-api-display.php' );
+	global $wflux_restapi_do;
+	$wflux_restapi_do = new wflux_restapi_all;
+
+}
+add_action( 'rest_api_init','wflux_capacitor_restapi', 1 );
+
+
+/**
+* @since 2.6
+* @updated 2.6
+* Creates all Wonderflux WP REST API functions
+*/
+class wflux_restapi_all {
+
+	public $wflux_restapi_do;
+
+	function __construct(){
+		$this->wflux_restapi_do = new wflux_display_restapi;
+	}
+
+	function rest_add_post_classes(){ $this->wflux_restapi_do->wf_rest_add_post_classes(); }
 
 }
 ?>

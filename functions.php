@@ -30,6 +30,7 @@
  * 7  -  Admin functions
  * 8  -  Admin post/content functions
  * 9  -  Direct activation fallbacks
+ * 10 -  WP REST API functions
  *
  * DON'T HACK ME! You should NOT modify the Wonderflux theme framework to avoid issues with updates in the future.
  * View the readme for more information.
@@ -147,6 +148,10 @@ add_action( 'wffooter_after_content', 'wfx_display_credit', 1 );
 add_action( 'wf_footer', 'wfx_display_code_credit', 3 );
 add_action( 'auth_redirect', 'wfx_admin_menus' );
 add_filter( 'theme_page_templates', 'wfx_remove_page_templates' );
+<<<<<<< Updated upstream
+=======
+add_action( 'rest_api_init','wfx_rest_add_post_classes', 2 );
+>>>>>>> Stashed changes
 
 
 //// 1.6 // Wonderflux debug functionality
@@ -158,7 +163,7 @@ if ( WF_DEBUG == true ) { add_action( 'init','wfx_show_hooks' ); }
 /*
 	 #####
 	#     #
-	      #
+		  #
 	 #####
 	#
 	#
@@ -569,9 +574,9 @@ if ( !function_exists( 'wfx_ends_with' ) ) : function wfx_ends_with( $needle, $h
 /*
 	 #####
 	#     #
-	      #
+		  #
 	 #####
-	      #
+		  #
 	#     #
 	 #####
 
@@ -1445,8 +1450,8 @@ if ( !function_exists( 'wfx_auto_text' ) ) : function wfx_auto_text($args) {
 	#    #
 	#    #
 	#######
-	     #
-	     #
+		 #
+		 #
 
 	Social functions
 */
@@ -1533,7 +1538,7 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
 	#
 	#
 	######
-	      #
+		  #
 	#     #
 	 #####
 
@@ -1642,7 +1647,7 @@ if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { gl
 /*
 	#######
 	#    #
-	    #
+		#
 	   #
 	  #
 	  #
@@ -1731,7 +1736,7 @@ if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_pag
 	#     #
 	#     #
 	 ######
-	      #
+		  #
 	#     #
 	 #####
 
@@ -1861,4 +1866,30 @@ function wfx_core_insert_primary_nav() {
 	}
 
 }
+
+
+/*
+	  #     ###
+	 ##    #   #
+	# #   #     #
+	  #   #     #
+	  #   #     #
+	  #    #   #
+	#####   ###
+
+	WP REST API functions
+*/
+
+
+/**
+ * Adds new 'wfx_post_class' data to WP REST API JSON output containing array of post classes.
+ *
+ * @filter wflux_restapi_post_types - array of post types to add post classes to.
+ *
+ * @since	2.6
+ * @version	2.6
+ *
+ * @param	none
+ */
+if ( !function_exists( 'wfx_rest_add_post_classes' ) ) : function wfx_rest_add_post_classes() { global $wflux_restapi_do; $wflux_restapi_do->rest_add_post_classes(); } endif;
 ?>

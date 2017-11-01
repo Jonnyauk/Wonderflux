@@ -148,10 +148,7 @@ add_action( 'wffooter_after_content', 'wfx_display_credit', 1 );
 add_action( 'wf_footer', 'wfx_display_code_credit', 3 );
 add_action( 'auth_redirect', 'wfx_admin_menus' );
 add_filter( 'theme_page_templates', 'wfx_remove_page_templates' );
-<<<<<<< Updated upstream
-=======
 add_action( 'rest_api_init','wfx_rest_add_post_classes', 2 );
->>>>>>> Stashed changes
 
 
 //// 1.6 // Wonderflux debug functionality

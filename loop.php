@@ -40,7 +40,5 @@ else:
 
 endif;
 
-wfx_page_counter('navigation=Y');
-
 wfloop_after(); //WF display hook
 ?>

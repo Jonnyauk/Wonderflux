@@ -151,6 +151,16 @@ add_filter( 'theme_page_templates', 'wfx_remove_page_templates' );
 add_action( 'rest_api_init','wfx_rest_add_post_classes', 2 );
 
 
+// Pagination
+add_action( 'wfmain_after_archive_container', 'wfx_page_counter', 2 );
+add_action( 'wfmain_after_search_container', 'wfx_page_counter', 2 );
+add_action( 'wfmain_after_taxonomy_container', 'wfx_page_counter', 2 );
+add_action( 'wfmain_after_tag_container', 'wfx_page_counter', 2 );
+add_action( 'wfmain_after_date_container', 'wfx_page_counter', 2 );
+add_action( 'wfmain_after_category_container', 'wfx_page_counter', 2 );
+add_action( 'wfmain_after_search_container', 'wfx_page_counter', 2 );
+
+
 //// 1.6 // Wonderflux debug functionality
 
 add_action( 'admin_bar_menu', 'wfx_admin_bar_files_info', 100 );
@@ -1267,12 +1277,12 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
  * @param	[string] $current_span	CSS span class around current page number (set to blank to remove span). [page-counter-current]
  * @param	[string] $total_span	CSS span class around total page number (set to blank to remove span). [page-counter-total]
  * @param	[string] $always_show	No output is shown if there is only 1 page of results, setting to 'Y' to always show (ie page 1 of 1). Y/N [N]
- * @param	[string] $navigation	Display next and previous navigation either side of the page display. Y/N [N]
+ * @param	[string] $navigation	Display next and previous navigation either side of the page display. Y/N [Y]
  * @param	[string] $nav_span		CSS span class around totalnavigation links (set to blank to remove span). Y/N [page-counter-navigation]
  * @param	[string] $previous		Text for previous link. [&lt; ]
  * @param	[string] $next			Text for next link. Y/N [ &gt;]
  * @param	[string] $div			Wrap output in containing <div>. Y/N [Y]
- * @param	[string] $div_class		Containing <div> class if used. [row page-counter]
+ * @param	[string] $div_class		Containing <div> class if used. [container page-counter]
  * @param	[string] $echo			Echo or return output. Y/N [Y]
  *
  * @todo	Review code, make smarter!

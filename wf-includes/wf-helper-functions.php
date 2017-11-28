@@ -514,8 +514,15 @@ class wflux_helper {
 	 * 1 loop-content-404.php
 	 * 2 loop-content.php
 	 *
+ 	 * @filter wflux_template_part_main - string containing first part of filename to get (slug),
+ 	 * eg 'loop-content' (filename example loop-content-archive.php)
+ 	 * @filter wflux_template_part_fragment - string containing second part of filename to get (name)
+ 	 * eg 'archive' (filename example loop-content-archive.php)
+ 	 * @filter wflux_template_part_array - array of values used to build filename to get (tip - most useful for advanced filtering!),
+ 	 * eg array(0 => 'loop-content', 1 => 'archive') (filename example loop-content-archive.php)
+	 *
 	 * @since	0.881
-	 * @version	2.3
+	 * @version	2.6
 	 *
 	 * @param	[string] $part 			REQUIRED The slug name for the generic template
 	 *
@@ -524,7 +531,7 @@ class wflux_helper {
 	function wf_get_template_part( $args ) {
 
 		$defaults = array (
-			'part' => false,
+			'part' => false
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -542,13 +549,13 @@ class wflux_helper {
 				$slug = get_query_var( 'post_type' );
 				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
 
-				if ( $this->wfx_is_small_screen == true ){
+				if ( $this->wfx_is_small_screen == true ) {
 					if ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
 						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
-				if ( empty($part_get) ){
+				if ( empty( $part_get ) ) {
 					if ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
 						$part_get = $slug_depth_1;
 					endif;
@@ -559,16 +566,16 @@ class wflux_helper {
 			// Category archive
 			case ( 'category' ):
 
-				$slug = get_category( get_query_var('cat') )->slug;
-				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
+				$slug = get_category( get_query_var( 'cat' ) )->slug;
+				$slug_depth_1 = ( isset( $slug ) ) ? $this_location . '-' . $slug : false;
 
-				if ( $this->wfx_is_small_screen == true ){
+				if ( $this->wfx_is_small_screen == true ) {
 					if ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
 						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
-				if ( empty($part_get) ){
+				if ( empty( $part_get ) ) {
 					if ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
 						$part_get = $slug_depth_1;
 					endif;
@@ -579,16 +586,16 @@ class wflux_helper {
 			// Tag archive
 			case ( 'tag' ):
 
-				$slug = get_query_var('tag');
-				$slug_depth_1 = ( isset($slug) ) ? $this_location . '-' . $slug : false;
+				$slug = get_query_var( 'tag' );
+				$slug_depth_1 = ( isset( $slug ) ) ? $this_location . '-' . $slug : false;
 
-				if ( $this->wfx_is_small_screen == true ){
+				if ( $this->wfx_is_small_screen == true ) {
 					if ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
 						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
-				if ( empty($part_get) ){
+				if ( empty($part_get) ) {
 					if ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
 						$part_get = $slug_depth_1;
 					endif;
@@ -598,23 +605,24 @@ class wflux_helper {
 
 			// Taxonomy archive
 			case ('taxonomy'):
+
 				//NOTE: No get_query_var / $wp_query in taxonomy archive view - not populated
 				$this_q = get_queried_object();
-				$slug_depth_1 = ( isset($this_q->taxonomy) ) ? $this_location . '-' . $this_q->taxonomy : false;
-				$slug_depth_2 = ( isset($this_q->slug) ) ? $this_location . '-' . $this_q->taxonomy . '-' . $this_q->slug : false;
+				$slug_depth_1 = ( isset( $this_q->taxonomy ) ) ? $this_location . '-' . $this_q->taxonomy : false;
+				$slug_depth_2 = ( isset( $this_q->slug ) ) ? $this_location . '-' . $this_q->taxonomy . '-' . $this_q->slug : false;
 
-				if ( $this->wfx_is_small_screen == true ){
-					if ( locate_template($part . '-' . $slug_depth_2 . '-mobile.php', false) !='' ):
+				if ( $this->wfx_is_small_screen == true ) {
+					if ( locate_template( $part . '-' . $slug_depth_2 . '-mobile.php', false ) !='' ):
 						$part_get = $slug_depth_2 . '-mobile';
-					elseif ( locate_template($part . '-' . $slug_depth_1 . '-mobile.php', false) !='' ):
+					elseif ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
 						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
-				if ( empty($part_get) ){
-					if ( locate_template($part . '-' . $slug_depth_2 . '.php', false) !='' ):
+				if ( empty($part_get) ) {
+					if ( locate_template( $part . '-' . $slug_depth_2 . '.php', false ) !='' ):
 						$part_get = $slug_depth_2;
-					elseif ( locate_template($part . '-' . $slug_depth_1 . '.php', false) !='' ):
+					elseif ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
 						$part_get = $slug_depth_1;
 					endif;
 				}
@@ -623,20 +631,21 @@ class wflux_helper {
 
 			// Date archive
 			case ('date'):
+
 				$month = get_query_var( 'monthnum' );
 				$year = get_query_var( 'year' );
-				$slug_1 = ( !empty($year) ) ? '-' . $year : false;
-				$slug_2 = ( !empty($month) ) ? ($month < 10) ? sprintf( '-%02d', $month ) : '-' . $month : false;
+				$slug_1 = ( !empty( $year ) ) ? '-' . $year : false;
+				$slug_2 = ( !empty( $month ) ) ? ( $month < 10 ) ? sprintf( '-%02d', $month ) : '-' . $month : false;
 
-				if ( $this->wfx_is_small_screen == true ){
-					if ( locate_template( $part . '-' . $this_location . $slug_1 . $slug_2 . '-mobile.php', false) !='' ):
+				if ( $this->wfx_is_small_screen == true ) {
+					if ( locate_template( $part . '-' . $this_location . $slug_1 . $slug_2 . '-mobile.php', false ) !='' ):
 						$part_get = $this_location . $slug_1 . $slug_2 . '-mobile';
-					elseif ( locate_template($part . '-' . $this_location . $slug_1 . '-mobile.php', false) !='' ):
+					elseif ( locate_template( $part . '-' . $this_location . $slug_1 . '-mobile.php', false ) !='' ):
 						$part_get = $this_location . $slug_1 . '-mobile';
 					endif;
 				}
 
-				if ( empty($part_get) ){
+				if ( empty($part_get) ) {
 					if ( locate_template( $part . '-' . $this_location . $slug_1 . $slug_2 . '.php', false) !='' ):
 						$part_get = $this_location . $slug_1 . $slug_2;
 					elseif ( locate_template($part . '-' . $this_location . $slug_1 . '.php', false) !='' ):
@@ -647,18 +656,18 @@ class wflux_helper {
 			break;
 
 			// Archive/custom post type archive
-			case ('archive'):
+			case ( 'archive' ):
 
 				$slug = get_query_var( 'post_type' );
-				$slug_depth_1 = (isset($slug)) ? $this_location . '-' . $slug : false;
+				$slug_depth_1 = ( isset( $slug ) ) ? $this_location . '-' . $slug : false;
 
-				if ( $this->wfx_is_small_screen == true ){
+				if ( $this->wfx_is_small_screen == true ) {
 					if ( locate_template( $part . '-' . $slug_depth_1 . '-mobile.php', false ) !='' ):
 						$part_get = $slug_depth_1 . '-mobile';
 					endif;
 				}
 
-				if ( empty($part_get) ){
+				if ( empty( $part_get ) ) {
 					if ( locate_template( $part . '-' . $slug_depth_1 . '.php', false ) !='' ):
 						$part_get = $slug_depth_1;
 					endif;
@@ -667,7 +676,9 @@ class wflux_helper {
 			break;
 
 			default:
+
 				$part_get = $this_location;
+
 			break;
 
 		}
@@ -682,28 +693,32 @@ class wflux_helper {
 			'search'
 		);
 
-		if ( in_array($this_location, $archive_views) ) {
+		if ( in_array( $this_location, $archive_views ) ) {
 
-			if ( $this->wfx_is_small_screen == true ){
-				if ( locate_template( $part . '-' . $this_location . '-mobile.php', false ) !='' ):
-					$part_get = $this_location . '-mobile';
-				endif;
+			if ( $this->wfx_is_small_screen == true ) {
+
+				$part_get = ( locate_template( $part . '-' . $this_location . '-mobile.php', false ) !='' ) ? $this_location . '-mobile' : $part_get;
+
 			}
 
-			if ( empty($part_get) || $part_get == 'search' ){
-				if ( locate_template( $part . '-' . $this_location . '.php', false ) !='' ):
-					$part_get = $this_location;
-				else:
-					$part_get = 'archive';
-				endif;
+			if ( empty( $part_get ) || $part_get == 'search' ) {
+
+				$part_get = ( locate_template( $part . '-' . $this_location . '.php', false ) !='' ) ? $this_location : 'archive';
+
 			}
 
 		}
 
 		// Covers all other eventualities
-		$part_get = ( empty($part_get) ) ? $this_location : $part_get;
+		$part_get = ( empty( $part_get ) ) ? $this_location : $part_get;
 
-		get_template_part( $part, sanitize_html_class($part_get) );
+		// Allow filtering so theme files can be re-purposed
+		$part_get_main = apply_filters( 'wflux_template_part_main', $part );
+		$part_get_fragment = apply_filters( 'wflux_template_part_fragment', $part_get );
+		$part_get_array = apply_filters( 'wflux_template_part_array', array( $part_get_main, $part_get_fragment ) );
+
+		// Now scoot off and get out template part!
+		get_template_part( sanitize_html_class( $part_get_array[0] ), sanitize_html_class( $part_get_array[1] ) );
 
 	}
 
@@ -712,7 +727,7 @@ class wflux_helper {
 	 * Gets user role of logged-in user.
 	 * IMPORTANT - Used internally by Wonderflux.
 	 *
-	 * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+	 * BACKPAT: When using WordPress 4.5 or above wp_get_current_user()
 	 * is used instead of get_currentuserinfo() (function deprecated)
 	 *
 	 * @since	0.62

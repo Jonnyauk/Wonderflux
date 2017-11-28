@@ -296,8 +296,15 @@ if ( !function_exists( 'wfx_info_single' ) ) : function wfx_info_single() { glob
  * 1 loop-content-404.php
  * 2 loop-content.php
  *
+ * @filter wflux_template_part_main - string containing first part of filename to get (slug),
+ * eg 'loop-content' (filename example loop-content-archive.php)
+ * @filter wflux_template_part_fragment - string containing second part of filename to get (name)
+ * eg 'archive' (filename example loop-content-archive.php)
+ * @filter wflux_template_part_array - array of values used to build filename to get (tip - most useful for advanced filtering!),
+ * eg array(0 => 'loop-content', 1 => 'archive') (filename example loop-content-archive.php)
+ *
  * @since	0.881
- * @version	2.3
+ * @version	2.6
  *
  * @param	[string] $part 			REQUIRED The slug name for the generic template
  *

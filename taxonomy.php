@@ -24,7 +24,7 @@ echo apply_filters( 'wflux_layout_content_container_open', '<div class="containe
 	wfmain_before_all_content(); //WF display hook
 	wfmain_before_taxonomy_content(); //WF display hook
 
-	get_template_part( 'loop', 'taxonomy' );
+	wfx_get_template_part( 'part=loop' ); // Setup all location aware template parts
 
 	wfmain_after_taxonomy_content(); //WF display hook
 	wfmain_after_all_content(); //WF display hook

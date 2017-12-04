@@ -29,7 +29,7 @@ echo apply_filters( 'wflux_layout_content_container_open', '<div class="containe
 		else: wfmain_before_page_content(); //WF display hook
 	endif;
 
-	get_template_part( 'loop', 'page' );
+	wfx_get_template_part( 'part=loop' ); // Setup all location aware template parts
 
 	if (is_home() || is_front_page()) : wfmain_after_home_content(); //WF display hook
 		else: wfmain_after_page_content(); //WF display hook

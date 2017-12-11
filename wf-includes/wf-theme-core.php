@@ -135,37 +135,40 @@ class wflux_theme_core {
 
 
 	/**
-	 * Creates background wrapper <div>s around different areas of the layout.
-	 * Saves having to amend template files and great for setting up backgrounds or multiple backgrounds.
+	 * Creates background wrapper <div> containers around different areas of the layout.
+	 * Saves having to amend template files and great for setting up backgrounds/multiple backgrounds/things to target with CSS/JS.
 	 *
-	 * Outputput formatted like:
-	 * <div class="wrapper" id="header-bg-1">
-	 * <div class="wrapper" id="header-bg-2">
-	 * <div class="wrapper" id="header-bg-3">
+	 * Output formatted like:
+	 * <div class="wrapper optional-classes" id="header-bg-1">
+	 * <div class="wrapper optional-classes" id="header-bg-2">
+	 * <div class="wrapper optional-classes" id="header-bg-3">
 	 *
-	 * Closes <div> automatically for you of-course!
+	 * Corresponding closing </div> added automatically for you - it's a theme framework!
 	 *
 	 * @since	0.92
-	 * @version	0.92
+	 * @version	2.6
 	 *
 	 * @param	[int] $depth			How many wrappers to create. [1]
 	 * @param	[string] $location		Location of wrapper. site/main/header/footer/container-header/container-content/container-footer [site]
-	 *
+	 * @param	[arr] $classes			Array of text strings defining optional additional CSS classes - applied in accending order to individual divs.
 	 */
 	function wf_background_divs($args) {
 
 		$defaults = array (
-			'depth' => 1,
-			'location' => 'site'
+			'depth'		=> 1,
+			'location'	=> 'site',
+			'classes'	=> array()
 		);
 
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		// Tidy up ready for use
-		if (is_numeric($depth) && $depth >= 0 && $depth <= 10) { $depth_out = $depth; } else { $depth_out = 0; }
-			$location_accept = array('site','main','header','footer','container-header','container-content','container-footer');
-		if ( in_array($location,$location_accept) ) {
+		$location_accept = array('site','main','header','footer','container-header','container-content','container-footer');
+
+		if ( is_numeric( $depth ) && $depth >= 0 && $depth <= 10 ) { $depth_out = $depth; } else { $depth_out = 0; }
+
+		if ( in_array( $location,$location_accept ) ) {
+
 			switch ($location) {
 				case 'site' : $location_out = $location; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper'; break;
 				case 'main' : $location_out = $location; $open_hook = 'wfmain_before_wrapper'; $close_hook = 'wfmain_after_wrapper'; break;
@@ -176,22 +179,33 @@ class wflux_theme_core {
 				case 'container-footer' : $location_out = $location; $open_hook = 'wffooter_before_content'; $close_hook = 'wffooter_after_content'; break;
 				default : $location_out = 'site'; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper'; break;
 			}
+
 		} else {
+
 			// Fallback in all other cases
 			$location_out = 'site'; $open_hook = 'wfbody_before_wrapper'; $close_hook = 'wfbody_after_wrapper';
+
 		}
 
-		for ($this->wfx_count_bg_divs=1; $this->wfx_count_bg_divs<=$depth; $this->wfx_count_bg_divs++) {
+		$classes = ( !empty( $classes ) && is_array( $classes ) ) ? $classes : '';
+
+		for ( $this->wfx_count_bg_divs = 1; $this->wfx_count_bg_divs <= $depth; $this->wfx_count_bg_divs++ ) {
 
 			$this->wfx_count_bg_divs_hook = $location_out;
 
-			$container_special = array('container-header','container-content','container-footer');
-			$container_type = in_array($location,$container_special) ? 'container' : 'wrapper';
+			$container_special = array( 'container-header','container-content','container-footer' );
+			$container_type = in_array( $location,$container_special ) ? 'container' : 'wrapper';
+
+			if ( !empty( $classes ) ) {
+				if ( array_key_exists( ( $this->wfx_count_bg_divs - 1 ), $classes ) ) {
+					$container_type .= ' ' . esc_attr( $classes[ $this->wfx_count_bg_divs - 1 ] );
+				}
+			}
 
 			add_action( $open_hook, create_function( '', "echo '<div class=\"$container_type\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 1);
 
-			$wf_bgdiv_close = create_function('', 'echo "</div>";');
-			add_action($close_hook, $wf_bgdiv_close, 12);
+			add_action( $close_hook, create_function( '', 'echo "</div>";' ), 12 );
+
 		}
 
 	}

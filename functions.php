@@ -1586,22 +1586,22 @@ if ( !function_exists( 'wfx_widgets' ) ) : function wfx_widgets($args) { global 
 
 
 /**
- * Creates background wrapper <div>s around different areas of the layout.
- * Saves having to amend template files and great for setting up backgrounds or multiple backgrounds.
+ * Creates background wrapper <div> containers around different areas of the layout.
+ * Saves having to amend template files and great for setting up backgrounds/multiple backgrounds/things to target with CSS/JS.
  *
- * Outputput formatted like:
- * <div class="wrapper" id="header-bg-1">
- * <div class="wrapper" id="header-bg-2">
- * <div class="wrapper" id="header-bg-3">
+ * Output formatted like:
+ * <div class="wrapper optional-classes" id="header-bg-1">
+ * <div class="wrapper optional-classes" id="header-bg-2">
+ * <div class="wrapper optional-classes" id="header-bg-3">
  *
- * Closes <div> automatically for you of-course!
+ * Corresponding closing </div> added automatically for you - it's a theme framework!
  *
  * @since	0.92
- * @version	0.92
+ * @version	2.6
  *
  * @param	[int] $depth			How many wrappers to create. [1]
  * @param	[string] $location		Location of wrapper. site/main/header/footer/container-header/container-content/container-footer [site]
- *
+ * @param	[arr] $classes			Array of text strings defining optional additional CSS classes - applied in accending order to individual divs.
  */
 if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs($args) { global $wfx_theme; $wfx_theme->background_divs($args); } endif;
 

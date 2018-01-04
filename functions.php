@@ -1269,6 +1269,49 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
 
 
 /**
+ * Gets path of requested image attached to a post.
+ * Works for post thumbnails, site options table entries, attachments and ACF stored images
+ *
+ * NOTE: If image size requested is not available, it will:
+ * - try to return the full size image
+ * - or if all else fails it returns nothing, so default images are setup at template level.
+ *
+ * @since	2.6
+ * @version	2.6
+ *
+ * @param  [string] $id			Post ID, ACF field key or options table key (see $field param)
+ * @param  [string] $size		Size of image to fetch (in-built or custom image size)
+ *  							NOTE: Set as array to fetch different images for landscape[0], portrait[1] or square[2] depending upon original format of image
+ * 								NOTE: If you set an array, YOU MUST supply 3 values in array, even if they are all the same definitions!!
+ * @param  [string] $field		Type of field data to fetch (we only need this for ACF):
+ * 								- 'post_meta' for individual posts
+ *								- 'sub_field' for ACF flex-content/repeater fields
+ *								- 'option' for site options table
+ *								- 'post_thumbnail' for post WP featured image
+ *								- 'attachment'
+ * @param	[string] $echo		Echo or return output. Y/N [Y]
+ *
+ * @return	[mixed]				Path to image/false. Path is checked if valid URL, but not escaped - so remember your esc_url()!
+ *
+ * @todo						Extend parameters to accomodate a backup image
+ */
+if ( !function_exists( 'wfx_get_image' ) ) : function wfx_get_image( $args='' ) {
+
+
+	$echo = ( isset( $args['echo'] ) && $args['echo'] == 'Y' ) ? 'Y' : 'N';
+
+	global $wfx;
+
+	if ( $echo == 'Y' ) {
+		echo $wfx->get_image( $args );
+	} else {
+		return $wfx->get_image( $args );
+	}
+
+} endif;
+
+
+/**
  * Creates page navigation for lists of results like archive or query views.
  *
  * Filters available:

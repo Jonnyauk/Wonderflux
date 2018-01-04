@@ -2284,6 +2284,148 @@ class wflux_display_extras {
 
 
 	/**
+	 * Gets path of requested image attached to a post.
+	 * Works for post thumbnails, site options table entries, attachments and ACF stored images
+	 *
+	 * NOTE: If image size requested is not available, it will:
+	 * - try to return the full size image
+	 * - or if all else fails it returns nothing, so default images are setup at template level.
+	 *
+	 * @since	2.6
+	 * @version	2.6
+	 *
+	 * @param  [string] $id			Post ID, ACF field key or options table key (see $field param)
+	 * @param  [string] $size		Size of image to fetch (in-built or custom image size)
+	 *  							NOTE: Set as array to fetch different images for landscape[0], portrait[1] or square[2] depending upon original format of image
+	 * 								NOTE: If you set an array, YOU MUST supply 3 values in array, even if they are all the same definitions!!
+	 * @param  [string] $field		Type of field data to fetch (we only need this for ACF):
+	 * 								- 'post_meta' for individual posts
+	 *								- 'sub_field' for ACF flex-content/repeater fields
+	 *								- 'option' for site options table
+	 *								- 'post_thumbnail' for post WP featured image
+	 *								- 'attachment'
+	 *
+	 * @return	[mixed]				Path to image/false. Path is checked if valid URL, but not escaped - so remember your esc_url()!
+	 *
+	 * @todo						Extend parameters to accomodate a backup image
+	 */
+	function wf_get_image( $args ) {
+
+		$field_whitelist = array(
+			'post_meta',
+			'sub_field',
+			'option',
+			'post_thumbnail'
+		);
+
+		$defaults = array (
+			'id'		=> '',
+			'size'		=> 'thumbnail',
+			'field'		=> 'post_meta'
+		);
+
+		$args = wp_parse_args( $args, $defaults );
+		extract( $args, EXTR_SKIP );
+
+		$field = ( in_array( $field, $field_whitelist ) ) ? $field : $field[0];
+
+		$data_type = ( !is_numeric( $id ) ) ? 'acf' : $field;
+
+		$data = false;
+		$img_url = false;
+
+		switch( $data_type ) {
+
+			// Core WordPress post thumbnail attachment
+			case 'post_thumbnail':
+
+				// Check for featured image
+				if ( has_post_thumbnail( $id ) ) {
+
+					$data = get_post_thumbnail_id( $id );
+
+				}
+
+			break;
+
+			// Core WordPress post thumbnail attachment
+			case 'attachment':
+
+				$data = $id;
+
+			break;
+
+			// Advanced Custom Fields data
+			case 'acf':
+
+				if ( $field == 'post_meta' ) {
+
+					$data = get_post_meta( get_the_ID(), esc_attr( $id ), true );
+
+				} elseif ( $field == 'option' ) {
+
+					$data = get_option( esc_attr( $id ) );
+
+				} else {
+
+					$data = get_sub_field( esc_attr( $id ) );
+
+				}
+
+				// We setup ACF to store image uploads as image ID
+				$data = ( !is_numeric( $data ) ) ? false : $data;
+
+			break;
+
+			default:
+
+				$data = $id;
+
+			break;
+
+		}
+
+		// Get image data
+		if ( is_numeric( $data ) ) {
+
+			// And now the magic - check for portrait, lanscape or square original format
+			// Set $size as string
+			if ( is_array( $size ) ) {
+
+				$img_orgin = wp_get_attachment_image_src( $data, 'original', false );
+				//wfx_debug($img_tn_array_format);
+				if ( array_key_exists( 1, $img_orgin ) && array_key_exists( 2, $img_orgin ) && is_numeric( $img_orgin[1] ) && is_numeric( $img_orgin[2] ) ) {
+
+					$img_format = ( $img_orgin[1] < $img_orgin[2] ) ? 'portrait' : 'landscape';
+					$img_format = ( $img_orgin[1] == $img_orgin[2] ) ? 'square' : $img_format;
+
+					switch ( $img_format ) {
+
+						case 'portrait': $size = $size[1]; break;
+						case 'square': $size = $size[2]; break;
+						default: $size = $size[0]; break;
+
+					}
+
+				}
+
+			}
+
+			$img_tn_array = wp_get_attachment_image_src( $data, esc_attr( $size ), false );
+			$img_url = ( !empty( $img_tn_array ) && is_array( $img_tn_array ) ) ? $img_tn_array[0] : false;
+
+			// Validate URL and check for WordPress returned default image just to be sure!
+			$img_url = ( $img_url != false && wfx_valid_url( $img_url ) ) ? $img_url : false;
+			$img_url = ( wfx_ends_with( 'media/default.png', $img_url ) ) ? false : $img_url;
+
+		}
+
+		return $img_url;
+
+	}
+
+
+	/**
 	 * Creates page navigation for lists of results like archive or query views.
 	 *
 	 * Filters available:

@@ -776,7 +776,7 @@ class wflux_display_code extends wflux_data {
 	 *
 	 */
 	function wf_body_js_detect() {
-		echo  '<script type="text/javascript">';
+		echo ( $this->wfx_doc_type == 'html5' ) ? '<script>' : '<script type="text/javascript">';
 		echo 'document.body.className = document.body.className.replace("no-js", "js");';
 		echo '</script>' . "\n\n";
 	}

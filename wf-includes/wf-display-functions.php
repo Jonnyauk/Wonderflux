@@ -2304,10 +2304,10 @@ class wflux_display_extras {
 	 *								- 'option' for site options table
 	 *								- 'post_thumbnail' for post WP featured image
 	 *								- 'attachment'
+	 * @param  [string] $fallback	Path to fallback image INSIDE your theme folder
 	 *
 	 * @return	[mixed]				Path to image/false. Path is checked if valid URL, but not escaped - so remember your esc_url()!
 	 *
-	 * @todo						Extend parameters to accomodate a backup image
 	 */
 	function wf_get_image( $args ) {
 
@@ -2321,7 +2321,8 @@ class wflux_display_extras {
 		$defaults = array (
 			'id'		=> '',
 			'size'		=> 'thumbnail',
-			'field'		=> 'post_meta'
+			'field'		=> 'post_meta',
+			'fallback'	=> ''
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -2419,6 +2420,8 @@ class wflux_display_extras {
 			$img_url = ( wfx_ends_with( 'media/default.png', $img_url ) ) ? false : $img_url;
 
 		}
+
+		$img_url = ( empty( $img_url ) && !empty( $fallback ) ) ? WF_THEME_URL . '/' . $fallback : $img_url;
 
 		return $img_url;
 

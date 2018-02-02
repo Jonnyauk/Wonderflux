@@ -1289,11 +1289,11 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
  *								- 'option' for site options table
  *								- 'post_thumbnail' for post WP featured image
  *								- 'attachment'
- * @param	[string] $echo		Echo or return output. Y/N [Y]
+ * @param  [string] $fallback	Path to fallback image INSIDE your theme folder
+ * @param  [string] $echo		Echo or return output. Y/N [N]
  *
  * @return	[mixed]				Path to image/false. Path is checked if valid URL, but not escaped - so remember your esc_url()!
  *
- * @todo						Extend parameters to accomodate a backup image
  */
 if ( !function_exists( 'wfx_get_image' ) ) : function wfx_get_image( $args='' ) {
 

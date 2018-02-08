@@ -58,10 +58,10 @@ td,th { padding: 5px; }
 .content-center { text-align: center; }
 .content-right { text-align: right; }
 
-.first, .flush-left { margin-left: 0; padding-left: 0; }
-.last, .flush-right { margin-right: 0; padding-right: 0; }
-.top, .flush-top { margin-top: 0; padding-top: 0; }
-.bottom, .flush-bottom { margin-bottom: 0; padding-bottom: 0; }
+.first, .flush-left { margin-left: 0 !important; padding-left: 0 !important; }
+.last, .flush-right { margin-right: 0 !important; padding-right: 0 !important; }
+.top, .flush-top { margin-top: 0 !important; padding-top: 0 !important; }
+.bottom, .flush-bottom { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 
 .float-l { float: left; }
 .float-r { float: right; }

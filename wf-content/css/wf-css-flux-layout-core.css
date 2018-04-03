@@ -63,8 +63,8 @@ td,th { padding: 5px; }
 .top, .flush-top { margin-top: 0 !important; padding-top: 0 !important; }
 .bottom, .flush-bottom { margin-bottom: 0 !important; padding-bottom: 0 !important; }
 
-.float-l { float: left; }
-.float-r { float: right; }
+.float-l, .float-left { float: left; }
+.float-r, .float-right { float: right; }
 
 .clearfix:after, .container:after, .row:after, .row-column:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; overflow: hidden; }
 .clearfix, .container, .row, .row-column { display: block; }

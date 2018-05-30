@@ -426,7 +426,7 @@ class wflux_data_manage {
 	 * @param	[string] $type 			Required - Type of tags to return text/simple/headings [text]
 	 *                          		- text     		=> Sutable for wrapping inside your own block level elements - a, br, span, b, strong, i, sup, sub
 	 *                          		- textnolinks	=> Similar to 'text' param, but no links. Sutable for wrapping inside your own block level elements - br, span, b, strong, i, sup, sub
-	 *                          		- simple   		=> Similar to 'text' param, much more limited, no links or text styling tags = span, br
+	 *                          		- simple   		=> Similar to 'text' param, much more limited, no links or text styling tags = span (only class and ID allowed), br
 	 *                          		- headings 		=> Just headings, nothing else = h1, h2, h3, h4, h5, h6
 	 * @return	[array]					Allowed tags
 	 */
@@ -507,7 +507,8 @@ class wflux_data_manage {
 				$output = array(
 					'span' => array(
 						'class'=>array(),
-						'id'=>array()
+						'id'=>array(),
+						'style'=>array()
 					),
 					'br' => array(),
 					'b' => array(),
@@ -527,11 +528,13 @@ class wflux_data_manage {
 						'href'=> array(),
 						'title'=> array(),
 						'class'=>array(),
-						'id'=>array()
+						'id'=>array(),
+						'style'=>array()
 					),
 					'span' => array(
 						'class'=>array(),
-						'id'=>array()
+						'id'=>array(),
+						'style'=>array()
 					),
 					'br' => array(),
 					'b' => array(),

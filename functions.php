@@ -914,7 +914,7 @@ if ( !function_exists( 'wfx_post_class' ) ) : function wfx_post_class($args) {
  * @param	none
  */
 if ( !function_exists( 'wfx_filter_post_class' ) ) : function wfx_filter_post_class() {
-	if ( !is_admin() && !is_feed() ) {
+	if ( !is_admin() && !is_feed() && ( is_singular() || is_archive() ) ) {
 		global $wfx; $wfx->filter_post_class();
 	}
 } endif;

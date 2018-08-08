@@ -818,15 +818,15 @@ if ( !function_exists( 'wfx_display_head_title' ) ) : function wfx_display_head_
 
 /**
  * Inserts (enqueue) child theme CSS - style.css
- * BACKPAT: When using WordPress 4.1 or above add_theme_support( 'title-tag' ) is automatically used instead.
  *
  * Filters available:
  * wflux_css_theme_id - ID of file (main-theme)
  * wflux_css_theme_path - full path to file
+ * wflux_css_theme_dependencies - other CSS dependencies, allows them to load before child theme style.css (array)
  * wflux_css_theme_media - Media type
  *
  * @since	0.72
- * @version	1.1
+ * @version	2.6
  *
  * @param	none
  */

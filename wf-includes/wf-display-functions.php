@@ -358,15 +358,15 @@ class wflux_display_code extends wflux_data {
 
 	/**
 	 * Inserts (enqueue) child theme CSS - style.css
-	 * BACKPAT: When using WordPress 4.1 or above add_theme_support( 'title-tag' ) is automatically used instead.
 	 *
 	 * Filters available:
 	 * wflux_css_theme_id - ID of file (main-theme)
 	 * wflux_css_theme_path - full path to file
+	 * wflux_css_theme_dependencies - other CSS dependencies, allows them to load before child theme style.css (array)
 	 * wflux_css_theme_media - Media type
 	 *
 	 * @since	0.72
-	 * @version	1.1
+	 * @version	2.6
 	 *
 	 * @param	none
 	 */
@@ -374,10 +374,12 @@ class wflux_display_code extends wflux_data {
 		// Allow filtering
 		$id = apply_filters( 'wflux_css_theme_id', 'main-theme' );
 		$path = apply_filters( 'wflux_css_theme_path', WF_THEME_URL.'/style.css' );
+		$deps = apply_filters( 'wflux_css_theme_dependencies', false );
 		$media = apply_filters( 'wflux_css_theme_media', 'screen' );
 
-		wp_register_style( $id, $path, '', $this->wfx_mytheme_version_clean, $media );
+		wp_register_style( $id, $path, $deps, $this->wfx_mytheme_version_clean, $media );
 		wp_enqueue_style( $id );
+
 	}
 
 

@@ -24,13 +24,12 @@
  * 1  -  Core framework setup & deployment
  * 2  -  Helper functions
  * 3  -  Display functions
- * 4  -  Social functions
- * 5  -  Theme configuration functions
- * 6  -  Javascript support functions
- * 7  -  Admin functions
- * 8  -  Admin post/content functions
- * 9  -  Direct activation fallbacks
- * 10 -  WP REST API functions
+ * 4  -  Theme configuration functions
+ * 5  -  Javascript support functions
+ * 6  -  Admin functions
+ * 7  -  Admin post/content functions
+ * 8  -  Direct activation fallbacks
+ * 9  -  WP REST API functions
  *
  * DON'T HACK ME! You should NOT modify the Wonderflux theme framework to avoid issues with updates in the future.
  * View the readme for more information.
@@ -136,7 +135,6 @@ add_action( 'wfbody_before_wrapper', 'wfx_body_js_detect', 1 );
 add_action( 'the_post', 'wfx_filter_post_class', 2 );
 add_action( 'get_header', 'wfx_layout_build', 1 );
 add_action( 'get_header', 'wfx_content_width_embed', 2 );
-add_action( 'get_header', 'wfx_social_meta' );
 add_action( 'get_header', 'wfx_rwd_full_width', 2 );
 add_action( 'wf_head_meta', 'wfx_display_head_char_set', 1 );
 add_action( 'wf_head_meta', 'wfx_display_head_viewport', 2 );
@@ -1527,95 +1525,6 @@ if ( !function_exists( 'wfx_auto_text' ) ) : function wfx_auto_text($args) {
 		 #
 		 #
 
-	Social functions
-*/
-
-
-/**
- * Outputs a Google Plus 1 button.
- * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
- *
- * @since	1.1
- * @version	1.2
- *
- * @param	[string] $size			Size of social button. small/medium/standard/tall [medium]
- * @param	[string] $count			Show count of shares or not ($size=tall always shows count). no_count/show_count [show_count]
- * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
- *
- * @todo	Review code!
- */
-if ( !function_exists( 'wfx_social_google_plus_1' ) ) : function wfx_social_google_plus_1($args='') { global $wfx; $wfx->g_plus_1($args); } endif;
-
-
-/**
- * Outputs a Facebook like button with counter.
- * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
- *
- * @since	 0.931
- * @version  0.931
- *
- * @param	[string] $size			Size of social button. small/tall [small]
- * @param	[bool] $send			Show additional send button. true/false [false]
- * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
- *
- * @todo	Review code!
- */
-if ( !function_exists( 'wfx_social_facebook_like' ) ) : function wfx_social_facebook_like($args='') { global $wfx; $wfx->fb_like($args); } endif;
-
-
-/**
- * Outputs a Twitter share button with counter.
- * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
- *
- * @since	0.931
- * @version	0.931
- *
- * @param	[string] $size			Size of social button. small/tall [small]
- * @param	[string] $count			Show count of shares or not (no count only available on small). no_count/show_count [show_count]
- * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
- *
- * @todo	Review code!
- */
-if ( !function_exists( 'wfx_social_twitter_share' ) ) : function wfx_social_twitter_share($args='') { global $wfx; $wfx->twit_share($args); } endif;
-
-
-/**
- * Outputs a LinkedIn share button with counter.
- * Supports multiple inserts and asynchronously loads so that it does not block your webpage rendering.
- *
- * @since	1.0rc2
- * @version	1.0rc2
- *
- * @param	[string] $size			Size of social button. small/tall [small]
- * @param	[string] $count			Show count of shares or not (no count only available on small). no_count/show_count [show_count]
- * @param	[string] $url			URL to share - defaults to current page URL if no value supplied. Value 'home' sets url to website homepage. Supply full url for alternative eg 'http://mysite.com/cool/'. []
- *
- * @todo	Review code!
- */
-if ( !function_exists( 'wfx_social_linkedin_share' ) ) : function wfx_social_linkedin_share($args='') { global $wfx; $wfx->linkedin_share($args); } endif;
-
-
-/**
- * Inserts associated social sharing related (Open Graph) meta tags in <head> if required.
- *
- * @since	0.931
- * @version	2.3
- *
- * @param	none
- *
- */
-if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args='') { global $wfx; $wfx->social_meta($args); } endif;
-
-
-/*
-	#######
-	#
-	#
-	######
-		  #
-	#     #
-	 #####
-
 	Theme configuration functions
 */
 
@@ -1624,7 +1533,7 @@ if ( !function_exists( 'wfx_social_meta' ) ) : function wfx_social_meta($args=''
  * Creates WordPress widget areas and optionally inserts using Wonderflux hook system, plus a couple of other tricks!
  *
  * @since	0.891
- * @version	2.1
+ * @version	2.6
  *
  * @param	[string] $name			The name of the widget area (shows in admin widget editor). [Widget area x]
  * @param	[string] $description	Description of widget (shows in admin widget editor). [Drag widgets into here to include them in your site]
@@ -1667,11 +1576,11 @@ if ( !function_exists( 'wfx_background_divs' ) ) : function wfx_background_divs(
 
 
 /*
-	 #####
-	#     #
+	#######
+	#
 	#
 	######
-	#     #
+		  #
 	#     #
 	 #####
 
@@ -1719,13 +1628,13 @@ if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { gl
 
 
 /*
-	#######
-	#    #
-		#
-	   #
-	  #
-	  #
-	  #
+	 #####
+	#     #
+	#
+	######
+	#     #
+	#     #
+	 #####
 
 	Admin functions
 */
@@ -1776,13 +1685,13 @@ if ( !function_exists( 'wfx_admin_bar_files_info' ) ) : function wfx_admin_bar_f
 
 
 /*
-	 #####
-	#     #
-	#     #
-	 #####
-	#     #
-	#     #
-	 #####
+	#######
+	#    #
+		#
+	   #
+	  #
+	  #
+	  #
 
 	Admin post/content functions
 */
@@ -1809,8 +1718,8 @@ if ( !function_exists( 'wfx_remove_page_templates' ) ) : function wfx_remove_pag
 	 #####
 	#     #
 	#     #
-	 ######
-		  #
+	 #####
+	#     #
 	#     #
 	 #####
 
@@ -1943,13 +1852,13 @@ function wfx_core_insert_primary_nav() {
 
 
 /*
-	  #     ###
-	 ##    #   #
-	# #   #     #
-	  #   #     #
-	  #   #     #
-	  #    #   #
-	#####   ###
+	 #####
+	#     #
+	#     #
+	 ######
+		  #
+	#     #
+	 #####
 
 	WP REST API functions
 */

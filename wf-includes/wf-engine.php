@@ -290,14 +290,12 @@ class wflux_display_all {
 	public $wflux_display_css_do;
 	public $wflux_display_do;
 	public $wflux_display_ex_do;
-	public $wflux_display_social_do;
 
 	function __construct(){
 		$this->wflux_display_code_do = new wflux_display_code;
 		$this->wflux_display_css_do = new wflux_display_css;
 		$this->wflux_display_do = new wflux_display;
 		$this->wflux_display_ex_do = new wflux_display_extras;
-		$this->wflux_display_social_do = new wflux_display_social;
 	}
 
 	// Code functions
@@ -348,13 +346,6 @@ class wflux_display_all {
 	function build_hyperlink($args){ return $this->wflux_display_ex_do->wf_build_hyperlink($args); }
 	function array_to_delimited_string($args){ return $this->wflux_display_ex_do->wf_array_to_delimited_string($args); }
 	function auto_text($args){ return $this->wflux_display_ex_do->wf_auto_text($args); }
-
-	// Social functions
-	function g_plus_1($args){ return $this->wflux_display_social_do->wf_g_plus_1($args); }
-	function fb_like($args){ return $this->wflux_display_social_do->wf_fb_like($args); }
-	function twit_share($args){ return $this->wflux_display_social_do->wf_twit_share($args); }
-	function linkedin_share($args){ return $this->wflux_display_social_do->wf_linkedin_share($args); }
-	function social_meta($args){ return $this->wflux_display_social_do->wf_social_meta($args); }
 
 }
 

@@ -20,7 +20,7 @@ class wflux_theme_core {
 	 * Creates WordPress widget areas and optionally inserts using Wonderflux hook system, plus a couple of other tricks!
 	 *
 	 * @since	0.891
-	 * @version	2.1
+	 * @version	2.6
 	 *
 	 * @param	[string] $name			The name of the widget area (shows in admin widget editor). [Widget area x]
 	 * @param	[string] $description	Description of widget (shows in admin widget editor). [Drag widgets into here to include them in your site]
@@ -38,7 +38,7 @@ class wflux_theme_core {
 	 * @todo Review code!
 	 * @todo Deal with multiple widgets with ID's by appending number?
 	 */
-	function wf_widgets($args) {
+	function wf_widgets( $args ) {
 
 		// Need a unique id number to use in name if not set, otherwise its stormy waters!
 		$wf_widget_num = 0;
@@ -47,11 +47,11 @@ class wflux_theme_core {
 
 			// Check for name in array, if doesnt exist create a unique ID number to use for default fallback name
 			// Widgets have to have unique names otherwise WordPress borks!
-			if (!array_key_exists("name",$values)) { $wf_widget_num++; }
+			if (!array_key_exists( "name", $values ) ) { $wf_widget_num++; }
 			// Default parameters
 			$defaults = array (
-			"name" => esc_attr__('Widget area ','wonderflux') . $wf_widget_num,
-			"description" => esc_attr__('Drag widgets into here to include them in your site.','wonderflux'),
+			"name" => esc_attr__( 'Widget area ','wonderflux' ) . $wf_widget_num,
+			"description" => esc_attr__( 'Drag widgets into here to include them in your site.', 'wonderflux' ),
 			"location" => "",
 			"contain" => "div",
 			"containclass" => "widget-box",
@@ -69,45 +69,58 @@ class wflux_theme_core {
 
 			// If a specific container or title ID has been supplied, set it up ready to show
 			//If none supplied, it doesnt put an ID in at all
-			if ($containid !="") { $containid = ' id="' . esc_attr($containid) . '"'; }
+			if ( $containid !="" ) { $containid = ' id="' . esc_attr( $containid ) . '"'; }
 
-			if ($titleid !="") { $titleid = ' id="' . esc_attr($titleid) . '"'; }
+			if ( $titleid !="" ) { $titleid = ' id="' . esc_attr( $titleid ) . '"'; }
 
-			$clean_name = esc_attr( strtolower( str_replace(' ', '-', $name) ) );
+			$clean_name = esc_attr( strtolower( str_replace( ' ', '-', $name ) ) );
 
 			// Setup this widget using our options WordPress stylee
-			register_sidebar(array(
+			register_sidebar( array(
 				'name'=> $name,
 				'id'=> $clean_name,
 				'description' => $description,
-				'before_widget' => esc_attr($before) . '<' . esc_attr($contain) . ' class="'. esc_attr($containclass) . ' widget-' . esc_attr($clean_name) .'"' . esc_attr($containid) . '>',
-				'after_widget' => '</' . esc_attr($contain) . '>' . esc_attr($after),
-				'before_title' => '<' . esc_attr($titlestyle) . ' class="'. esc_attr($titleclass) .'"' . esc_attr($titleid) . '>',
-				'after_title' => '</' . esc_attr($titlestyle) . '>',
+				'before_widget' => esc_attr( $before ) . '<' . esc_attr( $contain ) . ' class="'. esc_attr( $containclass ) . ' widget-' . esc_attr( $clean_name ) .'"' . esc_attr( $containid ) . '>',
+				'after_widget' => '</' . esc_attr( $contain ) . '>' . esc_attr( $after ),
+				'before_title' => '<' . esc_attr( $titlestyle ) . ' class="'. esc_attr( $titleclass ) .'"' . esc_attr( $titleid ) . '>',
+				'after_title' => '</' . esc_attr( $titlestyle ) . '>',
 			));
 
 			// Insert the widget area using Wonderflux display hooks
 			// IMPORTANT: If you wish to insert the widget area manually into your theme supply 'my_theme_code' as the 'location' parameter.
 			// You will then need to insert your widget area using the name parameter into your theme manually using standard WordPress theme code.
 
-			if ( $location != 'my_theme_code' || empty($location) ) {
-				$priority = (is_numeric($priority)) ? $priority : 3;
-				add_action( $location, create_function( '$name', "dynamic_sidebar( '$name' );" ), $priority );
+			// Remove create_function() for PHP 7.2 compat
+			// if ( $location != 'my_theme_code' || empty( $location ) ) {
+			// 	$priority = ( is_numeric( $priority ) ) ? $priority : 3;
+			// 	add_action( $location, create_function( '$name', "dynamic_sidebar( '$name' );" ), $priority );
+			// }
+			if ( $location != 'my_theme_code' || empty( $location ) ) {
+				$priority = ( is_numeric( $priority ) ) ? $priority : 3;
+				add_action( 
+					$location, 
+					function() use ( $name ) {
+						dynamic_sidebar( $name );
+					}
+					, $priority 
+				);
 			}
 
-			// Unset ready for next
-			unset($name);
-			unset($description);
-			unset($location);
-			unset($contain);
-			unset($containclass);
-			unset($containid);
-			unset($titlestyle);
-			unset($titleclass);
-			unset($titleid);
-			unset($before);
-			unset($after);
-			unset($priority);
+			// Unset just to be sure ready for next widget!
+			unset( 
+				$name,
+				$description,
+				$location,
+				$contain,
+				$containclass,
+				$containid,
+				$titlestyle,
+				$titleclass,
+				$titleid,
+				$before,
+				$after,
+				$priority
+			);
 
 		}
 
@@ -194,7 +207,7 @@ class wflux_theme_core {
 			$this->wfx_count_bg_divs_hook = $location_out;
 
 			$container_special = array( 'container-header','container-content','container-footer' );
-			$container_type = in_array( $location,$container_special ) ? 'container' : 'wrapper';
+			$container_type = in_array( $location, $container_special ) ? 'container' : 'wrapper';
 
 			if ( !empty( $classes ) ) {
 				if ( array_key_exists( ( $this->wfx_count_bg_divs - 1 ), $classes ) ) {
@@ -202,9 +215,30 @@ class wflux_theme_core {
 				}
 			}
 
-			add_action( $open_hook, create_function( '', "echo '<div class=\"$container_type\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 1);
+			// Remove create_function() for PHP 7.2 compat
+			//add_action( $open_hook, create_function( '', "echo '<div class=\"$container_type\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 1);
+			add_action( 
+				$open_hook, 
+				function() use ( $container_type ) { 
+					echo '<div class="' 
+					. $container_type 
+					. '" id="' 
+					. $this->wfx_count_bg_divs_hook 
+					. '-bg-' 
+					. $this->wfx_count_bg_divs 
+					. '">' 
+					. "\n"; 
+				}
+				, 1
+			);
 
-			add_action( $close_hook, create_function( '', 'echo "</div>";' ), 12 );
+			// Remove create_function() for PHP 7.2 compat
+			//add_action( $close_hook, create_function( '', 'echo "</div>";' ), 12 );
+			add_action( 
+				$close_hook, 
+				function() { echo "</div>"; } 
+				, 12 
+			);
 
 		}
 

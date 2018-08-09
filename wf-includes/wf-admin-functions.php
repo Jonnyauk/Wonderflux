@@ -246,38 +246,41 @@ class wflux_admin extends wflux_data {
 
 	/**
 	* Checks in the nicest way possible what the latest version of Wonderflux is against installed version
-	* No nasty business here or anywhere in Wonderflux, move on with a warm glow in your heart!
+	* No nasty business here or anywhere in Wonderflux, big brother is not watching you.
 	* @since 0.911
-	* @updated 0.931
+	* @updated 2.6
 	*/
 	function wf_latest_version_fetch() {
 
 		// Get WP feed functionality
-		include_once(ABSPATH . WPINC . '/feed.php');
+		include_once( ABSPATH . WPINC . '/feed.php' );
 
-		// Every 2 hours
-		$update = 7200;
-
-		add_filter( 'wp_feed_cache_transient_lifetime', create_function( '$update', 'return '.$update.';' ) );
+		// Remove create_function() for PHP 7.2 compat
+		//add_filter( 'wp_feed_cache_transient_lifetime', create_function( '$update', 'return '.$update.';' ) );
+		add_filter( 
+			'wp_feed_cache_transient_lifetime', 
+			function() { 
+				return 7200;
+			}
+		);
 
 		// Fetch feed
 		$rss = fetch_feed( 'https://feeds.feedburner.com/WonderfluxVersion' );
 
-		if ( is_wp_error($rss) ) {
+		if ( is_wp_error( $rss ) ) {
 
-			echo '<p>' . esc_attr__('Sorry, update check not currently available.', 'wonderflux') . '</p>';
+			echo '<p>' . esc_attr__( 'Sorry, update check not currently available.', 'wonderflux' ) . '</p>';
 
 		} else {
 
-			// How many?
 			$items = 1;
-			$rss_items = $rss->get_items( 0, $rss->get_item_quantity($items) );
+			$rss_items = $rss->get_items( 0, $rss->get_item_quantity( $items ) );
 
 			foreach ( $rss_items as $item ) {
 				$this_update = $item->get_title();
 				$this_update_out = esc_html( $this_update );
-				return esc_attr($this_update_out);
-			}// End foreach
+				return esc_attr( $this_update_out );
+			}
 
 		}
 

@@ -261,7 +261,7 @@ class wflux_admin extends wflux_data {
 		add_filter( 'wp_feed_cache_transient_lifetime', create_function( '$update', 'return '.$update.';' ) );
 
 		// Fetch feed
-		$rss = fetch_feed( esc_url('http://feeds.feedburner.com/WonderfluxVersion') );
+		$rss = fetch_feed( 'https://feeds.feedburner.com/WonderfluxVersion' );
 
 		if ( is_wp_error($rss) ) {
 

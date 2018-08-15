@@ -217,27 +217,30 @@ class wflux_theme_core {
 
 			// Remove create_function() for PHP 7.2 compat
 			//add_action( $open_hook, create_function( '', "echo '<div class=\"$container_type\" id=\"' . '$this->wfx_count_bg_divs_hook' . '-bg-' . '$this->wfx_count_bg_divs' . '\">' . \"\n\";" ), 1);
-			add_action( 
-				$open_hook, 
-				function() use ( $container_type ) { 
-					echo '<div class="' 
-					. $container_type 
+
+			$div_counter = $this->wfx_count_bg_divs;
+
+			add_action(
+				$open_hook,
+				function() use ( $container_type, $location_out, $div_counter ) {
+					echo '<div class="'
+					. $container_type
 					. '" id="' 
-					. $this->wfx_count_bg_divs_hook 
-					. '-bg-' 
-					. $this->wfx_count_bg_divs 
-					. '">' 
-					. "\n"; 
+					. $location_out
+					. '-bg-'
+					. $div_counter
+					. '">'
+					. "\n";
 				}
 				, 1
 			);
 
 			// Remove create_function() for PHP 7.2 compat
 			//add_action( $close_hook, create_function( '', 'echo "</div>";' ), 12 );
-			add_action( 
-				$close_hook, 
-				function() { echo "</div>"; } 
-				, 12 
+			add_action(
+				$close_hook,
+				function() { echo "</div>"; }
+				, 12
 			);
 
 		}

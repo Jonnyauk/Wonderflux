@@ -1305,9 +1305,14 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
  *								- 'post_thumbnail' for post WP featured image
  *								- 'attachment'
  * @param  [string] $fallback	Path to fallback image INSIDE your theme folder
+ * @param  [string] $return		Type of data to return:
+ * 								- 'path' default behaviour, just returns string of image path (if valid)
+ *								- 'detail' returns array with keys of 'path', 'width' and 'height' of image
  * @param  [string] $echo		Echo or return output. Y/N [N]
  *
- * @return	[mixed]				Path to image/false. Path is checked if valid URL, but not escaped - so remember your esc_url()!
+ * @return	[mixed]				$return = 'path' returns string with URL of image (checked if valid URL, but not escaped - so remember your esc_url()!)
+ *                          	$return = 'detail' returns array (see $data param documentation)
+ *                          	Returns false if invalid image/data
  *
  */
 if ( !function_exists( 'wfx_get_image' ) ) : function wfx_get_image( $args='' ) {

@@ -2307,8 +2307,13 @@ class wflux_display_extras {
 	 *								- 'post_thumbnail' for post WP featured image
 	 *								- 'attachment'
 	 * @param  [string] $fallback	Path to fallback image INSIDE your theme folder
+	 * @param  [string] $return		Type of data to return:
+	 * 								- 'path' default behaviour, just returns string of image path (if valid)
+	 *								- 'detail' returns array with keys of 'path', 'width' and 'height' of image
 	 *
-	 * @return	[mixed]				Path to image/false. Path is checked if valid URL, but not escaped - so remember your esc_url()!
+	 * @return	[mixed]				$return = 'path' returns string with URL of image (checked if valid URL, but not escaped - so remember your esc_url()!)
+	 *                          	$return = 'detail' returns array (see $data param documentation)
+	 *                          	Returns false if invalid image/data
 	 *
 	 */
 	function wf_get_image( $args ) {
@@ -2324,7 +2329,8 @@ class wflux_display_extras {
 			'id'		=> '',
 			'size'		=> 'thumbnail',
 			'field'		=> 'post_meta',
-			'fallback'	=> ''
+			'fallback'	=> '',
+			'return'	=> 'path'
 		);
 
 		$args = wp_parse_args( $args, $defaults );
@@ -2336,6 +2342,8 @@ class wflux_display_extras {
 
 		$data = false;
 		$img_url = false;
+		$img_w = false;
+		$img_h = false;
 
 		switch( $data_type ) {
 
@@ -2396,7 +2404,7 @@ class wflux_display_extras {
 			if ( is_array( $size ) ) {
 
 				$img_orgin = wp_get_attachment_image_src( $data, 'original', false );
-				//wfx_debug($img_tn_array_format);
+
 				if ( array_key_exists( 1, $img_orgin ) && array_key_exists( 2, $img_orgin ) && is_numeric( $img_orgin[1] ) && is_numeric( $img_orgin[2] ) ) {
 
 					$img_format = ( $img_orgin[1] < $img_orgin[2] ) ? 'portrait' : 'landscape';
@@ -2421,9 +2429,27 @@ class wflux_display_extras {
 			$img_url = ( $img_url != false && wfx_valid_url( $img_url ) ) ? $img_url : false;
 			$img_url = ( wfx_ends_with( 'media/default.png', $img_url ) ) ? false : $img_url;
 
+			// Build extra data for returned array if required
+			if ( $return == 'detail' && $img_url !== false ) {
+
+				$img_w = ( array_key_exists( 1, $img_tn_array ) && is_numeric( $img_tn_array[1] ) ) ? $img_tn_array[1] : '';
+				$img_h = ( array_key_exists( 2, $img_tn_array ) && is_numeric( $img_tn_array[2] ) ) ? $img_tn_array[2] : '';
+
+			}
+
 		}
 
 		$img_url = ( empty( $img_url ) && !empty( $fallback ) ) ? WF_THEME_URL . '/' . $fallback : $img_url;
+
+		if ( $return == 'detail' && $img_url !== false ) {
+
+			$img_url = array(
+				'url'		=> $img_url,
+				'width'		=> $img_w,
+				'height'	=> $img_h
+			);
+
+		}
 
 		return $img_url;
 

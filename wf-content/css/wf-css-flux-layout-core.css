@@ -1,7 +1,7 @@
 /**
  *
  * Flux Layout - core reset and base rules
- * Version 2.0
+ * Version 2.1
  *
  * A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
  * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
@@ -16,19 +16,20 @@
  *
  */
 
-/*** normalize.css v3.0.2 ***/
+/* @group normalize.css v3.0.2 */
 
 html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block;}audio,canvas,progress,video{display:inline-block;vertical-align:baseline;}audio:not([controls]){display:none;height:0;}[hidden],template{display:none;}a{background-color:transparent;}a:active,a:hover{outline:0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}h1{font-size:2em;margin:0.67em 0;}mark{background:#ff0;color:#000;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:1em 40px;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}pre{overflow:auto;}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em;}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0;}button{overflow:visible;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}input{line-height:normal;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}textarea{overflow:auto;}optgroup{font-weight:bold;}table{border-collapse:collapse;border-spacing:0;}td,th{padding:0;}
 
-/*** Additional resets ***/
+/* @end */
 
-.no-decoration, a.no-decoration:hover { text-decoration: none; }
 
-/* Force box-sizing */
+/* @group Overrides for normalise.css and other text elements */
+
+/*** Force box-sizing ***/
 html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
 
-/* A few overrides for normalise.css and other text elements */
+.no-decoration, a.no-decoration:hover { text-decoration: none; }
 h1, h2, h3, h4, h5, h6 { margin-top: 0; -ms-word-wrap: break-word; word-wrap: break-word; font-weight: normal; font-style: normal; }
 p { margin-top: 0; }
 ul, ol, dl { margin: 0em 1em 1em; padding: 0 0 1em; }
@@ -37,7 +38,36 @@ li, dt, dd { padding: 0; }
 td,th { padding: 5px; }
 .uppercase { text-transform: uppercase; }
 
-/*** Containers and alignment ***/
+/* @end */
+
+
+/* @group Special auto-numbered lists */
+
+ol.nested-list { 
+	counter-reset: item;
+	padding-bottom: 0;
+	margin-bottom: 20px;
+}
+
+ol.nested-list li {
+    display: block;
+    position: relative;
+    margin-bottom: 0px;
+}
+
+ol.nested-list li ol li { margin-top: 10px; }
+
+ol.nested-list li:before {
+    content: counters(item, ".");
+    counter-increment: item;
+    position: absolute;
+    margin-right: 100%;
+    right: 10px;
+}
+
+/* @end */
+
+/* @group Containers and alignment */
 
 .pad-tiny { margin: 0; padding: 5px; }
 .pad-small { margin: 0; padding: 10px; }
@@ -72,7 +102,6 @@ td,th { padding: 5px; }
 .clearfix:before, .clearfix:after, .container:before, .container:after, .row:before, .row:after, .row-column:before, .row-column:after { content:""; display:table; }
 
 /*** Viewport height ***/
-
 .height-full { height: 100vh; }
 .height-half { height: 50vh; }
 .height-third { height: 33.3333vh; }
@@ -82,20 +111,26 @@ td,th { padding: 5px; }
 .height-seventh { height: 14.2587vh; }
 .height-eighth { height: 12.5vh; }
 
-/*** Image handling ***/
+/* @end */
 
-/* Fluid images for posts, comments, and widgets */
+
+/* @group Image handling */
+
+/*** Fluid images for posts, comments, and widgets ***/
 .entry-content img, .entry-summary img, .comment-content img, .widget img, .wp-caption, .fluid-content img { max-width: 100%; }
 
-/* Make sure images with WordPress-added height and width attributes are scaled correctly */
+/*** Make sure images with WordPress-added height and width attributes are scaled correctly ***/
 .entry-content img, .entry-summary img, .comment-content img[height], img[class*="align"], img[class*="wp-image-"], img[class*="attachment-"], .fluid-content img { height: auto; }
 img.size-full, img.size-large, img.wp-post-image, img.fluid-width { height: auto; max-width: 100%; }
 
-/* Background image fills */
+/*** Background image fills ***/
 .img-fill { -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat; background-position: center center; }
 .img-fill-contain { -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain; background-repeat: no-repeat; background-position: center center; }
 
-/*** Third-party services ***/
+/* @end */
+
+
+/* @group Third-party services */
 
 /**
  * Google Maps breaks if 'max-width: 100%' acts upon it
@@ -145,26 +180,29 @@ img.size-full, img.size-large, img.wp-post-image, img.fluid-width { height: auto
 	height: 100%;
 }
 
-/*** WordPress Specific ***/
+/* @end */
 
-/* Media */
+
+/* @group WordPress Specific */
+
+/*** Media ***/
 
 .wp-caption { font-size: 0.9em; }
 .gallery-caption { font-size: 0.9em; }
 .wp-caption-text { font-weight: bold; }
 
-/* Comments */
+/*** Comments ***/
 
 .bypostauthor { font-weight: bold; }
 ol.commentlist ul { list-style: none; }
 ol.commentlist p { margin-bottom: 0; }
 .comment-body { margin-bottom: 15px; }
 
-/* Posts */
+/*** Posts ***/
 
 .sticky { font-weight: bold; }
 
-/* Text meant only for screen readers */
+/*** Screen readers ***/
 
 .screen-reader-text {
     clip: rect(1px, 1px, 1px, 1px);
@@ -193,3 +231,5 @@ ol.commentlist p { margin-bottom: 0; }
     width: auto;
     z-index: 100000; /* Above WP toolbar. */
 }
+
+/* @end */

@@ -43,7 +43,7 @@ td,th { padding: 5px; }
 
 /* @group Special auto-numbered lists */
 
-ol.nested-list {
+ol.nested-list { 
     counter-reset: item;
     padding-bottom: 0;
     margin-bottom: 20px;
@@ -53,6 +53,7 @@ ol.nested-list li {
     display: block;
     position: relative;
     margin-bottom: 0px;
+    padding-left: 1em;
 }
 
 ol.nested-list li ol li { margin-top: 10px; }
@@ -62,7 +63,7 @@ ol.nested-list li:before {
     counter-increment: item;
     position: absolute;
     margin-right: 100%;
-    right: 10px;
+    right: 0;
 }
 
 ol.nested-list-alpha li { counter-increment: subitem; }

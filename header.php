@@ -39,6 +39,8 @@ wf_after_head(); //WF display hook
 
 <?php
 
+wp_body_open(); // WordPress v5.2 new hook
+
 wfbody_before_wrapper(); //WF display hook
 wfheader_before_wrapper(); //WF display hook
 

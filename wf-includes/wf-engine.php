@@ -1,9 +1,10 @@
 <?php
-load_template(get_template_directory() . '/wf-config.php');
-load_template(WF_INCLUDES_DIR . '/wf-version.php');
-load_template(WF_INCLUDES_DIR . '/wf-helper-functions.php');
-load_template(WF_INCLUDES_DIR . '/wf-data-management.php');
-load_template(WF_INCLUDES_DIR . '/wf-theme-support.php');
+load_template( get_template_directory() . '/wf-config.php' );
+load_template( WF_INCLUDES_DIR . '/wf-version.php' );
+load_template( WF_INCLUDES_DIR . '/wf-helper-functions.php' );
+load_template( WF_INCLUDES_DIR . '/wf-data-management.php' );
+load_template( WF_INCLUDES_DIR . '/wf-theme-support.php' );
+load_template( WF_INCLUDES_DIR . '/wf-menu-walkers.php' );
 
 
 //// FUNCTIONALITY REQUIRED BEFORE INIT HOOK

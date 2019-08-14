@@ -2376,7 +2376,6 @@ class wflux_display_extras {
 					if ( !empty( $post_id ) ) {
 
 						$data = get_post_meta( $post_id, esc_attr( $id ), true );
-						wfx_debug($post_id, 'INSIDE FUNCTION');
 
 					} else {
 

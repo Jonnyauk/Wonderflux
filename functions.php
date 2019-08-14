@@ -1294,7 +1294,8 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
  * @since	2.6
  * @version	2.6
  *
- * @param  [string] $id			Post ID, ACF field key or options table key (see $field param)
+ * @param  [string] $id			Post ID or database field key (options/postmeta/ACF) (see $field param)
+ * @param  [integer] $post_id	Post ID when using database field key for $id
  * @param  [string] $size		Size of image to fetch (in-built or custom image size)
  *  							NOTE: Set as array to fetch different images for landscape[0], portrait[1] or square[2] depending upon original format of image
  * 								NOTE: If you set an array, YOU MUST supply 3 values in array, even if they are all the same definitions!!
@@ -1308,7 +1309,6 @@ if ( !function_exists( 'wfx_get_attachments' ) ) : function wfx_get_attachments(
  * @param  [string] $return		Type of data to return:
  * 								- 'path' default behaviour, just returns string of image path (if valid)
  *								- 'detail' returns array with keys of 'path', 'width' and 'height' of image
- * @param  [string] $echo		Echo or return output. Y/N [N]
  *
  * @return	[mixed]				$return = 'path' returns string with URL of image (checked if valid URL, but not escaped - so remember your esc_url()!)
  *                          	$return = 'detail' returns array (see $data param documentation)

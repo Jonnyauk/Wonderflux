@@ -2296,7 +2296,8 @@ class wflux_display_extras {
 	 * @since	2.6
 	 * @version	2.6
 	 *
-	 * @param  [string] $id			Post ID, ACF field key or options table key (see $field param)
+	 * @param  [string] $id			Post ID or database field key (options/postmeta/ACF) (see $field param)
+	 * @param  [integer] $post_id	Post ID when using database field key for $id
 	 * @param  [string] $size		Size of image to fetch (in-built or custom image size)
 	 *  							NOTE: Set as array to fetch different images for landscape[0], portrait[1] or square[2] depending upon original format of image
 	 * 								NOTE: If you set an array, YOU MUST supply 3 values in array, even if they are all the same definitions!!
@@ -2327,6 +2328,7 @@ class wflux_display_extras {
 
 		$defaults = array (
 			'id'		=> '',
+			'post_id'	=> '',
 			'size'		=> 'thumbnail',
 			'field'		=> 'post_meta',
 			'fallback'	=> '',
@@ -2371,7 +2373,16 @@ class wflux_display_extras {
 
 				if ( $field == 'post_meta' ) {
 
-					$data = get_post_meta( get_the_ID(), esc_attr( $id ), true );
+					if ( !empty( $post_id ) ) {
+
+						$data = get_post_meta( $post_id, esc_attr( $id ), true );
+						wfx_debug($post_id, 'INSIDE FUNCTION');
+
+					} else {
+
+						$data = get_post_meta( get_the_ID(), esc_attr( $id ), true );
+					}
+
 
 				} elseif ( $field == 'option' ) {
 

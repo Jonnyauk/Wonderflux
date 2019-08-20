@@ -39,7 +39,10 @@ wf_after_head(); //WF display hook
 
 <?php
 
-wp_body_open(); // WordPress v5.2 new hook
+// BACKPAT: wp_body_open() new in WordPress 5.2
+if ( WF_WORDPRESS_VERSION >= 5.2 ) {
+	wp_body_open();
+}
 
 wfbody_before_wrapper(); //WF display hook
 wfheader_before_wrapper(); //WF display hook

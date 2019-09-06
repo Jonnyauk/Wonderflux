@@ -11,7 +11,7 @@
  * NOTE: Requires a-little JS to do anything 'pretty'!
  *
  * Filters available (in addition to all the normal WP ones):
- * wflux_menu_parent_d_text - array, has 3 keys: 'prepend', 'text' (default: link text), 'append' (default: ' Overview')
+ * wflux_menu_parent_d_text - array, has 3 keys: 'prepend' (default: ''), 'text' (default: link text set in WP menu), 'append' (default: ' Overview')
  *
  * @since 2.6
  * @version 2.6
@@ -291,9 +291,9 @@ class wfx_walker_parent_duplicate extends Walker_Nav_Menu {
 				//// Text
 				$n_args = array(
 
-					'prepend'	=>	' Overview',
+					'prepend'	=>	'',
 					'text'		=>	$n_data_clean[ 'title' ],
-					'append'	=>	''
+					'append'	=>	' Overview'
 
 				);
 

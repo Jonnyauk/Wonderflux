@@ -20,7 +20,7 @@
  * @return  [string]        Output of wp_nav_menu() param: 'walker' => new mywfx_walker_parent_duplicate
  *
  */
-class mywfx_walker_parent_duplicate extends Walker_Nav_Menu {
+class wfx_walker_parent_duplicate extends Walker_Nav_Menu {
 
 	private $this_node; /* Used to store post link setup */
 

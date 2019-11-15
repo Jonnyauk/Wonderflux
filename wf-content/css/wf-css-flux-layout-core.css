@@ -131,6 +131,10 @@ img.size-full, img.size-large, img.wp-post-image, img.fluid-width { height: auto
 /*** Background image fills ***/
 .img-fill { -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; background-repeat: no-repeat; background-position: center center; }
 .img-fill-contain { -webkit-background-size: contain; -moz-background-size: contain; -o-background-size: contain; background-size: contain; background-repeat: no-repeat; background-position: center center; }
+.img-fill.img-fill-bottom, .img-fill-contain.img-fill-bottom { background-position: center bottom; }
+.img-fill.img-fill-top, .img-fill-contain.img-fill-top { background-position: center top; }
+.img-fill.img-fill-left, .img-fill-contain.img-fill-left { background-position: left center; }
+.img-fill.img-fill-right, .img-fill-contain.img-fill-right { background-position: right center; }
 
 /* @end */
 

@@ -1,35 +1,36 @@
 /**
  *
- * Flux Layout - core reset and base rules
- * Version 2.1
+ * Flux Layout - Dynamic CSS layout system core
+ * Version 2.2
  *
  * A dynamic percentage based layout engine - https://github.com/Jonnyauk/flux-layout
  * Built for the Wonderflux theme framework - https://github.com/Jonnyauk/Wonderflux
  *
  * Free to use on any project and released under the GPLv2 license
- * Created by Jonny Allbut Copyright (c)2014-2016. Exceptions include, but are not limited to:
- * Normalize - https://git.io/normalize - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
- * How To Clear Floats Without Structural Markup by PiE
+ * Created by Jonny Allbut Copyright (c)2014-2020. Exceptions include, but are not limited to:
+ * - Normalize - github.com/necolas/normalize.css - MIT License - project by Nicolas Gallagher, co-created with Jonathan Neal
+ * - How To Clear Floats Without Structural Markup by PiE
  *
  * @package Wonderflux
  * @since Wonderflux 2.0
  *
  */
 
-/* @group normalize.css v3.0.2 */
 
-html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;}body{margin:0;}article,aside,details,figcaption,figure,footer,header,hgroup,main,menu,nav,section,summary{display:block;}audio,canvas,progress,video{display:inline-block;vertical-align:baseline;}audio:not([controls]){display:none;height:0;}[hidden],template{display:none;}a{background-color:transparent;}a:active,a:hover{outline:0;}abbr[title]{border-bottom:1px dotted;}b,strong{font-weight:bold;}dfn{font-style:italic;}h1{font-size:2em;margin:0.67em 0;}mark{background:#ff0;color:#000;}small{font-size:80%;}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline;}sup{top:-0.5em;}sub{bottom:-0.25em;}img{border:0;}svg:not(:root){overflow:hidden;}figure{margin:1em 40px;}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0;}pre{overflow:auto;}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em;}button,input,optgroup,select,textarea{color:inherit;font:inherit;margin:0;}button{overflow:visible;}button,select{text-transform:none;}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer;}button[disabled],html input[disabled]{cursor:default;}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0;}input{line-height:normal;}input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0;}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height:auto;}input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none;}fieldset{border:1px solid #c0c0c0;margin:0 2px;padding:0.35em 0.625em 0.75em;}legend{border:0;padding:0;}textarea{overflow:auto;}optgroup{font-weight:bold;}table{border-collapse:collapse;border-spacing:0;}td,th{padding:0;}
+/* @group Core reset and base rules */
+
+/* @group normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}template{display:none}[hidden]{display:none}
 
 /* @end */
 
+/* @group normalise.css extensions */
 
-/* @group Overrides for normalise.css and other text elements */
-
-/*** Force box-sizing ***/
 html { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
+img { vertical-align: middle; } /* Fix pesky space at bottom of images */
 
-.no-decoration, a.no-decoration:hover { text-decoration: none; }
 h1, h2, h3, h4, h5, h6 { margin-top: 0; -ms-word-wrap: break-word; word-wrap: break-word; font-weight: normal; font-style: normal; }
 p { margin-top: 0; }
 ul, ol, dl { margin: 0em 1em 1em; padding: 0 0 1em; }
@@ -38,12 +39,16 @@ li, dt, dd { padding: 0; }
 td,th { padding: 5px; }
 .uppercase { text-transform: uppercase; }
 
+.no-decoration, a.no-decoration:hover { text-decoration: none; }
+
+/* @end */
+
 /* @end */
 
 
-/* @group Special auto-numbered lists */
+/* @group Auto-numbered lists */
 
-ol.nested-list { 
+ol.nested-list {
     counter-reset: item;
     padding-bottom: 0;
     margin-bottom: 20px;
@@ -123,8 +128,6 @@ ol.nested-list-alpha li:before { content: counter(subitem, lower-alpha); }
 
 /*** Fluid images for posts, comments, and widgets ***/
 .entry-content img, .entry-summary img, .comment-content img, .widget img, .wp-caption, .fluid-content img { max-width: 100%; }
-
-/*** Make sure images with WordPress-added height and width attributes are scaled correctly ***/
 .entry-content img, .entry-summary img, .comment-content img[height], img[class*="align"], img[class*="wp-image-"], img[class*="attachment-"], .fluid-content img { height: auto; }
 img.size-full, img.size-large, img.wp-post-image, img.fluid-width { height: auto; max-width: 100%; }
 

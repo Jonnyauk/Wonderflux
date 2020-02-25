@@ -929,79 +929,169 @@ class wflux_helper {
 		// Check against top level admin
 		if ( $admin_only && !is_super_admin() ) return;
 		// Check against user role
-		if ( $role && !current_user_can($role) ) return;
+		if ( $role && !current_user_can( $role ) ) return;
 		// Check against user ID
-		if ( is_integer($id) && get_current_user_id() != $id ) return;
+		if ( is_integer( $id ) && get_current_user_id() != $id ) return;
 
-		$o = '<div style="color:#000; padding:5px; overflow:auto; border: 4px solid #ff0a0a; background-color: #fec9c9;" class="wfx_debug_output">';
+		if ( WF_PRO_MODE === false ){
 
-		$o .= ( !empty($label) ) ? '<pre style="color:#ff0a0a;"><strong>' . esc_html($label) . '</strong></pre>' : '';
-
-		if ( $input === 'wp_query' ) {
-
-			$input_type = 'WordPress core $wp_query';
-			global $wp_query;
-			$input = $wp_query;
-
-		} elseif ( $input === 'wp_posts' ) {
-
-			$input_type = 'WordPress core $posts';
-			global $posts;
-			$input = $posts;
-
-		} elseif ( $input === 'wp_queried' ) {
-
-			$input_type = 'Currently queried object';
-			$input = get_queried_object();
-
-		} elseif ( $input === 'wp_all_taxonomies' ) {
-
-			$input_type = 'All taxonomies';
-			global $wp_taxonomies;
-			$input = $wp_taxonomies;
+			$empty_msg = array(
+				'Hope that was deliberate',
+				'You type I\'ll drive',
+				'It may look like nothing; but...',
+				'Oh really, it\'s nothing',
+				'Oooops!',
+				'Meh',
+				';()',
+				'=(',
+				':(',
+				'It\'s only code',
+				'Think of the kittens',
+				'Sorry captain',
+				'I\'m good, but not that good',
+				'I\'ll do better next time',
+				'Debug time',
+				'Maybe next time',
+				'Trouble at mill',
+				'Drink more water',
+				'Meh, could be worse',
+				'Have a snack!',
+				'You\'ll get it, I didn\'t!',
+				'Gremlins Tip: Don\'t feed after midnight',
+				'Gremlins Tip: Don\'t get wet',
+				'Gremlins Tip: Don\'t expose to sunlight'
+			);
 
 		} else {
 
-			$input_type = gettype($input);
+			$empty_msg = 'NONE';
 
 		}
 
-		$o .= '<pre><strong>' . esc_html__( 'Debug output for data type:', 'wonderflux' ) . '</strong> ' . $input_type . '</pre>';
+		$empty_msg = ( is_array( $empty_msg ) ) ? 'NONE (' . $empty_msg[ array_rand( $empty_msg ) ] . ')' : $empty_msg;
 
-		if ( is_bool($input) ){
+		$pre_class = ' class="flush-top flush-bottom"';
 
-			$o .= '<pre>';
+		$file = false;
+	    $backtrace =  debug_backtrace();
+	    $include_functions = array( 'include', 'include_once', 'require', 'require_once' );
+
+		// File
+		for ( $index = 0; $index < count( $backtrace ); $index++ ) {
+
+	        $function = $backtrace[ $index ][ 'function' ];
+
+	        if ( in_array( $function, $include_functions ) ) {
+	            $file = $backtrace[ $index ][ 'file' ];
+	            break;
+	        }
+
+	    }
+
+		// Line number
+		foreach ( $backtrace as $k => $v ) {
+
+			if ( empty( $caller ) && isset( $v[ 'function' ] ) && $v[ 'function' ] == 'wfx_debug' ) {
+				$caller = $v[ 'file' ];
+				$caller_line = $v[ 'line' ];
+			}
+
+		}
+
+		$o = '<div style="color:#000; padding:0.3em 0.25% 0.4% 0.25%; overflow:auto; border: 5px inset #EA4444; background-color: #f7caca; box-shadow: inset 0px 0px 5px 0px rgba(255,0,0,0.8);" class="wfx_debug_output meta">';
+
+		$o .= '<p style="color:#C73A3A; font-weight: bold; margin-bottom:0; font-size:0.9em;">&#10094; ' . esc_html( $caller_line ) . ' &#10095; ' . esc_html( basename($caller) ) . '</p>';
+
+		$o .= ( !empty( $label ) ) ? '<pre style="margin-top:0; padding-bottom:0.5em; margin-bottom:0.4em; border-bottom: 1px solid #C73A3A;"><span style="color:#C73A3A; font-weight: bold;">' . esc_html( $label ) . ' </span>'/*'</pre>'*/ : '<pre style="margin-bottom:0.5em;">';
+
+		if ( empty( $input ) ) {
+
+			$input_type = '<span style="color:#C73A3A; font-weight: bold;">' . esc_html( $empty_msg ) . '</span>';
+
+		} else {
+
+			if ( $input === 'wp_query' ) {
+
+				$input_type = 'WordPress core $wp_query';
+				global $wp_query;
+				$input = $wp_query;
+
+			} elseif ( $input === 'wp_posts' ) {
+
+				$input_type = 'WordPress core $posts';
+				global $posts;
+				$input = $posts;
+
+			} elseif ( $input === 'wp_queried' ) {
+
+				$input_type = 'Currently queried object';
+				$input = get_queried_object();
+
+			} elseif ( $input === 'wp_all_taxonomies' ) {
+
+				$input_type = 'All taxonomies';
+				global $wp_taxonomies;
+				$input = $wp_taxonomies;
+
+			} else {
+
+				$input_type = gettype( $input );
+
+			}
+
+		}
+
+		$o .= /*'<pre' . $pre_class . '>'<strong>' . */esc_html__( 'Data type:', 'wonderflux' ) . '<strong> ' . $input_type . '</strong> '. '</pre>';
+
+		if ( is_bool( $input ) ){
+
+			$o .= '<pre' . $pre_class . '>';
 			$o .= ( $input === true ) ? 'true' : 'false';
 			$o .= '</pre>';
 
 		} elseif ( is_numeric( $input ) && $input === 0 ) {
 
-			$o .= '<pre>';
+			$o .= '<pre' . $pre_class . '>';
 			$o .= '0 ' . esc_html__('(zero)', 'wonderflux');
 			$o .= '</pre>';
 
-		} elseif ( !empty($input) ){
+		} elseif ( !empty( $input ) ){
 
-			if ( is_array($input) || is_object($input) ) {
+			if ( is_array( $input ) || is_object( $input ) ) {
 
-	   			$o .= '<pre>' . esc_html( print_r($input,true) ) . '</pre>';
+	   			$o .= '<pre' . $pre_class . '>' . esc_html( print_r( $input, true ) ) . '</pre>';
 
 			} else {
 
-				$o .= '<p style="color:#770000;">' . $input . '</p>';
+				$o .= '<p style="color:#770000; margin-bottom:0;">' . $input . '</p>';
 
 			}
 
 		} else {
 
-			$o .= '<pre>' . esc_html__('No data returned or null', 'wonderflux') . '</pre>';
+			$o .= '<pre' . $pre_class . '>' . esc_html__( 'No data returned or null', 'wonderflux' ) . '</pre>';
 
 		}
 
 		$o .= '</div>';
 
-		echo $o;
-
+		echo "\n";
+		echo '<!-- ------------ -->';
+		echo "\n";
+		echo '<!-- ---------------- -->';
+		echo "\n";
+		echo '<!-- -------------------- -->';
+		echo "\n";
+		echo '<!-- -- --- ---- ' . esc_html( $label ) . ' DEBUG START ---- --- -- -->';
+		echo "\n\n$o\n\n";
+		echo '<!-- -- --- ---- ' . esc_html( $label ) . ' DEBUG END ---- --- -- -->';
+		echo "\n";
+		echo '<!-- -------------------- -->';
+		echo "\n";
+		echo '<!-- ---------------- -->';
+		echo "\n";
+		echo '<!-- ------------ -->';
+		echo "\n\n";
 	}
 
 
@@ -1034,7 +1124,7 @@ class wflux_helper {
 	/**
 	 * Reveals all Wonderflux hooks available in current view.
 	 *
-	 * When logged in as a user has capability of manage_options (can be override with wflux_debug_show_hooks filter) 
+	 * When logged in as a user has capability of manage_options (can be override with wflux_debug_show_hooks filter)
 	 * and WF_DEBUG constant defined as true, this plugin reveals the location of all relevant Wonderflux display hooks within your theme.
 	 *
 	 * Filters available:

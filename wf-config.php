@@ -23,4 +23,5 @@ if ( !defined('WF_THEME_FRAMEWORK_REPLACE') ) { define( 'WF_THEME_FRAMEWORK_REPL
 if ( !defined('WF_THEME_FRAMEWORK_NONE') ) { define( 'WF_THEME_FRAMEWORK_NONE', false ); }
 
 if ( !defined('WF_DEBUG') ) { define( 'WF_DEBUG', false ); }
+if ( !defined('WF_PRO_MODE') ) { define( 'WF_PRO_MODE', true ); }
 ?>

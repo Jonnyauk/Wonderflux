@@ -65,6 +65,7 @@ pre,code,tt { font: 1em 'andale mono', 'lucida console', monospace; line-height:
 a, a:active { outline: none; }
 a, a:focus { -moz-outline-style: none; }
 a img { border: none; }
+.no-decoration, a.no-decoration:hover { text-decoration: none; }
 
 
 /*** Forms ***/

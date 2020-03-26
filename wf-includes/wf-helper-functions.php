@@ -767,10 +767,11 @@ class wflux_helper {
 
 
 	/**
-	 * Gets current page 'depth' when using parent/child/grandchild etc page structure.
+	 * Gets current page/post 'depth' when using parent/child/grandchild etc page structure.
+	 * NOTE: Works for any hierarchical post type, not just pages!
 	 *
 	 * @since	0.86
-	 * @version	0.92
+	 * @version	2.6
 	 *
 	 * @param	[int] $start 			Where you would like to start the depth countr from [0]
 	 * @param	[string] $show_all 		Return root level on homepage and search - Y/N [N]
@@ -786,18 +787,18 @@ class wflux_helper {
 		$args = wp_parse_args( $args, $defaults );
 		extract( $args, EXTR_SKIP );
 
-		$depth = ($start == 0) ? 0 : 1;
-		$show_all = ($show_all == 'N') ? 'N' : 'Y';
+		$depth = ( $start == 0 ) ? 0 : 1;
+		$show_all = ( $show_all == 'N' ) ? 'N' : 'Y';
 
 		// Stops errors when this is run in invalid location
-		if (is_page() && (!is_home() || !is_front_page()) ) {
+		if ( is_singular() && ( !is_home() || !is_front_page() ) ) {
 
 			global $wp_query;
 			$object = $wp_query->get_queried_object();
-			$parent_id  = $object->post_parent;
+			$parent_id = $object->post_parent;
 
 			while ($parent_id > 0) {
-				$page = get_page($parent_id);
+				$page = get_page( $parent_id );
 				$parent_id = $page->post_parent;
 				$depth++;
 			}

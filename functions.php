@@ -315,7 +315,7 @@ if ( !function_exists( 'wfx_get_template_part' ) ) : function wfx_get_template_p
  * Gets user role of logged-in user.
  * IMPORTANT - Used internally by Wonderflux.
  *
- * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+ * BACKPAT: When using WordPress 4.5 or above wp_get_current_user()
  * is used instead of get_currentuserinfo() (function deprecated)
  *
  * @since	0.62
@@ -345,13 +345,14 @@ if ( !function_exists( 'wfx_user_role' ) ) : function wfx_user_role($args) {
 
 
 /**
- * Gets current page 'depth' when using parent/child/grandchild etc page structure.
+ * Gets current page/post 'depth' when using parent/child/grandchild etc page structure.
+ * NOTE: Works for any hierarchical post type, not just pages!
  *
  * @since	0.86
- * @version	0.92
+ * @version	2.6
  *
  * @param	[int] $start 			Where you would like to start the depth countr from [0]
- * @param	[string] $show_all 		Return root level on homepage and search. Y/N [N]
+ * @param	[string] $show_all 		Return root level on homepage and search - Y/N [N]
  * @return	[int]					Integer representing depth of page
  */
 if ( !function_exists( 'wfx_page_depth' ) ) : function wfx_page_depth($args) { global $wfx_helper; return $wfx_helper->page_depth($args); } endif;
@@ -447,7 +448,7 @@ if ( !function_exists( 'wfx_debug' ) ) : function wfx_debug($input='',$label='',
 /**
  * Reveals all Wonderflux hooks available in current view.
  *
- * When logged in as a user has capability of manage_options (can be override with wflux_debug_show_hooks filter) 
+ * When logged in as a user has capability of manage_options (can be override with wflux_debug_show_hooks filter)
  * and WF_DEBUG constant defined as true, this plugin reveals the location of all relevant Wonderflux display hooks within your theme.
  *
  * Filters available:
@@ -1179,7 +1180,7 @@ if ( !function_exists( 'wfx_get_single_content' ) ) : function wfx_get_single_co
  * Adds admin/editing links.
  * Creates un-ordered list inside an optional div.
  *
- * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+ * BACKPAT: When using WordPress 4.5 or above wp_get_current_user()
  * is used instead of get_currentuserinfo() (function deprecated)
  *
  * @since	0.85
@@ -1648,7 +1649,7 @@ if ( !function_exists( 'wfx_js_cycle' ) ) : function wfx_js_cycle($args='') { gl
 /**
  * Adds Wonderflux admin menus, registers settings and setsup contextual help.
  *
- * BACKPAT: When using WordPress 4.5 or above wp_get_current_user() 
+ * BACKPAT: When using WordPress 4.5 or above wp_get_current_user()
  * is used instead of get_currentuserinfo() (function deprecated)
  *
  * @since	0.93

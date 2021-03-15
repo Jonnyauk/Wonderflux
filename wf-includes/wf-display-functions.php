@@ -2149,15 +2149,15 @@ class wflux_display_extras {
 
 		// Cleanup variables, final escaping etc done later on output
 
-		$type = ( $type == $type_accept[0] ) ? $type : ( in_array( $type, $type_accept ) ) ? $type : $type_accept[0];
-		$output = ( $output == $output_accept[0] ) ? $output : ( in_array( $output, $output_accept ) ) ? $output : $output_accept[0];
+		$type = ( $type == $type_accept[0] ) ? $type : ( ( in_array( $type, $type_accept ) ) ? $type : $type_accept[0] );
+		$output = ( $output == $output_accept[0] ) ? $output : ( ( in_array( $output, $output_accept ) ) ? $output : $output_accept[0] );
 		$output_i = ( $output == 'ul' || $output == 'ol' ) ?  'li': 'p';
 
 		$mime_type = ( !empty($mime_type) ) ? $mime_type : false;
 
 		$amount = ( is_numeric($amount) ) ? $amount : -1;
 		$order = ( $order == 'ASC' ) ? $order : 'DESC';
-		$img_size = ( $img_size == 'large' ) ? $img_size : ( in_array($img_size, get_intermediate_image_sizes()) ) ? $img_size : 'large';
+		$img_size = ( $img_size == 'large' ) ? $img_size : ( ( in_array($img_size, get_intermediate_image_sizes()) ) ? $img_size : 'large' );
 		$link_class = ( !empty($link_class) ) ? $link_class . ' ' : '';
 
 		// Ready for output

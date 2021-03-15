@@ -767,7 +767,7 @@ class wflux_helper {
 
 
 	/**
-	 * Gets current page/post 'depth' when using parent/child/grandchild etc page structure.
+	 * Gets current page 'depth' when using parent/child/grandchild etc page structure.
 	 * NOTE: Works for any hierarchical post type, not just pages!
 	 *
 	 * @since	0.86
